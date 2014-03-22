@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+$menu-height: 450px;
+
+@mixin transition($s) {
+  -webkit-transition: $s;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: $s;  /* Firefox 4-15 */
+       -o-transition: $s;  /* Opera 10.50–12.00 */
+          transition: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+
+@import "http://webfonts.ru/import/alegreya.css";
+
+* {
+	font-family: 'Alegreya SC';
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+nav {
+	font-size: 15px;
+	color: #58585A;
+	font-weight: bold;
+	float: right;
+	margin: 52px 60px 0 0;
+
+	> ul {		
+
+		li {
+			list-style-type: none;
+			text-align: center;
+		}
+
+		> li {					
+			display: inline-block;
+			width: 100px;
+
+			> a {
+				margin-bottom: 17px;
+				display: block;
+				text-transform: uppercase;
+			}
+
+			ul {
+				position: absolute;
+				height: 0;
+				background-color: rgba(255, 255, 255, 0.8);
+				padding: 20px 0 0;
+				width: 100px;
+				overflow: hidden;
+				margin-top: 1px;
+				@include transition(0.3s);
+
+				li {
+					line-height: 25px;
+					@include transition(0.3s);
+				}
+
+				li:hover {
+					color: #52B84A;
+				}
+			}
+
+			> div {
+				height: 0;
+				position: absolute;
+				left: 0;
+				right: 0;
+				border-top: 1px solid #54585B;
+				overflow: hidden;
+				@include transition(0.3s);
+
+				div	{
+					width: 100%;
+					height: $menu-height;
+					position: absolute;
+					top: 0;
+					left: -2000px;
+				}	
+			}
+		}
+
+		> li:hover {
+			ul {
+				height: $menu-height;
+			}
+
+			> div {
+				height: $menu-height;
+			}
+		}
+	}
+}
