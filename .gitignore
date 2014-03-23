@@ -1,0 +1,24 @@
+# XCode noise
+
+
+# old school
+.svn
+.redcar
+
+# osx noise
+.DS_store
+.DS_Store
+tmp/
+log/
+tmp
+log
+tmp/cache
+tmp/cache/
+
+db/sphinx
+public/javascripts/ckeditor/config.js
+config/production.sphinx.conf
+.idea
+.idea/
+.idea/workspace.xml
+.idea/novomeb.ru.iml
