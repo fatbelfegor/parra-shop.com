@@ -21,10 +21,6 @@ $menu-height: 450px;
           transition: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
-@import "http://webfonts.ru/import/alegreya.css";
-
-* {
-	font-family: 'Alegreya SC';
 @import "http://webfonts.ru/import/b20sans.css";
 
 * {
@@ -38,12 +34,6 @@ a {
 	text-decoration: none;
 }
 
-nav {
-	font-size: 15px;
-	color: #58585A;
-	font-weight: bold;
-	float: right;
-	margin: 52px 60px 0 0;
 .logo {
 	width: 117px;
 	height: 84px;
@@ -67,12 +57,6 @@ nav {
 
 		> li {					
 			display: inline-block;
-			width: 100px;
-
-			> a {
-				margin-bottom: 17px;
-				display: block;
-				text-transform: uppercase;
 
 			> a {
 				margin: 13px 18px 6px;
@@ -85,7 +69,6 @@ nav {
 				position: absolute;
 				height: 0;
 				background-color: rgba(255, 255, 255, 0.8);
-				padding: 20px 0 0;
 				padding: 0 0 0;
 				width: 100px;
 				overflow: hidden;
