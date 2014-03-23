@@ -7170,3 +7170,178 @@ Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-24 01:47:12 +0400
 
 
 Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-24 01:47:12 +0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 62ms (Views: 48.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-24 01:53:48 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-24 01:53:49 +0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 123ms (Views: 122.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-24 01:55:20 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-24 01:55:21 +0400
