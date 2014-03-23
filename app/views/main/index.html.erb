@@ -1,0 +1,57 @@
+<% if user_signed_in? %>
+    <span>Здравствуйте, <%= current_user.email %></span>
+    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+<% else %>
+    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+<% end %>
+
+<nav>
+  <ul id="mainMenu">    
+    <li><a href="">Спальни</a>
+      <div>
+        <div style="background: url(/assets/Bella.png); left: 0"></div>
+        <div style="background: url(/assets/Plisset.png)"></div>
+        <div style="background: url(/assets/Orly.png)"></div>
+        <div style="background: url(/assets/Ritmika.png)"></div>
+        <div style="background: url(/assets/Lorra.png)"></div>
+        <div style="background: url(/assets/Leggero.png)"></div>
+        <div style="background: url(/assets/Miro.png)"></div>
+      </div>     
+      <ul>
+        <li><a href="">Bella</a></li>
+        <li><a href="">Plisset</a></li>
+        <li><a href="">Orly</a></li>
+        <li><a href="">Ritmika</a></li>
+        <li><a href="">Lorra</a></li>
+        <li><a href="">Leggero</a></li>
+        <li><a href="">Miro</a></li>
+      </ul>
+    </li>
+    <li><a href="">Гостинные</a>
+		<div>
+			<div style="background: url(/assets/Azzon.png); left: 0"></div>
+			<div style="background: url(/assets/BellaGost.png)"></div>
+			<div style="background: url(/assets/P3.png)"></div>
+			<div style="background: url(/assets/Forma.png)"></div>
+			<div style="background: url(/assets/Joy.png)"></div>
+			<div style="background: url(/assets/Style.png)"></div>
+			<div style="background: url(/assets/Verro.png)"></div>
+		</div>
+		<ul>
+	        <li><a href="">Azzon</a></li>
+	        <li><a href="">Bella</a></li>
+	        <li><a href="">P3</a></li>
+	        <li><a href="">Forma</a></li>
+	        <li><a href="">Joy</a></li>
+	        <li><a href="">Style</a></li>
+	        <li><a href="">Verro</a></li>
+	      </ul>
+	</li>
+
+    <li><a href="">Диваны</a>
+	</li>
+    <li><a href="">Матрасы</a></li>
+    <li><a href="">Элементы</a></li>
+    <li><a href="">Где купить</a></li>
+  </ul>
+</nav>
