@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+<<<<<<< HEAD
+=======
+
+$(document).ready(ready)
+>>>>>>> rominbranch

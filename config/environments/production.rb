@@ -1,6 +1,10 @@
 ParraShopCom::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+<<<<<<< HEAD
 
+=======
+  config.action_mailer.default_url_options = { :host => 'http://parrashop.herokuapp.com' }
+>>>>>>> rominbranch
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -77,4 +81,22 @@ ParraShopCom::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+<<<<<<< HEAD
+=======
+  
+  config.action_mailer.default_url_options = { :host => 'parra-shop.com' }
+  
+  config.action_mailer.delivery_method = :smtp  
+  config.action_mailer.perform_deliveries = true
+  ActionMailer::Base.default :from => "Parra Shop <orders@parra-shop.ru>"
+  ActionMailer::Base.smtp_settings = {
+  :address        => "smtp.gmail.com",
+  :port           => 587,
+  :domain         => "dreammag.ru",
+  :user_name      => "orders@parra-shop.ru",
+  :password       => "LmRsMsTd",
+  :authentication => :plain,
+  :enable_starttls_auto => true
+ }
+>>>>>>> rominbranch
 end
