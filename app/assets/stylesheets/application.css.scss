@@ -21,10 +21,12 @@ $menu-height: 450px;
           transition: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
-@import "http://webfonts.ru/import/alegreya.css";
+@import "http://webfonts.ru/import/b20sans.css";
 
 * {
-	font-family: 'Alegreya SC';
+	font-family: 'B20 Sans';
+	padding: 0;
+	margin: 0;
 }
 
 a {
@@ -32,12 +34,19 @@ a {
 	text-decoration: none;
 }
 
+.logo {
+	width: 117px;
+	height: 84px;
+	margin: 0 0 5px 19px;
+	position: absolute;
+}
+
 nav {
-	font-size: 15px;
+	font-size: 14px;
 	color: #58585A;
 	font-weight: bold;
 	float: right;
-	margin: 52px 60px 0 0;
+	margin: 52px 40px 0 0;
 
 	> ul {		
 
@@ -48,12 +57,12 @@ nav {
 
 		> li {					
 			display: inline-block;
-			width: 100px;
 
 			> a {
-				margin-bottom: 17px;
+				margin: 13px 18px 6px;
 				display: block;
 				text-transform: uppercase;
+				white-space: nowrap;
 			}
 
 			ul {
@@ -104,6 +113,21 @@ nav {
 			> div {
 				height: $menu-height;
 			}
+		}
+	}
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background-color: #E6E6E6;
+
+	ul {
+		li {
+			margin: 0 15px;
+			line-height: 40px;
 		}
 	}
 }

@@ -1,9 +1,4 @@
-<% if user_signed_in? %>
-    <span>Здравствуйте, <%= current_user.email %></span>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-<% else %>
-    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-<% end %>
+<img class="logo" src="/assets/logo.png">
 
 <nav>
   <ul id="mainMenu">    
@@ -52,6 +47,26 @@
 	</li>
     <li><a href="">Матрасы</a></li>
     <li><a href="">Элементы</a></li>
-    <li><a href="">Где купить</a></li>
+    <li><a href="">Полезная информация</a></li>
+    <li><a href="">Магазины</a></li>
+    <li><a href="">Контакты</a></li>
+    <li><a href="">Доставка и сборка</a></li>
   </ul>
+</nav>
+
+
+<nav class="footer">
+    <ul>
+        <li>Спальни</li>
+        <li>Гостинные</li>
+        <li>Диваны</li>
+        <li>Элементы</li>
+        <li>Полезная информация</li>
+        <li>Контакты</li>
+        <li>Доставка и сборка</li>
+        <li>Партнерам</li>
+        <li>Новости</li>
+        <li>Статьи</li>
+        <li>Гарантии</li>
+    </ul>
 </nav>
