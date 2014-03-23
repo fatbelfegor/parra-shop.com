@@ -9,14 +9,6 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-development:
-  adapter: mysql2
-  encoding: utf8
-  database: parra-shop_com_development
-  pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
 =======
 # PostgreSQL. Versions 8.2 and up are supported.
 #
@@ -34,7 +26,7 @@ development:
 # Configure Using Gemfile
 # gem 'pg'
 #
-#development:
+development:
   adapter: postgresql
   encoding: unicode
   database: db
@@ -51,14 +43,6 @@ development:
 #  password:
 #  socket: /tmp/mysql.sock
   
-development:
-  adapter: mysql2
-  encoding: utf8
-  database: parra-shop_com_production
-  username: root
-  password: LmRsMsTd1983
-  host:  localhost
-  socket: /var/lib/mysql/mysql.sock
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -77,13 +61,12 @@ development:
   #   log, notice, warning, error, fatal, and panic
   # Defaults to warning.
   #min_messages: notice
->>>>>>> rominbranch
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-<<<<<<< HEAD
   adapter: mysql2
   encoding: utf8
   database: parra-shop_com_test
@@ -96,15 +79,8 @@ production:
   adapter: mysql2
   encoding: utf8
   database: parra-shop_com_production
-  pool: 5
   username: root
-  password:
-  socket: /tmp/mysql.sock
-=======
-  adapter: postgresql
-  encoding: unicode
-  database: db
-  pool: 5
-  username: romeo
-  password:
->>>>>>> rominbranch
+  password: LmRsMsTd1983
+  socket: /var/lib/mysql/mysql.sock
+
+
