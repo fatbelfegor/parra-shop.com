@@ -21,19 +21,16 @@ $menu-height: 450px;
           transition: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
-<<<<<<< HEAD
 @import "http://webfonts.ru/import/alegreya.css";
 
 * {
 	font-family: 'Alegreya SC';
-=======
 @import "http://webfonts.ru/import/b20sans.css";
 
 * {
 	font-family: 'B20 Sans';
 	padding: 0;
 	margin: 0;
->>>>>>> rominbranch
 }
 
 a {
@@ -41,14 +38,12 @@ a {
 	text-decoration: none;
 }
 
-<<<<<<< HEAD
 nav {
 	font-size: 15px;
 	color: #58585A;
 	font-weight: bold;
 	float: right;
 	margin: 52px 60px 0 0;
-=======
 .logo {
 	width: 117px;
 	height: 84px;
@@ -62,7 +57,6 @@ nav {
 	font-weight: bold;
 	float: right;
 	margin: 52px 40px 0 0;
->>>>>>> rominbranch
 
 	> ul {		
 
@@ -73,32 +67,26 @@ nav {
 
 		> li {					
 			display: inline-block;
-<<<<<<< HEAD
 			width: 100px;
 
 			> a {
 				margin-bottom: 17px;
 				display: block;
 				text-transform: uppercase;
-=======
 
 			> a {
 				margin: 13px 18px 6px;
 				display: block;
 				text-transform: uppercase;
 				white-space: nowrap;
->>>>>>> rominbranch
 			}
 
 			ul {
 				position: absolute;
 				height: 0;
 				background-color: rgba(255, 255, 255, 0.8);
-<<<<<<< HEAD
 				padding: 20px 0 0;
-=======
 				padding: 0 0 0;
->>>>>>> rominbranch
 				width: 100px;
 				overflow: hidden;
 				margin-top: 1px;
@@ -136,10 +124,7 @@ nav {
 		> li:hover {
 			ul {
 				height: $menu-height;
-<<<<<<< HEAD
-=======
 				padding-top: 20px;
->>>>>>> rominbranch
 			}
 
 			> div {
@@ -147,8 +132,6 @@ nav {
 			}
 		}
 	}
-<<<<<<< HEAD
-=======
 }
 
 .footer {
@@ -164,5 +147,4 @@ nav {
 			line-height: 40px;
 		}
 	}
->>>>>>> rominbranch
 }
