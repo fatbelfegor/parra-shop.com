@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # MySQL.  Versions 4.1 and 5.0 are recommended.
 #
 # Install the MYSQL driver
@@ -9,7 +9,6 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-=======
 # PostgreSQL. Versions 8.2 and up are supported.
 #
 # Install the pg driver:

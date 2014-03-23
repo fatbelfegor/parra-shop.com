@@ -1,10 +1,6 @@
 ParraShopCom::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-<<<<<<< HEAD
-
-=======
   config.action_mailer.default_url_options = { :host => 'http://parrashop.herokuapp.com' }
->>>>>>> rominbranch
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -81,8 +77,6 @@ ParraShopCom::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-<<<<<<< HEAD
-=======
   
   config.action_mailer.default_url_options = { :host => 'parra-shop.com' }
   
@@ -98,5 +92,4 @@ ParraShopCom::Application.configure do
   :authentication => :plain,
   :enable_starttls_auto => true
  }
->>>>>>> rominbranch
 end

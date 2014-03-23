@@ -1,5 +1,4 @@
 ParraShopCom::Application.routes.draw do
-<<<<<<< HEAD
   get "main/index"
   
   root to: 'main#index', as: 'main'
@@ -58,7 +57,6 @@ ParraShopCom::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-=======
   devise_for :users
   get "main/index"
   
@@ -66,5 +64,4 @@ ParraShopCom::Application.routes.draw do
 
   resources :products
   resources :images
->>>>>>> rominbranch
 end

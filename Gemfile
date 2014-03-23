@@ -3,14 +3,11 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
-<<<<<<< HEAD
 # Use mysql as the database for Active Record
-=======
 gem 'devise'
 
 # Use mysql as the database for Active Record
 #gem 'pg'
->>>>>>> rominbranch
 gem 'mysql2'
 
 # Use SCSS for stylesheets
@@ -39,13 +36,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-<<<<<<< HEAD
-=======
 group :production do
   gem 'rails_12factor'
 end
 
->>>>>>> rominbranch
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
