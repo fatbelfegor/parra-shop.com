@@ -3131,3 +3131,133 @@ Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-23 16:44:04 +020
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-23 16:44:04 +0200
+
+
+Started GET "/products/3" for 127.0.0.1 at 2014-03-23 16:45:39 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mProduct Load (2.6ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1  [["id", "3"]]
+  Rendered products/show.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 296ms (Views: 207.3ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-23 16:45:40 +0200
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-23 16:51:08 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (27.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 510ms (Views: 481.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-23 16:51:09 +0200
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-23 16:51:09 +0200
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-23 16:51:09 +0200
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-23 16:51:09 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-23 16:51:09 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-23 16:51:10 +0200
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-23 16:51:11 +0200
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-23 16:51:11 +0200
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-23 16:51:11 +0200
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-23 16:51:11 +0200
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-23 16:51:11 +0200
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-23 16:51:11 +0200
