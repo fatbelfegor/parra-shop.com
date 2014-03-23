@@ -14,13 +14,31 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-development:
+#development:
   adapter: postgresql
   encoding: unicode
   database: db
   pool: 5
   username: romeo
   password:
+      
+#development:
+#  adapter: mysql2
+#  encoding: utf8
+#  database: parra-shop_com_development
+#  pool: 5
+#  username: root
+#  password:
+#  socket: /tmp/mysql.sock
+  
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: parra-shop_com_production
+  username: root
+  password: LmRsMsTd1983
+  host:  localhost
+  socket: /var/lib/mysql/mysql.sock
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have

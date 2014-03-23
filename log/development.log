@@ -6574,3 +6574,337 @@ Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-23 18:02:09 +0200
 
 
 Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-23 18:02:09 +0200
+  [1m[36m (90.1ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (36.6ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to DeviseCreateUsers (20140323130402)
+  [1m[35m (28.3ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (21.3ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`) [0m
+  [1m[35m (17.3ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`) 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (6.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140323130402')
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProducts (20140323131611)
+  [1m[35m (20.5ms)[0m  CREATE TABLE `products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `text` text, `images` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140323131611')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateImages (20140323132439)
+  [1m[35m (13.7ms)[0m  CREATE TABLE `images` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `url` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140323132439')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 78ms (Views: 63.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-23 23:03:07 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-23 23:03:08 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-23 23:03:08 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-23 23:03:08 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-23 23:03:08 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-23 23:03:08 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-23 23:03:08 +0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-23 23:03:27 +0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 4ms (Views: 3.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-23 23:03:31 +0400
+
+
+Started GET "/products" for 127.0.0.1 at 2014-03-23 23:03:32 +0400
+
+AbstractController::ActionNotFound (The action 'index' could not be found for ProductsController):
+  actionpack (4.0.4) lib/abstract_controller/base.rb:131:in `process'
+  actionpack (4.0.4) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.4) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.4) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.4) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.4) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.4) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.4) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.4) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.4) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.4) lib/action_dispatch/routing/route_set.rb:674:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  activerecord (4.0.4) lib/active_record/migration.rb:373:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:373:in `_run__290718189157697436__call__callbacks'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.5ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-03-23 23:03:35 +0400
+
+AbstractController::ActionNotFound (The action 'index' could not be found for ProductsController):
+  actionpack (4.0.4) lib/abstract_controller/base.rb:131:in `process'
+  actionpack (4.0.4) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.4) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.4) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.4) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.4) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.4) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.4) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.4) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.4) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.4) lib/action_dispatch/routing/route_set.rb:674:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  activerecord (4.0.4) lib/active_record/migration.rb:373:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:373:in `_run__290718189157697436__call__callbacks'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.4ms)
