@@ -2,11 +2,15 @@ iframe = document.createElement 'iframe'
 images = []
 
 window.ready = ->
-	$('#addImages').click ->
+	$('#addImages input').click ->
 		iframe.src = '/images/new'
-		document.body.appendChild iframe
+		this.parentNode.appendChild iframe
 
 window.addImageUrl = (url) ->
 	iframe.parentNode.removeChild iframe
 	images.push url
-	$('#products_images').val(images.join(','))
+	imagesHtml = ''
+	$('#product_images').val(images.join(','))
+	for img in images
+		imagesHtml += '<img src="/uploads/'+img+'">'
+	$('#addImages div').html(imagesHtml)

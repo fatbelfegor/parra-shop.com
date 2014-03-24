@@ -1,22 +1,3 @@
-<%= form_for :products, url: products_path do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
+<h2>Новый продукт</h2>
 
-  <%= f.text_field :images %>
-
-  <div id="addImages">
-    <span>Добавить фото</span>
-    <div></div>
-  </div>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= render :partial => 'form' %>

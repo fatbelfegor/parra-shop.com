@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
 	def new
+		@categories = Category.all
 	end
 
 	def create
 		@product = Product.new(product_params)
  
-	  @product.save
-	  redirect_to @product
+		@product.save
+		redirect_to @product
 	end
 
 	def show
@@ -15,6 +16,24 @@ class ProductsController < ApplicationController
 
 private
   def product_params
-    params.require(:products).permit(:title, :text, :images)
+    params.require(:product).permit(
+    	:category_id,
+		:scode,
+		:name,
+		:description,
+		:images,
+		:price,
+		:shortdesk,
+		:delemiter,
+		:invisible,
+		:main,
+		:action,
+		:best,
+		:position,
+		:s_title,
+		:s_description,
+		:s_keyword,
+		:s_imagealt
+    )
   end
 end

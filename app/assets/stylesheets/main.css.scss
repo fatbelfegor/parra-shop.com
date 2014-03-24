@@ -1,3 +1,42 @@
-// Place all the styles related to the main controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.main {
+	position: absolute;
+	width: 100%;
+	top: 88px;
+	bottom: 40px;
+	overflow: auto;
+
+	> div {
+		width: 900px;
+		height: 100%;
+		margin: 0 auto;
+		font-size: 0;
+
+		> div {
+			width: 300px;
+			height: 400px;
+			display: inline-block;
+			vertical-align: top;
+
+			img {
+				width: 280px;
+				height: 280px;
+				margin: 10px;
+			}
+
+			div {
+				color: #59595B;
+				margin-left: 85px;
+				font-size: 14px;
+				line-height: 25px;
+			}
+
+			:nth-child(2) {
+				font-weight: bold;
+			}
+
+			:nth-child(2), :last-child {
+				color: black;
+			}
+		}
+	}
+}

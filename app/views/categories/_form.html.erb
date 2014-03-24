@@ -1,0 +1,42 @@
+<%= form_for :category, url: categories_path do |f| %>
+  <p>
+    <%= f.label :parent_id , "Родительская категория" %><br />
+    <%= select_tag :parent_id, options_from_collection_for_select(@categories, "id", "name") %>
+  </p>
+  <p>
+    <%= f.label :scode , "Код" %><br />
+    <%= f.text_field :scode %>
+  </p>
+  <p>
+    <%= f.label :name , "Название" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :s_title , "SEO title" %><br />
+    <%= f.text_field :s_title %>
+  </p>
+  <p>
+    <%= f.label :s_description , "SEO description" %><br />
+    <%= f.text_field :s_description %>
+  </p>
+  <p>
+    <%= f.label :s_keyword , "SEO keywords через запятую" %><br />
+    <%= f.text_field :s_keyword %>
+  </p>
+  <p>
+    <%= f.label :commission , "Наценка продавца" %><br />
+    <%= f.text_field :commission %>
+  </p>
+  <p>
+    <%= f.label :rate , "Наша наценка" %><br />
+    <%= f.text_field :rate %>
+  </p>
+
+  <p>
+    <%= f.label :description , "Описание" %><br />
+  <%= f.cktext_area :description, :toolbar=>'Full', :language => 'ru'%>
+  </p>
+  <p>
+    <%= f.submit 'Сохранить' %>
+  </p>
+<% end %>

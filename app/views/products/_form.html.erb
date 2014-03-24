@@ -1,0 +1,57 @@
+<%= form_for :product, url: products_path do |f| %>
+  <p>
+    <%= f.label :category_id , "Категория" %><br />
+    <%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name") %>
+  </p>
+  <p>
+    <%= f.label :scode , "Код" %><br />
+    <%= f.text_field :scode %>
+  </p>
+  <p><%=check_box("product", "main", {}, "true", "false")%> Отображать на главной странице</p>
+  <p><%=check_box("product", "action", {}, "true", "false")%> Отображать на панели скидки</p>
+  <p><%=check_box("product", "best", {}, "true", "false")%> Отображать на панели Хиты продаж</p>
+  <p><%=check_box("product", "invisible", {}, "true", "false")%> Сделать Невидимым</p>
+  <p>
+    <%= f.label :position , "Порядковый номер" %><br />
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.label :s_title , "SEO title" %><br />
+    <%= f.text_field :s_title %>
+  </p>
+  <p>
+    <%= f.label :s_description , "SEO description" %><br />
+    <%= f.text_field :s_description %>
+  </p>
+  <p>
+    <%= f.label :s_keyword , "SEO keywords через запятую" %><br />
+    <%= f.text_field :s_keyword %>
+  </p>
+  <p>
+    <%= f.label :name , "Название" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p><%=check_box("product", "delemiter", {}, "true", "false")%> Сделать Разделителем</p>
+  <p>
+    <%= f.label :price , "Цена" %><br />
+    <%= f.text_field :price %>
+  </p>
+
+  <div id="addImages">
+    <input type="button" value="Добавить изображение">
+    <div></div>
+  </div>
+  <%= f.hidden_field :images %>
+  
+  <p>
+      <%= f.label :shortdesk , "Краткое описание" %><br />
+    <%= f.cktext_area :shortdesk, :toolbar=>'Full', :language => 'ru'%>
+  </p>
+  <p>
+    <%= f.label :description , "Описание" %><br />
+  <%= f.cktext_area :description, :toolbar=>'Full', :language => 'ru'%>
+  </p>
+  <p>
+    <%= f.submit 'Сохранить' %>
+  </p>
+<% end %>

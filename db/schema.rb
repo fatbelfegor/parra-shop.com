@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323132439) do
+ActiveRecord::Schema.define(version: 20140324121518) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "position"
+    t.string   "header"
+    t.text     "images"
+    t.integer  "parent_id"
+    t.string   "s_title"
+    t.string   "s_description"
+    t.string   "s_keyword"
+    t.string   "s_name"
+    t.string   "scode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "commission",    precision: 18, scale: 2, default: 0.0
+    t.decimal  "rate",          precision: 18, scale: 2, default: 0.0
+  end
+
+  create_table "categories_products", id: false, force: true do |t|
+    t.integer "category_id", null: false
+    t.integer "product_id",  null: false
+  end
 
   create_table "images", force: true do |t|
     t.string   "url"
@@ -20,11 +46,25 @@ ActiveRecord::Schema.define(version: 20140323132439) do
   end
 
   create_table "products", force: true do |t|
-    t.string   "title"
-    t.text     "text"
+    t.integer  "category_id"
+    t.string   "scode"
+    t.string   "name"
+    t.text     "description"
     t.text     "images"
+    t.text     "shortdesk"
+    t.boolean  "delemiter"
+    t.boolean  "invisible"
+    t.boolean  "main"
+    t.boolean  "action"
+    t.boolean  "best"
+    t.integer  "position"
+    t.string   "s_title"
+    t.string   "s_description"
+    t.string   "s_keyword"
+    t.string   "s_imagealt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "price",         precision: 18, scale: 2, default: 0.0
   end
 
   create_table "users", force: true do |t|

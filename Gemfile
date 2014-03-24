@@ -6,9 +6,11 @@ gem 'rails', '4.0.4'
 # Use mysql as the database for Active Record
 gem 'devise'
 
+gem 'ckeditor'
+
 # Use mysql as the database for Active Record
 #gem 'pg'
-gem 'mysql2'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

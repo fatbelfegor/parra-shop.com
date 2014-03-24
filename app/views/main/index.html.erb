@@ -52,6 +52,19 @@
   </ul>
 </nav>
 
+<div class="main">
+    <div>
+        <% for product in  @products %>
+        <div>
+            <img src="<%= product.images %>">
+            <div><%= product.name %></div>
+            <div><%= product.scode %></div>
+            <div><%= product.shortdesk %></div>
+            <div><b>Цена:</b> <%= product.price %> руб</div>
+        </div>
+        <% end %>
+    </div>
+</div>
 
 <nav class="footer">
     <ul>
