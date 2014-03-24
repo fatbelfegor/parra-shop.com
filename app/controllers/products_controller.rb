@@ -10,6 +10,10 @@ class ProductsController < ApplicationController
 		redirect_to @product
 	end
 
+	def buy
+		@product = Product.find_by(scode: params[:scode])
+	end
+
 	def show
 	  @product = Product.find(params[:id])
 	end

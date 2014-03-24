@@ -38,11 +38,15 @@ a {
 	text-decoration: none;
 }
 
+li {
+	list-style-type: none;
+}
+
 .logo {
 	width: 117px;
 	height: 84px;
 	margin: 0 0 5px 19px;
-	position: absolute;
+	float: left;
 }
 
 nav {

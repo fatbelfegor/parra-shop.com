@@ -1,83 +1,11 @@
-<img class="logo" src="/assets/logo.png">
-
-<nav>
-  <ul id="mainMenu">    
-    <li><a href="">Спальни</a>
-      <div>
-        <div style="background: url(/assets/Bella.png); left: 0"></div>
-        <div style="background: url(/assets/Plisset.png)"></div>
-        <div style="background: url(/assets/Orly.png)"></div>
-        <div style="background: url(/assets/Ritmika.png)"></div>
-        <div style="background: url(/assets/Lorra.png)"></div>
-        <div style="background: url(/assets/Leggero.png)"></div>
-        <div style="background: url(/assets/Miro.png)"></div>
-      </div>     
-      <ul>
-        <li><a href="">Bella</a></li>
-        <li><a href="">Plisset</a></li>
-        <li><a href="">Orly</a></li>
-        <li><a href="">Ritmika</a></li>
-        <li><a href="">Lorra</a></li>
-        <li><a href="">Leggero</a></li>
-        <li><a href="">Miro</a></li>
-      </ul>
-    </li>
-    <li><a href="">Гостинные</a>
-		<div>
-			<div style="background: url(/assets/Azzon.png); left: 0"></div>
-			<div style="background: url(/assets/BellaGost.png)"></div>
-			<div style="background: url(/assets/P3.png)"></div>
-			<div style="background: url(/assets/Forma.png)"></div>
-			<div style="background: url(/assets/Joy.png)"></div>
-			<div style="background: url(/assets/Style.png)"></div>
-			<div style="background: url(/assets/Verro.png)"></div>
-		</div>
-		<ul>
-	        <li><a href="">Azzon</a></li>
-	        <li><a href="">Bella</a></li>
-	        <li><a href="">P3</a></li>
-	        <li><a href="">Forma</a></li>
-	        <li><a href="">Joy</a></li>
-	        <li><a href="">Style</a></li>
-	        <li><a href="">Verro</a></li>
-	      </ul>
-	</li>
-
-    <li><a href="">Диваны</a>
-	</li>
-    <li><a href="">Матрасы</a></li>
-    <li><a href="">Элементы</a></li>
-    <li><a href="">Где купить</a></li>
-    <li><a href="">Полезная информация</a></li>  
-  </ul>
-</nav>
-
-<div class="main">
-    <div>
-        <% for product in  @products %>
-        <div>
-            <img src="<%= product.images %>">
-            <div><%= product.name %></div>
-            <div><%= product.scode %></div>
-            <div><%= product.shortdesk %></div>
-            <div><b>Цена:</b> <%= product.price %> руб</div>
-        </div>
-        <% end %>
-    </div>
+<div class="index">
+<% for product in  @products %>
+<div>
+    <img src="<%= product.images %>">
+    <div><%= link_to product.name, "kupit/" + product.scode %></div>
+    <div><%= product.scode %></div>
+    <div><%= product.shortdesk %></div>
+    <div><b>Цена:</b> <%= product.price %> руб</div>
 </div>
-
-<nav class="footer">
-    <ul>
-        <li>Спальни</li>
-        <li>Гостинные</li>
-        <li>Диваны</li>
-        <li>Элементы</li>
-        <li>Полезная информация</li>
-        <li>Контакты</li>
-        <li>Доставка и сборка</li>
-        <li>Партнерам</li>
-        <li>Новости</li>
-        <li>Статьи</li>
-        <li>Гарантии</li>
-    </ul>
-</nav>
+<% end %>
+</div>
