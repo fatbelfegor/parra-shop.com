@@ -21287,3 +21287,213 @@ Started GET "/assets/ckeditor/styles.js" for 127.0.0.1 at 2014-03-24 15:08:25 +0
 
 
 Started GET "/assets/ckeditor/contents.css" for 127.0.0.1 at 2014-03-24 15:08:25 +0200
+
+
+Started GET "/Rino" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+Processing by CategoriesController#catalog as HTML
+  Parameters: {"scode"=>"Rino"}
+  [1m[35mCategory Load (3.7ms)[0m  SELECT "categories".* FROM "categories" WHERE "categories"."scode" = 'Rino' LIMIT 1
+  [1m[36mProduct Load (1.2ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."category_id" = $1[0m  [["category_id", 1]]
+  Rendered main/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 46ms (Views: 33.8ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-24 15:18:16 +0200
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-24 15:18:17 +0200
+
+
+Started GET "/Rino" for 127.0.0.1 at 2014-03-24 16:39:15 +0200
+Processing by CategoriesController#catalog as HTML
+  Parameters: {"scode"=>"Rino"}
+  [1m[35mCategory Load (1.0ms)[0m  SELECT "categories".* FROM "categories" WHERE "categories"."scode" = 'Rino' LIMIT 1
+  [1m[36mProduct Load (2.5ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."category_id" = $1[0m  [["category_id", 1]]
+  Rendered main/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 31ms (Views: 18.6ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-24 16:39:15 +0200
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-24 16:39:15 +0200
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-24 16:39:16 +0200
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-24 16:39:17 +0200
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-24 16:39:17 +0200
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-24 16:39:17 +0200
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-24 16:39:17 +0200
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-24 16:39:17 +0200
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-24 16:39:17 +0200
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-24 16:39:17 +0200
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-24 16:39:17 +0200
