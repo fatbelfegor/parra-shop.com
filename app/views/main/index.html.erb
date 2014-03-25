@@ -1,5 +1,6 @@
 <div class="index">
 <% img = 0 %>
+<% if @products %>
 <% for @product in  @products %>
 <div>
     <% if @product.images %>
@@ -16,6 +17,7 @@
     <div><%= @product.shortdesk %></div>
     <div><b>Цена:</b> <%= @product.price %> руб</div>
 </div>
+<% end %>
 <% end %>
 </div>
 
