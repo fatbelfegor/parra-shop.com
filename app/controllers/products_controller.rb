@@ -4,14 +4,32 @@ class ProductsController < ApplicationController
 	end
 
 	def create
-		@product = Product.new(product_params)
+		@product = Product.new product_params
  
 		@product.save
 		redirect_to @product
 	end
 
+	def buy
+		@product = Product.find_by scode: params[:scode]
+	end
+
 	def show
-	  @product = Product.find(params[:id])
+		@product = Product.find params[:id]
+	end
+
+	def edit
+		@categories = Category.all
+		@product = Product.find params[:id]
+	end
+
+	def destroy
+		@product = Product.find(params[:id])
+		@product.destroy
+
+		respond_to do |format|
+			format.html { redirect_to(@product.category) }
+		end
 	end
 
 private

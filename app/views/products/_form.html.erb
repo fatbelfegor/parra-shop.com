@@ -1,7 +1,7 @@
 <%= form_for :product, url: products_path do |f| %>
   <p>
     <%= f.label :category_id , "Категория" %><br />
-    <%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name") %>
+    <%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name", if @product then @product.category_id else 1 end) %>
   </p>
   <p>
     <%= f.label :scode , "Код" %><br />

@@ -1,0 +1,26 @@
+<div class="showPage">
+	<% if @product.images %>
+		<% images = @product.images.split(',') %>
+	    <a href="<%= images[0] %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= images[0] %>"></a>
+	    <div class="hidden">
+	    	<%  images.drop(1).each do |i| %>
+	    		<a href="<%= i %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= i %>"></a>
+	    	<% end %>
+	    </div>
+	<% end %>
+
+	<p><%= @product.name %></p>
+	<p><%= @product.scode %></p>
+	<p><%= @product.shortdesk %></p>
+	<p><%= @product.price %></p>
+	<br>
+	<input type="button" onclick="addToCart('<%= @product.name %>','<%= @product.price %>')" value="Купить">
+	<br>
+
+	<%= link_to 'Редактировать', edit_product_path(@product) %> |
+	<%= link_to 'Удалить', @product, :confirm => 'Вы уверены?', :method => :delete %> |
+	<%= link_to 'Список Продуктов', if(@product.category) then '/'+@product.category.scode else products_path end %>
+</div>
+
+<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
+<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />

@@ -9,7 +9,96 @@
 <body class='<%= controller.controller_name %>'>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-<%= yield %>
+
+<img class="logo" src="/assets/logo.png">
+<a href="/cart" class="cart"></a>
+<div id="cartCount"></div>
+
+<nav>
+  <ul id="mainMenu">    
+    <li><a href="">Спальни</a>
+      <div>
+        <div style="background: url(/assets/Bella.png); left: 0"></div>
+        <div style="background: url(/assets/Plisset.png)"></div>
+        <div style="background: url(/assets/Orly.png)"></div>
+        <div style="background: url(/assets/Ritmika.png)"></div>
+        <div style="background: url(/assets/Lorra.png)"></div>
+        <div style="background: url(/assets/Leggero.png)"></div>
+        <div style="background: url(/assets/Miro.png)"></div>
+      </div>     
+      <ul>
+        <li><a href="">Bella</a></li>
+        <li><a href="">Plisset</a></li>
+        <li><a href="">Orly</a></li>
+        <li><a href="">Ritmika</a></li>
+        <li><a href="">Lorra</a></li>
+        <li><a href="">Leggero</a></li>
+        <li><a href="">Miro</a></li>
+      </ul>
+    </li>
+    <li><a href="">Гостинные</a>
+		<div>
+			<div style="background: url(/assets/Azzon.png); left: 0"></div>
+			<div style="background: url(/assets/BellaGost.png)"></div>
+			<div style="background: url(/assets/P3.png)"></div>
+			<div style="background: url(/assets/Forma.png)"></div>
+			<div style="background: url(/assets/Joy.png)"></div>
+			<div style="background: url(/assets/Style.png)"></div>
+			<div style="background: url(/assets/Verro.png)"></div>
+		</div>
+		<ul>
+	        <li><a href="">Azzon</a></li>
+	        <li><a href="">Bella</a></li>
+	        <li><a href="">P3</a></li>
+	        <li><a href="">Forma</a></li>
+	        <li><a href="">Joy</a></li>
+	        <li><a href="">Style</a></li>
+	        <li><a href="">Verro</a></li>
+	      </ul>
+	</li>
+
+    <li><a href="">Диваны</a>
+	</li>
+    <li><a href="">Матрасы</a></li>
+    <li><a href="">Элементы</a></li>
+    <li><a href="">Где купить</a></li>
+    <li onclick="if(this.className==''){this.className='open'}else{this.className=''}">
+      <a>Полезная информация</a>
+      <div>
+        <ul>
+          <li>Контакты</li>
+          <li>Доставка и сборка</li>
+          <li>Партнерам</li>
+          <li>Новости</li>
+          <li>Статьи</li>
+          <li>Гарантии</li>
+        </ul>
+      </div>
+    </li>  
+  </ul>
+</nav>
+
+<div class="main">
+    <div>
+      <%= yield %>
+    </div>
+</div>
+
+<nav class="footer">
+    <ul>
+        <li>Спальни</li>
+        <li>Гостинные</li>
+        <li>Диваны</li>
+        <li>Элементы</li>
+        <li>Полезная информация</li>
+        <li>Контакты</li>
+        <li>Доставка и сборка</li>
+        <li>Партнерам</li>
+        <li>Новости</li>
+        <li>Статьи</li>
+        <li>Гарантии</li>
+    </ul>
+</nav>
 
 </body>
 </html>
