@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  layout false
 
   def new
     @image = Image.new

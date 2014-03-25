@@ -12,6 +12,7 @@
 
 <img class="logo" src="/assets/logo.png">
 <a href="/cart" class="cart"></a>
+<div id="cartCount"></div>
 
 <nav>
   <ul id="mainMenu">    
@@ -61,7 +62,19 @@
     <li><a href="">Матрасы</a></li>
     <li><a href="">Элементы</a></li>
     <li><a href="">Где купить</a></li>
-    <li><a href="">Полезная информация</a></li>  
+    <li onclick="if(this.className==''){this.className='open'}else{this.className=''}">
+      <a>Полезная информация</a>
+      <div>
+        <ul>
+          <li>Контакты</li>
+          <li>Доставка и сборка</li>
+          <li>Партнерам</li>
+          <li>Новости</li>
+          <li>Статьи</li>
+          <li>Гарантии</li>
+        </ul>
+      </div>
+    </li>  
   </ul>
 </nav>
 

@@ -12,14 +12,21 @@
  *= require_tree .
  */
 
-$menu-height: 450px;
-
 @mixin transition($s) {
   -webkit-transition: $s;  /* Chrome 1-25, Safari 3.2+ */
      -moz-transition: $s;  /* Firefox 4-15 */
        -o-transition: $s;  /* Opera 10.50–12.00 */
           transition: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
+
+@mixin box-shadow($s) {
+  -webkit-box-shadow: $s;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-box-shadow: $s;  /* Firefox 4-15 */
+       -o-box-shadow: $s;  /* Opera 10.50–12.00 */
+          box-shadow: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+
+$menu-height: 450px;
 
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
 
@@ -40,6 +47,10 @@ a {
 
 li {
 	list-style-type: none;
+}
+
+.hidden {
+	display: none !important;
 }
 
 .logo {
@@ -80,7 +91,7 @@ nav {
 				padding: 0 0 0;
 				width: 100px;
 				overflow: hidden;
-				margin-top: 1px;
+				z-index: 2;
 				@include transition(0.3s);
 
 				li {
@@ -97,9 +108,9 @@ nav {
 				height: 0;
 				position: absolute;
 				left: 0;
-				right: 0;
-				border-top: 1px solid #54585B;
+				right: 0;				
 				overflow: hidden;
+				z-index: 2;
 				@include transition(0.3s);
 
 				div	{
@@ -120,6 +131,48 @@ nav {
 
 			> div {
 				height: $menu-height;
+			}
+		}
+
+		> :last-child {
+			a {
+				cursor: pointer;
+			}	
+
+			div {
+				display: block;
+				height: 0 !important;
+				width: auto;
+				background-color: #E6E6E6;
+				position: absolute;
+				left: 0;
+				width: 100%;
+				z-index: 1;
+				overflow: hidden;
+				@include transition(0.3s);
+
+				ul {
+					height: 100% !important;
+					padding-top: 0 !important;
+					background-color: transparent;
+					width: auto;
+					position: absolute;
+					margin-right: 43px;
+					right: 0;
+
+					li {
+						display: inline-block;
+						margin: 0 15px;
+						line-height: 40px;
+					}
+				}
+			}
+		}
+
+		.open {
+			div {
+				height: 40px !important;
+				border-bottom: 1px solid black !important;
 			}
 		}
 	}

@@ -6,7 +6,12 @@ window.ready = ->
 		iframe.src = '/images/new'
 		this.parentNode.appendChild iframe
 	window.cart = eval getCookie 'cart'
-	console.log cart
+	unless cart
+		window.cart = []
+	count = 0
+	cart.forEach (i) ->
+		count += i.count
+	$('#cartCount').html(count)
 	if $('#cart')
 		items = ''
 		for item in cart
@@ -14,25 +19,30 @@ window.ready = ->
 				minus = '<span onclick="changeCount(this)">++</span>'
 			else
 				minus = '<span class="invis">++</span>'
-			items += '<ul><li>'+item.name+'</li><li>'+minus+'<b>'+item.count+'</b>'+' <span onclick="changeCount(this)">+</span></li><li>'+item.price+'</li><li></li></ul>'
+			items += '<ul><li>'+item.name+'</li><li>'+minus+'<b>'+item.count+'</b>'+' <span onclick="changeCount(this)">+</span></li><li>'+item.price+' руб</li><li onclick="cartDelete(this)"></li></ul>'
 		$('#cart div').html(items)
 		window.changeCount = (el) ->
 			ul = el.parentNode.parentNode
 			name = ul.firstChild.innerHTML
 			item = (cart.filter (item) ->
 				item.name == name)[0]
-			console.log el.innerHTML
 			if el.innerHTML == '+'									
 				item.count++
 				if item.count > 1
-					$(ul).find('.invis').attr('class', '').click ->
-						changeCount(this)
+					$(ul).find('.invis').attr('class', '').attr('onclick', 'changeCount(this)')
 			else
 				item.count--
 				if item.count == 1
-					$(ul).find('li span:first-child').attr('class', 'invis')
+					$(ul).find('li span:first-child').attr('class', 'invis').attr('onclick', '')
 			$(ul).find('b').html(item.count)
 			document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
+		window.cartDelete = (el) ->
+			name = el.parentNode.firstChild.innerHTML
+			cart.splice cart.indexOf (cart.filter (item) ->
+				item.name == name)[0], 1
+			el.parentNode.outerHTML = ''
+			document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
+
 
 window.addImageUrl = (url) ->
 	iframe.parentNode.removeChild iframe
@@ -40,5 +50,5 @@ window.addImageUrl = (url) ->
 	imagesHtml = ''
 	$('#product_images').val(images.join(','))
 	for img in images
-		imagesHtml += '<img src="/uploads/'+img+'">'
+		imagesHtml += '<img src="'+img+'">'
 	$('#addImages div').html(imagesHtml)
