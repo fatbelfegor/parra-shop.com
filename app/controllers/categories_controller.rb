@@ -4,7 +4,7 @@
 class CategoriesController < ApplicationController
   
   before_filter :admin_required
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
   
   # GET /categories
   # GET /categories.json
@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @product, notice: 'Category was successfully created.' }
+        format.html { redirect_to categories_url , notice: 'Category was successfully created.' }
         format.json { render action: 'show', status: :created, location: @category }
       else
         format.html { render action: 'new' }
