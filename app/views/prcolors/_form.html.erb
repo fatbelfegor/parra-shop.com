@@ -1,0 +1,21 @@
+<%= form_for @prcolor do |f| %>
+  <p>
+    <%= f.label :product_id , "Продукт" %><br>
+    <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end) %>
+  </p>
+  <p>
+    <%= f.label :scode , "Код" %><br>
+    <%= f.text_field :scode %>
+  </p>
+  <p>
+    <%= f.label :name , "Название" %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :price , "Цена" %><br>
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.submit 'Сохранить' %>
+  </p>
+<% end %>

@@ -8,6 +8,8 @@ ParraShopCom::Application.routes.draw do
   resources :products
   resources :images
   resources :prsizes
+  resources :prcolors
+  resources :proptions
 
   get '/cart', to: 'main#cart'
   get '/kupit/:scode', to: 'products#buy'
