@@ -1,8 +1,22 @@
-<%= form_for :category, url: categories_path do |f| %>
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%if Category.count > 1 %>
   <p>
     <%= f.label :parent_id , "Родительская категория" %><br />
     <%= select_tag :parent_id, options_from_collection_for_select(@categories, "id", "name"), prompt: '' %>
   </p>
+  <% end %>
   <p>
     <%= f.label :scode , "Код" %><br />
     <%= f.text_field :scode %>

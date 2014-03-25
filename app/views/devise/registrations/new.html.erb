@@ -12,6 +12,12 @@
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
+  <div>
+	<%if User.count < 1 %>
+			<%=check_box("user", "admin", {}, "true", "false")%> Сделать администратором
+	<%end%>
+ </div>	
+
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 

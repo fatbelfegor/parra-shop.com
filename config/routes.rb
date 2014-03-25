@@ -4,7 +4,12 @@ ParraShopCom::Application.routes.draw do
   
   root to: 'main#main', as: 'main'
 
-  resources :categories
+  #resources :categories, :collection => { :sort => :post}
+  resources :categories do
+      collection do
+         post 'sort'
+      end
+  end
   resources :products
   resources :images
   resources :prsizes

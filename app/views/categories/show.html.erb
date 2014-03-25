@@ -1,0 +1,25 @@
+<p>
+  <b>Родительская категория:</b>
+  <%=h(@category.parent.nil? ? "": @category.parent.name) %>
+</p>
+
+<p>
+  <b>Название:</b>
+  <%=h @category.name %>
+</p>
+
+<p>
+  <b>Описание:</b>
+  <%= @category.description %>
+</p>
+
+<%= link_to 'Редактировать', edit_category_path(@category) %> |
+<%= link_to 'Список категорий', categories_path %>
+
+<h1>Список продуктов (<%= @category.products.count %>)</h1>
+
+<%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id })%>
+
+<div id ="products">
+	<%= render(:partial => "products/product" , :collection => @products) %>
+</div>

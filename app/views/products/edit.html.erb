@@ -1,3 +1,6 @@
 <h2>Редактировать продукт</h2>
 
 <%= render :partial => 'form' %>
+
+<%= link_to 'Показать', @product %> |
+<%= link_to 'Список Продуктов', if(@product.category) then @product.category else products_path end %>
