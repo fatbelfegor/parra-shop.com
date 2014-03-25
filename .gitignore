@@ -11,7 +11,10 @@
 tmp/
 config/database.yml
 log/
-
+test/
+tmp/
+log/
+Gemfile
 
 log/production.log
 log/development.log

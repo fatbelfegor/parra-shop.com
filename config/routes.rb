@@ -10,6 +10,7 @@ ParraShopCom::Application.routes.draw do
          post 'sort'
       end
   end
+
   resources :products
   resources :images
   resources :prsizes
