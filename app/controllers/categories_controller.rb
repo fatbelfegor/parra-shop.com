@@ -23,6 +23,9 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    if params[:parent_id]
+      @category.parent = Category.find(params[:parent_id])
+    end
   end
   
   # GET /categories/1/edit
