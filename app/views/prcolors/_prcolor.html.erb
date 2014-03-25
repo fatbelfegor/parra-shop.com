@@ -1,0 +1,8 @@
+<tr class='<%= cycle('light', 'dark') %>'>
+	<td style="text-align: center"><%= prcolor.name %></td>
+	<td style="text-align: center"><%= number_to_currency(prcolor.price) %></td>
+	<td style="text-align: center">
+		<%= link_to 'Удалить', prcolor, :confirm => 'Вы уверены?', :method => :delete %> | 
+		<%= link_to 'Редактировать', edit_prcolor_path(prcolor) %>
+	</td>
+</tr>
