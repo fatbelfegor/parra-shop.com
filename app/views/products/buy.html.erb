@@ -16,10 +16,18 @@
 	<br>
 	<input type="button" onclick="addToCart('<%= @product.name %>','<%= @product.price %>')" value="Купить">
 	<br>
-
+	<br>
+	<% if @product.prsizes && @product.prsizes.count > 0%>
+		<label style="font-weight: bold;">Выбрать размер:</label></br>
+		<%= select_tag :prsize, options_from_collection_for_select(@product.prsizes, :id, :name) %>
+	<% end %>
+	<br>
+	<br>
 	<%= link_to 'Редактировать', edit_product_path(@product) %> |
 	<%= link_to 'Удалить', @product, :confirm => 'Вы уверены?', :method => :delete %> |
 	<%= link_to 'Список Продуктов', if(@product.category) then '/'+@product.category.scode else products_path end %>
+	<br>
+	<%= link_to('Создать новый размер', { :controller => :prsizes, :action => :new , :product_id => @product.id })%>
 </div>
 
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
