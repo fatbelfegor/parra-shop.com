@@ -77891,3 +77891,568 @@ Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-25 19:29:07 +0200
 
 
 Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-25 19:29:07 +0200
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-25 22:12:32 +0400
+  [1m[36mActiveRecord::SchemaMigration Load (24.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+
+ActiveRecord::PendingMigrationError (Migrations are pending; run 'bin/rake db:migrate RAILS_ENV=development' to resolve this issue.):
+  activerecord (4.0.4) lib/active_record/migration.rb:383:in `check_pending!'
+  activerecord (4.0.4) lib/active_record/migration.rb:370:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:373:in `_run__721313484371658069__call__callbacks'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/ikishik/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.8ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to DeviseCreateUsers (20140323130402)
+  [1m[35m (28.0ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+Mysql2::Error: Table 'users' already exists: CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to DeviseCreateUsers (20140323130402)
+  [1m[35m (0.3ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+Mysql2::Error: Table 'users' already exists: CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (24.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (18.4ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to DeviseCreateUsers (20140323130402)
+  [1m[35m (13.2ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (14.8ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`) [0m
+  [1m[35m (13.1ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`) 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140323130402')
+  [1m[36m (5.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProducts (20140323131611)
+  [1m[35m (22.1ms)[0m  CREATE TABLE `products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `category_id` int(11), `scode` varchar(255), `name` varchar(255), `description` text, `images` text, `shortdesk` text, `delemiter` tinyint(1), `invisible` tinyint(1), `main` tinyint(1), `action` tinyint(1), `best` tinyint(1), `position` int(11), `s_title` varchar(255), `s_description` varchar(255), `s_keyword` varchar(255), `s_imagealt` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140323131611')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateImages (20140323132439)
+  [1m[35m (11.3ms)[0m  CREATE TABLE `images` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `url` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140323132439')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCategories (20140324110811)
+  [1m[35m (12.0ms)[0m  CREATE TABLE `categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `description` text, `position` int(11), `header` varchar(255), `images` text, `parent_id` int(11), `s_title` varchar(255), `s_description` varchar(255), `s_keyword` varchar(255), `s_name` varchar(255), `scode` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140324110811')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddColumnsToCategories (20140324111203)
+  [1m[35m (21.4ms)[0m  ALTER TABLE `categories` ADD `commission` decimal(18,2) DEFAULT 0
+  [1m[36m (18.4ms)[0m  [1mALTER TABLE `categories` ADD `rate` decimal(18,2) DEFAULT 0[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20140324111203')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+Migrating to AddColumnsToProducts (20140324115928)
+  [1m[36m (20.8ms)[0m  [1mALTER TABLE `products` ADD `price` decimal(18,2) DEFAULT 0[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20140324115928')[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Migrating to CategoriesProductsJoin (20140324121518)
+  [1m[36m (13.4ms)[0m  [1mCREATE TABLE `categories_products` (`category_id` int(11) NOT NULL, `product_id` int(11) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20140324121518')[0m
+  [1m[35m (0.5ms)[0m  COMMIT
+Migrating to CreatePrsizes (20140325153001)
+  [1m[36m (15.7ms)[0m  [1mCREATE TABLE `prsizes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `product_id` int(11), `scode` varchar(255), `name` varchar(255), `price` decimal(18,2) DEFAULT 0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20140325153001')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+Migrating to CreatePrcolors (20140325153100)
+  [1m[36m (10.0ms)[0m  [1mCREATE TABLE `prcolors` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `product_id` int(11), `scode` varchar(255), `name` varchar(255), `price` decimal(18,2) DEFAULT 0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20140325153100')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+Migrating to CreateProptions (20140325153130)
+  [1m[36m (11.8ms)[0m  [1mCREATE TABLE `proptions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `product_id` int(11), `scode` varchar(255), `name` varchar(255), `price` decimal(18,2) DEFAULT 0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20140325153130')[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MainController#main as HTML
+  Rendered main/main.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 320ms (Views: 306.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/cart.css?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/prsizes.css?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/cart.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/prsizes.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-25 22:15:51 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-25 22:15:52 +0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+Processing by MainController#main as HTML
+  Rendered main/main.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 10ms (Views: 8.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/cart.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/prsizes.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/cart.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/prsizes.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-25 22:18:29 +0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+Processing by MainController#main as HTML
+  Rendered main/main.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/cart.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/prsizes.css?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/cart.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/prsizes.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-25 22:18:53 +0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+Processing by MainController#main as HTML
+  Rendered main/main.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 52ms (Views: 51.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/images.css?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/cart.css?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/prsizes.css?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/cart.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/images.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/prsizes.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/script.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-25 22:20:11 +0400
