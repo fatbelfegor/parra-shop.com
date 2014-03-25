@@ -16,6 +16,25 @@ class ProptionsController < ApplicationController
     redirect_to '/kupit/'+@proption.product.name
   end
 
+  def edit
+    @products = Product.all
+    @proption = Proption.find(params[:id])
+    @product_id = @proption.product_id
+  end
+
+  def update
+    @proption = Proption.find(params[:id])
+
+    @proption.update_attributes proption_params
+    redirect_to '/kupit/'+@proption.product.name
+  end
+
+  def destroy
+    @proption = Proption.find(params[:id])
+    @proption.destroy
+    redirect_to '/kupit/'+@proption.product.name
+  end
+
 private
   def proption_params
     params.require(:proption).permit(

@@ -40,10 +40,34 @@
 	<%= link_to 'Список Продуктов', if(@product.category) then '/'+@product.category.scode else products_path end %>
 	<br>
 	<%= link_to('Создать новый размер', { :controller => :prsizes, :action => :new , :product_id => @product.id })%>
+	<table width='100%' class='data' border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<th style="text-align: center">Название</th>
+			<th style="text-align: center">Цена</th>
+			<th style="text-align: center">действия</th>
+		</tr>
+		<%= render(:partial => "prsizes/prsize" , collection: @product.prsizes) %>
+	</table>
 	<br>
 	<%= link_to('Создать новый цвет', { :controller => :prcolors, :action => :new , :product_id => @product.id })%>
+	<table width='100%' class='data' border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<th style="text-align: center">Название</th>
+			<th style="text-align: center">Цена</th>
+			<th style="text-align: center">действия</th>
+		</tr>
+		<%= render(:partial => "prcolors/prcolor" , collection: @product.prcolors) %>
+	</table>
 	<br>
 	<%= link_to('Создать новую опцию', { :controller => :proptions, :action => :new , :product_id => @product.id })%>
+	<table width='100%' class='data' border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<th style="text-align: center">Название</th>
+			<th style="text-align: center">Цена</th>
+			<th style="text-align: center">действия</th>
+		</tr>
+		<%= render(:partial => "proptions/proption" , collection: @product.proptions) %>
+	</table>
 </div>
 
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
