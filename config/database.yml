@@ -23,6 +23,7 @@ development:
   password:
   socket: /tmp/mysql.sock
   
+  
 
 #development:
 #  adapter: postgresql
