@@ -3,22 +3,19 @@
 
 # old school
 .svn
-.redcar
 
 # osx noise
 .DS_store
 .DS_Store
+
 tmp/
-log/
-tmp
-log
 config/database.yml
+log/
 
 
-db/sphinx
-public/javascripts/ckeditor/config.js
-config/production.sphinx.conf
-.idea
-.idea/
-.idea/workspace.xml
-.idea/novomeb.ru.iml
+log/production.log
+log/development.log
+log/test.log
+log/unicorn.stderr.log
+log/unicorn.stdout.log
+
