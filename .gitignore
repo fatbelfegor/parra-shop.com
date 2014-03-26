@@ -10,6 +10,8 @@
 
 public/assets/
 public/assets
+public/uploads/
+public/uploads
 tmp/
 config/database.yml
 log/
