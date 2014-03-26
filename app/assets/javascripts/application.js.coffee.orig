@@ -131,8 +131,8 @@ window.deleteImage = (el) ->
 =======
 	#$.get "/images/delete",
 	#  url: url
+>>>>>>> Stashed changes
 	index = $('.images li').index(li)
 	images = $('#product_images').val().split(',')
 	$('#product_images').val(images.join(','))
->>>>>>> Stashed changes
 	console.log images
