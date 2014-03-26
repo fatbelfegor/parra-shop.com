@@ -11,7 +11,7 @@
 
 	<p><%= @product.name %></p>
 	<p><%= @product.scode %></p>
-	<p><%= @product.shortdesk %></p>
+	<p><%= sanitize(@product.shortdesk) %></p>
 	<p><%= @product.price %></p>
 	<br>
 	<input type="button" onclick="addToCart('<%= @product.name %>','<%= @product.price %>')" value="Купить">

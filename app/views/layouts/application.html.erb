@@ -60,10 +60,10 @@
     <li><a href="">Диваны</a>
 	</li>
     <li><a href="">Матрасы</a></li>
-    <li><a href="">Элементы</a></li>
+    <li><a href="">Все товары</a></li>
     <li><a href="">Где купить</a></li>
     <li onclick="if(this.className==''){this.className='open'}else{this.className=''}">
-      <a>Полезная информация</a>
+      <a>информация</a>
       <div>
         <ul>
           <li><a href="">Контакты</a></li>
@@ -74,32 +74,20 @@
           <li><a href="">Гарантии</a></li>
         </ul>
       </div>
-    </li>  
+    </li>
+  	<li><a href="">Корзина</a></li>
   </ul>
 </nav>
 
 <div class="main">
   <div>
-  
-  	<div id="user_nav">
-  	  <% if user_signed_in? %>
-  	    Signed in as <%= current_user.email %>. Not you?
-  	    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  	  <% else %>
-  	    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  	  <% end %>
-  	</div>
-    
     <%= yield %>
-
   </div>
 </div>
 
 <nav class="footer">
     <ul>
-        <li>Спальни</li>
-        <li>Гостинные</li>
-        <li>Диваны</li>
+        <li>Где купить</li>
         <li>Элементы</li>
         <li>Полезная информация</li>
         <li>Контакты</li>
