@@ -12,7 +12,7 @@
   <% end %>
   <p>
     <%= f.label :category_id , "Категория" %><br />
-    <%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name", if @product then @product.category_id else 1 end) %>
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end) %>
   </p>
   <p>
     <%= f.label :scode , "Код" %><br />

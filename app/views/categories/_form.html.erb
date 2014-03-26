@@ -14,7 +14,7 @@
   <% if Category.count > 0 %>
   <p>
     <%= f.label :parent_id , "Родительская категория" %><br />
-    <%= select_tag :parent_id, options_from_collection_for_select(Category.all, "id", "name"), prompt: '' %>
+    <%= f.select :parent_id, options_from_collection_for_select(Category.all, "id", "name",if @category then @category.parent_id else 0 end) %>
   </p>
   <% end %>
   <p>
