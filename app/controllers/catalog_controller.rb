@@ -14,4 +14,8 @@ class CatalogController < ApplicationController
      @products = @category.products
     end
   end
+  
+  def cart  	
+  end
+  
 end

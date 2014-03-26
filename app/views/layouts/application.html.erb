@@ -11,7 +11,7 @@
 <p class="alert"><%= alert %></p>
 
 <img class="logo" src="/assets/logo.png">
-<a href="/cart" class="cart"></a>
+<a href="/catalog/cart" class="cart"></a>
 <div id="cartCount"></div>
 
 <nav>
@@ -66,12 +66,11 @@
       <a>информация</a>
       <div>
         <ul>
-          <li><a href="">Контакты</a></li>
-          <li><a href="">Доставка и сборка</a></li>
-          <li><a href="">Партнерам</a></li>
-          <li><a href="">Новости</a></li>
-          <li><a href="">Статьи</a></li>
-          <li><a href="">Гарантии</a></li>
+          <li><%= link_to 'Доставка и сборка', service_path %></li>
+          <li><%= link_to 'Партнерам', partners_path %></li>
+          <li><%= link_to 'Новости', news_path %></li>
+          <li><%= link_to 'Статьи', articles_path %></li>
+          <li><%= link_to 'Гарантии', insurance_path %></li>
         </ul>
       </div>
     </li>
@@ -87,15 +86,12 @@
 
 <nav class="footer">
     <ul>
-        <li>Где купить</li>
-        <li>Элементы</li>
-        <li>Полезная информация</li>
-        <li>Контакты</li>
-        <li>Доставка и сборка</li>
-        <li>Партнерам</li>
-        <li>Новости</li>
-        <li>Статьи</li>
-        <li>Гарантии</li>
+        <li><%= link_to 'Где купить', stores_path %></li>
+        <li><%= link_to 'Доставка и сборка', service_path %></li>
+        <li><%= link_to 'Партнерам', partners_path %></li>
+        <li><%= link_to 'Новости', news_path %></li>
+        <li><%= link_to 'Статьи', articles_path %></li>
+        <li><%= link_to 'Гарантии', insurance_path %></li>
     </ul>
 </nav>
 
