@@ -12,7 +12,7 @@ gem 'acts_as_tree'
 gem 'acts_as_list'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'pg'
 #gem 'pg'
 
 # Use SCSS for stylesheets

@@ -98,7 +98,7 @@ nav {
 				padding: 0 0 0;
 				width: 100px;
 				overflow: hidden;
-				z-index: 2;
+				z-index: 3;
 				@include transition(0.3s);
 
 				li {
@@ -121,11 +121,15 @@ nav {
 				@include transition(0.3s);
 
 				div	{
+					position: absolute;
 					width: 100%;
 					height: $menu-height;
 					position: absolute;
 					top: 0;
 					left: -2000px;
+					background-repeat: no-repeat;
+					background-size: 100% 450px;
+					z-index: 2;
 				}	
 			}
 		}
