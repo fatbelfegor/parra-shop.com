@@ -1,5 +1,5 @@
-<%= form_for @image do |f| %>
+<%= form_tag '/images', method: :post, multipart: true do %>
 	<p class="modal-form-title">Добавить изображение</p>
-  <%= f.file_field :url %><br>
-	<%= f.submit "ДОБАВИТЬ" %>
+  	<%= file_field_tag "file" %><br>
+	<input type="submit" value="ДОБАВИТЬ">
 <% end %>

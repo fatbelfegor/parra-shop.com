@@ -2,16 +2,10 @@ class ImagesController < ApplicationController
   layout false
 
   def new
-    @image = Image.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @image }
-    end
   end
 
   def create
-    if uploaded_io = image_params[:url]
+    if uploaded_io = params[:file]
       unless (File.exist?(Rails.root.join('public', 'uploads', uploaded_io.original_filename)))
         File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
           file.write(uploaded_io.read)
@@ -25,14 +19,18 @@ class ImagesController < ApplicationController
           file.write(uploaded_io.read)
         end
       end
-      image_params[:url] = '/uploads/'+index.to_s+uploaded_io.original_filename\
+      @url = '/uploads/'+index.to_s+uploaded_io.original_filename\
     end
-    @image = Image.new(image_params)
   end
 
-private
-
-  def image_params
-    params.require(:image).permit(:url)
+  def delete
+    @url = params[:url]    
+    if @url.include? request.env["HTTP_HOST"]
+      @url = Dir.pwd+'/public'+@url.split(request.env["HTTP_HOST"])[1]
+      File.delete @url if File.exist? @url
+    else
+      File.delete @url if File.exist? @url
+    end
   end
+
 end

@@ -4,9 +4,7 @@ ParraShopCom::Application.routes.draw do
   get "catalog/cart"
   devise_for :users
   get "main/index"
-
   get "main/main"
-  get "images/delete", to: 'images#delete'
   
   root to: 'main#index', as: 'index'
   
@@ -24,10 +22,7 @@ ParraShopCom::Application.routes.draw do
   get "main/news", as: 'news'
   get "main/articles", as: 'articles'
   get "main/insurance", as: 'insurance'
-
-  get "images/delete", to: 'images#delete'
   
-  root to: 'main#main', as: 'main'
 
   resources :categories
   resources :products
@@ -39,7 +34,7 @@ ParraShopCom::Application.routes.draw do
   resources :products do
     get :show_scode, on: :member
   end
-  
+
   get '/cart', to: 'main#cart'
   get '/kupit/:scode', to: 'products#buy'
   get '/:scode', to: 'categories#catalog'

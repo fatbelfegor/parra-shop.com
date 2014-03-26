@@ -11,8 +11,6 @@
 <p class="alert"><%= alert %></p>
 
 <img class="logo" src="/assets/logo.png">
-<a href="/catalog/cart" class="cart"></a>
-<div id="cartCount"></div>
 
 <nav>
   <ul id="mainMenu">    
@@ -61,8 +59,19 @@
 	</li>
     <li><a href="">Матрасы</a></li>
     <li><a href="">Все товары</a></li>
-    <li><a href="">Где купить</a></li>
-    <li onclick="if(this.className==''){this.className='open'}else{this.className=''}">
+    <li class="submenu">
+      <a href="">Где купить</a>
+      <div>
+        <ul>
+          <li><a href="">Пункты</a></li>
+          <li><a href="">Подменю</a></li>
+          <li><a href="">Для</a></li>
+          <li><a href="">Где</a></li>
+          <li><a href="">Купить</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="submenu">
       <a>информация</a>
       <div>
         <ul>
@@ -74,7 +83,7 @@
         </ul>
       </div>
     </li>
-  	<li><a href="">Корзина</a></li>
+  	<li><a href="/cart">Корзина<b id="cartCount"></b></a></li>
   </ul>
 </nav>
 

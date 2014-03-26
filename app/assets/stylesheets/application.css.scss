@@ -89,6 +89,10 @@ nav {
 				display: block;
 				text-transform: uppercase;
 				white-space: nowrap;
+
+				b {
+					margin-left: 8px;
+				}
 			}
 
 			ul {
@@ -145,14 +149,15 @@ nav {
 			}
 		}
 
-		> :last-child {
+		> .submenu {
 			a {
 				cursor: pointer;
 			}	
 
 			div {
 				display: block;
-				height: 0 !important;
+				margin-top: 1px;
+				height: 0;
 				width: auto;
 				background-color: #E6E6E6;
 				position: absolute;
@@ -163,8 +168,8 @@ nav {
 				@include transition(0.3s);
 
 				ul {
-					height: 100% !important;
-					padding-top: 0 !important;
+					height: 100%;
+					padding-top: 0;
 					background-color: transparent;
 					width: auto;
 					position: absolute;
@@ -180,29 +185,13 @@ nav {
 			}
 		}
 
-		.open {
+		.submenu:hover {
 			div {
-				height: 40px !important;
-				border-bottom: 1px solid black !important;
+				height: 40px;
+				border-bottom: 1px solid black;
 			}
 		}
 	}
-}
-
-
-
-.cart {
-	float: left;
-	width: 78px;
-	height: 30px;
-	background-image: url(http://mebel-litva.ru/images/cart.png?1330503546);
-	margin: 30px 0 0 30px;
-	display: block;
-}
-
-#cartCount {
-	float: left;
-	margin: 36px 0 0 10px;
 }
 
 #alert {
@@ -307,6 +296,27 @@ body > .main {
 					color: black;
 				}
 			}
+		}
+	}
+
+	form {
+		.images {
+			font-size: 0;
+
+			li {
+				display: inline-block;
+
+				img {
+					width: 150px;
+					height: 100px;
+					margin: 20px;		
+				}
+
+				p {
+					font-size: 14px;
+					cursor: pointer;
+				}
+			}			
 		}
 	}
 }

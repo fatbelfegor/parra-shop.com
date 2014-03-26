@@ -14,12 +14,9 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require_tree .
-#= require ckeditor/override
-#= require ckeditor/init
 
 
 iframe = document.createElement 'iframe'
-images = []
 menuImages = []
 
 ready = ->
@@ -104,10 +101,30 @@ window.addToCart = (name, price) ->
 	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
 
 window.addImageUrl = (url) ->
-	iframe.parentNode.removeChild iframe
+	inputName = iframe.parentNode.className
+	input = $('#'+inputName)
+	images = input.val().split(',')
+	if images[0] == ''
+		images = []
 	images.push url
 	imagesHtml = ''
-	$('#product_images').val(images.join(','))
+	input.val(images.join(','))	
 	for img in images
 		imagesHtml += '<img src="'+img+'">'
-	$('#addImages div').html(imagesHtml)
+	if inputName == "product_images"
+		$(iframe.parentNode).find('div').html(imagesHtml)
+	else
+		$(iframe.parentNode).html(imagesHtml)
+	iframe.parentNode.removeChild iframe
+
+window.deleteImage = (el) ->
+	li = el.parentNode
+	url = li.firstElementChild.href
+	$.get "/images/delete",
+	  url: url
+	li.parentNode.removeChild li
+	index = $('.images li').index li
+	images = $('#product_images').val().split ','
+	images.splice index, 1
+	$('#product_images').val images.join ','
+	console.log images

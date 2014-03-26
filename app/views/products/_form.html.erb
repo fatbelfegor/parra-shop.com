@@ -1,3 +1,5 @@
+<%= tinymce_assets %>
+
 <%= form_for(@product) do |f| %>
  <% if @product.errors.any? %>
     <div id="error_explanation">
@@ -48,21 +50,36 @@
     <%= f.text_field :price %>
   </p>
 
-  <div id="addImages">
+  <% if @product.images %>
+    <ul class="images">
+    <% @product.images.split(',').each do |i| %>
+      <li>
+        <a href="<%= i %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= i %>"></a>
+        <p onclick="deleteImage(this)">Удалить</p>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <br>
+  <div id="addImages" class="product_images">
     <input type="button" value="Добавить изображение">
     <div></div>
   </div>
   <%= f.hidden_field :images %>
+  <br>
   
   <p>
-      <%= f.label :shortdesk , "Краткое описание" %><br />
-    <%= f.cktext_area :shortdesk, :toolbar=>'Full', :language => 'ru'%>
+    <%= f.label :shortdesk , "Краткое описание" %><br />
+    <%= f.text_area :shortdesk, class: "tinymce" %>
   </p>
   <p>
     <%= f.label :description , "Описание" %><br />
-  <%= f.cktext_area :description, :toolbar=>'Full', :language => 'ru'%>
+    <%= f.text_area :description, class: "tinymce" %>
   </p>
   <p>
     <%= f.submit 'Сохранить' %>
   </p>
 <% end %>
+
+<%= tinymce %>

@@ -4,9 +4,8 @@ ParraShopCom::Application.routes.draw do
   get "catalog/cart"
   devise_for :users
   get "main/index"
-
+<<<<<<< Updated upstream
   get "main/main"
-  get "images/delete", to: 'images#delete'
   
   root to: 'main#index', as: 'index'
   
@@ -24,10 +23,10 @@ ParraShopCom::Application.routes.draw do
   get "main/news", as: 'news'
   get "main/articles", as: 'articles'
   get "main/insurance", as: 'insurance'
-
+=======
   get "images/delete", to: 'images#delete'
+>>>>>>> Stashed changes
   
-  root to: 'main#main', as: 'main'
 
   resources :categories
   resources :products
