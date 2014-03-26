@@ -8,6 +8,8 @@
 .DS_store
 .DS_Store
 
+public/assets/
+public/assets
 tmp/
 config/database.yml
 log/
