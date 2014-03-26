@@ -88381,3 +88381,102 @@ Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
 
 
 Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-26 05:51:29 +0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MainController#main as HTML
+  Rendered main/main.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (couldn't find file 'ckeditor/override'
+  (in /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/assets/javascripts/application.js.coffee:17)):
+    3: <head>
+    4:   <title>ParraShop</title>
+    5:   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    6:   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+    9: <body class='<%= controller.controller_name %>'>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___3801213603669460182_70265850674560'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+Processing by MainController#main as HTML
+  Rendered main/main.html.erb within layouts/application (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 150ms (Views: 137.0ms | ActiveRecord: 12.2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/catalog.css?body=1" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/catalog.js?body=1" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:53:56 +0400
