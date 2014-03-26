@@ -20,6 +20,7 @@ tmp/
 log/
 Gemfile
 Gemfile.lock
+.ruby-version
 
 log/production.log
 log/development.log
