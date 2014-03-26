@@ -3,7 +3,7 @@ working_directory "/home/ikishik/parra-shop.com"
 
 preload_app true
 
-timeout 30
+timeout 1000
 
 listen "0.0.0.0:3070", :backlog => 64
 
