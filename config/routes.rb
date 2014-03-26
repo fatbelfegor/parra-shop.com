@@ -1,4 +1,5 @@
 ParraShopCom::Application.routes.draw do
+  get "admin/index"
   get "catalog/index"
   devise_for :users
   get "main/index"
@@ -17,6 +18,10 @@ ParraShopCom::Application.routes.draw do
   resources :prsizes
   resources :prcolors
   resources :proptions
+  
+  resources :products do
+    get :show_scode, on: :member
+  end
 
   get '/cart', to: 'main#cart'
   get '/kupit/:scode', to: 'products#buy'

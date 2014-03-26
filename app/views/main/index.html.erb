@@ -15,9 +15,8 @@
         	<% end %>
         </div>
     <% end %>
-    <div><%= link_to @product.name, "kupit/" + @product.scode %></div>
-    <div><%= @product.scode %></div>
-    <div><%= @product.shortdesk %></div>
+    <div><%= link_to @product.name, "/kupit/" + @product.scode %></div>
+    <div><%= sanitize(@product.shortdesk) %></div>
     <div><b>Цена:</b> <%= @product.price %> руб</div>
 </div>
 <% end %>

@@ -89,7 +89,7 @@ class CategoriesController < ApplicationController
 
 	def catalog
 		@category = Category.find_by(scode: params[:scode])
-		@products = @category.products
+		#@products = @category.products
 		render "main/index"		
 	end
 

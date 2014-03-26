@@ -36,8 +36,10 @@ class ProductsController < ApplicationController
   
   # GET /products/new
   def new
-    @categories = Category.all
     @product = Product.new
+    if params[:category_id]
+        @product.category = Category.find(params[:category_id])
+    end
   end
   
   # GET /products/1/edit
