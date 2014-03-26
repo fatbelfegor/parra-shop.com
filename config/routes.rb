@@ -1,4 +1,5 @@
 ParraShopCom::Application.routes.draw do
+  get "catalog/index"
   devise_for :users
   get "main/index"
   

@@ -1,0 +1,15 @@
+<div>
+    <% if productNew.images %>
+    	<% images = productNew.images.split(',') %>
+        <a href="<%= images[0] %>" data-lightbox="image-<%= img+=1 %>" title="<% productNew.name %>"><img src="<%= images[0] %>"></a>
+        <div class="hidden">
+        	<%  images.drop(1).each do |i| %>
+        		<a href="<%= i %>" data-lightbox="image-<%= img %>" title="<% productNew.name %>"><img src="<%= i %>"></a>
+        	<% end %>
+        </div>
+    <% end %>
+    <div><%= link_to productNew.name, "kupit/" + productNew.scode %></div>
+    <div><%= productNew.scode %></div>
+    <div><%= productNew.shortdesk %></div>
+    <div><b>Цена:</b> <%= productNew.price %> руб</div>
+</div>

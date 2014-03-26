@@ -86517,3 +86517,1867 @@ Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 02:36:07 +0200
 
 
 Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 02:36:07 +0200
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-26 04:47:43 +0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MainController#main as HTML
+  Rendered main/main.html.erb within layouts/application (0.9ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 2265ms (Views: 2228.0ms | ActiveRecord: 19.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 04:47:46 +0400
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+Processing by CategoriesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 2[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35mCategory Load (0.5ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 2 ORDER BY position
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 4[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 3
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (78.9ms)
+Completed 200 OK in 99ms (Views: 79.7ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 04:50:10 +0400
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 04:50:13 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.6ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  [1m[35mCategory Load (0.4ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered categories/_form.html.erb (20.2ms)
+  Rendered categories/edit.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 37ms (Views: 30.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/ckeditor/config.js" for 127.0.0.1 at 2014-03-26 04:50:13 +0400
+
+
+Started GET "/assets/ckeditor/skins/moono/editor_gecko.css" for 127.0.0.1 at 2014-03-26 04:50:13 +0400
+
+
+Started GET "/assets/ckeditor/lang/ru.js" for 127.0.0.1 at 2014-03-26 04:50:13 +0400
+
+
+Started GET "/assets/ckeditor/styles.js" for 127.0.0.1 at 2014-03-26 04:50:13 +0400
+
+
+Started GET "/assets/ckeditor/skins/moono/icons_hidpi.png" for 127.0.0.1 at 2014-03-26 04:50:14 +0400
+
+
+Started GET "/categories/new?parent_id=4" for 127.0.0.1 at 2014-03-26 04:50:18 +0400
+Processing by CategoriesController#new as HTML
+  Parameters: {"parent_id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  [1m[35mCategory Load (0.3ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered categories/_form.html.erb (8.1ms)
+  Rendered categories/new.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 19ms (Views: 16.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/categories/4/edit" for 127.0.0.1 at 2014-03-26 04:50:21 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered categories/_form.html.erb (6.3ms)
+  Rendered categories/edit.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 14ms (Views: 11.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/categories/2/edit" for 127.0.0.1 at 2014-03-26 04:50:24 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.5ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 2 LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  [1m[35mCategory Load (0.3ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered categories/_form.html.erb (7.9ms)
+  Rendered categories/edit.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 23ms (Views: 16.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+Processing by CategoriesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 2[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35mCategory Load (0.3ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 2 ORDER BY position
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 4[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 3
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 32ms (Views: 27.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 04:51:20 +0400
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 04:51:21 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.7ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  Rendered categories/_form.html.erb (11.2ms)
+  Rendered categories/edit.html.erb within layouts/application (11.9ms)
+Completed 500 Internal Server Error in 18ms
+
+ActionView::Template::Error (wrong number of arguments (5 for 3..4)):
+    14:   <% if Category.count > 0 %>
+    15:   <p>
+    16:     <%= f.label :parent_id , "Родительская категория" %><br />
+    17:     <%= f.select :parent_id, options_from_collection_for_select(Category.all, "id", "name", {:include_blank => true},if @category then @category.parent_id else 0 end) %>
+    18:   </p>
+    19:   <% end %>
+    20:   <p>
+  app/views/categories/_form.html.erb:17:in `block in _app_views_categories__form_html_erb__349987343547901817_70327057784400'
+  app/views/categories/_form.html.erb:1:in `_app_views_categories__form_html_erb__349987343547901817_70327057784400'
+  app/views/categories/edit.html.erb:3:in `_app_views_categories_edit_html_erb___2785119530924362786_70327057679020'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.1ms)
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 04:51:21 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `categories`
+  Rendered categories/_form.html.erb (5.5ms)
+  Rendered categories/edit.html.erb within layouts/application (6.8ms)
+Completed 500 Internal Server Error in 14ms
+
+ActionView::Template::Error (wrong number of arguments (5 for 3..4)):
+    14:   <% if Category.count > 0 %>
+    15:   <p>
+    16:     <%= f.label :parent_id , "Родительская категория" %><br />
+    17:     <%= f.select :parent_id, options_from_collection_for_select(Category.all, "id", "name", {:include_blank => true},if @category then @category.parent_id else 0 end) %>
+    18:   </p>
+    19:   <% end %>
+    20:   <p>
+  app/views/categories/_form.html.erb:17:in `block in _app_views_categories__form_html_erb__349987343547901817_70327027182440'
+  app/views/categories/_form.html.erb:1:in `_app_views_categories__form_html_erb__349987343547901817_70327027182440'
+  app/views/categories/edit.html.erb:3:in `_app_views_categories_edit_html_erb___2785119530924362786_70327027280140'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.1ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.5ms)
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 04:51:34 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  Rendered categories/_form.html.erb (5.3ms)
+  Rendered categories/edit.html.erb within layouts/application (5.9ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (wrong number of arguments (5 for 3..4)):
+    14:   <% if Category.count > 0 %>
+    15:   <p>
+    16:     <%= f.label :parent_id , "Родительская категория" %><br />
+    17:     <%= f.select :parent_id, options_from_collection_for_select(Category.all, "id", "name",if @category then @category.parent_id else 0 end, {:include_blank => true}) %>
+    18:   </p>
+    19:   <% end %>
+    20:   <p>
+  app/views/categories/_form.html.erb:17:in `block in _app_views_categories__form_html_erb__349987343547901817_70327038218200'
+  app/views/categories/_form.html.erb:1:in `_app_views_categories__form_html_erb__349987343547901817_70327038218200'
+  app/views/categories/edit.html.erb:3:in `_app_views_categories_edit_html_erb___2785119530924362786_70327027280140'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.4ms)
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 04:51:42 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.9ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories`
+  Rendered categories/_form.html.erb (2.9ms)
+  Rendered categories/edit.html.erb within layouts/application (3.5ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (wrong number of arguments (5 for 3..4)):
+    14:   <% if Category.count > 0 %>
+    15:   <p>
+    16:     <%= f.label :parent_id , "Родительская категория" %><br />
+    17:     <%= f.select :parent_id, options_from_collection_for_select(Category.all, "id", "name",if @category then @category.parent_id else 0 end, :include_blank => true) %>
+    18:   </p>
+    19:   <% end %>
+    20:   <p>
+  app/views/categories/_form.html.erb:17:in `block in _app_views_categories__form_html_erb__349987343547901817_70327059181680'
+  app/views/categories/_form.html.erb:1:in `_app_views_categories__form_html_erb__349987343547901817_70327059181680'
+  app/views/categories/edit.html.erb:3:in `_app_views_categories_edit_html_erb___2785119530924362786_70327027280140'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.5ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.4ms)
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 04:51:53 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  Rendered categories/_form.html.erb (2.9ms)
+  Rendered categories/edit.html.erb within layouts/application (3.4ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionView::Template::Error (wrong number of arguments (5 for 3..4)):
+    14:   <% if Category.count > 0 %>
+    15:   <p>
+    16:     <%= f.label :parent_id , "Родительская категория" %><br />
+    17:     <%= f.select :parent_id, options_from_collection_for_select(Category.all, "id", "name",if @category then @category.parent_id else 0 end, include_blank: true) %>
+    18:   </p>
+    19:   <% end %>
+    20:   <p>
+  app/views/categories/_form.html.erb:17:in `block in _app_views_categories__form_html_erb__349987343547901817_70327060238320'
+  app/views/categories/_form.html.erb:1:in `_app_views_categories__form_html_erb__349987343547901817_70327060238320'
+  app/views/categories/edit.html.erb:3:in `_app_views_categories_edit_html_erb___2785119530924362786_70327027280140'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.1ms)
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `categories`
+  [1m[36mCategory Load (0.6ms)[0m  [1mSELECT `categories`.* FROM `categories`[0m
+  Rendered categories/_form.html.erb (9.9ms)
+  Rendered categories/edit.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 21ms (Views: 16.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/ckeditor/config.js" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/ckeditor/skins/moono/editor_gecko.css" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/ckeditor/lang/ru.js" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/ckeditor/styles.js" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/assets/ckeditor/skins/moono/icons_hidpi.png" for 127.0.0.1 at 2014-03-26 04:52:00 +0400
+
+
+Started GET "/categories/3/edit" for 127.0.0.1 at 2014-03-26 04:52:04 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `categories`
+  [1m[36mCategory Load (0.6ms)[0m  [1mSELECT `categories`.* FROM `categories`[0m
+  Rendered categories/_form.html.erb (10.9ms)
+  Rendered categories/edit.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 22ms (Views: 16.8ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/ckeditor/config.js" for 127.0.0.1 at 2014-03-26 04:52:04 +0400
+
+
+Started GET "/assets/ckeditor/skins/moono/editor_gecko.css" for 127.0.0.1 at 2014-03-26 04:52:04 +0400
+
+
+Started GET "/assets/ckeditor/lang/ru.js" for 127.0.0.1 at 2014-03-26 04:52:04 +0400
+
+
+Started GET "/assets/ckeditor/styles.js" for 127.0.0.1 at 2014-03-26 04:52:04 +0400
+
+
+Started GET "/categories/new" for 127.0.0.1 at 2014-03-26 04:52:11 +0400
+Processing by CategoriesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered categories/_form.html.erb (3.8ms)
+  Rendered categories/new.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 13ms (Views: 11.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 04:52:34 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered categories/_form.html.erb (5.0ms)
+  Rendered categories/edit.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 12ms (Views: 9.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/categories/4/edit" for 127.0.0.1 at 2014-03-26 04:52:40 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered categories/_form.html.erb (4.0ms)
+  Rendered categories/edit.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 12ms (Views: 9.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/categories/new" for 127.0.0.1 at 2014-03-26 04:52:42 +0400
+Processing by CategoriesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories`
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories`[0m
+  Rendered categories/_form.html.erb (4.8ms)
+  Rendered categories/new.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 13ms (Views: 10.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/categories/3" for 127.0.0.1 at 2014-03-26 04:52:57 +0400
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `products` WHERE `products`.`category_id` = 3
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`category_id` = 3[0m
+  Rendered categories/show.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 31ms
+
+ActionView::Template::Error (Missing partial products/product with {:locale=>[:en], :formats=>[:html, :xml], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/ckeditor-4.0.10/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views"
+):
+    21: <%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id })%>
+    22: 
+    23: <div id ="products">
+    24: 	<%= render(:partial => "products/product" , :collection => @products) %>
+    25: </div>
+  app/views/categories/show.html.erb:24:in `_app_views_categories_show_html_erb__2436037294855472916_70327058637960'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.5ms)
+
+
+Started GET "/categories/3" for 127.0.0.1 at 2014-03-26 04:52:57 +0400
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `products` WHERE `products`.`category_id` = 3
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`category_id` = 3[0m
+  Rendered categories/show.html.erb within layouts/application (7.6ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (Missing partial products/product with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/ckeditor-4.0.10/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views"
+):
+    21: <%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id })%>
+    22: 
+    23: <div id ="products">
+    24: 	<%= render(:partial => "products/product" , :collection => @products) %>
+    25: </div>
+  app/views/categories/show.html.erb:24:in `_app_views_categories_show_html_erb__2436037294855472916_70327057482520'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.1ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.8ms)
+
+
+Started GET "/categories/3" for 127.0.0.1 at 2014-03-26 04:53:08 +0400
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `products` WHERE `products`.`category_id` = 3
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`category_id` = 3[0m
+  Rendered categories/show.html.erb within layouts/application (4.2ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionView::Template::Error (Missing partial products/product with {:locale=>[:en], :formats=>[:html, :xml], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/ckeditor-4.0.10/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views"
+):
+    21: <%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id })%>
+    22: 
+    23: <div id ="products">
+    24: 	<%= render(:partial => "products/product" , :collection => @products) %>
+    25: </div>
+  app/views/categories/show.html.erb:24:in `_app_views_categories_show_html_erb__2436037294855472916_70327058637960'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.1ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.4ms)
+
+
+Started GET "/categories/3" for 127.0.0.1 at 2014-03-26 04:53:08 +0400
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.9ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `products` WHERE `products`.`category_id` = 3
+  [1m[36mProduct Load (0.6ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`category_id` = 3[0m
+  Rendered categories/show.html.erb within layouts/application (6.7ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (Missing partial products/product with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/ckeditor-4.0.10/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views"
+):
+    21: <%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id })%>
+    22: 
+    23: <div id ="products">
+    24: 	<%= render(:partial => "products/product" , :collection => @products) %>
+    25: </div>
+  app/views/categories/show.html.erb:24:in `_app_views_categories_show_html_erb__2436037294855472916_70327057482520'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.6ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.3ms)
+
+
+Started GET "/categories/3" for 127.0.0.1 at 2014-03-26 04:53:18 +0400
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `products` WHERE `products`.`category_id` = 3
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`category_id` = 3[0m
+  Rendered categories/show.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (Missing partial products/product with {:locale=>[:en], :formats=>[:html, :xml], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/ckeditor-4.0.10/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views"
+):
+    21: <%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id })%>
+    22: 
+    23: <div id ="products">
+    24: 	<%= render(:partial => "products/product" , :collection => @products) %>
+    25: </div>
+  app/views/categories/show.html.erb:24:in `_app_views_categories_show_html_erb__2436037294855472916_70327058637960'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.3ms)
+
+
+Started GET "/categories/3" for 127.0.0.1 at 2014-03-26 04:53:18 +0400
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.7ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `products` WHERE `products`.`category_id` = 3
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products` WHERE `products`.`category_id` = 3[0m
+  Rendered categories/show.html.erb within layouts/application (4.2ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (Missing partial products/product with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/ckeditor-4.0.10/app/views"
+  * "/Users/ikishik/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views"
+):
+    21: <%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id })%>
+    22: 
+    23: <div id ="products">
+    24: 	<%= render(:partial => "products/product" , :collection => @products) %>
+    25: </div>
+  app/views/categories/show.html.erb:24:in `_app_views_categories_show_html_erb__2436037294855472916_70327057482520'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.2ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+Processing by CategoriesController#index as HTML
+  [1m[35mUser Load (1.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL[0m
+  [1m[35mCategory Load (0.4ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 2
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 2 ORDER BY position[0m
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 4
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 3[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (47.1ms)
+Completed 200 OK in 101ms (Views: 58.8ms | ActiveRecord: 11.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 04:55:22 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 04:55:23 +0400
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:57:17 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+...t += sanitize(" | " + link_to 'del', cat, method: :delete, d...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27: syntax error, unexpected ',', expecting keyword_end
+...sanitize(" | " + link_to 'del', cat, method: :delete, data: ...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ')', expecting keyword_end
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:68: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.4ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.9ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:57:32 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27: syntax error, unexpected ( arg, expecting keyword_do or '{' or '('
+...t += sanitize(" | " + link_to ('del', cat, method: :delete, ...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27: syntax error, unexpected ',', expecting ')'
+...anitize(" | " + link_to ('del', cat, method: :delete, data: ...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27: syntax error, unexpected ')', expecting keyword_end
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:68: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.2ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.0ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:58:08 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected tIDENTIFIER, expecting ')'
+        ret += link_to 'Destroy', produc...
+           ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:29: syntax error, unexpected ')', expecting keyword_end
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:69: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.8ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:58:25 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected tIDENTIFIER, expecting ')'
+        ret += sanitize( link_to 'Destro...
+           ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:29: syntax error, unexpected ')', expecting keyword_end
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:69: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.1ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.5ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:58:42 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected tIDENTIFIER, expecting ')'
+        ret += sanitize(" | " + link_to ...
+           ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+...t += sanitize(" | " + link_to 'Destroy', product, method: :d...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ',', expecting keyword_end
+...tize(" | " + link_to 'Destroy', product, method: :delete, da...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ')', expecting keyword_end
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:69: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.6ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:58:55 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected tIDENTIFIER, expecting ')'
+        ret += sanitize(" | " + link_to ...
+           ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+...t += sanitize(" | " + link_to 'Destroy', cat, method: :delet...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ',', expecting keyword_end
+...tize(" | " + link_to 'Destroy', cat, method: :delete, data: ...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ')', expecting keyword_end
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:69: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.4ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:59:08 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected tIDENTIFIER, expecting ')'
+        ret += sanitize(" | " + link_to ...
+           ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+...t += sanitize(" | " + link_to 'Destroy', cat, method: :delet...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ',', expecting keyword_end
+...tize(" | " + link_to 'Destroy', cat, method: :delete)
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:69: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.5ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+Processing by CategoriesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL[0m
+  [1m[35mCategory Load (0.3ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 2
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 2 ORDER BY position[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 4
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 3[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (39.4ms)
+Completed 200 OK in 68ms (Views: 39.6ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 04:59:36 +0400
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 05:00:01 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ( arg, expecting keyword_do or '{' or '('
+...t += sanitize(" | " + link_to ('Destroy', product, method: :...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ',', expecting ')'
+...ize(" | " + link_to ('Destroy', product, method: :delete, da...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ')', expecting keyword_end
+...: { confirm: 'Are you sure?' }))
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:69: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.8ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 05:00:11 +0400
+
+SyntaxError (/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ( arg, expecting keyword_do or '{' or '('
+...t += sanitize(" | " + link_to ('Destroy', product, method: :...
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:28: syntax error, unexpected ',', expecting ')'
+...ize(" | " + link_to ('Destroy', product, method: :delete))
+...                               ^
+/Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:69: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/categories_controller.rb:4:in `<top (required)>'
+
+
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/ikishik/.rvm/gems/ruby-2.1.1/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.9ms)
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+Processing by CategoriesController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL[0m
+  [1m[35mCategory Load (0.4ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 2
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 2 ORDER BY position[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 4
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 3[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (42.7ms)
+Completed 200 OK in 77ms (Views: 43.4ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:00:25 +0400
+
+
+Started GET "/categories/" for 127.0.0.1 at 2014-03-26 05:02:28 +0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by CategoriesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL[0m
+  [1m[35mCategory Load (0.3ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 2
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 2 ORDER BY position[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 4
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 3[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (60.7ms)
+Completed 200 OK in 167ms (Views: 112.1ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 05:02:28 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:28 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:28 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:28 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:02:29 +0400
+
+
+Started DELETE "/categories/3" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+Processing by CategoriesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"D2hn0VCCDe7PitqjlJWnZ519YEEHIEq3GUmt6KdA4q4=", "id"=>"3"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 3 ORDER BY position
+  [1m[36mSQL (0.8ms)[0m  [1mDELETE FROM `categories` WHERE `categories`.`id` = 3[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `categories` SET position = (position - 1) WHERE (`categories`.`parent_id` IS NULL AND position > 3)
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/categories
+Completed 302 Found in 9ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/categories" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+Processing by CategoriesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL[0m
+  [1m[35mCategory Load (0.6ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1[0m
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 2
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 2 ORDER BY position[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 4
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (17.6ms)
+Completed 200 OK in 24ms (Views: 19.8ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:02:46 +0400
+
+
+Started DELETE "/categories/2" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+Processing by CategoriesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"D2hn0VCCDe7PitqjlJWnZ519YEEHIEq3GUmt6KdA4q4=", "id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 2 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 2 LIMIT 1
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 2 ORDER BY position[0m
+  [1m[35mCategory Load (0.6ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1
+  [1m[36mCategory Load (0.6ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` = 4 ORDER BY position[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM `categories` WHERE `categories`.`id` = 4
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `categories` SET position = (position - 1) WHERE (`categories`.`parent_id` = 2 AND position > 1)[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM `categories` WHERE `categories`.`id` = 2
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE `categories` SET position = (position - 1) WHERE (`categories`.`parent_id` IS NULL AND position > 2)[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/categories
+Completed 302 Found in 14ms (ActiveRecord: 4.3ms)
+
+
+Started GET "/categories" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+Processing by CategoriesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 13ms (Views: 9.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:02:53 +0400
+
+
+Started GET "/categories" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+Processing by CategoriesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (31.0ms)
+Completed 200 OK in 66ms (Views: 32.4ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:03:23 +0400
+
+
+Started GET "/categories/1" for 127.0.0.1 at 2014-03-26 05:09:04 +0400
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.3ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `products` WHERE `products`.`category_id` = 1[0m
+  [1m[35mProduct Load (0.6ms)[0m  SELECT `products`.* FROM `products` WHERE `products`.`category_id` = 1
+  Rendered products/_product.html.erb (0.0ms)
+  Rendered categories/show.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 94ms (Views: 18.2ms | ActiveRecord: 11.6ms)
+
+
+Started GET "/categories" for 127.0.0.1 at 2014-03-26 05:09:32 +0400
+Processing by CategoriesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` IS NULL
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT `categories`.* FROM `categories` WHERE `categories`.`parent_id` IS NULL ORDER BY position[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `categories` WHERE `categories`.`parent_id` = 1
+DEPRECATION WARNING: :confirm option is deprecated and will be removed from Rails 4.1. Use 'data: { confirm: 'Text' }' instead. (called from AddEdit at /Users/ikishik/Documents/RailsProjects/parra-shop.com/app/helpers/application_helper.rb:27)
+  Rendered categories/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 12ms (Views: 9.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/categories/1/edit" for 127.0.0.1 at 2014-03-26 05:09:34 +0400
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `categories`[0m
+  [1m[35mCategory Load (0.5ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered categories/_form.html.erb (22.5ms)
+  Rendered categories/edit.html.erb within layouts/application (23.9ms)
+Completed 200 OK in 32ms (Views: 28.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/ckeditor/config.js" for 127.0.0.1 at 2014-03-26 05:09:34 +0400
+
+
+Started GET "/assets/ckeditor/skins/moono/editor_gecko.css" for 127.0.0.1 at 2014-03-26 05:09:34 +0400
+
+
+Started GET "/assets/ckeditor/lang/ru.js" for 127.0.0.1 at 2014-03-26 05:09:34 +0400
+
+
+Started GET "/assets/ckeditor/styles.js" for 127.0.0.1 at 2014-03-26 05:09:35 +0400
+
+
+Started GET "/assets/ckeditor/skins/moono/icons_hidpi.png" for 127.0.0.1 at 2014-03-26 05:09:35 +0400
+
+
+Started GET "/assets/ckeditor/contents.css" for 127.0.0.1 at 2014-03-26 05:09:35 +0400
+
+
+Started GET "/products/new?category_id=1" for 127.0.0.1 at 2014-03-26 05:09:37 +0400
+Processing by ProductsController#new as HTML
+  Parameters: {"category_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mCategory Load (0.9ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered products/_form.html.erb (29.0ms)
+  Rendered products/new.html.erb within layouts/application (31.2ms)
+Completed 200 OK in 43ms (Views: 38.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/ckeditor/contents.css" for 127.0.0.1 at 2014-03-26 05:09:37 +0400
+
+
+Started GET "/assets/ckeditor/contents.css" for 127.0.0.1 at 2014-03-26 05:09:37 +0400
+
+
+Started GET "/images/new" for 127.0.0.1 at 2014-03-26 05:09:43 +0400
+Processing by ImagesController#new as HTML
+  Rendered images/new.html.erb (7.7ms)
+Completed 200 OK in 34ms (Views: 9.6ms | ActiveRecord: 20.5ms)
+
+
+Started GET "/main/index" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.8ms)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 10ms (Views: 8.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 05:11:27 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 05:11:28 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 05:11:28 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 05:11:28 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 05:11:28 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:11:28 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:11:28 +0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-26 05:22:53 +0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MainController#main as HTML
+  Rendered main/main.html.erb within layouts/application (1.0ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 415ms (Views: 397.5ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/catalog.css?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/ckeditor/override.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/catalog.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Bella.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Ritmika.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Plisset.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Orly.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Lorra.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Leggero.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Miro.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Azzon.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/BellaGost.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/P3.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Forma.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Joy.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Style.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400
+
+
+Started GET "/assets/Verro.png" for 127.0.0.1 at 2014-03-26 05:22:54 +0400

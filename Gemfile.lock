@@ -59,8 +59,6 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.2.0)
-      railties (>= 3.2.16)
     json (1.8.1)
     kgio (2.9.2)
     mail (2.5.4)
@@ -69,8 +67,8 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.2)
+    mysql2 (0.3.15)
     orm_adapter (0.5.0)
-    pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -140,8 +138,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
-  jquery-ui-rails
-  pg
+  mysql2
   rails (= 4.0.4)
   sass-rails (~> 4.0.0)
   sdoc
