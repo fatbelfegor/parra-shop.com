@@ -19,10 +19,12 @@
 
 iframe = document.createElement 'iframe'
 images = []
+menuImages = []
 
 ready = ->
-	console.log 'asd'
 	curBg = 0
+	$('#mainMenu li div div').each (i) ->
+		this.style.backgroundImage = menuImages[i]
 	$('#mainMenu li ul li').mouseover ->
 		$(this).parents('li').find('div div').eq(curBg).css('left','-2000px')
 		curBg = $(this).index()
@@ -68,7 +70,10 @@ ready = ->
 			el.parentNode.outerHTML = ''
 			document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
 
-$(document).ready(ready)
+$(document).ready ->
+	$('#mainMenu li div div').each ->
+		menuImages.push this.style.backgroundImage
+	ready()
 $(document).on('page:load', ready)
 
 getCookie = (name) ->
