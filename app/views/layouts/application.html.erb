@@ -75,11 +75,12 @@
       <a>информация</a>
       <div>
         <ul>
-          <li><%= link_to 'Доставка и сборка', service_path %></li>
-          <li><%= link_to 'Партнерам', partners_path %></li>
-          <li><%= link_to 'Новости', news_path %></li>
-          <li><%= link_to 'Статьи', articles_path %></li>
-          <li><%= link_to 'Гарантии', insurance_path %></li>
+          <li><a href="">Контакты</a></li>
+          <li><a href="">Доставка и сборка</a></li>
+          <li><a href="">Партнерам</a></li>
+          <li><a href="">Новости</a></li>
+          <li><a href="">Статьи</a></li>
+          <li><a href="">Гарантии</a></li>
         </ul>
       </div>
     </li>
@@ -88,14 +89,6 @@
 </nav>
 
 <div class="main">
-	<div id="user_nav">
-	 	  <% if user_signed_in? %>
-	 	    Signed in as <%= current_user.email %>. Not you?
-	 	    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-	 	  <% else %>
-	 	    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-	 	  <% end %>
-	 	</div>
   <div>
     <%= yield %>
   </div>
@@ -103,12 +96,15 @@
 
 <nav class="footer">
     <ul>
-        <li><%= link_to 'Где купить', stores_path %></li>
-        <li><%= link_to 'Доставка и сборка', service_path %></li>
-        <li><%= link_to 'Партнерам', partners_path %></li>
-        <li><%= link_to 'Новости', news_path %></li>
-        <li><%= link_to 'Статьи', articles_path %></li>
-        <li><%= link_to 'Гарантии', insurance_path %></li>
+        <li>Где купить</li>
+        <li>Элементы</li>
+        <li>Полезная информация</li>
+        <li>Контакты</li>
+        <li>Доставка и сборка</li>
+        <li>Партнерам</li>
+        <li>Новости</li>
+        <li>Статьи</li>
+        <li>Гарантии</li>
     </ul>
 </nav>
 

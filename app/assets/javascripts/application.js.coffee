@@ -120,19 +120,9 @@ window.addImageUrl = (url) ->
 window.deleteImage = (el) ->
 	li = el.parentNode
 	url = li.firstElementChild.href
-<<<<<<< Updated upstream
-	$.get "/images/delete",
-	  url: url
-	li.parentNode.removeChild li
-	index = $('.images li').index li
-	images = $('#product_images').val().split ','
-	images.splice index, 1
-	$('#product_images').val images.join ','
-=======
 	#$.get "/images/delete",
 	#  url: url
 	index = $('.images li').index(li)
 	images = $('#product_images').val().split(',')
 	$('#product_images').val(images.join(','))
->>>>>>> Stashed changes
 	console.log images
