@@ -55,8 +55,7 @@
 	      </ul>
 	</li>
 
-    <li><a href="">Диваны</a>
-	</li>
+    <li><%= link_to('Диваны', { :controller => :catalog, :action => :index, :category_scode => :Divanes} )%></li>
     <li><a href="">Матрасы</a></li>
     <li><a href="">Все товары</a></li>
 	<li><%= link_to 'Где купить', stores_path %></li>
