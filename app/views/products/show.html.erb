@@ -24,31 +24,7 @@
 	</div>
 	<div class="others">
 		<p>Похожие товары</p>
-		<div>
-			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
-			<p>Буфет низкий Bella</p>
-			<p>Цена: 27 499 руб.</p>
-		</div>
-		<div>
-			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
-			<p>Буфет низкий Bella</p>
-			<p>Цена: 27 499 руб.</p>
-		</div>
-		<div>
-			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
-			<p>Буфет низкий Bella</p>
-			<p>Цена: 27 499 руб.</p>
-		</div>
-		<div>
-			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
-			<p>Буфет низкий Bella</p>
-			<p>Цена: 27 499 руб.</p>
-		</div>
-		<div>
-			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
-			<p>Буфет низкий Bella</p>
-			<p>Цена: 27 499 руб.</p>
-		</div>
+		<%= render(:partial => "products/productFooter" , collection: @product.category.products) %>
 	</div>
 </div>
 
