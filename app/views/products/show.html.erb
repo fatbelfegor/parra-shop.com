@@ -2,7 +2,7 @@
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 
 <div class="showPage">
-	<h2>Гостиная Bella / Белла</h2>
+	<h2><%= @product.category.name %></h2>
 	<div class="main">
 		<% if @product.images %>
 			<% images = @product.images.split(',') %>
@@ -14,12 +14,10 @@
 		    </div>
 		<% end %>
 		<div>
-			<p>Тумба-комод Bella</p>
-			<p><b>Артикул:</b> [ПыщьПыщь]</p>
-			<p><b>Габариты:</b> 1x2x3</p>
-			<p><b>Описание товара:</b> Натуральный шпон.</p>
+			<p><%= @product.name %></p>
+			<%= sanitize(@product.description) %>
 			<div>
-				<p>Цена: 44 999 руб.</p>
+				<p>Цена: <%= number_to_currency(@product.price) %></p>
 				<div onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
 			</div>
 		</div>

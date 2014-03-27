@@ -1,26 +1,16 @@
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
-
-<h2>
-	<%=h @category.name %>
-	<% if current_user && current_user.admin? %>
-		<%= link_to 'Edit', edit_category_path(@category) %> | 
-		<%= link_to 'Добавить новый продукт', { :controller => :products, :action => :new , :category_id => @category.id } %>
-	<% end %>
-</h2>
-<p><%= @category.description %></p>
-
-
+<div class="index">
 <div id ="products">
 	<table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<% @i = 0 %>
 	<% for product in  @products %>
 		
-		<% if (@i == 0 || (@i % 4) == 0) %>
+		<% if (@i == 0 || (@i % 3) == 0) %>
 			<tr>
 		<% end %>
 		
-		<% if (@i != 0 && (@i % 4) == 0) %>
+		<% if (@i != 0 && (@i % 3) == 0) %>
 			</tr>
 		<% end %>
 		
@@ -29,12 +19,13 @@
 		</td>
 		<% @i += 1 %>		
 	<% end %>
-	<% if ((@i % 4) != 0) %>
-		<% while ((@i % 4) != 0) do %>
+	<% if ((@i % 3) != 0) %>
+		<% while ((@i % 3) != 0) do %>
 			<td >&nbsp;</td>
 			<% @i += 1 %>
 		<% end %>
 		</tr>
 	<% end %>
 	</table>
+</div>
 </div>

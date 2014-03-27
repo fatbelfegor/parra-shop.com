@@ -1,0 +1,15 @@
+<div>
+	<div>
+		<% if @product.images %>
+			<% images = @product.images.split(',') %>
+		    <a href="<%= images[0] %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= images[0] %>"></a>
+		    <div class="hidden">
+		    	<%  images.drop(1).each do |i| %>
+		    		<a href="<%= i %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= i %>"></a>
+		    	<% end %>
+		    </div>
+		<% end %>
+	</div>
+	<p><%= @productFooter.name %></p>
+	<p>Цена: <%= number_to_currency(@product.price) %></p>
+</div>

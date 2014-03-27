@@ -25,8 +25,8 @@ class ProductsController < ApplicationController
     session[:proption] = nil
     session[:prsize] = nil
     session[:color] = nil
-    @product = Product.find_by_scode(params[:product_scode])
-    @title = @product.s_title
+    @product = Product.find_by_scode(params[:scode])
+    #@title = @product.name
    
     respond_to do |format|
       format.html {render :action => 'show'}

@@ -10,7 +10,7 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<img class="logo" src="/assets/logo.png">
+<a href='/'><img class="logo" src="/assets/logo.png"></a>
 
 <nav>
   <ul id="mainMenu">    
@@ -25,13 +25,13 @@
         <div style="background-image: url(/assets/Miro.png)"></div>
       </div>     
       <ul>
-        <li><a href="">Bella</a></li>
-        <li><a href="">Plisset</a></li>
-        <li><a href="">Orly</a></li>
-        <li><a href="">Ritmika</a></li>
-        <li><a href="">Lorra</a></li>
-        <li><a href="">Leggero</a></li>
-        <li><a href="">Miro</a></li>
+        <li><%= link_to('Bella', { :controller => :catalog, :action => :index, :category_scode => :Bella} )%></li>
+        <li><%= link_to('Plisset', { :controller => :catalog, :action => :index, :category_scode => :Plisset} )%></li>
+        <li><%= link_to('Orly', { :controller => :catalog, :action => :index, :category_scode => :Orly} )%></li>
+        <li><%= link_to('Ritmika', { :controller => :catalog, :action => :index, :category_scode => :Ritmika} )%></li>
+        <li><%= link_to('Lorra', { :controller => :catalog, :action => :index, :category_scode => :Lorra} )%></li>
+        <li><%= link_to('Leggero', { :controller => :catalog, :action => :index, :category_scode => :Leggero} )%></li>
+        <li><%= link_to('Miro', { :controller => :catalog, :action => :index, :category_scode => :Miro} )%></li>
       </ul>
     </li>
     <li><a href="">Гостинные</a>
@@ -45,13 +45,13 @@
 			<div style="background: url(/assets/Verro.png)"></div>
 		</div>
 		<ul>
-	        <li><a href="">Azzon</a></li>
-	        <li><a href="">Bella</a></li>
-	        <li><a href="">P3</a></li>
-	        <li><a href="">Forma</a></li>
-	        <li><a href="">Joy</a></li>
-	        <li><a href="">Style</a></li>
-	        <li><a href="">Verro</a></li>
+	        <li><%= link_to('Azzon', { :controller => :catalog, :action => :index, :category_scode => :Azzon} )%></li>
+	        <li><%= link_to('Bella', { :controller => :catalog, :action => :index, :category_scode => :BellaGost} )%></li>
+	        <li><%= link_to('P3', { :controller => :catalog, :action => :index, :category_scode => :P3} )%></li>
+	        <li><%= link_to('Forma', { :controller => :catalog, :action => :index, :category_scode => :Forma} )%></li>
+	        <li><%= link_to('Joy', { :controller => :catalog, :action => :index, :category_scode => :Joy} )%></li>
+	        <li><%= link_to('Style', { :controller => :catalog, :action => :index, :category_scode => :Style} )%></li>
+	        <li><%= link_to('Verro', { :controller => :catalog, :action => :index, :category_scode => :Verro} )%></li>
 	      </ul>
 	</li>
 
@@ -59,28 +59,16 @@
 	</li>
     <li><a href="">Матрасы</a></li>
     <li><a href="">Все товары</a></li>
-    <li class="submenu">
-      <a href="">Где купить</a>
-      <div>
-        <ul>
-          <li><a href="">Пункты</a></li>
-          <li><a href="">Подменю</a></li>
-          <li><a href="">Для</a></li>
-          <li><a href="">Где</a></li>
-          <li><a href="">Купить</a></li>
-        </ul>
-      </div>
-    </li>
+	<li><%= link_to 'Где купить', stores_path %></li>
     <li class="submenu">
       <a>информация</a>
       <div>
         <ul>
-          <li><a href="">Контакты</a></li>
-          <li><a href="">Доставка и сборка</a></li>
-          <li><a href="">Партнерам</a></li>
-          <li><a href="">Новости</a></li>
-          <li><a href="">Статьи</a></li>
-          <li><a href="">Гарантии</a></li>
+          <li><%= link_to 'Доставка и сборка', service_path %></li>
+          <li><%= link_to 'Партнерам', partners_path %></li>
+          <li><%= link_to 'Новости', news_path %></li>
+          <li><%= link_to 'Статьи', articles_path %></li>
+          <li><%= link_to 'Гарантии', insurance_path %></li>
         </ul>
       </div>
     </li>
