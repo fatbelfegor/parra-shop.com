@@ -71,11 +71,11 @@
   
   <p>
     <%= f.label :shortdesk , "Краткое описание" %><br />
-    <%= f.text_area :shortdesk, class: "tinymce" %>
+    <%= f.text_area :shortdesk, class: "tinymce", :rows => 30, :cols => 120 %>
   </p>
   <p>
     <%= f.label :description , "Описание" %><br />
-    <%= f.text_area :description, class: "tinymce" %>
+    <%= f.text_area :description, class: "tinymce", :rows => 30, :cols => 120 %>
   </p>
   <p>
     <%= f.submit 'Сохранить' %>

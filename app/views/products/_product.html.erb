@@ -30,8 +30,8 @@
 		<tr>
 			<td style="padding-left:10px;" align="left"><span class="product_details"><%= link_to "Подробнее", "kupit/" + product.scode %></span></td>
 			<td align="right">
-				<span style="font-size:16px;"><b><%= number_to_currency(product.priceNew) %></b></span>
-				<%= button_to_remote "Купить", :url => {:controller => :catalog, :action => :add_to_cart, :id => product.id}%>
+				<span style="font-size:16px;"><b><%= number_to_currency(product.price) %></b></span>
+				
 			</td>
 		</tr>
 	</table>

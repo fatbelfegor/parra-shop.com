@@ -1,64 +1,56 @@
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 
-<table  border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
-<tr>
-<td>
-<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-bottom:15px;">
-	<tr>
-		<td style="padding-top:0px;" width="270px" height="270px">
-			<% img = 0 %>
-			<% if @product.images %>
-		    	<% images = @product.images.split(',') %>
-		        <a href="<%= images[0] %>" data-lightbox="image-<%= img+=1 %>" title="<% @product.name %>"><img src="<%= images[0] %>"></a>
-		        <div class="hidden">
-		        	<%  images.drop(1).each do |i| %>
-		        		<a href="<%= i %>" data-lightbox="image-<%= img %>" title="<% @product.name %>"><img src="<%= i %>"></a>
-		        	<% end %>
-		        </div>
-		    <% end %>
-		</td>
-		<td valign="top">
-			<div style="margin-left:15px;">
-			<table border="0" cellspacing="0" cellpadding="0" width="100%">
-				<tr>
-					<td>
-						<h3 style="color: Black;"><%=@product.name %>
-						<% if current_user && current_user.admin? %>
-							№:<%=h @product.position %>
-						<% end %>
-						</h3>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span style="font-size:14px;font-weight: bold;"><%= @product.s_title %></span>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span style="font-size:14px;"><%= sanitize(@product.description) %></span>
-					</td>
-				</tr>
-			</table>
+<div class="showPage">
+	<h2>Гостиная Bella / Белла</h2>
+	<div class="main">
+		<% if @product.images %>
+			<% images = @product.images.split(',') %>
+		    <a href="<%= images[0] %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= images[0] %>"></a>
+		    <div class="hidden">
+		    	<%  images.drop(1).each do |i| %>
+		    		<a href="<%= i %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= i %>"></a>
+		    	<% end %>
+		    </div>
+		<% end %>
+		<div>
+			<p>Тумба-комод Bella</p>
+			<p><b>Артикул:</b> [ПыщьПыщь]</p>
+			<p><b>Габариты:</b> 1x2x3</p>
+			<p><b>Описание товара:</b> Натуральный шпон.</p>
+			<div>
+				<p>Цена: 44 999 руб.</p>
+				<div onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
 			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
-		</td>
-		<td align="left">
-			<div id="buyzone" style="margin-left:15px;">
-				<div id="priceDiv">
-					
-				</div>
-			</div>
-		</td>
-	</tr>
-</table>
-
-
-</td>
-</tr>
-</table>
+		</div>
+	</div>
+	<div class="others">
+		<p>Похожие товары</p>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+	</div>
+</div>
 

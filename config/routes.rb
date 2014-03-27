@@ -1,6 +1,7 @@
 ParraShopCom::Application.routes.draw do
   get "admin/index"
   get "catalog/index"
+  get "main/main"
   devise_for :users
   get "images/delete", to: 'images#delete'
   
