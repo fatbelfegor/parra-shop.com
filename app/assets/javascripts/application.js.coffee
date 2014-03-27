@@ -81,10 +81,7 @@ getCookie = (name) ->
 expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
 
-window.addToCart = (name, price) ->
-	if $('#alert').get().length == 0
-		$('body').append('<div id="alert"><div onclick="$(this.parentNode).fadeOut(300)"></div><div style="top:'+($(window).height()/2-150)+'px; left:'+($(window).width()/2-200)+'px"><div><div onclick="$(this.parentNode.parentNode.parentNode).fadeOut(300)"></div></div><p>Товар "'+name+'" добавлен в <a href="/cart">корзину</a>.</p><a class="continue" onclick="$(this.parentNode.parentNode).fadeOut(300)">Продолжить покупки</a></div></div>')
-	$('#alert').fadeIn(300)
+window.addToCart = (name, price) ->	
 	s = $('[name=prsizes] :selected').html()
 	c = $('[name=prcolors] :selected').html()
 	o = $('[name=proptions] :selected').html()
@@ -95,9 +92,25 @@ window.addToCart = (name, price) ->
 	else
 		cart.push name: name, count: 1, price: price, s: s, c: c, o: o
 	count = 0
+	price = 0
 	cart.forEach (i) ->
 		count += i.count
+		price += parseFloat(i.price)*i.count
 	$('#cartCount').html(count)
+	if $('#alert').get().length == 0
+		$('body').append('<div id="alert">\
+				<div onclick="$(this.parentNode).fadeOut(300)"></div>\
+				<div style="top:'+($(window).height()/2-150)+'px; left:'+($(window).width()/2-200)+'px">\
+					<div>\
+						<div onclick="$(this.parentNode.parentNode.parentNode).fadeOut(300)">\
+					</div>\
+				</div>\
+				<p>Товар "'+name+'" добавлен в <a href="/cart">корзину</a>.</p>\
+				<p>В корзине '+count+', общая стоимость '+price+'</p>\
+				<a class="continue" onclick="$(this.parentNode.parentNode).fadeOut(300)">Продолжить покупки</a>\
+				</div>\
+			</div>')
+	$('#alert').fadeIn(300)
 	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
 
 window.addImageUrl = (url) ->

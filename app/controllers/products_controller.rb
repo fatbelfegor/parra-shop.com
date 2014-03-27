@@ -88,7 +88,11 @@ class ProductsController < ApplicationController
 
 
 	def buy
-		@product = Product.find_by scode: params[:scode]
+    if params[:id]
+      @product = Product.find_by id: params[:id]
+    else
+		  @product = Product.find_by scode: params[:scode]
+    end
 	end
 
 

@@ -12,11 +12,11 @@
  *= require_tree .
  */
 
-@mixin box-shadow($s) {
-  -webkit-box-shadow: $s;  /* Chrome 1-25, Safari 3.2+ */
-     -moz-box-shadow: $s;  /* Firefox 4-15 */
-       -o-box-shadow: $s;  /* Opera 10.50–12.00 */
-          box-shadow: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+@mixin border-radius($s) {
+  -webkit-border-radius: $s;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-border-radius: $s;  /* Firefox 4-15 */
+       -o-border-radius: $s;  /* Opera 10.50–12.00 */
+          border-radius: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 @mixin transition($s) {
@@ -31,6 +31,14 @@
      -moz-box-shadow: $s;  /* Firefox 4-15 */
        -o-box-shadow: $s;  /* Opera 10.50–12.00 */
           box-shadow: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+
+@mixin linear-gradient($s) {
+  background-image: -webkit-linear-gradient($s); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient($s); /* FF3.6 */
+  background-image:     -ms-linear-gradient($s); /* IE10 */
+  background-image:      -o-linear-gradient($s); /* Opera 11.10+ */
+  background-image:         linear-gradient($s);
 }
 
 $menu-height: 450px;
@@ -61,7 +69,7 @@ li {
 }
 
 .logo {
-	width: 117px;
+	width: 251px;
 	height: 84px;
 	margin: 0 0 5px 19px;
 	float: left;
@@ -245,10 +253,126 @@ nav {
 }
 
 .showPage {
-	img {
-		width: 150px;
-		height: 150px;
-		margin: 20px;
+	h2 {
+		font-size: 20px;
+		font-weight: normal;
+		line-height: 20px;
+		margin: 30px 0 0 35px;
+		width: 100%;
+	}
+
+	.main {
+		height: 450px;
+
+		> div, > :first-child {
+			height: 100%;
+			width: 50%;
+			float: left;
+		}
+
+		> div {
+			position: relative;
+
+			> :first-child {
+				padding-top: 60px;
+				font-size: 16px;
+				color: black;
+				margin-bottom: 35px;
+				font-weight: bold;
+				color: black;
+			}
+
+			> p {
+				margin-left: 50px;
+				color: #58585A;
+				font-size: 13px;
+
+				b {
+					margin-right: 5px;
+					color: black;
+				}
+			}
+
+			> :last-child {
+				margin-left: 50px;
+				position: absolute;
+				bottom: 25px;
+				color: black;
+				font-weight: bold;
+				font-size: 15px;
+
+				p {
+					float: left;
+				}
+
+				div {
+					float: right;
+					margin: -2px 0 0 30px;
+					border: 1px solid #A6A6A6;
+					font-size: 12px;
+					line-height: 16px;
+					padding: 0 8px;
+					@include border-radius(3px);
+					@include linear-gradient((white, #F6F6F6 50%, #eee 100%));
+				}
+			}
+		}
+
+		> :first-child {
+
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+	.others {
+		height: 260px;		
+		border-top: 1px solid black;
+		border-bottom: 1px solid black;
+
+		> p {
+			color: #575759;
+			font-size: 16px;
+			line-height: 46px;
+			position: absolute;
+			padding-left: 16px;
+		}
+
+		> :nth-child(1) {
+			margin-left: 2px;
+		}
+
+		> div {
+			height: 100%;
+			width: 150px;
+			float: left;
+			margin-right: 37px;
+
+			:first-child {
+				height: 150px;
+				margin: 40px 0 15px;
+				background-size: 100% 100%;
+			}
+
+			p {
+				width: 100%;
+				text-align: center;
+				color: #575759;
+				font-size: 13px;
+				line-height: 1;
+			}
+
+			:last-child {
+				margin-top: 7px;
+				color: black;
+			}
+		}
+
+		:last-child {
+			margin-right: 0;
+		}
 	}
 }
 
@@ -263,7 +387,6 @@ body > .main {
 
 	> div {
 		width: 900px;
-		height: 100%;
 		margin: 0 auto;
 
 		> .index {

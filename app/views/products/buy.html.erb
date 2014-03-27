@@ -1,14 +1,56 @@
 <div class="showPage">
-	<% if @product.images %>
-		<% images = @product.images.split(',') %>
-	    <a href="<%= images[0] %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= images[0] %>"></a>
-	    <div class="hidden">
-	    	<%  images.drop(1).each do |i| %>
-	    		<a href="<%= i %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= i %>"></a>
-	    	<% end %>
-	    </div>
-	<% end %>
-
+	<h2>Гостиная Bella / Белла</h2>
+	<div class="main">
+		<% if @product.images %>
+			<% images = @product.images.split(',') %>
+		    <a href="<%= images[0] %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= images[0] %>"></a>
+		    <div class="hidden">
+		    	<%  images.drop(1).each do |i| %>
+		    		<a href="<%= i %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= i %>"></a>
+		    	<% end %>
+		    </div>
+		<% end %>
+		<div>
+			<p>Тумба-комод Bella</p>
+			<p><b>Артикул:</b> [ПыщьПыщь]</p>
+			<p><b>Габариты:</b> 1x2x3</p>
+			<p><b>Описание товара:</b> Натуральный шпон.</p>
+			<div>
+				<p>Цена: 44 999 руб.</p>
+				<div onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
+			</div>
+		</div>
+	</div>
+	<div class="others">
+		<p>Похожие товары</p>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+		<div>
+			<div style="background-image: url(http://localhost:3000/uploads/BELLA_5.png)"></div>
+			<p>Буфет низкий Bella</p>
+			<p>Цена: 27 499 руб.</p>
+		</div>
+	</div>
+</div>
+	<!--
 	<p><%= @product.name %></p>
 	<p><%= @product.scode %></p>
 	<p><%= sanitize(@product.shortdesk) %></p>
@@ -69,6 +111,6 @@
 		<%= render(:partial => "proptions/proption" , collection: @product.proptions) %>
 	</table>
 </div>
-
+-->
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
