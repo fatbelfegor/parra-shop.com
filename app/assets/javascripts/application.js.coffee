@@ -116,7 +116,6 @@ window.addToCart = (name, price) ->
 				</div>\
 			</div>')
 	$('#alert').fadeIn(300)
-	console.log 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
 	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
 
 window.addImageUrl = (url) ->
