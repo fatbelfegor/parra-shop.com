@@ -12,34 +12,7 @@
  *= require_tree .
  */
 
-@mixin border-radius($s) {
-  -webkit-border-radius: $s;  /* Chrome 1-25, Safari 3.2+ */
-     -moz-border-radius: $s;  /* Firefox 4-15 */
-       -o-border-radius: $s;  /* Opera 10.50–12.00 */
-          border-radius: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
-}
-
-@mixin transition($s) {
-  -webkit-transition: $s;  /* Chrome 1-25, Safari 3.2+ */
-     -moz-transition: $s;  /* Firefox 4-15 */
-       -o-transition: $s;  /* Opera 10.50–12.00 */
-          transition: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
-}
-
-@mixin box-shadow($s) {
-  -webkit-box-shadow: $s;  /* Chrome 1-25, Safari 3.2+ */
-     -moz-box-shadow: $s;  /* Firefox 4-15 */
-       -o-box-shadow: $s;  /* Opera 10.50–12.00 */
-          box-shadow: $s;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
-}
-
-@mixin linear-gradient($s) {
-  background-image: -webkit-linear-gradient($s); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient($s); /* FF3.6 */
-  background-image:     -ms-linear-gradient($s); /* IE10 */
-  background-image:      -o-linear-gradient($s); /* Opera 11.10+ */
-  background-image:         linear-gradient($s);
-}
+@import 'mixins';
 
 $menu-height: 450px;
 

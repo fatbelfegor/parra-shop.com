@@ -68,6 +68,10 @@ ready = ->
 				item.name == name)[0], 1
 			el.parentNode.outerHTML = ''
 			document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
+	$(".accordion h3").click ->
+		$(this).next(".panel").slideToggle("slow").siblings(".panel:visible").slideUp("slow");
+		$(this).toggleClass("active");
+		$(this).siblings("h3").removeClass("active");
 
 $(document).ready ->
 	$('#mainMenu li div div').each ->
@@ -112,7 +116,8 @@ window.addToCart = (name, price) ->
 				</div>\
 			</div>')
 	$('#alert').fadeIn(300)
-	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
+	console.log 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
+	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
 
 window.addImageUrl = (url) ->
 	inputName = iframe.parentNode.className

@@ -1,0 +1,156 @@
+@import 'mixins';
+
+.page {
+	padding: 20px 30px;
+
+	p {
+		.abzac {
+			width: 30px;
+			float: left;
+			height: 15px;
+			display: block;
+		}
+	}
+
+	h3 {
+		text-align: center;
+		line-height: 45px;
+		padding-top: 5px;
+	}
+
+	> ul {
+		margin: 10px 0 10px;
+
+		> li {
+			list-style-type: disc;
+			line-height: 30px;
+			margin-left: 40px;
+		}
+	}
+
+	.table {
+		margin-top: 20px;
+		text-align: center;		
+		margin-bottom: 40px;
+
+		li {
+			font-size: 0;			
+			line-height: inherit;
+			margin-left: 0;
+
+			div {
+				display: inline-block;
+				width: 24%;
+				font-size: 15px;
+				line-height: 24px;				
+			}
+
+			> :first-child {
+				width: 52%;
+			}
+		}
+
+		> :first-child {
+			border-left: 0;
+
+			div {
+				border: 0;
+				line-height: 36px;
+				font-size: 16px;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.stores {
+		li {			
+
+			div {
+				width: 44%;
+				line-height: 36px;
+				font-size: 16px		
+			}
+
+			:first-child {
+				text-align: left;
+				width: 36%;
+
+				img {
+					width: auto;
+					height: auto;
+					position: relative;
+					top: 2px;
+				}
+			}
+
+			:last-child {
+				width: 20%;				
+			}
+		}
+
+		> :first-child :first-child {
+			text-align: center
+		}
+	}
+
+	.tborder {
+		border-bottom: 1px solid black;
+
+		li {
+			border-left: 1px solid black;			
+
+			div {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				border-right: 1px solid black;
+				border-top: 1px solid black;
+			}
+		}
+	}
+
+	.accordion {
+		margin-top: 30px;
+		border-bottom: solid 1px #4c3b4c;
+
+		h3 {
+			background: url(/assets/arrow-square.gif) no-repeat right -51px;
+			padding: 0 5px;
+			line-height: 30px;
+			font-size: 17px;
+			border: 1px solid #4c3b4c;
+			border-bottom: 0;
+			cursor: pointer;
+			color: #4D3B4B;
+		}
+
+		h3:hover {
+			background-color: #e3e2e2;
+		}
+
+		a {
+			text-decoration: underline;
+		}
+
+		a:hover {
+			color: #FFFFFF;
+		}
+
+		h3.active {
+			background-position: right 5px;
+		}
+
+		.panel {
+			display: none;
+			text-align:justify;
+			margin: 0;
+			padding:  10px 15px 20px;
+			border-left: solid 1px #4c3b4c;
+			border-right: solid 1px #4c3b4c;
+		}
+
+		.panel:nth-child(2) {
+			display: block;
+		}
+	}
+}
