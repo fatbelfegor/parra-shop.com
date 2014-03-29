@@ -1,0 +1,89 @@
+<%= tinymce_assets %>
+
+<%= form_for(@product) do |f| %>
+ <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :category_id , "Категория" %><br />
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end) %>
+  </p>
+  <p>
+    <%= f.label :scode , "Код" %><br />
+    <%= f.text_field :scode %>
+  </p>
+  <p><%=check_box("product", "main", {}, "true", "false")%> Отображать на главной странице</p>
+  <p><%=check_box("product", "action", {}, "true", "false")%> Отображать на панели скидки</p>
+  <p><%=check_box("product", "best", {}, "true", "false")%> Отображать на панели Хиты продаж</p>
+  <p><%=check_box("product", "invisible", {}, "true", "false")%> Сделать Невидимым</p>
+  <p>
+    <%= f.label :position , "Порядковый номер" %><br />
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.label :s_title , "SEO title" %><br />
+    <%= f.text_field :s_title %>
+  </p>
+  <p>
+    <%= f.label :s_description , "SEO description" %><br />
+    <%= f.text_field :s_description %>
+  </p>
+  <p>
+    <%= f.label :s_keyword , "SEO keywords через запятую" %><br />
+    <%= f.text_field :s_keyword %>
+  </p>
+  <p>
+    <%= f.label :name , "Название" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p><%=check_box("product", "delemiter", {}, "true", "false")%> Сделать Разделителем</p>
+  <p>
+    <%= f.label :price , "Цена" %><br />
+    <%= f.text_field :price %>
+  </p>
+
+  <% if @product.images %>
+    <ul class="images">
+    <% @product.images.split(',').each do |i| %>
+      <li>
+        <a href="<%= i %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= i %>"></a>
+        <p onclick="deleteImage(this)">Удалить</p>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <br>
+  <div id="addImages" class="product_images">
+    <input type="button" value="Добавить изображение">
+    <div></div>
+  </div>
+  <%= f.hidden_field :images %>
+  <br>
+  
+  <p>
+    <%= f.label :shortdesk , "Краткое описание" %><br />
+    <%= f.text_area :shortdesk, class: "tinymce" %>
+  </p>
+  <p>
+    <%= f.label :description , "Описание" %><br />
+    <%= f.text_area :description, class: "tinymce" %>
+  </p>
+  <p>
+    <%= f.submit 'Сохранить' %>
+  </p>
+<% end %>
+
+<<<<<<< Updated upstream
+<%= tinymce %>
+=======
+<%= tinymce %>
+>>>>>>> Stashed changes

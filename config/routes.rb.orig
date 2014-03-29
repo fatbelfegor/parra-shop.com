@@ -1,0 +1,29 @@
+ParraShopCom::Application.routes.draw do
+  devise_for :users
+  get "main/index"
+  get "images/delete", to: 'images#delete'
+  
+  root to: 'main#main', as: 'main'
+
+  resources :categories
+  resources :products
+  resources :images
+<<<<<<< Updated upstream
+
+=======
+  resources :prsizes
+  resources :prcolors
+  resources :proptions
+  
+  resources :products do
+    get :show_scode, on: :member
+  end
+  
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+  get '/cart', to: 'main#cart'
+  get '/kupit/:scode', to: 'products#buy'
+  get '/:scode', to: 'categories#catalog'
+end
