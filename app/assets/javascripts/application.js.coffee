@@ -36,36 +36,38 @@ ready = ->
 		window.cart = []
 	count = 0
 	cart.forEach (i) ->
-		count += i.count
+		count += i.c
 	$('#cartCount').html(count)
+	if $('#cartfield')
+		$('#cartfield').val(JSON.stringify(cart))
 	if $('#cart')
 		items = ''
 		for item in cart
-			if item.count > 1
+			if item.c > 1
 				minus = '<span onclick="changeCount(this)">++</span>'
 			else
 				minus = '<span class="invis">++</span>'
-			items += '<ul><li>'+item.name+'</li><li>'+minus+'<b>'+item.count+'</b>'+' <span onclick="changeCount(this)">+</span></li><li>'+item.price+' руб</li><li>'+item.s+'</li><li>'+item.c+'</li><li>'+item.o+'</li><li onclick="cartDelete(this)"></li></ul>'
+			items += '<ul><li>'+item.n+'</li><li>'+minus+'<b>'+item.c+'</b>'+' <span onclick="changeCount(this)">+</span></li><li>'+item.p+' руб</li><li>'+item.s+'</li><li>'+item.l+'</li><li>'+item.o+'</li><li onclick="cartDelete(this)"></li></ul>'
 		$('#cart div').html(items)
 		window.changeCount = (el) ->
 			ul = el.parentNode.parentNode
 			name = ul.firstChild.innerHTML
 			item = (cart.filter (item) ->
-				item.name == name)[0]
+				item.n == name)[0]
 			if el.innerHTML == '+'									
-				item.count++
-				if item.count > 1
+				item.c++
+				if item.c > 1
 					$(ul).find('.invis').attr('class', '').attr('onclick', 'changeCount(this)')
 			else
-				item.count--
-				if item.count == 1
+				item.c--
+				if item.c == 1
 					$(ul).find('li span:first-child').attr('class', 'invis').attr('onclick', '')
-			$(ul).find('b').html(item.count)
+			$(ul).find('b').html(item.c)
 			document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
 		window.cartDelete = (el) ->
 			name = el.parentNode.firstChild.innerHTML
 			cart.splice cart.indexOf (cart.filter (item) ->
-				item.name == name)[0], 1
+				item.n == name)[0], 1
 			el.parentNode.outerHTML = ''
 			document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
 	$(".accordion h3").click ->
@@ -88,19 +90,23 @@ expire = ->
 
 window.addToCart = (name, price) ->	
 	s = $('[name=prsizes] :selected').html()
-	c = $('[name=prcolors] :selected').html()
+	l = $('[name=prcolors] :selected').html()
 	o = $('[name=proptions] :selected').html()
+	i = $('#product_id_field').val()
+	s = '' if !s
+	l = '' if !l
+	o = '' if !o
 	prev = (cart.filter (item) ->
-		item.name == name and item.s == s and item.c == c and item.o == o)[0]
+		item.s == s and item.l == l and item.o == o and item.i == i)[0]
 	if prev
-		prev.count++
+		prev.c++
 	else
-		cart.push name: name, count: 1, price: price, s: s, c: c, o: o
+		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i
 	count = 0
 	price = 0
 	cart.forEach (i) ->
-		count += i.count
-		price += parseFloat(i.price)*i.count
+		count += i.c
+		price += parseFloat(i.p)*i.c
 	$('#cartCount').html(count)
 	if $('#alert').get().length == 0
 		$('body').append('<div id="alert">\

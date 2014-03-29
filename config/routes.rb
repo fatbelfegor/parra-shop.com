@@ -39,6 +39,8 @@ ParraShopCom::Application.routes.draw do
     get :show_scode, on: :member
   end
   
+  get '/order', to: 'order#new'
+  post '/order', to: 'order#create', as: "orders"
   get '/cart', to: 'main#cart'
   get '/kupit/:scode', to: 'products#show_scode'
   get '/kupit/:id', to: 'products#show'

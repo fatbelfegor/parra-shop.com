@@ -235,6 +235,7 @@ nav {
 
 .showPage {
 	margin-left: 30px;
+	
 	h2 {
 		font-size: 20px;
 		font-weight: normal;
@@ -439,6 +440,10 @@ body > .main {
 		}
 	}
 
+	div ul {
+		height: 25px;
+	}
+
 	ul {
 		:first-child {
 			width: 17%;
@@ -490,6 +495,24 @@ body > .main {
 			text-align: center;
 			outline: 1px solid black
 		}
+	}
+}
+
+.offer {
+	h3 {
+		text-align: center;
+		margin: 20px;
+	}
+
+	form {
+		display: inline-block;
+		width: 100%;
+		margin: 0 auto;
+    	text-align: center;
+
+    	input, textarea {
+    		margin-bottom: 10px;
+    	}
 	}
 }
 

@@ -19,6 +19,7 @@
 			<div>
 				<p>Цена: <%= number_to_currency(@product.price) %></p>
 				<div onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
+				<%= hidden_field_tag :product_id_field, @product.id %>
 			</div>
 		</div>
 	</div>
