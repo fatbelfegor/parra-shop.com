@@ -1,8 +1,8 @@
-<tr class='<%= cycle('light', 'dark') %>'>
-	<td style="text-align: center"><%= proption.name %></td>
-	<td style="text-align: center"><%= number_to_currency(proption.price) %></td>
-	<td style="text-align: center">
+<li>
+	<div><%= proption.name %></div>
+	<div><%= number_to_currency(proption.price) %></div>
+	<div>
 		<%= link_to 'Удалить', proption, :confirm => 'Вы уверены?', :method => :delete %> | 
 		<%= link_to 'Редактировать', edit_proption_path(proption) %>
-	</td>
-</tr>
+	</div>
+</li>

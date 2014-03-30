@@ -1,7 +1,7 @@
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 
-<div class="showPage">
+<div class="show page">
 	<h2><%= @product.category.name %></h2>
 	<div class="main">
 		<% if @product.images %>
@@ -16,12 +16,52 @@
 		<div>
 			<p><%= @product.name %></p>
 			<%= sanitize(@product.description) %>
+			<%= select_tag :prsizes, options_for_select(@product.prsizes.map{|c| [c.name, c.price]}), {onchange: 'priceChange(this)'} %>
+			<%= select_tag :prcolors, options_for_select(@product.prcolors.map{|c| [c.name, c.price]}), {onchange: 'priceChange(this)'} %>
+			<%= select_tag :proptions, options_for_select(@product.proptions.map{|c| [c.name, c.price]}), {onchange: 'priceChange(this)'} %>
 			<div>
-				<p>Цена: <%= number_to_currency(@product.price) %></p>
+				<p>Цена: <b id="price"><%= number_to_currency(@product.price) %></b></p>
 				<div onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
 				<%= hidden_field_tag :product_id_field, @product.id %>
 			</div>
 		</div>
+	</div>
+	<div class="options">
+		<h2>Список размеров (<%= @product.prsizes.count %>)</h2>
+		<p><%= link_to('Создать новый размер', { :controller => :prsizes, :action => :new , :product_id => @product.id })%></p>
+		<ul class="table tborder">
+			<li>
+				<div style="text-align: center">Название</div>
+				<div style="text-align: center">Цена</div>
+				<div style="text-align: center">действия</div>
+			</li>
+			<%= render(:partial => "prsizes/prsize" , :collection => @product.prsizes) %>
+		</ul>
+		<h2>Список цветов (<%= @product.prcolors.count %>)</h2>
+
+		<%= link_to('Создать новый цвет', { :controller => :prcolors, :action => :new , :product_id => @product.id })%>
+		
+		<ul class="table tborder">
+			<li>
+				<div style="text-align: center">Название</div>
+				<div style="text-align: center">Цена</div>
+				<div style="text-align: center">действия</div>
+			</li>
+			<%= render(:partial => "prcolors/prcolor" , :collection => @product.prcolors) %>
+		</ul>
+		
+		<h2>Список опций (<%= @product.proptions.count %>)</h2>
+
+		<%= link_to('Создать новую опцию', { :controller => :proptions, :action => :new , :product_id => @product.id })%>
+		
+		<ul class="table tborder">
+			<li>
+				<div style="text-align: center">Название</div>
+				<div style="text-align: center">Цена</div>
+				<div style="text-align: center">действия</div>
+			</li>
+			<%= render(:partial => "proptions/proption" , :collection => @product.proptions) %>
+		</ul>
 	</div>
 	<div class="others">
 		<p>Похожие товары</p>

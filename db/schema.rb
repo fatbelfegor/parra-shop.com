@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 20140329115932) do
     t.integer  "product_id",                                        null: false
     t.integer  "quantity",                                          null: false
     t.decimal  "price",      precision: 18, scale: 2, default: 0.0, null: false
+    t.string   "size"
+    t.string   "color"
+    t.string   "option"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

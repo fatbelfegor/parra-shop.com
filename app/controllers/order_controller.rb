@@ -16,7 +16,10 @@ class OrderController < ApplicationController
       			order_id: @order.id,
       			product_id: i['i'],
       			quantity: i['c'],
-      			price: i['p']
+      			price: i['p'],
+            size: i['s'],
+            color: i['l'],
+            option: i['o']
       		})
       		@order_item.save
       	}

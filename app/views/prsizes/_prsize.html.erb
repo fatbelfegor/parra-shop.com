@@ -1,8 +1,8 @@
-<tr class='<%= cycle('light', 'dark') %>'>
-	<td style="text-align: center"><%= prsize.name %></td>
-	<td style="text-align: center"><%= number_to_currency(prsize.price) %></td>
-	<td style="text-align: center">
+<li>
+	<div><%= prsize.name %></div>
+	<div><%= number_to_currency(prsize.price) %></div>
+	<div>
 		<%= link_to 'Удалить', prsize, :confirm => 'Вы уверены?', :method => :delete %> | 
 		<%= link_to 'Редактировать', edit_prsize_path(prsize) %>
-	</td>
-</tr>
+	</div>
+</li>

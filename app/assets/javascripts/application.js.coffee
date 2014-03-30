@@ -38,9 +38,9 @@ ready = ->
 	cart.forEach (i) ->
 		count += i.c
 	$('#cartCount').html(count)
-	if $('#cartfield')
+	if $('#cartfield')[0]
 		$('#cartfield').val(JSON.stringify(cart))
-	if $('#cart')
+	if $('#cart')[0]
 		items = ''
 		for item in cart
 			if item.c > 1
@@ -74,6 +74,15 @@ ready = ->
 		$(this).next(".panel").slideToggle("slow").siblings(".panel:visible").slideUp("slow");
 		$(this).toggleClass("active");
 		$(this).siblings("h3").removeClass("active");
+	if $('.show')[0]
+		window.currency = $('#price').html().split(' ')[1]
+		window.priceNum = parseFloat $('#price').html()
+		window.optionsPrice = ->
+			price = 0
+			$('select :selected').each ->
+				price += parseFloat @.value
+			price
+		$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)
 
 $(document).ready ->
 	$('#mainMenu li div div').each ->
@@ -154,3 +163,6 @@ window.deleteImage = (el) ->
 	index = $('.images li').index(li)
 	images = $('#product_images').val().split(',')
 	$('#product_images').val(images.join(','))
+
+window.priceChange = (el) ->
+	$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)
