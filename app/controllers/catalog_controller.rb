@@ -11,7 +11,9 @@ class CatalogController < ApplicationController
      logger.error("Попытка доступа к несуществующей категории #{params[:category_id]}")
      redirect_to_index("Неверный идентификатор категории")
    else
-     @products = @category.products
+     if(@category)
+       @products = @category.products
+     end
     end
   end
 end

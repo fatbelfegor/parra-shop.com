@@ -2,6 +2,7 @@
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 <div class="index">
 <div id ="products">
+	<% if @products %>
 	<table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<% @i = 0 %>
 	<% for product in  @products %>
@@ -27,5 +28,6 @@
 		</tr>
 	<% end %>
 	</table>
+	<% end %>
 </div>
 </div>
