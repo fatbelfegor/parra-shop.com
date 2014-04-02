@@ -114,22 +114,22 @@ window.addToCart = (name, price) ->
 	count = 0
 	price = 0
 	cart.forEach (i) ->
+		console.log i.c
 		count += i.c
 		price += parseFloat(i.p)*i.c
 	$('#cartCount').html(count)
-	if $('#alert').get().length == 0
-		$('body').append('<div id="alert">\
-				<div onclick="$(this.parentNode).fadeOut(300)"></div>\
-				<div style="top:'+($(window).height()/2-150)+'px; left:'+($(window).width()/2-200)+'px">\
-					<div>\
-						<div onclick="$(this.parentNode.parentNode.parentNode).fadeOut(300)">\
-					</div>\
+	$('body').append('<div id="alert">\
+			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
+			<div style="top:'+($(window).height()/2-150)+'px; left:'+($(window).width()/2-200)+'px">\
+				<div>\
+					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
 				</div>\
-				<p>Товар "'+name+'" добавлен в <a href="/cart">корзину</a>.</p>\
-				<p>В корзине '+count+', общая стоимость '+price+'</p>\
-				<a class="continue" onclick="$(this.parentNode.parentNode).fadeOut(300)">Продолжить покупки</a>\
-				</div>\
-			</div>')
+			</div>\
+			<p>Товар "'+name+'" добавлен в <a href="/cart">корзину</a>.</p>\
+			<p>В корзине '+count+', общая стоимость '+price+'</p>\
+			<a class="continue" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)">Продолжить покупки</a>\
+			</div>\
+		</div>')
 	$('#alert').fadeIn(300)
 	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
 
