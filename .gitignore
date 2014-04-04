@@ -18,8 +18,8 @@ log/
 test/
 tmp/
 log/
-Gemfile
-Gemfile.lock
+#Gemfile
+#Gemfile.lock
 .ruby-version
 
 log/production.log
