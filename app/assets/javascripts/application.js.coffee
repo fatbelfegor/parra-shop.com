@@ -165,4 +165,4 @@ window.deleteImage = (el) ->
 	$('#product_images').val(images.join(','))
 
 window.priceChange = (el) ->
-	$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)
+	$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)#
