@@ -31,7 +31,7 @@ ready = ->
 	$('#addImages input').click ->
 		iframe.src = '/images/new'
 		this.parentNode.appendChild iframe
-	window.cart = eval getCookie 'cart'
+	window.cart = eval decodeURIComponent getCookie 'cart'
 	unless cart
 		window.cart = []
 	count = 0
@@ -131,7 +131,7 @@ window.addToCart = (name, price) ->
 			</div>\
 		</div>')
 	$('#alert').fadeIn(300)
-	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
+	document.cookie = encodeURIComponent 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
 
 window.addImageUrl = (url) ->
 	inputName = iframe.parentNode.className
