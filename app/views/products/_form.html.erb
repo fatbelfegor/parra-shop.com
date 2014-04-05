@@ -16,6 +16,12 @@
     <%= f.label :category_id , "Категория" %><br />
     <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end) %>
   </p>
+  <% for category in Category.find(:all) %>
+	<div>
+  		<%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
+  		<%= category.name %>
+	</div>
+  <% end %>
   <p>
     <%= f.label :scode , "Код" %><br />
     <%= f.text_field :scode %>

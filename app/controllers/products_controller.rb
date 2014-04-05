@@ -36,6 +36,10 @@ class ProductsController < ApplicationController
   
   # GET /products/new
   def new
+    session[:proption] = nil
+    session[:prsize] = nil
+    session[:color] = nil
+    
     @product = Product.new
     if params[:category_id]
         @product.category = Category.find(params[:category_id])
@@ -44,6 +48,9 @@ class ProductsController < ApplicationController
   
   # GET /products/1/edit
   def edit
+    session[:proption] = nil
+    session[:prsize] = nil
+    session[:color] = nil
   end
   
   # POST /products
@@ -65,6 +72,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    params[:product][:category_ids] ||= []
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -103,6 +111,7 @@ private
   def product_params
     params.require(:product).permit(
     	:category_id,
+    	:category_ids,
 		:scode,
 		:name,
 		:description,
