@@ -55,22 +55,7 @@ ready = ->
 					item = $($('#cart > div')[i++])
 					item.find('img').attr 'src', data.images.split(',')[0]
 					item.find('#scode').html data.scode
-		$('#cart').html(items)
-		window.changeCount = (el) ->
-			div = el.parentNode.parentNode
-			name = $(div).find('ins').html()
-			item = (cart.filter (item) ->
-				item.n == name)[0]
-			if el.innerHTML == '+'									
-				item.c++
-				if item.c > 1
-					$(div).find('.invis').attr('class', 'left').attr('onclick', 'changeCount(this)')
-			else
-				item.c--
-				if item.c == 1
-					$(div).find('.left').attr('class', 'left invis').attr('onclick', '')
-			$(div).find('#count').html(item.c)
-			cartSave()
+		$('#cart').html(items)		
 		window.cartDelete = (el) ->
 			name = $(el.parentNode.parentNode).find('ins').html()
 			cart.splice cart.indexOf (cart.filter (item) ->
@@ -91,6 +76,25 @@ ready = ->
 			price
 		$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)
 
+@changeCount = (el) ->
+	if el.parentNode.parentNode.parentNode.id == 'cart'
+		div = el.parentNode.parentNode
+	else
+		div = el.parentNode.parentNode.parentNode.parentNode
+	name = $(div).find('ins').html()
+	item = (cart.filter (item) ->
+		item.n == name)[0]
+	if el.innerHTML == '+'									
+		item.c++
+		if item.c > 1
+			$(div).find('.invis').attr('class', 'left').attr('onclick', 'changeCount(this)')
+	else
+		item.c--
+		if item.c == 1
+			$(div).find('.left').attr('class', 'left invis').attr('onclick', '')
+	$(div).find('#count').html(item.c)
+	cartSave()
+
 $(document).ready ->
 	$('#mainMenu li div div').each ->
 		menuImages.push this.style.backgroundImage
@@ -104,7 +108,7 @@ getCookie = (name) ->
 expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
 
-window.addToCart = (name, price) ->	
+@addToCart = (name, price) ->	
 	s = $('[name=prsizes] :selected').html()
 	l = $('[name=prcolors] :selected').html()
 	o = $('[name=proptions] :selected').html()
@@ -120,20 +124,34 @@ window.addToCart = (name, price) ->
 		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i
 	count = 0
 	price = 0
-	cart.forEach (i) ->
-		count += i.c
-		price += parseFloat(i.p)*i.c
+	i = 0
+	items = '<div class="items">'
+	cart.forEach (item) ->
+		count += item.c
+		price += parseFloat(item.p)*item.c
+		if item.c > 1 then minus = '<span class="left" onclick="changeCount(this)">++</span>' else minus = '<span class="left invis">++</span>'
+		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
+		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
+		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
+		items += '<div><a href="/kupit/'+item.n+'"><img><div><div><p><ins>'+item.n+'</ins></p><p>Код: <s id="scode"></s></p>'+color+size+option+'</div></div></a><div><div><p><b>'+item.p+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
+		$.ajax
+			url: "/cart.json?name="+item.n
+			success: (data) ->
+				item = $($('#alert .items > div')[i++])
+				item.find('img').attr 'src', data.images.split(',')[0]
+				item.find('#scode').html data.scode
 	$('#cartCount').html(count)
 	$('body').append('<div id="alert">\
 			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
-			<div style="top:'+($(window).height()/2-150)+'px; left:'+($(window).width()/2-200)+'px">\
-				<div>\
+			<div style="top:'+($(window).height()/2-230)+'px; left:'+($(window).width()/2-235)+'px">\
+				<div class="header">\
+					Спасибо. Товар добавлен в Вашу корзину.\
 					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
 				</div>\
 			</div>\
-			<p>Товар "'+name+'" добавлен в <a href="/cart">корзину</a>.</p>\
-			<p>В корзине '+count+', общая стоимость '+price+'</p>\
+			'+items+'</div><p class="itogo">Итого: <b>'+price+'</b> руб.</p>\
 			<a class="continue" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)">Продолжить покупки</a>\
+			<a href="/order" class="gotoCart">Перейти к оформлению заказа</a>\
 			</div>\
 		</div>')
 	$('#alert').fadeIn(300)
