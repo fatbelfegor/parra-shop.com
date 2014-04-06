@@ -41,6 +41,7 @@ ParraShopCom::Application.routes.draw do
   
   get '/order', to: 'order#new'
   post '/order', to: 'order#create', as: "orders"
+  get '/cart.json', to: 'main#cartjson'
   get '/cart', to: 'main#cart'
   get '/kupit/:scode', to: 'products#show_scode'
   get '/kupit/:id', to: 'products#show'

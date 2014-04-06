@@ -463,73 +463,117 @@ body > .main {
 	}
 }
 
+h2.cart {
+	line-height: 50px;
+	color: #333;
+	margin: 10px 0 0 0;
+}
+
 #cart {
 	width: 100%;
-	border: 1px solid black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	color: #5D5D5C;
 
-	> ul {
-		height: 25px;
-		background-image: url(http://mebel-litva.ru/images/HeaderSlice.jpg);
+	> div {
+		padding: 15px;
+		height: 100px;
 
-		:last-child {
-			background: none !important;
-		}
-	}
-
-	div ul {
-		height: 25px;
-	}
-
-	ul {
-		:first-child {
-			width: 17%;
-		}
-
-		> li {
-			width: 15%;
-		}
-
-		:nth-child(2) {
-
-			span {
-				color: transparent;
-				cursor: pointer;
-				-moz-user-select: -moz-none;
-				-o-user-select: none;
-				-khtml-user-select: none;
-				-webkit-user-select: none;
-				user-select: none
-			}
-
-			:first-child {
-				background: url(http://mebel-litva.ru/images/Minus.png) 3px 3px;				
-			}
-
-			:last-child {
-				background-image: url(http://mebel-litva.ru/images/Plus.png);				
-			}
-
-			.invis {
-				background: none;
-			}
-
-			b {
-				font-weight: normal;
-			}
-		}
-
-		:last-child {
-			width: 8%;
-			cursor: pointer;
-			background: url(http://mebel-litva.ru/images/Delete.png?1330460074) 46% no-repeat;
-		}
-
-		li {
+		> a {
+			height: 100%;
+			display: inline-block;
+			width: 450px;
 			float: left;
-			line-height: 25px;
-			height: 25px;
-			text-align: center;
-			outline: 1px solid black
+
+			img {
+				width: 100px;
+				height: 100%;
+				border: 1px solid black;
+				float: left;
+				margin-right: 15px;
+			}
+
+			> div {
+				display: table;
+				height: 100%;
+
+				> div {
+					display: table-cell;
+					vertical-align: middle;					
+					font-size: 12px;
+					line-height: 20px;
+
+					ins {
+						font-size: 13px;
+						color: black;
+					}
+
+					s {
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		> div {
+			float: left;
+			line-height: 100px;
+		}
+
+		b {
+			color: black;
+		}
+
+		> :nth-child(2) {
+			width: 275px;
+		}
+
+		> :nth-child(3) {
+			width: 200px;
+		}
+
+		.left, .right {
+			font-size: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 7px 7px 7px 0;
+			border-color: transparent #52B84A transparent #52B84A;
+			position: relative;
+			top: -5px;
+			cursor: pointer;
+			@include transition(0.3s);
+			left: -5px;
+		}
+
+		.right {
+			left: 5px;
+			border-width: 7px 0 7px 7px;
+		}
+
+		.left:hover, .right:hover {
+			border-color: transparent black transparent black;
+		}
+
+		.invis {
+			border-color: transparent #aaa transparent #aaa !important;
+		}
+
+		> :last-child {
+			cursor: pointer;
+			span {
+				position: relative;
+				top: 36px;
+				margin-right: 5px;
+				font-size: 0;
+				display: inline-block;
+				width: 15px;
+				height: 15px;
+				background-color: #52B84A;
+				background-image: url(http://www.urbanika.ru/images/basket_del.png);
+				background-position: 50% 50%;
+				background-repeat: no-repeat;
+			}
 		}
 	}
 }

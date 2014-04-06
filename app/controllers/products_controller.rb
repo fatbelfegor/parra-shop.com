@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 class ProductsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :index, :show_scode, :buy]
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  #before_filter :admin_required, :except => [:show, :index, :show_scode, :buy]
+  #before_action :set_product, only: [:show, :edit, :update, :destroy]
   
   # GET /products
   # GET /products.json
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
     session[:proption] = nil
     session[:prsize] = nil
     session[:color] = nil
-    @product = Product.find_by_scode(params[:scode])
+    @product = Product.find_by_name(params[:scode])
     #@title = @product.name
    
     respond_to do |format|

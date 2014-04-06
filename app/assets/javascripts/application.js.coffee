@@ -42,34 +42,41 @@ ready = ->
 		$('#cartfield').val(JSON.stringify(cart))
 	if $('#cart')[0]
 		items = ''
+		i = 0
 		for item in cart
-			if item.c > 1
-				minus = '<span onclick="changeCount(this)">++</span>'
-			else
-				minus = '<span class="invis">++</span>'
-			items += '<ul><li>'+item.n+'</li><li>'+minus+'<b>'+item.c+'</b>'+' <span onclick="changeCount(this)">+</span></li><li>'+item.p+' руб</li><li>'+item.s+'</li><li>'+item.l+'</li><li>'+item.o+'</li><li onclick="cartDelete(this)"></li></ul>'
-		$('#cart div').html(items)
+			if item.c > 1 then minus = '<span class="left" onclick="changeCount(this)">++</span>' else minus = '<span class="left invis">++</span>'
+			if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
+			if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
+			if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
+			items += '<div><a href="/kupit/'+item.n+'"><img><div><div><p><ins>'+item.n+'</ins></p><p>Код: <s id="scode"></s></p>'+color+size+option+'</div></div></a><div><p><b>'+item.p+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
+			$.ajax
+				url: "/cart.json?name="+item.n
+				success: (data) ->
+					item = $($('#cart > div')[i++])
+					item.find('img').attr 'src', data.images.split(',')[0]
+					item.find('#scode').html data.scode
+		$('#cart').html(items)
 		window.changeCount = (el) ->
-			ul = el.parentNode.parentNode
-			name = ul.firstChild.innerHTML
+			div = el.parentNode.parentNode
+			name = $(div).find('ins').html()
 			item = (cart.filter (item) ->
 				item.n == name)[0]
 			if el.innerHTML == '+'									
 				item.c++
 				if item.c > 1
-					$(ul).find('.invis').attr('class', '').attr('onclick', 'changeCount(this)')
+					$(div).find('.invis').attr('class', 'left').attr('onclick', 'changeCount(this)')
 			else
 				item.c--
 				if item.c == 1
-					$(ul).find('li span:first-child').attr('class', 'invis').attr('onclick', '')
-			$(ul).find('b').html(item.c)
-			document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
+					$(div).find('.left').attr('class', 'left invis').attr('onclick', '')
+			$(div).find('#count').html(item.c)
+			cartSave()
 		window.cartDelete = (el) ->
-			name = el.parentNode.firstChild.innerHTML
+			name = $(el.parentNode.parentNode).find('ins').html()
 			cart.splice cart.indexOf (cart.filter (item) ->
 				item.n == name)[0], 1
 			el.parentNode.outerHTML = ''
-			document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toUTCString()
+			cartSave()
 	$(".accordion h3").click ->
 		$(this).next(".panel").slideToggle("slow").siblings(".panel:visible").slideUp("slow");
 		$(this).toggleClass("active");
@@ -130,6 +137,9 @@ window.addToCart = (name, price) ->
 			</div>\
 		</div>')
 	$('#alert').fadeIn(300)
+	cartSave()
+
+@cartSave = ->
 	cart.forEach (i) ->
 		i.n = encodeURIComponent i.n
 	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
