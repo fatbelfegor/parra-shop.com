@@ -28,7 +28,9 @@ module ApplicationHelper
     if(cat.children.count > 0)
       for ch in cat.children
         if(ch.header)
-          ret += sanitize("<div style='left: 0px;'></div>")
+         # ret += sanitize("<div style='left: 0px;'></div>")
+           #ret += "<div style='background:url(/assets/Plisset.png);'></div>"
+          #background:url(/images/HeaderMenu.png)
           
           #ret += sanitize("<div style=" + '"' + "background-image: url(" +'"' + "/Plisset.png" +'"' + ");" +'"' + "></div>")
         end

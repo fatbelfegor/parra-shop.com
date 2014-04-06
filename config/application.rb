@@ -10,7 +10,7 @@ module ParraShopCom
   class Application < Rails::Application
     config.action_view.sanitized_allowed_tags = 'ul', 'li', 'a', 'div'
     config.action_view.sanitized_allowed_attributes = 'id', 'class', 'data-method', 'data-confirm', 'style'
-    config.action_view.sanitized_allowed_css_properties = Set.new(%w(left background-image azimuth background-color border-bottom-color border-collapse
+    config.action_view.sanitized_allowed_css_properties = Set.new(%w(left background background-image azimuth background-color border-bottom-color border-collapse
           border-color border-left-color border-right-color border-top-color clear color cursor direction display
           elevation float font font-family font-size font-style font-variant font-weight height letter-spacing line-height
           overflow pause pause-after pause-before pitch pitch-range richness speak speak-header speak-numeral speak-punctuation
