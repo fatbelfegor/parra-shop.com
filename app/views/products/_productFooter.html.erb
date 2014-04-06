@@ -2,10 +2,10 @@
 	<div>
 		<% if productFooter.images %>
 			<% images = productFooter.images.split(',') %>
-		    <a href="<%= images[0] %>" data-lightbox="image" title="<% productFooter.name %>"><img src="<%= images[0] %>"></a>
+		    <a href="<%= images[0] %>" data-lightbox="<% productFooter.name %>" title="<% productFooter.name %>"><img src="<%= images[0] %>"></a>
 		    <div class="hidden">
 		    	<%  images.drop(1).each do |i| %>
-		    		<a href="<%= i %>" data-lightbox="image" title="<% productFooter.name %>"><img src="<%= i %>"></a>
+		    		<a href="<%= i %>" data-lightbox="<% productFooter.name %>" title="<% productFooter.name %>"><img src="<%= i %>"></a>
 		    	<% end %>
 		    </div>
 		<% end %>

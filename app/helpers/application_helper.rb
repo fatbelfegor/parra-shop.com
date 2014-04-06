@@ -2,6 +2,56 @@
 # encoding: utf-8
 
 module ApplicationHelper
+  
+  def PaintMenu
+    ret = ""
+    categs = Category.roots
+    if categs.count > 0
+      for cat in  categs
+        ret += "<li><a href="">#{cat.name}</a>"
+        
+        ret += AddImages(cat)
+        
+        ret += AddSubMenu(cat)
+        
+        ret += "</li>"
+      end
+      
+    end
+    
+    return sanitize(ret)
+  end
+  
+  def AddImages(cat)
+    ret ="<div>"
+    
+    if(cat.children.count > 0)
+      for ch in cat.children
+        if(ch.header)
+          ret += sanitize("<div style='left: 0px;'></div>")
+          
+          #ret += sanitize("<div style=" + '"' + "background-image: url(" +'"' + "/Plisset.png" +'"' + ");" +'"' + "></div>")
+        end
+      end
+    end
+    
+    ret +="</div>"
+    return ret
+  end
+  
+  def AddSubMenu(cat)
+    ret ="<ul>"
+    
+    if(cat.children.count > 0)
+      for ch in cat.children
+        ret += sanitize("<li>" + link_to( ch.name , { :controller => '/catalog', :action => :index, :category_scode => ch.scode} ) + "</li>")
+      end
+    end
+    
+    ret +="</ul>"
+    return ret
+  end
+  
   def PaintTree(adm)
     ret = ""
     categs = Category.roots
