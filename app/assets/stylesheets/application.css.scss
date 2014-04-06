@@ -226,8 +226,8 @@ nav {
 
 	> :last-child {
 		position: fixed;
-		width: 400px;
-		height: 300px;
+		width: 434px;
+		padding: 16px 18px;
 		background-color: white;
 		@include box-shadow(0 0 60px 0 rgba(0,0,0,0.7));
 		text-align: center;
@@ -240,25 +240,143 @@ nav {
 			text-decoration: underline;
 		}
 
-		.continue {
-			position: absolute;
-			bottom: 30px;
-			width: 100%;
-			left: 0;			
-			cursor: pointer;
+		.items {
+			border-top: 1px solid #6C6B6B;			
+			padding: 15px 0;
+			color: #5D5D5C;
+			font-size: 14px;
+
+			p {
+				margin: 0;
+				text-align: left;
+			}
+
+			> div {
+				height: 100px;
+
+				a {
+					float: left;
+					width: 334px;
+
+					img {
+						height: 100px;
+						width: 100px;
+						float: left;
+						margin: 0 15px;
+					}
+
+					> div {
+						display: table;
+						height: 100px;
+
+						> div {
+							display: table-cell;
+							vertical-align: middle;
+
+							ins {
+								color: black;
+								font-size: 15px;
+							}
+
+							s {
+								text-decoration: none;
+							}
+						}
+					}
+				}
+
+				> div {
+					display: table-cell;
+					vertical-align: middle;
+					height: 100px;
+
+					> div {
+						display: table-cell;
+						vertical-align: middle;
+
+						> div {
+							margin-top: 5px;
+
+							.left, .right {
+								font-size: 0;
+								width: 0;
+								height: 0;
+								border-style: solid;
+								border-width: 7px 7px 7px 0;
+								border-color: transparent #52B84A transparent #52B84A;
+								position: relative;
+								top: -5px;
+								cursor: pointer;
+								@include transition(0.3s);
+								left: -5px;
+							}
+
+							.right {
+								left: 5px;
+								border-width: 7px 0 7px 7px;
+							}
+
+							.left:hover, .right:hover {
+								border-color: transparent black transparent black;
+							}
+
+							.invis {
+								border-color: transparent #aaa transparent #aaa !important;
+							}
+						}
+					}
+				}
+			}			
 		}
 
-		> div {
-			height: 25px;
-			width: 100%;
-			background-color: #eee;
+		.itogo {
+			margin: 0;
+			padding: 10px 14px 20px 220px;
+			border-top: 1px solid black;
+			width: 200px;
+			color: #12880A;
+		}
+
+		.continue {		
+			cursor: pointer;
+			float: left;
+			line-height: 34px;
+		}
+
+		.gotoCart {
+			float: right;
+			text-transform: lowercase;
+			line-height: 34px;
+			float: right;
+			padding: 0 10px;
+			border-radius: 17px;
+			color: #efefef;
+			background-color: #52B84A;
+			background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
+			@include transition(0.3s);
+		}
+
+		.gotoCart:hover {
+			color: white;
+			background: -webkit-linear-gradient(top, #92e88A 0%, #4aac45 50%, #42a83A 50%, #329628 100%);
+		}
+
+
+		.header {
+			font-size: 15px;
+			line-height: 15px;
+			padding-bottom: 15px;
+			width: 424px;
+			position: relative;
 
 			div {
 				background: url(http://www.centrsvet.ru/_img/amiPopup_close_btn.gif);
 				width: 25px;
 				height: 25px;
-				float: right;
 				cursor: pointer;
+				position: absolute;
+				top: -5px;
+				right: 0;
 			}
 		}
 	}
