@@ -75,7 +75,6 @@ ready = ->
 				price += parseFloat @.value
 			price
 		$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)
-
 @changeCount = (el) ->
 	if el.parentNode.parentNode.parentNode.id == 'cart'
 		div = el.parentNode.parentNode
@@ -94,20 +93,16 @@ ready = ->
 			$(div).find('.left').attr('class', 'left invis').attr('onclick', '')
 	$(div).find('#count').html(item.c)
 	cartSave()
-
 $(document).ready ->
 	$('#mainMenu li div div').each ->
 		menuImages.push this.style.backgroundImage
 	ready()
 $(document).on('page:load', ready)
-
 getCookie = (name) ->
 	matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"))
 	(if matches then decodeURIComponent(matches[1]) else `undefined`)
-
 expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
-
 @addToCart = (name, price) ->	
 	s = $('[name=prsizes] :selected').html()
 	l = $('[name=prcolors] :selected').html()
@@ -156,15 +151,13 @@ expire = ->
 		</div>')
 	$('#alert').fadeIn(300)
 	cartSave()
-
 @cartSave = ->
 	cart.forEach (i) ->
 		i.n = encodeURIComponent i.n
 	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
 	cart.forEach (i) ->
 		i.n = decodeURIComponent i.n
-
-window.addImageUrl = (url) ->
+@addImageUrl = (url) ->
 	inputName = iframe.parentNode.className
 	input = $('#'+inputName)
 	images = input.val().split(',')
@@ -180,8 +173,7 @@ window.addImageUrl = (url) ->
 	else
 		$(iframe.parentNode).html(imagesHtml)
 	iframe.parentNode.removeChild iframe
-
-window.deleteImage = (el) ->
+@deleteImage = (el) ->
 	li = el.parentNode
 	url = li.firstElementChild.href
 	$.get "/images/delete",
@@ -194,6 +186,22 @@ window.deleteImage = (el) ->
 	index = $('.images li').index(li)
 	images = $('#product_images').val().split(',')
 	$('#product_images').val(images.join(','))
-
-window.priceChange = (el) ->
-	$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)#
+@priceChange = (el) ->
+	$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)
+@order = ->
+	$('body').append('<div id="orderWindow">\
+			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
+			<div style="top:'+($(window).height()/2-230)+'px; left:'+($(window).width()/2-235)+'px">\
+				<div class="header">\
+					Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.\
+					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
+				</div>\
+				<form>\
+				<p>Ваше имя*:<input type="text"></p>\
+				<p>Контактный телефон*:<input type="text"></p>\
+				<p>Ваш e-mail:<input type="text"></p>\
+				<input type="submit" value="Отправить">\
+				</form>\
+			</div>\
+		</div>')
+	$('#orderWindow').fadeIn(300)
