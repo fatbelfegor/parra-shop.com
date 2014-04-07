@@ -258,7 +258,7 @@ nav {
 	}
 }
 
-#alert {
+#alert, #orderWindow {
 	display: none;
 
 	> :first-child {
@@ -387,7 +387,7 @@ nav {
 			line-height: 34px;
 		}
 
-		.gotoCart {
+		.gotoCart, input[type=submit] {
 			float: right;
 			text-transform: lowercase;
 			line-height: 34px;
@@ -400,7 +400,7 @@ nav {
 			@include transition(0.3s);
 		}
 
-		.gotoCart:hover {
+		.gotoCart:hover, input[type=submit]:hover {
 			color: white;
 			background: -webkit-linear-gradient(top, #92e88A 0%, #4aac45 50%, #42a83A 50%, #329628 100%);
 		}
@@ -421,6 +421,32 @@ nav {
 				position: absolute;
 				top: -5px;
 				right: 0;
+			}
+		}
+
+		form {
+			padding: 20px;
+			p {
+				margin: 0;
+				line-height: 26px;
+				text-align: left;
+			}
+
+			input[type=text] {
+				margin-left: 15px;
+			}
+
+			input[type=submit] {
+				float: left;
+				margin-top: 15px;
+				border: 0;
+				line-height: 28px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+			input[type=submit]:focus {
+				outline: 0;
 			}
 		}
 	}
