@@ -175,34 +175,78 @@ nav {
 		}
 
 		.wherebuy {
-			ul {				
-				margin: 1px 0 0 -135px;
+			span {
+				display: block;
+				position: absolute;
+				left: 0;
+				width: 100%;
+				background-color: #E6E6E6;				
+				z-index: 3;
 				height: 0;
-				width: auto;
-				background-color: rgba(255, 255, 255, 0.9);
+				overflow: hidden;
 				@include transition(0.3s);
 
-				li {
-					margin: 0;
-					line-height: 34px;
-					font-size: 18px;
-					border: 1px solid rgba(0,0,0,0.4);
-					border-top: 0;
-					padding: 0 20px;
-					font-weight: normal;
-				}
+				> div {
+					position: relative;
+				    float: right;
+				    right: 50%;
 
-				li:hover {
-					background-color: #52B84A;
-					color: white;
-				}
+				    div {
+				    	position: relative;
+					    float: left;
+					    left: 50%;
+						width: 900px;
+						margin-top: 35px;
+						padding-left: 30px;
+						a {
+							display: block;
+							height: 120px;
+							float: left;
+							width: 125px;
+							margin: 0 30px 55px 0;
+							font-size: 21px;
+							line-height: 32px;
+							padding: 0 35px;
+							font-weight: normal;
+							position: relative;
+							color: #535456;
+							text-align: left;
+						}
+						a:before {
+							position: absolute;
+							left: 0;
+							top: 5px;
+							display: block;
+							content: "";
+							height: 100%;
+							width: 5px;
+							background-color: #E01902;
+							@include border-radius(2px);
+						}
+						:nth-child(3):before {
+							background-color: #737E76;
+						}
+						:nth-child(4):before {
+							background-color: #F88800;
+						}
+						:nth-child(5):before {
+							background-color: #06450C
+						}
+						:nth-child(6):before {
+							background-color: #07298A;
+						}
+						:nth-child(7):before {
+							background-color: #FEDD02;
+						}
+					}
+				}				
 			}
 		}
 
-		.wherebuy:hover {
-			ul {
-				height: 245px;				
-			}
+		.wherebuy:hover span {
+			height: 375px;
+			border-top: 1px solid #C6C6C6;
+			border-bottom: 1px solid #C6C6C6;
 		}
 
 		.submenu:hover {
@@ -349,7 +393,7 @@ nav {
 			line-height: 34px;
 			float: right;
 			padding: 0 10px;
-			border-radius: 17px;
+			@include border-radius(17px);
 			color: #efefef;
 			background-color: #52B84A;
 			background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
