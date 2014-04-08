@@ -425,8 +425,10 @@ nav {
 		}
 
 		form {
-			padding: 20px;
-			p {
+			border-top: 1px solid black;
+			padding: 15px 10px 20px;
+
+			p, label {
 				margin: 0;
 				line-height: 26px;
 				text-align: left;
@@ -447,6 +449,12 @@ nav {
 
 			input[type=submit]:focus {
 				outline: 0;
+			}
+
+			input[type=checkbox] {
+				margin-right: 8px;
+				position: relative;
+				top: 2px;
 			}
 		}
 	}

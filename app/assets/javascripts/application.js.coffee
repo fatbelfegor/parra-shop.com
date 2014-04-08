@@ -189,19 +189,26 @@ expire = ->
 @priceChange = (el) ->
 	$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)
 @order = ->
-	$('body').append('<div id="orderWindow">\
-			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
-			<div style="top:'+($(window).height()/2-230)+'px; left:'+($(window).width()/2-235)+'px">\
-				<div class="header">\
-					Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.\
-					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
-				</div>\
-				<form>\
-				<p>Ваше имя*:<input type="text"></p>\
-				<p>Контактный телефон*:<input type="text"></p>\
-				<p>Ваш e-mail:<input type="text"></p>\
-				<input type="submit" value="Отправить">\
-				</form>\
-			</div>\
+	$('body').append('<div id="orderWindow">
+			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>
+			<div style="top:'+($(window).height()/2-230)+'px; left:'+($(window).width()/2-235)+'px">
+				<div class="header">
+					Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.
+					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)"></div>
+				</div>
+				<form>
+				<p>Ваше имя*:<input type="text"></p>
+				<p>Контактный телефон*:<input type="text"></p>
+				<p><label><input type="checkbox" onclick="var h = this.parentNode.parentNode.nextElementSibling; if(h.className == \'hidden\'){h.className=\'\'}else{h.className=\'hidden\'}">Нужна доставка<label></p>
+				<div id="otherInputs" class="hidden">
+					<p>Город:<input type="text"></p>
+					<p>Улица:<input type="text"></p>
+					<p>Дом:<input type="text"></p>
+					<p>Корпус:<input type="text"></p>
+					<p>Квартира:<input type="text"></p>
+				</div>
+				<input type="submit" value="Отправить">
+				</form>
+			</div>
 		</div>')
 	$('#orderWindow').fadeIn(300)
