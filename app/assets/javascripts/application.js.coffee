@@ -201,6 +201,7 @@ expire = ->
 				<p>Контактный телефон*:<input type="text"></p>
 				<p><label><input type="checkbox" onclick="var h = this.parentNode.parentNode.nextElementSibling; if(h.className == \'hidden\'){h.className=\'\'}else{h.className=\'hidden\'}">Нужна доставка<label></p>
 				<div id="otherInputs" class="hidden">
+					<p>Ваш e-mail:<input type="text"></p>
 					<p>Город:<input type="text"></p>
 					<p>Улица:<input type="text"></p>
 					<p>Дом:<input type="text"></p>
