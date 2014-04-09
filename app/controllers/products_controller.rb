@@ -33,18 +33,6 @@ class ProductsController < ApplicationController
       format.xml  { render :xml => @product }
     end
   end
-
-  def show_name
-    @product = Product.find_by_name(params[:name])
-    if @product
-      respond_to do |format|
-        format.html {render :action => 'show'}
-        format.xml  { render :xml => @product }
-      end    
-    else
-      show_scode()
-    end    
-  end
   
   # GET /products/new
   def new
