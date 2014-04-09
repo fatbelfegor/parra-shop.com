@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 class ProductsController < ApplicationController
-  #before_filter :admin_required, :except => [:show, :index, :show_scode, :buy]
-  #before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_filter :admin_required, :except => [:show, :index, :show_scode, :buy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   
   # GET /products
   # GET /products.json

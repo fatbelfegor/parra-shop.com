@@ -3,8 +3,8 @@
 
 class CategoriesController < ApplicationController
   
-  #before_filter :admin_required
-  #before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_filter :admin_required
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
   
   # GET /categories
   # GET /categories.json
