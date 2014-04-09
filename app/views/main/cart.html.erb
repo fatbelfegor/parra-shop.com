@@ -4,5 +4,28 @@
 	<div id="cart"></div>
 	<br>
 	<a style="cursor:pointer" onclick="order()">Оформить заказ</a>
-	<% link_to "Оформить заказ", order_path %>
+	<% link_to "Оформить заказ", order_path %>	
+</div>
+
+<div id="orderWindow">
+	<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>
+	<div>
+		<div class="header">
+			Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.
+			<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)"></div>
+		</div>
+		<%= form_for :order, url: '/order' do |f| %>
+		<p>Ваше имя:<%= f.text_field :first_name %></p>
+		<p>Контактный телефон:<%= f.text_field :phone %></p>
+		<p><label><input type="checkbox" onclick="orderShowAll()">Нужна доставка<label></p>
+		<div id="otherInputs" class="hide">
+			<p>Ваш e-mail:<%= f.text_field :email %></p>
+			<p>Улица:<%= f.text_field :addr_street %></p>
+			<p>Дом:<%= f.text_field :addr_home %></p>
+			<p>Корпус:<input type="text" name="addr_block"></p>
+			<p>Квартира:<input type="text" name="addr_flat"></p>
+		</div>
+		<input type="submit" value="Отправить">
+		<% end %>
+	</div>
 </div>
