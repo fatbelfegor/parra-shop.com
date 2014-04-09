@@ -48,6 +48,29 @@ li {
 	float: left;
 }
 
+.shopPhone {
+	position: absolute;
+	left: 260px;
+	top: 20px;
+	color: #575759;	
+
+	> :first-child, b {
+		font-family: Arial;
+		font-size: 21px;
+	}
+
+	b {
+		font-weight: normal;
+		margin-right: 5px;
+	}
+
+	> :last-child {
+		font-size: 13px;
+		margin-top: -3px;
+		letter-spacing: -1px;
+	}
+}
+
 nav {
 	font-size: 13px;
 	color: #58585A;
@@ -145,7 +168,6 @@ nav {
 
 			div {
 				display: block;
-				margin-top: 1px;
 				height: 0;
 				width: auto;
 				background-color: #E6E6E6;
@@ -202,11 +224,11 @@ nav {
 							display: block;
 							height: 120px;
 							float: left;
-							width: 125px;
-							margin: 0 30px 55px 0;
-							font-size: 21px;
+							width: 165px;
+							margin: 0 0 55px 0;
+							font-size: 16px;
 							line-height: 32px;
-							padding: 0 35px;
+							padding: 0 30px;
 							font-weight: normal;
 							position: relative;
 							color: #535456;
@@ -252,7 +274,8 @@ nav {
 		.submenu:hover {
 			div {
 				height: 40px;
-				border-bottom: 1px solid black;
+				border-top: 1px solid #C6C6C6;
+				border-bottom: 1px solid #C6C6C6;
 			}
 		}
 
@@ -640,7 +663,7 @@ nav {
 }
 
 body > .main {
-	border-top: 1px solid black;
+	border-top: 1px solid #C6C6C6;
 	position: absolute;
 	width: 100%;
 	top: 86px;

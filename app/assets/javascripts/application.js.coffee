@@ -37,7 +37,7 @@ ready = ->
 	count = 0
 	cart.forEach (i) ->
 		count += i.c
-	$('#cartCount').html(count)
+	$('#cartCount').html(count) if count
 	if $('#cartfield')[0]
 		$('#cartfield').val(JSON.stringify(cart))
 	if $('#cart')[0]

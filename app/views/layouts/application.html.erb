@@ -8,6 +8,10 @@
 </head>
 <body class='<%= controller.controller_name %>'>
 <a href='/'><img class="logo" src="/assets/logo.png"></a>
+<div class="shopPhone">
+  <p><b>8</b><b>495</b>728-20-90</p>
+  <p>Единый телефон продаж в Москве</p>
+</div>
 <nav>
   <ul id="mainMenu">    
     <li><a href="">Спальни</a>
@@ -70,13 +74,13 @@
       <span>
         <div>
           <div>
-            <%= link_to 'Мебель PARRA в МЦ "Мебель PARK"', store1_path %>
-            <%= link_to 'Салон "НовоМебель" в МЦ "Family Room"', store2_path %>
-            <%= link_to 'Мебель PARRA в МЦ "Армада"', store3_path %>
-            <%= link_to 'Мебель PARRA в ТЦ "Черемушки"', store4_path %>
-            <%= link_to 'Мебель PARRA в МЦ "ROOMER"', store5_path %>
-            <%= link_to 'Мебель PARRA в ТЦ «Твой Дом — Крокус»', store6_path %>
-            <%= link_to 'Мебель PARRA в ТРЦ "РИО" Реутов', store7_path %>
+            <%= link_to raw('Мебель PARRA в МЦ "Мебель PARK"<br>(499) 940-12-29<br>м.Юго-Западная'), store1_path %>
+            <%= link_to raw('Салон "НовоМебель" в МЦ "Family Room"<br>(499) 940-12-29<br>м.Юго-Западная'), store2_path %>
+            <%= link_to raw('Мебель PARRA в МЦ "Армада"<br>(495) 665-11-52<br>м.Пражская'), store3_path %>
+            <%= link_to raw('Мебель PARRA в ТЦ "Черемушки"<br>(499) 340-56-56<br>м.Новые черемушки'), store4_path %>
+            <%= link_to raw('Мебель PARRA в МЦ "ROOMER"<br>(499) 340-09-08<br>м.Автозаводская'), store5_path %>
+            <%= link_to raw('Мебель PARRA в ТЦ «Твой Дом — Крокус»<br>(499) 940-12-29<br>м.Мякинино'), store6_path %>
+            <%= link_to raw('Мебель PARRA в ТРЦ "РИО" Реутов<br>(499) 347-09-09<br>м.Новогиреево'), store7_path %>
           </div>
         </div>        
       </span>
