@@ -255,11 +255,45 @@ nav {
 				border-bottom: 1px solid black;
 			}
 		}
+
+		.allProducts div {
+			background-color: #E6E6E6;			
+			overflow: hidden;
+
+			a {
+				display: inline-block;
+				margin: 15px 30px;
+				vertical-align: top;
+				font-size: 15px;
+				font-weight: normal;
+				@include transition(0.3s);
+			}
+
+			a:hover {
+				color: #52B84A;
+			}
+
+			a:before {
+				content: '';
+				display: inline-block;
+				width: 4px;
+				height: 17px;
+				background-color: #58575C;
+				margin-right: 10px;
+			}
+		}
+
+		.allProducts:hover div {
+			height: 47px;
+			border-top: 1px solid #C6C6C6;
+			border-bottom: 1px solid #C6C6C6;
+		}
 	}
 }
 
 #alert, #orderWindow {
 	display: none;
+	@include transition(0.3s);
 
 	> :first-child {
 		position: absolute;
@@ -425,11 +459,17 @@ nav {
 		}
 
 		form {
-			padding: 20px;
-			p {
+			border-top: 1px solid black;
+			padding: 15px 10px 20px;
+
+			p, label {
 				margin: 0;
 				line-height: 26px;
 				text-align: left;
+			}
+
+			label {
+				cursor: pointer;
 			}
 
 			input[type=text] {
@@ -447,6 +487,22 @@ nav {
 
 			input[type=submit]:focus {
 				outline: 0;
+			}
+
+			input[type=checkbox] {
+				margin-right: 8px;
+				position: relative;
+				top: 2px;
+			}
+
+			#otherInputs {
+				height: 156px;		
+				overflow: hidden;
+				@include transition(0.3s);
+			}
+
+			#otherInputs.hide {
+				height: 0;
 			}
 		}
 	}
