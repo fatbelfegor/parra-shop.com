@@ -60,7 +60,7 @@
     <ul class="images">
     <% @product.images.split(',').each do |i| %>
       <li>
-        <a href="<%= i %>" data-lightbox="image" title="<% @product.name %>"><img src="<%= i %>"></a>
+        <a href="<%= i %>" data-lightbox="image" title="<%= @product.name %>"><img src="<%= i %>"></a>
         <p onclick="deleteImage(this)">Удалить</p>
       </li>
     <% end %>
