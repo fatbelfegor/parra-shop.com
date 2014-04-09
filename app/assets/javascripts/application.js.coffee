@@ -189,19 +189,16 @@ expire = ->
 @priceChange = (el) ->
 	$('#price').html((priceNum+optionsPrice()).toFixed(2)+' '+currency)
 @order = ->
-	$('body').append('<div id="orderWindow">\
-			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
-			<div style="top:'+($(window).height()/2-230)+'px; left:'+($(window).width()/2-235)+'px">\
-				<div class="header">\
-					Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.\
-					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
-				</div>\
-				<form>\
-				<p>Ваше имя*:<input type="text"></p>\
-				<p>Контактный телефон*:<input type="text"></p>\
-				<p>Ваш e-mail:<input type="text"></p>\
-				<input type="submit" value="Отправить">\
-				</form>\
-			</div>\
-		</div>')
-	$('#orderWindow').fadeIn(300)
+	w = $('#orderWindow')
+	d = w.find('>:last-child')
+	w.fadeIn(300)
+	if w
+		w[0].parentNode.removeChild w[0]
+		$('body')[0].appendChild(w[0])
+		d.css 'left':$(window).width()/2-d.width()/2+'px', 'top':$(window).height()/2-d.height()/2-150+'px'
+@orderShowAll = ->
+	h = $('#otherInputs')[0]
+	if h.className == 'hide'
+		h.className = ''
+	else
+		h.className = 'hide'
