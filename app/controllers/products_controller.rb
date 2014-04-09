@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 class ProductsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :index, :show_scode, :buy]
+  before_filter :admin_required, :except => [:show, :index, :show_scode, :show_name, :buy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   
   # GET /products
@@ -32,6 +32,18 @@ class ProductsController < ApplicationController
       format.html {render :action => 'show'}
       format.xml  { render :xml => @product }
     end
+  end
+
+  def show_name
+    @product = Product.find_by_name(params[:name])
+    if @product
+      respond_to do |format|
+        format.html {render :action => 'show'}
+        format.xml  { render :xml => @product }
+      end    
+    else
+      show_scode()
+    end    
   end
   
   # GET /products/new
