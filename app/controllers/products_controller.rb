@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product.category, notice: 'Product was successfully created.' }
         format.json { render action: 'show', status: :created, location: @product }
       else
         format.html { render action: 'new' }
@@ -111,7 +111,6 @@ private
   def product_params
     params.require(:product).permit(
     	:category_id,
-    	:category_ids,
 		:scode,
 		:name,
 		:description,
@@ -127,7 +126,8 @@ private
 		:s_title,
 		:s_description,
 		:s_keyword,
-		:s_imagealt
+		:s_imagealt,
+		:category_ids => []
     )
   end
 end

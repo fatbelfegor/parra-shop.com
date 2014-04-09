@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329115932) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140409110532) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -35,8 +32,14 @@ ActiveRecord::Schema.define(version: 20140329115932) do
   end
 
   create_table "categories_products", id: false, force: true do |t|
-    t.integer "category_id", null: false
-    t.integer "product_id",  null: false
+    t.integer "category_id"
+    t.integer "product_id"
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "order_items", force: true do |t|

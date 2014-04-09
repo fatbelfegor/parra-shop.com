@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
 	belongs_to :category
 	has_many :order_items
-	has_and_belongs_to_many :categories
+	has_and_belongs_to_many :categories, :autosave => true
+	#has_and_belongs_to_many :categories , :join_table => :categories_products , :autosave => true
 	acts_as_list :scope => :category
 
 	has_many :prsizes, :dependent => :destroy
