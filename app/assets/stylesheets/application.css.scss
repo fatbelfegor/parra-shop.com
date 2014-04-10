@@ -162,41 +162,6 @@ nav {
 			}
 		}
 
-		> .submenu {
-			a {
-				cursor: pointer;
-			}	
-
-			div {
-				display: block;
-				height: 0;
-				width: auto;
-				background-color: #E6E6E6;
-				position: absolute;
-				left: 0;
-				width: 100%;
-				z-index: 1;
-				overflow: hidden;
-				@include transition(0.3s);
-
-				ul {
-					height: 100%;
-					padding-top: 0;
-					background-color: transparent;
-					width: auto;
-					position: absolute;
-					margin-right: 43px;
-					right: 0;
-
-					li {
-						display: inline-block;
-						margin: 0 15px;
-						line-height: 40px;
-					}
-				}
-			}
-		}
-
 		.wherebuy {
 			span {
 				display: block;
