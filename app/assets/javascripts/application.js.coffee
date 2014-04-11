@@ -64,14 +64,13 @@ ready = ->
 		$(this).toggleClass("active");
 		$(this).siblings("h3").removeClass("active");
 	if $('.show')[0]
-		window.currency = $('#price').html().split(' ')[1]
-		window.priceNum = parseFloat $('#price').html()
+		price = $('#price').html().split(' ')
 		window.optionsPrice = ->
-			price = 0
+			p = 0
 			$('select :selected').each ->
-				price += parseFloat @.value
-			price
-		$('#price').html(priceNum+optionsPrice()+' '+currency)
+				p += @.value
+			if p then p else ''
+		$('#price').html(price[0]+optionsPrice()+' '+price[1])
 @changeCount = (el) ->
 	if el.parentNode.parentNode.parentNode.id == 'cart'
 		div = el.parentNode.parentNode

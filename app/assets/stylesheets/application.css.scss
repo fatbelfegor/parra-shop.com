@@ -580,8 +580,8 @@ nav {
 	}
 
 	.others {
-		height: 300px;		
 		border-top: 1px solid black;
+		padding-bottom: 40px;
 		border-bottom: 1px solid black;
 
 		> p {
@@ -599,7 +599,7 @@ nav {
 		> div {
 			height: 100%;
 			width: 150px;
-			float: left;
+			display: inline-block;
 			margin-right: 37px;
 
 			:first-child {

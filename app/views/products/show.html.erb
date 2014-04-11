@@ -33,7 +33,7 @@
 				<%= select_tag :proptions, options_for_select(@product.proptions.map{|c| [c.name, c.price]}), {onchange: 'priceChange(this)', style: 'margin-left:50px;'} %>
 			<% end %>
 			<div>
-				<p>Цена: <b id="price"><%= @product.price %></b> руб.</p>
+				<p>Цена: <b id="price"><%= number_to_currency(@product.price) %></b></p>
 				<div onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
 				<%= hidden_field_tag :product_id_field, @product.id %>
 			</div>
