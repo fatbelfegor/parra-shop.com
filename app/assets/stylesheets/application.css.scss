@@ -277,6 +277,85 @@ nav {
 			border-top: 1px solid #C6C6C6;
 			border-bottom: 1px solid #C6C6C6;
 		}
+
+		.cart span {
+			display: block;
+			width: 350px;
+			background-color: white;
+			border-right: 1px solid #C6C6C6;
+			border-left: 1px solid #C6C6C6;
+			position: absolute;
+			z-index: 1;
+			right: 20px;
+			margin-top: 1px;
+			padding-left: 10px;
+			height: 0;
+			overflow: hidden;
+			@include transition(0.3s);
+
+			hr {
+				width: 360px;
+				height: 1px;
+				background-color: #C6C6C6;
+				margin-left: -10px;
+			}
+
+			h2 {
+				color: #198900;
+				line-height: 36px;
+				border-top: 1px solid #C6C6C6;
+				margin: 0 14px 0 4px;
+				font-weight: normal;
+				font-size: 16px;
+				text-align: right;
+
+				b {
+					color: #198800;
+					font-size: 17px;
+				}
+			}
+
+			> div {
+				margin-top: 10px;
+				max-height: 460px;
+				overflow: auto;
+				> a {
+					height: 100px;
+					margin-bottom: 15px;
+					display: block;
+
+					img {
+						width: 100px;
+						height: 100px;
+						float: left;
+					}
+
+					> div {
+						display: table;
+						height: 100px;
+						margin-left: 115px;
+						text-align: left;
+						text-decoration: underline;
+
+						> div {
+							display: table-cell;
+							vertical-align: middle;					
+							font-size: 13px;
+							line-height: 20px;
+
+							ins {
+								font-size: 14px;
+								color: #030000;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.cart:hover span {
+			height: 509px;
+		}
 	}
 }
 
