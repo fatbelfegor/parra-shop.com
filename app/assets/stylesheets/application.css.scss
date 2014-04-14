@@ -309,9 +309,11 @@ nav {
 
 		.items {
 			border-top: 1px solid #6C6B6B;			
-			padding: 15px 0;
+			padding: 15px 0 0;
 			color: #5D5D5C;
 			font-size: 14px;
+			max-height: 350px;
+			overflow: auto;
 
 			p {
 				margin: 0;
@@ -559,6 +561,7 @@ nav {
 					font-size: 12px;
 					line-height: 16px;
 					padding: 0 8px;
+					cursor: pointer;
 					@include border-radius(3px);
 					@include linear-gradient((white, #F6F6F6 50%, #eee 100%));
 				}
@@ -793,10 +796,11 @@ h2.cart {
 		}
 
 		> :last-child {
+			line-height: 1;
 			cursor: pointer;
+			padding-top: 36px;
 			span {
-				position: relative;
-				top: 36px;
+				vertical-align: top;
 				margin-right: 5px;
 				font-size: 0;
 				display: inline-block;

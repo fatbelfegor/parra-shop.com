@@ -129,12 +129,13 @@ expire = ->
 		$.ajax
 			url: "/cart.json?name="+item.n
 			success: (data) ->
-				item = $($('#alert .items > div')[i++])
-				item.find('img').attr 'src', data.images.split(',')[0]
-				item.find('#scode').html data.scode
+				$('#alert .items > div').get().forEach (item) ->
+					if $(item).find('ins').html() == data.name				
+						$(item).find('img').attr 'src', data.images.split(',')[0]
+						$(item).find('#scode').html data.scode
 	$('body').append('<div id="alert">\
 			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
-			<div style="top:'+($(window).height()/2-230)+'px; left:'+($(window).width()/2-235)+'px">\
+			<div style="top:'+($(window).height()/2-300)+'px; left:'+($(window).width()/2-235)+'px">\
 				<div class="header">\
 					Спасибо. Товар добавлен в Вашу корзину.\
 					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
