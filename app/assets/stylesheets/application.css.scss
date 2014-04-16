@@ -278,7 +278,7 @@ nav {
 			border-bottom: 1px solid #C6C6C6;
 		}
 
-		.cart span {
+		.cart > span {
 			display: block;
 			width: 350px;
 			background-color: white;
@@ -293,25 +293,40 @@ nav {
 			overflow: hidden;
 			@include transition(0.3s);
 
-			hr {
-				width: 360px;
-				height: 1px;
-				background-color: #C6C6C6;
-				margin-left: -10px;
-			}
-
 			h2 {
 				color: #198900;
 				line-height: 36px;
-				border-top: 1px solid #C6C6C6;
 				margin: 0 14px 0 4px;
 				font-weight: normal;
 				font-size: 16px;
 				text-align: right;
+				float: right;
 
 				b {
 					color: #198800;
 					font-size: 17px;
+				}
+			}
+
+			span {
+				margin-left: -10px;
+				display: block;
+				height: 36px;
+				border-top: 1px solid #C6C6C6;
+				border-bottom: 1px solid #C6C6C6;
+
+				a {
+					margin: 3px 0 0 8px;
+					cursor: pointer;
+					float: left;
+					text-transform: lowercase;
+					line-height: 30px;
+					padding: 0 10px;
+					@include border-radius(17px);
+					color: #efefef;
+					background-color: #52B84A;
+					background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
+					@include transition(0.3s);
 				}
 			}
 
@@ -333,6 +348,7 @@ nav {
 					> div {
 						display: table;
 						height: 100px;
+						width: 210px;
 						margin-left: 115px;
 						text-align: left;
 						text-decoration: underline;
@@ -342,6 +358,11 @@ nav {
 							vertical-align: middle;					
 							font-size: 13px;
 							line-height: 20px;
+
+							div {
+								float: right;
+								color: #198800;
+							}
 
 							ins {
 								font-size: 14px;
@@ -353,7 +374,7 @@ nav {
 			}
 		}
 
-		.cart:hover span {
+		.cart:hover > span {
 			height: 509px;
 		}
 	}
@@ -495,7 +516,6 @@ nav {
 			float: right;
 			text-transform: lowercase;
 			line-height: 34px;
-			float: right;
 			padding: 0 10px;
 			@include border-radius(17px);
 			color: #efefef;

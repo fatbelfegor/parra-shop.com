@@ -45,13 +45,13 @@ ready = ->
 			if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 			if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 			if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-			items += '<div><a href="/kupit/'+item.n+'"><img><div><div><p><ins>'+item.n+'</ins></p></div></div></a><div><p><b id="price">'+item.p*item.c+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
+			items += '<div><a><img><div><div><p><ins>'+item.n+'</ins></p></div></div></a><div><p><b id="price">'+item.p*item.c+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
 			$.ajax
 				url: "/cart.json?name="+item.n
 				success: (data) ->
 					item = $($('#cart > div')[i++])
 					item.find('img').attr 'src', data.images.split(',')[0]
-					item.firstElementChild.href = '/kupit/'+data.scode
+					item.find('a').href = '/kupit/'+data.scode
 		$('#cart').html(items)		
 		window.cartDelete = (el) ->
 			name = $(el.parentNode.parentNode).find('ins').html()
@@ -71,23 +71,7 @@ ready = ->
 				p += @.value
 			if p then p else ''
 		$('#price').html(price[0]+optionsPrice()+' '+price[1])
-	items = ''
-	allPrice = 0
-	for item in cart
-		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
-		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
-		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<a><img><div><div><ins>'+item.n+'</ins>'+color+size+option+'</div></div></a>'
-		allPrice += item.p*item.c
-		$.ajax
-			url: "/cart.json?name="+item.n
-			success: (data) ->
-				$('#menuCart > div > a').get().forEach (item) ->
-					if $(item).find('ins').html() == data.name				
-						$(item).find('img').attr 'src', data.images.split(',')[0]
-						item.href = '/kupit/'+data.scode
-	$('#menuCart > div').html items
-	$('#menuCart #price').html allPrice
+	cartMenuGen()
 @changeCount = (el) ->
 	if el.parentNode.parentNode.parentNode.id == 'cart'
 		div = el.parentNode.parentNode
@@ -165,8 +149,30 @@ expire = ->
 		</div>')
 	$('#alert').fadeIn(300)	
 	cartSave()
+@cartMenuGen = ->
+	items = ''
+	allPrice = 0
+	for item in cart
+		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
+		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
+		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
+		items += '<a><img><div><div><div>'+item.p*item.c+' руб.</div><ins>'+item.n+' &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
+		allPrice += item.p*item.c
+		$.ajax
+			url: "/cart.json?name="+item.n
+			success: (data) ->
+				$('#menuCart > div > a').get().forEach (item) ->
+					if $(item).find('ins').html() == data.name				
+						$(item).find('img').attr 'src', data.images.split(',')[0]
+						item.find('a').href = '/kupit/'+data.scode
+	if items == ''
+		$('#menuCart > div').hide()
+	else $('#menuCart > div').show()
+	$('#menuCart > div').html items
+	$('#menuCart #price').html allPrice
 @cartSave = ->
 	cartCount()
+	cartMenuGen()
 	cart.forEach (i) ->
 		i.n = encodeURIComponent i.n
 	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
