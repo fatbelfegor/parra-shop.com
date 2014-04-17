@@ -289,7 +289,7 @@ nav {
 			right: 20px;
 			margin-top: 1px;
 			padding-left: 10px;
-			height: 0;
+			max-height: 0;
 			overflow: hidden;
 			@include transition(0.3s);
 
@@ -308,7 +308,7 @@ nav {
 				}
 			}
 
-			span {
+			> span {
 				margin-left: -10px;
 				display: block;
 				height: 36px;
@@ -375,7 +375,7 @@ nav {
 		}
 
 		.cart:hover > span {
-			height: 509px;
+			max-height: 509px;
 		}
 	}
 }

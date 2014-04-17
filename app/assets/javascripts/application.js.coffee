@@ -156,18 +156,18 @@ expire = ->
 		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<a><img><div><div><div>'+item.p*item.c+' руб.</div><ins>'+item.n+' &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
+		items += '<a><img><div><div><div>'+item.p*item.c+' руб.</div><ins><span id="name">'+item.n+'</span> &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
 		allPrice += item.p*item.c
 		$.ajax
 			url: "/cart.json?name="+item.n
 			success: (data) ->
 				$('#menuCart > div > a').get().forEach (item) ->
-					if $(item).find('ins').html() == data.name				
+					if $(item).find('#name').html() == data.name				
 						$(item).find('img').attr 'src', data.images.split(',')[0]
-						item.find('a').href = '/kupit/'+data.scode
+						$(item).find('a').href = '/kupit/'+data.scode
 	if items == ''
-		$('#menuCart > div').hide()
-	else $('#menuCart > div').show()
+		$('#menuCart').hide()
+	else $('#menuCart').show()
 	$('#menuCart > div').html items
 	$('#menuCart #price').html allPrice
 @cartSave = ->
