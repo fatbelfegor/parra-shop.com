@@ -64,13 +64,12 @@ ready = ->
 		$(this).toggleClass("active");
 		$(this).siblings("h3").removeClass("active");
 	if $('.show')[0]
-		price = $('#price').html().split(' ')
+		@priceNum = $('#price').html().split(' ')
 		window.optionsPrice = ->
 			p = 0
-			$('select :selected').each ->
-				p += @.value
+			p += parseInt($('.option :checked').val())
 			if p then p else ''
-		$('#price').html(price[0]+optionsPrice()+' '+price[1])
+		$('#price').html(priceNum[0]+optionsPrice()+' '+priceNum[1])
 	cartMenuGen()
 @changeCount = (el) ->
 	if el.parentNode.parentNode.parentNode.id == 'cart'
@@ -102,9 +101,9 @@ getCookie = (name) ->
 expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
 @addToCart = (name, price) ->	
-	s = $('[name=prsizes] :selected').html()
-	l = $('[name=prcolors] :selected').html()
-	o = $('[name=proptions] :selected').html()
+	s = $('[name=prsizes]:checked').next().val()
+	l = $('[name=prcolors]:checked').next().val()
+	o = $('[name=proptions]:checked').next().val()
 	i = $('#product_id_field').val()
 	s = '' if !s
 	l = '' if !l
@@ -180,6 +179,7 @@ expire = ->
 		i.n = decodeURIComponent i.n
 @addImageUrl = (url) ->
 	inputName = iframe.parentNode.className
+	console.log inputName
 	input = $('#'+inputName)
 	images = input.val().split(',')
 	if images[0] == ''
@@ -189,7 +189,7 @@ expire = ->
 	input.val(images.join(','))	
 	for img in images
 		imagesHtml += '<img src="'+img+'">'
-	if inputName == "product_images"
+	if inputName == "product_images" or inputName == "prcolor_images"
 		$(iframe.parentNode).find('div').html(imagesHtml)
 	else
 		$(iframe.parentNode).html(imagesHtml)
@@ -207,8 +207,9 @@ expire = ->
 	index = $('.images li').index(li)
 	images = $('#product_images').val().split(',')
 	$('#product_images').val(images.join(','))
-@priceChange = (el) ->
-	$('#price').html(priceNum+optionsPrice()+' '+currency)
+@priceChange = ->
+	console.log optionsPrice()
+	$('#price').html(priceNum[0]+optionsPrice()+' '+priceNum[1])
 @order = ->
 	w = $('#orderWindow')
 	d = w.find('>:last-child')
@@ -228,3 +229,8 @@ expire = ->
 	cart.forEach (i) ->
 		count += i.c
 	$('#cartCount').html(count) if count
+@option = (el) ->
+	next = $(el).next()
+	if next.height()
+		next.animate({'height':'0'})
+	else next.animate({'height':next.find('label').get().length*76+'px'})

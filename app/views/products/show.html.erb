@@ -23,18 +23,34 @@
 				<%= select_tag :prsizes, options_for_select(@product.prsizes.map{|c| [c.name, c.price]}), {onchange: 'priceChange(this)', style: 'margin-left:50px;'} %>
 			<% end %>
 			<% if @product.prcolors && @product.prcolors.count > 0 %>
-				<br>
-				<label style="margin-left:50px;">Выбрать цвет:</label></br>
-				<%= select_tag :prcolors, options_for_select(@product.prcolors.map{|c| [c.name, c.price]}), {onchange: 'priceChange(this)', style: 'margin-left:50px;'} %>
+			<div>
+				<a onclick="option(this)">Выбрать цвет:</a>
+				<div class="option" onchange="priceChange()">
+					<label>
+						<input value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
+						<input type="hidden" value="<%= @product.prcolors[0].name %>">
+						<img src="<%= @product.prcolors[0].images %>">
+						<span><%= sanitize(@product.prcolors[0].description) %></span>
+					</label>
+					<% @product.prcolors[1..-1].each do |p| %>
+						<label>
+							<input value="<%= p.price %>" type="radio" name="prcolors" />
+							<input type="hidden" value="<%= p.name %>">
+							<img src="<%= p.images %>">
+							<span><%= sanitize(p.description) %></span>
+						</label>						
+					<% end %>
+				</div>
+			</div>
 			<% end %>
 			<% if @product.proptions && @product.proptions.count > 0 %>
 				<br>
 				<label style="margin-left:50px;">Выбрать опции:</label></br>
 				<%= select_tag :proptions, options_for_select(@product.proptions.map{|c| [c.name, c.price]}), {onchange: 'priceChange(this)', style: 'margin-left:50px;'} %>
 			<% end %>
-			<div>
+			<div class="price">
 				<p>Цена: <b id="price"><%= number_to_currency(@product.price) %></b></p>
-				<div onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
+				<div class="price" onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
 				<%= hidden_field_tag :product_id_field, @product.id %>
 			</div>
 		</div>

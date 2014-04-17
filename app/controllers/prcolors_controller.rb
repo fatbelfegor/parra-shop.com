@@ -13,7 +13,7 @@ class PrcolorsController < ApplicationController
     @prcolor = Prcolor.new(prcolor_params)
 
     @prcolor.save
-    redirect_to '/kupit/'+@prcolor.product.name
+    redirect_to '/kupit/'+@prcolor.product.scode
   end
 
   def edit
@@ -40,7 +40,9 @@ private
     params.require(:prcolor).permit(
     	:product_id,
 			:scode,
-			:name,
+      :images,
+      :name,
+      :description,
 			:price
     )
   end

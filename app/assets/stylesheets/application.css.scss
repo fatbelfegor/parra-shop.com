@@ -641,6 +641,52 @@ nav {
 				}
 			}
 
+			> div {
+				margin-left: 50px;
+				a {
+					position: absolute;
+					cursor: pointer;
+					font-size: 13px;
+					color: black;
+					font-weight: bold;
+					display: block;
+					line-height: 25px;
+					height: 25px;
+					padding-right: 32px;
+					background-image: url(/assets/optionArrow.png);
+					background-repeat: no-repeat;
+					background-position: right center;
+					@include transition(0.3s);
+				}
+				a:hover {
+					color: #52B84A;
+				}
+				> .option {
+					height: 0;
+					overflow: hidden;
+					padding-top: 25px;
+					label {
+						display: block;
+						margin-top: 10px;
+						height: 66px;
+						input, img, span {
+							display: inline-block;
+							vertical-align: middle;
+						}
+						img {
+							margin-left: 10px;
+							height: 100%;
+						}
+						span {
+							width: 202px;
+							margin-left: 22px;
+							color: #575759;
+							vertical-align: top;
+						}
+					}					
+				}
+			}
+
 			> :last-child {
 				margin-left: 50px;
 				position: absolute;
@@ -653,7 +699,7 @@ nav {
 					float: left;
 				}
 
-				div {
+				.price {
 					float: right;
 					margin: -2px 0 0 30px;
 					border: 1px solid #A6A6A6;
