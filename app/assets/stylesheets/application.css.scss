@@ -52,11 +52,10 @@ li {
 .shopPhone {
 	position: absolute;
 	left: 260px;
-	top: 20px;
+	top: 26px;
 	color: #575759;	
 
 	> :first-child, b {
-		font-family: Arial;
 		font-size: 21px;
 	}
 
@@ -66,7 +65,7 @@ li {
 	}
 
 	> :last-child {
-		font-size: 13px;
+		font-size: 12px;
 		margin-top: -3px;
 		margin-left: -2px;
 		letter-spacing: -1px;
@@ -807,7 +806,7 @@ body > .main {
 				div {
 					color: #59595B;
 					margin-left: 50px;
-					font-size: 14px;
+					font-size: 12px;
 					line-height: 25px;
 				}
 
@@ -816,7 +815,6 @@ body > .main {
 				}
 
 				:nth-child(3), :last-child {
-					color: black;
 				}
 			}
 		}
