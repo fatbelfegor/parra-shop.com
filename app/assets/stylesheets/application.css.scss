@@ -667,7 +667,7 @@ nav {
 					label {
 						display: block;
 						margin-top: 10px;
-						height: 66px;
+						height: 26px;
 						input, img, span {
 							display: inline-block;
 							vertical-align: middle;
@@ -682,6 +682,10 @@ nav {
 							color: #575759;
 							vertical-align: top;
 						}
+					}
+
+					.color {
+						height: 66px;
 					}					
 				}
 			}

@@ -64,12 +64,14 @@ ready = ->
 		$(this).toggleClass("active");
 		$(this).siblings("h3").removeClass("active");
 	if $('.show')[0]
-		@priceNum = $('#price').html().split(' ')
-		window.optionsPrice = ->
+		@priceNum = $('#summaryPrice').html().split(' ')
+		window.optionsPrice = (b) ->
+			b = parseInt b
 			p = 0
-			p += parseInt($('.option :checked').val())
-			if p then p else ''
-		$('#price').html(priceNum[0]+optionsPrice()+' '+priceNum[1])
+			$('.option :checked').each ->
+				p += parseInt @.value
+			if p then b+p else b
+		$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
 	cartMenuGen()
 @changeCount = (el) ->
 	if el.parentNode.parentNode.parentNode.id == 'cart'
@@ -101,9 +103,9 @@ getCookie = (name) ->
 expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
 @addToCart = (name, price) ->	
-	s = $('[name=prsizes]:checked').next().val()
+	s = $('[name=prsizes]:checked').next().html()
 	l = $('[name=prcolors]:checked').next().val()
-	o = $('[name=proptions]:checked').next().val()
+	o = $('[name=proptions]:checked').next().html()
 	i = $('#product_id_field').val()
 	s = '' if !s
 	l = '' if !l
@@ -189,7 +191,7 @@ expire = ->
 	input.val(images.join(','))	
 	for img in images
 		imagesHtml += '<img src="'+img+'">'
-	if inputName == "product_images" or inputName == "prcolor_images"
+	if inputName == "product_images"
 		$(iframe.parentNode).find('div').html(imagesHtml)
 	else
 		$(iframe.parentNode).html(imagesHtml)
@@ -208,8 +210,7 @@ expire = ->
 	images = $('#product_images').val().split(',')
 	$('#product_images').val(images.join(','))
 @priceChange = ->
-	console.log optionsPrice()
-	$('#price').html(priceNum[0]+optionsPrice()+' '+priceNum[1])
+	$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
 @order = ->
 	w = $('#orderWindow')
 	d = w.find('>:last-child')
@@ -233,4 +234,9 @@ expire = ->
 	next = $(el).next()
 	if next.height()
 		next.animate({'height':'0'})
-	else next.animate({'height':next.find('label').get().length*76+'px'})
+	else
+		$('.option').each ->
+			if $(this).height() != 0
+				$(this).animate 'height':0
+		label = next.find 'label'
+		next.animate 'height':label.get().length*(label.height()+10)+'px'

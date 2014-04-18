@@ -13,7 +13,7 @@ class PrsizesController < ApplicationController
     @prsize = Prsize.new(prsize_params)
 
     @prsize.save
-    redirect_to '/kupit/'+@prsize.product.name
+    redirect_to '/kupit/'+@prsize.product.scode
   end
 
   def edit
@@ -26,13 +26,13 @@ class PrsizesController < ApplicationController
     @prsize = Prsize.find(params[:id])
 
     @prsize.update_attributes prsize_params
-    redirect_to '/kupit/'+@prsize.product.name
+    redirect_to '/kupit/'+@prsize.product.scode
   end
 
   def destroy
     @prsize = Prsize.find(params[:id])
     @prsize.destroy
-    redirect_to '/kupit/'+@prsize.product.name
+    redirect_to '/kupit/'+@prsize.product.scode
   end
 
 private

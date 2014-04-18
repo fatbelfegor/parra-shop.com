@@ -26,13 +26,13 @@ class PrcolorsController < ApplicationController
     @prcolor = Prcolor.find(params[:id])
 
     @prcolor.update_attributes prcolor_params
-    redirect_to '/kupit/'+@prcolor.product.name
+    redirect_to '/kupit/'+@prcolor.product.scode
   end
 
   def destroy
     @prcolor = Prcolor.find(params[:id])
     @prcolor.destroy
-    redirect_to '/kupit/'+@prcolor.product.name
+    redirect_to '/kupit/'+@prcolor.product.scode
   end
 
 private
