@@ -4,8 +4,6 @@ class CreatePrcolors < ActiveRecord::Migration
       t.integer :product_id
       t.string :scode
       t.string :name
-      t.text :images
-      t.string :description
       t.decimal :price, :precision => 18, :scale => 2, :default => 0, :null => false
 
       t.timestamps
