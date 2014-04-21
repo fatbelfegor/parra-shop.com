@@ -57,7 +57,6 @@ li {
 
 	> :first-child, b {
 		font-size: 21px;
-		text-decoration:underline;
 	}
 
 	b {
@@ -68,8 +67,9 @@ li {
 	> :last-child {
 		font-size: 12px;
 		margin-top: -3px;
-		margin-left: -2px;
+		margin-left: 1px;
 		letter-spacing: -1px;
+		text-decoration:underline;
 	}
 }
 
