@@ -8,11 +8,11 @@
 </div>
 
 <div id="orderWindow">
-	<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>
+	<div onclick="this.parentNode.style.display = 'none'"></div>
 	<div>
 		<div class="header">
 			Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.
-			<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)"></div>
+			<div onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
 		</div>
 		<%= form_for :order, url: '/order' do |f| %>
 		<p>Ваше имя:<%= f.text_field :first_name %></p>
