@@ -11,5 +11,5 @@
 		<% end %>
 	</div>
 	<p><%= link_to productFooter.name, "/kupit/" + productFooter.scode %></p>
-	<p>Цена: <%= number_to_currency(productFooter.price) %></p>
+	<p><%= link_to "Цена: " + number_to_currency(productFooter.price), "/kupit/" + productFooter.scode %></p>
 </div>

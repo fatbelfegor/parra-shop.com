@@ -51,8 +51,8 @@ li {
 
 .shopPhone {
 	position: absolute;
-	left: 270px;
-	top: 20px;
+	right: 50px;
+	top: 10px;
 	color: #575759;	
 
 	> :first-child, b {
@@ -67,8 +67,10 @@ li {
 	> :last-child {
 		font-size: 12px;
 		margin-top: -3px;
-		margin-left: -2px;
+		margin-left: 1px;
 		letter-spacing: -1px;
+		text-decoration:underline;
+		color: #4fb859;
 	}
 }
 
@@ -736,7 +738,7 @@ nav {
 		border-bottom: 1px solid black;
 
 		> p {
-			color: #575759;
+			color: #59595B;
 			font-size: 16px;
 			line-height: 46px;
 			position: absolute;
@@ -762,7 +764,7 @@ nav {
 			p {
 				width: 100%;
 				text-align: center;
-				color: #575759;
+				color: #59595B;
 				font-size: 13px;
 				line-height: 1;
 			}
@@ -815,7 +817,7 @@ body > .main {
 				}
 
 				:nth-child(3) {
-					font-weight: bold;
+					
 				}
 
 				:nth-child(3), :last-child {
