@@ -14,8 +14,11 @@
   </p>
   <p>
     <%= f.label :image , "Изображение" %><br>
-    <img src='<%= @texture.image %>'><br>
-    <%= f.text_field :image %>
+    <p onclick="imageChange(this)">Изменить</p>
+    <div id="addImages" class="textureImage">
+      <img src="<%= @texture.image %>">
+    </div>
+    <%= f.hidden_field :image %>
   </p>
   <br>
   <p>

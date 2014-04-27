@@ -253,7 +253,6 @@ expire = ->
 		<label for="textures__image">Изображение</label><br>
 		<div id="addImages" class="textureImage'+id+'">
 			<input type="button" onclick="addImagesClick(this)" value="Добавить изображение">
-			<div></div>
 		</div>
 		<input id="textureImage'+id+'" name="textures[][image]" type="hidden" value=""><br>
 	</div>')    	
@@ -274,3 +273,10 @@ expire = ->
 	else
 		label.hide(300)
 		el.innerHTML = 'Посмотреть'
+@imageChange = (el) ->
+	if el.innerHTML == 'Изменить'
+		el.innerHTML = 'Вернуть'
+		$(el).next().html('<input type="button" onclick="addImagesClick(this)" value="Добавить изображение">')
+	else
+		el.innerHTML = 'Изменить'
+		$(el).next().html('<img src="'+$(el).next().next().val()+'">')
