@@ -181,7 +181,6 @@ expire = ->
 		i.n = decodeURIComponent i.n
 @addImageUrl = (url) ->
 	inputName = iframe.parentNode.className
-	console.log inputName
 	input = $('#'+inputName)
 	images = input.val().split(',')
 	if images[0] == ''
@@ -232,11 +231,46 @@ expire = ->
 	$('#cartCount').html(count) if count
 @option = (el) ->
 	next = $(el).next()
-	if next.height()
-		next.animate({'height':'0'})
+	if next.css('display') != 'none'
+		next.hide(300)
 	else
 		$('.option').each ->
-			if $(this).height() != 0
-				$(this).animate 'height':0
-		label = next.find 'label'
-		next.animate 'height':label.get().length*(label.height()+10)+'px'
+			if $(this).css('display') != 'none'
+				$(this).hide(300)
+		next.show(300)
+@addTexture = (el) ->
+	div = $(el).next()
+	window.div = div
+	id = div.children().length + 1
+	div.append('
+	<div>
+		<label for="textures__name">Название</label><br>
+		<input id="textures__name" name="textures[][name]" type="text"><br>
+		<label for="textures__scode">Код</label><br>
+		<input id="textures__scode" name="textures[][scode]" type="text"><br>
+		<label for="textures__price">Цена</label><br>
+		<input id="textures__price" name="textures[][price]" type="text"><br>
+		<label for="textures__image">Изображение</label><br>
+		<div id="addImages" class="textureImage'+id+'">
+			<input type="button" onclick="addImagesClick(this)" value="Добавить изображение">
+			<div></div>
+		</div>
+		<input id="textureImage'+id+'" name="textures[][image]" type="hidden" value=""><br>
+	</div>')    	
+@addImagesClick = (el) ->
+	iframe.src = '/images/new'
+	el.parentNode.appendChild iframe
+@showHideTextures = (el) ->
+	el = $(el).parent().next()
+	if el.css('display') == 'none'
+		el.show(300)
+	else
+		el.hide(300)
+@texturesWatch = (el) ->
+	label = $(el).parent().next()
+	if label.css('display') == 'none'
+		label.show(300)
+		el.innerHTML = 'Закрыть'
+	else
+		label.hide(300)
+		el.innerHTML = 'Посмотреть'

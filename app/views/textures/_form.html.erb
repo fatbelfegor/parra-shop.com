@@ -1,0 +1,24 @@
+<%= form_for @texture do |f| %>
+  <br>
+  <p>
+    <%= f.label :name , "Название" %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :scode , "Код" %><br>
+    <%= f.text_field :scode %>
+  </p>
+  <p>
+    <%= f.label :price , "Цена" %><br>
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.label :image , "Изображение" %><br>
+    <img src='<%= @texture.image %>'><br>
+    <%= f.text_field :image %>
+  </p>
+  <br>
+  <p>
+    <%= f.submit 'Сохранить' %>
+  </p>
+<% end %>

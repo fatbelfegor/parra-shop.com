@@ -19,7 +19,7 @@
 			
 			<% if @product.prsizes && @product.prsizes.count > 0 %>
 			<div>
-				<a onclick="option(this)">Выбрать размер:</a>
+				<a onclick="option(this)">Выбрать размер:<img src="/assets/optionArrow.png"></a>
 				<div class="option" onchange="priceChange()">
 					<label>
 						<input value="<%= @product.prsizes[0].price %>" type="radio" name="prsizes" checked="checked" />
@@ -36,14 +36,18 @@
 			<% end %>
 			<% if @product.prcolors && @product.prcolors.count > 0 %>
 			<div>
-				<a onclick="option(this)">Выбрать цвет:</a>
+				<a onclick="option(this)">Выбрать цвет:<img src="/assets/optionArrow.png"></a>
 				<div class="option" onchange="priceChange()">
+					<% if @product.prcolors[0].textures.empty? %>
 					<label class="color">
 						<input value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
 						<input type="hidden" value="<%= @product.prcolors[0].name %>">
 						<img src="<%= @product.prcolors[0].images %>">
 						<span><%= sanitize(@product.prcolors[0].description) %></span>
 					</label>
+					<% else %>
+						<%= render :partial => "prcolors/textures" , :object => @product.prcolors[0] %>
+					<% end %>
 					<% @product.prcolors[1..-1].each do |p| %>
 						<label class="color">
 							<input value="<%= p.price %>" type="radio" name="prcolors" />
@@ -57,7 +61,7 @@
 			<% end %>
 			<% if @product.prsizes && @product.prsizes.count > 0 %>
 			<div>
-				<a onclick="option(this)">Выбрать размер:</a>
+				<a onclick="option(this)">Выбрать размер:<img src="/assets/optionArrow.png"></a>
 				<div class="option" onchange="priceChange()">
 					<label>
 						<input value="0" type="radio" name="proptions" checked="checked" />
@@ -74,7 +78,7 @@
 			<% end %>
 			<div class="price">
 				<p>Цена: <b id="summaryPrice"><%= number_to_currency(@product.price) %></b></p>
-				<div class="price" onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
+				<div class="fancyButton" onclick="addToCart('<%= @product.name %>','<%= @product.price %>')">Купить</div>
 				<%= hidden_field_tag :product_id_field, @product.id %>
 			</div>
 		</div>
@@ -97,15 +101,14 @@
 		<h2>Список цветов (<%= @product.prcolors.count %>)</h2>
 
 		<%= link_to('Создать новый цвет', { :controller => :prcolors, :action => :new , :product_id => @product.id })%>
-		
-		<ul class="table tborder">
-			<li>
-				<div style="text-align: center">Название</div>
-				<div style="text-align: center">Цена</div>
-				<div style="text-align: center">действия</div>
-			</li>
+		<table class="optionsTable">
+			<tr>
+				<th>Название</th>
+				<th>Цена</th>
+				<th>действия</th>
+			</tr>
 			<%= render(:partial => "prcolors/prcolor" , :collection => @product.prcolors) %>
-		</ul>
+		</table>
 		
 		<h2>Список опций (<%= @product.proptions.count %>)</h2>
 

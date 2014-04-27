@@ -11,8 +11,10 @@ class PrcolorsController < ApplicationController
 
 	def create
     @prcolor = Prcolor.new(prcolor_params)
-
     @prcolor.save
+    params[:textures].each do |t|
+      Texture.create(name: t[:name], scode: t[:scode], price: t[:price], image: t[:image], prcolor_id: @prcolor.id)
+    end
     redirect_to '/kupit/'+@prcolor.product.scode
   end
 
@@ -24,8 +26,11 @@ class PrcolorsController < ApplicationController
 
   def update
     @prcolor = Prcolor.find(params[:id])
-
     @prcolor.update_attributes prcolor_params
+    @prcolor.textures.destroy_all
+    params[:textures].each do |t|
+      Texture.create(name: t[:name], scode: t[:scode], price: t[:price], image: t[:image], prcolor_id: @prcolor.id)
+    end
     redirect_to '/kupit/'+@prcolor.product.scode
   end
 

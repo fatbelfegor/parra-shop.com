@@ -33,6 +33,7 @@ ParraShopCom::Application.routes.draw do
   resources :images
   resources :prsizes
   resources :prcolors
+  resources :textures
   resources :proptions
   
   resources :products do
