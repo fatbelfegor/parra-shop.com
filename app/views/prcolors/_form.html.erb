@@ -31,19 +31,7 @@
     <div>
       <% i = 0 %>
       <% @prcolor.textures.each do |t| %>
-      <div>
-        <label for="textures__name">Название</label><br>
-        <input id="textures__name" name="textures[][name]" type="text" value="<%= t.name %>"><br>
-        <label for="textures__scode">Код</label><br>
-        <input id="textures__scode" name="textures[][scode]" type="text" value="<%= t.scode %>"><br>
-        <label for="textures__price">Цена</label><br>
-        <input id="textures__price" name="textures[][price]" type="text" value="<%= t.price %>"><br>
-        <label for="textures__image">Изображение</label><br>
-        <div id="addImages" class="textureImage<%= i += 1 %>">
-          <img src="<%= t.image %>">
-        </div>
-        <input id="textureImage<%= i %>" name="textures[][image]" type="hidden" value="<%= t.image %>"><br>
-      </div>
+      <div></div>
       <% end %>
     </div>
   </div>
