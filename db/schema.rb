@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140423182542) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "categories", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -37,6 +34,12 @@ ActiveRecord::Schema.define(version: 20140423182542) do
   create_table "categories_products", id: false, force: true do |t|
     t.integer "category_id", null: false
     t.integer "product_id",  null: false
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "order_items", force: true do |t|
@@ -77,7 +80,6 @@ ActiveRecord::Schema.define(version: 20140423182542) do
     t.datetime "updated_at"
     t.string   "description"
     t.string   "images"
-    t.string   "image"
   end
 
   create_table "products", force: true do |t|
