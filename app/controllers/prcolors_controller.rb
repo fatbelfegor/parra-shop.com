@@ -12,8 +12,10 @@ class PrcolorsController < ApplicationController
 	def create
     @prcolor = Prcolor.new(prcolor_params)
     @prcolor.save
-    params[:textures].each do |t|
-      Texture.create(name: t[:name], scode: t[:scode], price: t[:price], image: t[:image], prcolor_id: @prcolor.id)
+    if params[:textures]
+      params[:textures].each do |t|
+        Texture.create(name: t[:name], scode: t[:scode], price: t[:price], image: t[:image], prcolor_id: @prcolor.id)
+      end
     end
     redirect_to '/kupit/'+@prcolor.product.scode
   end
