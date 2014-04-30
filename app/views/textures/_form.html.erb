@@ -14,7 +14,7 @@
   </p>
   <p>
     <%= f.label :image , "Изображение" %><br>
-    <p onclick="imageChange(this)">Изменить</p>
+    <% if @texture.image %><p onclick="imageChange(this)" data-url="<%= @texture.image %>">Изменить</p><% end %>
     <div id="addImages" class="textureImage">
       <img src="<%= @texture.image %>">
     </div>

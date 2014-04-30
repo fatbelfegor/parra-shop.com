@@ -8,9 +8,14 @@
     <%= f.text_field :scode %>
   </p>
   <br>
+  <label for="textures__image">Изображение</label><br>
+  <% if (@prcolor.images) then %><p onclick="imageChange(this)" data-url="<%= @prcolor.images %>">Изменить</p><% end %>
   <div id="addImages" class="prcolor_images">
+    <% if (@prcolor.images) then %>
+    <img src="<%= @prcolor.images %>">
+    <% else %>
     <input type="button" value="Добавить изображение">
-    <div></div>
+    <% end %>
   </div>
   <%= f.hidden_field :images %>
   <br>
@@ -39,7 +44,7 @@
         <label for="textures__price">Цена</label><br>
         <input id="textures__price" name="textures[][price]" type="text" value="<%= t.price %>"><br>
         <label for="textures__image">Изображение</label><br>
-        <p onclick="imageChange(this)">Изменить</p>       
+        <% if t.image %><p onclick="imageChange(this)" data-url="<%= t.image %>">Изменить</p><% end %>
         <div id="addImages" class="textureImage<%= i += 1 %>">
           <img src="<%= t.image %>">
         </div>

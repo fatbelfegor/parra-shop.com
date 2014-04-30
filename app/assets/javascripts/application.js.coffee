@@ -182,18 +182,17 @@ expire = ->
 @addImageUrl = (url) ->
 	inputName = iframe.parentNode.className
 	input = $('#'+inputName)
-	images = input.val().split(',')
-	if images[0] == ''
-		images = []
-	images.push url
-	imagesHtml = ''
-	input.val(images.join(','))	
-	for img in images
-		imagesHtml += '<img src="'+img+'">'
 	if inputName == "product_images"
+		images = input.val().split(',')
+		if images[0] == '' then images = [url] else images.push url
+		input.val(images.join(','))
+		imagesHtml = ''
+		for img in images
+			imagesHtml += '<img src="'+img+'">'
 		$(iframe.parentNode).find('div').html(imagesHtml)
 	else
-		$(iframe.parentNode).html(imagesHtml)
+		input.val(url)
+		$(iframe.parentNode).html(imagesHtml = '<img src="'+url+'">')
 	iframe.parentNode.removeChild iframe
 @deleteImage = (el) ->
 	li = el.parentNode
@@ -279,4 +278,4 @@ expire = ->
 		$(el).next().html('<input type="button" onclick="addImagesClick(this)" value="Добавить изображение">')
 	else
 		el.innerHTML = 'Изменить'
-		$(el).next().html('<img src="'+$(el).next().next().val()+'">')
+		$(el).next().html('<img src="'+$(el).data().url+'">').next().val($(el).data().url)
