@@ -29,9 +29,13 @@ class PrcolorsController < ApplicationController
   def update
     @prcolor = Prcolor.find(params[:id])
     @prcolor.update_attributes prcolor_params
-    @prcolor.textures.destroy_all
-    params[:textures].each do |t|
-      Texture.create(name: t[:name], scode: t[:scode], price: t[:price], image: t[:image], prcolor_id: @prcolor.id)
+      if @prcolor.textures
+        @prcolor.textures.destroy_all
+      end
+      if params[:textures]
+        params[:textures].each do |t|
+          Texture.create(name: t[:name], scode: t[:scode], price: t[:price], image: t[:image], prcolor_id: @prcolor.id)
+      end
     end
     redirect_to '/kupit/'+@prcolor.product.scode
   end

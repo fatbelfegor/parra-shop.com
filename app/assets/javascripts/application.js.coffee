@@ -266,11 +266,11 @@ expire = ->
 		el.hide(300)
 @texturesWatch = (el) ->
 	label = $(el).parent().next()
-	if label.css('display') == 'none'
-		label.show(300)
+	if label.css('height') == '0px'
+		label.animate 'height':Math.ceil(label.find('label').length/Math.floor(label.parent().width()/96))*131+'px', 300
 		el.innerHTML = 'Закрыть'
 	else
-		label.hide(300)
+		label.animate 'height':'0px'
 		el.innerHTML = 'Посмотреть'
 @imageChange = (el) ->
 	if el.innerHTML == 'Изменить'

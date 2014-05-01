@@ -622,16 +622,21 @@ nav {
 	}
 
 	.main {
-		height: 450px;
+		font-size: 0;
 
-		> div, > :first-child {
-			height: 100%;
+		> div, > :first-child {			
 			width: 50%;
-			float: left;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		> :first-child {
+			height: 450px;
 		}
 
 		> div {
 			position: relative;
+			padding-bottom: 80px;		
 
 			> :first-child {
 				padding-top: 60px;
@@ -679,7 +684,7 @@ nav {
 					label {
 						display: block;
 						margin-top: 10px;
-						height: 26px;
+						min-height: 26px;
 						input, img, span {
 							display: inline-block;
 							vertical-align: middle;
@@ -690,9 +695,10 @@ nav {
 						}
 						span {
 							width: 202px;
-							margin-left: 22px;
+							margin: -3px 0 0 22px;
 							color: #575759;
 							vertical-align: top;
+							font-size: 16px;
 						}
 					}
 
@@ -705,10 +711,20 @@ nav {
 						.header {
 							height: 58px;
 							.heading {
-								width: 148px;
-								height: 57px;
+								height: 52px;
 								float: left;
 								margin-right: 16px;
+								background-size: contain;
+								padding: 5px 10px 0 12px;
+
+								p {
+									display: block;
+									width: 100%;
+									font-size: 17px;
+									color: white;
+									font-weight: bold;
+									line-height: 22px;
+								}
 							}
 							.fancyButton {
 								margin-top: 40px;
@@ -716,6 +732,7 @@ nav {
 						}
 						.textures {
 							font-size: 10px;
+							overflow: hidden;
 							label {
 								width: 96px;
 								height: 115px;

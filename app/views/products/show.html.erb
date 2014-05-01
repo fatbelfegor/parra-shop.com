@@ -49,12 +49,16 @@
 						<%= render :partial => "prcolors/textures" , :object => @product.prcolors[0] %>
 					<% end %>
 					<% @product.prcolors[1..-1].each do |p| %>
+						<% if p.textures.empty? %>
 						<label class="color">
 							<input value="<%= p.price %>" type="radio" name="prcolors" />
 							<input type="hidden" value="<%= p.name %>">
 							<img src="<%= p.images %>">
 							<span><%= sanitize(p.description) %></span>
-						</label>						
+						</label>
+						<% else %>
+							<%= render :partial => "prcolors/textures" , :object => p %>
+						<% end %>			
 					<% end %>
 				</div>
 			</div>
