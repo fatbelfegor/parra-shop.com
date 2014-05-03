@@ -42,7 +42,7 @@
 					<label class="color">
 						<input value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
 						<input type="hidden" value="<%= @product.prcolors[0].name %>">
-						<img src="<%= @product.prcolors[0].images %>">
+						<a href="<%= @product.prcolors[0].images %>" data-lightbox="<%= @product.prcolors[0].name %>" title="<%= @product.prcolors[0].name %>"><img src="<%= @product.prcolors[0].images %>"></a>
 						<span><%= sanitize(@product.prcolors[0].description) %></span>
 					</label>
 					<% else %>
@@ -53,7 +53,7 @@
 						<label class="color">
 							<input value="<%= p.price %>" type="radio" name="prcolors" />
 							<input type="hidden" value="<%= p.name %>">
-							<img src="<%= p.images %>">
+							<a href="<%= p.images %>" data-lightbox="<%= p.name %>" title="<%= p.name %>"><img src="<%= p.images %>"></a>
 							<span><%= sanitize(p.description) %></span>
 						</label>
 						<% else %>
