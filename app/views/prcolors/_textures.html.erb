@@ -7,7 +7,7 @@
 		<% textures.textures.each do |t| %>
 		<label>
 			<p><%= t.scode %> <%= t.name %></p>
-			<img src="<%= t.image %>">
+			<a href="<%= t.image %>" data-lightbox="<%= t.scode %> <%= t.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
 			<input type="radio" name="prcolors" value="<% t.id %>">
 		</label>
 		<% end %>
