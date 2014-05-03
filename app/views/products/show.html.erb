@@ -13,14 +13,14 @@
 		    	<% end %>
 		    </div>
 		<% end %>
-		<div>
+		<div onchange="priceChange()">
 			<p><%= @product.name %></p>
 			<%= sanitize(@product.description) %>
 			
 			<% if @product.prsizes && @product.prsizes.count > 0 %>
 			<div>
 				<a onclick="option(this)">Выбрать размер:<img src="/assets/optionArrow.png"></a>
-				<div class="option" onchange="priceChange()">
+				<div class="option">
 					<label>
 						<input value="<%= @product.prsizes[0].price %>" type="radio" name="prsizes" checked="checked" />
 						<span><%= @product.prsizes[0].name %></span>
@@ -37,7 +37,7 @@
 			<% if @product.prcolors && @product.prcolors.count > 0 %>
 			<div>
 				<a onclick="option(this)">Выбрать цвет:<img src="/assets/optionArrow.png"></a>
-				<div class="option" onchange="priceChange()">
+				<div class="option">
 					<% if @product.prcolors[0].textures.empty? %>
 					<label class="color">
 						<input value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
@@ -66,7 +66,7 @@
 			<% if @product.proptions && @product.proptions.count > 0 %>
 			<div>
 				<a onclick="option(this)">Выбрать опции:<img src="/assets/optionArrow.png"></a>
-				<div class="option" onchange="priceChange()">
+				<div class="option">
 					<label>
 						<input value="0" type="radio" name="proptions" checked="checked" />
 						<span>Без опций</span>
