@@ -16,6 +16,8 @@
 #= require_tree .
 #= require tinymce
 
+Number.prototype.toCurrency = ->
+	(""+this.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 
 iframe = document.createElement 'iframe'
 menuImages = []
@@ -45,7 +47,7 @@ ready = ->
 			if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 			if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 			if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-			items += '<div><a><img><div><div><p><ins>'+item.n+'</ins></p></div></div></a><div><p><b id="price">'+item.p*item.c+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
+			items += '<div><a><img><div><div><p><ins>'+item.n+'</ins></p></div></div></a><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
 			$.ajax
 				url: "/cart.json?name="+item.n
 				success: (data) ->
@@ -64,13 +66,12 @@ ready = ->
 		$(this).toggleClass("active");
 		$(this).siblings("h3").removeClass("active");
 	if $('.show')[0]
-		@priceNum = $('#summaryPrice').html().split(' ')
+		@priceNum = $('#summaryPrice').html().replace(' ', '').split(' ')
 		window.optionsPrice = (b) ->
 			b = parseInt b
-			p = 0
 			$('.option :checked').each ->
-				p += parseInt @.value
-			if p then b+p else b
+				b += parseInt @.value
+			b.toCurrency()
 		$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
 	cartMenuGen()
 @changeCount = (el) ->
@@ -89,7 +90,7 @@ ready = ->
 		item.c--		
 		if item.c == 1
 			$(div).find('.left').attr('class', 'left invis').attr('onclick', '')
-	$(div).find('#price').first().html item.p * item.c
+	$(div).find('#price').first().html (parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()
 	$(div).find('#count').html(item.c)
 	cartSave()
 $(document).ready ->
@@ -102,9 +103,14 @@ getCookie = (name) ->
 	(if matches then decodeURIComponent(matches[1]) else `undefined`)
 expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
-@addToCart = (name, price) ->	
+@addToCart = (name, el) ->
+	price = parseInt($(el).prev().find('b').html().replace(' руб.', '').replace(/\ /g,'')).toCurrency()
 	s = $('[name=prsizes]:checked').next().html()
-	l = $('[name=prcolors]:checked').next().val()
+	prcolor = $('[name=prcolors]:checked')
+	if prcolor.next().length	
+		l = $('[name=prcolors]:checked').next().val()
+	else
+		l = prcolor.prev().prev().html()
 	o = $('[name=proptions]:checked').next().html()
 	i = $('#product_id_field').val()
 	s = '' if !s
@@ -122,12 +128,12 @@ expire = ->
 	items = '<div class="items">'
 	cart.forEach (item) ->
 		count += item.c
-		price += parseFloat(item.p)*item.c
+		price += parseFloat(item.p.replace(/\ /g, ''))*item.c
 		if item.c > 1 then minus = '<span class="left" onclick="changeCount(this)">++</span>' else minus = '<span class="left invis">++</span>'
 		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<div><a href="/kupit/'+item.n+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+item.p*item.c+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
+		items += '<div><a href="/kupit/'+item.n+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
 		$.ajax
 			url: "/cart.json?name="+item.n
 			success: (data) ->
@@ -143,7 +149,7 @@ expire = ->
 					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
 				</div>\
 			</div>\
-			'+items+'</div><p class="itogo">Итого: <b>'+price+'</b> руб.</p>\
+			'+items+'</div><p class="itogo">Итого: <b>'+price.toCurrency()+'</b> руб.</p>\
 			<a class="continue" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)">Продолжить покупки</a>\
 			<a href="/cart" class="gotoCart">Перейти в корзину</a>\
 			</div>\
@@ -157,8 +163,8 @@ expire = ->
 		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<a><img><div><div><div>'+item.p*item.c+' руб.</div><ins><span id="name">'+item.n+'</span> &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
-		allPrice += item.p*item.c
+		items += '<a><img><div><div><div>'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+' руб.</div><ins><span id="name">'+item.n+'</span> &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
+		allPrice += parseFloat(item.p.replace(/\ /g, ''))*item.c
 		$.ajax
 			url: "/cart.json?name="+item.n
 			success: (data) ->
