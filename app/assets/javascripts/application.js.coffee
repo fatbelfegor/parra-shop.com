@@ -66,7 +66,6 @@ ready = ->
 		$(this).toggleClass("active");
 		$(this).siblings("h3").removeClass("active");
 	if $('.show')[0]
-		@priceNum = $('#summaryPrice').html().replace(' ', '').split(' ')
 		window.optionsPrice = (b) ->
 			b = parseInt b
 			$('.option :checked').each ->
