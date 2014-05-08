@@ -1,3 +1,4 @@
+<% if @product.scode != productFooter.scode %>
 <div>
 	<div>
 		<% if productFooter.images %>
@@ -13,3 +14,4 @@
 	<p><%= link_to productFooter.name, "/kupit/" + productFooter.scode %></p>
 	<p><%= link_to "Цена: " + number_to_currency(productFooter.price), "/kupit/" + productFooter.scode %></p>
 </div>
+<% end %>
