@@ -12,5 +12,22 @@
     <div><h3><%= link_to productCatalog.name, "/kupit/" + productCatalog.scode %></h3></div>
     <div><%= productCatalog.s_title %></div>
     <div><%= sanitize(productCatalog.shortdesk) %></div>
-    <div><b>Цена:</b> <%= number_to_currency(productCatalog.price) %></div>
+    <div><b>Цена:</b> <span class="price"><%= number_to_currency(productCatalog.price) %></span></div>
+    <div class="appear">
+        <% if productCatalog.prsizes[0] %>
+            <div><b>Размер:</b> <span class="size"><%= productCatalog.prsizes[0].name %></span></div>
+        <% end %>
+        <% if productCatalog.prcolors[0] %>
+            <% if productCatalog.prcolors[0].textures[0] %>
+                <div><b>Цвет:</b> <span class="color"><%= productCatalog.prcolors[0].textures[0].name %></span></div>
+            <% else %>
+                <div><b>Цвет:</b> <span class="color"><%= productCatalog.prcolors[0].name %></span></div>
+            <% end %>
+        <% end %>
+        <% if productCatalog.proptions[0] %>
+            <div><b>Опция:</b> <span class="option"><%= productCatalog.proptions[0].name %></span></div>
+        <% end %>
+        <div class="id hidden"><%= productCatalog.id %></div>
+        <div class="fancyButton" onclick="addToCartFromCatalog('<%= productCatalog.name %>', this)">Купить</div>
+    </div>
 </div>

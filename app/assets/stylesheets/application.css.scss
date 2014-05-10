@@ -924,6 +924,46 @@ body > .main {
 	}
 }
 
+#products {
+	tr {
+		margin-top: 10px;
+	}
+	td {
+		vertical-align: top;
+		> div {
+			margin-top: 10px;
+			border: 1px solid transparent;
+			@include transition(0.3s);
+			.appear {
+				margin: 0;
+				div {
+					height: 0;
+					overflow: hidden;
+					@include transition(0.3s);
+				}
+				.fancyButton {
+					margin: 0 0 0 50px;
+					float: none;
+					display: inline-block;
+					border: 0 solid #A6A6A6;
+				}
+			}
+		}
+		> div:hover {
+			border: 1px solid #ccc;
+			@include box-shadow(0 0 10px 0 #aaa);
+			.appear div {
+				height: 25px;
+			}
+			.fancyButton {
+				margin-top: 5px;
+				margin-bottom: 5px;
+				border-width: 1px;
+			}
+		}
+	}
+}
+
 h2.cart {
 	line-height: 50px;
 	color: #333;
