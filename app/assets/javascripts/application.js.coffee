@@ -334,3 +334,19 @@ expire = ->
 	else
 		el.innerHTML = 'Изменить'
 		$(el).next().html('<img src="'+$(el).data().url+'">').next().val($(el).data().url)
+@photoLeft = (el) ->
+	unless $(el).next().next().find('.showPhoto').attr('class','').prev().attr('class','showPhoto').prev()[0]
+		$(el).attr 'class', 'left inactive'
+		$(el).attr 'onclick', ''
+	right = $(el).next()
+	if right.attr('class') is 'right inactive'
+		right.attr 'class', 'right'
+		right.attr 'onclick', 'photoRight(this)'
+@photoRight = (el) ->
+	unless $(el).next().find('.showPhoto').attr('class','').next().attr('class','showPhoto').next()[0]
+		$(el).attr 'class', 'right inactive'
+		$(el).attr 'onclick', ''
+	left = $(el).prev()
+	if left.attr('class') is 'left inactive'
+		left.attr 'class', 'left'
+		left.attr 'onclick', 'photoLeft(this)'

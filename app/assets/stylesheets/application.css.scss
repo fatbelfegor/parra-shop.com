@@ -931,6 +931,7 @@ body > .main {
 	td {
 		vertical-align: top;
 		> div {
+			position: relative;
 			margin-top: 10px;
 			border: 1px solid transparent;
 			@include transition(0.3s);
@@ -948,6 +949,43 @@ body > .main {
 					border: 0 solid #A6A6A6;
 				}
 			}
+			.left, .right {
+				top: 146px;
+				margin: 0;
+				position: absolute;
+				display: none;
+				cursor: pointer;
+			}
+			.left {
+				width: 28px;
+				height: 28px;
+				background-image: url(/assets/left.png);
+			}
+			.right {
+				right: 0;
+				width: 28px;
+				height: 28px;
+				background-image: url(/assets/right.png);
+			}
+			.left.inactive {
+				background-image: url(/assets/leftInactive.png);
+			}
+			.right.inactive {
+				background-image: url(/assets/rightInactive.png);
+			}
+			.photoes {
+				margin: 0;
+				a {
+					margin: 10px;
+					width: 280px;
+					height: 280px;
+					background-size: 100% 100%;
+					display: none;
+				}
+				.showPhoto {
+					display: block;
+				}
+			}
 		}
 		> div:hover {
 			border: 1px solid #ccc;
@@ -959,6 +997,9 @@ body > .main {
 				margin-top: 5px;
 				margin-bottom: 5px;
 				border-width: 1px;
+			}
+			.left, .right {
+				display: block;
 			}
 		}
 	}

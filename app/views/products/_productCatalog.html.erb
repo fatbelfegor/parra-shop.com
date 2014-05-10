@@ -1,15 +1,21 @@
-<div>
+<div>    
     <% if productCatalog.images %>
 		<% img = 0 %>
     	<% images = productCatalog.images.split(',') %>
-        <a href="<%= images[0] %>" data-lightbox="<%= productCatalog.name %>" title="<%= productCatalog.name %>"><img src="<%= images[0] %>"></a>
-        <div class="hidden">
+        <div class="left inactive"></div>
+        <% if images[1] %>
+        <div class="right" onclick="photoRight(this)"></div>
+        <% else %>
+        <div class="right inactive"></div>
+        <% end %>       
+        <div class="photoes">
+            <a class="showPhoto" href="/kupit/<%= productCatalog.scode %>" style="background-image: url('<%= images[0] %>')"></a>
         	<%  images.drop(1).each do |i| %>
-        		<a href="<%= i %>" data-lightbox="<%= productCatalog.name %>" title="<%= productCatalog.name %>"><img src="<%= i %>"></a>
+        		<a href="/kupit/<%= productCatalog.scode %>" style="background-image: url('<%= i %>')"></a>
         	<% end %>
         </div>
     <% end %>
-    <div><h3><%= link_to productCatalog.name, "/kupit/" + productCatalog.scode %></h3></div>
+    <div><h3><a href="/kupit/<%= productCatalog.scode %>"><%= productCatalog.name %></a></h3></div>
     <div><%= productCatalog.s_title %></div>
     <div><%= sanitize(productCatalog.shortdesk) %></div>
     <div><b>Цена:</b> <span class="price"><%= number_to_currency(productCatalog.price) %></span></div>
