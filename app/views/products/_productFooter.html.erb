@@ -3,15 +3,38 @@
 	<div>
 		<% if productFooter.images %>
 			<% images = productFooter.images.split(',') %>
-		    <a href="<%= images[0] %>" data-lightbox="<%= productFooter.name %>" title="<%= productFooter.name %>"><img src="<%= images[0] %>"></a>
-		    <div class="hidden">
-		    	<%  images.drop(1).each do |i| %>
-		    		<a href="<%= i %>" data-lightbox="<%= productFooter.name %>" title="<%= productFooter.name %>"><img src="<%= i %>"></a>
-		    	<% end %>
-		    </div>
+		    <div class="left inactive"></div>
+	        <% if images[1] %>
+	        <div class="right" onclick="photoRight(this)"></div>
+	        <% else %>
+	        <div class="right inactive"></div>
+	        <% end %>       
+	        <div class="photoes">
+	            <a class="showPhoto" href="/kupit/<%= productFooter.scode %>" style="background-image: url('<%= images[0] %>')"></a>
+	        	<%  images.drop(1).each do |i| %>
+	        		<a href="/kupit/<%= productFooter.scode %>" style="background-image: url('<%= i %>')"></a>
+	        	<% end %>
+	        </div>
 		<% end %>
 	</div>
-	<p><%= link_to productFooter.name, "/kupit/" + productFooter.scode %></p>
-	<p><%= link_to "Цена: " + number_to_currency(productFooter.price), "/kupit/" + productFooter.scode %></p>
+	<div><a href="/kupit/<%= productFooter.scode %>"><%= productFooter.name %></a></div>
+	<div><b>Цена:</b> <span class="price"><%= number_to_currency(productFooter.price) %></span></div>
+	<div class="appear">
+        <% if productFooter.prsizes[0] %>
+            <div><b>Размер:</b> <span class="size"><%= productFooter.prsizes[0].name %></span></div>
+        <% end %>
+        <% if productFooter.prcolors[0] %>
+            <% if productFooter.prcolors[0].textures[0] %>
+                <div><b>Цвет:</b> <span class="color"><%= productFooter.prcolors[0].textures[0].name %></span></div>
+            <% else %>
+                <div><b>Цвет:</b> <span class="color"><%= productFooter.prcolors[0].name %></span></div>
+            <% end %>
+        <% end %>
+        <% if productFooter.proptions[0] %>
+            <div><b>Опция:</b> <span class="option"><%= productFooter.proptions[0].name %></span></div>
+        <% end %>
+        <div class="id hidden"><%= productFooter.id %></div>
+        <div class="fancyButton" onclick="addToCartFromCatalog('<%= productFooter.name %>', this)">Купить</div>
+    </div>
 </div>
 <% end %>
