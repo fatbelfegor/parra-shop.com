@@ -62,25 +62,27 @@
 		  <div style="background: url(/assets/Lucca.png)"></div>
 		  <div style="background: url(/assets/Ritmo.png)"></div>
 		  <div style="background: url(/assets/Nuvola.png)"></div>
-		  </div>
+		  <div style="background: url(/assets/SoftAgioArteCircle.png)"></div>
+		</div>
 		<ul>
 		  <li><%= link_to('Trevi', { :controller => '/catalog', :action => :index, :category_scode => :Trevi} )%></li>
 		  <li><%= link_to('Opera', { :controller => '/catalog', :action => :index, :category_scode => :Opera} )%></li>
 		  <li><%= link_to('Lucca', { :controller => '/catalog', :action => :index, :category_scode => :Lucca} )%></li>
 		  <li><%= link_to('Ritmo', { :controller => '/catalog', :action => :index, :category_scode => :Ritmo} )%></li>
 		  <li><%= link_to('Nuvola', { :controller => '/catalog', :action => :index, :category_scode => :Nuvola} )%></li>
+		<li><%= link_to('Кресла', { :controller => '/catalog', :action => :index, :category_scode => :Кресла} )%></li>
 		</ul>
 	</li>
     <li><a href="">Матрасы</a>
 		<div>
-		  <div style="background: url(/assets/SonberryActive.png); left: 0"></div>
-		  <div style="background: url(/assets/SonberryAero.png)"></div>
-		  <div style="background: url(/assets/SonberryOrganic.png)"></div>
+			<div style="background: url(/assets/SonberryOrganic.png)"></div>
+		  	<div style="background: url(/assets/SonberryAero.png)"></div>
+			<div style="background: url(/assets/SonberryActive.png); left: 0"></div>		  
 		</div>
 		<ul>
-		  <li><%= link_to('Active', { :controller => '/catalog', :action => :index, :category_scode => :SonberryActive} )%></li>
-		  <li><%= link_to('Aero', { :controller => '/catalog', :action => :index, :category_scode => :SonberryAero} )%></li>
-		  <li><%= link_to('Organic', { :controller => '/catalog', :action => :index, :category_scode => :SonberryOrganic} )%></li>
+			<li><%= link_to('Organic', { :controller => '/catalog', :action => :index, :category_scode => :SonberryOrganic} )%></li>
+			<li><%= link_to('Aero', { :controller => '/catalog', :action => :index, :category_scode => :SonberryAero} )%></li>
+		    <li><%= link_to('Active', { :controller => '/catalog', :action => :index, :category_scode => :SonberryActive} )%></li>
 		 </ul>
 	</li>
     <li class="allProducts">
