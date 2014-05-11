@@ -4,16 +4,24 @@
 <div class="show page">
 	<h2><%= @product.category.name %></h2>
 	<div class="main">
-		<% if @product.images %>
-			<% images = @product.images.split(',') %>
-		    <a href="<%= images[0] %>" data-lightbox="<%= @product.name %>" title="<%= @product.name %>"><img src="<%= images[0] %>"></a>
-		    <div class="hidden">
-		    	<%  images.drop(1).each do |i| %>
-		    		<a href="<%= i %>" data-lightbox="<%= @product.name %>" title="<%= @product.name %>"><img src="<%= i %>"></a>
-		    	<% end %>
-		    </div>
-		<% end %>
-		<div onchange="priceChange()">
+		<div>			
+			<% if @product.images %>
+				<% images = @product.images.split(',') %>
+				<div class="mini">
+					<img onclick="choosePhoto(this)" class="active" src="<%= images[0] %>">
+					<%  images.drop(1).each do |i| %>
+			    		<img onclick="choosePhoto(this)" src="<%= i %>">
+			    	<% end %>
+				</div>
+				<div class="photoes">
+					<img class="showPhoto" src="<%= images[0] %>">
+					<%  images.drop(1).each do |i| %>
+			    		<img src="<%= i %>">
+			    	<% end %>
+				</div>
+			<% end %>
+		</div>
+		<div class="productContent" onchange="priceChange()">
 			<p><%= @product.name %></p>
 			<%= sanitize(@product.description) %>
 			
