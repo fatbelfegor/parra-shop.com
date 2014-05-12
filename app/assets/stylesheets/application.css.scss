@@ -1062,12 +1062,14 @@ body > .main {
 			border: 1px solid #ccc;
 			@include box-shadow(0 0 10px 0 #aaa);
 			.appear {
+				text-align: center;
 				div {
-					height: 19px;
+					height: 25px;
+					text-align: left;
 				}
 				.fancyButton {
 					border-width: 1px;
-					height: 19px;
+					height: 25px;
 				}
 			}
 			.left, .right {
@@ -1119,7 +1121,6 @@ h2.cart {
 
 					ins {
 						font-size: 13px;
-						color: black;
 					}
 
 					s {
@@ -1132,10 +1133,6 @@ h2.cart {
 		> div {
 			float: left;
 			line-height: 100px;
-		}
-
-		b {
-			color: black;
 		}
 
 		> :nth-child(2) {
