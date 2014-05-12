@@ -47,13 +47,12 @@ ready = ->
 			if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 			if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 			if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-			items += '<div><a><img><div><div><p><ins>'+item.n+'</ins></p></div></div></a><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
+			items += '<div><span><img><div><div><p><ins><a href="/kupit/'+item.d+'">'+item.n+'</a></ins></p>'+size+color+option+'</div></div></span><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
 			$.ajax
 				url: "/cart.json?name="+item.n
 				success: (data) ->
 					item = $($('#cart > div')[i++])
 					item.find('img').attr 'src', data.images.split(',')[0]
-					item.find('a').href = '/kupit/'+data.scode
 		$('#cart').html(items)		
 		window.cartDelete = (el) ->
 			name = $(el.parentNode.parentNode).find('ins').html()
@@ -109,15 +108,16 @@ expire = ->
 	l = appear.find('.color').html()
 	o = appear.find('.option').html()
 	i = appear.find('.id').html()
+	d = appear.find('.scode').html()
 	s = '' if !s
 	l = '' if !l
 	o = '' if !o
 	prev = (cart.filter (item) ->
-		item.s == s and item.l == l and item.o == o and item.i == i)[0]
+		item.s == s and item.l == l and item.o == o and item.i == i and item.d == d)[0]
 	if prev
 		prev.c++
 	else
-		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i
+		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i, d: d
 	count = 0
 	price = 0
 	i = 0
@@ -129,14 +129,13 @@ expire = ->
 		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<div><a href="/kupit/'+item.n+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
+		items += '<div><a href="/kupit/'+item.d+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
 		$.ajax
 			url: "/cart.json?name="+item.n
 			success: (data) ->
 				$('#alert .items > div').get().forEach (item) ->
 					if $(item).find('ins').html() == data.name				
 						$(item).find('img').attr 'src', data.images.split(',')[0]
-						item.firstElementChild.href = '/kupit/'+data.scode
 	$('body').append('<div id="alert">\
 			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
 			<div style="top:'+($(window).height()/2-300)+'px; left:'+($(window).width()/2-235)+'px">\
@@ -162,15 +161,16 @@ expire = ->
 		l = prcolor.prev().prev().html()
 	o = $('[name=proptions]:checked').next().html()
 	i = $('#product_id_field').val()
+	d = $('#product_scode').val()
 	s = '' if !s
 	l = '' if !l
 	o = '' if !o
 	prev = (cart.filter (item) ->
-		item.s == s and item.l == l and item.o == o and item.i == i)[0]
+		item.s == s and item.l == l and item.o == o and item.i == i and item.d == d)[0]
 	if prev
 		prev.c++
 	else
-		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i
+		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i, d: d
 	count = 0
 	price = 0
 	i = 0
@@ -182,14 +182,13 @@ expire = ->
 		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<div><a href="/kupit/'+item.n+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
+		items += '<div><a href="/kupit/'+item.d+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
 		$.ajax
 			url: "/cart.json?name="+item.n
 			success: (data) ->
 				$('#alert .items > div').get().forEach (item) ->
 					if $(item).find('ins').html() == data.name				
 						$(item).find('img').attr 'src', data.images.split(',')[0]
-						item.firstElementChild.href = '/kupit/'+data.scode
 	$('body').append('<div id="alert">\
 			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
 			<div style="top:'+($(window).height()/2-300)+'px; left:'+($(window).width()/2-235)+'px">\
@@ -212,7 +211,7 @@ expire = ->
 		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<a><img><div><div><div>'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+' руб.</div><ins><span id="name">'+item.n+'</span> &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
+		items += '<a href="/kupit/'+item.d+'"><img><div><div><div>'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+' руб.</div><ins><span id="name">'+item.n+'</span> &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
 		allPrice += parseFloat(item.p.replace(/\ /g, ''))*item.c
 		$.ajax
 			url: "/cart.json?name="+item.n
@@ -220,7 +219,6 @@ expire = ->
 				$('#menuCart > div > a').get().forEach (item) ->
 					if $(item).find('#name').html() == data.name				
 						$(item).find('img').attr 'src', data.images.split(',')[0]
-						$(item).find('a').href = '/kupit/'+data.scode
 	if items == ''
 		$('#menuCart').hide()
 	else $('#menuCart').show()

@@ -2,7 +2,7 @@
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 
 <div class="show page">
-	<h2><%= @product.category.name %></h2>
+	<h2><img src='<%= @product.category.header %>'> / <%= @product.category.name %></h2>
 	<div class="main">
 		<div>			
 			<% if @product.images %>
@@ -92,6 +92,7 @@
 				<p>Цена: <b id="summaryPrice"><%= number_to_currency(@product.price) %></b></p>
 				<div class="fancyButton" onclick="addToCart('<%= @product.name %>', this)">Купить</div>
 				<%= hidden_field_tag :product_id_field, @product.id %>
+				<%= hidden_field_tag :product_scode, @product.scode %>
 			</div>
 		</div>
 	</div>
