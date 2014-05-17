@@ -11,8 +11,8 @@ gem 'tinymce-rails'
 gem 'acts_as_tree'
 gem 'acts_as_list'
 
-#gem 'pg'
-gem 'mysql2'
+gem 'pg'
+#gem 'mysql2'
 
 gem 'russian'
 
