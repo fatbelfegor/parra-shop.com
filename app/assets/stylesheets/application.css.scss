@@ -731,7 +731,7 @@ nav {
 							margin: -3px 0 0 22px;
 							color: #575759;
 							vertical-align: top;
-							font-size: 16px;
+							font-size: 15px;
 						}
 					}
 
@@ -748,13 +748,13 @@ nav {
 								float: left;
 								margin-right: 16px;
 								background-size: 100% 100%;
-								padding: 5px 10px 0 12px;
+								padding: 5px 8px 0 8px;
 								width: 126px;
 
 								p {
 									display: block;
 									width: 100%;
-									font-size: 17px;
+									font-size: 15px;
 									color: white;
 									font-weight: bold;
 									line-height: 22px;
@@ -1085,16 +1085,16 @@ body > .main {
 	}
 }
 
-h2.cart {
+h2.cart, a.cart {
 	line-height: 50px;
-	color: #333;
+	color: #5D5D5C;
 	margin: 10px 0 0 0;
 }
 
 #cart {
 	width: 100%;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	border-top: 1px solid #5D5D5C;
+	border-bottom: 1px solid #5D5D5C;
 	color: #5D5D5C;
 
 	> div {
@@ -1110,7 +1110,7 @@ h2.cart {
 			img {
 				width: 100px;
 				height: 100%;
-				border: 1px solid black;
+				border: 1px solid #5D5D5C;
 				float: left;
 				margin-right: 15px;
 			}
