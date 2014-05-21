@@ -234,13 +234,7 @@ expire = ->
 @cartSave = ->
 	cartCount()
 	cartMenuGen()
-	for i in cart
-		i.n = encodeURIComponent i.n
-		i.o = encodeURIComponent i.o
-	document.cookie = 'cart='+JSON.stringify(cart)+';path=/;expires='+expire().toGMTString()
-	for i in cart
-		i.n = decodeURIComponent i.n
-		i.o = decodeURIComponent i.o
+	document.cookie = 'cart='+encodeURIComponent(JSON.stringify(cart))+';path=/;expires='+expire().toGMTString()
 @addImageUrl = (url) ->
 	inputName = iframe.parentNode.className
 	input = $('#'+inputName)
