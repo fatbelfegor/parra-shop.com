@@ -532,13 +532,21 @@ nav {
 
 		.gotoCart, input[type=submit] {
 			float: right;
+			text-transform: lowercase;
 			line-height: 34px;
+			padding: 0 10px;
+			@include border-radius(17px);
 			color: black;
+			background-color: #52B84A;
+			background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
+			@include transition(0.3s);
 			text-decoration: none;
 		}
 
 		.gotoCart:hover, input[type=submit]:hover {
+			color: black;
 			text-decoration: underline;
+			background: -webkit-linear-gradient(top, #92e88A 0%, #4aac45 50%, #42a83A 50%, #329628 100%);
 		}
 
 
