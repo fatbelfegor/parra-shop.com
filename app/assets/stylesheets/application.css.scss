@@ -106,6 +106,7 @@ nav {
 				display: block;
 				text-transform: uppercase;
 				white-space: nowrap;
+				position: relative;
 				@include transition(0.3s);
 
 				b {
