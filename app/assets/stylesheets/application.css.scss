@@ -43,7 +43,7 @@ li {
 }
 
 .logo {
-	width: 251px;
+	width: 200px;
 	height: 84px;
 	margin: 0 0 5px 19px;
 	position: absolute;
@@ -91,7 +91,7 @@ nav {
 	float: right;
 	margin: 52px 40px 0 0;
 
-	> ul {		
+	> ul {
 
 		li {
 			list-style-type: none;
@@ -180,7 +180,7 @@ nav {
 				position: absolute;
 				left: 0;
 				width: 100%;
-				background-color: white;				
+				background-color: #E6E6E6;				
 				z-index: 3;
 				height: 0;
 				overflow: hidden;
@@ -200,12 +200,12 @@ nav {
 						padding-left: 30px;
 						a {
 							display: block;
-							height: 140px;
+							height: 170px;
 							float: left;
 							width: 165px;
 							margin: 0 0 55px 0;
 							font-size: 15px;
-							line-height: 32px;
+							line-height: 26px;
 							padding: 0 30px;
 							font-weight: normal;
 							position: relative;
@@ -224,10 +224,10 @@ nav {
 							content: "";
 							height: 100%;
 							width: 5px;
-							background-color: #45474C;
+							background-color: #E01902;
 							@include border-radius(2px);
 						}
-						/*:nth-child(3):before {
+						:nth-child(3):before {
 							background-color: #737E76;
 						}
 						:nth-child(4):before {
@@ -241,14 +241,14 @@ nav {
 						}
 						:nth-child(7):before {
 							background-color: #FEDD02;
-						}*/
+						}
 					}
 				}				
 			}
 		}
 
 		.wherebuy:hover span {
-			height: 625px;
+			height: 475px;
 			border-top: 1px solid #C6C6C6;
 			border-bottom: 1px solid #C6C6C6;
 		}
