@@ -180,7 +180,7 @@ nav {
 				position: absolute;
 				left: 0;
 				width: 100%;
-				background-color: #E6E6E6;				
+				background-color: white;				
 				z-index: 3;
 				height: 0;
 				overflow: hidden;
@@ -200,17 +200,21 @@ nav {
 						padding-left: 30px;
 						a {
 							display: block;
-							height: 120px;
+							height: 140px;
 							float: left;
 							width: 165px;
 							margin: 0 0 55px 0;
-							font-size: 16px;
+							font-size: 15px;
 							line-height: 32px;
 							padding: 0 30px;
 							font-weight: normal;
 							position: relative;
-							color: #535456;
+							color: #535356;
 							text-align: left;
+							@include transition(0.3s);
+						}
+						a:hover {
+							color: black;
 						}
 						a:before {
 							position: absolute;
@@ -220,10 +224,10 @@ nav {
 							content: "";
 							height: 100%;
 							width: 5px;
-							background-color: #E01902;
+							background-color: #45474C;
 							@include border-radius(2px);
 						}
-						:nth-child(3):before {
+						/*:nth-child(3):before {
 							background-color: #737E76;
 						}
 						:nth-child(4):before {
@@ -237,14 +241,14 @@ nav {
 						}
 						:nth-child(7):before {
 							background-color: #FEDD02;
-						}
+						}*/
 					}
 				}				
 			}
 		}
 
 		.wherebuy:hover span {
-			height: 375px;
+			height: 625px;
 			border-top: 1px solid #C6C6C6;
 			border-bottom: 1px solid #C6C6C6;
 		}
@@ -267,20 +271,14 @@ nav {
 				vertical-align: top;
 				font-size: 15px;
 				font-weight: normal;
+				border-left: 4px solid #58575C;
+				padding-left: 10px;
+				width: 85px;
 				@include transition(0.3s);
 			}
 
 			a:hover {
 				color: #52B84A;
-			}
-
-			a:before {
-				content: '';
-				display: inline-block;
-				width: 4px;
-				height: 17px;
-				background-color: #58575C;
-				margin-right: 10px;
 			}
 		}
 
@@ -1381,6 +1379,29 @@ h2.cart, a.cart {
 		.panel:nth-child(2) {
 			display: block;
 		}
+	}
+}
+
+.delivery {
+	h3 {
+		font-size: 16px;
+		text-align: left;
+		height: 74px;
+		background-color: #E6E6E6;
+		border: 1px solid #929292;
+		line-height: 76px;
+		padding: 0 0 0 25px;
+		margin-bottom: 20px;
+		img {
+			float: right;
+			margin: 13px 30px 0 0;
+		}
+	} p {
+		font-size: 15px;
+	} .table > :first-child div {
+		font-size: 15px;
+	} .table > :nth-child(3) div {
+		background-color: #4FB859;
 	}
 }
 

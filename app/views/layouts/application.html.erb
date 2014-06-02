@@ -90,15 +90,18 @@
     <li class="allProducts">
       <a>Все товары</a>
       <div>
-	    <%= link_to('Кровати', { :controller => '/catalog', :action => :index, :category_scode => :Кровати} )%>
-	    <%= link_to('Шкафы', { :controller => '/catalog', :action => :index, :category_scode => :Шкафы} )%>
-        <%= link_to('Комоды', { :controller => '/catalog', :action => :index, :category_scode => :Комоды} )%>
-        <%= link_to('Тумбочки', { :controller => '/catalog', :action => :index, :category_scode => :Тумбочки} )%>
-        <br>
-        <%= link_to('Зеркала', { :controller => '/catalog', :action => :index, :category_scode => :Зеркала} )%>
-		<%= link_to('Полки', { :controller => '/catalog', :action => :index, :category_scode => :Полки} )%>
-		<%= link_to('Столы', { :controller => '/catalog', :action => :index, :category_scode => :Столы} )%>
-		<%= link_to('Основания', { :controller => '/catalog', :action => :index, :category_scode => :Основания} )%>
+	    	<p>
+		    	<%= link_to('Кровати', { :controller => '/catalog', :action => :index, :category_scode => :Кровати} )%>
+		    	<%= link_to('Шкафы', { :controller => '/catalog', :action => :index, :category_scode => :Шкафы} )%>
+	        <%= link_to('Комоды', { :controller => '/catalog', :action => :index, :category_scode => :Комоды} )%>
+	        <%= link_to('Тумбочки', { :controller => '/catalog', :action => :index, :category_scode => :Тумбочки} )%>
+        </p>
+        <p>
+	        <%= link_to('Зеркала', { :controller => '/catalog', :action => :index, :category_scode => :Зеркала} )%>
+					<%= link_to('Полки', { :controller => '/catalog', :action => :index, :category_scode => :Полки} )%>
+					<%= link_to('Столы', { :controller => '/catalog', :action => :index, :category_scode => :Столы} )%>
+					<%= link_to('Основания', { :controller => '/catalog', :action => :index, :category_scode => :Основания} )%>
+				</p>				
       </div>
     </li>
     <li class="wherebuy"><%= link_to 'Где купить', stores_path %>
@@ -112,8 +115,9 @@
             <%= link_to raw('Мебель PARRA в МЦ "ROOMER"<br>(499) 340-09-08<br>м.Автозаводская'), store5_path %>
             <%= link_to raw('Мебель PARRA в ТЦ «Твой Дом — Крокус»<br>(499) 940-12-29<br>м.Мякинино'), store6_path %>
             <%= link_to raw('Мебель PARRA в ТРЦ "РИО" Реутов<br>(499) 347-09-09<br>м.Новогиреево'), store7_path %>
+            <img src="/assets/LogoBlackWhite.png">
           </div>
-        </div>        
+        </div>      
       </span>
     </li>
     <li class="cart"><a href="/cart">Корзина<b id="cartCount"></b></a>
