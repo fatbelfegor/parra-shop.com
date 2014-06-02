@@ -1506,23 +1506,31 @@ h2.cart, a.cart {
 				position: absolute;				
 				height: 328px;
 				width: 650px;
+				background-color: #FFFFFF;
 				@include transition(.3s);
 				table {
 					position: relative;
 					height: 100%;
 					width: 100%;
+					border-spacing: 0;
+					border-top: 1px solid #BCBBBB;
+					border-right: 1px solid #BCBBBB;
 					tr {
 						height: 50%;
 						width: 100%;
 						td {
 							height: 50%;
-							width: 33.3%;
+							width: 33.33%;
+							border-left: 1px solid #BCBBBB;
+							border-bottom: 1px solid #BCBBBB;
 							a {
 								display: block;
 								height: 100%;
 								color: #59595B;
 								text-align: center;
 								position: relative;
+								background-repeat: no-repeat;
+								background-size: cover;
 								h2 {
 									font-size: 15px;
 									padding: 12px 0;
@@ -1540,12 +1548,7 @@ h2.cart, a.cart {
 							}
 						}
 					}
-				}
-				img {
-					position: absolute;
-					width: 100%;
-					height: 100%;
-				}				
+				}			
 			}
 			.margin {
 				margin-top: 30px;
@@ -1555,6 +1558,12 @@ h2.cart, a.cart {
 				margin-top: 30px;
 				height: 363px;
 				width: 1000px;
+				td {
+					width: 20%;
+				}
+				.showAll {
+					padding-top: 34%;
+				}
 			}
 		}
 		td:hover {

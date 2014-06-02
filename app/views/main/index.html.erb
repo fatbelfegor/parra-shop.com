@@ -3,43 +3,28 @@
 		<tr>
 			<td>
 				<div>
-					<%= image_tag("mainPhoto1.png")%>
 					<table>
 						<tr>
+							<% if @cat1.size > 1 then @cat1[0..2].each do |p| %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+									<h2><%= p.name %></h2>
+									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
 							</td>
-							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
-							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
+							<% end end %>
 						</tr>
 						<tr>
+							<% if @cat1.size > 3 then @cat1[3..4].each do |p| %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
+								<a href="<%= url_for '/kupit/'+p.scode %>">
+									<h2><%= p.name %></h2>
+									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
 							</td>
+							<% end end %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
-							<td>
-								<a href="#" class="showAll">
+								<a href="<%= url_for({ :controller => '/catalog', :action => :index, :category_scode => :Bella} )%>" class="showAll">
 									Посмотреть всю коллекцию >>
 								</a>
 							</td>
@@ -57,43 +42,28 @@
 			<td><%= image_tag("main3.png",:style => "margin-top:30px;")%></td>
 			<td>
 				<div class="margin">
-					<%= image_tag("mainPhoto2.png")%>
 					<table>
 						<tr>
+							<% if @cat2.size > 1 then @cat2[0..2].each do |p| %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+									<h2><%= p.name %></h2>
+									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
 							</td>
-							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
-							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
+							<% end end %>
 						</tr>
 						<tr>
+							<% if @cat2.size > 3 then @cat2[3..4].each do |p| %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+									<h2><%= p.name %></h2>
+									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
 							</td>
+							<% end end %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
-							<td>
-								<a href="#" class="showAll">
+								<a href="<%= url_for :controller => '/catalog', :action => :index, :category_scode => :Style %>" class="showAll">
 									Посмотреть всю коллекцию >>
 								</a>
 							</td>
@@ -109,43 +79,28 @@
 		<tr>
 			<td>
 				<div class="marginTop">
-					<%= image_tag("mainPhoto2.png")%>
 					<table>
 						<tr>
+							<% @cat3[0..4].each do |p| %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+									<h2><%= p.name %></h2>
+									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
 							</td>
-							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
-							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
+							<% end %>
 						</tr>
 						<tr>
+							<% @cat3[5..9].each do |p| %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+									<h2><%= p.name %></h2>
+									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
 							</td>
+							<% end %>
 							<td>
-								<a href="#">
-									<h2>Кровать BELLA</h2>
-									<p><b>Цена:</b> 37 198руб.</p>
-								</a>
-							</td>
-							<td>
-								<a href="#" class="showAll">
+								<a href="<%= url_for({ :controller => '/catalog', :action => :index, :category_scode => :Bella} )%>" class="showAll">
 									Посмотреть всю коллекцию >>
 								</a>
 							</td>
