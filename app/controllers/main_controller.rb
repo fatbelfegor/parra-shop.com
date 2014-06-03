@@ -3,7 +3,7 @@ class MainController < ApplicationController
     @products = Product.all
     @cat1 = Product.find :all, conditions: {category_id: 1}, limit: 5, order: 'created_at asc'
     @cat2 = Product.find :all, conditions: {category_id: 2}, limit: 5, order: 'created_at asc'
-    @cat3 = Product.find :all, limit: 10, order: 'RANDOM()'
+    @cat3 = Product.find :all, limit: 10, order: 'created_at asc'
   end
   
   def main
