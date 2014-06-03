@@ -55,22 +55,9 @@ li {
 	top: 10px;
 	color: #575759;	
 
-	> :first-child, b {
-		font-size: 21px;
-	}
-
-	b {
-		font-weight: normal;
-		margin-right: 5px;
-	}
-
-	> :last-child {
-		font-size: 12px;
-		margin-top: -3px;
-		margin-left: 1px;
-		letter-spacing: -1px;
-		text-decoration:underline;
-		color: #4fb859;
+	img {
+		position: relative;
+		top: 8px;
 	}
 }
 
