@@ -95,7 +95,7 @@
 			</div>
 		</div>
 	</div>
-	<% unless current_user && current_user.admin? %>
+	<% if current_user && current_user.admin? %>
 	<%= link_to 'Редактировать', edit_product_path(@product) %> |
 	<%= link_to 'Удалить', @product, :confirm => 'Вы уверены?', :method => :delete %> |
 	<%= link_to 'Список Продуктов',   if(@product.category) then @product.category else products_path end %>

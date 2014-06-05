@@ -7,7 +7,7 @@
 						<tr>
 							<% if @cat1.size > 1 then @cat1[0..2].each do |p| %>
 							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
 									<h2><%= p.name %></h2>
 									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
@@ -46,7 +46,7 @@
 						<tr>
 							<% if @cat2.size > 1 then @cat2[0..2].each do |p| %>
 							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
 									<h2><%= p.name %></h2>
 									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
@@ -56,7 +56,7 @@
 						<tr>
 							<% if @cat2.size > 3 then @cat2[3..4].each do |p| %>
 							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
 									<h2><%= p.name %></h2>
 									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
@@ -83,7 +83,7 @@
 						<tr>
 							<% if @cat3.size > 0 then @cat3[0..4].each do |p| %>
 							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
 									<h2><%= p.name %></h2>
 									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
@@ -93,7 +93,7 @@
 						<tr>
 							<% if @cat3.size > 5 then @cat3[5..9].each do |p| %>
 							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images %>')">
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
 									<h2><%= p.name %></h2>
 									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
