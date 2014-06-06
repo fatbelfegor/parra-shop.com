@@ -3,8 +3,8 @@
 class MainController < ApplicationController
   def index
     @products = Product.all
-    @cat1 = Product.find :all, conditions: {category_id: 1}, limit: 5, order: 'created_at asc'
-    @cat2 = Product.find :all, conditions: {category_id: 2}, limit: 5, order: 'created_at asc'
+    @cat1 = Category.find_by_scode('bella').products.order('created_at asc').limit(5)
+    @cat2 = Category.find_by_name('style').products.order('created_at asc').limit(5)
     @cat3 = Category.find_by_name('Диваны').products.order('created_at asc').limit(10)
   end
   
