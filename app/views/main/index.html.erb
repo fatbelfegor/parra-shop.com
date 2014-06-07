@@ -17,7 +17,7 @@
 						<tr>
 							<% if @cat1.size > 3 then @cat1[3..4].each do |p| %>
 							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>">
+								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
 									<h2><%= p.name %></h2>
 									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
