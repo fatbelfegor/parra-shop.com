@@ -358,3 +358,19 @@ expire = ->
 	photoes = mini.next()
 	photoes.find('.showPhoto').attr 'class', ''
 	$(photoes.children()[$(el).index()]).attr 'class', 'showPhoto'
+@colorToggle = (el, action) ->
+	unless el.className == 'active'
+		div = $(el).parent()
+		div.find('> a').attr 'class', ''
+		div.find('> span').hide()
+		$(el).attr 'class', 'active'
+		div.find('#'+action+'Color').show()
+@showProductPrcolor = (el) ->
+	if $(el).parent().attr('class') == 'active'
+		$(el).parent().attr 'class', ''
+		$(el).parent().next().hide(300)
+	else
+		$(el).parent().attr 'class', 'active'
+		$(el).parent().next().show(300)
+@copyPrcolorChoose = (el) ->
+	$('#copy_scode').val $(el).prev().find('b').html()[1..-2]

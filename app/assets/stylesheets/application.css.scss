@@ -320,7 +320,6 @@ nav {
 					text-transform: lowercase;
 					line-height: 30px;
 					padding: 0 10px;
-					@include border-radius(17px);
 					color: #efefef;
 					background-color: #52B84A;
 					background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
@@ -521,7 +520,6 @@ nav {
 			text-transform: lowercase;
 			line-height: 34px;
 			padding: 0 10px;
-			@include border-radius(17px);
 			color: black;
 			background-color: #52B84A;
 			background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
@@ -1525,7 +1523,10 @@ h2.cart, a.cart {
 	margin-top:30px;
 	margin-left:50px;
 	> table {
-		td {			
+		td {
+			div, a img {
+				@include transition(.3s);
+			}		
 			span {
 				display: block;
 			}
@@ -1538,10 +1539,9 @@ h2.cart, a.cart {
 				height: 328px;
 				width: 650px;
 				background-color: #FFFFFF;
-				@include transition(.3s);
 				table {
 					position: relative;
-					height: 100%;
+					height: 329px;
 					width: 100%;
 					border-spacing: 0;
 					border-top: 1px solid #BCBBBB;
@@ -1605,12 +1605,116 @@ h2.cart, a.cart {
 			}
 		}
 		td:hover {
-			div {
+			div, a img {
+				@include box-shadow(0 0 10px 0 #aaa);
+			}
+			div {				
 				filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
 				-moz-opacity: 1;
 				-khtml-opacity: 1;
 				opacity: 1;
 			}
 		}
+	}
+}
+
+.colorFields {
+	> a {
+		cursor: pointer;
+	}
+	> .active {
+		font-weight: bold;
+	}
+	#copyColor {
+		display: none;
+		> ul > li {
+			a {
+				line-height: 26px;
+				cursor: pointer;
+				color: #02880A;
+				float: none;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+			> .active {
+				font-weight: bold;
+			}
+			.fancyButton {
+				color: black;
+				line-height: 18px;
+				display: none;
+				margin-left: 25px;
+			}
+			> span {
+				display: block;
+				width: 300px;
+			}
+			> span:hover .fancyButton, > .active .fancyButton {
+				display: inline-block;
+			}
+			ul {
+				display: none;
+			}
+			li {
+				margin-left: 30px;				
+				.color {
+					width: 126px;
+					height: 52px;
+					margin: 16px 16px 0 0;
+					background-size: 100% 100%;
+					padding: 5px 8px 0 8px;
+					display: inline-block;
+					p {
+						display: block;
+						width: 100%;
+						font-size: 15px;
+						color: white;
+						font-weight: bold;
+						line-height: 22px;
+					}
+				}
+				.fancyButton {
+					float: none;
+					display: inline-block;
+					vertical-align: bottom;
+				}
+				label {
+					width: 96px;
+					height: 115px;
+					margin-top: 16px;
+					display: inline-block;
+					margin-right: 10px;
+					p {
+						width: 100%;
+						white-space: nowrap;
+						text-align: center;
+						font-size: 10px;
+					}
+					a {
+						display: block;
+						margin: 10px 17px;
+						width: 62px;
+						height: 62px;
+						padding: 0;
+					}
+					img {
+						margin: 0;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						-webkit-border-radius: 31px;
+						-moz-border-radius: 31px;
+						-o-border-radius: 31px;
+						border-radius: 31px;
+					}
+				}
+				.textures {
+					height: 0;
+					overflow: hidden;
+				}
+			}
+		} 
 	}
 }
