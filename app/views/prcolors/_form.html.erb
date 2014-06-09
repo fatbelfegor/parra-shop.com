@@ -6,7 +6,9 @@
     <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end) %>
   </p>
   <div class="colorFields">
-    <a class="active" onclick="colorToggle(this, 'new')">Создать новый цвет</a> / <a onclick="colorToggle(this, 'copy')">Скопировать существующий</a>
+    <% if action_name == 'new' %>
+      <a class="active" onclick="colorToggle(this, 'new')">Создать новый цвет</a> / <a onclick="colorToggle(this, 'copy')">Скопировать существующий</a>
+    <% end %>
     <span id="newColor">
       <p>
         <%= f.label :scode , "Код" %><br>
@@ -61,6 +63,7 @@
         </div>
       </div>
     </span>
+    <% if action_name == 'new' %>
     <span id="copyColor">      
       <p>
         <%= label_tag :copy_scode , "Код товара для копирования" %><br>
@@ -100,6 +103,7 @@
       </ul>
       <br>
     </span>
+    <% end %>
   </div>
   <p>
     <%= f.submit 'Сохранить' %>

@@ -11,10 +11,11 @@ class PrcolorsController < ApplicationController
 
 	def create
     if params[:copy_scode]
+      @productScode = Product.find(prcolor_params[:product_id]).scode;
       Product.find_by_scode(params[:copy_scode]).prcolors.each do |p|
-        @prcolor = Prcolor.create(product_id: prcolor_params[:product_id], scode: p.scode, name: p.name, price: p.price, description: p.description, images: p.images)
+        @prcolor = Prcolor.create(product_id: prcolor_params[:product_id], scode: @productScode+'_'+p.scode, name: p.name, price: p.price, description: p.description, images: p.images)
         p.textures.each do |t|
-          Texture.create(prcolor_id: @prcolor.id, name: t[:name], scode: t[:scode], price: t[:price], image: t[:image])
+          Texture.create(prcolor_id: @prcolor.id, name: t[:name], scode: @productScode+t[:scode], price: t[:price], image: t[:image])
         end
       end
     else
