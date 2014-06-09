@@ -1002,6 +1002,16 @@ body > .main {
 			margin-top: 10px;
 			border: 1px solid transparent;
 			@include transition(0.3s);
+			> h2 {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				img {
+					width: auto;
+					height: auto;
+					margin: 0;
+				}
+			}
 			.appear {
 				text-align: center;
 				margin: 0;
