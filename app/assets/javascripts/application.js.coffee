@@ -80,11 +80,13 @@ ready = ->
 		$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
 	cartMenuGen()
 @changeCount = (el) ->
+	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'
 		div = el.parentNode.parentNode
+		name = $(div).find('ins a').html()
 	else
 		div = el.parentNode.parentNode.parentNode.parentNode
-	name = $(div).find('ins').html()
+		name = $(div).find('ins').html()
 	item = (cart.filter (item) ->
 		item.n == name)[0]
 	if el.innerHTML == '+'								
