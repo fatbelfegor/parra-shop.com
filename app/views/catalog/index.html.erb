@@ -1,33 +1,34 @@
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 <div class="index">
-<div id ="products">
-	<% if @products %>
-	<table border="0" cellspacing="0" cellpadding="0" width="100%">
-	<% @i = 0 %>
-	<% for product in  @products %>
-		
-		<% if (@i == 0 || (@i % 3) == 0) %>
-			<tr>
+	<h2 class="categoryLogo"><img src='<%= @category.header %>'> / <%= @category.name %></h2>
+	<div id ="products">
+		<% if @products %>
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<% @i = 0 %>
+		<% for product in  @products %>
+			
+			<% if (@i == 0 || (@i % 3) == 0) %>
+				<tr>
+			<% end %>
+			
+			<% if (@i != 0 && (@i % 3) == 0) %>
+				</tr>
+			<% end %>
+			
+			<td>
+				<%= render(:partial => "products/productCatalog", :object => product) %>			
+			</td>
+			<% @i += 1 %>		
 		<% end %>
-		
-		<% if (@i != 0 && (@i % 3) == 0) %>
+		<% if ((@i % 3) != 0) %>
+			<% while ((@i % 3) != 0) do %>
+				<td >&nbsp;</td>
+				<% @i += 1 %>
+			<% end %>
 			</tr>
 		<% end %>
-		
-		<td>
-			<%= render(:partial => "products/productCatalog", :object => product) %>			
-		</td>
-		<% @i += 1 %>		
-	<% end %>
-	<% if ((@i % 3) != 0) %>
-		<% while ((@i % 3) != 0) do %>
-			<td >&nbsp;</td>
-			<% @i += 1 %>
+		</table>
 		<% end %>
-		</tr>
-	<% end %>
-	</table>
-	<% end %>
-</div>
+	</div>
 </div>
