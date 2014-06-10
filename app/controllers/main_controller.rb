@@ -6,6 +6,7 @@ class MainController < ApplicationController
     @cat1 = Category.find_by_scode('bella').products.order('created_at asc').limit(5)
     @cat2 = Category.find_by_scode('style').products.order('created_at asc').limit(5)
     @cat3 = Category.find_by_scode('Диваны').products.order('created_at asc').limit(10)
+    #@cat3 = Category.find_by_name('Диваны').products.order('created_at asc').limit(10)
   end
   
   def main
