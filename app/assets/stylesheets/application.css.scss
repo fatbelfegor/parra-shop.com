@@ -312,19 +312,6 @@ nav {
 				height: 36px;
 				border-top: 1px solid #C6C6C6;
 				border-bottom: 1px solid #C6C6C6;
-
-				a {
-					margin: 3px 0 0 8px;
-					cursor: pointer;
-					float: left;
-					text-transform: lowercase;
-					line-height: 30px;
-					padding: 0 10px;
-					color: #efefef;
-					background-color: #52B84A;
-					background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
-					@include transition(0.3s);
-				}
 			}
 
 			> div {
@@ -530,7 +517,12 @@ nav {
 		.gotoCart:hover, input[type=submit]:hover {
 			color: black;
 			text-decoration: underline;
-			background: -webkit-linear-gradient(top, #92e88A 0%, #4aac45 50%, #42a83A 50%, #329628 100%);
+			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #92E88A), color-stop(0.5, #52B84A), color-stop(0.5, #4AAC45), color-stop(1, #41A638));
+			background-image: -o-linear-gradient(bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
+			background-image: -moz-linear-gradient(bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
+			background-image: -webkit-linear-gradient(bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
+			background-image: -ms-linear-gradient(bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
+			background-image: linear-gradient(to bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
 		}
 
 
@@ -573,6 +565,7 @@ nav {
 				float: left;
 				margin-top: 15px;
 				border: 0;
+				height: 28px;
 				line-height: 28px;
 				font-weight: bold;
 				cursor: pointer;
@@ -628,7 +621,6 @@ nav {
 
 		> :first-child {
 			.mini {
-				position: absolute;
 				margin: 10px;
 				img {
 					border: 1px solid #ccc;
@@ -1076,7 +1068,7 @@ body > .main {
 	}
 }
 
-h2.cart, a.cart {
+h2.cart {
 	line-height: 50px;
 	color: #5D5D5C;
 	margin: 10px 0 0 0;
@@ -1084,6 +1076,9 @@ h2.cart, a.cart {
 
 a.cart {
 	float: right;
+	text-transform: none;
+	line-height: auto;
+	margin-top: 10px;
 }
 
 #cart {
@@ -1727,9 +1722,24 @@ a.cart {
 	margin: 30px 80px 20px;
 	font-size: 20px;
 	font-weight: normal;
+	line-height: 27px;
 	img {
 		width: auto;
 		height: auto;
 		margin: 0;
+		float: left;
 	}
+}
+
+.squareButton {
+	margin: 3px 0 0 8px;
+	cursor: pointer;
+	float: left;
+	text-transform: lowercase;
+	line-height: 30px;
+	padding: 0 10px;
+	color: #efefef;
+	background-color: #52B84A;
+	background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
+	@include transition(0.3s);
 }
