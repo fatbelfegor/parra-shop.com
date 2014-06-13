@@ -19,8 +19,10 @@
         <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end), {}, {class: "form-control"} %>
       </div>
     </div>
+  </div>
+  <div class="row form-group">
     <% for category in Category.find(:all) %>
-      <div class="col-md-offset-2 col-md-10 wrath-content-box" style="padding:0 15px">
+      <div class="col-md-2">
     		<%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
     		<%= category.name %>
       </div>
