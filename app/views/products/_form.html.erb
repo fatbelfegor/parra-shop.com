@@ -13,8 +13,14 @@
     </div>
   <% end %>
   <p>
-    <%= f.label :category_id , "Категория" %><br />
-    <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end), class: "selectpicker" %>
+    <div class="row">
+      <div class="col-md-2">
+      <%= f.label :category_id, "<pre><h3>Категория</h3></pre>", {class: 'control-label'} %><br />
+      </div>
+      <div class="col-md-10">
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end), {}, {class: "form-control"} %>
+      </div>
+    </div>
   </p>
   <% for category in Category.find(:all) %>
 	<div>

@@ -33,7 +33,7 @@
 				</div>
 				<span><%= image_tag("main1.png")%></span>				
 			</td>
-			<td><%= link_to(image_tag("main2.png", onmouseover: "$(this).attr('src','/assets/main2_1.png')", onmouseout: "$(this).attr('src','/assets/main2.png')",:style => "margin-left:25px;"), { :controller => '/catalog', :action => :index, :category_scode => "Матрасы по акции"} )%></td>
+			<td><%= link_to(image_tag("main2.png", onmouseout: "$(this).attr('src','/assets/main2_1.png')", onmouseover: "$(this).attr('src','/assets/main2.png')",:style => "margin-left:25px;"), { :controller => '/catalog', :action => :index, :category_scode => "Матрасы по акции"} )%></td>
 		</tr>
 	</table>
 
