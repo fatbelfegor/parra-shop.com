@@ -8,8 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require_tree .
+ *= require_self
  */
 
 @import 'mixins';
@@ -94,6 +94,8 @@ nav {
 				text-transform: uppercase;
 				white-space: nowrap;
 				position: relative;
+				height: 16px;
+				line-height: 16px;
 				@include transition(0.3s);
 
 				b {
@@ -1449,6 +1451,8 @@ a.cart {
 			a {
 				margin: 0;
 				text-transform: inherit;
+				height: 40px;
+				line-height: 40px;
 			}
 		}
 	}
