@@ -1,6 +1,8 @@
 <%= tinymce_assets %>
 
 <%= form_for(@product) do |f| %>
+<table class="table table-bordered table-striped">
+<tr><td style="padding: 15px 30px 0 20px">
  <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -20,7 +22,7 @@
       </div>
     </div>
   </div>
-  <div class="row form-group">
+  <div class="row form-group" style="padding-left: 100px">
     <% for category in Category.find(:all) %>
       <div class="col-md-2">
     		<%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
@@ -28,6 +30,8 @@
       </div>
     <% end %>
   </div>
+  </td></tr>
+  <tr><td style="padding: 15px 100px 0 20px">
   <div class="row form-group">
     <h4 class="col-md-2 text-right"><%= f.label :scode, "Код:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
     <div class="col-md-10">
@@ -77,6 +81,8 @@
       </div>
     </div>    
   </div>
+  </td></tr>
+  <tr><td style="padding: 15px 30px 0 20px">
   <div class="row form-group">
     <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Отображать на главной странице</div></h4>
     <div class="col-md-1">
@@ -110,6 +116,8 @@
     </div>
   </div>
 
+  </td></tr>
+  <tr><td style="padding: 15px 100px 20px 20px">
   <% if @product.images %>
     <ul class="images">
     <% @product.images.split(',').each do |i| %>
@@ -120,6 +128,8 @@
     <% end %>
     </ul>
   <% end %>
+  </td></tr>
+  <tr><td style="padding: 15px 100px 0 20px">
 
   <div class="text-center" style="margin-bottom: 20px">
   <div id="addImages" class="product_images">
@@ -129,8 +139,10 @@
   <%= f.hidden_field :images %>
   </div>
   
+  </td></tr>
+  <tr><td>
   <div class="row form-group">
-    <h4 class="col-md-2 text-right"><%= f.label :shortdesk, "Краткое описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <h4 class="col-md-2 text-right"><nobr><%= f.label :shortdesk, "Краткое описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
     <div class="col-md-10">
       <%= f.text_area :shortdesk, class: "tinymce", :rows => 12, :cols => 120 %>
     </div>
@@ -141,9 +153,13 @@
       <%= f.text_area :description, class: "tinymce", :rows => 12, :cols => 120 %>
     </div>
   </div>
+  </td></tr>
+  <tr><td>
   <div class="text-center" style="margin: 30px 0">
     <%= f.submit 'Сохранить', class: "btn btn-success" %>
   </div>
 <% end %>
+</td></tr>
+</table>
 
 <%= tinymce %>
