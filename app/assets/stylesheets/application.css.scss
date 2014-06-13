@@ -1207,10 +1207,26 @@ a.cart {
 }
 
 #addImages {
+	position: relative;
 	img {
 		width: 100px;
 		height: 100px;
 		margin: 10px;
+	}
+	input {
+		position: relative;
+		z-index: 2;
+	}
+	iframe {
+		z-index: 1;
+		position: absolute;
+		top: 25px;
+		left: 50%;
+		width: 300px;
+		margin-left: -150px;
+		border: 0;
+		@include box-shadow(0px 5px 20px 0 #aaa);
+		background-color: #eee;
 	}
 }
 
@@ -1746,4 +1762,8 @@ a.cart {
 	background-color: #52B84A;
 	background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
 	@include transition(0.3s);
+}
+
+div.mce-edit-area {
+	margin-right: 1px;
 }

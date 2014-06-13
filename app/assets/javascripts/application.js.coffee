@@ -246,11 +246,11 @@ expire = ->
 		input.val(images.join(','))
 		imagesHtml = ''
 		for img in images
-			imagesHtml += '<img src="'+img+'">'
+			imagesHtml += '<img class="img-thumbnail" src="'+img+'">'
 		$(iframe.parentNode).find('div').html(imagesHtml)
 	else
 		input.val(url)
-		$(iframe.parentNode).html(imagesHtml = '<img src="'+url+'">')
+		$(iframe.parentNode).html(imagesHtml = '<img class="img-thumbnail" src="'+url+'">')
 	iframe.parentNode.removeChild iframe
 @deleteImage = (el) ->
 	li = el.parentNode

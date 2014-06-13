@@ -12,55 +12,101 @@
       </ul>
     </div>
   <% end %>
-  <p>
-    <div class="row">
-      <div class="col-md-2">
-      <%= f.label :category_id, "<pre><h3>Категория</h3></pre>", {class: 'control-label'} %><br />
-      </div>
-      <div class="col-md-10">
-      <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end), {}, {class: "form-control"} %>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :category_id, "Категория:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-10">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end), {}, {class: "form-control"} %>
       </div>
     </div>
-  </p>
-  <% for category in Category.find(:all) %>
-	<div>
-  		<%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
-  		<%= category.name %>
-	</div>
-  <% end %>
-  <p>
-    <%= f.label :scode , "Код" %><br />
-    <%= f.text_field :scode %>
-  </p>
-  <p><%=check_box("product", "main", {}, "true", "false")%> Отображать на главной странице</p>
-  <p><%=check_box("product", "action", {}, "true", "false")%> Отображать на панели скидки</p>
-  <p><%=check_box("product", "best", {}, "true", "false")%> Отображать на панели Хиты продаж</p>
-  <p><%=check_box("product", "invisible", {}, "true", "false")%> Сделать Невидимым</p>
-  <p>
-    <%= f.label :position , "Порядковый номер" %><br />
-    <%= f.text_field :position %>
-  </p>
-  <p>
-    <%= f.label :s_title , "SEO title" %><br />
-    <%= f.text_field :s_title %>
-  </p>
-  <p>
-    <%= f.label :s_description , "SEO description" %><br />
-    <%= f.text_field :s_description %>
-  </p>
-  <p>
-    <%= f.label :s_keyword , "SEO keywords через запятую" %><br />
-    <%= f.text_field :s_keyword %>
-  </p>
-  <p>
-    <%= f.label :name , "Название" %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p><%=check_box("product", "delemiter", {}, "true", "false")%> Сделать Разделителем</p>
-  <p>
-    <%= f.label :price , "Цена" %><br />
-    <%= f.text_field :price %>
-  </p>
+    <% for category in Category.find(:all) %>
+      <div class="col-md-offset-2 col-md-10 wrath-content-box" style="padding:0 15px">
+    		<%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
+    		<%= category.name %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :scode, "Код:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-10">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :scode, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Отображать на главной странице</div></h4>
+    <div class="col-md-1">
+      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
+        <%=check_box("product", "main", {}, "true", "false")%>
+      </div>
+    </div>
+    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Отображать на панели скидки</div></h4>
+    <div class="col-md-1">
+      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
+        <%=check_box("product", "action", {}, "true", "false")%>
+      </div>
+    </div>
+    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Отображать на панели Хиты продаж</div></h4>
+    <div class="col-md-1">
+      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
+        <%=check_box("product", "best", {}, "true", "false")%>
+      </div>
+    </div>
+    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Сделать Невидимым</div></h4>
+    <div class="col-md-1">
+      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
+        <%=check_box("product", "invisible", {}, "true", "false")%>
+      </div>
+    </div>    
+    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Сделать Разделителем</div></h4>
+    <div class="col-md-1">
+      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
+        <%=check_box("product", "delemiter", {}, "true", "false")%>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :name, "Название", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :name, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+    <h4 class="col-md-2 text-right"><%= f.label :price, "Цена", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-1">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :price, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <h4 class="col-md-2 text-right"><%= f.label :position, "Порядковый номер", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :position, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
+  <h4 class="col-md-2 text-right"><%= f.label :s_title, "SEO title", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :s_title, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+    <h4 class="col-md-2 text-right"><%= f.label :s_description, "SEO description", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :s_description, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+    <h4 class="col-md-2 text-right"><%= f.label :s_keyword, "SEO keywords через запятую", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :s_keyword, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>    
+  </div>
 
   <% if @product.images %>
     <ul class="images">
@@ -73,25 +119,29 @@
     </ul>
   <% end %>
 
-  <br>
+  <div class="text-center" style="margin-bottom: 20px">
   <div id="addImages" class="product_images">
-    <input type="button" value="Добавить изображение">
+    <input type="button" value="Добавить изображение" class="btn btn-primary">
     <div></div>
   </div>
   <%= f.hidden_field :images %>
-  <br>
+  </div>
   
-  <p>
-    <%= f.label :shortdesk , "Краткое описание" %><br />
-    <%= f.text_area :shortdesk, class: "tinymce", :rows => 30, :cols => 120 %>
-  </p>
-  <p>
-    <%= f.label :description , "Описание" %><br />
-    <%= f.text_area :description, class: "tinymce", :rows => 30, :cols => 120 %>
-  </p>
-  <p>
-    <%= f.submit 'Сохранить' %>
-  </p>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :shortdesk, "Краткое описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-10">
+      <%= f.text_area :shortdesk, class: "tinymce", :rows => 12, :cols => 120 %>
+    </div>
+  </div>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :description, "Описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-10">
+      <%= f.text_area :description, class: "tinymce", :rows => 12, :cols => 120 %>
+    </div>
+  </div>
+  <div class="text-center" style="margin: 30px 0">
+    <%= f.submit 'Сохранить', class: "btn btn-success" %>
+  </div>
 <% end %>
 
 <%= tinymce %>

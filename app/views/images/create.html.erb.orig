@@ -1,7 +1,0 @@
-<script type="text/javascript">
-<<<<<<< Updated upstream
-	parent.addImageUrl('<%= @url %>')
-=======
-	parent.addImageUrl('/uploads/<%= @url %>')
->>>>>>> Stashed changes
-</script>
