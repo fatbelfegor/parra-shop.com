@@ -81,6 +81,7 @@ ready = ->
 	cartMenuGen()
 	$(".sortable").sortable
 		revert: true
+		handle: '.handle'
 		connectWith: ".sortable"
 		update: ->
 			id = $(this).parent().attr('id')
