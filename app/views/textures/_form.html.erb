@@ -1,27 +1,39 @@
 <%= form_for @texture do |f| %>
-  <br>
-  <p>
-    <%= f.label :name , "Название" %><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :scode , "Код" %><br>
-    <%= f.text_field :scode %>
-  </p>
-  <p>
-    <%= f.label :price , "Цена" %><br>
-    <%= f.text_field :price %>
-  </p>
-  <p>
-    <%= f.label :image , "Изображение" %><br>
-    <% if @texture.image %><p onclick="imageChange(this)" data-url="<%= @texture.image %>">Изменить</p><% end %>
-    <div id="addImages" class="textureImage">
-      <img src="<%= @texture.image %>">
-    </div>
-    <%= f.hidden_field :image %>
-  </p>
-  <br>
-  <p>
-    <%= f.submit 'Сохранить' %>
-  </p>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <td style="padding: 15px 30px 0 20px">
+        <div class="row form-group">
+          <h4 class="col-md-1 text-right"><%= f.label :name, "Название:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-2">
+            <div class="wrath-content-box">
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+          <h4 class="col-md-2 text-right"><%= f.label :scode, "Код:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-2">
+            <div class="wrath-content-box">
+              <%= f.text_field :scode, class: "form-control" %>
+            </div>
+          </div>
+          <h4 class="col-md-2 text-right"><%= f.label :price, "Цена:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-2">
+            <div class="wrath-content-box">
+              <%= f.text_field :price, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+        <% if @texture.image %><p class="btn btn-warning" onclick="imageChange(this)" data-url="<%= @texture.image %>">Изменить</p><% end %>
+          <div id="addImages" class="textureImage">
+            <img src="<%= @texture.image %>">
+            <div></div>
+          </div>
+          <input class="one" id="textureImage" name="textures[][image]" type="hidden" value="<%= @texture.image %>">
+        </div>
+        <div class="text-center" style="margin: 30px 0">
+          <%= f.submit 'Сохранить', class: "btn btn-success" %>
+        </div>
+      </td>
+    </tr>
+  </table>
 <% end %>
