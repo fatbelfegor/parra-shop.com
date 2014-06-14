@@ -79,6 +79,7 @@ ready = ->
 			b.toCurrency()
 		$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
 	cartMenuGen()
+	$(".sortable").sortable revert: true, connectWith: ".sortable"
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'

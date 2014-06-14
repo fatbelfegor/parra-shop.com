@@ -59,7 +59,7 @@ module ApplicationHelper
     categs = Category.roots
     if categs.count > 0
     	if adm
-    	  ret = "<ul id='categories'>"
+    	  ret = "<ul id='categories' class='sortable'>"
   	  else
   	    ret = "<ul>"
   	  end
@@ -90,7 +90,7 @@ module ApplicationHelper
           ret = "<li>"
         end
     else
-        ret = "<li id='category_#{cat.id}'><span class='handle col-md-1 btn btn-info'>[drag]</span>"
+        ret = "<li id='category_#{cat.id}'><div class='row'><span class='handle col-md-1 btn btn-info'>[drag]</span>"
     end
       
     if(cat.children.count > 0)
@@ -100,7 +100,7 @@ module ApplicationHelper
         ret += cat.name
       end
       
-      ret += "<ul>"
+      ret += "</div><ul class='sortable'>"
       for ch in cat.children
         ret +=  PaintTreeChildrens(ch, adm , false)
       end
