@@ -22,13 +22,9 @@ ParraShopCom::Application.routes.draw do
   get "articles", to: 'main#articles'
   get "insurance", to: 'main#insurance'
 
-  #resources :categories, :collection => { :sort => :post}
-  resources :categories do
-      collection do
-         post 'sort'
-      end
-  end
-
+  post 'categories/sort', to: 'categories#sort'
+  
+  resources :categories
   resources :products
   resources :images
   resources :prsizes
