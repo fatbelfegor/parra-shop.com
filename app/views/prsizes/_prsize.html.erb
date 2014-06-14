@@ -1,8 +1,8 @@
-<li>
-	<div><%= prsize.name %></div>
-	<div><%= number_to_currency(prsize.price) %></div>
-	<div>
-		<%= link_to 'Удалить', prsize, :confirm => 'Вы уверены?', :method => :delete %> | 
-		<%= link_to 'Редактировать', edit_prsize_path(prsize) %>
-	</div>
-</li>
+<tr>
+	<td><%= prsize.name %></td>
+	<td><%= number_to_currency(prsize.price) %></td>
+	<td>
+		<%= link_to 'Удалить', prsize, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+		<%= link_to 'Редактировать', edit_prsize_path(prsize), class: 'btn btn-success' %>
+	</td>
+</tr>

@@ -1,8 +1,8 @@
-<li>
-	<div><%= proption.name %></div>
-	<div><%= number_to_currency(proption.price) %></div>
-	<div>
-		<%= link_to 'Удалить', proption, :confirm => 'Вы уверены?', :method => :delete %> | 
-		<%= link_to 'Редактировать', edit_proption_path(proption) %>
-	</div>
-</li>
+<tr>
+	<td><%= proption.name %></td>
+	<td><%= number_to_currency(proption.price) %></td>
+	<td>
+		<%= link_to 'Удалить', proption, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+		<%= link_to 'Редактировать', edit_proption_path(proption), class: 'btn btn-success' %>
+	</td>
+</tr>

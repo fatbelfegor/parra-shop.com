@@ -1,5 +1,11 @@
-<h1>Новая категория</h1>
+<br><h2 class="text-center">Новая категория</h2><br>
 
 <%= render :partial => 'form' %>
 
-<%= link_to 'Список категорий', categories_path %>
+<table class="table table-bordered table-striped">
+
+<tr><td>
+<%= link_to 'Список категорий', categories_path, class: 'btn btn-default' %>
+</td></tr>
+
+</table>

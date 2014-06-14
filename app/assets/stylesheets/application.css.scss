@@ -603,12 +603,15 @@ nav {
 		font-size: 20px;
 		font-weight: normal;
 		line-height: 20px;
-		margin: 30px 0 0 0px;
-		width: 100%;
+		margin: 10px;
+		vertical-align: middle;
+		display: inline-block;
 
 		img {
 			position: relative;
 			top: 2px;
+			width: 58px;
+			height: 17px;
 		}
 	}
 
@@ -808,7 +811,7 @@ nav {
 	}
 
 	.options {
-		margin-top: 30px;
+		margin-top: 20px;
 		border-top: 1px solid black;
 	}
 
@@ -1211,6 +1214,11 @@ a.cart {
 		width: 100px;
 		height: 100px;
 		margin: 10px;
+		margin-bottom: 0;
+		display: block;
+	}
+	> img {
+		display: inline-block;
 	}
 	input {
 		position: relative;
@@ -1226,6 +1234,14 @@ a.cart {
 		border: 0;
 		@include box-shadow(0px 5px 20px 0 #aaa);
 		background-color: #eee;
+	}
+	> div > div {
+		display: inline-block;
+		margin-bottom: 10px;
+		small {
+			cursor: pointer;
+			line-height: 12px;
+		}
 	}
 }
 
@@ -1481,38 +1497,8 @@ a.cart {
 }
 
 .optionsTable {
-	width: 100%;
-	border-spacing: 0;
-	text-align: center;
-	line-height: 25px;
-	font-size: 15px;
-
-	tr > :first-child {
-		width: 52%;
-		border-left: 1px solid black;
-	}
-	tr:first-child {
-		border: 0;
-		th {
-			border-bottom: 1px solid black;
-		}
-		:first-child {
-			border-left: 0;
-		}
-	}
-	th {
-		font-size: 16px;
-		width: 24%;
-		line-height: 36px;
-	}
-	td {
-		border-right: 1px solid black;
-		border-bottom: 1px solid black;
-		img {
-			position: relative;
-			top: 4px;
-			left: 4px;
-		}
+	.btn {
+		line-height: 9px;
 	}
 	.catalog {
 		cursor: pointer;
@@ -1526,14 +1512,11 @@ a.cart {
 		.tableOuter {
 			width: 100%;
 			border: 0;
-			tr > :first-child {
-				border-left: 1px solid black;
-				width: 52%;
-			}
-			td {
-				width: 24%;
-			}
+			padding: 0;			
 		}
+	}
+	table {
+		margin: 0 !important;
 	}
 }
 
@@ -1645,11 +1628,11 @@ a.cart {
 	}
 	#copyColor {
 		display: none;
-		> ul > li {
+		div > ul > li {
 			a {
 				line-height: 26px;
 				cursor: pointer;
-				color: #02880A;
+				color: #333;
 				float: none;
 			}
 			a:hover {
@@ -1658,17 +1641,17 @@ a.cart {
 			> .active {
 				font-weight: bold;
 			}
-			.fancyButton {
-				color: black;
-				line-height: 18px;
+			.btn.btn-success {
+				color: white;
 				display: none;
 				margin-left: 25px;
+				position: absolute;
 			}
 			> span {
 				display: block;
-				width: 300px;
+				margin-bottom: 5px;
 			}
-			> span:hover .fancyButton, > .active .fancyButton {
+			> span:hover .btn.btn-success, > .active .btn.btn-success {
 				display: inline-block;
 			}
 			ul {
@@ -1765,4 +1748,16 @@ a.cart {
 
 div.mce-edit-area {
 	margin-right: 1px;
+}
+
+input[type=text].form-control, .wrath-content-box {
+	padding: 0 15px;
+}
+
+ul#categories li {
+	height: 34px;
+}
+
+th {
+	text-align: center;
 }

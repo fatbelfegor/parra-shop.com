@@ -1,6 +1,12 @@
-<h1>Редактирование Категории</h1>
+<br><h2 class="text-center">Редактирование Категории</h2><br>
 
 <%= render :partial => 'form' %>
 
-<%= link_to 'Показать', @category %> |
-<%= link_to 'Список категорий', categories_path %>
+<table class="table table-bordered table-striped">
+
+<tr><td>
+<%= link_to 'Показать', @category, class: 'btn btn-default' %>
+<%= link_to 'Список категорий', categories_path, class: 'btn btn-default' %>
+</td></tr>
+
+</table>

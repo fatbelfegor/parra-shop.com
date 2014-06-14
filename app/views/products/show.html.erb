@@ -96,24 +96,33 @@
 		</div>
 	</div>
 	<% if current_user && current_user.admin? %>
-	<%= link_to 'Редактировать', edit_product_path(@product) %> |
-	<%= link_to 'Удалить', @product, :confirm => 'Вы уверены?', :method => :delete %> |
-	<%= link_to 'Список Продуктов',   if(@product.category) then @product.category else products_path end %>
-	<div class="options">
+	<div class="text-center" style="margin-top:15px">
+	<%= link_to 'Редактировать', edit_product_path(@product), class: 'btn btn-success' %>
+	<%= link_to 'Удалить', @product, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+	<%= link_to 'Список Продуктов',   if(@product.category) then @product.category else products_path end, class: 'btn btn-info' %>
+	</div>
+	<table class="table table-striped text-center table-bordered">
+		<tr><td>
 		<h2>Список размеров (<%= @product.prsizes.count %>)</h2>
-		<p><%= link_to('Создать новый размер', { :controller => :prsizes, :action => :new , :product_id => @product.id })%></p>
-		<ul class="table tborder">
-			<li>
-				<div style="text-align: center">Название</div>
-				<div style="text-align: center">Цена</div>
-				<div style="text-align: center">действия</div>
-			</li>
+		<%= link_to 'Создать новый размер', {:controller => :prsizes, :action => :new , :product_id => @product.id}, class: 'btn btn-primary' %>
+		<% if @product.prsizes.count != 0 %>
+		<table class="table table-striped table-bordered">
+			<tr>
+				<th>Название</th>
+				<th>Цена</th>
+				<th>действия</th>
+			</tr>
 			<%= render(:partial => "prsizes/prsize" , :collection => @product.prsizes) %>
-		</ul>
+		<table>
+		<% end %>
+		</td></tr>
+		<tr><td>
 		<h2>Список цветов (<%= @product.prcolors.count %>)</h2>
 
-		<%= link_to('Создать новый цвет', { :controller => :prcolors, :action => :new , :product_id => @product.id })%>
-		<table class="optionsTable">
+		<%= link_to 'Создать новый цвет', { :controller => :prcolors, :action => :new , :product_id => @product.id }, class: 'btn btn-primary' %>
+
+		<% if @product.prcolors.count != 0 %>
+		<table class="table table-striped table-bordered optionsTable">
 			<tr>
 				<th>Название</th>
 				<th>Цена</th>
@@ -121,20 +130,24 @@
 			</tr>
 			<%= render(:partial => "prcolors/prcolor" , :collection => @product.prcolors) %>
 		</table>
-		
+		<% end %>
+		</td></tr>
+		<tr><td>
 		<h2>Список опций (<%= @product.proptions.count %>)</h2>
 
-		<%= link_to('Создать новую опцию', { :controller => :proptions, :action => :new , :product_id => @product.id })%>
-		
-		<ul class="table tborder">
+		<%= link_to 'Создать новую опцию', { :controller => :proptions, :action => :new , :product_id => @product.id }, class: 'btn btn-primary' %>
+		<% if @product.proptions.count != 0 %>
+		<table class="table table-striped table-bordered">
 			<li>
 				<div style="text-align: center">Название</div>
 				<div style="text-align: center">Цена</div>
 				<div style="text-align: center">действия</div>
 			</li>
 			<%= render(:partial => "proptions/proption" , :collection => @product.proptions) %>
-		</ul>
-	</div>
+		</table>
+		<% end %>
+		</td></tr>
+	</table>
 	<% end %>
 	<div class="others">
 		<p>Похожие товары</p>

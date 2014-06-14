@@ -2,5 +2,11 @@
 
 <%= render :partial => 'form' %>
 
-<%= link_to 'Показать', @product %> |
-<%= link_to 'Список Продуктов', if(@product.category) then @product.category else products_path end %>
+<table class="table table-bordered table-striped">
+
+<tr><td>
+<%= link_to 'Показать', @product, class: 'btn btn-default' %>
+<%= link_to 'Список Продуктов', if(@product.category) then @product.category else products_path end, class: 'btn btn-default' %>
+</td></tr>
+
+</table>

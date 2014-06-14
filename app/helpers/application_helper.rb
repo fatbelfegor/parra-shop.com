@@ -72,11 +72,11 @@ module ApplicationHelper
   end
   
   def AddEdit(cat)
-     ret = link_to(cat.name, cat)
+     ret = link_to(cat.name, cat, class: 'col-md-2 btn btn-default')
      if(current_user && current_user.admin?)
-        ret += sanitize(" | " + link_to('new', { :controller => :categories, :action => :new , :parent_id => cat.id }))
-        ret += sanitize(" | " + link_to('edit', edit_category_path(cat)))
-        ret += sanitize(" | " + link_to('del', cat, :confirm => 'Вы уверены?', :method => :delete))
+        ret += sanitize(link_to('new', { :controller => :categories, :action => :new , :parent_id => cat.id }, class: 'col-md-1 btn btn-success'))
+        ret += sanitize(link_to('edit', edit_category_path(cat), class: 'col-md-1 btn btn-warning'))
+        ret += sanitize(link_to('del', cat, :confirm => 'Вы уверены?', :method => :delete, class: 'col-md-1 btn btn-danger'))
       end
       return ret
   end
@@ -90,7 +90,7 @@ module ApplicationHelper
           ret = "<li>"
         end
     else
-        ret = "<li id='category_#{cat.id}'> <span class='handle'>[drag]</span>"
+        ret = "<li id='category_#{cat.id}'><span class='handle col-md-1 btn btn-info'>[drag]</span>"
     end
       
     if(cat.children.count > 0)

@@ -1,21 +1,39 @@
 <%= form_for @prsize do |f| %>
-  <p>
-    <%= f.label :product_id , "Продукт" %><br>
-    <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end) %>
-  </p>
-  <p>
-    <%= f.label :scode , "Код" %><br>
-    <%= f.text_field :scode %>
-  </p>
-  <p>
-    <%= f.label :name , "Название" %><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :price , "Цена" %><br>
-    <%= f.text_field :price %>
-  </p>
-  <p>
-    <%= f.submit 'Сохранить' %>
-  </p>
+ <table class="table table-bordered table-striped">
+    <tr>
+      <td style="padding: 15px 30px 0 20px">
+        <div class="row">
+          <h4 class="col-md-2 text-right"><%= f.label :product_id, "Продукт:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-10">
+            <div class="wrath-content-box">
+              <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end), {}, {class: "form-control"} %>
+            </div>
+          </div>
+        </div>
+        <div class="row text-right">
+          <h4 class="col-md-2 scode"><%= f.label :scode, "Код:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-2">
+            <div class="wrath-content-box">
+              <%= f.text_field :scode, class: "form-control" %>
+            </div>
+          </div>
+          <h4 class="col-md-2 scode"><%= f.label :name, "Название:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-2">
+            <div class="wrath-content-box">
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+          <h4 class="col-md-2 scode"><%= f.label :price, "Цена:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-1">
+            <div class="wrath-content-box">
+              <%= f.text_field :price, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="text-center" style="margin: 30px 0">
+          <%= f.submit 'Сохранить', class: "btn btn-success" %>
+        </div>
+      </td>
+    </tr>
+  </table>
 <% end %>

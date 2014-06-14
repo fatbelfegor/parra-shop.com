@@ -117,26 +117,21 @@
   </div>
 
   </td></tr>
-  <tr><td style="padding: 15px 100px 20px 20px">
-  <% if @product.images %>
-    <ul class="images">
-    <% @product.images.split(',').each do |i| %>
-      <li>
-        <a href="<%= i %>" data-lightbox="image" title="<%= @product.name %>"><img src="<%= i %>"></a>
-        <p onclick="deleteImage(this)">Удалить</p>
-      </li>
-    <% end %>
-    </ul>
-  <% end %>
-  </td></tr>
-  <tr><td style="padding: 15px 100px 0 20px">
+  <tr><td style="padding: 15px 100px 15px 20px">
 
-  <div class="text-center" style="margin-bottom: 20px">
-  <div id="addImages" class="product_images">
-    <input type="button" value="Добавить изображение" class="btn btn-primary">
-    <div></div>
-  </div>
-  <%= f.hidden_field :images %>
+  <div class="text-center">
+    <div id="addImages" class="product_images">
+      <input type="button" value="Добавить изображение" class="btn btn-primary">
+      <div>
+        <% if @product.images then @product.images.split(',').each do |i| %>
+          <div>
+            <img class="img-thumbnail" src="<%= i %>">
+            <small class="btn btn-warning" onclick="deleteImage(this)">Удалить</small>
+          </div>
+        <% end end %>
+      </div>
+    </div>
+    <%= f.hidden_field :images %>
   </div>
   
   </td></tr>
@@ -158,8 +153,7 @@
   <div class="text-center" style="margin: 30px 0">
     <%= f.submit 'Сохранить', class: "btn btn-success" %>
   </div>
-<% end %>
 </td></tr>
 </table>
-
+<% end %>
 <%= tinymce %>

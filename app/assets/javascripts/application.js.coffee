@@ -237,34 +237,48 @@ expire = ->
 	cartCount()
 	cartMenuGen()
 	document.cookie = 'cart='+encodeURIComponent(JSON.stringify(cart))+';path=/;expires='+expire().toGMTString()
+@addImageClick = (el) ->
+	iframe.src = '/images/new'
+	el.parentNode.appendChild iframe
 @addImageUrl = (url) ->
-	inputName = iframe.parentNode.className
+	addImages = iframe.parentNode
+	inputName = addImages.className
 	input = $('#'+inputName)
-	if inputName == "product_images"
+	if input.attr('class') != 'one'
 		images = input.val().split(',')
 		if images[0] == '' then images = [url] else images.push url
 		input.val(images.join(','))
 		imagesHtml = ''
 		for img in images
-			imagesHtml += '<img class="img-thumbnail" src="'+img+'">'
+			imagesHtml += '<div><img class="img-thumbnail" src="'+img+'"><small class="btn btn-warning" onclick="deleteImage(this)">Удалить</small></div>'
 		$(iframe.parentNode).find('div').html(imagesHtml)
 	else
 		input.val(url)
-		$(iframe.parentNode).html(imagesHtml = '<img class="img-thumbnail" src="'+url+'">')
+		if inputName == 'category_header'
+			text = '<h4>Изображение в поле header</h4><div><div><img class="img-thumbnail" src="'+url+'"><small class="btn btn-warning" onclick="deleteImageHeader(this)">Удалить</small></div></div>'
+		else
+			window.el = addImages
+			if $(el).prev().attr('class') != "btn btn-warning"
+				$(el).before '<p class="btn btn-warning" onclick="imageChange(this)" data-url="'+url+'">Изменить</p>'
+			else
+				$(el).prev().html 'Изменить'
+			text = '<img class="img-thumbnail" src="'+url+'"><div></div>'
+		$(addImages).html text
 	iframe.parentNode.removeChild iframe
 @deleteImage = (el) ->
-	li = el.parentNode
-	url = li.firstElementChild.href
+	div = el.parentNode
+	input = $(div).parents('#addImages').next()
 	$.get "/images/delete",
-	  url: url
-	li.parentNode.removeChild li
-	index = $('.images li').index li
-	images = $('#product_images').val().split ','
+	  url: $(el).prev().attr 'src'
+	index = $(div).parent().index div
+	images = input.val().split ','
 	images.splice index, 1
-	$('#product_images').val images.join ','
-	index = $('.images li').index(li)
-	images = $('#product_images').val().split(',')
-	$('#product_images').val(images.join(','))
+	input.val images.join ','
+	div.parentNode.removeChild div
+@deleteImageHeader = (el) ->
+	$.get "/images/delete",
+	  url: $(el).prev().attr 'src'
+	$(el).parents('#addImages').html('<input onclick="addImageClick(this)" type="button" value="Добавить изображение в поле header" class="btn btn-primary"><div></div>').next().val('')
 @priceChange = ->
 	$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
 @order = ->
@@ -301,17 +315,38 @@ expire = ->
 	id = div.children().length + 1
 	div.append('
 	<div>
-		<label for="textures__name">Название</label><br>
-		<input id="textures__name" name="textures[][name]" type="text"><br>
-		<label for="textures__scode">Код</label><br>
-		<input id="textures__scode" name="textures[][scode]" type="text"><br>
-		<label for="textures__price">Цена</label><br>
-		<input id="textures__price" name="textures[][price]" type="text"><br>
-		<label for="textures__image">Изображение</label><br>
-		<div id="addImages" class="textureImage'+id+'">
-			<input type="button" onclick="addImagesClick(this)" value="Добавить изображение">
+		<div style="margin-bottom:20px">
+			<div class="row">
+	      <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__name">Название</label></h4>
+	      <div class="col-md-4">
+	        <div class="wrath-content-box">
+	          <input class="form-control" id="textures__name" name="textures[][name]" type="text">
+	        </div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__scode">Код</label></h4>
+	      <div class="col-md-4">
+	        <div class="wrath-content-box">
+	          <input class="form-control" id="textures__scode" name="textures[][scode]" type="text">
+	        </div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__price">Цена</label></h4>
+	      <div class="col-md-4">
+	        <div class="wrath-content-box">
+	          <input class="form-control" id="textures__price" name="textures[][price]" type="text">
+	        </div>
+	      </div>
+	    </div>
+			<div id="addImages" class="textureImage'+id+'">
+	      <input class="btn btn-primary" style="margin-top:10px" type="button" onclick="addImagesClick(this)" value="Добавить изображение">
+	      <div></div>
+	    </div>
+			<input class="one" id="textureImage'+id+'" name="textures[][image]" type="hidden"><br>
+			<p class="btn btn-danger" onclick="this.parentNode.parentNode.removeChild(this.parentNode)">Удалить текстуру</p>
 		</div>
-		<input id="textureImage'+id+'" name="textures[][image]" type="hidden" value=""><br>
 	</div>')    	
 @addImagesClick = (el) ->
 	iframe.src = '/images/new'
@@ -333,7 +368,7 @@ expire = ->
 @imageChange = (el) ->
 	if el.innerHTML == 'Изменить'
 		el.innerHTML = 'Вернуть'
-		$(el).next().html('<input type="button" onclick="addImagesClick(this)" value="Добавить изображение">')
+		$(el).next().html('<input class="btn btn-primary" style="margin-top:10px" type="button" onclick="addImagesClick(this)" value="Добавить изображение"><div></div>')
 	else
 		el.innerHTML = 'Изменить'
 		$(el).next().html('<img src="'+$(el).data().url+'">').next().val($(el).data().url)
@@ -361,12 +396,13 @@ expire = ->
 	photoes.find('.showPhoto').attr 'class', ''
 	$(photoes.children()[$(el).index()]).attr 'class', 'showPhoto'
 @colorToggle = (el, action) ->
-	unless el.className == 'active'
+	unless el.className == 'btn btn-success'
 		div = $(el).parent()
-		div.find('> a').attr 'class', ''
-		div.find('> span').hide()
-		$(el).attr 'class', 'active'
-		div.find('#'+action+'Color').show()
+		colorFields = $(div).parents('.colorFields')
+		div.find('> a').attr 'class', 'btn btn-default'
+		colorFields.find('> span').hide()
+		$(el).attr 'class', 'btn btn-success'
+		colorFields.find('#'+action+'Color').show()
 @showProductPrcolor = (el) ->
 	if $(el).parent().attr('class') == 'active'
 		$(el).parent().attr 'class', ''

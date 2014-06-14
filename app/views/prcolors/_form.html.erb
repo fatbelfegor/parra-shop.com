@@ -1,113 +1,167 @@
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 <%= form_for @prcolor do |f| %>
-  <p>
-    <%= f.label :product_id , "Продукт" %><br>
-    <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end) %>
-  </p>
-  <div class="colorFields">
-    <% if action_name == 'new' %>
-      <a class="active" onclick="colorToggle(this, 'new')">Создать новый цвет</a> / <a onclick="colorToggle(this, 'copy')">Скопировать существующий</a>
-    <% end %>
-    <span id="newColor">
-      <p>
-        <%= f.label :scode , "Код" %><br>
-        <%= f.text_field :scode %>
-      </p>
-      <br>
-      <label for="textures__image">Изображение</label><br>
-      <% if (@prcolor.images) then %><p onclick="imageChange(this)" data-url="<%= @prcolor.images %>">Изменить</p><% end %>
-      <div id="addImages" class="prcolor_images">
-        <% if (@prcolor.images) then %>
-        <img src="<%= @prcolor.images %>">
-        <% else %>
-        <input type="button" value="Добавить изображение">
-        <% end %>
-      </div>
-      <%= f.hidden_field :images %>
-      <br>
-      <p>
-        <%= f.label :name , "Название" %><br>
-        <%= f.text_field :name %>
-      </p>
-      <p>
-        <%= f.label :price , "Цена" %><br>
-        <%= f.text_field :price %>
-      </p>
-      <p>
-        <%= f.label :description , "Описание" %><br />
-        <%= f.text_area :description, class: "tinymce", :rows => 5 %>
-      </p>
-      <div id="createTextures">
-        <h2 onclick="addTexture(this)">Добавить текстуру +</h2>
-        <div>
-          <% i = 0 %>
-          <% @prcolor.textures.each do |t| %>
-          <div>
-            <label for="textures__name">Название</label><br>
-            <input id="textures__name" name="textures[][name]" type="text" value="<%= t.name %>"><br>
-            <label for="textures__scode">Код</label><br>
-            <input id="textures__scode" name="textures[][scode]" type="text" value="<%= t.scode %>"><br>
-            <label for="textures__price">Цена</label><br>
-            <input id="textures__price" name="textures[][price]" type="text" value="<%= t.price %>"><br>
-            <label for="textures__image">Изображение</label><br>
-            <% if t.image %><p onclick="imageChange(this)" data-url="<%= t.image %>">Изменить</p><% end %>
-            <div id="addImages" class="textureImage<%= i += 1 %>">
-              <img src="<%= t.image %>">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <td style="padding: 15px 30px 0 20px">
+        <div class="row form-group">
+          <h4 class="col-md-2 text-right"><%= f.label :product_id, "Продукт:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-10">
+            <div class="wrath-content-box">
+              <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end), {}, {class: "form-control"} %>
             </div>
-            <input id="textureImage<%= i %>" name="textures[][image]" type="hidden" value="<%= t.image %>">        
-            <p onclick="this.parentNode.parentNode.removeChild(this.parentNode)">Удалить</p>
-            <br><br>
           </div>
-          <% end %>
         </div>
-      </div>
-    </span>
-    <% if action_name == 'new' %>
-    <span id="copyColor">      
-      <p>
-        <%= label_tag :copy_scode , "Код товара для копирования" %><br>
-        <%= text_field_tag :copy_scode %>
-      </p>
-      <br>
-      <ul>
-      <% @products.each do |p| %>
-        <li>
-          <span>
-            <a onclick="showProductPrcolor(this)"><%= p.name %> <b>(<%= p.scode %>)</b></a>
-            <a onclick="copyPrcolorChoose(this)" class="fancyButton">Выбрать</a>
-          </span>
-          <ul>
-            <% p.prcolors.each do |c| %>
-            <li>
-              <div class="heading">
-                <div class="color" style="background-image: url('<%= c.images %>')">
-                  <p>Каталог тканей</p>
-                  <p><%= c.name %></p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 15px 50px 0 0">
+        <div class="colorFields">
+          <% if action_name == 'new' %>
+            <div class="text-center form-group">
+              <a class="btn btn-success" onclick="colorToggle(this, 'new')">Создать новый цвет</a>
+              <a class="btn btn-default" onclick="colorToggle(this, 'copy')">Скопировать существующий</a>
+            </div>
+          <% end %>
+          <span id="newColor">
+            <div class="row form-group">
+              <h4 class="col-md-1 text-right"><%= f.label :scode, "Код:", class: 'control-label wrath-content-box' %></h4>
+              <div class="col-md-2">
+                <div class="wrath-content-box">
+                  <%= f.text_field :scode, class: "form-control" %>
                 </div>
-                <div class="fancyButton" onclick="texturesWatch(this)">Выбрать</div>
               </div>
-              <div class="textures">
-                <% c.textures.each do |t| %>
-                  <label>
-                    <p><%= t.scode %> <%= t.name %></p>
-                    <a href="<%= t.image %>" data-lightbox="<%= c.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
-                  </label>
+              <h4 class="col-md-2 text-right"><%= f.label :name, "Название:", class: 'control-label wrath-content-box' %></h4>
+              <div class="col-md-2">
+                <div class="wrath-content-box">
+                  <%= f.text_field :name, class: "form-control" %>
+                </div>
+              </div>
+              <h4 class="col-md-2 text-right"><%= f.label :price, "Цена:", class: 'control-label wrath-content-box' %></h4>
+              <div class="col-md-2">
+                <div class="wrath-content-box">
+                  <%= f.text_field :price, class: "form-control" %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center form-group">
+              <div id="addImages" class="prcolor_images">
+                <input type="button" value="Добавить изображение" class="btn btn-primary">
+                <div>
+                  <% if @prcolor.images then @prcolor.images.split(',').each do |i| %>
+                    <div>
+                      <img class="img-thumbnail" src="<%= i %>">
+                      <small class="btn btn-warning" onclick="deleteImage(this)">Удалить</small>
+                    </div>
+                  <% end end %>
+                </div>
+              </div>
+              <%= f.hidden_field :images %>
+            </div>
+
+            <div class="row text-center form-group">
+              <h4 class="col-md-2 text-right"><%= f.label :description, "Описание:", class: 'control-label wrath-content-box' %></h4>
+              <div class="col-md-10">
+                <%= f.text_area :description, class: "tinymce", :rows => 5 %>
+              </div>
+            </div>
+            <div id="createTextures" class="text-center">
+              <h2 onclick="addTexture(this)">Добавить текстуру +</h2>
+              <div>
+                <% i = 0 %>
+                <% @prcolor.textures.each do |t| %>
+                <div style="margin-bottom:20px">
+                  <div class="row">
+                    <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__name">Название</label></h4>
+                    <div class="col-md-4">
+                      <div class="wrath-content-box">
+                        <input class="form-control" id="textures__name" name="textures[][name]" type="text" value="<%= t.name %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__scode">Код</label></h4>
+                    <div class="col-md-4">
+                      <div class="wrath-content-box">
+                        <input class="form-control" id="textures__scode" name="textures[][scode]" type="text" value="<%= t.scode %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__price">Цена</label></h4>
+                    <div class="col-md-4">
+                      <div class="wrath-content-box">
+                        <input class="form-control" id="textures__price" name="textures[][price]" type="text" value="<%= t.price %>">
+                      </div>
+                    </div>
+                  </div>
+                  <% if t.image %><p class="btn btn-warning" onclick="imageChange(this)" data-url="<%= t.image %>">Изменить</p><% end %>
+                  <div id="addImages" class="textureImage<%= i += 1 %>">
+                    <img src="<%= t.image %>">
+                    <div></div>
+                  </div>
+                  <input class="one" id="textureImage<%= i %>" name="textures[][image]" type="hidden" value="<%= t.image %>">
+                  <br>
+                  <p class="btn btn-danger" onclick="this.parentNode.parentNode.removeChild(this.parentNode)">Удалить текстуру</p>
+                </div>
                 <% end %>
               </div>
-            </li>
+            </div>
+          </span>
+          <% if action_name == 'new' %>
+          <span id="copyColor" class="text-center">
+            <div class="row form-group">
+              <h4 class="col-md-5 text-right"><%= label_tag :copy_scode, "Код товара для копирования:", class: 'control-label wrath-content-box' %></h4>
+              <div class="col-md-4">
+                <div class="wrath-content-box">
+                  <%= text_field_tag :copy_scode, '', class: "form-control" %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+            <ul>
+            <% @products.each do |p| %>
+              <li class="col-md-4">
+                <span>
+                  <a class="btn btn-default" onclick="showProductPrcolor(this)"><%= p.name %> <b>(<%= p.scode %>)</b></a>
+                  <a onclick="copyPrcolorChoose(this)" class="btn btn-success">Выбрать</a>
+                </span>
+                <ul>
+                  <% p.prcolors.each do |c| %>
+                  <li>
+                    <div class="heading">
+                      <div class="color" style="background-image: url('<%= c.images %>')">
+                        <p>Каталог тканей</p>
+                        <p><%= c.name %></p>
+                      </div>
+                      <div class="fancyButton" onclick="texturesWatch(this)">Выбрать</div>
+                    </div>
+                    <div class="textures">
+                      <% c.textures.each do |t| %>
+                        <label>
+                          <p><%= t.scode %> <%= t.name %></p>
+                          <a href="<%= t.image %>" data-lightbox="<%= c.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
+                        </label>
+                      <% end %>
+                    </div>
+                  </li>
+                  <% end %>
+                </ul>
+              </li>        
             <% end %>
-          </ul>
-        </li>        
-      <% end %>
-      </ul>
-      <br>
-    </span>
-    <% end %>
-  </div>
-  <p>
-    <%= f.submit 'Сохранить' %>
-  </p>
+            </ul>
+            </div>
+            <br>
+          </span>
+          <% end %>
+        </div>
+        <div class="text-center" style="margin: 30px 0">
+          <%= f.submit 'Сохранить', class: "btn btn-success" %>
+        </div>
+      </td>
+    </tr>
+  </table>
 <% end %>
 
 <%= tinymce %>
