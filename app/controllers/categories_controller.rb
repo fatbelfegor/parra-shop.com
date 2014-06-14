@@ -74,8 +74,10 @@ class CategoriesController < ApplicationController
   end
   
   def sort
+    parent_id = params[:parent_id]
+    parent_id = nil if parent_id == 'nil'
     params[:category].each_with_index do |id, index|
-      Category.update_all({position: index+1}, {id: id})
+      Category.update_all({position: index+1, parent_id: parent_id}, {id: id})
     end
     render :nothing => true
   end

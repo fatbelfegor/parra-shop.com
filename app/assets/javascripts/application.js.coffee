@@ -79,11 +79,16 @@ ready = ->
 			b.toCurrency()
 		$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
 	cartMenuGen()
-	$("#categories").sortable
+	$(".sortable").sortable
 		revert: true
-		#connectWith: ".sortable"
+		connectWith: ".sortable"
 		update: ->
-			$.post('/categories/sort', $(this).sortable('serialize'))
+			id = $(this).parent().attr('id')
+			if id
+				parent_id = id.split('_')[1]
+			else
+				parent_id = 'nil'
+			$.post('/categories/sort', $(this).sortable('serialize')+'&parent_id='+parent_id)
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'
