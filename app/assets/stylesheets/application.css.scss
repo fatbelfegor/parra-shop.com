@@ -1754,8 +1754,14 @@ input[type=text].form-control, .wrath-content-box {
 	padding: 0 15px;
 }
 
-ul#categories > li ul {
-	margin: 17px 68px 34px 34px;
+ul#categories > li {
+	margin-bottom: 5px;
+	ul {
+		margin: 17px 68px 34px 34px;
+		li {
+			margin-bottom: 5px;
+		}
+	}
 }
 
 th {
