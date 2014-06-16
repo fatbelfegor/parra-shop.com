@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class PrcolorsController < ApplicationController
 	def new
 		@prcolor = Prcolor.new
@@ -10,7 +13,7 @@ class PrcolorsController < ApplicationController
 	end
 
 	def create
-    if params[:copy_scode]
+    unless params[:copy_scode].blank?
       @productScode = Product.find(prcolor_params[:product_id]).scode;
       Product.find_by_scode(params[:copy_scode]).prcolors.each do |p|
         @prcolor = Prcolor.create(product_id: prcolor_params[:product_id], scode: @productScode+'_'+p.scode, name: p.name, price: p.price, description: p.description, images: p.images)
@@ -31,6 +34,7 @@ class PrcolorsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
     @products = Product.all
     @prcolor = Prcolor.find(params[:id])
     @product_id = @prcolor.product_id
@@ -53,7 +57,7 @@ class PrcolorsController < ApplicationController
   def destroy
     @prcolor = Prcolor.find(params[:id])
     @prcolor.destroy
-    redirect_to '/kupit/'+@prcolor.product.scode
+    redirect_to kupit_path, scode: @prcolor.product.scode
   end
 
 private
