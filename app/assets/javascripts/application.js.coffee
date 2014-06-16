@@ -89,7 +89,11 @@ ready = ->
 				parent_id = id.split('_')[1]
 			else
 				parent_id = 'nil'
-			$.post('/categories/sort', $(this).sortable('serialize')+'&parent_id='+parent_id)
+			$.post '/categories/sort', $(this).sortable('serialize')+'&parent_id='+parent_id
+	$('#productsSortable').sortable
+		revert: true
+		update: ->
+			$.post '/products/sort', $(this).sortable 'serialize'
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'

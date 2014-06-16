@@ -1767,3 +1767,10 @@ ul#categories > li {
 th {
 	text-align: center;
 }
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+	background-color: white;
+}
+#productsSortable th b {
+	float: left;
+	line-height: 34px;
+}

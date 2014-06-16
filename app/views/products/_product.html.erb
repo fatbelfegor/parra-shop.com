@@ -1,4 +1,4 @@
-<% if product.delemiter?  && del != 'false'-%>
+<% if product.delemiter?  && del != 'false' %>
 <div style="margin-bottom:10px;" id='product_<%= product.id %>'>
 		<table  border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr>
@@ -10,31 +10,26 @@
 				</tr>
 			<% end %>
 		</table>
-<% else -%>
-<div style="margin-bottom:10px;" id='product_<%= product.id %>'>
-	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<% else %>
+<li id='product_<%= product.id %>'>
+	<table class="table table-bordered table-striped">
 		<tr>
-			<td width="100px" height="100px" align="center" rowspan="3">
-				
-			</td>
-			<td style="padding-left:10px;" align="left" colspan="2">
-				<%= link_to product.name, "/kupit/" + product.scode %>
-					<% if current_user && current_user.admin? %>
-						|<%= link_to 'show', "/kupit/" + product.scode %> <%= link_to 'edit', edit_product_path(product) %> <%= link_to 'del', product, :confirm => 'Вы уверены?', :method => :delete %> <b>№<%=product.position%></b><%if product.invisible? -%> <span style="color: red;"><b>(Невидимый)</b></span<% end %>
-					<% end %>
-			</td>
+			<th>
+				<%= link_to product.name, "/kupit/" + product.scode, class: 'btn btn-default' %>
+				<% if current_user && current_user.admin? %>
+					<%= link_to 'edit', edit_product_path(product), class: 'btn btn-warning' %>
+					<%= link_to 'del', product, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %> <b>№<%=product.position%></b><%if product.invisible? %> <span style="color: red;"><b>(Невидимый)</b></span><% end %>
+				<% end %>
+			</th>
 		</tr>
 		<tr>
-			<td colspan="2" style="padding-left:10px;" align="left"><%= sanitize(product.shortdesk) %><br></td>
+			<td style="padding-left:10px;" align="left"><%= sanitize(product.shortdesk) %><br></td>
 		</tr>
 		<tr>
-			<td style="padding-left:10px;" align="left"><span class="product_details"><%= link_to "Подробнее", "/kupit/" + product.scode %></span></td>
-			<td align="right">
-				<span style="font-size:16px;"><b><%= number_to_currency(product.price) %></b></span>
-				
+			<td style="padding-left:10px;">
+				<span style="font-size:16px;"><b><%= number_to_currency(product.price) %></b></span>				
 			</td>
 		</tr>
 	</table>
-<% end -%>
-</div>
-</br>
+</li>
+<% end %>

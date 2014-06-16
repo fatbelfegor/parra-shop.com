@@ -1,28 +1,29 @@
-<div style="margin-top:30px">
-<p>
-  <b>Родительская категория:</b>
-  <%=h(@category.parent.nil? ? "": @category.parent.name) %>
-</p>
-
-<p>
-  <b>Название:</b>
-  <%=h @category.name %>
-</p>
-
-<p>
-  <b>Описание:</b>
-  <%= sanitize(@category.description) %>
-</p>
-
-<%= link_to 'Редактировать', edit_category_path(@category) %> |
-<%= link_to 'Список категорий', categories_path %>
-
-<h1>Список продуктов (<%= @category.products.count %>)</h1>
-
-<%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id })%>
-
-<div id ="products">
-	<%= render(:partial => "products/product" , :collection => @products) %>
+<div>
+<h1 class="text-center" style="margin:15px 0">Категория</h1>
+<table class="table table-striped table-bordered text-center">
+	<tr>
+		<th>Название</th>
+		<th>Родительская категория</th>
+		<th>Описание</th>
+	</tr>
+	<tr>
+		<td><%= @category.name %></td>
+		<td><%= @category.parent.nil? ? "": @category.parent.name %></td>
+		<td><%= sanitize(@category.description) %></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<%= link_to 'Редактировать', edit_category_path(@category), class: 'btn btn-warning' %>
+			<%= link_to 'Список категорий', categories_path, class: 'btn btn-primary' %>
+			<%= link_to 'Удалить', @category, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+		</td>
+	</tr>
+</table>
+<h1 class="text-center" style="margin:15px 0">Список продуктов (<%= @category.products.count %>)</h1>
+<div class="text-center" style="margin-bottom:15px">
+<%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id }, class: 'btn btn-success' )%>
 </div>
-
+<ul id="productsSortable" class="text-center">
+	<%= render(:partial => "products/product" , :collection => @products) %>
+</ul>
 </div>
