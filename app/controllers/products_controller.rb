@@ -21,14 +21,14 @@ class ProductsController < ApplicationController
     session[:color] = nil
     @product = Product.find_by_scode(params[:scode])
     return render :action => 'page404' unless @product
-    # if !@product.invisible || (user_signed_in? && current_user.admin?)
+    if !@product.invisible || (user_signed_in? && current_user.admin?)
       respond_to do |format|
         format.html {render :action => 'show'}
         format.xml  { render :xml => @product }
       end
-    # else      
-    #   render :action => 'page404'
-    # end
+    else      
+      render :action => 'page404'
+    end
   end
   
   # GET /products/new
