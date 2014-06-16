@@ -14,7 +14,7 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require_tree .
-#= require tinymce
+#= require tinymce-jquery
 
 Number.prototype.toCurrency = ->
 	(""+this.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
