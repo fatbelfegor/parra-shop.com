@@ -3,6 +3,7 @@ ParraShopCom::Application.routes.draw do
   get "main/main"
   devise_for :users
   get "images/delete", to: 'images#delete'
+  get '/kupit/:scode', to: 'products#show_scode'
   
   root to: 'main#index', as: 'index'
 
@@ -41,6 +42,5 @@ ParraShopCom::Application.routes.draw do
   post '/order', to: 'order#create', as: "orders"
   get '/cart.json', to: 'main#cartjson'
   get '/cart', to: 'main#cart'
-  get '/kupit/:scode', to: 'products#show_scode'
   get '*anything', to: 'application#page404'
 end
