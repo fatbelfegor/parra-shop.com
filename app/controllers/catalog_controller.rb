@@ -15,7 +15,11 @@ class CatalogController < ApplicationController
       redirect_to_index("Неверный идентификатор категории")
     else
       if(@category)
-        @products = @category.products
+        if user_signed_in? && current_user.admin?
+          @products = @category.products          
+        else
+          @products = @category.products.where('invisible = false')
+        end
       end
  
       end
