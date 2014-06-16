@@ -1631,7 +1631,6 @@ a.cart {
 		#categories {
 			padding-left: 30px;
 			margin-right: -56px;
-			display: none;
 		}
 		div > ul > li {
 			a {
@@ -1787,5 +1786,6 @@ th {
 	line-height: 34px;
 }
 #productsSortable img {
-	height: 100%;
+	height: 100px;
+	width: 100px;
 }

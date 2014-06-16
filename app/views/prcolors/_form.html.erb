@@ -121,8 +121,8 @@
             </div>
             <div class="row">
             <ul>
-            <%= sanitize(PaintTree(true)) %>
-            <% @products.each do |p| %>
+            <%= #sanitize(PaintTreeWithProducts(true)) %>
+            <% if true then @products.each do |p| %>
               <li class="col-md-6">
                 <span>
                   <a onclick="copyPrcolorChoose(this)" class="btn btn-success">Выбрать</a>
@@ -150,7 +150,7 @@
                   <% end %>
                 </ul>
               </li>        
-            <% end %>
+            <% end end %>
             </ul>
             </div>
             <br>

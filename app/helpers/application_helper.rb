@@ -122,12 +122,12 @@ module ApplicationHelper
     categs = Category.roots
     if categs.count > 0
       if adm
-        ret = "<ul id='categories' class='sortable'>"
+        ret = "<ul id='categories'>"
       else
         ret = "<ul>"
       end
       for cat in  categs
-        ret += PaintTreeChildrens(cat, adm, true)
+        ret += PaintTreeChildrensWithProducts(cat, adm, true)
       end
       ret += "</ul>"
     end
@@ -167,6 +167,35 @@ module ApplicationHelper
     end        
         
     ret += "</li>"
+    cat.products.each do |p|
+      ret += "<li class='col-md-12'>
+                <span>
+                  <a onclick=\"asd\" class='btn btn-success'>Выбрать</a>
+                  <a class='btn btn-default' onclick=\"showProductPrcolor(this)\">#{p.name} <b>(#{p.scode})</b></a>
+                </span>
+                <ul>"
+      p.prcolors.each do |c|
+        ret += "<li>
+                  <div class='heading'>
+                    <div class='color' style='background-image: url(\"#{c.images}\")'>
+                      <p>Каталог тканей</p>
+                      <p>#{c.name}</p>
+                    </div>
+                    <div class='fancyButton' onclick='texturesWatch(this)'>Выбрать</div>
+                  </div>
+                  <div class='textures'>"
+        c.textures.each do |t|
+          ret += "<label>
+                    <p>#{t.scode} #{t.name}</p>
+                    <a href='#{t.image}' data-lightbox='#{c.name}' title='#{t.scode} #{t.name}'><img src='#{t.image}'></a>
+                  </label>"
+        end
+        ret += "</div>
+              </li>"
+      end
+      ret += "</ul>
+            </li>"
+    end
     return ret
   end
 end
