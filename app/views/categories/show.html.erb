@@ -14,8 +14,9 @@
 	<tr>
 		<td colspan="3">
 			<%= link_to 'Редактировать', edit_category_path(@category), class: 'btn btn-warning' %>
-			<%= link_to 'Список категорий', categories_path, class: 'btn btn-primary' %>
 			<%= link_to 'Удалить', @category, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+			<%= link_to 'Открыть', '/catalog/index?category_scode='+@category.scode, class: 'btn btn-info' %>
+			<%= link_to 'Список категорий', categories_path, class: 'btn btn-primary' %>	
 		</td>
 	</tr>
 </table>

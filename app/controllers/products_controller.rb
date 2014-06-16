@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     session[:prsize] = nil
     session[:color] = nil
     @product = Product.find_by_scode(params[:scode])
-    #@title = @product.name
+    return render :action => 'page404' unless @product
     unless !@product.invisible || !(user_signed_in? && current_user.admin?)
       respond_to do |format|
         format.html {render :action => 'show'}
