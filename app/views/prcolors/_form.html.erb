@@ -124,8 +124,8 @@
             <% @products.each do |p| %>
               <li class="col-md-6">
                 <span>
-                  <a class="btn btn-default" onclick="showProductPrcolor(this)"><%= p.name %> <b>(<%= p.scode %>)</b></a>
                   <a onclick="copyPrcolorChoose(this)" class="btn btn-success">Выбрать</a>
+                  <a class="btn btn-default" onclick="showProductPrcolor(this)"><%= p.name %> <b>(<%= p.scode %>)</b></a>
                 </span>
                 <ul>
                   <% p.prcolors.each do |c| %>

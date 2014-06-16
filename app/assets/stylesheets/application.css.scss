@@ -1628,12 +1628,18 @@ a.cart {
 	}
 	#copyColor {
 		display: none;
+		div > ul {
+			margin-left: 20px;
+		}
 		div > ul > li {
 			a {
 				line-height: 26px;
 				cursor: pointer;
 				color: #333;
 				float: none;
+			}
+			> span .btn-default {
+				width: 100%;
 			}
 			a:hover {
 				text-decoration: underline;
@@ -1642,14 +1648,17 @@ a.cart {
 				font-weight: bold;
 			}
 			.btn.btn-success {
+				position: absolute;
 				color: white;
 				display: none;
 				margin-left: 25px;
-				position: absolute;
+				right: -13px;
 			}
 			> span {
 				display: block;
 				margin-bottom: 5px;
+				padding: 0 13px;
+				position: relative;
 			}
 			> span:hover .btn.btn-success, > .active .btn.btn-success {
 				display: inline-block;
