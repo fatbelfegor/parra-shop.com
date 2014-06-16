@@ -1,5 +1,4 @@
 ParraShopCom::Application.routes.draw do
-  get "admin/index"
   get "catalog/index"
   get "main/main"
   devise_for :users
@@ -26,12 +25,13 @@ ParraShopCom::Application.routes.draw do
   post 'products/sort', to: 'products#sort'
   
   resources :categories
-  resources :products
   resources :images
   resources :prsizes
   resources :prcolors
   resources :textures
   resources :proptions
+
+  get 'products/index', to: 'main#page404'
   
   resources :products do
     get :show_scode, on: :member
@@ -43,5 +43,5 @@ ParraShopCom::Application.routes.draw do
   get '/cart', to: 'main#cart'
   get '/kupit/:scode', to: 'products#show_scode'
   get '/kupit/:id', to: 'products#show'
-  get '*anything', to: 'main#page404'
+  get '*anything', to: 'application#page404'
 end

@@ -5,12 +5,6 @@ class ProductsController < ApplicationController
   before_filter :admin_required, :except => [:show, :index, :show_scode, :show_name, :buy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   
-  # GET /products
-  # GET /products.json
-  def index
-    @products = Product.all
-  end
-  
   # GET /products/1
   # GET /products/1.json
   def show
@@ -27,10 +21,13 @@ class ProductsController < ApplicationController
     session[:color] = nil
     @product = Product.find_by_scode(params[:scode])
     #@title = @product.name
-   
-    respond_to do |format|
-      format.html {render :action => 'show'}
-      format.xml  { render :xml => @product }
+    unless !@product.invisible || !(user_signed_in? && current_user.admin?)
+      respond_to do |format|
+        format.html {render :action => 'show'}
+        format.xml  { render :xml => @product }
+      end
+    else      
+      render :action => 'page404'
     end
   end
   

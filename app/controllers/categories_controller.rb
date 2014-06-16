@@ -81,18 +81,6 @@ class CategoriesController < ApplicationController
     end
     render :nothing => true
   end
-  # def sort
-  #   set_parent_and_position(nil, params['categories'])
-  #   render :nothing => true
-  # end
-
-  # def set_parent_and_position(parent, sortable)
-  #   sortable.each do |pos, hash|
-  #     id = hash.delete("id")
-  #     Category.update(id, {:position => pos.to_i + 1, :parent_id => parent})
-  #     set_parent_and_position(id, hash)
-  #   end
-  # end
 
 	def catalog
 		@category = Category.find_by(scode: params[:scode])

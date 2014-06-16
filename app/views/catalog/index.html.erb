@@ -7,6 +7,7 @@
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<% @i = 0 %>
 		<% for product in  @products %>
+			<% unless product.invisible %>		
 			
 			<% if (@i == 0 || (@i % 3) == 0) %>
 				<tr>
@@ -17,9 +18,10 @@
 			<% end %>
 			
 			<td>
-				<%= render(:partial => "products/productCatalog", :object => product) %>			
+				<%= render(:partial => "products/productCatalog", :object => product) %>
 			</td>
-			<% @i += 1 %>		
+			<% @i += 1 %>
+			<% end %>	
 		<% end %>
 		<% if ((@i % 3) != 0) %>
 			<% while ((@i % 3) != 0) do %>

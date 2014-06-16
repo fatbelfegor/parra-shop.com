@@ -12,7 +12,10 @@
   <img src="/assets/phone.png">
 </div>
 <nav>
-  <ul id="mainMenu">    
+  <ul id="mainMenu">
+  	<% if user_signed_in? && current_user.admin? %>
+  	<li><a href="/categories">Список категорий</a></li>
+  	<% end %> 
     <li><a href="">Спальни</a>
 	      <div>
 	        <div style="background-image: url(/assets/Bella.png); left: 0"></div>
