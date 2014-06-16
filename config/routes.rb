@@ -43,6 +43,5 @@ ParraShopCom::Application.routes.draw do
   get '/cart', to: 'main#cart'
   get '/kupit/:scode', to: 'products#show_scode'
   get '/kupit/:id', to: 'products#show'
-  
-  get '/:scode', to: 'categories#catalog'
+  get '*anything', to: 'main#page404'
 end
