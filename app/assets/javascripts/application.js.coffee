@@ -426,4 +426,5 @@ expire = ->
 		$(el).parent().attr 'class', 'active'
 		$(el).parent().next().show(300)
 @copyPrcolorChoose = (el) ->
-	$('#copy_scode').val $(el).prev().find('b').html()[1..-2]
+	window.el = el
+	$('#copy_scode').val $(el).next().find('b').html()[1..-2]

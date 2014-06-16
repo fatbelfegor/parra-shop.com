@@ -15,7 +15,7 @@
       </td>
     </tr>
     <tr>
-      <td style="padding: 15px 50px 0 0">
+      <td style="padding: 15px 30px 0 4px">
         <div class="colorFields">
           <% if action_name == 'new' %>
             <div class="text-center form-group">
@@ -121,6 +121,7 @@
             </div>
             <div class="row">
             <ul>
+            <%= sanitize(PaintTree(true)) %>
             <% @products.each do |p| %>
               <li class="col-md-6">
                 <span>

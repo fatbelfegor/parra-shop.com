@@ -116,4 +116,57 @@ module ApplicationHelper
     ret += "</li>"
     return ret
   end
+
+  def PaintTreeWithProducts(adm)
+    ret = ""
+    categs = Category.roots
+    if categs.count > 0
+      if adm
+        ret = "<ul id='categories' class='sortable'>"
+      else
+        ret = "<ul>"
+      end
+      for cat in  categs
+        ret += PaintTreeChildrens(cat, adm, true)
+      end
+      ret += "</ul>"
+    end
+    return ret
+  end
+  
+  def PaintTreeChildrensWithProducts(cat, adm, root)
+      
+    if(!adm)
+      if(root)
+          ret = "<li class='root'>"
+        else
+          ret = "<li>"
+        end
+    else
+        ret = "<li id='category_#{cat.id}'><div class='row'><span class='handle col-md-1 btn btn-info'>[drag]</span>"
+    end
+      
+    if(cat.children.count > 0)
+      if(adm)
+        ret += AddEdit(cat)
+      else
+        ret += cat.name
+      end
+      
+      ret += "</div><ul class='sortable'>"
+      for ch in cat.children
+        ret +=  PaintTreeChildrensWithProducts(ch, adm , false)
+      end
+      ret += "</ul>"
+    else
+      if(adm)
+        ret += AddEdit(cat)
+      else
+        ret += link_to(cat.name, "/" + cat.scode)
+      end
+    end        
+        
+    ret += "</li>"
+    return ret
+  end
 end

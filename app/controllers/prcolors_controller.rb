@@ -34,7 +34,6 @@ class PrcolorsController < ApplicationController
   end
 
   def edit
-    @categories = Category.all
     @products = Product.all
     @prcolor = Prcolor.find(params[:id])
     @product_id = @prcolor.product_id
