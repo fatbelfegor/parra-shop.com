@@ -1,0 +1,128 @@
+<br><h2 class="text-center">Скопировать цвет</h2><br>
+
+<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
+<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
+<%= form_for @prcolor do |f| %>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <td style="padding: 15px 30px 0 20px">
+        <div class="row form-group">
+          <h4 class="col-md-2 text-right"><%= f.label :product_id, "Продукт:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-10">
+            <div class="wrath-content-box">
+              <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end), {}, {class: "form-control"} %>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 15px 30px 0 4px">
+        <div class="colorFields">
+	        <div class="text-center form-group">
+	          <%= link_to 'Создать новый цвет', { :controller => :prcolors, :action => :new , :product_id => @prcolor.product.id }, class: 'btn btn-default' %>
+	          <a class="btn btn-success">Скопировать существующий</a>
+	        </div>
+          <span id="copyColor" class="text-center">
+            <div class="row form-group">
+              <h4 class="col-md-5 text-right"><%= label_tag :copy_scode, "Код товара для копирования:", class: 'control-label wrath-content-box' %></h4>
+              <div class="col-md-4">
+                <div class="wrath-content-box">
+                  <%= text_field_tag :copy_scode, '', class: "form-control" %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+            <ul>
+              <% def PaintCategories(cat) %>
+                <li id='category_#{cat.id}'>
+                  <div class='row'>
+                    <span onclick="showHideProductsList(this)" class='handle col-md-1 btn btn-info'>Показать</span>
+                    <span class='col-md-10 btn btn-default'><%= cat.name %></span>
+                  </div>
+                  <% unless cat.children.blank? %><ul><% end %>
+                  <% for ch in cat.children 
+                    PaintCategories(ch)
+                  end %>
+                  <% unless cat.children.blank? %></ul><% end %>
+                  <div class="products">
+                  <% for p in cat.products %>
+                    <div class="col-md-12 copyProduct">
+                      <span>
+                        <a onclick="copyPrcolorChoose(this)" class="btn btn-success">Выбрать</a>
+                        <a class="btn btn-default" onclick="showProductPrcolor(this)"><%= p.name %> <b>(<%= p.scode %>)</b></a>
+                      </span>
+                      <ul>
+                        <% p.prcolors.each do |c| %>
+                        <li>
+                          <div class="heading">
+                            <div class="color" style="background-image: url('<%= c.images %>')">
+                              <p>Каталог тканей</p>
+                              <p><%= c.name %></p>
+                            </div>
+                            <div class="fancyButton" onclick="texturesWatch(this)">Выбрать</div>
+                          </div>
+                          <div class="textures">
+                            <% c.textures.each do |t| %>
+                              <label>
+                                <p><%= t.scode %> <%= t.name %></p>
+                                <a href="<%= t.image %>" data-lightbox="<%= c.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
+                              </label>
+                            <% end %>
+                          </div>
+                        </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  </div>
+                </li>
+              <% end %>
+              <ul id='categories'>
+                <% for cat in  @categories
+                  PaintCategories(cat)
+                end %>
+              </ul>
+            <% if false then @products.each do |p| %>
+              <li class="col-md-6">
+                <span>
+                  <a onclick="copyPrcolorChoose(this)" class="btn btn-success">Выбрать</a>
+                  <a class="btn btn-default" onclick="showProductPrcolor(this)"><%= p.name %> <b>(<%= p.scode %>)</b></a>
+                </span>
+                <ul>
+                  <% p.prcolors.each do |c| %>
+                  <li>
+                    <div class="heading">
+                      <div class="color" style="background-image: url('<%= c.images %>')">
+                        <p>Каталог тканей</p>
+                        <p><%= c.name %></p>
+                      </div>
+                      <div class="fancyButton" onclick="texturesWatch(this)">Выбрать</div>
+                    </div>
+                    <div class="textures">
+                      <% c.textures.each do |t| %>
+                        <label>
+                          <p><%= t.scode %> <%= t.name %></p>
+                          <a href="<%= t.image %>" data-lightbox="<%= c.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
+                        </label>
+                      <% end %>
+                    </div>
+                  </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end end %>
+            </ul>
+            </div>
+            <br>
+          </span>
+        </div>
+        <div class="text-center" style="margin: 30px 0">
+          <%= f.submit 'Сохранить', class: "btn btn-success" %>
+        </div>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+<%= tinymce %>

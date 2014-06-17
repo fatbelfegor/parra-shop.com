@@ -9,8 +9,19 @@ class PrcolorsController < ApplicationController
       
 		if params[:product_id]
       @prcolor.product = Product.find(params[:product_id])
-    end		
+    end
 	end
+
+  def copy
+    @categories = Category.roots
+    @prcolor = Prcolor.new
+    @products = Product.all
+    @product_id = params[:product_id]
+      
+    if params[:product_id]
+      @prcolor.product = Product.find(params[:product_id])
+    end
+  end
 
 	def create
     unless params[:copy_scode].blank?

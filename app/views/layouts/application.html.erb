@@ -154,21 +154,75 @@
   <div onclick="this.parentNode.style.display = 'none'"></div>
   <div>
     <div class="header">
-      Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.
-      <div onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
+      <h4>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</h4>
+      <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
     </div>
     <%= form_for :order, url: '/order' do |f| %>
-    <p>Ваше имя:<%= f.text_field :first_name %></p>
-    <p>Контактный телефон:<%= f.text_field :phone %></p>
-    <p><label><input type="checkbox" onclick="orderShowAll()">Нужна доставка<label></p>
-    <div id="otherInputs" class="hide">
-      <p>Ваш e-mail:<%= f.text_field :email %></p>
-      <p>Улица:<%= f.text_field :addr_street %></p>
-      <p>Дом:<%= f.text_field :addr_home %></p>
-      <p>Корпус:<input type="text" name="addr_block"></p>
-      <p>Квартира:<input type="text" name="addr_flat"></p>
+    <div class="row">
+    	<h4 class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :first_name, class: "form-control" %>
+	      </div>
+	    </div>
+	</div>
+	<div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :phone, class: "form-control" %>
+	      </div>
+	    </div>
     </div>
-    <input type="submit" value="Отправить">
+    <div class="checkbox">
+	  <label>
+	    <input type="checkbox" onclick="orderShowAll()">
+	    <h4 class="text-left">Нужна доставка</h4>
+	  </label>
+	</div>
+    <div id="otherInputs">
+    	<div class="row">
+    	<h4 class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :email, class: "form-control" %>
+	      </div>
+	    </div>
+	    </div>
+	    <div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_street, "Улица:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :addr_street, class: "form-control" %>
+	      </div>
+	    </div>
+	    </div>
+	    <div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_home, "Дом:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :addr_home, class: "form-control" %>
+	      </div>
+	    </div>
+	    </div>
+	    <div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_block, "Корпус:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :addr_block, class: "form-control" %>
+		      </div>
+	    </div>
+	    </div>
+	    <div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_flat, "Квартира:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :addr_flat, class: "form-control" %>
+		      </div>
+	    </div>
+	    </div>
+    </div>
+    <input class="btn btn-success" type="submit" value="Отправить">
     <% end %>
   </div>
 </div>

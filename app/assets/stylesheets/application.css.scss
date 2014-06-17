@@ -366,6 +366,10 @@ nav {
 	}
 }
 
+#orderWindow form {
+	padding: 15px 10px 0 !important;
+}
+
 #alert, #orderWindow {
 	display: none;
 	@include transition(0.3s);
@@ -504,7 +508,7 @@ nav {
 			text-decoration: underline;
 		}
 
-		.gotoCart, input[type=submit] {
+		.gotoCart {
 			float: right;
 			text-transform: lowercase;
 			line-height: 34px;
@@ -516,7 +520,7 @@ nav {
 			text-decoration: none;
 		}
 
-		.gotoCart:hover, input[type=submit]:hover {
+		.gotoCart:hover {
 			color: black;
 			text-decoration: underline;
 			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #92E88A), color-stop(0.5, #52B84A), color-stop(0.5, #4AAC45), color-stop(1, #41A638));
@@ -563,20 +567,6 @@ nav {
 				margin-left: 15px;
 			}
 
-			input[type=submit] {
-				float: left;
-				margin-top: 15px;
-				border: 0;
-				height: 28px;
-				line-height: 28px;
-				font-weight: bold;
-				cursor: pointer;
-			}
-
-			input[type=submit]:focus {
-				outline: 0;
-			}
-
 			input[type=checkbox] {
 				margin-right: 8px;
 				position: relative;
@@ -584,13 +574,12 @@ nav {
 			}
 
 			#otherInputs {
-				height: 156px;		
-				overflow: hidden;
-				@include transition(0.3s);
-			}
-
-			#otherInputs.hide {
 				height: 0;
+				overflow: hidden;
+				margin-left: 0;
+				.row, h4 {
+					margin: 5px 0;
+				}				
 			}
 		}
 	}
@@ -1627,10 +1616,9 @@ a.cart {
 		font-weight: bold;
 	}
 	#copyColor {
-		display: none;
 		#categories {
 			padding-left: 30px;
-			margin-right: -56px;
+			margin-right: -38px;
 		}
 		div > ul > li {
 			a {
@@ -1731,6 +1719,103 @@ a.cart {
 	}
 }
 
+.copyProduct {
+	a {
+		line-height: 26px;
+		cursor: pointer;
+		color: #333;
+		float: none;
+	}
+	> span .btn-default {
+		width: 100%;
+		overflow: hidden;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+	> .active {
+		font-weight: bold;
+	}
+	.btn.btn-success {
+		position: absolute;
+		color: white;
+		display: none;
+		margin-left: 25px;
+		right: -13px;
+	}
+	> span {
+		display: block;
+		margin-bottom: 5px;
+		padding: 0 13px;
+		position: relative;
+	}
+	> span:hover .btn.btn-success, > .active .btn.btn-success {
+		display: inline-block;
+	}
+	ul {
+		display: none;
+	}
+	li {
+		margin-left: 30px;				
+		.color {
+			width: 126px;
+			height: 52px;
+			margin: 16px 16px 0 0;
+			background-size: 100% 100%;
+			padding: 5px 8px 0 8px;
+			display: inline-block;
+			p {
+				display: block;
+				width: 100%;
+				font-size: 15px;
+				color: white;
+				font-weight: bold;
+				line-height: 22px;
+			}
+		}
+		.fancyButton {
+			float: none;
+			display: inline-block;
+			vertical-align: bottom;
+		}
+		label {
+			width: 96px;
+			height: 115px;
+			margin-top: 16px;
+			display: inline-block;
+			margin-right: 10px;
+			p {
+				width: 100%;
+				white-space: nowrap;
+				text-align: center;
+				font-size: 10px;
+			}
+			a {
+				display: block;
+				margin: 10px 17px;
+				width: 62px;
+				height: 62px;
+				padding: 0;
+			}
+			img {
+				margin: 0;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				-webkit-border-radius: 31px;
+				-moz-border-radius: 31px;
+				-o-border-radius: 31px;
+				border-radius: 31px;
+			}
+		}
+		.textures {
+			height: 0;
+			overflow: hidden;
+		}
+	}
+}
+
 .categoryLogo {
 	margin: 30px 80px 20px;
 	font-size: 20px;
@@ -1772,6 +1857,10 @@ ul#categories > li {
 		li {
 			margin-bottom: 5px;
 		}
+	}
+	.products {
+		display: none;
+		margin-right: 70px;
 	}
 }
 

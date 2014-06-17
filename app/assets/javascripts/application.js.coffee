@@ -305,11 +305,13 @@ expire = ->
 		$('body')[0].appendChild(w[0])
 		d.css 'left':$(window).width()/2-d.width()/2+'px', 'top':$(window).height()/2-d.height()/2-150+'px'
 @orderShowAll = ->
-	h = $('#otherInputs')[0]
-	if h.className == 'hide'
-		h.className = ''
+	h = $($('#otherInputs')[0])
+	if h.attr('class') == 'show'
+		h.attr('class', '')
+		h.animate 'height':'0px', 300
 	else
-		h.className = 'hide'
+		h.attr('class', 'show')
+		h.animate 'height':'230px', 300
 @cartCount = ->
 	count = 0
 	cart.forEach (i) ->
@@ -428,3 +430,11 @@ expire = ->
 @copyPrcolorChoose = (el) ->
 	window.el = el
 	$('#copy_scode').val $(el).next().find('b').html()[1..-2]
+@showHideProductsList = (el) ->
+	products = $(el).parent().next()
+	if products.css('display') == 'none'
+		products.show 300
+		$(el).html 'Спрятать'
+	else
+		products.hide 300
+		$(el).html 'Показать'

@@ -19,8 +19,8 @@
         <div class="colorFields">
           <% if action_name == 'new' %>
             <div class="text-center form-group">
-              <a class="btn btn-success" onclick="colorToggle(this, 'new')">Создать новый цвет</a>
-              <a class="btn btn-default" onclick="colorToggle(this, 'copy')">Скопировать существующий</a>
+              <a class="btn btn-success">Создать новый цвет</a>
+              <%= link_to 'Скопировать цвет', { :controller => :prcolors, :action => :copy , :product_id => @prcolor.product.id }, class: 'btn btn-default' %>
             </div>
           <% end %>
           <span id="newColor">
@@ -109,53 +109,6 @@
               </div>
             </div>
           </span>
-          <% if action_name == 'new' %>
-          <span id="copyColor" class="text-center">
-            <div class="row form-group">
-              <h4 class="col-md-5 text-right"><%= label_tag :copy_scode, "Код товара для копирования:", class: 'control-label wrath-content-box' %></h4>
-              <div class="col-md-4">
-                <div class="wrath-content-box">
-                  <%= text_field_tag :copy_scode, '', class: "form-control" %>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-            <ul>
-            <% #sanitize(PaintTreeWithProducts(true)) %>
-            <% if true then @products.each do |p| %>
-              <li class="col-md-6">
-                <span>
-                  <a onclick="copyPrcolorChoose(this)" class="btn btn-success">Выбрать</a>
-                  <a class="btn btn-default" onclick="showProductPrcolor(this)"><%= p.name %> <b>(<%= p.scode %>)</b></a>
-                </span>
-                <ul>
-                  <% p.prcolors.each do |c| %>
-                  <li>
-                    <div class="heading">
-                      <div class="color" style="background-image: url('<%= c.images %>')">
-                        <p>Каталог тканей</p>
-                        <p><%= c.name %></p>
-                      </div>
-                      <div class="fancyButton" onclick="texturesWatch(this)">Выбрать</div>
-                    </div>
-                    <div class="textures">
-                      <% c.textures.each do |t| %>
-                        <label>
-                          <p><%= t.scode %> <%= t.name %></p>
-                          <a href="<%= t.image %>" data-lightbox="<%= c.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
-                        </label>
-                      <% end %>
-                    </div>
-                  </li>
-                  <% end %>
-                </ul>
-              </li>        
-            <% end end %>
-            </ul>
-            </div>
-            <br>
-          </span>
-          <% end %>
         </div>
         <div class="text-center" style="margin: 30px 0">
           <%= f.submit 'Сохранить', class: "btn btn-success" %>
