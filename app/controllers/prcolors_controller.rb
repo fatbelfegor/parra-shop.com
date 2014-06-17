@@ -25,9 +25,9 @@ class PrcolorsController < ApplicationController
 
 	def create
     unless params[:copy_scode].blank?
-      @productScode = Product.find(prcolor_params[:product_id]).scode;
+      @scode = Product.find(prcolor_params[:product_id]).scode;
       Product.find_by_scode(params[:copy_scode]).prcolors.each do |p|
-        @prcolor = Prcolor.create(product_id: prcolor_params[:product_id], scode: @productScode+'_'+p.scode, name: p.name, price: p.price, description: p.description, images: p.images)
+        @prcolor = Prcolor.create(product_id: prcolor_params[:product_id], scode: @scode+'_'+p.scode, name: p.name, price: p.price, description: p.description, images: p.images)
         p.textures.each do |t|
           Texture.create(prcolor_id: @prcolor.id, name: t[:name], scode: t[:scode], price: t[:price], image: t[:image])
         end
@@ -35,13 +35,14 @@ class PrcolorsController < ApplicationController
     else
       @prcolor = Prcolor.new(prcolor_params)        
       @prcolor.save
+      @scode = @prcolor.product.scode
       if params[:textures]
         params[:textures].each do |t|
           Texture.create(name: t[:name], scode: t[:scode], price: t[:price], image: t[:image], prcolor_id: @prcolor.id)
         end
       end
     end
-    redirect_to controller: :products, action: :show_scode, scode: @prcolor.product.scode
+    redirect_to controller: :products, action: :show_scode, scode: @scode
   end
 
   def edit
