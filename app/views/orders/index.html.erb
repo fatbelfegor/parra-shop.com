@@ -1,0 +1,35 @@
+<h1 class="text-center" style="margin:15px 0">Список продуктов (<%= @orders.count %>)</h1>
+
+<div class="text-center">
+	<a href="/orders/" class="btn btn-primary">Все</a>
+	<a href="?show=new" class="btn btn-info">Новые</a>
+	<a href="?show=exec" class="btn btn-success">Выполненные</a>
+	<a href="?show=deny" class="btn btn-warning">Отклоненные</a>
+</div>
+
+<br>
+
+<table class="table table-striped table-bordered text-center">
+	<tr>
+		<th>Статус</th>
+		<th>Ф.И.О</th>
+		<th>Телефон</th>
+		<th>Сумма</th>
+		<th>Действия</th>
+	</tr>
+	<% @orders.each do |order|
+		price = 0;
+		order.order_items.each do |item|
+			price += item.price
+		end %>
+	<tr>
+		<td><% if order.status == true %>Выполен
+		<% elsif order.status == false %>Отклонен
+		<% else %>Новый<% end %></td>
+		<td><%= order.first_name %></td>
+		<td><%= order.phone %></td>
+		<td><%= number_to_currency(price) %></td>
+		<td><%= link_to("Открыть", order, class: 'btn btn-info') %> <%= link_to("Выполнить", exec_order_path(order), class: 'btn btn-success') %> <%= link_to("Отклонить", deny_order_path(order), class: 'btn btn-warning') %> <%= link_to("Удалить", order, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger') %></td>
+	</tr>
+	<% end %>
+</table>

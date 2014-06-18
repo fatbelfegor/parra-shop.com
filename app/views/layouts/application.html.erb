@@ -8,14 +8,18 @@
 </head>
 <body class='<%= controller.controller_name %>'>
 <a href='/'><img class="logo" src="/assets/logo.png"></a>
+<% if user_signed_in? && current_user.admin? %>
+<ul class="admin-nav">
+	<li><b>Администрирование:</b></li>
+  	<li><a href="/categories">Список категорий</a></li>
+	<li><a href="/orders">Заказы</a></li>
+</ul>
+<% end %>
 <div class="shopPhone">
   <img src="/assets/phone.png">
 </div>
 <nav>
-  <ul id="mainMenu">
-  	<% if user_signed_in? && current_user.admin? %>
-  	<li><a href="/categories">Список категорий</a></li>
-  	<% end %> 
+  <ul id="mainMenu">  	 
     <li><a href="">Спальни</a>
 	      <div>
 	        <div style="background-image: url(/assets/Bella.png); left: 0"></div>
@@ -157,7 +161,7 @@
       <h4>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</h4>
       <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
     </div>
-    <%= form_for :order, url: '/order' do |f| %>
+    <%= form_for :order, url: orders_path do |f| %>
     <div class="row">
     	<h4 class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
     	<div class="col-md-5">
@@ -223,6 +227,7 @@
 	    </div>
     </div>
     <input class="btn btn-success" type="submit" value="Отправить">
+    <input type="hidden" name="cartfield" id="cartfield">
     <% end %>
   </div>
 </div>

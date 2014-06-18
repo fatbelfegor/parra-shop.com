@@ -37,8 +37,7 @@ ready = ->
 	unless cart
 		window.cart = []
 	cartCount()
-	if $('#cartfield')[0]
-		$('#cartfield').val(JSON.stringify(cart))
+	$('#cartfield').val(JSON.stringify(cart))
 	if $('#cart')[0]
 		items = ''
 		i = 0
@@ -438,3 +437,24 @@ expire = ->
 	else
 		products.hide 300
 		$(el).html 'Показать'
+orderItemPriceCalc = (el, num) ->
+	tr = $(el).parents('tr')
+	tr.find('.endPrice').html (parseInt(tr.find('.startPrice').html().replace(/\ /g, ''))*num).toCurrency()+' руб.'
+@orderItemPlus = (el) ->
+	$.post $(el).parent().data('url')+'/plus'
+	prev = $(el).prev()
+	num = parseInt(prev.html())+1
+	prev.html num
+	if num == 2
+		prev.prev().attr 'class', 'btn btn-danger quantity'
+	orderItemPriceCalc(el, num)
+@orderItemMinus = (el) ->	
+	next = $(el).next()
+	num = parseInt(next.html())-1
+	if num > 0
+		$.post $(el).parent().data('url')+'/minus'
+		next.html num
+		$(el).attr 'class', 'btn btn-danger quantity'
+	if num < 2
+		$(el).attr 'class', 'btn btn-default quantity'
+	orderItemPriceCalc(el, num)

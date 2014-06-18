@@ -1874,3 +1874,35 @@ th {
 	height: 100px;
 	width: 100px;
 }
+.admin-nav {
+	position: absolute;
+	left: 250px;
+	top: 10px;
+	font-size: 13px;
+	text-transform: uppercase;
+	li {
+		display: inline-block;
+		line-height: 26px;
+		margin-right: 20px;
+		color: #58585A;
+		a:hover {
+			color: #52B84A;
+		}
+	}
+}
+.order-items {
+	.quantity {
+		width: 16px;
+		height: 16px;
+		padding: 0;
+		line-height: 1;
+		margin: 0 10px;
+	}
+	img {
+		width: 100px;
+		height: 100px;
+	}
+	td {
+		vertical-align: middle !important;
+	}
+}

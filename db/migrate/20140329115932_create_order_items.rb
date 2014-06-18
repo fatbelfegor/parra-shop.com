@@ -1,6 +1,6 @@
 class CreateOrderItems < ActiveRecord::Migration
   def change
-    create_table :order_items do |t|
+    create_table :order_items, :options => 'COLLATE=utf8_general_ci' do |t|
     	t.column :order_id,   :integer, :null => false
       t.column :product_id,   :integer, :null => false
       t.column :quantity,   :integer, :null => false

@@ -1,4 +1,7 @@
 ParraShopCom::Application.routes.draw do
+  get "order_item/plus"
+  get "order_item/minus"
+  get "order_item/delete"
   get "catalog/index"
   get "main/main"
   devise_for :users
@@ -26,21 +29,20 @@ ParraShopCom::Application.routes.draw do
   post 'categories/sort', to: 'categories#sort'
   post 'products/sort', to: 'products#sort'
   
-  resources :categories
-  resources :images
-  resources :prsizes
-  resources :prcolors
-  resources :textures
-  resources :proptions
-
-  get 'products/index', to: 'main#page404'
+  resources :categories, :images, :prsizes, :textures, :proptions, :prcolors
+  resources :orders, except: [:edit] do
+    get :exec, on: :member
+    get :deny, on: :member
+    resources :order_item, except: [:index, :show, :edit] do
+      post :plus, on: :member
+      post :minus, on: :member
+    end
+  end
   
-  resources :products do
+  resources :products, except: :index do
     get :show_scode, on: :member
   end
   
-  get '/order', to: 'order#new'
-  post '/order', to: 'order#create', as: "orders"
   get '/cart.json', to: 'main#cartjson'
   get '/cart', to: 'main#cart'
   get '*anything', to: 'application#page404'
