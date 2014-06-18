@@ -36,8 +36,13 @@ ActiveRecord::Schema.define(version: 20140618022844) do
     t.integer "product_id",  null: false
   end
 
+  create_table "images", force: true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "order_items", force: true do |t|
-    t.integer  "order_id",                                          null: false
     t.integer  "product_id",                                        null: false
     t.integer  "quantity",                                          null: false
     t.decimal  "price",      precision: 18, scale: 2, default: 0.0, null: false
@@ -46,8 +51,10 @@ ActiveRecord::Schema.define(version: 20140618022844) do
     t.string   "option"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
   create_table "orders", force: true do |t|
@@ -75,8 +82,8 @@ ActiveRecord::Schema.define(version: 20140618022844) do
     t.decimal  "price",       precision: 18, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "images"
     t.string   "description"
+    t.string   "images"
   end
 
   create_table "products", force: true do |t|
