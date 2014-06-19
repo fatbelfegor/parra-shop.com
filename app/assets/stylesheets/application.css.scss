@@ -364,6 +364,10 @@ nav {
 
 #orderWindow form {
 	padding: 15px 10px 0 !important;
+	.col-md-5 {
+		width: 45%;
+		float: left;
+	}
 }
 
 #alert, #orderWindow {
@@ -1818,10 +1822,9 @@ a.cart {
 	font-weight: normal;
 	line-height: 27px;
 	img {
-		width: 58px;
-		height: 17px;
 		position: relative;
-		top: 2px;
+		top: 3px;
+		float: left;
 	}
 }
 
