@@ -53,6 +53,8 @@ class OrdersController < ApplicationController
             option: i['o']
       		})
       	}
+        OrderMailer.ordersave(@order).deliver
+        OrderMailer.ordersaveclient(@order).deliver
         format.html{redirect_to index_path, notice: 'Заказ был успешно оформлен.'}
       else
         format.html{redirect_to index_path, notice: 'Заказ не был оформлен.'}
