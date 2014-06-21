@@ -161,7 +161,7 @@
       <h4>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</h4>
       <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
     </div>
-    <%= form_for :order, url: orders_path do |f| %>
+    <%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
     <div class="row">
     	<h4 class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
     	<div class="col-md-5">
