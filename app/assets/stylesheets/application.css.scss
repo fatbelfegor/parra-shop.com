@@ -1512,6 +1512,21 @@ a.cart {
 .home {
 	margin-top:30px;
 	margin-left:50px;
+	.opacity img {
+		cursor: pointer;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+	    filter: alpha(opacity=75);
+	    -khtml-opacity: 0.75;
+	    -moz-opacity: 0.75;
+	    opacity: 0.75;
+	}
+	.opacity img:hover {
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	    filter: alpha(opacity=100);
+	    -khtml-opacity: 1;
+	    -moz-opacity: 1;
+	    opacity: 1;
+	}
 	> table {
 		td {
 			div, a img {
