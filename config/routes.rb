@@ -1,4 +1,5 @@
 ParraShopCom::Application.routes.draw do
+  get "/Jimmi", to: 'main#Jimmi'
   get "order_item/plus"
   get "order_item/minus"
   get "order_item/delete"

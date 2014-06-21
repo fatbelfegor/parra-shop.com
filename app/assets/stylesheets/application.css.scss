@@ -1909,3 +1909,10 @@ th {
 		vertical-align: middle !important;
 	}
 }
+.jimmi {
+	tr:nth-child(2) {
+		td {
+			float: left;
+		}
+	}
+}

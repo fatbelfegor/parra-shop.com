@@ -25,5 +25,7 @@ class MainController < ApplicationController
   	@product = Product.find_by_name params[:name]
   	render json: @product
   end
-  
+
+  def Jimmi
+  end  
 end
