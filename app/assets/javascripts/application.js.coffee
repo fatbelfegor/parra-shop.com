@@ -458,41 +458,29 @@ orderItemPriceCalc = (el, num) ->
 	if num < 2
 		$(el).attr 'class', 'btn btn-default quantity'
 	orderItemPriceCalc(el, num)
-@orderValidate = (form) ->
-	ok = true
-	nameParent = $(form).find('input:text').first().parent()
-	name = nameParent.find('input')
-	if name.val() == ''
-		ok = false
-		nameParent.attr 'class','wrath-content-box has-error'
-		name.attr 'placeholder','Заполните поле'
+validate = (input) ->
+	if input.val() == ''
+		input.parent().addClass 'has-error'
+		input.attr 'placeholder','Заполните поле'
+		false
 	else
-		nameParent.attr 'class','wrath-content-box'
-		name.attr 'placeholder',''
-	phoneParent = $($(form).find('input:text')[1]).parent()
-	phone = phoneParent.find('input')
-	if phone.val() == ''
-		ok = false
-		phoneParent.attr 'class','wrath-content-box has-error'
-		phone.attr 'placeholder','Заполните поле'
-	else
-		phoneParent.attr 'class','wrath-content-box'
-		phone.attr 'placeholder',''
+		input.parent().removeClass 'has-error'
+		input.attr 'placeholder',''
+		true
+@orderValidate = (form) ->	
+	ok = validate($(form).find('input:text').first())
+	ok = validate($($(form).find('input:text')[1]))
 	ok
 @productValidate = ->
-	ok = true
-	name = $('#product_name')
-	if name.val() == ''
-		ok = false
-		name.parent().addClass 'has-error'
-		name.attr 'placeholder','Заполните поле'
-	else
-		name.parent().removeClass 'has-error'
-		name.attr 'placeholder',''
+	ok = validate($('#product_name'))
 	price = $('#product_price')
 	if $('#product_price').val() <= 0
 		ok = false
 		price.parent().addClass 'has-error'
 	else
 		price.parent().removeClass 'has-error'
+	ok
+@categoryValidate = ->
+	ok = true
+	ok = validate($('#category_name'))
 	ok
