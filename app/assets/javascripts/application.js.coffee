@@ -459,7 +459,6 @@ orderItemPriceCalc = (el, num) ->
 		$(el).attr 'class', 'btn btn-default quantity'
 	orderItemPriceCalc(el, num)
 @orderValidate = (form) ->
-	window.form = form
 	ok = true
 	nameParent = $(form).find('input:text').first().parent()
 	name = nameParent.find('input')
@@ -479,4 +478,21 @@ orderItemPriceCalc = (el, num) ->
 	else
 		phoneParent.attr 'class','wrath-content-box'
 		phone.attr 'placeholder',''
+	ok
+@productValidate = ->
+	ok = true
+	name = $('#product_name')
+	if name.val() == ''
+		ok = false
+		name.parent().addClass 'has-error'
+		name.attr 'placeholder','Заполните поле'
+	else
+		name.parent().removeClass 'has-error'
+		name.attr 'placeholder',''
+	price = $('#product_price')
+	if $('#product_price').val() <= 0
+		ok = false
+		price.parent().addClass 'has-error'
+	else
+		price.parent().removeClass 'has-error'
 	ok
