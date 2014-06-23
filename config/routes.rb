@@ -20,6 +20,7 @@ ParraShopCom::Application.routes.draw do
   get "store5", to: 'main#store5'
   get "store6", to: 'main#store6'
   get "store7", to: 'main#store7'
+  get "store8", to: 'main#store8'
 
   get "service", to: 'main#service'
   get "partners", to: 'main#partners'
