@@ -1,1 +1,49 @@
 Поступил новый заказ.
+<br/><br/>
+Заказчик: <%=h @order.first_name %> <%=h @order.middle_name %> <%=h @order.last_name %>.<br/><br/>
+<br/>
+Телефон: <%=h @order.phone %>
+<br/>
+E-mail: <%=h @order.email %>
+<br/>
+<br/>
+Адрес доставки:<br/>
+Улица: <%=h @order.addr_street %><br/>
+Дом: <%=h @order.addr_home %><br/>
+Корпус/Строение: <%=h @order.addr_block %><br/>
+Квартира: <%=h @order.addr_flat %><br/>
+<br/>
+<br/>
+Комментарий: <%=h @order.comment %><br/>
+<br/>
+<br/>
+Номер заказа: <%= @order.id%> от <%= @order.created_at.to_s[0,10] %><br/><br/>
+
+
+<table border=0 bgcolor="#000000" cellspacing=1 cellpadding=4>
+<tr>
+<td bgcolor="#FFFFFF">Наименование</td><td bgcolor="#FFFFFF">Цена</td><td bgcolor="#FFFFFF">Количество</td><td bgcolor="#FFFFFF">Сумма</td>
+</tr>
+<% @order.order_items.each do |item| %>
+<tr>
+<td bgcolor="#FFFFFF">
+	<%= item.product.name %>
+	<% if(item.prsize) %>
+		</br><%=h item.prsize%>	
+	<% end %>
+	<% if(item.prcolor) %>
+		</br><%=h item.prcolor%>	
+	<% end %>
+	<% if(item.proption) %>
+		</br><%=h item.proption%>	
+	<% end %>
+</td>
+<td bgcolor="#FFFFFF"><%= item.price %> руб.</td>
+<td bgcolor="#FFFFFF"><%= item.quantity %></td>
+<td bgcolor="#FFFFFF"><%= item.total_price %> руб.</td>
+<tr>
+<% end %>
+</table>
+
+<br/><br/>Общая сумма: <%= @order.total_price %> руб.<br/>
+
