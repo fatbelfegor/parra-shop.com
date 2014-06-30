@@ -28,14 +28,14 @@ E-mail: <%=h @order.email %>
 <tr>
 <td bgcolor="#FFFFFF">
 	<%= item.product.name %>
-	<% if(item.prsize) %>
-		</br><%=h item.prsize%>	
+	<% if(item.size) %>
+		</br><%=h item.size%>	
 	<% end %>
-	<% if(item.prcolor) %>
-		</br><%=h item.prcolor%>	
+	<% if(item.color) %>
+		</br><%=h item.color%>	
 	<% end %>
-	<% if(item.proption) %>
-		</br><%=h item.proption%>	
+	<% if(item.option) %>
+		</br><%=h item.option%>	
 	<% end %>
 </td>
 <td bgcolor="#FFFFFF"><%= item.price %> руб.</td>
