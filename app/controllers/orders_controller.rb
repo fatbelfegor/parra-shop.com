@@ -8,13 +8,13 @@ class OrdersController < ApplicationController
 
   def index
     if params[:show] == 'new'
-      @orders = Order.where status: nil
+      @orders = Order.where(status: nil).order('created_at DESC')
     elsif params[:show] == 'exec'
-      @orders = Order.where status: true
+      @orders = Order.where(status: true).order('created_at DESC')
     elsif params[:show] == 'exec'
-      @orders = Order.where status: false
+      @orders = Order.where(status: false).order('created_at DESC')
     else
-      @orders = Order.all
+      @orders = Order.all.order('created_at DESC')
     end
   end
 
@@ -50,7 +50,10 @@ class OrdersController < ApplicationController
       			price: i['p'].sub(' ', ''),
             size: i['s'],
             color: i['l'],
-            option: i['o']
+            option: i['o'],
+            size_scode: i['ss'],
+            color_scode: i['ls'],
+            option_scode: i['os'],
       		})
       	}
         OrderMailer.ordersave(@order).deliver

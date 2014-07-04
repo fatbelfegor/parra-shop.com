@@ -20,17 +20,17 @@
     <div><b>Цена:</b> <span class="price"><%= number_to_currency(productCatalog.price) %></span></div>
     <div class="appear">
         <% if productCatalog.prsizes[0] %>
-            <div><b>Размер:</b> <span class="size"><%= productCatalog.prsizes[0].name %></span></div>
+            <div><b>Размер:</b> <span class="size"><%= productCatalog.prsizes[0].name %></span><span class="hidden size-scode"><%= productCatalog.prsizes[0].scode %></span></div>
         <% end %>
         <% if productCatalog.prcolors[0] %>
             <% if productCatalog.prcolors[0].textures[0] %>
-                <div><b>Цвет:</b> <span class="color"><%= productCatalog.prcolors[0].textures[0].name %></span></div>
+                <div><b>Цвет:</b> <span class="color"><%= productCatalog.prcolors[0].textures[0].name %></span><span class="hidden color-scode"><%= productCatalog.prcolors[0].textures[0].scode %></span></div>
             <% else %>
-                <div><b>Цвет:</b> <span class="color"><%= productCatalog.prcolors[0].name %></span></div>
+                <div><b>Цвет:</b> <span class="color"><%= productCatalog.prcolors[0].name %></span><span class="hidden color-scode"><%= productCatalog.prcolors[0].scode %></span></div>
             <% end %>
         <% end %>
         <% if productCatalog.proptions[0] %>
-            <div><b>Опция:</b> <span class="option"><%= productCatalog.proptions[0].name %></span></div>
+            <div><b>Опция:</b> <span class="option"><%= productCatalog.proptions[0].name %></span><span class="hidden option-scode"><%= productCatalog.proptions[0].scode %></span></div>
         <% end %>
         <div class="id hidden"><%= productCatalog.id %></div>
         <div class="scode hidden"><%= productCatalog.scode %></div>

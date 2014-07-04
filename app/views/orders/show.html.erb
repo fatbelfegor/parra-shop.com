@@ -33,6 +33,9 @@
 		<th>Код</th>
 		<th>Картинка</th>
 		<th>Название</th>
+		<th>Размер</th>
+		<th>Цвет</th>
+		<th>Опция</th>
 		<th>Количество</th>
 		<th>Цена</th>
 		<th>Итого</th>
@@ -43,6 +46,9 @@
 		<td><%= item.product.scode %></td>
 		<td><img src="<%= item.product.images.split(',')[0] %>"></td>
 		<td><%= item.product.name %></td>
+		<td><%= item.size %><br><u><%= item.size_scode %></u></td>
+		<td><%= item.color %><br><u><%= item.color_scode %></u></td>
+		<td><%= item.option %><br><u><%= item.option_scode %></u></td>
 		<td data-url="<%= order_order_item_path(@order, item) %>">
 			<span onclick="orderItemMinus(this)" class="btn btn-<%= item.quantity == 1 ? 'default' : 'danger' %> quantity">-</span>
 			<span><%= item.quantity %></span>

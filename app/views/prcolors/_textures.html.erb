@@ -6,6 +6,7 @@
 	<div class="textures" style="height:0">
 		<% textures.textures.each do |t| %>
 		<label>
+			<p class="hidden"><%= t.scode %></p>
 			<p><%= t.scode %> <%= t.name %></p>
 			<a href="<%= t.image %>" data-lightbox="<%= textures.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
 			<input type="radio" name="prcolors" value="<%= t.price + textures.price %>">

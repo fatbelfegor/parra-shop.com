@@ -128,19 +128,25 @@ expire = ->
 	appear = $(el).parent()
 	price = parseInt(appear.prev().find('.price').html().replace(' руб.', '').replace(/\ /g,'')).toCurrency()
 	s = appear.find('.size').html()
+	ss = appear.find('.size-scode').html()
 	l = appear.find('.color').html()
+	ls = appear.find('.color-scode').html()
 	o = appear.find('.option').html()
+	os = appear.find('.option-scode').html()
 	i = appear.find('.id').html()
 	d = appear.find('.scode').html()
 	s = '' if !s
 	l = '' if !l
 	o = '' if !o
+	ss = '' if !ss
+	ls = '' if !ls
+	os = '' if !os
 	prev = (cart.filter (item) ->
-		item.s == s and item.l == l and item.o == o and item.i == i and item.d == d)[0]
+		item.ss == ss and item.ls == ls and item.os == os and item.i == i and item.d == d)[0]
 	if prev
 		prev.c++
 	else
-		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i, d: d
+		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i, d: d, ss: ss, ls: ls, os: os
 	count = 0
 	price = 0
 	i = 0
@@ -177,23 +183,27 @@ expire = ->
 @addToCart = (name, el) ->
 	price = parseInt($(el).prev().find('b').html().replace(' руб.', '').replace(/\ /g,'')).toCurrency()
 	s = $('[name=prsizes]:checked').next().html()
+	ss = $('[name=prsizes]:checked').next().next().html()
 	prcolor = $('[name=prcolors]:checked')
 	if prcolor.next().length	
 		l = $('[name=prcolors]:checked').next().val()
+		ls = $('[name=prcolors]:checked').next().next().val()
 	else
 		l = prcolor.prev().prev().html()
+		ls = prcolor.prev().prev().prev().html()
 	o = $('[name=proptions]:checked').next().html()
+	os = $('[name=proptions]:checked').next().next().html()
 	i = $('#product_id_field').val()
 	d = $('#product_scode').val()
 	s = '' if !s
 	l = '' if !l
 	o = '' if !o
 	prev = (cart.filter (item) ->
-		item.s == s and item.l == l and item.o == o and item.i == i and item.d == d)[0]
+		item.ss == ss and item.ls == ls and item.os == os and item.i == i and item.d == d)[0]
 	if prev
 		prev.c++
 	else
-		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i, d: d
+		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i, d: d, ss: ss, ls: ls, os: os
 	count = 0
 	price = 0
 	i = 0
