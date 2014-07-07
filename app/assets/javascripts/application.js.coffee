@@ -480,6 +480,8 @@ validate = (input) ->
 @orderValidate = (form) ->	
 	ok = validate($(form).find('input:text').first())
 	ok = validate($($(form).find('input:text')[1]))
+	if ok
+		document.cookie = 'cart='+encodeURIComponent(JSON.stringify(cart))+';path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT'
 	ok
 @productValidate = ->
 	ok = validate($('#product_name'))
