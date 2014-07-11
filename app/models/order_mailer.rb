@@ -8,6 +8,7 @@ class OrderMailer < ActionMailer::Base
     p order
     @order =  order
     mail(to: 'intrtz@gmail.com', subject: 'Поступил новый заказ.')
+    #mail(to: 'ikishik@gmail.com', subject: 'Поступил новый заказ.')
   end
 
   def ordersaveclient(order)

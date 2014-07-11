@@ -1,7 +1,13 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>Здравствуйте <%= @resource.email %>!</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<p>Ваш аккаунт на сайте интернет магазина www.DreamMag.ru ,из за многократных попыток входа под неверным паролем</p>
 
-<p>Click the link below to unlock your account:</p>
+<p>Щелкните по ссылке что бы разблокировать ваш аккаунт:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p><%= link_to 'Разблокировать аккаунт', unlock_url(@resource, unlock_token: @token) %></p>
+
+--- <br/>
+С уважением, <br/>
+администрация сайта <%= link_to "parra-shop.ru", "http://www.parra-shop.ru" %><br/>
+Тел: +7 (495) 728-20-90<br/>
+e-mail: orders@parra-shop.ru<br/>

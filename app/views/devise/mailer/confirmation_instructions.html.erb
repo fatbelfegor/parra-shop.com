@@ -1,5 +1,13 @@
-<p>Welcome <%= @email %>!</p>
+Ваша регистрация прошла успешно.<br/><br/> 
 
-<p>You can confirm your account email through the link below:</p>
+  Имя пользователя(email): <%= @email %><br/>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+Пройдите пожалуйста по ссылке, что бы активировать аккаунт:<br/><br/>
+
+  <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %><br/><br/>
+
+--- <br/>
+С уважением, <br/>
+администрация сайта <%= link_to "parra-shop.ru", "http://www.parra-shop.ru" %><br/>
+Тел: +7 (495) 728-20-90<br/>
+e-mail: orders@parra-shop.ru<br/>
