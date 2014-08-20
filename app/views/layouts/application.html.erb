@@ -12,8 +12,9 @@
 <% if user_signed_in? && current_user.admin? %>
 <ul class="admin-nav">
 	<li><b>Администрирование:</b></li>
-  	<li><a href="/categories">Список категорий</a></li>
+  <li><a href="/categories">Список категорий</a></li>
 	<li><a href="/orders">Заказы</a></li>
+	<li><a href="/configurator">Конфигуратор</a></li>
 </ul>
 <% end %>
 <div class="shopPhone">
@@ -140,7 +141,7 @@
 </nav>
 
 <div class="main">
-  <div>
+  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
 	<div id="notice"><%= flash[:notice] %></div>
     <%= yield %>
   </div>

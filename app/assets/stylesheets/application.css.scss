@@ -925,6 +925,11 @@ body > .main {
 	> div {
 		width: 1100px;
 		margin: 0 auto;
+		height: 100%;
+
+		#WebGL-output {
+			height: 100%;
+		}
 
 		> .index {
 			font-size: 0;
@@ -1513,20 +1518,20 @@ a.cart {
 }
 
 .opacity img {
-	cursor: pointer;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
-    filter: alpha(opacity=75);
-    -khtml-opacity: 0.75;
-    -moz-opacity: 0.75;
-    opacity: 0.75;
-    @include transition(.3s);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  -khtml-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
 }
 .opacity img:hover {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-    filter: alpha(opacity=100);
-    -khtml-opacity: 1;
-    -moz-opacity: 1;
-    opacity: 1;
+	cursor: pointer;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  filter: alpha(opacity=75);
+  -khtml-opacity: 0.75;
+  -moz-opacity: 0.75;
+  opacity: 0.75;
+  @include transition(.3s);
 }
 
 .home {
@@ -1554,16 +1559,16 @@ a.cart {
 					height: 329px;
 					width: 100%;
 					border-spacing: 0;
-					border-top: 1px solid #BCBBBB;
-					border-right: 1px solid #BCBBBB;
+					border-top: 1px solid #DCDBDB;
+					border-right: 1px solid #DCDBDB;
 					tr {
 						height: 50%;
 						width: 100%;
 						td {
 							height: 50%;
 							width: 33.33%;
-							border-left: 1px solid #BCBBBB;
-							border-bottom: 1px solid #BCBBBB;
+							border-left: 1px solid #DCDBDB;
+							border-bottom: 1px solid #DCDBDB;
 							a {
 								display: block;
 								height: 100%;
