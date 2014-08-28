@@ -68,7 +68,7 @@
     };
     config = new Config();
     room = config.getKey('room');
-    if (room == null) {
+    if (!((room != null) && (room.walls != null))) {
       room = {};
       room.width = prompt('Введите ширину комнаты (см)', 400);
       room.depth = prompt('Введите длину комнаты (см)', 600);
