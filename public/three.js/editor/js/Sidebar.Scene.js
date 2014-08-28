@@ -195,6 +195,41 @@ Sidebar.Scene = function ( editor ) {
 	roomUI.add(new UI.Checkbox().setValue(config.getKey( 'attachToGrid' )).onChange( function () {
 		config.setKey( 'attachToGrid', this.dom.checked );
 	}));
+	roomUI.add(new UI.Text( 'Показывать потолок: ' ).setWidth( '180px' ));
+	roomUI.add(new UI.Checkbox().setValue(room.walls[0].on).onChange( function () {
+		room.walls[0].on = this.dom.checked
+		roomSizeChange()
+	}));
+	container.add(roomUI);
+	roomUI.add(new UI.Text( 'Показывать пол: ' ).setWidth( '180px' ));
+	roomUI.add(new UI.Checkbox().setValue(room.walls[1].on).onChange( function () {
+		room.walls[1].on = this.dom.checked
+		roomSizeChange()
+	}));
+	container.add(roomUI);
+	roomUI.add(new UI.Text( 'Показывать левую стену: ' ).setWidth( '180px' ));
+	roomUI.add(new UI.Checkbox().setValue(room.walls[2].on).onChange( function () {
+		room.walls[2].on = this.dom.checked
+		roomSizeChange()
+	}));
+	container.add(roomUI);
+	roomUI.add(new UI.Text( 'Показывать правую стену: ' ).setWidth( '180px' ));
+	roomUI.add(new UI.Checkbox().setValue(room.walls[3].on).onChange( function () {
+		room.walls[3].on = this.dom.checked
+		roomSizeChange()
+	}));
+	container.add(roomUI);
+	roomUI.add(new UI.Text( 'Показывать переднюю стену: ' ).setWidth( '180px' ));
+	roomUI.add(new UI.Checkbox().setValue(room.walls[4].on).onChange( function () {
+		room.walls[4].on = this.dom.checked
+		roomSizeChange()
+	}));
+	container.add(roomUI);
+	roomUI.add(new UI.Text( 'Показывать заднюю стену: ' ).setWidth( '180px' ));
+	roomUI.add(new UI.Checkbox().setValue(room.walls[5].on).onChange( function () {
+		room.walls[5].on = this.dom.checked
+		roomSizeChange()
+	}));
 	container.add(roomUI);
 
 	// events
