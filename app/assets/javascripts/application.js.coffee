@@ -23,6 +23,7 @@ iframe = document.createElement 'iframe'
 menuImages = []
 
 ready = ->
+	$('#preloader').remove()
 	configurator()
 	curBg = 0
 	$('#mainMenu li div div').each (i) ->
