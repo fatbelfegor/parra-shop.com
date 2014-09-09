@@ -159,6 +159,10 @@
 		<p>Похожие товары</p>
 		<%= render(:partial => "products/productFooter" , collection: @product.category.products) %>
 	</div>
+	<br>
+	<div class="seo_text">
+		<%= raw @product.seo_text %>
+	</div>
 </div>
 
 <script type="text/javascript">

@@ -130,6 +130,7 @@ private
 		:s_description,
 		:s_keyword,
 		:s_imagealt,
+    :seo_text,
 		:category_ids => []
     )
   end

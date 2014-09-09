@@ -106,7 +106,8 @@ private
 			:s_name,
 			:scode,
 			:commission,
-			:rate
+			:rate,
+      :seo_text
 		)
 	end
 end
