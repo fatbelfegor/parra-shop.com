@@ -51,13 +51,23 @@ li {
 
 .shopPhone {
 	position: absolute;
-	right: 50px;
-	top: 10px;
-	color: #575759;	
+	right: 60px;
+	top: 12px;
 
-	img {
-		position: relative;
-		top: 8px;
+	p {
+		color: #5A585B;
+		font-size: 23px;
+	}
+
+	ins {
+		font-size: 13px;
+		color: #4EBA6F;
+		margin-top: -4px;
+		margin-left: 2px;
+		display: block;
+		text-decoration: none;
+		border-bottom: 1px solid #5AC67B;
+		float: left;
 	}
 }
 
