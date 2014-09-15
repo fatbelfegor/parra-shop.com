@@ -13,6 +13,8 @@ class OrderMailer < ActionMailer::Base
 
   def ordersaveclient(order)
     @order =  order
-    mail(to: order.email, subject: 'Ваш заказ принят.')
+    if(!order.email.empty?)
+      mail(to: order.email, subject: 'Ваш заказ принят.')
+    end
   end
 end
