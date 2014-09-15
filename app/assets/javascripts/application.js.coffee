@@ -322,7 +322,7 @@ expire = ->
 		h.animate 'height':'0px', 300
 	else
 		h.attr('class', 'show')
-		h.animate 'height':'230px', 300
+		h.animate 'height':'194px', 300
 @cartCount = ->
 	count = 0
 	cart.forEach (i) ->
