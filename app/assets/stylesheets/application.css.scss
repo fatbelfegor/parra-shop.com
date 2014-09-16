@@ -2017,4 +2017,15 @@ th {
 	margin-top: 30px;
 	padding: 15px;
 	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	p {
+		margin: 16px 0;
+	}
+	ul {
+		margin: inherit;
+		padding: inherit;
+		li {
+			list-style-type: inherit;
+		}
+	}
 }
