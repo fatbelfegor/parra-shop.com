@@ -645,7 +645,7 @@ nav {
 					display: none;
 					width: 100%;
 				}
-				.showPhoto {
+				.showPhoto img {
 					display: block;
 				}
 			}
@@ -995,6 +995,8 @@ body > .main {
 }
 
 #products {
+	width: auto;
+	height: auto;
 	tr {
 		margin-top: 10px;
 	}
@@ -1970,4 +1972,49 @@ th {
 		width: 100%;
 		text-align: center;
 	}
+}
+
+
+#orderSave {
+	width: 350px;
+	height: 100px;
+	background-color: white;
+	z-index: 1000;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	padding: 20px;
+	@include box-shadow(0 0 50px #333);
+	font-size: 17px;
+	text-align: center;
+	line-height: 24px;
+	margin-top: -50px;
+	margin-left: -175px;
+	.btn-s {
+		margin-top: 20px;
+		padding: 5px 30px;
+		font-size: 13px;
+		font-weight: bold;
+		color: white;
+		cursor: pointer;
+		display: inline-block;
+		border: 1px solid #68AF2B;
+		background: -moz-linear-gradient(top, #68AF2B 0%, #44800E 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#68AF2B), color-stop(100%,#44800E)) ;
+		background: -webkit-linear-gradient(top, #68AF2B 0%,#44800E 100%);
+		background: -o-linear-gradient(top, #68AF2B 0%,#44800E 100%);
+		background: -ms-linear-gradient(top, #68AF2B 0%,#44800E 100%) ;
+		background: linear-gradient(to bottom, #68AF2B 0%,#44800E 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#68AF2B", endColorstr="#44800E",GradientType=0);
+	}
+}
+
+.seo_text {
+	width: auto !important;
+	height: auto !important;
+	display: block !important;
+	font-size: 14px;
+	margin-top: 30px;
+	padding: 15px;
+	border: 1px solid #ccc;
 }

@@ -23,7 +23,7 @@
 			</th>
 		</tr>
 		<tr>
-			<td><img src="<%= product.images.split(',')[0] %>"></td>
+			<td><img src="<%= product.images.split(',')[0] unless product.images.nil? %>"></td>
 			<td style="padding-left:10px;" align="left"><%= sanitize(product.shortdesk) %><br></td>
 		</tr>
 		<tr>

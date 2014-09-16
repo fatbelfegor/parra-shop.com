@@ -31,8 +31,9 @@
 		</table>
 		<% end %>
 	</div>
-	<br>
-	<div class="seo_text">
-		<%= raw @category.seo_text %>
-	</div>
+	<% unless @category.seo_text.blank? %>
+		<div class="seo_text">
+			<%= raw @category.seo_text %>
+		</div>
+	<% end %>
 </div>

@@ -148,7 +148,17 @@
 
 <div class="main">
   <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
-	<div id="notice"><%= flash[:notice] %></div>
+  	<% if notice == 'ordersave' %>
+  		<div id="orderSave" class="windows">
+			<p>Ваш заказ принят. Наш менеджер свяжется с вами с ближайшее время.</p>
+			<div class="btn-s" onclick="windowClose()">OK</div>
+		</div>
+		<script type="text/javascript">
+			$('#windowLayout').show()
+		</script>
+  	<% else %>
+		<div id="notice"><%= flash[:notice] %></div>
+	<% end %>
     <%= yield %>
   </div>
 </div>

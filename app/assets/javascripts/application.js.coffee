@@ -498,3 +498,5 @@ validate = (input) ->
 	ok = true
 	ok = validate($('#category_name'))
 	ok
+@windowClose = ->
+	$('.windows').fadeOut(300)

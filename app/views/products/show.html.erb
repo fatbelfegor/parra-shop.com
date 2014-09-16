@@ -13,10 +13,10 @@
 			    	<% end %>
 				</div>
 				<div class="photoes">
-					<img class="showPhoto" src="<%= images[0] %>">
-					<%  images.drop(1).each do |i| %>
-			    		<img src="<%= i %>">
-			    	<% end %>
+			    	<a class="showPhoto" href="<%= images[0] %>" data-lightbox="images" class="image"><img src="<%= images[0] %>"></a>
+					<% images[1..-1].each do |i| %>
+						<a href="<%= i %>" data-lightbox="images" class="image hidden"><img src="<%= images[0] %>"></a>
+					<% end %>
 				</div>
 			<% end %>
 		</div>
@@ -159,10 +159,11 @@
 		<p>Похожие товары</p>
 		<%= render(:partial => "products/productFooter" , collection: @product.category.products) %>
 	</div>
-	<br>
-	<div class="seo_text">
-		<%= raw @product.seo_text %>
-	</div>
+	<% unless @product.seo_text.blank? %>
+		<div class="seo_text">
+			<%= raw @product.seo_text %>
+		</div>
+	<% end %>
 </div>
 
 <script type="text/javascript">
