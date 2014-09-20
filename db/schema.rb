@@ -33,8 +33,14 @@ ActiveRecord::Schema.define(version: 20140909220416) do
   end
 
   create_table "categories_products", id: false, force: true do |t|
-    t.integer "category_id"
-    t.integer "product_id"
+    t.integer "category_id", null: false
+    t.integer "product_id",  null: false
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "order_items", force: true do |t|
