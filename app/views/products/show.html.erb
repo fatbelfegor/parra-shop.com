@@ -15,7 +15,7 @@
 				<div class="photoes">
 			    	<a class="showPhoto" href="<%= images[0] %>" data-lightbox="images" class="image"><img src="<%= images[0] %>"></a>
 					<% images[1..-1].each do |i| %>
-						<a href="<%= i %>" data-lightbox="images" class="image hidden"><img src="<%= images[0] %>"></a>
+						<a href="<%= i %>" data-lightbox="images" class="image hidden"><img src="<%= i %>"></a>
 					<% end %>
 				</div>
 			<% end %>
