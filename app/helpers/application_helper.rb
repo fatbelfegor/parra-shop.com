@@ -2,6 +2,10 @@
 # encoding: utf-8
 
 module ApplicationHelper
+
+  def getCatChildren(parent)
+    @cats.find_all{|cat| cat if cat.parent_id == parent.id}
+  end
   
   def PaintMenu
     ret = ""

@@ -500,3 +500,20 @@ validate = (input) ->
 	ok
 @windowClose = ->
 	$('.windows').fadeOut(300)
+@chooseCatParent = (el, id) ->
+	treebox = $(el).parents('.treebox')
+	treebox.find('p').first().html($(el).html())
+	catDropDown(treebox.find('> p'))
+	treebox.find('input').val(id)
+@catDropDown = (el) ->
+	parent = $(el).parent()
+	div = parent.find('> div')
+	unless div.is(':visible')
+		$('#windowLayoutTransparent').show()
+		div.show()
+		parent.addClass 'active'
+	else
+		windowClose()
+		parent.removeClass 'active'
+@windowClose = ->
+	$('.windows').fadeOut(300)

@@ -14,13 +14,34 @@
     </td></tr>
   <% end %>
 
-  <% if Category.count > 0 %>
+  <% if Category.count > 0
+  @cats = Category.all.order :position %>
   <tr><td style="padding: 15px 30px 0 20px">
   <div class="row form-group">
     <h4 class="col-md-3 text-right"><%= f.label :parent_id, "Родительская категория:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.select :parent_id, options_from_collection_for_select(Category.all, "id", "name",if @category then @category.parent_id else 0 end), {:include_blank => true}, {class: "form-control"} %>
+        <div class="treebox">
+          <% parent = @cats.find{|c| c if c.id == @category.parent_id} %>
+          <p class="choose" onclick="catDropDown(this)"><%= if parent.nil? then 'Корневая категория' else parent.name end %></p>
+          <span class="arrow"></span>
+          <div class="windows">
+            <% def drawTree(cats, parent_id)
+              ret = ''
+              for cat in cats
+                children = getCatChildren cat
+                if children.size == 0
+                  ret += "<div class='cat'><p class='#{'choosed ' if cat.id == parent_id}enable' onclick='chooseCatParent(this, #{cat.id})'>#{cat.name}</p></div>"
+                else
+                  ret += "<div class='cat'><p class='#{'choosed ' if cat.id == parent_id}enable' onclick='chooseCatParent(this, #{cat.id})'>#{cat.name}</p><span class='arrow'></span><div class='wrap'>#{drawTree(children, parent_id)}</div></div>"
+                end
+              end
+              ret
+            end %>
+            <%= raw drawTree @cats.find_all{|cat| cat unless cat.parent_id}, if parent then parent.id else 0 end %>
+          </div>
+          <%= f.hidden_field :parent_id %>
+        </div>
       </div>
     </div>
   </div>
@@ -158,11 +179,21 @@
     </div>
   </div>
   </td></tr>
-  <tr><td>
-  <div class="text-center">
-    <%= f.submit 'Сохранить', onclick: 'return categoryValidate()', class: "btn btn-success" %>
-  </div>
-  </td></tr>
+  </table>
+  <br><br><br>
+  <table class="table table-striped text-center fixed-buttons">
+    <tr>
+      <td>
+        <div class="absolute">
+          <% unless @category.id.nil? %>
+            <%= link_to 'Показать', @category, class: 'btn btn-default' %>
+            <%= link_to 'Создать новую', new_category_path, class: 'btn btn-default' %>
+          <% end %>
+            <%= link_to 'Список категорий', categories_path, class: 'btn btn-default' %>
+          </div>
+        <%= f.submit 'Сохранить', onclick: 'return categoryValidate()', class: "btn btn-success" %>
+      </td>
+    </tr>
   </table>
 <% end %>
 <%= tinymce %>

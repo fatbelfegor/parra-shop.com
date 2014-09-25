@@ -1742,10 +1742,7 @@ a.cart {
 						left: 0;
 						width: 100%;
 						height: 100%;
-						-webkit-border-radius: 31px;
-						-moz-border-radius: 31px;
-						-o-border-radius: 31px;
-						border-radius: 31px;
+						@include border-radius(31px);
 					}
 				}
 				.textures {
@@ -1841,10 +1838,7 @@ a.cart {
 				left: 0;
 				width: 100%;
 				height: 100%;
-				-webkit-border-radius: 31px;
-				-moz-border-radius: 31px;
-				-o-border-radius: 31px;
-				border-radius: 31px;
+				@include border-radius(31px);
 			}
 		}
 		.textures {
@@ -2028,4 +2022,109 @@ th {
 			list-style-type: inherit;
 		}
 	}
+}
+
+.fixed-buttons {
+	position: fixed;
+	bottom: 18px;
+	right: 0;
+	left: 0;
+	z-index: 2000;
+	.btn-default {
+		float: left;
+	}
+	.btn-success {
+		height: 32px;
+		line-height: 20px;
+	}
+}
+.absolute {
+  position: absolute;
+}
+.treebox {
+  position: relative;
+  color: #555;
+  .choosed {
+    font-weight: bold;
+  }
+  .choose, > div p {
+    padding-left: 15px;
+    cursor: pointer;
+    text-align: left;
+  }
+  > .choose {
+    background-color: white;
+    position: relative;
+    z-index: 1001;
+    line-height: 40px;
+    border: 1px solid #ccc;
+    @include border-radius(4px);
+  }
+  .arrow {
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    z-index: 1002;
+    border-width: 5px 4px 0;
+    border-style: solid;
+    border-color: #555 transparent;
+  }
+  > div {
+    background-color: white;
+    height: 500px;
+    display: none;
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    z-index: 1000;
+    overflow: auto;
+    border: 1px solid #aaa;
+    border-width: 0 1px;
+    @include box-shadow(0 0 8px #aaa);
+    @include border-radius(0 0 4px 4px);
+    .cat {
+      position: relative;
+      line-height: 36px;
+      p, label {
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+  .wrap {
+    padding: 0 30px 10px;
+    .cat p, label {
+      position: relative;
+      z-index: 0;
+    }
+  }
+  .enable {
+    @include transition(0.3s);
+    input {
+      margin-right: 10px;
+    }
+  }
+  .enable:hover {
+    color: #5588ee;
+  }
+}
+.treebox.front {
+	> .choose {
+		z-index: 1004;
+	}
+	.arrow{
+		z-index: 1005;
+	}
+	> div {
+		z-index: 1003;
+	}
+}
+.treebox.active {
+  > p {
+    border-color: #66afe9;
+   	@include box-shadow(0 0 8px rgba(102,175,233,.6));
+  }
+  > div {
+    display: block;
+  }
 }

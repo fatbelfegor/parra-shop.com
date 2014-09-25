@@ -152,11 +152,21 @@
     </div>
   </div>
   </td></tr>
-  <tr><td>
-  <div class="text-center" style="margin: 30px 0">
-    <%= f.submit 'Сохранить', onclick: 'return productValidate()', class: "btn btn-success" %>
-  </div>
+</table>
+<br><br><br>
+<table class="table table-striped fixed-buttons text-center">
+
+<tr><td>
+<div class="absolute">
+  <% unless @product.scode.nil? %>
+    <%= link_to 'Показать', '/kupit/'+@product.scode, class: 'btn btn-default' %>
+    <%= link_to 'Создать новый', '/products/new', class: 'btn btn-default' %>
+  <% end %>
+  <%= link_to 'Список Продуктов', if(@product.category) then @product.category else products_path end, class: 'btn btn-default' %>
+</div>
+<%= f.submit 'Сохранить', class: "btn btn-success" %>
 </td></tr>
+
 </table>
 <% end %>
 <%= tinymce %>
