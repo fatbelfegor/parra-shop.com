@@ -15,6 +15,7 @@ gem 'acts_as_list'
 gem 'mysql2'
 
 gem 'russian'
+gem 'write_xlsx'
 
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.0'

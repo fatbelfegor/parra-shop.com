@@ -29,6 +29,8 @@ ParraShopCom::Application.routes.draw do
   get "articles", to: 'main#articles'
   get "insurance", to: 'main#insurance'
 
+  get 'orders/:id/заказ.xlsx', to: 'orders#xlsx'
+
   post 'categories/sort', to: 'categories#sort'
   post 'products/sort', to: 'products#sort'
   
