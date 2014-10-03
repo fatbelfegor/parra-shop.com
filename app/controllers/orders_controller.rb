@@ -84,9 +84,18 @@ class OrdersController < ApplicationController
     order = Order.find params[:id]
 
     def format params
-      params[:font] = 'Times New Roman'
-      params[:bg_color] || params[:bg_color] = :white
-      @style = @workbook.add_format params
+      if params.is_a? Hash
+        params[:font] = 'Times New Roman'
+        params[:bg_color] ||= :white
+        @style = @workbook.add_format params
+      else
+        @style = []
+        for param in params
+          param[:font] = 'Times New Roman'
+          param[:bg_color] = :white
+          @style << @workbook.add_format(param)
+        end
+      end
     end
 
     def write row, col, val
@@ -190,7 +199,7 @@ class OrdersController < ApplicationController
     format(color: :red, size: 10, border: 1, align: :right)
     write_col row, 7, [price, '*доставка*', '*Цена с доставкой*']
     format(bold: 1, size: 10, align: :right)
-    write row += 2, 4, 'W'
+    write row += 2, 4, 'Стоимость доставки'
 
     # Оплата
     format(bold: 1, size: 11, align: :left)
@@ -221,11 +230,26 @@ class OrdersController < ApplicationController
     write_xy "D#{row}", '0,00р.'
     write_xy "F#{row}", '0'
     format(size: 11, bottom: 1, align: :rigth, color: :red)
-    write_xy "E#{row}", 'МЕСЯЦЕВ'
+    write_xy "E#{row}", 'месяцев'
     format(size: 11, bottom: 1, align: :rigth)
     write_xy "G#{row}", '%'
     format(size: 10, bottom: 1, right: 1, align: :center, bold: 1)
     write_xy "H#{row}", '0'
+
+    # Подпись
+    format size: 11, bold: 1
+    merge_range "B#{row += 3}:H#{row}", 'ИНФОРМАЦИЯ О ДОСТАВКЕ'
+    write_xy "B#{row += 1}", 'Доставка до'
+    write_xy "D#{row}", '10.09.2014 в первой половине дня'
+    write_xy "B#{row + 3}", 'Дополнительная информация'
+    @worksheet.set_row(row-1, 32)
+    format [{size: 11, bold: 1}, {size: 11}]
+    @worksheet.write_rich_string "E#{row}", @style[0], 'Сборка - ', @style[1], 'оплата по факту', @style[0], "\nПодъем - ", @style[1], 'оплата см. Приложение №2'
+    @worksheet.write_rich_string "B#{row += 1}", @style[0], '* при доставке за пределы МКАД, ', @style[1], 'в стоимость доставки включается фактический километраж (за 1 км. - 30р)'
+    format size: 13, bold: 1, bottom: 1
+    merge_range "B#{row += 3}:H#{row += 1}", 'сборка 6%=2200, подъем 300 руб'
+    format size: 11, align: :center
+    merge_range "B#{row += 1}:H#{row += 1}", "Уважаемый клиент, при возникновении гарантийного случая направляйте претензии на электронную почту\nparrarekl@gmail.com  или по телефону  +7 (926) 154-50-60 ( пн-пт. с 10:00 до 17:00, сб.-вс. выходные дни)."
 
     # Низ
     format size: 11, bold: 1
@@ -234,8 +258,6 @@ class OrdersController < ApplicationController
     write_row row, 4, [nil] * 2
     format size: 11, color: :red
     merge_range "G#{row += 1}:H#{row}", 'Каверин Иван Александрович'
-    format size: 11, align: :center, top: 6
-    merge_range "B#{row += 2}:H#{row}", 'ИНФОРМАЦИЯ О ДОСТАВКЕ'
 
     @worksheet = @workbook.add_worksheet 'ЭКЗЕМПЛЯР СКЛАДА'
     @worksheet.set_tab_color 'green'
