@@ -392,6 +392,92 @@ class OrdersController < ApplicationController
     @worksheet = @workbook.add_worksheet 'ВОЗВРАТНАЯ НАКЛАДНАЯ'
     @worksheet.set_tab_color 'blue'
 
+    @style = @workbook.add_format bg_color: :white
+    set_columns_width [[0, 0.5], [1, 6], [2, 10], [3, 50], [4, 12], [5, 7], [6, 7], [7, 16], [8, 0.5]]
+
+    format({})
+    for row in (0..50+items)
+      for col in (0..8)
+        @worksheet.write_blank row, col, @style
+      end
+    end
+
+    format size: 10
+    write_xy 'B1', 'Экземпляр склада'
+    format size: 11, align: :right, bold: 1
+    write_xy 'D2', 'ВОЗВРАТНАЯ НАКЛАДНАЯ К ЗАКАЗУ №'
+    format size: 18, bold: 1, align: :center, border: 1
+    write_xy 'E2', order.id
+    format size: 11, bold: 1
+    write_xy 'B2', 'Менеджер'
+    write_xy 'B4', 'Водитель'
+    write_xy 'B10', 'ЗАКАЗЧИК'
+    write_xy 'B12', 'ФИО'
+    write_xy 'B13', 'Улица'
+    write_xy 'B14', 'Телефон'
+    write_xy 'B15', 'Ст. метро'
+    write_xy 'E12', 'дом'
+    write_xy 'E13', 'подъезд'
+    write_xy 'E14', 'квартира'
+    write_xy 'G12', 'корпус'
+    write_xy 'G13', 'этаж'
+    write_xy 'G14', 'код'
+    write_xy 'G15', 'лифт'
+    format size: 11, bold: 1, align: :right
+    write_xy 'G4', 'Дата возврата'
+    write_xy 'G6', 'Оплата водителю'
+    write_xy 'G8', 'Демонтаж за наш счет'
+    write_xy 'G10', 'Возвращено заказчику'
+    format size: 11, bold: 1, border: 1
+    write_xy 'D4', 'Стефаненко Елена'
+    write_xy 'D6', 'Водитель'
+    format size: 11, align: :right, bg_color: '#FFFFCC', border: 1
+    write_xy 'H4', ''
+    write_xy 'H6', '0,00р.'
+    write_xy 'H8', '0,00р.'
+    format size: 11, align: :right, bg_color: '#FFFF00', border: 1
+    write_xy 'H10', '0,00р.'
+    format size: 11, bold: 1
+    write_xy 'D12', 'Дардыкин Андрей Александрович'
+    format size: 11
+    write_xy 'D13', 'Электромонтажный проезд'
+    write_xy 'D14', '89254115749(Андрей)89672737817(Дарья)'
+    write_xy 'D13', 'Подольск'
+    format size: 11, align: :center
+    write_xy 'F12', '9'
+    write_xy 'F13', '2'
+    write_xy 'F14', '90'
+    write_xy 'H12', '0'
+    write_xy 'H13', '6'
+    write_xy 'H14', '0'
+    format size: 11, align: :center, bottom: 1
+    write_xy 'H15', ''
+    format size: 10, bold: 1, border: 1, align: :center
+    write_row 16, 1, ['№ п/п', 'Артикул']
+    merge_range 'D17:E17', 'Наименование изделия'
+    write_xy 'F17', 'Кол-во'
+    merge_range 'G17:H17', 'причина возврата'
+    format size: 10, align: :center, border: 1
+    row = 17
+    for item in order.order_items
+      write_xy "B#{row += 1}", row - 17
+      write_xy "C#{row}", item.product.scode
+      write_xy "F#{row}", item.quantity
+      merge_range "G#{row}:H#{row}", ''
+    end
+    format size: 10, bottom: 1
+    row = 17
+    for item in order.order_items
+      merge_range "D#{row += 1}:E#{row}", item.product.name
+      merge_range "G#{row}:H#{row}", ''
+    end
+    format size: 10, bold: 1, align: :center, color: :red
+    write_xy "F#{18+items}", count
+    format size: 10, bold: 1, align: :right
+    write_xy "E#{18+items}", 'ИТОГО К ВОЗВРАТУ'
+    format size: 10, bold: 1
+    write_xy "G#{18+items}", 'ПРЕДМЕТОВ'
+
     @workbook.close
     send_file file
   end
