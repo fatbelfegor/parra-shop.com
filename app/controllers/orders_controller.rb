@@ -71,15 +71,12 @@ class OrdersController < ApplicationController
     @worksheet = @workbook.add_worksheet 'ЗАПОЛНЯЕТ МЕНЕДЖЕР'
     @worksheet.set_tab_color 'red'
 
-    @worksheet.set_column 0, 0, 0.5
-    @worksheet.set_column 1, 1, 6
-    @worksheet.set_column 2, 2, 10
-    @worksheet.set_column 3, 3, 50
-    @worksheet.set_column 4, 4, 12
-    @worksheet.set_column 5, 5, 7
-    @worksheet.set_column 6, 6, 7
-    @worksheet.set_column 7, 7, 16
-    @worksheet.set_column 8, 8, 0.5
+    def set_columns_width columns
+      for column in columns
+        @worksheet.set_column column[0], column[0], column[1]
+      end
+    end
+    set_columns_width [[0, 0.5], [1, 6], [2, 10], [3, 50], [4, 12], [5, 7], [6, 7], [7, 16], [8, 0.5]]
 
     order = Order.find params[:id]
 
@@ -190,6 +187,7 @@ class OrdersController < ApplicationController
       count += item.quantity
       price += item.product.price * item.quantity # * скидка
     end
+    items = row - 16
     format(size: 10, border: 1, align: :right)
     write_col row, 4, ['Стоимость товара', 'Стоимость доставки']
     format(color: :red, size: 10, border: 1, align: :center)
@@ -229,9 +227,9 @@ class OrdersController < ApplicationController
     write_xy "C#{row}", nil
     write_xy "D#{row}", '0,00р.'
     write_xy "F#{row}", '0'
-    format(size: 11, bottom: 1, align: :rigth, color: :red)
+    format(size: 11, bottom: 1, align: :right, color: :red)
     write_xy "E#{row}", 'месяцев'
-    format(size: 11, bottom: 1, align: :rigth)
+    format(size: 11, bottom: 1, align: :right)
     write_xy "G#{row}", '%'
     format(size: 10, bottom: 1, right: 1, align: :center, bold: 1)
     write_xy "H#{row}", '0'
@@ -261,6 +259,135 @@ class OrdersController < ApplicationController
 
     @worksheet = @workbook.add_worksheet 'ЭКЗЕМПЛЯР СКЛАДА'
     @worksheet.set_tab_color 'green'
+
+    @style = @workbook.add_format bg_color: :white
+    set_columns_width [[0, 0.5], [1, 6], [2, 10], [3, 50], [4, 12], [5, 7], [6, 7], [7, 16], [8, 0.5]]
+
+    format({})
+    for row in (0..41+items+items)
+      for col in (0..8)
+        @worksheet.write_blank row, col, @style
+      end
+    end
+
+    format size: 10
+    write_xy "B1", 'Экземпляр склада'
+    write_xy "B#{items + 24}", 'Экземпляр склада'
+    format size: 11, bold: 1, align: :right
+    write_xy 'D2', 'ОТГРУЗОЧНАЯ НАКЛАДНАЯ К ЗАКАЗУ №'
+    write_xy "D#{items + 25}", 'ДОПОСТАВКА К ЗАКАЗУ №'
+    format size: 11, bold: 1
+    write_xy 'B4', 'Менеджер'
+    write_xy 'B6', 'Водитель'
+    write_xy 'B14', 'ЗАКАЗЧИК'
+    write_xy 'B16', 'ФИО'
+    write_xy 'E16', 'дом'
+    write_xy 'G16', 'корпус'
+    write_xy 'B17', 'Улица'
+    write_xy 'E17', 'подъезд'
+    write_xy 'G17', 'этаж'
+    write_xy 'B18', 'Телефон'
+    write_xy 'E18', 'квартира'
+    write_xy 'G18', 'код'
+    write_xy 'B19', 'Ст. метро'
+    write_xy 'G19', 'лифт'
+    write_xy "B#{items + 27}", 'Менеджер'
+    write_xy "B#{items + 29}", 'Водитель'
+    write_xy "B#{items + 37}", 'ЗАКАЗЧИК'
+    write_xy 'D16', 'Дардыкин Андрей Александрович'
+    format size: 11, bold: 1, align: :right
+    write_xy "G4", 'Дата отгрузки'
+    write_xy "G6", 'Оплата водителю'
+    write_xy "G8", 'Подъем за наш счет'
+    write_xy "G10", 'Сборка за наш счет'
+    write_xy "G12", 'Долг заказчика'
+    write_xy "G14", 'Заказчик оплатил '
+    write_xy "G#{items + 27}", 'Дата отгрузки'
+    write_xy "G#{items + 29}", 'Оплата водителю'
+    write_xy "G#{items + 31}", 'Подъем за наш счет'
+    write_xy "G#{items + 33}", 'Сборка за наш счет'
+    write_xy "G#{items + 35}", 'Долг заказчика'
+    write_xy "G#{items + 37}", 'Заказчик оплатил'
+    format size: 18, bold: 1, border: 1, align: :center
+    write_xy 'E2', order.id
+    write_xy "E#{items + 25}", order.id
+    format size: 11, bold: 1, border: 1
+    write_xy 'D4', 'Стефаненко Елена'
+    write_xy 'D6', 'Василий'
+    write_xy "D#{items + 27}", 'Стефаненко Елена'
+    write_xy "D#{items + 29}", 'Василий'
+    write_xy "D#{items + 37}", 'Дардыкин Андрей Александрович'
+    format size: 11, align: :right, bg_color: '#FFFFCC', border: 1
+    write_xy 'H4', ''
+    write_xy 'H6', '0,00р.'
+    write_xy 'H8', '0,00р.'
+    write_xy 'H10', '0,00р.'
+    write_xy "H#{items + 27}", ''
+    write_xy "H#{items + 29}", '0,00р.'
+    write_xy "H#{items + 31}", '0,00р.'
+    write_xy "H#{items + 33}", '0,00р.'
+    format size: 11, align: :right, bg_color: '#FFFFCC', bold: 1, border: 1
+    write_xy 'H14', ''
+    write_xy "H#{items + 37}", '0,00р.'
+    format size: 11, align: :right, bg_color: '#FFFF00', border: 1
+    write_xy 'H12', '60 940,05р.'
+    write_xy "H#{items + 35}", '60 940,05р.'
+    format size: 11
+    write_xy 'D17', 'Электромонтажный проезд'
+    write_xy 'D18', '89254115749(Андрей)89672737817(Дарья)'
+    write_xy 'D19', 'Подольск'
+    format size: 11, align: :center
+    write_xy 'F16', '9'
+    write_xy 'F17', '2'
+    write_xy 'F18', '90'
+    write_xy 'H16', '0'
+    write_xy 'H17', '6'
+    write_xy 'H18', '0'
+    format size: 11, align: :center, bottom: 1
+    write_xy 'H19', ''
+    format size: 10, align: :center, bold: 1, border: 1
+    write_row 20, 1, ['№ п/п', 'Артикул']
+    merge_range 'D21:E21', 'Наименование изделия'
+    write_xy 'F21', 'Кол-во'
+    merge_range 'G21:H21', 'Комментарий'
+    write_row items + 38, 1, ['№ п/п', 'Артикул']
+    merge_range "D#{items + 39}:E#{items + 39}", 'Наименование изделия'
+    write_xy "F#{items + 39}", 'Кол-во'
+    merge_range "G#{items + 39}:H#{items + 39}", 'Комментарий'
+    format size: 10, align: :center, border: 1
+    row = 21
+    for item in order.order_items
+      write_xy "B#{row += 1}", row - 21
+      write_xy "C#{row}", item.product.scode
+      write_xy "F#{row}", item.quantity
+      merge_range "G#{row}:H#{row}", ''
+    end
+    row = items + 39
+    for item in order.order_items
+      write_xy "B#{row += 1}", row - items - 39
+      write_xy "C#{row}", item.product.scode
+      write_xy "F#{row}", item.quantity
+      merge_range "G#{row}:H#{row}", ''
+    end
+    format size: 10, bottom: 1
+    row = 21
+    for item in order.order_items
+      write_xy "D#{row += 1}", item.product.name
+      write_xy "E#{row}", ''
+    end
+    row = items + 39
+    for item in order.order_items
+      write_xy "D#{row += 1}", item.product.name
+      write_xy "E#{row}", ''
+    end
+    format size: 10, bold: 1, align: :right
+    write_xy "E#{items + 22}", 'ИТОГО К ДОСТАВКЕ'
+    write_xy "E#{items + items + 40}", 'ИТОГО К ДОСТАВКЕ'
+    format size: 10, bold: 1, align: :center, color: :red
+    write_xy "F#{items + 22}", '2'
+    write_xy "F#{items + items + 40}", '2'
+    format size: 10, bold: 1
+    write_xy "G#{items + 22}", 'ПРЕДМЕТОВ'
 
     @worksheet = @workbook.add_worksheet 'ВОЗВРАТНАЯ НАКЛАДНАЯ'
     @worksheet.set_tab_color 'blue'
