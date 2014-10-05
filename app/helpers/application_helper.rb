@@ -3,6 +3,10 @@
 
 module ApplicationHelper
 
+  def to_money price
+    ('%.2f' % price).gsub(/\B(?=(\d{3})+(?!\d))/, " ")
+  end
+
   def getCatChildren(parent)
     @cats.find_all{|cat| cat if cat.parent_id == parent.id}
   end

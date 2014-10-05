@@ -48,17 +48,21 @@ class OrdersController < ApplicationController
       			product_id: i['i'],
       			quantity: i['c'],
       			price: i['p'].sub(' ', ''),
-            size: i['s'],
-            color: i['l'],
-            option: i['o'],
-            size_scode: i['ss'],
-            color_scode: i['ls'],
-            option_scode: i['os'],
+                size: i['s'],
+                color: i['l'],
+                option: i['o'],
+                size_scode: i['ss'],
+                color_scode: i['ls'],
+                option_scode: i['os'],
       		})
       	}
-        OrderMailer.ordersave(@order).deliver
-        OrderMailer.ordersaveclient(@order).deliver
-        format.html{redirect_to index_path, notice: 'ordersave'}
+        if user_signed_in? && current_user.admin?
+            format.html{redirect_to @order}
+        else
+            OrderMailer.ordersave(@order).deliver
+            OrderMailer.ordersaveclient(@order).deliver
+            format.html{redirect_to index_path, notice: 'ordersave'}
+        end
       else
         format.html{redirect_to index_path, notice: 'Заказ не был оформлен.'}
       end

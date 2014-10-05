@@ -131,6 +131,7 @@ private
 		:s_keyword,
 		:s_imagealt,
     :seo_text,
+    :old_price,
 		:category_ids => []
     )
   end

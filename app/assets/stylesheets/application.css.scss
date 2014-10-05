@@ -654,7 +654,7 @@ nav {
 
 		> .productContent {
 			position: relative;
-			padding-bottom: 80px;		
+			padding-bottom: 150px;		
 
 			> :first-child {
 				padding-top: 60px;
@@ -800,15 +800,6 @@ nav {
 				color: black;
 				font-weight: bold;
 				font-size: 15px;
-
-				p {
-					float: left;
-				}
-
-				.fancyButton {
-					float: right;
-					margin: -2px 0 0 30px;					
-				}
 			}
 		}
 	}
@@ -2128,4 +2119,35 @@ th {
   > div {
     display: block;
   }
+}
+.buyButton {
+	width: 273px;
+	height: 31px;
+	border: 1px solid #4FB859;
+	line-height: 30px;
+	color: white;
+	font-size: 17px;
+	text-shadow: -1px 1px 0 #3B9E44;
+	text-align: center;
+	cursor: pointer;
+	background-image: url('/assets/buyButton.png');
+	@include border-radius(5px);
+}
+.price-block {
+	border: 1px solid #58585A;
+	border-width: 1px 0;
+	margin-bottom: 15px;
+	padding: 12px 0 12px 1px;
+	.old_price {
+		color: #58585A;
+		font-weight: bold;
+	}
+	.main {
+		font-size: 26px;
+		line-height: 36px;
+		color: black;
+	}
+	.difference {
+		color: #58585A;
+	}
 }

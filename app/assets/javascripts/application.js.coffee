@@ -74,11 +74,11 @@ ready = ->
 		$(this).siblings("h3").removeClass("active");
 	if $('.show')[0]
 		window.optionsPrice = (b) ->
-			b = parseInt b
+			b = parseFloat b
 			$('.option :checked').each ->
-				b += parseInt @.value
+				b += parseFloat @.value
 			b.toCurrency()
-		$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
+		$('#summaryPrice').html optionsPrice(priceNum)
 	cartMenuGen()
 	$(".sortable").sortable
 		revert: true
@@ -306,7 +306,7 @@ expire = ->
 	  url: $(el).prev().attr 'src'
 	$(el).parents('#addImages').html('<input onclick="addImageClick(this)" type="button" value="Добавить изображение в поле header" class="btn btn-primary"><div></div>').next().val('')
 @priceChange = ->
-	$('#summaryPrice').html(optionsPrice(priceNum[0])+' '+priceNum[1])
+	$('#summaryPrice').html optionsPrice(priceNum)
 @order = ->
 	w = $('#orderWindow')
 	d = w.find('>:last-child')

@@ -93,8 +93,18 @@
 			</div>
 			<% end %>
 			<div class="price">
-				<p>Цена: <b id="summaryPrice"><%= number_to_currency(@product.price) %></b></p>
-				<div class="fancyButton" onclick="addToCart('<%= @product.name %>', this)">Купить</div>
+				<div class="price-block">
+					<% if @product.old_price > 0 %>
+						<p class="old_price">Цена: <strike><%= to_money @product.old_price %></strike> <img src="/assets/rublGray.png"></p>
+					<% end %>
+					<p class="main">
+						<b id="summaryPrice"><%= to_money @product.price %></b> <img src="/assets/rubl.png">
+					</p>
+					<% if @product.old_price > 0 %>
+						<p class="difference">Вы экономите: <strike><%= to_money(@product.old_price - @product.price) %></strike> <img src="/assets/rublGray.png"></p>
+					<% end %>
+				</div>
+				<div class="buyButton" onclick="addToCart('<%= @product.name %>', this)">Купить</div>
 				<%= hidden_field_tag :product_id_field, @product.id %>
 				<%= hidden_field_tag :product_scode, @product.scode %>
 			</div>
@@ -167,5 +177,5 @@
 </div>
 
 <script type="text/javascript">
-	priceNum = $('#summaryPrice').html().replace(' ', '').split(' ')
+	priceNum = $('#summaryPrice').html().replace(/ /g,'')
 </script>
