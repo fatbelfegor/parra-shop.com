@@ -69,6 +69,15 @@ class OrdersController < ApplicationController
     end
 	end
 
+    def edit
+        @order = Order.find params[:id]
+    end
+
+    def update
+        Order.find(params[:id]).update order_params
+        redirect_to orders_path
+    end
+
   def xlsx
     file = "#{Dir.pwd}/tmp/Заказ.xlsx"
     @workbook = WriteXLSX.new(file)
@@ -490,17 +499,39 @@ private
   def order_params
     params.require(:order).permit(
     	:first_name,
-			:middle_name,
-			:last_name,
-			:gender,
-			:phone,
-			:email,
-			:pay_type,
-			:addr_street,
-			:addr_home,
-			:addr_block,
-			:addr_flat,
-			:comment
+		:middle_name,
+		:last_name,
+		:gender,
+		:phone,
+		:email,
+		:pay_type,
+		:addr_street,
+		:addr_home,
+		:addr_block,
+		:addr_flat,
+		:comment,
+        :salon,
+        :salon_tel,
+        :manager,
+        :manager_tel,
+        :addr_metro,
+        :addr_staircase,
+        :addr_floor,
+        :addr_code,
+        :addr_elevator,
+        :deliver_type,
+        :deliver_cost,
+        :prepayment_date,
+        :prepayment_sum,
+        :doppayment_date,
+        :doppayment_sum,
+        :finalpayment_date,
+        :finalpayment_sum,
+        :payment_type,
+        :credit_sum,
+        :credit_month,
+        :credit_procent,
+        :deliver_date
     )
   end
 end

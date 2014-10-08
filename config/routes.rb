@@ -35,7 +35,7 @@ ParraShopCom::Application.routes.draw do
   post 'products/sort', to: 'products#sort'
   
   resources :categories, :images, :prsizes, :textures, :proptions, :prcolors
-  resources :orders, except: [:edit] do
+  resources :orders do
     get :exec, on: :member
     get :deny, on: :member
     resources :order_item, except: [:index, :show, :edit] do

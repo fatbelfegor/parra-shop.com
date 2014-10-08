@@ -8,11 +8,11 @@ class CreateOrders < ActiveRecord::Migration
       t.string :phone
       t.string :email
       t.string :pay_type
-      t.string :addr_street
-      t.string :addr_home
-      t.string :addr_block
-      t.string :addr_flat
-            
+      t.string :addr_street # Улица
+      t.string :addr_home # Дом
+      t.string :addr_block # Корпус
+      t.string :addr_flat # Квартира
+      # Нужно ещё: метро, подъезд, этаж, код, лифт
       t.text :comment
 
       t.timestamps

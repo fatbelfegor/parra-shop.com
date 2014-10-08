@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005011939) do
+ActiveRecord::Schema.define(version: 20141008053251) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -71,6 +71,28 @@ ActiveRecord::Schema.define(version: 20141005011939) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "status"
+    t.string   "salon"
+    t.string   "salon_tel"
+    t.string   "manager"
+    t.string   "manager_tel"
+    t.string   "addr_metro"
+    t.string   "addr_staircase"
+    t.string   "addr_floor"
+    t.string   "addr_code"
+    t.string   "addr_elevator"
+    t.string   "deliver_type"
+    t.decimal  "deliver_cost",      precision: 10, scale: 0
+    t.string   "prepayment_date"
+    t.decimal  "prepayment_sum",    precision: 10, scale: 0
+    t.string   "doppayment_date"
+    t.decimal  "doppayment_sum",    precision: 10, scale: 0
+    t.string   "finalpayment_date"
+    t.decimal  "finalpayment_sum",  precision: 10, scale: 0
+    t.string   "payment_type"
+    t.decimal  "credit_sum",        precision: 10, scale: 0
+    t.integer  "credit_month"
+    t.decimal  "credit_procent",    precision: 10, scale: 0
+    t.string   "deliver_date"
   end
 
   create_table "prcolors", force: true do |t|

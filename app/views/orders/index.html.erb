@@ -31,7 +31,7 @@
 		<td><%= order.first_name %></td>
 		<td><%= order.phone %></td>
 		<td><%= number_to_currency(price) %></td>
-		<td><%= link_to("Открыть", order, class: 'btn btn-info') %> <%= link_to("Выполнить", exec_order_path(order), class: 'btn btn-success') %> <%= link_to("Отклонить", deny_order_path(order), class: 'btn btn-warning') %> <a class="btn btn-primary" href="/orders/<%= order.id %>/%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7.xlsx">Загрузить xlsx</a> <%= link_to("Удалить", order, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger') %></td>
+		<td><%= link_to("Открыть", order, class: 'btn btn-info') %> <%= link_to("Выполнить", exec_order_path(order), class: 'btn btn-success') %> <%= link_to("Отклонить", deny_order_path(order), class: 'btn btn-warning') %> <a class="btn btn-primary" href="/orders/<%= order.id %>/%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7.xlsx">Распечатать</a> <%= link_to("Удалить", order, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger') %></td>
 	</tr>
 	<% end %>
 </table>
