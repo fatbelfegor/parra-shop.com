@@ -243,17 +243,18 @@ expire = ->
 	items = ''
 	allPrice = 0
 	for item in cart
-		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
-		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
-		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<a href="/kupit/'+item.d+'"><img><div><div><div>'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+' руб.</div><ins><span id="name">'+item.n+'</span> &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
-		allPrice += parseFloat(item.p.replace(/\ /g, ''))*item.c
-		$.ajax
-			url: "/cart.json?name="+item.n
-			success: (data) ->
-				$('#menuCart > div > a').get().forEach (item) ->
-					if $(item).find('#name').html() == data.name				
-						$(item).find('img').attr 'src', data.images.split(',')[0]
+		if item.d and item.p and item.c and item.n
+			if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
+			if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
+			if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
+			items += '<a href="/kupit/'+item.d+'"><img><div><div><div>'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+' руб.</div><ins><span id="name">'+item.n+'</span> &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
+			allPrice += parseFloat(item.p.replace(/\ /g, ''))*item.c
+			$.ajax
+				url: "/cart.json?name="+item.n
+				success: (data) ->
+					$('#menuCart > div > a').get().forEach (item) ->
+						if $(item).find('#name').html() == data.name				
+							$(item).find('img').attr 'src', data.images.split(',')[0]
 	if items == ''
 		$('#menuCart').hide()
 	else $('#menuCart').show()
@@ -517,3 +518,13 @@ validate = (input) ->
 		parent.removeClass 'active'
 @windowClose = ->
 	$('.windows').fadeOut(300)
+@orderEditSum = (el) ->
+	tr = $(el).parents("tr")
+	sum = tr.next().find(".sum")
+	p = parseFloat(tr.prev().find(".p").html())
+	if !isNaN(parseFloat($(el).val()))
+		final = (p + parseFloat($(el).val())).toFixed(2)
+		sum.html final + " руб."
+	else
+		final = (p).toFixed(2)
+		sum.html p.toFixed(2) + " руб."

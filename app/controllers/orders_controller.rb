@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
       		})
       	}
         if user_signed_in? && current_user.admin?
-            format.html{redirect_to @order}
+            format.html{redirect_to "/orders/#{@order.id}/edit"}
         else
             OrderMailer.ordersave(@order).deliver
             OrderMailer.ordersaveclient(@order).deliver
