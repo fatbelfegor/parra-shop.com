@@ -519,12 +519,26 @@ validate = (input) ->
 @windowClose = ->
 	$('.windows').fadeOut(300)
 @orderEditSum = (el) ->
-	tr = $(el).parents("tr")
-	sum = tr.next().find(".sum")
-	p = parseFloat(tr.prev().find(".p").html())
-	if !isNaN(parseFloat($(el).val()))
-		final = (p + parseFloat($(el).val())).toFixed(2)
-		sum.html final + " руб."
+	main = $(el).parents(".main")
+	pre = parseFloat main.find("#order_prepayment_sum").val()
+	dop = parseFloat main.find("#order_doppayment_sum").val()
+	final = parseFloat main.find("#order_finalpayment_sum").val()
+	deliver = parseFloat main.find("#order_deliver_cost").val()
+	p = parseFloat(main.find(".p").html())
+	sum = main.find(".sum")
+	dolg = main.find(".dolg")
+	if !isNaN deliver
+		price = (p + deliver).toFixed(2) 
+		sum.html price + " руб."
 	else
-		final = (p).toFixed(2)
-		sum.html p.toFixed(2) + " руб."
+		price = p.toFixed(2)
+		sum.html price + " руб."
+	payed = 0
+	for pay in [pre, dop, final]
+		if !isNaN pay
+			payed += pay
+	dolg.html (price - payed).toFixed(2) + ' руб.'
+@orderItemDiscountSave = (el, id) ->
+	val = $(el).val()
+	unless isNaN(val) and val != ''
+		$.post '/orders/discount_save', p: val, id: id

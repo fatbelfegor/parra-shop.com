@@ -39,6 +39,7 @@
 		<th>Количество</th>
 		<th>Цена</th>
 		<th>Итого</th>
+		<th>Скидка, %</th>
 		<th></th>
 	</tr>
 	<% @items.each do |item| %>
@@ -55,7 +56,14 @@
 			<span onclick="orderItemPlus(this)" class="btn btn-success quantity">+</span></td>
 		<td class="startPrice"><%= number_to_currency(item.price) %></td>
 		<td class="endPrice"><%= number_to_currency(item.price*item.quantity) %></td>
+		<td>
+			<input type="text" class="form-control input-discount" onkeyup="orderItemDiscountSave(this, <%= item.id %>)" value="<%= item.discount %>">
+		</td>
 		<td><%= link_to("Удалить", order_order_item_path(@order, item), :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger') %></td>
 	</tr>
 	<% end %>
 </table>
+
+<style type="text/css">
+	body > .main > div {width: auto; padding: 20px 50px}
+</style>

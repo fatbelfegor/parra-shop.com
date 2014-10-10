@@ -33,6 +33,7 @@ ParraShopCom::Application.routes.draw do
 
   post 'categories/sort', to: 'categories#sort'
   post 'products/sort', to: 'products#sort'
+  post 'orders/discount_save', to: 'orders#discount_save'
   
   resources :categories, :images, :prsizes, :textures, :proptions, :prcolors
   resources :orders do

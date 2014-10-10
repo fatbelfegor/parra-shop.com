@@ -78,6 +78,13 @@ class OrdersController < ApplicationController
         redirect_to orders_path
     end
 
+    def discount_save
+        if params[:p].present? and params[:id].present?
+            OrderItem.find(params[:id]).update discount: params[:p]
+        end
+        render nothing: true
+    end
+
   def xlsx
     file = "#{Dir.pwd}/tmp/Заказ.xlsx"
     @workbook = WriteXLSX.new(file)
@@ -169,16 +176,16 @@ class OrdersController < ApplicationController
     write_col 10, 1, ['ФИО', 'Улица', 'Телефон', 'Ст. метро']
     format(bold: 1, size: 11, align: :left, bottom: 1)
     write 4, 3, order.created_at.strftime('%d.%m.%Y')
-    write_step 6, 3, 3, ['Стефаненко Елена', '8(905)750-78-98']
-    write_col 10, 3, ["#{order.last_name} #{order.first_name} #{order.middle_name}", order.addr_street, order.phone, '*Ст. метро*']
-    write_step 5, 3, 3, ['Вагант', '8(499)400-58-18']
+    write_step 6, 3, 3, [order.manager, order.manager_tel]
+    write_col 10, 3, ["#{order.last_name} #{order.first_name} #{order.middle_name}", order.addr_street, order.phone, order.addr_metro]
+    write_step 5, 3, 3, [order.salon, order.salon_tel]
     format(bold: 1, size: 11, align: :right)
     write_col 5, 5, ['телефон  Салона', 'тел. менеджера']
     write_col_row_step 10, 4, 2, [['дом', 'корпус'], ['подъезд', 'этаж'], ['квартира', 'код']]
     write 13, 6, 'лифт'
     format(bold: 1, size: 11, align: :right, bottom: 1)
-    write_col_row_step 10, 5, 2, [[order.addr_home, order.addr_block], ['*подъезд*', '*этаж*'], [order.addr_flat, '*код*']]
-    write 13, 7, '*лифт*'
+    write_col_row_step 10, 5, 2, [[order.addr_home, order.addr_block], [order.addr_staircase, order.addr_floor], [order.addr_flat, order.addr_code]]
+    write 13, 7, order.addr_elevator
 
     # Таблица
 
@@ -191,26 +198,29 @@ class OrdersController < ApplicationController
     for item in order.order_items
       format(size: 10, border: 1, align: :center)
       write_row row, 1, [row - 15, item.product.scode]
-      write_row row, 4, [item.product.price, item.quantity, '*скидка*']
+      write_row row, 4, [item.product.price, item.quantity, item.discount]
       @style.set_align 'left'
       write row, 3, item.product.name
       format(bg_color: '#FFFFCC', color: :red, size: 10, border: 1, align: :right)
-      write row, 7, '*цена со скидкой*'
+      p = item.product.price * item.quantity * (1 - item.discount/100.0)
+      write row, 7, p
       row += 1
       count += item.quantity
-      price += item.product.price * item.quantity # * скидка
+      price += p
     end
     items = row - 16
     format(size: 10, border: 1, align: :right)
     write_col row, 4, ['Стоимость товара', 'Стоимость доставки']
     format(color: :red, size: 10, border: 1, align: :center)
     write row, 5, count
+    write row+1, 5, order.deliver_type
     format(size: 10, align: :left)
     write row, 6, 'шт.'
     format(color: :red, size: 10, border: 1, align: :right)
-    write_col row, 7, [price, '*доставка*', '*Цена с доставкой*']
+    summary = price + order.deliver_cost
+    write_col row, 7, [price, order.deliver_cost, summary]
     format(bold: 1, size: 10, align: :right)
-    write row += 2, 4, 'Стоимость доставки'
+    write row += 2, 4, 'Итого'
 
     # Оплата
     format(bold: 1, size: 11, align: :left)
@@ -219,17 +229,21 @@ class OrdersController < ApplicationController
     write_col row, 4, ['дата оплаты'] * 3
     write_col row, 6, ['сумма'] * 3
     format(border: 1, size: 11, align: :right)
-    write_col row, 5, ['*дата оплаты*'] * 3
+    write_col row, 5, [order.prepayment_date, order.doppayment_date, order.finalpayment_date]
     format(border: 1, size: 11, bold: 1, align: :center)
-    write_col row, 7, ['*сумма*'] * 2
-    format(border: 1, size: 11, bold: 1, align: :center, color: :red)
-    write row, 7, '*сумма*'
+    write_col row, 7, [order.prepayment_sum, order.doppayment_sum, order.finalpayment_sum]
+    format size: 11, bold: 1, align: :right
+    write row += 3, 5, 'Долг клиента'
+    format size: 11, bold: 1, align: :center, border: 1, bg_color: '#FFC7CE'
+    write row, 7, summary - order.prepayment_sum - order.doppayment_sum - order.finalpayment_sum
     format(size: 11, bold: 1, align: :right, color: :red)
-    write row += 4, 4, 'Способ оплаты заказа'
+    write row += 1, 4, 'Способ оплаты заказа'
+    format(size: 11, align: :center)
+    merge_range "F#{row += 1}:H#{row}", order.payment_type
 
     # Кредит
     format(size: 11, bold: 1, left: 1, top: 1, right: 1)
-    merge_range "B#{row += 2}:H#{row}", 'Клиенту предоставлена кредит'
+    merge_range "B#{row += 1}:H#{row}", 'Клиенту предоставлена кредит'
     format(left: 1)
     write_xy "B#{row += 1}", nil
     format(right: 1)
@@ -238,20 +252,20 @@ class OrdersController < ApplicationController
     write_xy "B#{row += 1}", 'На сумму'
     format(size: 10, bottom: 1, align: :center)
     write_xy "C#{row}", nil
-    write_xy "D#{row}", '0,00р.'
-    write_xy "F#{row}", '0'
+    write_xy "D#{row}", order.credit_sum
+    write_xy "F#{row}", order.credit_month
     format(size: 11, bottom: 1, align: :right, color: :red)
     write_xy "E#{row}", 'месяцев'
     format(size: 11, bottom: 1, align: :right)
     write_xy "G#{row}", '%'
     format(size: 10, bottom: 1, right: 1, align: :center, bold: 1)
-    write_xy "H#{row}", '0'
+    write_xy "H#{row}", order.credit_procent
 
     # Подпись
     format size: 11, bold: 1
     merge_range "B#{row += 3}:H#{row}", 'ИНФОРМАЦИЯ О ДОСТАВКЕ'
     write_xy "B#{row += 1}", 'Доставка до'
-    write_xy "D#{row}", '10.09.2014 в первой половине дня'
+    write_xy "D#{row}", order.deliver_date
     write_xy "B#{row + 3}", 'Дополнительная информация'
     @worksheet.set_row(row-1, 32)
     format [{size: 11, bold: 1}, {size: 11}]
