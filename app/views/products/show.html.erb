@@ -21,7 +21,7 @@
 			<% end %>
 		</div>
 		<div class="productContent" onchange="priceChange()">
-			<p><%= @product.name %></p>
+			<h1><%= @product.name %></h1>
 			<%= sanitize(@product.description) %>
 			
 			<% if @product.prsizes && @product.prsizes.count > 0 %>

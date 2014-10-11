@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009221247) do
+ActiveRecord::Schema.define(version: 20141010031753) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -182,5 +182,11 @@ ActiveRecord::Schema.define(version: 20141009221247) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "virtproducts", force: true do |t|
+    t.text    "text"
+    t.decimal "price",    precision: 18, scale: 2, default: 0.0, null: false
+    t.integer "order_id"
+  end
 
 end

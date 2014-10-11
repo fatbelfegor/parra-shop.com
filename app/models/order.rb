@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
-	has_many :order_items ,:dependent => :destroy
+  has_many :order_items ,:dependent => :destroy
+	has_many :virtproducts, :dependent => :destroy
 	
 	def total_price
     sum = 0

@@ -542,3 +542,9 @@ validate = (input) ->
 	val = $(el).val()
 	unless isNaN(val) and val != ''
 		$.post '/orders/discount_save', p: val, id: id
+@addVirtproduct = (el) ->
+	$(el).parents('tr').before "<tr>
+			<td>
+				<input type='text' name='text'>
+			</td>
+		<tr>"

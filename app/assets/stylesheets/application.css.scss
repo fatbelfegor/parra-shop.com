@@ -656,13 +656,14 @@ nav {
 			position: relative;
 			padding-bottom: 150px;		
 
-			> :first-child {
+			h1 {
 				padding-top: 60px;
 				font-size: 16px;
 				color: black;
 				margin-bottom: 35px;
 				font-weight: bold;
 				color: black;
+				margin-left: 50px;
 			}
 
 			> p {
@@ -1011,8 +1012,17 @@ body > .main {
 				.fancyButton {
 					float: none;
 					display: inline-block;
-					border: 0 solid #A6A6A6;
-					margin: 0;
+					color: white !important;
+					text-shadow: -1px 1px 0 #3B9E44;
+					text-align: center;
+					border: 0 solid #4FB859 !important;
+					font-size: 14px;
+					line-height: 20px;
+					padding: 0 12px;
+					cursor: pointer;
+					background-image: url('/assets/buyButton.png');
+					margin: 5px auto !important;
+					@include border-radius(5px);
 				}
 			}
 			.left, .right {
@@ -1061,8 +1071,8 @@ body > .main {
 					height: 25px;
 				}
 				.fancyButton {
-					border-width: 1px;
-					height: 25px;
+					border-width: 1px !important;
+					height: 20px;
 					margin-bottom: 5px;
 				}
 			}
