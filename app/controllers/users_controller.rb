@@ -27,4 +27,13 @@ class UsersController < ApplicationController
     render nothing: true
   end
 
+  def adminCreate
+    user = User.create! email: params[:email], prefix: params[:prefix], admin: params[:admin], manager: params[:manager], password: params[:password], password_confirmation: params[:password], confirmed_at: Time.now
+    render text: user.id
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+  end
+
 end

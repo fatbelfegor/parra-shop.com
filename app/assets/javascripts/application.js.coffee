@@ -565,3 +565,34 @@ validate = (input) ->
 	$.post '/users/confirm', id: id
 @userSetPrefix = (el) ->
 	$.post "/users/#{$(el).parents('tr').data('id')}/prefix", val: $(el).val()
+@addUser = (el) ->
+	now = new Date
+	$(el).parents('tr').before "<tr><td><input type=\"text\" class=\"form-control create-prefix\"></td>
+		<td><input type=\"text\" class=\"form-control create-email\"></td>
+		<td><input type=\"radio\" name=\"#{now}\" class=\"create-admin\"></td>
+		<td><input type=\"radio\" name=\"#{now}\" class=\"create-manager\"></td>
+		<td><input type=\"radio\" name=\"#{now}\" class=\"create-user\" checked=\"true\"></td>
+		<td><input type=\"password\" class=\"form-control create-password\" placeholder=\"Пароль\"></td>
+		<td><div class=\"btn btn-success\" onclick=\"createUser(this)\">Сохранить</div></td></tr>"
+@createUser = (el) ->
+	tr = $(el).parents('tr')
+	params = {admin: false, manager: false, password: tr.find('.create-password').val(), email: tr.find('.create-email').val(), prefix: tr.find('.create-prefix').val()}
+	switch tr.find('input:checked').attr('class')
+		when 'create-admin'
+			params.admin = true
+		when 'create-manager'
+			params.manager = true
+	$.post '/users/admin-create', params, (d) ->
+		checked = ' checked="true"'
+		tr.data('id', d).html "<td><input type=\"text\" class=\"form-control\" value=\"#{params.prefix}\" onchange=\"userSetPrefix(this)\"></td>
+			<td>#{params.email}</td>
+			<td><input type=\"radio\" name=\"#{d}\" onchange=\"userSetRole(this)\" data-role=\"admin\"#{checked if params.admin}></td>
+			<td><input type=\"radio\" name=\"#{d}\" onchange=\"userSetRole(this)\" data-role=\"manager\"#{checked if params.manager}></td>
+			<td><input type=\"radio\" name=\"#{d}\" onchange=\"userSetRole(this)\" data-role=\"user\"#{checked if !params.admin and !params.manager}></td>
+			<td colspan=\"2\">#{"<a class=\"btn btn-info\" href=\"/users/#{d}/logs\">Логи</a>" if params.manager}
+				<div class=\"btn btn-danger\" onclick=\"destroyUser(this)\">Удалить</div>
+			</td>"
+@destroyUser = (el) ->
+	tr = $(el).parents('tr')
+	$.post '/users/destroy', id: tr.data('id')
+	tr.remove()

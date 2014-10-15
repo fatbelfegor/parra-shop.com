@@ -39,6 +39,8 @@ ParraShopCom::Application.routes.draw do
   post 'users/role', to: 'users#role'
   post 'users/confirm', to: 'users#confirm'
   post 'users/:id/prefix', to: 'users#prefix'
+  post 'users/admin-create', to: 'users#adminCreate'
+  post 'users/destroy', to: 'users#destroy'
   
   resources :categories, :images, :prsizes, :textures, :proptions, :prcolors
   resources :orders do

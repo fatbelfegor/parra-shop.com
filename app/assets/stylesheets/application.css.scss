@@ -1879,7 +1879,7 @@ div.mce-edit-area {
 	margin-right: 1px;
 }
 
-input[type=text].form-control, .wrath-content-box {
+input[type=text].form-control, input[type=password].form-control, .wrath-content-box {
 	padding: 0 15px;
 }
 
@@ -2175,7 +2175,7 @@ th {
 .table-lh-34 td {
 	line-height: 34px !important;
 	.form-control {
-		width: 120px;
+		width: 100px;
 		margin: 0 auto;
 	}
 }
