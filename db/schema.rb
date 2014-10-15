@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010031753) do
+ActiveRecord::Schema.define(version: 20141015022722) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20141010031753) do
   create_table "categories_products", id: false, force: true do |t|
     t.integer "category_id"
     t.integer "product_id"
+  end
+
+  create_table "manager_logs", force: true do |t|
+    t.string   "action"
+    t.integer  "order_id"
+    t.integer  "order_item_id"
+    t.integer  "user_id"
+    t.datetime "time"
   end
 
   create_table "order_items", force: true do |t|
@@ -82,17 +90,17 @@ ActiveRecord::Schema.define(version: 20141010031753) do
     t.string   "addr_code"
     t.string   "addr_elevator"
     t.string   "deliver_type"
-    t.decimal  "deliver_cost",      precision: 10, scale: 0
+    t.decimal  "deliver_cost",      precision: 10, scale: 0, default: 0
     t.string   "prepayment_date"
-    t.decimal  "prepayment_sum",    precision: 10, scale: 0
+    t.decimal  "prepayment_sum",    precision: 10, scale: 0, default: 0
     t.string   "doppayment_date"
-    t.decimal  "doppayment_sum",    precision: 10, scale: 0
+    t.decimal  "doppayment_sum",    precision: 10, scale: 0, default: 0
     t.string   "finalpayment_date"
-    t.decimal  "finalpayment_sum",  precision: 10, scale: 0
+    t.decimal  "finalpayment_sum",  precision: 10, scale: 0, default: 0
     t.string   "payment_type"
-    t.decimal  "credit_sum",        precision: 10, scale: 0
+    t.decimal  "credit_sum",        precision: 10, scale: 0, default: 0
     t.integer  "credit_month"
-    t.decimal  "credit_procent",    precision: 10, scale: 0
+    t.decimal  "credit_procent",    precision: 10, scale: 0, default: 0
     t.string   "deliver_date"
   end
 
@@ -177,6 +185,8 @@ ActiveRecord::Schema.define(version: 20141010031753) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
+    t.boolean  "manager"
+    t.string   "prefix"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

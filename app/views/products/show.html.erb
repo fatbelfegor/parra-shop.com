@@ -4,7 +4,7 @@
 	<h2><% unless @product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= @product.category.name %></h2>
 	<div class="main">
 		<div>			
-			<% if @product.images %>
+			<% unless @product.images.empty? %>
 				<% images = @product.images.split(',') %>
 				<div class="mini">
 					<img onclick="choosePhoto(this)" class="active" src="<%= images[0] %>">

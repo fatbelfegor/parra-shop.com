@@ -4,32 +4,35 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  before_filter :admin_required, except: :create
+  before_filter :manager_required, except: :create
 
   def index
     if params[:show] == 'new'
-      @orders = Order.where(status: nil).order('created_at DESC')
+        @orders = Order.where(status: nil).order('created_at DESC')
     elsif params[:show] == 'exec'
-      @orders = Order.where(status: true).order('created_at DESC')
+        @orders = Order.where(status: true).order('created_at DESC')
     elsif params[:show] == 'exec'
-      @orders = Order.where(status: false).order('created_at DESC')
+        @orders = Order.where(status: false).order('created_at DESC')
     else
-      @orders = Order.all.order('created_at DESC')
+        @orders = Order.all.order('created_at DESC')
     end
   end
 
   def exec
     Order.find(params[:id]).update status: true
+    current_user.manager_log 'Выполнил(а) заказ', params[:id]
     redirect_to orders_path
   end
 
   def deny
     Order.find(params[:id]).update status: false
+    current_user.manager_log 'Отклонил(а) заказ', params[:id]
     redirect_to orders_path
   end
 
   def destroy
     Order.find(params[:id]).destroy
+    current_user.manager_log 'Удалил(а) заказ', params[:id]
     redirect_to orders_path
   end
 
@@ -75,12 +78,15 @@ class OrdersController < ApplicationController
 
     def update
         Order.find(params[:id]).update order_params
+        current_user.manager_log 'Редактировал(а) заказ', params[:id]
         redirect_to orders_path
     end
 
     def discount_save
         if params[:p].present? and params[:id].present?
-            OrderItem.find(params[:id]).update discount: params[:p]
+            order_item = OrderItem.find(params[:id])
+            order_item.update discount: params[:p]
+            current_user.manager_log "Установил(а) скидку #{params[:p]}% на товар", [order_item.order.id, params[:id]]
         end
         render nothing: true
     end
@@ -506,7 +512,11 @@ class OrdersController < ApplicationController
     write_xy "G#{18+items}", 'ПРЕДМЕТОВ'
 
     @workbook.close
-    send_file file
+    current_user.manager_log 'Распечатал(а) заказ', params[:id]
+    File.open(file, 'r') do |f|
+      send_data f.read, type: "text/excel"
+    end
+    File.delete(file)
   end
 
 private

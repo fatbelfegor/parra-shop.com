@@ -548,3 +548,20 @@ validate = (input) ->
 				<input type='text' name='text'>
 			</td>
 		<tr>"
+@userSetRole = (el) ->
+	params = {admin: false, manager: false, id: $(el).attr('name')}
+	role = $(el).data('role')
+	params.admin = true if role is 'admin'
+	params.manager = true if role is 'manager'
+	$.post '/users/role', params
+@userConfirm = (el) ->
+	tr = $(el).parents('tr')
+	id = tr.data('id')
+	$(el).parents('tr').html "<td><input type=\"text\" class=\"form-control\" value=\"#{tr.find('.form-control').val()}\" onchange=\"userSetPrefix(this)\"></td>
+		<td>#{$(el).parent().prev().html()}</td>
+		<td><input type=\"radio\" name=\"#{id}\" onchange=\"userSetRole(this)\" data-role=\"admin\"></td>
+		<td><input type=\"radio\" name=\"#{id}\" onchange=\"userSetRole(this)\" data-role=\"manager\"></td>
+		<td><input type=\"radio\" name=\"#{id}\" onchange=\"userSetRole(this)\" data-role=\"user\" checked=\"true\"></td>"
+	$.post '/users/confirm', id: id
+@userSetPrefix = (el) ->
+	$.post "/users/#{$(el).parents('tr').data('id')}/prefix", val: $(el).val()

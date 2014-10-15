@@ -5,6 +5,8 @@ ParraShopCom::Application.routes.draw do
   get "order_item/delete"
   get "catalog/index"
   get "main/main"
+  get 'users', to: 'users#index'
+  get 'users/:id/logs', to: 'users#logs'
   devise_for :users
   get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
@@ -29,11 +31,14 @@ ParraShopCom::Application.routes.draw do
   get "articles", to: 'main#articles'
   get "insurance", to: 'main#insurance'
 
-  get 'orders/:id/заказ.xlsx', to: 'orders#xlsx'
+  get 'orders/:id/Заказ :user_id :order_id.xlsx', to: 'orders#xlsx'
 
   post 'categories/sort', to: 'categories#sort'
   post 'products/sort', to: 'products#sort'
   post 'orders/discount_save', to: 'orders#discount_save'
+  post 'users/role', to: 'users#role'
+  post 'users/confirm', to: 'users#confirm'
+  post 'users/:id/prefix', to: 'users#prefix'
   
   resources :categories, :images, :prsizes, :textures, :proptions, :prcolors
   resources :orders do

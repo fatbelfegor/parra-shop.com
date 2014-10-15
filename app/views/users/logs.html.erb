@@ -1,0 +1,20 @@
+<br>
+<h2 class="text-center">Действия пользователя <%= @user.email %></h2>
+<br>
+
+<table class="table table-bordered table-striped text-center">
+	<tr>
+		<th>Время</th>
+		<th>Действие</th>
+		<th>id заказа</th>
+		<th>id товара в заказе</th>
+	</tr>
+	<% for log in @user.manager_logs %>
+	<tr>
+		<td><%= log.time.strftime '%d.%m.%Y, %H:%M' %></td>
+		<td><%= log.action %></td>
+		<td><%= log.order_id %></td>
+		<td><%= log.order_item_id %></td>
+	</tr>
+	<% end %>
+</table>

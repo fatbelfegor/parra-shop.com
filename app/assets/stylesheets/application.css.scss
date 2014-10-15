@@ -2172,3 +2172,10 @@ th {
 	width: 25px !important;
 	display: inline-block;
 }
+.table-lh-34 td {
+	line-height: 34px !important;
+	.form-control {
+		width: 120px;
+		margin: 0 auto;
+	}
+}

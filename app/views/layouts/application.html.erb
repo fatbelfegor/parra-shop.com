@@ -14,12 +14,18 @@
 	</div>
 <% end %>
 <a href='/'><img class="logo" src="/assets/logo.png"></a>
-<% if user_signed_in? && current_user.admin? %>
+<% if user_signed_in? %>
 <ul class="admin-nav">
+	<% if current_user.admin? %>
 	<li><b>Администрирование:</b></li>
-  <li><a href="/categories">Список категорий</a></li>
-	<li><a href="/orders">Заказы</a></li>
+	<li><a href="/categories">Список категорий</a></li>
 	<li><a href="/configurator">Конфигуратор</a></li>
+	<li><a href="/users/">Пользователи</a></li>
+	<% end
+	if current_user.manager or current_user.admin? %>
+	<li><a href="/orders">Заказы</a></li>
+	<% end %>
+	<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
 </ul>
 <% end %>
 <div class="shopPhone">

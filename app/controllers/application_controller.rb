@@ -13,11 +13,19 @@ class ApplicationController < ActionController::Base
        devise_parameter_sanitizer.for(:sign_up) << :admin
    end
 
-   def admin_required
-      unless user_signed_in? && current_user.admin?
-        redirect_to "/"
-        false
-      end
-      true
-   end
+  def admin_required
+    unless user_signed_in? && current_user.admin?
+      redirect_to "/"
+      false
+    end
+    true
+  end
+
+  def manager_required
+    unless user_signed_in? && (current_user.admin? || current_user.manager)
+      redirect_to "/"
+      false
+    end
+    true
+  end
 end

@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
     else
       @title = @product.name
     end
-    @title = @product.category.s_title + " - " + @title
+    @title = @product.category.title + " - " + @title
     return render :action => 'page404' unless @product
     if !@product.invisible || (user_signed_in? && current_user.admin?)
       respond_to do |format|
@@ -59,6 +59,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    params[:product][:category_ids] ||= [params[:product][:category_id]]
     @product = Product.new(product_params)
 
     respond_to do |format|
@@ -75,7 +76,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    params[:product][:category_ids] ||= []
+    params[:product][:category_ids] ||= [params[:product][:category_id]]
     respond_to do |format|
       if @product.update(product_params) 
         format.html { redirect_to '/kupit/'+@product.scode, notice: 'Product was successfully updated.' }
@@ -120,25 +121,25 @@ private
   def product_params
     params.require(:product).permit(
     	:category_id,
-		:scode,
-		:name,
-		:description,
-		:images,
-		:price,
-		:shortdesk,
-		:delemiter,
-		:invisible,
-		:main,
-		:action,
-		:best,
-		:position,
-		:s_title,
-		:s_description,
-		:s_keyword,
-		:s_imagealt,
-    :seo_text,
-    :old_price,
-		:category_ids => []
+  		:scode,
+  		:name,
+  		:description,
+  		:images,
+  		:price,
+  		:shortdesk,
+  		:delemiter,
+  		:invisible,
+  		:main,
+  		:action,
+  		:best,
+  		:position,
+  		:s_title,
+  		:s_description,
+  		:s_keyword,
+  		:s_imagealt,
+      :seo_text,
+      :old_price,
+  		:category_ids => []
     )
   end
 end

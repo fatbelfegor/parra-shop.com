@@ -1,0 +1,43 @@
+<br>
+<h2 class="text-center">Пользователи</h2>
+<br>
+
+<table class="table table-bordered table-striped text-center table-lh-34">
+	<tr>
+		<th>Префикс</th>
+		<th>E-mail</th>
+		<th>Админ</th>
+		<th>Менеджер</th>
+		<th>Пользователь</th>
+		<th></th>
+	</tr>
+	<% @users.each do |user| %>
+	<tr data-id="<%= user.id %>">
+		<td><input type="text" class="form-control" value="<%= user.prefix %>" onchange="userSetPrefix(this)"></td>
+		<td><%= user.email %></td>
+		<% if user.confirmed_at %>
+			<%	disabled = admin = manager = user_role = ''
+			if user.admin
+				admin = ' checked="true"'
+				disabled = ' disabled="true"' if user.id == current_user.id
+			elsif user.manager
+				manager = ' checked="true"'
+			else
+				user_role = ' checked="true"'
+			end %>
+			<td><input type="radio" name="<%= user.id %>" onchange="userSetRole(this)" data-role="admin"<%= disabled + admin %>></td>
+			<td><input type="radio" name="<%= user.id %>" onchange="userSetRole(this)" data-role="manager"<%= disabled + manager %>></td>
+			<td><input type="radio" name="<%= user.id %>" onchange="userSetRole(this)" data-role="user"<%= disabled + user_role %>></td>
+			<% if user.manager %>
+				<td><a class="btn btn-primary" href="/users/<%= user.id %>/logs">Действия</a></td>
+			<% else %>
+				<td></td>
+			<% end %>
+		<% else %>
+			<td colspan="4">
+				<div class="btn btn-success" onclick="userConfirm(this)">Подтвердить</div>
+			</td>
+		<% end %>
+	</tr>
+	<% end %>
+</table>
