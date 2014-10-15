@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
                 option_scode: i['os'],
       		})
       	}
-        if user_signed_in? && current_user.admin?
+        if user_signed_in? && (current_user.admin? || current_user.manager)
             format.html{redirect_to "/orders/#{@order.id}/edit"}
         else
             OrderMailer.ordersave(@order).deliver
