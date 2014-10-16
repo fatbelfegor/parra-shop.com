@@ -544,9 +544,9 @@ validate = (input) ->
 		$.post '/orders/discount_save', p: val, id: id
 @addVirtproduct = (el) ->
 	$(el).parents('tr').before "<tr>
-			<td>
-				<input type='text' name='text'>
-			</td>
+			<td><input type='text' name='text' class='form-control form-control-90'></td>
+			<td><input type='text' name='price' class='form-control form-control-90'></td>
+			<td><div class='btn btn-success' onclick='saveVirtProduct(this)'>Сохранить</div> <div class='btn btn-warning' onclick=\"$(this).parents('tr').remove()\">Отменить</div></td>
 		<tr>"
 @userSetRole = (el) ->
 	params = {admin: false, manager: false, id: $(el).attr('name')}
@@ -596,3 +596,16 @@ validate = (input) ->
 	tr = $(el).parents('tr')
 	$.post '/users/destroy', id: tr.data('id')
 	tr.remove()
+@saveVirtProduct = (el) ->
+	tr = $(el).parents 'tr'
+	text = tr.find('[name=text]').val()
+	price = tr.find('[name=price]').val()
+	if text != '' and price != '' and !isNaN price
+		$.post '/orders/add_virtproduct', text: text, price: price, id: $('#order-id').html(), (d) ->
+			tr.data('id', d).html "<td><input onkeyup='editVirtProduct(this)' name='text' type='text' value='#{text}' class='form-control form-control-90'></td>
+				<td><input onkeyup='editVirtProduct(this)' name='price' type='text' value='#{price}' class='form-control form-control-90'></td>
+				<td><div class='btn btn-danger' onclick='destroyVirtProduct(this)'>Удалить</div></td>"
+@editVirtProduct = (el) ->
+	$.post "/orders/edit_virtproduct_#{$(el).attr('name')}", id: $(el).parents('tr').data('id')	, val: $(el).val()
+@destroyVirtProduct = (el) ->
+	$.post "/orders/destroy_virtproduct", id: $(el).parents('tr').data('id')

@@ -91,6 +91,26 @@ class OrdersController < ApplicationController
         render nothing: true
     end
 
+    def addVirtproduct
+        vp = Order.find(params[:id]).virtproducts.create text: params[:text], price: params[:price]
+        render text: vp.id
+    end
+
+    def editVirtproductText
+        Virtproduct.find(params[:id]).update text: params[:val]
+        render nothing: true
+    end
+
+    def editVirtproductPrice
+        Virtproduct.find(params[:id]).update price: params[:val]
+        render nothing: true
+    end
+
+    def destroyVirtproduct
+        Virtproduct.find(params[:id]).destroy
+        render nothing: true
+    end
+
   def xlsx
     file = "#{Dir.pwd}/tmp/Заказ.xlsx"
     @workbook = WriteXLSX.new(file)
@@ -202,10 +222,11 @@ class OrdersController < ApplicationController
     count = 0
     price = 0
     for item in order.order_items
-      format(size: 10, border: 1, align: :center)
-      write_row row, 1, [row - 15, item.product.scode]
+      format size: 10, border: 1, align: :right, bg_color: '#FFFFCC'
+      write row, 1, row - 15
+      format size: 10, border: 1
+      write row, 2, item.product.scode
       write_row row, 4, [item.product.price, item.quantity, item.discount]
-      @style.set_align 'left'
       write row, 3, item.product.name
       format(bg_color: '#FFFFCC', color: :red, size: 10, border: 1, align: :right)
       p = item.product.price * item.quantity * (1 - item.discount/100.0)
@@ -213,6 +234,22 @@ class OrdersController < ApplicationController
       row += 1
       count += item.quantity
       price += p
+    end
+    unless order.virtproducts.blank?
+        format bold: 1, bg_color: '#FFFFCC', size: 10, border: 1, align: :center
+        write row, 1, ''
+        merge_range "C#{row += 1}:E#{row}", 'Описание дополнительного товара'
+        merge_range "F#{row}:H#{row}", 'Цена дополнительного товара'
+        for virt in order.virtproducts
+            format size: 10, border: 1, align: :right, bg_color: '#FFFFCC'
+            write row, 1, row - 15
+            format size: 10, border: 1
+            merge_range "C#{row += 1}:E#{row}", virt.text
+            format size: 10, border: 1, color: :red, align: :right, bg_color: '#FFFFCC'
+            merge_range "F#{row}:H#{row}", virt.price
+            count += 1
+            price += virt.price
+        end
     end
     items = row - 16
     format(size: 10, border: 1, align: :right)

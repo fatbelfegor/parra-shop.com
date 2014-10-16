@@ -143,7 +143,7 @@
 			<th>%</th>
 			<th>Сумма</th>
 		</tr>
-		<% i = 1 %>
+		<% i = 0 %>
 		<% q = p = 0 %>
 		<% for item in @order.order_items %>
 		<% q += item.quantity %>
@@ -157,6 +157,20 @@
 			<td><%= item.quantity %></td>
 			<td><%= item.discount %></td>
 			<td><%= number_to_currency price %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<th></th>
+			<th colspan="3">Описание дополнительного товара</th>
+			<th colspan="3">Цена дополнительного товара</th>
+		</tr>
+		<% for virt in @order.virtproducts %>
+		<% q += 1 %>
+		<% p += virt.price %>
+		<tr>
+			<td><%= i += 1 %></td>
+			<td colspan="3"><%= virt.text %></td>
+			<td colspan="3"><%= number_to_currency virt.price %></td>
 		</tr>
 		<% end %>
 		<tr>
