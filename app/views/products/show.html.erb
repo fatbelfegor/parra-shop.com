@@ -29,13 +29,13 @@
 				<a onclick="option(this)">Выбрать размер:<img src="/assets/optionArrow.png"></a>
 				<div class="option">
 					<label>
-						<input value="<%= @product.prsizes[0].price %>" type="radio" name="prsizes" checked="checked" />
+						<input class="size-scode-<%= @product.prsizes[0].scode %>" value="<%= @product.prsizes[0].price %>" type="radio" name="prsizes" checked="checked" />
 						<span><%= @product.prsizes[0].name %></span>
 						<span class="hidden"><%= @product.prsizes[0].scode %></span>
 					</label>
 					<% @product.prsizes[1..-1].each do |p| %>
 						<label>
-							<input value="<%= p.price %>" type="radio" name="prsizes" />
+							<input class="size-scode-<%= p.scode %>" value="<%= p.price %>" type="radio" name="prsizes" />
 							<span><%= p.name %></span>
 							<span class="hidden"><%= p.scode %></span>
 						</label>						
@@ -49,7 +49,7 @@
 				<div class="option">
 					<% if @product.prcolors[0].textures.empty? %>
 					<label class="color">
-						<input value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
+						<input class="color-scode-<%= @product.prcolors[0].scode %>" value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
 						<input type="hidden" value="<%= @product.prcolors[0].name %>">
 						<input type="hidden" value="<%= @product.prcolors[0].scode %>">
 						<a href="<%= @product.prcolors[0].images %>" data-lightbox="<%= @product.prcolors[0].name %>" title="<%= @product.prcolors[0].name %>"><img src="<%= @product.prcolors[0].images %>"></a>
@@ -61,7 +61,7 @@
 					<% @product.prcolors[1..-1].each do |p| %>
 						<% if p.textures.empty? %>
 						<label class="color">
-							<input value="<%= p.price %>" type="radio" name="prcolors" />
+							<input class="color-scode-<%= p.scode %>" value="<%= p.price %>" type="radio" name="prcolors" />
 							<input type="hidden" value="<%= p.name %>">
 							<a href="<%= p.images %>" data-lightbox="<%= p.name %>" title="<%= p.name %>"><img src="<%= p.images %>"></a>
 							<span><%= sanitize(p.description) %></span>
@@ -84,7 +84,7 @@
 					</label>
 					<% @product.proptions.each do |p| %>
 						<label>
-							<input value="<%= p.price %>" type="radio" name="proptions" />
+							<input class="option-scode-<%= p.scode %>" value="<%= p.price %>" type="radio" name="proptions" />
 							<span><%= p.name %></span>
 							<span class="hidden"><%= p.scode %></span>
 						</label>						
@@ -177,5 +177,6 @@
 </div>
 
 <script type="text/javascript">
-	priceNum = $('#summaryPrice').html().replace(/ /g,'')
+	priceNum = $('#summaryPrice').html().replace(/ /g,'');
+	productPage()
 </script>

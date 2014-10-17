@@ -308,6 +308,7 @@ expire = ->
 	$(el).parents('#addImages').html('<input onclick="addImageClick(this)" type="button" value="Добавить изображение в поле header" class="btn btn-primary"><div></div>').next().val('')
 @priceChange = ->
 	$('#summaryPrice').html optionsPrice(priceNum)
+	productKeepPage()
 @order = ->
 	w = $('#orderWindow')
 	d = w.find('>:last-child')
@@ -332,12 +333,12 @@ expire = ->
 @option = (el) ->
 	next = $(el).next()
 	if next.css('display') != 'none'
-		next.hide(300)
+		next.hide 300, productKeepPage
 	else
 		$('.option').each ->
 			if $(this).css('display') != 'none'
 				$(this).hide(300)
-		next.show(300)
+		next.show 300, productKeepPage
 @addTexture = (el) ->
 	div = $(el).next()
 	window.div = div
@@ -389,10 +390,10 @@ expire = ->
 @texturesWatch = (el) ->
 	label = $(el).parent().next()
 	if label.css('height') == '0px'
-		label.animate 'height':Math.ceil(label.find('label').length/Math.floor(label.parent().width()/96))*131+'px', 300
+		label.animate 'height':Math.ceil(label.find('label').length/Math.floor(label.parent().width()/96))*131+'px', 300, productKeepPage
 		el.innerHTML = 'Закрыть'
 	else
-		label.animate 'height':'0px'
+		label.animate 'height':'0px', productKeepPage
 		el.innerHTML = 'Посмотреть'
 @imageChange = (el) ->
 	if el.innerHTML == 'Изменить'
@@ -616,3 +617,40 @@ validate = (input) ->
 	tr = $(el).parents('tr')
 	tr.find('.status').html $(el).html()
 	$.post "/orders/#{tr.data('id')}/status", status_id: $(el).data('id')
+productKeepPage = ->
+	pc = $('.productContent')
+	o = pc.find('.option:visible').parent().index()
+	t = []
+	pc.find('.textures').each ->
+		t.push $(@).height()
+	s = pc.find('[name=prsizes]:checked').attr('class').split('size-scode-')[1]
+	c = pc.find('[name=prcolors]:checked')
+	if c.length > 0
+		c = c.attr('class')
+		if /^color-scode-/.test(c)
+			c = c.split('color-scode-')[1]
+			tx = false
+		else
+			tx = c.split('texture-scode-')[1]
+			c = false
+	else
+		c = tx = false
+	op = pc.find('[name=proptions]:checked').attr('class')
+	if op
+		op = op.split('option-scode-')[1]
+	else
+		op = false
+	document.cookie = 'productPage='+JSON.stringify([o, t, s, c, tx, op])+";path=/kupit/#{$('#product_scode').val()};expires="+expire().toGMTString()
+@productPage = ->
+	productPage = eval getCookie 'productPage'
+	if productPage
+		pc = $('.productContent')
+		pc.find('> div').eq(productPage[0] - 1).find('.option').show()
+		i = 0
+		pc.find('.textures').each ->
+			$(@).css 'height', "#{productPage[1][i]}px"
+			i += 1
+		pc.find(".size-scode-#{productPage[2]}").prop 'checked', true
+		pc.find(".color-scode-#{productPage[3]}").prop 'checked', true if productPage[3]
+		pc.find(".texture-scode-#{productPage[4]}").prop 'checked', true if productPage[4]
+		pc.find(".option-scode-#{productPage[5]}").prop 'checked', true if productPage[5]
