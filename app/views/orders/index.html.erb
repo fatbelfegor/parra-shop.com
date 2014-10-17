@@ -1,15 +1,17 @@
 <h1 class="text-center" style="margin:15px 0">Список продуктов (<%= @orders.count %>)</h1>
 
 <div class="text-center">
-	<a href="/orders/" class="btn btn-primary">Все</a>
-	<a href="?show=new" class="btn btn-info">Новые</a>
-	<a href="?show=exec" class="btn btn-success">Выполненные</a>
-	<a href="?show=deny" class="btn btn-warning">Отклоненные</a>
+	<a href="/orders/" class="btn btn-<%= if params[:status].present? then 'default' else 'primary' end %>">Все</a>
+	<% for status in @statuses %>
+	<a href="/orders/?status=<%= status.id %>" class="btn btn-<%= if params[:status] == status.id.to_s then 'primary' else 'default' end %>"><%= status.name %></a>
+	<% end %>
+	<a href="/statuses/" class="btn btn-warning">Список статусов</a>
+	<a href="/status/new" class="btn btn-success">Новый статус</a>
 </div>
 
 <br>
 
-<table class="table table-striped table-bordered text-center">
+<table class="table table-striped table-bordered text-center table-lh-34">
 	<tr>
 		<th>Статус</th>
 		<th>Дата создания</th>
@@ -18,20 +20,31 @@
 		<th>Сумма</th>
 		<th>Действия</th>
 	</tr>
-	<% @orders.each do |order|
+	<% @orders[0..0].each do |order|
 		price = 0;
 		order.order_items.each do |item|
 			price += item.price
 		end %>
-	<tr>
-		<td><% if order.status == true %>Выполен
-		<% elsif order.status == false %>Отклонен
-		<% else %>Новый<% end %></td>
+	<tr data-id="<%= order.id %>">
+		<td class="status"><%= if order.status then order.status.name else 'Новый' end %></td>
 		<td><%= order.created_at.strftime('%Y-%m-%d %H:%M') %></td>
 		<td><%= order.first_name %></td>
 		<td><%= order.phone %></td>
 		<td><%= number_to_currency(price) %></td>
-		<td><%= link_to("Edit", "/orders/#{order.id}/edit", class: 'btn btn-warning') %> <%= link_to("Открыть", order, class: 'btn btn-info') %> <%= link_to("Выполнить", exec_order_path(order), class: 'btn btn-success') %> <%= link_to("Отклонить", deny_order_path(order), class: 'btn btn-warning') %> <a class="btn btn-primary" href="/orders/<%= order.id %>/Заказ <%= "#{current_user.prefix} #{order.id}" %>.xlsx">Распечатать</a> <%= link_to("Удалить", order, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger') %></td>
+		<td>
+			<%= link_to("Открыть", order, class: 'btn btn-info') %>
+			<a class="btn btn-primary" href="/orders/<%= order.id %>/Заказ <%= "#{current_user.prefix} #{order.number}" %>.xlsx">Распечатать</a>
+			<div class="btn btn-success setStatus" onclick="orderStatus(this)">Статус
+				<div>
+					<ul>
+						<% for status in @statuses %>
+						<li data-id="<%= status.id %>" onclick="setOrderStatus(this)"><%= status.name %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+			<%= link_to("Редактировать", "/orders/#{order.id}/edit", class: 'btn btn-warning') %>
+			<%= link_to("Удалить", order, 'data-confirm' => 'Вы уверены?', :method => :delete, class: 'btn btn-danger') %></td>
 	</tr>
 	<% end %>
 </table>

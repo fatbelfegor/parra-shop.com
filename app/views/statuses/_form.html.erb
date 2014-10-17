@@ -1,0 +1,11 @@
+<%= form_for(@status) do |f| %>
+<label class="row row form-group">
+	<h4 class="col-md-2 col-md-offset-3 text-center">Название: </h4>
+	<div class="col-md-3">
+		<%= f.text_field :name, {class: 'form-control'} %>
+	</div>
+</label>
+<div class="text-center">
+	<%= f.submit 'Сохранить', class: "btn btn-success" %>
+</div>
+<% end %>

@@ -522,27 +522,25 @@ nav {
 			text-decoration: underline;
 		}
 
+		
 		.gotoCart {
 			float: right;
-			text-transform: lowercase;
-			line-height: 34px;
-			padding: 0 10px;
-			color: black;
-			background-color: #52B84A;
-			background: -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%);
-			@include transition(0.3s);
+			padding: 0 15px;
 			text-decoration: none;
+			height: 31px;
+			border: 1px solid #4FB859;
+			line-height: 30px;
+			color: white;
+			font-size: 17px;
+			text-shadow: -1px 1px 0 #3B9E44;
+			text-align: center;
+			cursor: pointer;
+			background-image: url('/assets/buyButton.png');
+			@include border-radius(5px);
 		}
 
 		.gotoCart:hover {
-			color: black;
 			text-decoration: underline;
-			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #92E88A), color-stop(0.5, #52B84A), color-stop(0.5, #4AAC45), color-stop(1, #41A638));
-			background-image: -o-linear-gradient(bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
-			background-image: -moz-linear-gradient(bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
-			background-image: -webkit-linear-gradient(bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
-			background-image: -ms-linear-gradient(bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
-			background-image: linear-gradient(to bottom, #92E88A 0%, #52B84A 50%, #4AAC45 50%, #41A638 100%);
 		}
 
 
@@ -2182,4 +2180,37 @@ th {
 .form-control-90 {
 	width: 90%;
 	margin: 0 auto;
+}
+.setStatus {
+	position: relative;
+	div {
+		display: none;
+		width: 198px;
+		border: 1px solid #aaa;
+		border-bottom: 0;
+		background-color: white;
+		position: absolute;
+		left: 50%;
+		top: 40px;
+		margin-left: -100px;
+		ul {
+			border-width: 0 1px;
+			li {
+				height: 34px;
+				line-height: 34px;
+				font-size: 16px;
+				border-bottom: 1px solid #aaa;
+				color: #333;
+				cursor: pointer;
+				@include transition(.3s);
+			}
+			li:hover {
+				background-color: #5cb85c;
+				color: white;
+			}
+		}
+	}
+}
+.setStatus.open div {
+	display: block;
 }

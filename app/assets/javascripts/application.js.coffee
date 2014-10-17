@@ -609,3 +609,10 @@ validate = (input) ->
 	$.post "/orders/edit_virtproduct_#{$(el).attr('name')}", id: $(el).parents('tr').data('id')	, val: $(el).val()
 @destroyVirtProduct = (el) ->
 	$.post "/orders/destroy_virtproduct", id: $(el).parents('tr').data('id')
+@orderStatus = (el) ->
+	$(el).toggleClass 'open'
+@setOrderStatus = (el) ->
+	$(el).parents('.setStatus').toggleClass 'open'
+	tr = $(el).parents('tr')
+	tr.find('.status').html $(el).html()
+	$.post "/orders/#{tr.data('id')}/status", status_id: $(el).data('id')

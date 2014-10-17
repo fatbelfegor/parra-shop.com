@@ -1,0 +1,22 @@
+<br><h2 class="text-center">Список статусов заказа</h2><br>
+
+<table class="table table-bordered table-striped text-center table-lh-34">
+	<tr>
+		<th>Название</th>
+		<th>Действия</th>
+	</tr>
+	<% for status in @statuses %>
+	<tr>
+		<td><b><%= status.name %></b></td>
+		<td>
+			<%= link_to 'Редактировать', edit_status_path(status), class: 'btn btn-warning' %>
+			<%= link_to 'Удалить', status, 'data-confirm' => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="2">
+			<%= link_to 'Новый статус', new_status_path, class: 'btn btn-success' %>
+		</td>
+	</tr>
+</table>

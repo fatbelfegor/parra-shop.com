@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015022722) do
+ActiveRecord::Schema.define(version: 20141017001349) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 20141015022722) do
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status"
     t.string   "salon"
     t.string   "salon_tel"
     t.string   "manager"
@@ -102,6 +101,8 @@ ActiveRecord::Schema.define(version: 20141015022722) do
     t.integer  "credit_month"
     t.decimal  "credit_procent",    precision: 10, scale: 0, default: 0
     t.string   "deliver_date"
+    t.integer  "status_id"
+    t.integer  "number"
   end
 
   create_table "prcolors", force: true do |t|
@@ -153,6 +154,12 @@ ActiveRecord::Schema.define(version: 20141015022722) do
     t.string   "scode"
     t.string   "name"
     t.decimal  "price",      precision: 18, scale: 2, default: 0.0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

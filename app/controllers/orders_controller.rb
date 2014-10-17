@@ -6,70 +6,55 @@ require 'json'
 class OrdersController < ApplicationController
   before_filter :manager_required, except: :create
 
-  def index
-    if params[:show] == 'new'
-        @orders = Order.where(status: nil).order('created_at DESC')
-    elsif params[:show] == 'exec'
-        @orders = Order.where(status: true).order('created_at DESC')
-    elsif params[:show] == 'exec'
-        @orders = Order.where(status: false).order('created_at DESC')
-    else
-        @orders = Order.all.order('created_at DESC')
+    def index
+        if params[:status].present?
+            @orders = Status.find(params[:status]).orders.order('created_at DESC')
+        else
+            @orders = Order.all.order('created_at DESC')
+        end
+        @statuses = Status.all
     end
-  end
 
-  def exec
-    Order.find(params[:id]).update status: true
-    current_user.manager_log 'Выполнил(а) заказ', params[:id]
-    redirect_to orders_path
-  end
+    def destroy
+        Order.find(params[:id]).destroy
+        current_user.manager_log 'Удалил(а) заказ', params[:id]
+        redirect_to orders_path
+    end
 
-  def deny
-    Order.find(params[:id]).update status: false
-    current_user.manager_log 'Отклонил(а) заказ', params[:id]
-    redirect_to orders_path
-  end
-
-  def destroy
-    Order.find(params[:id]).destroy
-    current_user.manager_log 'Удалил(а) заказ', params[:id]
-    redirect_to orders_path
-  end
-
-  def show
-    @order = Order.find params[:id]
-  end
+    def show
+        @order = Order.find params[:id]
+    end
 
 	def create
 		@order = Order.new(order_params)
 
-    respond_to do |format|
-      if params[:cartfield] and @order.save
-      	items = JSON.parse params[:cartfield]
-      	items.each{ |i|
-      		@order.order_items.create({
-      			product_id: i['i'],
-      			quantity: i['c'],
-      			price: i['p'].sub(' ', ''),
-                size: i['s'],
-                color: i['l'],
-                option: i['o'],
-                size_scode: i['ss'],
-                color_scode: i['ls'],
-                option_scode: i['os'],
-      		})
-      	}
-        if user_signed_in? && (current_user.admin? || current_user.manager)
-            format.html{redirect_to "/orders/#{@order.id}/edit"}
-        else
-            OrderMailer.ordersave(@order).deliver
-            OrderMailer.ordersaveclient(@order).deliver
-            format.html{redirect_to index_path, notice: 'ordersave'}
+        respond_to do |format|
+            if params[:cartfield] and @order.save
+            	items = JSON.parse params[:cartfield]
+            	items.each{ |i|
+            		@order.order_items.create({
+            			product_id: i['i'],
+            			quantity: i['c'],
+            			price: i['p'].sub(' ', ''),
+                        size: i['s'],
+                        color: i['l'],
+                        option: i['o'],
+                        size_scode: i['ss'],
+                        color_scode: i['ls'],
+                        option_scode: i['os']
+            		})
+            	}
+                if user_signed_in? && (current_user.admin? || current_user.manager)
+                    format.html{redirect_to "/orders/#{@order.id}/edit"}
+                else
+                    OrderMailer.ordersave(@order).deliver
+                    OrderMailer.ordersaveclient(@order).deliver
+                    format.html{redirect_to index_path, notice: 'ordersave'}
+                end
+            else
+                format.html{redirect_to index_path, notice: 'Заказ не был оформлен.'}
+            end
         end
-      else
-        format.html{redirect_to index_path, notice: 'Заказ не был оформлен.'}
-      end
-    end
 	end
 
     def edit
@@ -108,6 +93,11 @@ class OrdersController < ApplicationController
 
     def destroyVirtproduct
         Virtproduct.find(params[:id]).destroy
+        render nothing: true
+    end
+
+    def status
+        Order.find(params[:id]).update status_id: params[:status_id]
         render nothing: true
     end
 
@@ -195,7 +185,7 @@ class OrdersController < ApplicationController
     format(bold: 1, size: 14, align: :right)
     write 2, 3, "СПЕЦИФИКАЦИЯ К ЗАКАЗУ №"
     format(bold: 1, size: 14, align: :center, border: 1)
-    write 2, 4, order.id
+    write 2, 4, order.number
     format(bold: 1, size: 11, align: :left)
     write_col 4, 1, ['Дата заказа', 'Салон', 'Менеджер']
     write 8, 1, 'ЗАКАЗЧИК'
@@ -592,7 +582,8 @@ private
         :credit_sum,
         :credit_month,
         :credit_procent,
-        :deliver_date
+        :deliver_date,
+        :number
     )
   end
 end

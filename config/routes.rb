@@ -40,6 +40,7 @@ ParraShopCom::Application.routes.draw do
   post 'orders/edit_virtproduct_text', to: 'orders#editVirtproductText'
   post 'orders/edit_virtproduct_price', to: 'orders#editVirtproductPrice'
   post 'orders/destroy_virtproduct', to: 'orders#destroyVirtproduct'
+  post 'orders/:id/status', to: 'orders#status'
   post 'users/role', to: 'users#role'
   post 'users/confirm', to: 'users#confirm'
   post 'users/:id/prefix', to: 'users#prefix'
@@ -48,14 +49,13 @@ ParraShopCom::Application.routes.draw do
   
   resources :categories, :images, :prsizes, :textures, :proptions, :prcolors
   resources :orders do
-    get :exec, on: :member
-    get :deny, on: :member
     resources :order_item, except: [:index, :show, :edit] do
       post :plus, on: :member
       post :minus, on: :member
     end
   end
-  
+  resources :statuses, except: [:show]
+
   resources :products, except: :index do
     get :show_scode, on: :member
   end
