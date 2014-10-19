@@ -1,4 +1,34 @@
 <div class="home">
+	<div class="module new">
+		<div class="heading">
+			<div>Спецпредложения</div>
+		</div>
+		<div id="slider">
+			<div class="prev" onclick="sliderPrev(this)"></div>
+			<div class="products">
+				<% @banners.each_with_index do |b, i| %>
+				<div class="<%= 'active' if i == 0 %>">
+					<a href="<%= b.link %>" class="image" style="background-image: url('<%= b.image %>')"></a>
+					<div class="description">
+						<h2><%= link_to(b.name, b.link) %></h2>
+						<div>
+							<%= raw(b.description)  %>
+							<a class="show" href="<%= b.link %>">Посмотреть <div></div></a>
+						</div>						
+					</div>
+				</div>
+				<% end %>
+			</div>
+			<div class="next" onclick="sliderNext(this)"></div>
+			<div class="buttons">
+				<div class="active" onclick="sliderChoose(this)"></div>
+				<% (@banners.count - 1).times do %>
+					<div onclick="sliderChoose(this)"></div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
 	<table border="0" cellspacing="0" cellpadding="0" width="90%">
 		<tr>
 			<td class="opacity">

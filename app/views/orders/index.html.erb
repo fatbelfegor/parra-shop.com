@@ -20,7 +20,7 @@
 		<th>Сумма</th>
 		<th>Действия</th>
 	</tr>
-	<% @orders[0..0].each do |order|
+	<% @orders.each do |order|
 		price = 0;
 		order.order_items.each do |item|
 			price += item.price

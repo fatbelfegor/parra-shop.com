@@ -1,0 +1,28 @@
+<br><h2 class="text-center">Список баннеров</h2><br>
+
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>Картинка</th>
+		<th>Ссылка</th>
+		<th>Действия</th>
+	</tr>
+	<% for banner in @banners %>
+	<tr>
+		<td>
+			<%= image_tag(banner.image, class: 'img-thumbnail img200') %>
+		</td>
+		<td class="text-center">
+			<%= link_to banner.url, banner.url %>
+		</td>
+		<td class="text-center">
+			<%= link_to 'Редактировать', edit_banner_path(banner), class: 'btn btn-warning' %>
+			<%= link_to("Удалить", banner, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="2" class="text-center">
+			<%= link_to 'Создать новый баннер', new_banner_path, class: 'btn btn-success' %>
+		</td>
+	</tr>
+</table>

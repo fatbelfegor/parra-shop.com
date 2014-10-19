@@ -336,8 +336,6 @@ expire = ->
 		next.hide 300, productKeepPage
 	else
 		$('.option').each ->
-			if $(this).css('display') != 'none'
-				$(this).hide(300)
 		next.show 300, productKeepPage
 @addTexture = (el) ->
 	div = $(el).next()
@@ -619,7 +617,12 @@ validate = (input) ->
 	$.post "/orders/#{tr.data('id')}/status", status_id: $(el).data('id')
 productKeepPage = ->
 	pc = $('.productContent')
-	o = pc.find('.option:visible').parent().index()
+	o = []
+	pc.find('.option').each ->
+		if $(@).is(':visible')
+			o.push 1
+		else
+			o.push 0
 	t = []
 	pc.find('.textures').each ->
 		t.push $(@).height()
@@ -645,7 +648,11 @@ productKeepPage = ->
 	productPage = eval getCookie 'productPage'
 	if productPage
 		pc = $('.productContent')
-		pc.find('> div').eq(productPage[0] - 1).find('.option').show()
+		i = 0
+		pc.find('.option').each ->
+			if productPage[0][i] == 1
+				$(@).show()
+			i += 1
 		i = 0
 		pc.find('.textures').each ->
 			$(@).css 'height', "#{productPage[1][i]}px"
