@@ -2357,3 +2357,34 @@ th {
 		}
 	}
 }
+#mainMenuCompact {
+	display: none;
+}
+body.small-size {
+	#mainMenu {
+		display: none;
+	}
+	.admin-nav {
+		position: absolute;
+		top: -1px;
+		left: 50%;
+		margin-left: -81px;
+		div {
+			height: 24px;
+			line-height: 24px;
+		}
+	}
+	#search {
+		top: 22px;
+		left: 50%;
+		right: auto;
+		margin-left: -139px;
+	}
+	nav {
+		margin: 0;
+		float: none;
+	}
+	#mainMenuCompact {
+		display: block;
+	}
+}

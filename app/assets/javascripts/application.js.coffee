@@ -61,6 +61,15 @@ scrollFunc = ->
 					window.productLoading = false
 window.productLoading = false
 
+resizeFunc = ->
+	console.log $(document).width()
+	if $(document).width() > 1000
+		console.log 'normal'
+		$('body').removeClass 'small-size'
+	else
+		console.log 'mini'
+		# $('body').addClass 'small-size'
+
 ready = ->
 	$('#preloader').remove()
 	configurator()
@@ -134,6 +143,7 @@ ready = ->
 		revert: true
 		update: ->
 			$.post '/products/sort', $(this).sortable 'serialize'
+	resizeFunc()
 	scrollFunc()
 @changeCount = (el) ->
 	window.el = el
@@ -161,6 +171,7 @@ $(document).ready ->
 		menuImages.push this.style.backgroundImage
 	ready()
 $(document).on('page:load', ready)
+$(window).resize resizeFunc
 getCookie = (name) ->
 	matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"))
 	(if matches then decodeURIComponent(matches[1]) else `undefined`)
