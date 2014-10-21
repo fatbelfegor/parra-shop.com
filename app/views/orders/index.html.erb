@@ -6,7 +6,7 @@
 	<a href="/orders/?status=<%= status.id %>" class="btn btn-<%= if params[:status] == status.id.to_s then 'primary' else 'default' end %>"><%= status.name %></a>
 	<% end %>
 	<a href="/statuses/" class="btn btn-warning">Список статусов</a>
-	<a href="/status/new" class="btn btn-success">Новый статус</a>
+	<a href="/statuses/new" class="btn btn-success">Новый статус</a>
 </div>
 
 <br>
