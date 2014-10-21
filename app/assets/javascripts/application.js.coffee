@@ -22,6 +22,45 @@ Number.prototype.toCurrency = ->
 iframe = document.createElement 'iframe'
 menuImages = []
 
+scrollFunc = ->
+	unless window.productLoading
+		products = $('#products')
+		if products.length > 0
+			win = $(this)
+			if win.scrollTop() + win.height() > products.offset().top + products.height()
+				window.productLoading = true
+				productLoad.limit = Math.floor(($('#products').width() + 50) / 350) * Math.ceil(($(window).height() + 10) / 460)
+				productLoad.offset = products.find('> div').length
+				$.post '/catalog/products', productLoad, (d) ->
+					html = ''
+					for r in d
+						p = r.product
+						html += "<div>"
+						images = p.images.split ','
+						html += '<div class="left inactive"></div>'
+						if images[1]
+							html += '<div class="right" onclick="photoRight(this)"></div>' 
+						else
+							html += '<div class="right inactive"></div>'
+						if images.length > 0
+							html += "<div class=\"photoes\"><a class=\"showPhoto\" href=\"/kupit/#{p.scode}\" style=\"background-image: url('#{images[0]}')\"></a>"
+							for i in images[1..-1]
+								html += "<a href=\"/kupit/#{p.scode}\" style=\"background-image: url('#{i}')\"></a>"
+							html += '</div>'
+						html += "<div><h3><a href=\"/kupit/#{p.scode}\">#{p.name}</a></h3></div><div>#{p.s_title}</div><div>#{p.shortdesk}</div><div><b>Цена:</b> <span class=\"price\">#{parseFloat(p.price).toCurrency()} руб.</span></div><div class=\"appear\">"
+						html += "<div><b>Размер:</b> <span class=\"size\">#{r.prsizes[0].name}</span><span class=\"hidden size-scode\">#{r.prsizes[0].scode}</span></div>" if r.prsizes.length > 0
+						if r.prcolors.length > 0
+							if r.textures.length > 0
+									html += "<div><b>Цвет:</b> <span class=\"color\">#{r.textures[0].name}</span><span class=\"hidden color-scode\">#{r.textures[0].scode}</span></div>"
+								else
+									html += "<div><b>Цвет:</b> <span class=\"color\">#{r.prcolors[0].name}</span><span class=\"hidden color-scode\">#{r.prcolors[0].scode}</span></div>"
+						html += "<div><b>Опция:</b> <span class=\"option\">#{r.proptions[0].name}</span><span class=\"hidden option-scode\">#{r.proptions[0].scode}</span></div>" if r.proptions.length > 0
+						html += "<div class=\"id hidden\">#{p.id}</div><div class=\"scode hidden\">#{p.scode}</div><div class=\"fancyButton\" onclick=\"addToCartFromCatalog('#{p.name}', this)\">Купить</div></div></div>"
+					if $('#products').append(html).find('> div').length == 0
+						$('#products').html('<p class="notFound">По Вашему запросу ничего не найдено, попробуйте его изменить.</p>')
+					window.productLoading = false
+window.productLoading = false
+
 ready = ->
 	$('#preloader').remove()
 	configurator()
@@ -95,6 +134,7 @@ ready = ->
 		revert: true
 		update: ->
 			$.post '/products/sort', $(this).sortable 'serialize'
+	scrollFunc()
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'
@@ -661,3 +701,88 @@ productKeepPage = ->
 		pc.find(".color-scode-#{productPage[3]}").prop 'checked', true if productPage[3]
 		pc.find(".texture-scode-#{productPage[4]}").prop 'checked', true if productPage[4]
 		pc.find(".option-scode-#{productPage[5]}").prop 'checked', true if productPage[5]
+@sliderPrev = (el) ->
+	products = $(el).next()
+	active = products.find('.active').removeClass('active')
+	move = active.removeClass('active').prev()
+	unless move[0]
+		move = products.find('> :last-child')
+	if parseInt(move.css('left')) > 0
+		move.css left: '-100%', right: '100%'
+	active.animate {left: '100%', right: '-100%'}, 1000
+	move.addClass('active').animate {left: '0', right: '0'}, 1000	
+	buttons = $(el).parent().find('.buttons')
+	buttonPrev = buttons.find('.active').removeClass('active').prev()
+	if buttonPrev[0]
+		buttonPrev.addClass('active')
+	else
+		buttons.find('> :last-child').addClass('active')
+@sliderNext = (el, slide) ->
+	products = $(el).prev()
+	active = products.find('.active')
+	move = active.removeClass('active').next()
+	unless move[0]
+		move = products.find('> :first-child')
+	if parseInt(move.css('left')) < 0
+		move.css left: '100%', right: '-100%'
+	active.animate {left: '-100%', right: '100%'}, 1000
+	move.addClass('active').animate {left: '0', right: '0'}, 1000
+	buttons = $(el).parent().find('.buttons')
+	buttonNext = buttons.find('.active').removeClass('active').next()
+	if buttonNext[0]
+		buttonNext.addClass('active')
+	else
+		buttons.find('> :first-child').addClass('active')
+sliderLeft = (steps, products) ->
+	active = products.find('.active').removeClass('active')
+	move = active.prev()
+	time = 1000 / steps
+	for i in [1..steps]
+		unless move[0]
+			move = products.find('> :last-child')
+		if parseInt(move.css('left')) > 0
+			move.css left: '-100%', right: '100%'
+		delay = (i-1) * time
+		active.animate {left: '100%', right: '-100%'}, time, 'linear'
+		move.delay(delay).animate {left: '0', right: '0'}, time, 'linear'
+		active = move
+		move = active.prev()
+	active.addClass('active')
+sliderRight = (steps, products) ->
+	active = products.find('.active').removeClass('active')
+	move = active.next()
+	time = 1000 / steps
+	for i in [1..steps]
+		unless move[0]
+			move = products.find('> :first-child')
+		if parseInt(move.css('left')) < 0
+			move.css left: '100%', right: '-100%'
+		delay = (i-1) * time
+		active.animate {left: '-100%', right: '100%'}, time, 'linear'
+		move.delay(delay).animate {left: '0', right: '0'}, time, 'linear'
+		active = move
+		move = active.next()
+	active.addClass('active')
+@sliderChoose = (el) ->
+	unless $(el).hasClass('.active')
+		buttons = $(el).parent()
+		products = buttons.prev().prev()
+		active = buttons.find('.active').removeClass('active')
+		count = buttons.find('div').length
+		start = active.index()
+		end = $(el).addClass('active').index()
+		if end > start
+			if count / (count - end + start) > 2
+				sliderLeft count - end + start, products
+			else
+				sliderRight end - start, products
+		else
+			if count / (count - start + end) < 2
+				sliderLeft start - end, products
+			else
+				sliderRight count - start + end, products
+@slider = ->
+	next = $('#slider .next')
+	@sliderInterval = setInterval ->
+		sliderNext next, true
+	, 5000

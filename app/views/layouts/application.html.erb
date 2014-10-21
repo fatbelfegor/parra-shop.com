@@ -15,20 +15,26 @@
 <% end %>
 <a href='/'><img class="logo" src="/assets/logo.png"></a>
 <% if user_signed_in? %>
-<ul class="admin-nav">
-	<% if current_user.admin? %>
-	<li><b>Администрирование:</b></li>
-	<li><a href="/categories">Список категорий</a></li>
-	<li><a href="/configurator">Конфигуратор</a></li>
-	<li><a href="/users/">Пользователи</a></li>
-	<li><a href="/banners/">Баннеры</a></li>
-	<% end
-	if current_user.manager or current_user.admin? %>
-	<li><a href="/orders">Заказы</a></li>
-	<% end %>
-	<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
-</ul>
+<div class="admin-nav">
+	<div>Действия</div>
+	<ul>
+		<% if current_user.admin? %>
+		<li><a href="/categories">Список категорий</a></li>
+		<li><a href="/configurator">Конфигуратор</a></li>
+		<li><a href="/users/">Пользователи</a></li>
+		<li><a href="/banners/">Баннеры</a></li>
+		<% end
+		if current_user.manager or current_user.admin? %>
+		<li><a href="/orders">Заказы</a></li>
+		<% end %>
+		<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
+	</ul>
+</div>
 <% end %>
+<form id="search" action="/catalog/index">
+	<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>">
+	<input type="submit" value="Поиск">
+</form>
 <div class="shopPhone">
   <p>8-800-707-67-57</p>
   <ins>Бесплатные звонки по России</ins>

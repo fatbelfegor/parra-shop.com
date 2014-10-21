@@ -11,7 +11,8 @@ class MainController < ApplicationController
       @cat1 = Category.find_by_scode('bella').products.where('invisible = false').order('created_at asc').limit(5)
       @cat2 = Category.find_by_scode('style').products.where('invisible = false').order('created_at asc').limit(5)
       @cat3 = Category.find_by_scode('Диваны').products.where('invisible = false').order('created_at asc').limit(10)
-    end      
+    end
+    @banners = Banner.all  
   end
   
   def main

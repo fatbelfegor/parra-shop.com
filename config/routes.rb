@@ -33,6 +33,7 @@ ParraShopCom::Application.routes.draw do
 
   get 'orders/:id/Заказ :user_id :order_id.xlsx', to: 'orders#xlsx'
 
+  post 'catalog/products', to: 'catalog#products'
   post 'categories/sort', to: 'categories#sort'
   post 'products/sort', to: 'products#sort'
   post 'orders/discount_save', to: 'orders#discount_save'

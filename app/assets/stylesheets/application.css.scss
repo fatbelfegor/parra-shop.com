@@ -49,6 +49,33 @@ li {
 	position: absolute;
 }
 
+#search {
+	position: absolute;
+	right: 300px;
+	top: 18px;
+	font-size: 0;
+	input[type=text] {
+		width: 200px;
+		font-size: 13px;
+		border: 1px solid #C6C6C6;
+		border-width: 1px 0 1px 1px;
+		padding: 5px 0 5px 10px;
+		@include border-radius(5px 0 0 5px);
+	}
+	input[type=text]:focus {
+		border-color: #4FB859;
+		outline: 0;
+	}
+	input[type=submit] {
+		font-size: 13px;
+		border: 1px solid #4FB859;
+		padding: 5px 10px;
+		background-image: url("/assets/buyButton.png");
+		color: white;
+		@include border-radius(0 5px 5px 0);
+	}
+}
+
 .shopPhone {
 	position: absolute;
 	right: 60px;
@@ -986,97 +1013,93 @@ body > .main {
 }
 
 #products {
-	width: auto;
+	width: 100%;
 	height: auto;
-	tr {
+	margin-right: -50px;
+	> div {
+		position: relative;
 		margin-top: 10px;
-	}
-	td {
-		vertical-align: top;
-		> div {
-			position: relative;
-			margin-top: 10px;
-			border: 1px solid transparent;
-			@include transition(0.3s);
-			.appear {
+		border: 1px solid transparent;
+		display: inline-block;
+		@include transition(0.3s);
+		.appear {
+			text-align: center;
+			margin: 0;
+			div {
+				height: 0;
+				overflow: hidden;
+				text-align: left;
+				@include transition(0.3s);
+			}
+			.fancyButton {
+				float: none;
+				display: inline-block;
+				color: white !important;
+				text-shadow: -1px 1px 0 #3B9E44;
 				text-align: center;
-				margin: 0;
-				div {
-					height: 0;
-					overflow: hidden;
-					text-align: left;
-					@include transition(0.3s);
-				}
-				.fancyButton {
-					float: none;
-					display: inline-block;
-					color: white !important;
-					text-shadow: -1px 1px 0 #3B9E44;
-					text-align: center;
-					border: 0 solid #4FB859 !important;
-					font-size: 14px;
-					line-height: 20px;
-					padding: 0 12px;
-					cursor: pointer;
-					background-image: url('/assets/buyButton.png');
-					margin: 5px auto !important;
-					@include border-radius(5px);
-				}
-			}
-			.left, .right {
-				top: 146px;
-				margin: 0;
-				position: absolute;
-				display: none;
+				border: 0 solid #4FB859 !important;
+				font-size: 14px;
+				line-height: 20px;
+				padding: 0 12px;
 				cursor: pointer;
-			}
-			.left {
-				width: 28px;
-				height: 28px;
-				background-image: url(/assets/left.png);
-			}
-			.right {
-				right: 0;
-				width: 28px;
-				height: 28px;
-				background-image: url(/assets/right.png);
-			}
-			.left.inactive {
-				background-image: url(/assets/leftInactive.png);
-			}
-			.right.inactive {
-				background-image: url(/assets/rightInactive.png);
-			}
-			.photoes {
-				margin: 0;
-				a {
-					margin: 10px;
-					width: 280px;
-					height: 280px;
-					background-size: 100% 100%;
-					display: none;
-				}
-				.showPhoto {
-					display: block;
-				}
+				background-image: url('/assets/buyButton.png');
+				margin: 5px auto !important;
+				@include border-radius(5px);
 			}
 		}
-		> div:hover {
-			border: 1px solid #ccc;
-			@include box-shadow(0 0 10px 0 #aaa);
-			.appear {
-				div {
-					height: 25px;
-				}
-				.fancyButton {
-					border-width: 1px !important;
-					height: 20px;
-					margin-bottom: 5px;
-				}
+		.left, .right {
+			top: 146px;
+			margin: 0;
+			position: absolute;
+			display: none;
+			cursor: pointer;
+		}
+		.left {
+			width: 28px;
+			height: 28px;
+			background-image: url(/assets/left.png);
+		}
+		.right {
+			right: 0;
+			width: 28px;
+			height: 28px;
+			background-image: url(/assets/right.png);
+		}
+		.left.inactive {
+			background-image: url(/assets/leftInactive.png);
+		}
+		.right.inactive {
+			background-image: url(/assets/rightInactive.png);
+		}
+		.photoes {
+			margin: 0;
+			a {
+				margin: 10px;
+				width: 280px;
+				height: 280px;
+				background-size: 100% 100%;
+				display: none;
 			}
-			.left, .right {
+			.showPhoto {
 				display: block;
 			}
+		}
+	}
+	> div:hover {
+		border: 1px solid #ccc;
+		@include box-shadow(0 0 10px 0 #aaa);
+		.appear {
+			div {
+				height: 25px;
+			}
+			.fancyButton {
+				border-width: 1px !important;
+				height: 20px;
+				margin-bottom: 5px;
+			}
+		}
+		.left, .right {
+			display: block;
 		}
 	}
 }
@@ -1915,14 +1938,40 @@ th {
 	top: 10px;
 	font-size: 13px;
 	text-transform: uppercase;
+	div {
+		border: 1px solid #aaa;
+		font-weight: bold;
+		line-height: 32px;
+		padding: 0 15px;
+		width: 130px;
+		text-align: center;
+		@include transition(.3s);
+	}
+	ul {
+		border: 1px solid #aaa;
+		border-width: 0 1px;
+		display: none;
+		position: absolute;
+		width: 160px;
+		z-index: 1000;
+		background-color: white;
+	}
 	li {
-		display: inline-block;
 		line-height: 26px;
-		margin-right: 20px;
-		color: #58585A;
-		a:hover {
-			color: #52B84A;
-		}
+		border-bottom: 1px solid #aaa;
+		text-align: center;
+		@include transition(.3s);
+	}
+	li:hover {
+		background-color: #eee;
+	}
+}
+.admin-nav:hover {
+	div {
+		background-color: #eee;
+	}
+	ul {
+		display: block;
 	}
 }
 .order-items {
@@ -2218,73 +2267,93 @@ th {
 	max-width: 200px;
 	max-height: 200px;
 }
-
-.module {
-	background #ffffff
-	border 1px solid #D9D9D9
-	margin-bottom 43px
-	position relative
+.banners {
+	width: 95%;
+	border: 1px solid #D9D9D9;
+	margin-bottom: 43px;
+	position: relative;
 	.heading {
-		height 34px
-		color white
-		border-bottom 1px solid #DBDBDB
+		height: 34px;
+		color: white;
+		border-bottom: 1px solid #DBDBDB;
 		div {
-			height 100%
-			line-height 34px
-			padding-left 21px
-			width 394px
-			background -moz-linear-gradient(top, #6BB12D 0%, #407C0B 100%)
-			background -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6BB12D), color-stop(100%,#407C0B)) 
-			background -webkit-linear-gradient(top, #6BB12D 0%,#407C0B 100%)
-			background -o-linear-gradient(top, #6BB12D 0%,#407C0B 100%)
-			background -ms-linear-gradient(top, #6BB12D 0%,#407C0B 100%) 
-			background linear-gradient(to bottom, #6BB12D 0%,#407C0B 100%)
-			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6BB12D", endColorstr="#407C0B",GradientType=0)
+			height: 100%;
+			line-height: 34px;
+			padding-left: 21px;
+			width: 394px;
+			background: -moz-linear-gradient(top, #6BB12D 0%, #407C0B 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6BB12D), color-stop(100%,#407C0B));
+			background: -webkit-linear-gradient(top, #6BB12D 0%,#407C0B 100%);
+			background: -o-linear-gradient(top, #6BB12D 0%,#407C0B 100%);
+			background: -ms-linear-gradient(top, #6BB12D 0%,#407C0B 100%);
+			background: linear-gradient(to bottom, #6BB12D 0%,#407C0B 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6BB12D", endColorstr="#407C0B",GradientType=0);
 		}
 		div:after {
-			content ''
-			display block
-			border-style solid
-			float right
-			border-color white transparent
-			border-width 17px 0 17px 17px
+			content: '';
+			display: block;
+			border-style: solid;
+			float: right;
+			border-color: white transparent;
+			border-width: 17px 0 17px 17px;
 		}
-	.prev, .next
-		position absolute
-		left 8px
-		top 156px
-		cursor pointer
-		background-image url('/assets/arrowLeft.png')
-		width 12px
-		height 22px
-	.next
-		left auto
-		right 8px
-		background-image url('/assets/arrowRight.png')
-	.products
-		position absolute
-		left 37px
-		right 37px
-		height 251px
-		overflow hidden
-		> div
-			width 9999px
-			height 100%
-			> div
-				border 1px solid #D9D9D9
-				height 249px
-				width 189px
-				display inline-block
-				margin-right 40px
-				font-size 0
 	}
 }
-.module.new
-	margin-top 13px
-	background -moz-linear-gradient(left, #ffffff 60%, #efefef 100%)
-	background -webkit-gradient(linear, left top, right top, color-stop(60%,#ffffff), color-stop(100%,#efefef))
-	background -webkit-linear-gradient(left, #ffffff 60%,#efefef 100%)
-	background -o-linear-gradient(left, #ffffff 60%,#efefef 100%)
-	background -ms-linear-gradient(left, #ffffff 60%,#efefef 100%)
-	background linear-gradient(to right, #ffffff 60%,#efefef 100%)
-	filter unquote('progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffffff", endColorstr="#efefef",GradientType=1 )')
+#slider {
+	height: 328px;
+	padding: 0 25px;
+	.prev, .next {
+		position: absolute;
+		left: 8px;
+		top: 156px;
+		cursor: pointer;
+		background-image: url('/assets/arrowLeft.png');
+		width: 12px;
+		height: 22px;
+	}
+	.next {
+		left: auto;
+		right: 8px;
+		background-image: url('/assets/arrowRight.png');
+	}
+	.wrap {
+		overflow: hidden;
+		position: relative;
+		height: 300px;
+		a {
+			display: inline-block;
+			position: absolute;
+			left: 100%;
+			right: -100%;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+		}
+		a:first-child {
+			left: 0;
+			right: 0;
+		}
+	}
+	.buttons {
+		position: absolute;
+		bottom: 9px;
+		width: 100%;
+		text-align: center;
+		font-size: 0;
+		div {
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			@include border-radius(4px);
+			background-color: #aaa;
+			@include box-shadow(inset 0 0 4px black);
+			margin: 0 4px;
+			cursor: pointer;
+			@include transition(.5s);
+		}
+		div:hover, .active {
+			background-color: #81C0EB;
+		}
+	}
+}

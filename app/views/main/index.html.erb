@@ -1,22 +1,13 @@
 <div class="home">
-	<div class="module new">
+	<div class="banners">
 		<div class="heading">
 			<div>Спецпредложения</div>
 		</div>
 		<div id="slider">
 			<div class="prev" onclick="sliderPrev(this)"></div>
-			<div class="products">
+			<div class="wrap">
 				<% @banners.each_with_index do |b, i| %>
-				<div class="<%= 'active' if i == 0 %>">
-					<a href="<%= b.link %>" class="image" style="background-image: url('<%= b.image %>')"></a>
-					<div class="description">
-						<h2><%= link_to(b.name, b.link) %></h2>
-						<div>
-							<%= raw(b.description)  %>
-							<a class="show" href="<%= b.link %>">Посмотреть <div></div></a>
-						</div>						
-					</div>
-				</div>
+					<a href="<%= b.url %>" class="<%= 'active' if i == 0 %>" style="background-image: url('<%= b.image %>')"></a>
 				<% end %>
 			</div>
 			<div class="next" onclick="sliderNext(this)"></div>
@@ -146,3 +137,7 @@
 	</table>
 	
 </div>
+
+<script type="text/javascript">
+	slider()
+</script>

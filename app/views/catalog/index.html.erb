@@ -1,37 +1,23 @@
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 <div class="index">
-	<h2 class="categoryLogo"><% unless @category.header.blank? %><img src='<%= @category.header %>'> / <% end %><%= @category.name %></h2>
-	<div id ="products">
-		<% if @products %>
-		<table border="0" cellspacing="0" cellpadding="0" width="100%">
-		<% @i = 0 %>
-		<% for product in  @products %>	
-			
-			<% if (@i == 0 || (@i % 3) == 0) %>
-				<tr>
+	<h2 class="categoryLogo">
+		<% if params[:category_scode].present? %>
+			<% unless @category.header.blank? %>
+			<img src='<%= @category.header %>'> / 
 			<% end %>
-			
-			<% if (@i != 0 && (@i % 3) == 0) %>
-				</tr>
-			<% end %>
-			
-			<td>
-				<%= render(:partial => "products/productCatalog", :object => product) %>
-			</td>
-			<% @i += 1 %>
+			<%= @category.name %>
+		<% elsif params[:q].present? %>
+			Поиск по запросу "<%= params[:q] %>"
 		<% end %>
-		<% if ((@i % 3) != 0) %>
-			<% while ((@i % 3) != 0) do %>
-				<td >&nbsp;</td>
-				<% @i += 1 %>
-			<% end %>
-			</tr>
-		<% end %>
-		</table>
-		<% end %>
-	</div>
-	<% unless @category.seo_text.blank? %>
+	</h2>
+	<div id="products"></div>
+	<script type="text/javascript">
+	productLoad = {}
+	<%= if params[:category_scode].present? then raw "productLoad.cat_id = '#{@category.id}'" end %>
+	<%= if params[:q].present? then raw "productLoad.q = '#{params[:q]}'" end %>
+	</script>
+	<% unless !params[:category_scode].present? or @category.seo_text.blank? %>
 		<div class="seo_text">
 			<%= raw @category.seo_text %>
 		</div>

@@ -1,4 +1,9 @@
+require 'elasticsearch/model'
+
 class Product < ActiveRecord::Base
+	include Elasticsearch::Model
+	include Elasticsearch::Model::Callbacks
+
 	belongs_to :category
 	has_many :order_items
 	has_and_belongs_to_many :categories, :autosave => true
@@ -13,5 +18,10 @@ class Product < ActiveRecord::Base
 	validates :scode, uniqueness: true
 	
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
+
+	mappings dynamic: false do
+		indexes :name
+		indexes :scode
+	end
 
 end
