@@ -62,13 +62,10 @@ scrollFunc = ->
 window.productLoading = false
 
 resizeFunc = ->
-	console.log $(document).width()
 	if $(document).width() > 1000
-		console.log 'normal'
 		$('body').removeClass 'small-size'
 	else
-		console.log 'mini'
-		# $('body').addClass 'small-size'
+		$('body').addClass 'small-size'
 
 ready = ->
 	$('#preloader').remove()
@@ -712,6 +709,7 @@ productKeepPage = ->
 		pc.find(".color-scode-#{productPage[3]}").prop 'checked', true if productPage[3]
 		pc.find(".texture-scode-#{productPage[4]}").prop 'checked', true if productPage[4]
 		pc.find(".option-scode-#{productPage[5]}").prop 'checked', true if productPage[5]
+	writeChars()
 @sliderPrev = (el) ->
 	products = $(el).next()
 	active = products.find('.active').removeClass('active')
@@ -797,3 +795,17 @@ sliderRight = (steps, products) ->
 	@sliderInterval = setInterval ->
 		sliderNext next, true
 	, 5000
+@miniCatOpen = (el) ->
+	cat = $(el)
+	if cat.hasClass 'open'
+		cat.removeClass 'open'
+		cat.find('a').animate 'height': '0', 500
+	else
+		cat.parent().find('.open').removeClass('open').find('a').animate 'height': '0', 500
+		cat.addClass 'open'
+		height = (cat.find('img').first().height() + 3) + 'px'
+		cat.find('a').animate 'height': height, 500
+writeChars = ->
+	prsizes = $('[name=prsizes]:checked')
+	if prsizes[0]
+		prsizes.parent().find('span').first().html()

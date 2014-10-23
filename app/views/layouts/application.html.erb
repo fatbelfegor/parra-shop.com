@@ -157,12 +157,81 @@
       </span>
     </li>
   </ul>
-  	<ul id="mainMenuCompact">
-  		<li>Спальни</li>
-  	</ul>
 </nav>
 
 <div class="main">
+	<ul id="mainMenuCompact">
+  		<li onclick="miniCatOpen(this)">Спальни<p></p>
+			<div>
+				<a href="/catalog/index?category_scode=Bella"><img src="/assets/Bella.jpg"></a>
+				<a href="/catalog/index?category_scode=Plisset"><img src="/assets/Plisset.jpg"></a>
+				<a href="/catalog/index?category_scode=Orly"><img src="/assets/Orly.jpg"></a>
+				<a href="/catalog/index?category_scode=Ritmika"><img src="/assets/Ritmika.jpg"></a>
+				<a href="/catalog/index?category_scode=Lorra"><img src="/assets/Lorra.jpg"></a>
+				<a href="/catalog/index?category_scode=Leggero"><img src="/assets/Leggero.jpg"></a>
+				<a href="/catalog/index?category_scode=Miro"><img src="/assets/Miro.jpg"></a>
+				<a href="/catalog/index?category_scode=Mild"><img src="/assets/Mild.jpg"></a>
+			</div>
+  		<li onclick="miniCatOpen(this)">Гостинные<p></p>
+  			<div>
+				<a href="/catalog/index?category_scode=P3"><img src="/assets/P3.jpg"></a>
+				<a href="/catalog/index?category_scode=BellaGost"><img src="/assets/BellaGost.jpg"></a>
+				<a href="/catalog/index?category_scode=Verro"><img src="/assets/Verro.jpg"></a>
+				<a href="/catalog/index?category_scode=Style"><img src="/assets/Style.jpg"></a>
+				<a href="/catalog/index?category_scode=Joy"><img src="/assets/Joy.jpg"></a>
+				<a href="/catalog/index?category_scode=Azzon"><img src="/assets/Azzon.jpg"></a>
+				<a href="/catalog/index?category_scode=Forma"><img src="/assets/Forma.jpg"></a>
+			</div>
+  		</li>
+  		<li onclick="miniCatOpen(this)">Диваны<p></p>
+  			<div>
+				<a href="/catalog/index?category_scode=Trevi"><img src="/assets/Trevi.jpg"></a>
+				<a href="/catalog/index?category_scode=Opera"><img src="/assets/Opera.jpg"></a>
+				<a href="/catalog/index?category_scode=Lucca"><img src="/assets/Lucca.jpg"></a>
+				<a href="/catalog/index?category_scode=Ritmo"><img src="/assets/Ritmo.jpg"></a>
+				<a href="/catalog/index?category_scode=Nuvola"><img src="/assets/Nuvola.jpg"></a>
+				<a href="/catalog/index?category_scode=Кресла"><img src="/assets/SoftAgioArteCircle.jpg"></a>
+			</div>
+  		</li>
+  		<li onclick="miniCatOpen(this)">Матрасы<p></p>
+  			<div>
+				<a href="/catalog/index?category_scode=SonberryOrganic"><img src="/assets/SonberryOrganic.jpg"></a>
+				<a href="/catalog/index?category_scode=SonberryAero"><img src="/assets/SonberryAero.jpg"></a>
+				<a href="/catalog/index?category_scode=SonberryActive"><img src="/assets/SonberryActive.jpg"></a>
+			</div>
+  		</li>
+  		<li class="allProducts" onclick="$(this).toggleClass('open')">Все товары<p></p>
+  			<div>
+	  			<p>
+	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Кровати">Кровати</a>
+	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Шкафы">Шкафы</a>
+	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Комоды">Комоды</a>
+	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Тумбочки">Тумбочки</a>
+	  			</p>
+	  			<p>
+	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Зеркала">Зеркала</a>
+	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Полки">Полки</a>
+	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Столы">Столы</a>
+	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Основания">Основания</a>
+	  			</p>
+  			</div>
+  		</li>
+  		<li class="whereCanBuy" onclick="$(this).toggleClass('open')">Где купить<p></p>
+  			<div>
+				<a href="/store1">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
+				<a href="/store2">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
+				<a href="/store3">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1<br>(495) 665-11-52</a>
+				<a href="/store4">Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56</a>
+				<a href="/store5">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26<br>(499) 426-46-06</a>
+				<a href="/store6">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>66км МКАД,<br>(пересечение<br>Волоколамского ш. и<br>МКАД)<br>(499) 340-09-08</a>
+				<a href="/store7">Мебель PARRA<br>ТРЦ "РИО" Реутов<br>г. Реутов, 2-ой км<br>МКАД, д. 2, этаж 3<br>(499) 347-09-09</a>
+				<a href="/store8">Мебель PARRA<br>МЦ "Вагант" Подольск<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18</a>
+  			</div>
+  		</li>
+  		<li class="miniMenuCart">
+  			<a href="/cart">Корзина</a>
+  		</li>
+  	</ul>
   <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
   	<% if notice == 'ordersave' %>
   		<div id="orderSave" class="windows">
