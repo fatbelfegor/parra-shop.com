@@ -807,5 +807,9 @@ sliderRight = (steps, products) ->
 		cat.find('a').animate 'height': height, 500
 writeChars = ->
 	prsizes = $('[name=prsizes]:checked')
+	prcolors = $('[name=prsizes]:checked')
+	chars = $('#choosedChars')
 	if prsizes[0]
-		prsizes.parent().find('span').first().html()
+		chars.find('.size b').html prsizes.parent().find('span').first().html()
+	if prsizes[0]
+		chars.find('.size b').html prsizes.parent().find('span').first().html()
