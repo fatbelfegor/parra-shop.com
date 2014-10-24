@@ -357,6 +357,7 @@ expire = ->
 @priceChange = ->
 	$('#summaryPrice').html optionsPrice(priceNum)
 	productKeepPage()
+	writeChars()
 @order = ->
 	w = $('#orderWindow')
 	d = w.find('>:last-child')
@@ -807,9 +808,24 @@ sliderRight = (steps, products) ->
 		cat.find('a').animate 'height': height, 500
 writeChars = ->
 	prsizes = $('[name=prsizes]:checked')
-	prcolors = $('[name=prsizes]:checked')
+	prcolors = $('[name=prcolors]:checked')
+	proptions = $('[name=proptions]:checked').next().html()
 	chars = $('#choosedChars')
+	show = false
 	if prsizes[0]
+		show = true
 		chars.find('.size b').html prsizes.parent().find('span').first().html()
 	if prsizes[0]
-		chars.find('.size b').html prsizes.parent().find('span').first().html()
+		show = true
+		color = prcolors.parent().find '[type=hidden]'
+		if color.length > 0
+			chars.find('.color b').html color
+		else
+			chars.find('.color b').html "#{prcolors.parents('.catalog').find('p')[1].innerHTML} — #{prcolors.parent().find('p')[1].innerHTML}"
+	if proptions != 'Без опций'
+		show = true
+		chars.find('.opt b').html proptions
+	if show
+		$('#choosedChars').show()
+	else
+		$('#choosedChars').hide()
