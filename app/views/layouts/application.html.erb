@@ -7,7 +7,7 @@
   <meta name='yandex-verification' content='55e5e85d2e764276' />
   <%= csrf_meta_tags %>
 </head>
-<body class='<%= controller.controller_name %> small-size'>
+<body class='<%= controller.controller_name %>'>
 <% if params[:controller] + params[:action] == 'mainindex' %>
 	<div id="preloader">
 		<p>Идет загрузка...</p>
@@ -30,11 +30,11 @@
 		<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
 	</ul>
 </div>
-<% end %>
+<% end %><!-- 
 <form id="search" action="/catalog/index">
 	<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
 	<input type="submit" value="Поиск"/>
-</form>
+</form> -->
 <div class="shopPhone">
   <p>8-800-707-67-57</p>
   <ins>Бесплатные звонки по России</ins>
