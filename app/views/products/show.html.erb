@@ -48,7 +48,7 @@
 				<a onclick="option(this)">Выбрать цвет:<img src="/assets/optionArrow.png"></a>
 				<div class="option">
 					<% if @product.prcolors[0].textures.empty? %>
-					<label class="color" data-color="<%= p.name %>">
+					<label class="color" data-color="<%= @product.prcolors[0].name %>">
 						<input class="color-scode-<%= @product.prcolors[0].scode %>" value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
 						<a href="<%= @product.prcolors[0].images %>" data-lightbox="<%= @product.prcolors[0].name %>" title="<%= @product.prcolors[0].name %>"><img src="<%= @product.prcolors[0].images %>"></a>
 						<span><%= sanitize(@product.prcolors[0].description) %></span>
