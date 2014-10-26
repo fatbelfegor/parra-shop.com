@@ -2435,9 +2435,10 @@ body.small-size {
 	}
 	.whereCanBuy {
 		a {
+			display: inline-block;
+			vertical-align: top;
 			width: 165px;
-			height: 170px;
-			margin: 25px auto 55px;
+			margin: 0 auto;
 			line-height: 26px;
 			font-size: 15px;
 			padding: 0 30px;
@@ -2446,6 +2447,8 @@ body.small-size {
 			position: relative;
 			overflow: visible;
 			text-transform: none;
+			overflow: hidden;
+			height: 0;
 			@include transition(.3s);			
 		}
 		a:hover {
@@ -2482,16 +2485,18 @@ body.small-size {
 		}
 		div {
 			background-color: #E6E6E6;
+			line-height: 0;
 			text-align: center;
-			height: 0;
-			overflow: hidden;
-			@include transition(.3s);
 		}
 	}
 	.whereCanBuy.open {
 		div {
 			padding-bottom: 1px;
-			height: 1827px;
+			height: auto;
+		}
+		a {
+			margin: 25px auto 55px;
+			height: 170px;
 		}
 	}
 	.miniMenuCart a {
@@ -2519,4 +2524,7 @@ body.small-size {
 }
 #choosedChars.open {
 	display: block;
+}
+.table-order-edit {
+	
 }

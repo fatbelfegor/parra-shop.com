@@ -519,6 +519,25 @@ orderItemPriceCalc = (el, num) ->
 	if num < 2
 		$(el).attr 'class', 'btn btn-default quantity'
 	orderItemPriceCalc(el, num)
+orderEditPriceCalc = (count, el) ->
+	td = el.parent()
+	next = td.next()
+	next.next().html (parseFloat(td.prev().html()) * count * (1 - parseFloat(next.html()) / 100)).toFixed(2) + ' руб.'
+	orderItemPrice()
+@orderEditMinus = (el) ->
+	if $(el).hasClass 'btn-danger'
+		span = $(el).next()
+		count = span.html() - 1
+		span.html count
+		if count == 1
+			$(el).removeClass('btn-danger').addClass('btn-default')
+		orderEditPriceCalc count, span
+@orderEditPlus = (el) ->
+	span = $(el).prev()
+	count = parseInt(span.html()) + 1
+	span.html count
+	span.prev().removeClass('btn-default').addClass('btn-danger')
+	orderEditPriceCalc count, span
 validate = (input) ->
 	if input.val() == ''
 		input.parent().addClass 'has-error'
@@ -566,15 +585,14 @@ validate = (input) ->
 		parent.removeClass 'active'
 @windowClose = ->
 	$('.windows').fadeOut(300)
-@orderEditSum = (el) ->
-	main = $(el).parents(".main")
-	pre = parseFloat main.find("#order_prepayment_sum").val()
-	dop = parseFloat main.find("#order_doppayment_sum").val()
-	final = parseFloat main.find("#order_finalpayment_sum").val()
-	deliver = parseFloat main.find("#order_deliver_cost").val()
-	p = parseFloat(main.find(".p").html())
-	sum = main.find(".sum")
-	dolg = main.find(".dolg")
+@orderEditSum = ->
+	pre = parseFloat $("#order_prepayment_sum").val()
+	dop = parseFloat $("#order_doppayment_sum").val()
+	final = parseFloat $("#order_finalpayment_sum").val()
+	deliver = parseFloat $("#order_deliver_cost").val()
+	p = parseFloat($(".p").html())
+	sum = $(".sum")
+	dolg = $(".dolg")
 	if !isNaN deliver
 		price = (p + deliver).toFixed(2) 
 		sum.html price + " руб."
@@ -595,7 +613,7 @@ validate = (input) ->
 			<td><input type='text' name='text' class='form-control form-control-90'></td>
 			<td><input type='text' name='price' class='form-control form-control-90'></td>
 			<td><div class='btn btn-success' onclick='saveVirtProduct(this)'>Сохранить</div> <div class='btn btn-warning' onclick=\"$(this).parents('tr').remove()\">Отменить</div></td>
-		<tr>"
+		</tr>"
 @userSetRole = (el) ->
 	params = {admin: false, manager: false, id: $(el).attr('name')}
 	role = $(el).data('role')
@@ -650,13 +668,62 @@ validate = (input) ->
 	price = tr.find('[name=price]').val()
 	if text != '' and price != '' and !isNaN price
 		$.post '/orders/add_virtproduct', text: text, price: price, id: $('#order-id').html(), (d) ->
-			tr.data('id', d).html "<td><input onkeyup='editVirtProduct(this)' name='text' type='text' value='#{text}' class='form-control form-control-90'></td>
-				<td><input onkeyup='editVirtProduct(this)' name='price' type='text' value='#{price}' class='form-control form-control-90'></td>
-				<td><div class='btn btn-danger' onclick='destroyVirtProduct(this)'>Удалить</div></td>"
-@editVirtProduct = (el) ->
+			tr.data('id', d)
+			if $(el).data('edit')
+				tds = tr.find 'td'
+				tds.eq(1).attr 'onkeyup', 'editVirtProduct(this)'
+				tds.eq(2).attr 'onkeyup', 'editVirtProduct(this)'
+				tds.eq(3).html '<div class="btn btn-danger" onclick="destroyVirtProduct(this)">Удалить</div>'
+				orderItemPrice()
+			else
+				tr.html "<td><input onkeyup='editVirtProduct(this)' name='text' type='text' value='#{text}' class='form-control form-control-90'></td>
+					<td><input onkeyup='editVirtProduct(this)' name='price' type='text' value='#{price}' class='form-control form-control-90'></td>
+					<td><div class='btn btn-danger' onclick='destroyVirtProduct(this)'>Удалить</div></td>"
+@editVirtProduct = (el, price) ->
 	$.post "/orders/edit_virtproduct_#{$(el).attr('name')}", id: $(el).parents('tr').data('id')	, val: $(el).val()
+	orderItemPrice()
+orderItemPrice = ->
+	table = $('table.order-items')
+	if table.length > 0
+		price = 0
+		count = 0
+		table.find('tr').each ->
+			td = $(@).find('td')
+			if $(@).hasClass 'order-item'
+				item = $(@).find('.item-price')
+				if item.length > 0
+					price += parseFloat item.html()
+				else
+					price += parseFloat $(@).find('[name=price]').val()
+				span = $(@).find 'span'
+				if span.length > 0
+					count += parseInt span.html()
+				else
+					count += 1
+			else
+				p = $(@).find('.p')
+				if p.length > 0
+					p.html price.toFixed(2) + ' руб.'
+					p.prev().prev().html count
+		orderEditSum()
 @destroyVirtProduct = (el) ->
-	$.post "/orders/destroy_virtproduct", id: $(el).parents('tr').data('id')
+	table = $(el).parents('table')
+	tr = $(el).parents('tr')
+	$.post "/orders/destroy_virtproduct", id: tr.data('id'), ->
+		tr.remove()
+		i = 0
+		table.find('tr').each ->
+			tds = $(@).find 'td'
+			if tds.length > 0
+				tds.first().html i += 1
+		orderItemPrice()
+@orderAddVirt = (el) ->
+	$(el).parents('tr').before "<tr class='order-item'>
+			<td>#{$(el).parents('table').find('tr').length - 5}</td>
+			<td colspan=\"3\"><input type='text' name='text' class='form-control form-control-90'></td>
+			<td colspan=\"2\"><input type='text' name='price' class='form-control form-control-90'></td>
+			<td><div class='btn btn-success' data-edit='true' onclick='saveVirtProduct(this)'>Сохранить</div></td>
+		</tr>"
 @orderStatus = (el) ->
 	$(el).toggleClass 'open'
 @setOrderStatus = (el) ->
