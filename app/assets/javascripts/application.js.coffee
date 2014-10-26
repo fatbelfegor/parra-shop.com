@@ -881,17 +881,23 @@ writeChars = ->
 	show = false
 	if prsizes[0]
 		show = true
-		chars.find('.size b').html prsizes.parent().find('span').first().html()
-	if prsizes[0]
+		chars.find('.size').show().find('b').html prsizes.parent().find('span').first().html()
+	else
+		chars.find('.size').hide()
+	if prcolors[0]
 		show = true
-		color = prcolors.parent().find '[type=hidden]'
-		if color.length > 0
-			chars.find('.color b').html color
+		color = prcolors.parent().data 'color'
+		if color
+			chars.find('.color').show().find('b').html color
 		else
-			chars.find('.color b').html "#{prcolors.parents('.catalog').find('p')[1].innerHTML} — #{prcolors.parent().find('p')[1].innerHTML}"
+			chars.find('.color').show().find('b').html "#{prcolors.parents('.catalog').find('p')[1].innerHTML} — #{prcolors.parent().find('p')[1].innerHTML}"
+	else
+		chars.find('.color').hide()
 	if proptions != 'Без опций'
 		show = true
-		chars.find('.opt b').html proptions
+		chars.find('.opt').show().find('b').html proptions
+	else
+		chars.find('.opt').hide()
 	if show
 		$('#choosedChars').show()
 	else

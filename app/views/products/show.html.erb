@@ -48,10 +48,8 @@
 				<a onclick="option(this)">Выбрать цвет:<img src="/assets/optionArrow.png"></a>
 				<div class="option">
 					<% if @product.prcolors[0].textures.empty? %>
-					<label class="color">
+					<label class="color" data-color="<%= p.name %>">
 						<input class="color-scode-<%= @product.prcolors[0].scode %>" value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
-						<input type="hidden" value="<%= @product.prcolors[0].name %>">
-						<input type="hidden" value="<%= @product.prcolors[0].scode %>">
 						<a href="<%= @product.prcolors[0].images %>" data-lightbox="<%= @product.prcolors[0].name %>" title="<%= @product.prcolors[0].name %>"><img src="<%= @product.prcolors[0].images %>"></a>
 						<span><%= sanitize(@product.prcolors[0].description) %></span>
 					</label>
@@ -60,9 +58,8 @@
 					<% end %>
 					<% @product.prcolors[1..-1].each do |p| %>
 						<% if p.textures.empty? %>
-						<label class="color">
+						<label class="color" data-color="<%= p.name %>">
 							<input class="color-scode-<%= p.scode %>" value="<%= p.price %>" type="radio" name="prcolors" />
-							<input type="hidden" value="<%= p.name %>">
 							<a href="<%= p.images %>" data-lightbox="<%= p.name %>" title="<%= p.name %>"><img src="<%= p.images %>"></a>
 							<span><%= sanitize(p.description) %></span>
 						</label>
@@ -94,9 +91,9 @@
 			<% end %>
 			<div id="choosedChars" class="open">
 				<h5>Выбранные опции:</h5>
-				<p class="size">Размер: <b>25см</b></p>
-				<p class="color">Цвет: <b>красный</b></p>
-				<p class="opt">Опция: <b>хз</b></p>
+				<p class="size">Размер: <b></b></p>
+				<p class="color">Цвет: <b></b></p>
+				<p class="opt">Опция: <b></b></p>
 			</div>
 			<div class="price">
 				<div class="price-block">
