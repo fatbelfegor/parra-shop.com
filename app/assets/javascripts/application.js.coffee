@@ -18,6 +18,8 @@
 
 Number.prototype.toCurrency = ->
 	(""+this.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+String.prototype.toNum = ->
+	parseFloat @.replace(/\ /g,'')
 
 iframe = document.createElement 'iframe'
 menuImages = []
@@ -381,6 +383,7 @@ expire = ->
 	$('#cartCount').html(count) if count
 @option = (el) ->
 	next = $(el).next()
+	$('div.option').hide 300
 	if next.css('display') != 'none'
 		next.hide 300, productKeepPage
 	else
@@ -522,7 +525,7 @@ orderItemPriceCalc = (el, num) ->
 orderEditPriceCalc = (count, el) ->
 	td = el.parent()
 	next = td.next()
-	next.next().html (parseFloat(td.prev().html()) * count * (1 - parseFloat(next.html()) / 100)).toFixed(2) + ' руб.'
+	next.next().html (td.prev().html().toNum() * count * (1 - next.html().toNum() / 100)).toFixed(2) + ' руб.'
 	orderItemPrice()
 @orderEditMinus = (el) ->
 	if $(el).hasClass 'btn-danger'
@@ -586,24 +589,23 @@ validate = (input) ->
 @windowClose = ->
 	$('.windows').fadeOut(300)
 @orderEditSum = ->
-	pre = parseFloat $("#order_prepayment_sum").val()
-	dop = parseFloat $("#order_doppayment_sum").val()
-	final = parseFloat $("#order_finalpayment_sum").val()
-	deliver = parseFloat $("#order_deliver_cost").val()
-	p = parseFloat($(".p").html())
+	pre = $("#order_prepayment_sum").val().toNum()
+	dop = $("#order_doppayment_sum").val().toNum()
+	final = $("#order_finalpayment_sum").val().toNum()
+	deliver = $("#order_deliver_cost").val().toNum()
+	p = $(".p").html().toNum()
 	sum = $(".sum")
 	dolg = $(".dolg")
 	if !isNaN deliver
-		price = (p + deliver).toFixed(2) 
-		sum.html price + " руб."
+		price = p + deliver
+		sum.html price.toCurrency() + " руб."
 	else
-		price = p.toFixed(2)
-		sum.html price + " руб."
+		sum.html p.toCurrency() + " руб."
 	payed = 0
 	for pay in [pre, dop, final]
 		if !isNaN pay
 			payed += pay
-	dolg.html (price - payed).toFixed(2) + ' руб.'
+	dolg.html (price - payed).toCurrency() + ' руб.'
 @orderItemDiscountSave = (el, id) ->
 	val = $(el).val()
 	unless isNaN(val) and val != ''
@@ -692,9 +694,9 @@ orderItemPrice = ->
 			if $(@).hasClass 'order-item'
 				item = $(@).find('.item-price')
 				if item.length > 0
-					price += parseFloat item.html()
+					price += item.html().toNum()
 				else
-					price += parseFloat $(@).find('[name=price]').val()
+					price += $(@).find('[name=price]').val().toNum()
 				span = $(@).find 'span'
 				if span.length > 0
 					count += parseInt span.html()

@@ -11,7 +11,6 @@ ParraShopCom::Application.routes.draw do
   get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
   get '/prcolors/copy', to: 'prcolors#copy'
-  get '/configurator', to: 'configurator#index'
   
   root to: 'main#index', as: 'index'
 
