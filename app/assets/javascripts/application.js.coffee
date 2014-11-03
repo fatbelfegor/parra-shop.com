@@ -302,9 +302,10 @@ expire = ->
 			$.ajax
 				url: "/cart.json?name="+item.n
 				success: (data) ->
-					$('#menuCart > div > a').get().forEach (item) ->
-						if $(item).find('#name').html() == data.name				
-							$(item).find('img').attr 'src', data.images.split(',')[0]
+					if data
+						$('#menuCart > div > a').get().forEach (item) ->
+							if $(item).find('#name').html() == data.name				
+								$(item).find('img').attr 'src', data.images.split(',')[0]
 	if items == ''
 		$('#menuCart').hide()
 	else $('#menuCart').show()
@@ -744,7 +745,11 @@ productKeepPage = ->
 	t = []
 	pc.find('.textures').each ->
 		t.push $(@).height()
-	s = pc.find('[name=prsizes]:checked').attr('class').split('size-scode-')[1]
+	s = pc.find('[name=prsizes]:checked').attr('class')
+	if s
+		s = s.split('size-scode-')[1]
+	else
+		s = false
 	c = pc.find('[name=prcolors]:checked')
 	if c.length > 0
 		c = c.attr('class')
@@ -775,7 +780,7 @@ productKeepPage = ->
 		pc.find('.textures').each ->
 			$(@).css 'height', "#{productPage[1][i]}px"
 			i += 1
-		pc.find(".size-scode-#{productPage[2]}").prop 'checked', true
+		pc.find(".size-scode-#{productPage[2]}").prop 'checked', true if productPage[2]
 		pc.find(".color-scode-#{productPage[3]}").prop 'checked', true if productPage[3]
 		pc.find(".texture-scode-#{productPage[4]}").prop 'checked', true if productPage[4]
 		pc.find(".option-scode-#{productPage[5]}").prop 'checked', true if productPage[5]
