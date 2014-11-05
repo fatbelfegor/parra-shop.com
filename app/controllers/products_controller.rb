@@ -139,6 +139,7 @@ private
   		:s_imagealt,
       :seo_text,
       :old_price,
+      :seo_title2,
   		:category_ids => []
     )
   end

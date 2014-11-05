@@ -5,6 +5,9 @@ class CatalogController < ApplicationController
   def index
     if params[:category_scode].present?
       @category = Category.find_by_scode(params[:category_scode])
+      if @category.url
+        redirect_to "/catalog/#{@category.url}"
+      end
       @title = @category.title
       return render :action => 'page404' unless @category
     elsif params[:q].present?
