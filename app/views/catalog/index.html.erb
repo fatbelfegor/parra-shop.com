@@ -14,7 +14,7 @@
 	<div id="products"></div>
 	<script type="text/javascript">
 	productLoad = {}
-	<%= if params[:category_scode].present? then raw "productLoad.cat_id = '#{@category.id}'" end %>
+	<%= if params[:category_scode].present? || params[:url].present? then raw "productLoad.cat_id = '#{@category.id}'" end %>
 	<%= if params[:q].present? then raw "productLoad.q = '#{params[:q]}'" end %>
 	</script>
 	<% unless !params[:category_scode].present? or @category.seo_text.blank? %>

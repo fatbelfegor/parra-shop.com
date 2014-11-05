@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019143949) do
+ActiveRecord::Schema.define(version: 20141105115646) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20141019143949) do
     t.decimal  "commission",    precision: 18, scale: 2, default: 0.0
     t.decimal  "rate",          precision: 18, scale: 2, default: 0.0
     t.text     "seo_text"
+    t.string   "url"
   end
 
   create_table "categories_products", id: false, force: true do |t|

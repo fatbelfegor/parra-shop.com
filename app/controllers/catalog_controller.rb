@@ -10,6 +10,9 @@ class CatalogController < ApplicationController
     elsif params[:q].present?
       @title = "Поиск: #{params[:q]}"
       @products = Product.where('invisible = false')
+    elsif params[:url].present?
+      @category = Category.find_by url: params[:url]
+      @title = @category.title
     end
   end
 

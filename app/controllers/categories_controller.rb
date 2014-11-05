@@ -107,7 +107,8 @@ private
 			:scode,
 			:commission,
 			:rate,
-      :seo_text
+      :seo_text,
+      :url
 		)
 	end
 end
