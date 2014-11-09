@@ -1,0 +1,685 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"win",
+				"window"
+			],
+			[
+				"orderI",
+				"orderItemPrice"
+			],
+			[
+				"parse",
+				"parseInt"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"btn",
+				"btn-success"
+			],
+			[
+				"has",
+				"hasClass"
+			],
+			[
+				"prop",
+				"proptions"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"tal",
+				"text-align"
+			],
+			[
+				"remo",
+				"removeClass"
+			],
+			[
+				"res",
+				"resizeFunc"
+			],
+			[
+				"cas",
+				"category_scode"
+			],
+			[
+				"ac",
+				"action	Attr"
+			],
+			[
+				"brr",
+				"border-right"
+			],
+			[
+				"bgc",
+				"background-color"
+			],
+			[
+				"bann",
+				"banner"
+			],
+			[
+				"ba",
+				"banner"
+			],
+			[
+				"get",
+				"getCookie"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"or",
+				"order_item"
+			],
+			[
+				"is",
+				"isNaN"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"confir",
+				"confirmed_at"
+			],
+			[
+				"crea",
+				"create-manager"
+			],
+			[
+				"mana",
+				"manager_logs"
+			],
+			[
+				"cat",
+				"category_id"
+			],
+			[
+				"st",
+				"s_title"
+			],
+			[
+				"addfr",
+				"addr_floor"
+			],
+			[
+				"del",
+				"deliver_cost"
+			],
+			[
+				"q",
+				"quantity"
+			],
+			[
+				"orders",
+				"orders_path"
+			],
+			[
+				"up",
+				"update"
+			],
+			[
+				"righ",
+				"right"
+			],
+			[
+				"writex",
+				"write_xy"
+			],
+			[
+				"wri",
+				"write_row"
+			],
+			[
+				"э",
+				"этаж"
+			],
+			[
+				"col",
+				"columns"
+			],
+			[
+				"al",
+				"align"
+			],
+			[
+				"for",
+				"format"
+			],
+			[
+				"find",
+				"find_by"
+			],
+			[
+				"produc",
+				"product"
+			],
+			[
+				"par",
+				"params"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 369.0,
+		"selected_items":
+		[
+			[
+				"pai",
+				"Package Control: Install Package"
+			],
+			[
+				"erb",
+				"ERB: Add Layout Mapping"
+			],
+			[
+				"paci",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/romeo/work/themovielist"
+	],
+	"file_history":
+	[
+		"/home/romeo/work/parrashop/app/controllers/products_controller.rb",
+		"/home/romeo/work/parrashop/app/views/application/page404",
+		"/home/romeo/work/parrashop/config/application.rb",
+		"/home/romeo/work/parrashop/app/views/prcolors/_textures.html.erb",
+		"/home/romeo/work/parrashop/app/views/products/show.html.erb",
+		"/home/romeo/work/parrashop/app/views/layouts/application.html.erb",
+		"/home/romeo/work/parrashop/app/views/main/index.html.erb",
+		"/home/romeo/work/parrashop/app/views/orders/index.html.erb",
+		"/home/romeo/work/parrashop/public/three.js/examples/canvas_camera_orthographic.html",
+		"/home/romeo/work/parrashop/config.ru",
+		"/home/romeo/work/parrashop/app/views/main/main.html.erb",
+		"/home/romeo/work/parrashop/app/controllers/statuses_controller.rb",
+		"/home/romeo/work/parrashop/start.sh",
+		"/home/romeo/work/parrashop/config/routes.rb",
+		"/home/romeo/work/parrashop/app/views/products/_productCatalog.html.erb",
+		"/home/romeo/work/parrashop/app/views/catalog/index.html.erb",
+		"/home/romeo/work/parrashop/app/controllers/catalog_controller.rb",
+		"/home/romeo/work/parrashop/app/models/product.rb",
+		"/home/romeo/work/parrashop/Gemfile",
+		"/home/romeo/work/parrashop/app/assets/stylesheets/application.css.scss",
+		"/home/romeo/work/parrashop/public/three.js/src/lights/AreaLight.js",
+		"/home/romeo/work/parrashop/public/three.js/utils/build/build_all.bat",
+		"/home/romeo/work/parrashop/app/assets/javascripts/application.js.coffee",
+		"/home/romeo/work/parrashop/app/controllers/main_controller.rb",
+		"/home/romeo/work/parrashop/app/controllers/banners_controller.rb",
+		"/home/romeo/work/parrashop/app/views/banners/index.html.erb",
+		"/home/romeo/work/parrashop/app/views/banners/_form.html.erb",
+		"/home/romeo/work/parrashop/app/views/products/_form.html.erb",
+		"/home/romeo/work/parrashop/app/views/banners/edit.html.erb",
+		"/home/romeo/work/parrashop/app/views/banners/new.html.erb",
+		"/home/romeo/work/parrashop/app/views/orders/show.html.erb",
+		"/home/romeo/work/parrashop/app/views/orders/edit.html.erb",
+		"/home/romeo/work/parrashop/app/controllers/orders_controller.rb",
+		"/home/romeo/work/parrashop/app/views/orders/_form.html.erb",
+		"/home/romeo/work/parrashop/db/migrate/20141016023237_create_statuses.rb",
+		"/home/romeo/work/parrashop/db/migrate/20141016233542_remove_status_from_orders.rb",
+		"/home/romeo/work/parrashop/app/models/order.rb",
+		"/home/romeo/work/parrashop/app/models/status.rb",
+		"/home/romeo/work/parrashop/app/views/statuses/_form.html.erb",
+		"/home/romeo/work/parrashop/app/views/statuses/index.html.erb",
+		"/home/romeo/work/parrashop/app/views/users/index.html.erb",
+		"/home/romeo/work/parrashop/app/views/statuses/new.html.erb",
+		"/home/romeo/work/parrashop/app/views/statuses/edit.html.erb",
+		"/home/romeo/work/parrashop/app/views/status/new.html.erb",
+		"/home/romeo/work/parrashop/app/controllers/order_item_controller.rb",
+		"/home/romeo/work/parrashop/public/three.js/examples/obj/blenderscene/scene.Cube.js",
+		"/home/romeo/work/parrashop/app/controllers/users_controller.rb",
+		"/home/romeo/work/parrashop/app/views/users/logs.html.erb",
+		"/home/romeo/work/parrashop/config/initializers/devise.rb",
+		"/home/romeo/work/parrashop/config/environments/development.rb",
+		"/home/romeo/work/parrashop/app/models/user.rb",
+		"/home/romeo/work/parrashop/tmp/cache/assets/development/sprockets/ff98ab2f1b86591a1c4cc24dfb7c26f2",
+		"/home/romeo/work/parrashop/app/controllers/application_controller.rb",
+		"/home/romeo/work/parrashop/db/migrate/20141015020242_change_defaults_for_orders.rb",
+		"/home/romeo/work/parrashop/app/models/order_item.rb",
+		"/home/romeo/work/parrashop/app/models/category.rb",
+		"/home/romeo/work/parrashop/app/controllers/categories_controller.rb",
+		"/home/romeo/work/parrashop/db/migrate/20141015011240_create_manager_logs.rb",
+		"/home/romeo/work/parrashop/config/database.yml",
+		"/home/romeo/work/parrashop/db/migrate/20141010031753_create_virtproducts.rb",
+		"/home/romeo/work/parrashop/public/three.js/examples/js/postprocessing/DotScreenPass.js",
+		"/home/romeo/work/parrashop/public/three.js/docs/api/extras/geometries/PlaneGeometry.html",
+		"/home/romeo/work/parrashop/app/helpers/application_helper.rb",
+		"/home/romeo/work/parrashop/public/three.js/src/renderers/shaders/ShaderChunk/alphamap_pars_fragment.glsl",
+		"/home/romeo/work/parrashop/db/migrate/20141008053251_add_first_tab_to_orders.rb",
+		"/home/romeo/work/parrashop/db/migrate/20141009221247_add_discount_to_order_items.rb",
+		"/home/romeo/work/parrashop/public/three.js/examples/js/exporters/ObjectExporter.js",
+		"/home/romeo/work/parrashop/db/migrate/20140329115837_create_orders.rb",
+		"/home/romeo/work/parrashop/db/migrate/20141005011939_add_old_price_to_products.rb",
+		"/home/romeo/work/parrashop/app/views/categories/show.html.erb",
+		"/home/romeo/119-В Дардыкин.xlsx",
+		"/home/romeo/work/parrashop/public/three.js/docs/api/constants/ShadowingTypes.html",
+		"/home/romeo/work/parrashop/config/initializers/secret_token.rb",
+		"/home/romeo/work/parrashop/app/assets/javascripts/admin.js.coffee",
+		"/home/romeo/work/parrashop/public/three.js/editor/js/Room.coffee",
+		"/home/romeo/work/parrashop/public/three.js/src/renderers/shaders/ShaderChunk/color_fragment.glsl",
+		"/home/romeo/work/parrashop/public/three.js/examples/canvas_materials_normal.html",
+		"/home/romeo/work/parrashop/app/helpers/catalog_helper.rb",
+		"/home/romeo/work/parrashop/public/three.js/examples/canvas_ascii_effect.html",
+		"/home/romeo/work/parrashop/public/three.js/examples/js/shaders/CopyShader.js",
+		"/home/romeo/Старые УРЛ и новые ЧПУ.xlsx",
+		"/home/romeo/work/dsdstore/app/views/pages/home.html.erb",
+		"/home/romeo/work/dsdstore/app/assets/stylesheets/application.css",
+		"/home/romeo/work/dsdstore/app/controllers/catalogs_controller.rb",
+		"/home/romeo/work/dsdstore/app/controllers/orders_controller.rb",
+		"/home/romeo/work/dsdstore/config/initializers/assets.rb",
+		"/home/romeo/work/dsdstore/config/initializers/wrap_parameters.rb",
+		"/home/romeo/work/dsdstore/app/controllers/pages_controller.rb",
+		"/home/romeo/work/dsdstore/app/controllers/products_controller.rb",
+		"/home/romeo/work/dsdstore/app/models/import_job.rb",
+		"/home/romeo/work/mosintim/db/migrate/20140816035522_create_products.rb",
+		"/home/romeo/work/mosintim/app/controllers/products_controller.rb",
+		"/home/romeo/work/mosintim/app/views/products/_form.html.erb",
+		"/home/romeo/work/mosintim/config/environments/production.rb",
+		"/home/romeo/work/mosintim/app/models/product.rb",
+		"/home/romeo/work/mosintim/app/models/param.rb",
+		"/home/romeo/work/mosintim/app/views/import/textilgroup.html.erb",
+		"/home/romeo/work/mosintim/Gemfile",
+		"/home/romeo/Загрузки/export.csv",
+		"/home/romeo/Загрузки/export.yml",
+		"/home/romeo/work/mosintim/config/routes.rb",
+		"/home/romeo/work/mosintim/app/models/category.rb",
+		"/home/romeo/work/mosintim/app/views/categories/_form.html.erb",
+		"/home/romeo/work/mosintim/app/controllers/categories_controller.rb",
+		"/home/romeo/work/mosintim/db/migrate/20140816034312_create_categories.rb",
+		"/home/romeo/work/mosintim/app/assets/javascripts/coffee.coffee",
+		"/home/romeo/work/mosintim/app/assets/stylesheets/style.styl",
+		"/home/romeo/work/mosintim/app/helpers/categories_helper.rb",
+		"/home/romeo/work/mosintim/app/controllers/import_controller.rb",
+		"/home/romeo/work/mosintim/db/migrate/20140914040839_add_scode_indexes.rb",
+		"/home/romeo/work/mosintim/app/controllers/images_controller.rb",
+		"/home/romeo/work/mosintim/app/models/image.rb",
+		"/home/romeo/work/mosintim/app/views/layouts/application.html.erb",
+		"/home/romeo/work/mosintim/Rakefile",
+		"/home/romeo/work/mosintim/config.ru",
+		"/home/romeo/work/mosintim/config/initializers/assets.rb",
+		"/home/romeo/work/mosintim/config/application.rb",
+		"/home/romeo/work/mosintim/config/initializers/filter_parameter_logging.rb",
+		"/home/romeo/work/mosintim/db/migrate/20140816024800_add_admin_to_users.rb",
+		"/home/romeo/work/mosintim/config/environments/test.rb",
+		"/home/romeo/work/mosintim/config/database.yml",
+		"/home/romeo/work/mosintim/db/migrate/20140913223100_create_images.rb",
+		"/home/romeo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/romeo/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/romeo/work/topbeds/start.sh",
+		"/home/romeo/work/topbeds/README.rdoc",
+		"/home/romeo/work/topbeds/Rakefile",
+		"/home/romeo/work/topbeds/app/assets/stylesheets/bootstrap-theme.min.css"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"price",
+			"@title",
+			"catalog",
+			"s_keyword",
+			"SEO",
+			"productKeepPage",
+			"cartMenuGen",
+			"orderEditS",
+			"orderEdi",
+			"' руб.'",
+			"parseFloat",
+			"' руб.'",
+			"parseFloat ",
+			"+ ' руб.'",
+			"/g",
+			"type=\"hidden",
+			"orderItemPrice",
+			"saveVirtProduct",
+			"@order.id",
+			"before \"<tr>",
+			"before",
+			"orderAddVirt",
+			"orders",
+			"orderItemPrice",
+			"orderEditSum",
+			".find('.p')",
+			"editV",
+			"name=\"text\"",
+			"editOrder",
+			"editVirtProduct",
+			"orderEdit",
+			"orderEditSum",
+			"main.find",
+			"$(span)",
+			"(Шаграт) ",
+			"(Shag) ",
+			"(Агнета) ",
+			"(Agnete) ",
+			"success",
+			"productKeepPage",
+			"priceChange()",
+			".show",
+			"heading",
+			"0",
+			"transition",
+			"Тумбочки",
+			"Шкафы",
+			"Кровати",
+			"Все товары",
+			"Lucca",
+			"Opera",
+			"Trevi",
+			"Матрасы",
+			"Joy",
+			"Style",
+			"Verro",
+			"BellaGost",
+			"P3",
+			"Диваны",
+			"Azzon",
+			"Joy",
+			"Style",
+			"Verro",
+			"BellaGost",
+			"Bella",
+			"Гостинные",
+			"this",
+			" style=\"background-image: url(/assets/",
+			"<p><p>",
+			"Miro",
+			"Lorra",
+			"Ritmika",
+			"Plisset",
+			"Bella",
+			"div",
+			"ready",
+			"window.",
+			"window",
+			"resi",
+			"       ",
+			"      ",
+			"     ",
+			"    ",
+			"\"",
+			"prsizes",
+			"\"",
+			"scrollFunc",
+			"#products",
+			".products",
+			"buyButton",
+			"buyBut",
+			"script",
+			"imageNext",
+			"border-radius(",
+			"\n",
+			"ffffff",
+			"\n",
+			"module",
+			"width: 100px",
+			"list_ima",
+			"category",
+			"old_price",
+			"productKeepPage",
+			"option",
+			"productKeepPage",
+			"getCookie",
+			"document.cookie",
+			"productKeepPage",
+			"cookie",
+			"buyButton",
+			"created_at",
+			"def",
+			" =>",
+			"import",
+			"lh-34",
+			"34",
+			"Вы уверены?",
+			"Вы уверены",
+			"onchange",
+			"saveVirtProduct",
+			"add_virtproduct",
+			"text",
+			"addVirtproduct",
+			"\"",
+			"render",
+			"data-role",
+			" onchange=\\\"userSetRole(this)\\\"",
+			"config.mailer"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "themovielist.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"applay",
+				"app/views/layouts/application.html.erb"
+			],
+			[
+				"appla",
+				"config/application.rb"
+			],
+			[
+				"ro",
+				"config/routes.rb"
+			],
+			[
+				"scss",
+				"app/assets/stylesheets/application.css.scss"
+			],
+			[
+				"coff",
+				"app/assets/javascripts/application.js.coffee"
+			],
+			[
+				"coffee",
+				"app/assets/javascripts/application.js.coffee"
+			],
+			[
+				"data",
+				"config/database.yml"
+			],
+			[
+				"coffe",
+				"app/assets/javascripts/application.js.coffee"
+			],
+			[
+				"pro",
+				"app/controllers/products_controller.rb"
+			],
+			[
+				"asse",
+				"config/initializers/assets.rb"
+			],
+			[
+				"sty",
+				"app/assets/stylesheets/style.styl"
+			],
+			[
+				"produ",
+				"app/controllers/products_controller.rb"
+			],
+			[
+				"cofe",
+				"app/assets/javascripts/coffee.coffee"
+			],
+			[
+				"styl",
+				"app/assets/stylesheets/style.styl"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"ds",
+				"~/work/projects/dsdstore.sublime-project"
+			],
+			[
+				"",
+				"~/work/projects/dsdstore.sublime-project"
+			],
+			[
+				"dsd",
+				"~/work/projects/dsdstore.sublime-project"
+			],
+			[
+				"dsds",
+				"~/work/projects/dsdstore.sublime-project"
+			],
+			[
+				"top",
+				"~/work/projects/topbeds.sublime-project"
+			],
+			[
+				"tp",
+				"~/work/projects/topbeds.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 199.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
