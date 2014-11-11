@@ -25,6 +25,7 @@ iframe = document.createElement 'iframe'
 menuImages = []
 
 scrollFunc = ->
+	console.log 'asd'
 	unless window.productLoading
 		products = $('#products')
 		if products.length > 0
@@ -168,6 +169,7 @@ ready = ->
 $(document).ready ->
 	$('#mainMenu li div div').each ->
 		menuImages.push this.style.backgroundImage
+	$('.main').scroll scrollFunc
 	ready()
 $(document).on('page:load', ready)
 $(window).resize resizeFunc
