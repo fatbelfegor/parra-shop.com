@@ -169,7 +169,8 @@ ready = ->
 $(document).ready ->
 	$('#mainMenu li div div').each ->
 		menuImages.push this.style.backgroundImage
-	$('.main').scroll scrollFunc
+	scroll = $('.main')
+	scroll.scroll scrollFunc
 	ready()
 $(document).on('page:load', ready)
 $(window).resize resizeFunc
