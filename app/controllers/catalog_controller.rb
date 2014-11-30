@@ -4,18 +4,18 @@
 class CatalogController < ApplicationController
   def index
     if params[:category_scode].present?
-      @category = Category.find_by_scode(params[:category_scode])
-      unless @category.url.blank?
-        redirect_to "/catalog/#{@category.url}"
+      @cat = Category.find_by_scode(params[:category_scode])
+      return render :action => 'page404' unless @cat
+      unless @cat.url.blank?
+        redirect_to "/catalog/#{@cat.url}"
       end
-      @title = @category.title
-      return render :action => 'page404' unless @category
+      @title = @cat.title
     elsif params[:q].present?
       @title = "Поиск: #{params[:q]}"
       @products = Product.where('invisible = false')
     elsif params[:url].present?
-      @category = Category.find_by url: params[:url]
-      @title = @category.title
+      @cat = Category.find_by url: params[:url]
+      @title = @cat.title
     end
   end
 

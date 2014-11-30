@@ -42,7 +42,7 @@ class PrcolorsController < ApplicationController
         end
       end
     end
-    redirect_to controller: :products, action: :show_scode, scode: @scode
+    redirect_to URI.encode("/kupit/#{@scode}")
   end
 
   def edit
@@ -62,13 +62,13 @@ class PrcolorsController < ApplicationController
           Texture.create(name: t[:name], scode: t[:scode], price: t[:price], image: t[:image], prcolor_id: @prcolor.id)
       end
     end
-    redirect_to controller: :products, action: :show_scode, scode: @prcolor.product.scode
+    redirect_to URI.encode("/kupit/#{@prcolor.product.scode}")
   end
 
   def destroy
     @prcolor = Prcolor.find(params[:id])
     @prcolor.destroy
-    redirect_to controller: :products, action: :show_scode, scode: @prcolor.product.scode
+    redirect_to URI.encode("/kupit/#{@prcolor.product.scode}")
   end
 
 private

@@ -7,13 +7,13 @@ class TexturesController < ApplicationController
 		@texture = Texture.find(params[:id])
 
 		@texture.update_attributes texture_params
-		redirect_to '/kupit/'+@texture.prcolor.product.scode
+		redirect_to URI.encode("/kupit/#{@texture.prcolor.product.scode}")
 	end
 
 	def destroy
 		@texture = Texture.find(params[:id])
 		@texture.destroy
-		redirect_to '/kupit/'+@texture.prcolor.product.scode
+		redirect_to URI.encode("/kupit/#{@texture.prcolor.product.scode}")
 	end
 private
   def texture_params

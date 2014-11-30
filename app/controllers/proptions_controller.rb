@@ -13,7 +13,7 @@ class ProptionsController < ApplicationController
     @proption = Proption.new(proption_params)
 
     @proption.save
-    redirect_to '/kupit/'+@proption.product.scode
+    redirect_to URI.encode("/kupit/#{@proption.product.scode}")
   end
 
   def edit
@@ -26,13 +26,13 @@ class ProptionsController < ApplicationController
     @proption = Proption.find(params[:id])
 
     @proption.update_attributes proption_params
-    redirect_to '/kupit/'+@proption.product.scode
+    redirect_to URI.encode("/kupit/#{@proption.product.scode}")
   end
 
   def destroy
     @proption = Proption.find(params[:id])
     @proption.destroy
-    redirect_to '/kupit/'+@proption.product.scode
+    redirect_to URI.encode("/kupit/#{@proption.product.scode}")
   end
 
 private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105121055) do
+ActiveRecord::Schema.define(version: 20141128121318) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141105121055) do
     t.decimal  "rate",          precision: 18, scale: 2, default: 0.0
     t.text     "seo_text"
     t.string   "url"
+    t.boolean  "menu"
   end
 
   create_table "categories_products", id: false, force: true do |t|
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(version: 20141105121055) do
     t.text     "seo_text"
     t.decimal  "old_price",     precision: 18, scale: 2, default: 0.0
     t.string   "seo_title2"
+    t.string   "article"
   end
 
   create_table "proptions", force: true do |t|

@@ -77,7 +77,7 @@ class CategoriesController < ApplicationController
     parent_id = params[:parent_id]
     parent_id = nil if parent_id == 'nil'
     params[:category].each_with_index do |id, index|
-      Category.update_all({position: index+1, parent_id: parent_id}, {id: id})
+      Category.find(id).update position: index+1, parent_id: parent_id
     end
     render :nothing => true
   end
@@ -108,7 +108,8 @@ private
 			:commission,
 			:rate,
       :seo_text,
-      :url
+      :url,
+      :menu
 		)
 	end
 end

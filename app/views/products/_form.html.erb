@@ -1,184 +1,128 @@
-<%= form_for(@product) do |f| %>
-<table class="table table-bordered table-striped">
-<tr><td style="padding: 15px 30px 0 20px">
- <% if @product.errors.any? %>
+<%= form_for(@product, {data: {product: @product.id}}) do |f| %>
+  <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
       <ul>
-      <% @product.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="row form-group">
-    <h4 class="col-md-2 text-right"><%= f.label :category_id, "Категория:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-10">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end), {}, {class: "form-control"} %>
-      </div>
+  <div class="input-group treebox-group">
+    <p>Родительская категория:</p>
+    <div class="treebox">
+      <% if @categories.empty? %>
+        <div class="button">
+          <p>Основная запись</p>
+        </div>
+      <% else %>
+        <div class="button" onclick="treebox.show(this)">
+          <p>
+            <% if @product.category_id %>
+              <%= @categories.find{|r| r.id == @product.category_id}.name %>
+            <% else %>
+              Выбрать
+            <% end %>
+          </p><span class="caret"></span>
+        </div>
+        <ul>
+          <% def treebox items
+            ret = ''
+            for item in items
+              children = @categories.find_all{|r| r.parent_id == item.id}
+              if children.empty?
+                ret += "<li><div><span></span><p onclick='treebox.pick(this)' data-id='#{item.id}'>#{item.name}</p></div></li>"
+              else
+                ret += "<li><div><span class='icon-arrow-down' onclick='treebox.open(this)'></span><p onclick='treebox.pick(this)' data-id='#{item.id}'>#{item.name}</p></div><ul>#{treebox children}</ul></li>"
+              end
+            end
+            ret
+          end %>
+          <%= raw treebox @categories.find_all{|r| !r.parent_id} %>
+        </ul>
+        <% if params[:category_id].present? %>
+          <%= f.hidden_field :category_id, value: params[:category_id] %>
+        <% else %>
+          <%= f.hidden_field :category_id %>
+        <% end %>
+      <% end %>
     </div>
   </div>
-  <div class="row form-group" style="padding-left: 100px">
-    <% for category in Category.all %>
-      <div class="col-md-2">
+  <div class="checkboxes">
+    <h3>Дополнительные категории</h3>
+    <div>
+    <% for category in @categories %>
+      <label>
     		<%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
     		<%= category.name %>
-      </div>
+      </label>
     <% end %>
-  </div>
-  </td></tr>
-  <tr><td style="padding: 15px 100px 0 20px">  
-  <div class="row form-group">
-    <h4 class="col-md-2 text-right"><%= f.label :name, "Название", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-2">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :name, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
-    </div>
-    <h4 class="col-md-2 text-right"><%= f.label :s_description, "SEO description", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-2">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :s_description, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
-    </div>
-    <h4 class="col-md-2 text-right"><%= f.label :s_keyword, "SEO keywords через запятую", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-2">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :s_keyword, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
     </div>
   </div>
-  <div class="row form-group">
-  <h4 class="col-md-2 text-right"><%= f.label :s_title, "Код", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-2">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :s_title, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
-    </div>
-    <h4 class="col-md-2 text-right"><%= f.label :seo_title2, "SEO title", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-1">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :seo_title2, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
-    </div>
-    <h4 class="col-md-3 text-right"><%= f.label :position, "Порядковый номер", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-2">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :position, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
-    </div>     
+  <br><br><br>
+  <div class="half">
+    <label>Название: <%= f.text_field :name %></label>
+    <label>Код: <%= f.text_field :scode %></label>
+    <label>Цена: <%= f.text_field :price %></label>
+    <label>Старая цена: <%= f.text_field :old_price %></label>
+    <label>Позиция: <%= f.text_field :position %></label>
+    <label class="checkbox">
+      <%= check_box("product", "invisible", {}, "true", "false") %> Сделать Невидимым
+    </label>
+    <label class="checkbox">
+      <%= check_box("product", "delemiter", {}, "true", "false") %> Сделать Разделителем
+    </label>
   </div>
-  <div class="row form-group">
-    <h4 class="col-md-2 text-right"><%= f.label :price, "Цена", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-1">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :price, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
-    </div>
-    <h4 class="col-md-2 text-right"><%= f.label :scode, "SCode:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-2">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :scode, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
-    </div>
-    <h4 class="col-md-2 text-right"><%= f.label :old_price, "Старая цена", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-1">
-      <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.text_field :old_price, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-      </div>
-    </div>
+  <div class="half">
+    <label>Артикул: <%= f.text_field :article %></label>
+    <label>SEO title: <%= f.text_field :s_title %></label>
+    <label>SEO title 2: <%= f.text_field :seo_title2 %></label>
+    <label>SEO description: <%= f.text_field :s_description %></label>
+    <label>SEO keywords через запятую: <%= f.text_field :s_keyword %></label>
+    <label class="checkbox">
+      <%= check_box("product", "main", {}, "true", "false") %> Отображать на главной странице
+    </label>
+    <label class="checkbox">
+      <%= check_box("product", "action", {}, "true", "false") %> Отображать на панели скидки
+    </label>
+    <label class="checkbox">
+      <%= check_box("product", "best", {}, "true", "false") %> Отображать на панели Хиты продаж
+    </label>
   </div>
-  </td></tr>
-  <tr><td style="padding: 15px 30px 0 20px">
-  <div class="row form-group">
-    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Отображать на главной странице</div></h4>
-    <div class="col-md-1">
-      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
-        <%=check_box("product", "main", {}, "true", "false")%>
-      </div>
-    </div>
-    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Отображать на панели скидки</div></h4>
-    <div class="col-md-1">
-      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
-        <%=check_box("product", "action", {}, "true", "false")%>
-      </div>
-    </div>
-    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Отображать на панели Хиты продаж</div></h4>
-    <div class="col-md-1">
-      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
-        <%=check_box("product", "best", {}, "true", "false")%>
-      </div>
-    </div>
-    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Сделать Невидимым</div></h4>
-    <div class="col-md-1">
-      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
-        <%=check_box("product", "invisible", {}, "true", "false")%>
-      </div>
-    </div>    
-    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Сделать Разделителем</div></h4>
-    <div class="col-md-1">
-      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
-        <%=check_box("product", "delemiter", {}, "true", "false")%>
-      </div>
-    </div>
-  </div>
-
-  </td></tr>
-  <tr><td style="padding: 15px 100px 15px 20px">
-
-  <div class="text-center">
-    <div id="addImages" class="product_images">
-      <input type="button" value="Добавить изображение" class="btn btn-primary">
-      <div>
-        <% if @product.images then @product.images.split(',').each do |i| %>
-          <div>
-            <img class="img-thumbnail" src="<%= i %>">
-            <small class="btn btn-warning" onclick="deleteImage(this)">Удалить</small>
-          </div>
-        <% end end %>
-      </div>
-    </div>
+  <br><br><br>
+  <div class="addImages">
+    <p onclick="addImageButton(this)" class="btn btn-primary">Добавить изображение в поле images</p>
+    <% unless @product.images.blank? %>
+      <% for image in @product.images.split ',' %>
+        <img src="<%= image %>">
+        <p class='btn btn-danger' onclick='imagesDeleteExist(this)'>Удалить</p>
+      <% end %>
+    <% end %>
     <%= f.hidden_field :images %>
   </div>
-  
-  </td></tr>
-  <tr><td style="padding-right:30px">
-  <div class="row form-group">
-    <h4 class="col-md-2 text-right"><nobr><%= f.label :shortdesk, "Краткое описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-    <div class="col-md-10">
-      <%= f.text_area :shortdesk, class: "tinymce", :rows => 12, :cols => 120 %>
-    </div>
+  <br>
+  <div class="editor">
+    <p>Короткое описание</p>
+    <%= f.text_area :shortdesk, class: "tinymce", :rows => 12, :cols => 120 %>
   </div>
-  <div class="row form-group">
-    <h4 class="col-md-2 text-right"><%= f.label :description, "Описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-10">
-      <%= f.text_area :description, class: "tinymce", :rows => 12, :cols => 120 %>
-    </div>
+  <div class="editor">
+    <p>Описание</p>
+    <%= f.text_area :description, class: "tinymce", :rows => 12, :cols => 120 %>
   </div>
-  <div class="row form-group">
-    <h4 class="col-md-2 text-right"><%= f.label :seo_text, "SEO текст:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    <div class="col-md-10">
-      <%= f.text_area :seo_text, class: "tinymce", :rows => 12, :cols => 120 %>
-    </div>
+  <div class="editor">
+    <p>SEO текст</p>
+    <%= f.text_area :seo_text, class: "tinymce", :rows => 12, :cols => 120 %>
   </div>
-  </td></tr>
-</table>
-<br><br><br>
-<table class="table table-striped fixed-buttons text-center">
-
-<tr><td>
-<div class="absolute">
-  <% unless @product.scode.nil? %>
-    <%= link_to 'Показать', '/kupit/'+@product.scode, class: 'btn btn-default' %>
-    <%= link_to 'Создать новый', '/products/new', class: 'btn btn-default' %>
-  <% end %>
-  <%= link_to 'Список Продуктов', if(@product.category) then @product.category else products_path end, class: 'btn btn-default' %>
-</div>
-<%= f.submit 'Сохранить', class: "btn btn-success" %>
-</td></tr>
-
-</table>
+  <div class="buttons">
+    <div>
+      <% unless @product.id.nil? %>
+        <%= link_to 'Показать', @product, class: 'btn btn-default' %>
+        <%= link_to 'Создать новую', new_category_path, class: 'btn btn-default' %>
+      <% end %>
+      <%= link_to 'Список категорий', categories_path, class: 'btn btn-default' %>
+    </div>
+    <%= f.submit 'Сохранить', class: "btn btn-success" %>
+  </div>
 <% end %>
 <%= tinymce %>

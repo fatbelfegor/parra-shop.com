@@ -1,4 +1,5 @@
 ParraShopCom::Application.routes.draw do
+
   get "/Jimmi", to: 'main#Jimmi'
   get "order_item/plus"
   get "order_item/minus"
@@ -9,7 +10,6 @@ ParraShopCom::Application.routes.draw do
   get 'users', to: 'users#index'
   get 'users/:id/logs', to: 'users#logs'
   devise_for :users
-  get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
   get '/prcolors/copy', to: 'prcolors#copy'
   
@@ -33,6 +33,7 @@ ParraShopCom::Application.routes.draw do
 
   get 'orders/:id/Заказ :user_id :order_id.xlsx', to: 'orders#xlsx'
 
+  post "images/delete", to: 'images#delete'
   post 'catalog/products', to: 'catalog#products'
   post 'categories/sort', to: 'categories#sort'
   post 'products/sort', to: 'products#sort'
@@ -62,6 +63,7 @@ ParraShopCom::Application.routes.draw do
   end
   
   get '/cart.json', to: 'main#cartjson'
-  get '/cart', to: 'main#cart'
+  get '/cart', to: 'main#cart'  
+  get ':category_scode', to: 'catalog#index'
   get '*anything', to: 'application#page404'
 end

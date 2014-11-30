@@ -1,121 +1,98 @@
-<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
-<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 <%= form_for @prcolor do |f| %>
-  <table class="table table-bordered table-striped">
-    <tr>
-      <td style="padding: 15px 30px 0 20px">
-        <div class="row form-group">
-          <h4 class="col-md-2 text-right"><%= f.label :product_id, "Продукт:", class: 'control-label wrath-content-box' %></h4>
-          <div class="col-md-10">
-            <div class="wrath-content-box">
-              <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end), {}, {class: "form-control"} %>
-            </div>
-          </div>
+  <% if @prcolor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@prcolor.errors.count, "error") %> prohibited this prcolor from being saved:</h2>
+      <ul>
+        <% @prcolor.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="input-group treebox-group">
+    <p>Принадлежит товару:</p>
+    <div class="treebox">
+      <% if @products.empty? %>
+        <div class="button">
+          <p>Нет товаров</p>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding: 15px 30px 0 4px">
-        <div class="colorFields">
-          <% if action_name == 'new' %>
-            <div class="text-center form-group">
-              <a class="btn btn-success">Создать новый цвет</a>
-              <%= link_to 'Скопировать цвет', { :controller => :prcolors, :action => :copy , :product_id => @prcolor.product.id }, class: 'btn btn-default' %>
-            </div>
+      <% else %>
+        <div class="button" onclick="treebox.show(this)">
+          <p>
+            <% if @prcolor.product_id %>
+              <%= @products.find{|r| r.id == @prcolor.product_id}.name %>
+            <% else %>
+              Выбрать
+            <% end %>
+          </p><span class="caret"></span>
+        </div>
+        <ul>
+          <% def treebox items
+            ret = ''
+            for item in items
+              ret += "<li><div><span></span><p onclick='treebox.pick(this)' data-id='#{item.id}'>#{item.name}</p></div></li>"
+            end
+            ret
+          end %>
+          <%= raw treebox @products %>
+        </ul>
+        <% if params[:product_id].present? %>
+          <%= f.hidden_field :product_id, value: params[:product_id] %>
+        <% else %>
+          <%= f.hidden_field :product_id %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <a class="btn btn-success">Создать новый цвет</a>
+  <%= link_to 'Скопировать цвет', "/prcolors/copy?product_id=#{@prcolor.product.id}", class: 'btn btn-default' %>
+  <br><br>
+  <label>Название: <%= f.text_field :name %></label>
+  <label>Код: <%= f.text_field :scode %></label>
+  <label>Цена: <%= f.text_field :price %></label>
+  <div class="addImage">
+    <% unless @prcolor.images.blank? %>
+      <p onclick="addImageButton(this)" class="btn btn-danger">Удалить</p>
+      <img src="<%= @prcolor.images %>">
+    <% else %>
+      <p onclick="addImageButton(this)" class="btn btn-primary">Добавить изображение</p>
+    <% end %>
+    <%= f.hidden_field :images %>
+  </div>
+  <div class="editor">
+    <p>Описание</p>
+    <%= f.text_area :description, class: "tinymce", :rows => 12, :cols => 120 %>
+  </div>
+  <div class="buttons">
+    <div>
+      <% unless @prcolor.id.nil? %>
+        <%= link_to 'Вернутся на страницу товара', product_path(@prcolor.product), class: 'btn btn-default' %>
+      <% end %>
+    </div>
+    <%= f.submit 'Сохранить', class: "btn btn-success" %>
+  </div>
+  <br><br>
+  <!-- Название, код, цена, картинка, удалить -->
+  <div id="createTextures">
+    <h3 onclick="addTexture(this)" class="btn btn-primary">Добавить текстуру +</h3>
+    <% for t in @prcolor.textures %>
+      <div>
+        <div class="addImage">
+          <% if t.image.blank? %>
+            <p onclick="addImageButton(this)" class="btn btn-primary">Добавить изображение</p>
+          <% else %>
+            <p onclick="addImageButton(this)" class="btn btn-danger">Удалить</p>
+            <img src="<%= t.image %>">
           <% end %>
-          <span id="newColor">
-            <div class="row form-group">
-              <h4 class="col-md-1 text-right"><%= f.label :scode, "Код:", class: 'control-label wrath-content-box' %></h4>
-              <div class="col-md-2">
-                <div class="wrath-content-box">
-                  <%= f.text_field :scode, class: "form-control" %>
-                </div>
-              </div>
-              <h4 class="col-md-2 text-right"><%= f.label :name, "Название:", class: 'control-label wrath-content-box' %></h4>
-              <div class="col-md-2">
-                <div class="wrath-content-box">
-                  <%= f.text_field :name, class: "form-control" %>
-                </div>
-              </div>
-              <h4 class="col-md-2 text-right"><%= f.label :price, "Цена:", class: 'control-label wrath-content-box' %></h4>
-              <div class="col-md-2">
-                <div class="wrath-content-box">
-                  <%= f.text_field :price, class: "form-control" %>
-                </div>
-              </div>
-            </div>
-            
-            <div class="text-center form-group">
-              <div id="addImages" class="prcolor_images">
-                <input type="button" value="Добавить изображение" class="btn btn-primary">
-                <div>
-                  <% if @prcolor.images then @prcolor.images.split(',').each do |i| %>
-                    <div>
-                      <img class="img-thumbnail" src="<%= i %>">
-                      <small class="btn btn-warning" onclick="deleteImage(this)">Удалить</small>
-                    </div>
-                  <% end end %>
-                </div>
-              </div>
-              <%= f.hidden_field :images %>
-            </div>
-
-            <div class="row text-center form-group">
-              <h4 class="col-md-2 text-right"><%= f.label :description, "Описание:", class: 'control-label wrath-content-box' %></h4>
-              <div class="col-md-10">
-                <%= f.text_area :description, class: "tinymce", :rows => 5 %>
-              </div>
-            </div>
-            <div id="createTextures" class="text-center">
-              <h2 onclick="addTexture(this)">Добавить текстуру +</h2>
-              <div>
-                <% i = 0 %>
-                <% @prcolor.textures.each do |t| %>
-                <div style="margin-bottom:20px">
-                  <div class="row">
-                    <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__name">Название</label></h4>
-                    <div class="col-md-4">
-                      <div class="wrath-content-box">
-                        <input class="form-control" id="textures__name" name="textures[][name]" type="text" value="<%= t.name %>">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__scode">Код</label></h4>
-                    <div class="col-md-4">
-                      <div class="wrath-content-box">
-                        <input class="form-control" id="textures__scode" name="textures[][scode]" type="text" value="<%= t.scode %>">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <h4 class="col-md-4 text-right"><label class="control-label wrath-content-box" for="textures__price">Цена</label></h4>
-                    <div class="col-md-4">
-                      <div class="wrath-content-box">
-                        <input class="form-control" id="textures__price" name="textures[][price]" type="text" value="<%= t.price %>">
-                      </div>
-                    </div>
-                  </div>
-                  <% if t.image %><p class="btn btn-warning" onclick="imageChange(this)" data-url="<%= t.image %>">Изменить</p><% end %>
-                  <div id="addImages" class="textureImage<%= i += 1 %>">
-                    <img src="<%= t.image %>">
-                    <div></div>
-                  </div>
-                  <input class="one" id="textureImage<%= i %>" name="textures[][image]" type="hidden" value="<%= t.image %>">
-                  <br>
-                  <p class="btn btn-danger" onclick="this.parentNode.parentNode.removeChild(this.parentNode)">Удалить текстуру</p>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          </span>
+          <input name="textures[][image]" type="hidden" value="<%= t.image %>">
         </div>
-        <div class="text-center" style="margin: 30px 0">
-          <%= f.submit 'Сохранить', class: "btn btn-success" %>
-        </div>
-      </td>
-    </tr>
-  </table>
+        <label>Название: <input type="text" name="textures[][name]" value="<%= t.name %>"></label>
+        <label>Код: <input type="text" name="textures[][scode]" value="<%= t.scode %>"></label>
+        <label>Цена: <input type="text" name="textures[][price]" value="<%= t.price %>"></label>
+        <div class="btn btn-danger" onclick="$(this).parent().remove()">Удалить</div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
-
 <%= tinymce %>

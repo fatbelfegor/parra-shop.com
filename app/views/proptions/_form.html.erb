@@ -1,39 +1,59 @@
 <%= form_for @proption do |f| %>
-  <table class="table table-bordered table-striped">
-    <tr>
-      <td style="padding: 15px 30px 0 20px">
-        <div class="row">
-          <h4 class="col-md-2 text-right"><%= f.label :product_id, "Продукт:", class: 'control-label wrath-content-box' %></h4>
-          <div class="col-md-10">
-            <div class="wrath-content-box">
-              <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end), {}, {class: "form-control"} %>
-            </div>
-          </div>
+  <% if @proption.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@proption.errors.count, "error") %> prohibited this proption from being saved:</h2>
+      <ul>
+        <% @proption.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="input-group treebox-group">
+    <p>Принадлежит товару:</p>
+    <div class="treebox">
+      <% if @products.empty? %>
+        <div class="button">
+          <p>Нет товаров</p>
         </div>
-        <div class="row text-right">
-          <h4 class="col-md-2 scode"><%= f.label :scode, "Код:", class: 'control-label wrath-content-box' %></h4>
-          <div class="col-md-2">
-            <div class="wrath-content-box">
-              <%= f.text_field :scode, class: "form-control" %>
-            </div>
-          </div>
-          <h4 class="col-md-2 scode"><%= f.label :name, "Название:", class: 'control-label wrath-content-box' %></h4>
-          <div class="col-md-2">
-            <div class="wrath-content-box">
-              <%= f.text_field :name, class: "form-control" %>
-            </div>
-          </div>
-          <h4 class="col-md-2 scode"><%= f.label :price, "Цена:", class: 'control-label wrath-content-box' %></h4>
-          <div class="col-md-1">
-            <div class="wrath-content-box">
-              <%= f.text_field :price, class: "form-control" %>
-            </div>
-          </div>
-        </div>          
-        <div class="text-center" style="margin: 30px 0">
-          <%= f.submit 'Сохранить', class: "btn btn-success" %>
+      <% else %>
+        <div class="button" onclick="treebox.show(this)">
+          <p>
+            <% if @proption.product_id %>
+              <%= @products.find{|r| r.id == @proption.product_id}.name %>
+            <% else %>
+              Выбрать
+            <% end %>
+          </p><span class="caret"></span>
         </div>
-      </td>
-    </tr>
-  </table>
+        <ul>
+          <% def treebox items
+            ret = ''
+            for item in items
+              ret += "<li><div><span></span><p onclick='treebox.pick(this)' data-id='#{item.id}'>#{item.name}</p></div></li>"
+            end
+            ret
+          end %>
+          <%= raw treebox @products %>
+        </ul>
+        <% if params[:product_id].present? %>
+          <%= f.hidden_field :product_id, value: params[:product_id] %>
+        <% else %>
+          <%= f.hidden_field :product_id %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <label>Название: <%= f.text_field :name %></label>
+  <label>Код: <%= f.text_field :scode %></label>
+  <label>Цена: <%= f.text_field :price %></label>
+  <div class="buttons">
+    <div>
+      <% unless @proption.id.nil? %>
+        <%= link_to 'Вернутся на страницу товара', product_path(@proption.product), class: 'btn btn-default' %>
+      <% end %>
+    </div>
+    <%= f.submit 'Сохранить', class: "btn btn-success" %>
+  </div>
 <% end %>

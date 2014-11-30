@@ -1,11 +1,11 @@
 class Category < ActiveRecord::Base
-	acts_as_list :scope => :parent_id
-	acts_as_tree :order => "position"
+	acts_as_list scope: :parent_id
+	acts_as_tree order: "position"
 	has_and_belongs_to_many :products, order: "position ASC", autosave: true
   
-	validates :name, presence: true
+	validates :name, :scode, presence: true
 
 	def title
-		self.s_title || 'ParraShop'
+		self.s_title || 'Novomeb'
 	end
 end

@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_filter :admin_required
   layout false
 
   def new
@@ -24,13 +25,26 @@ class ImagesController < ApplicationController
   end
 
   def delete
-    @url = params[:url]    
-    if @url.include? request.env["HTTP_HOST"]
-      @url = Dir.pwd+'/public'+@url.split(request.env["HTTP_HOST"])[1]
-      File.delete @url if File.exist? @url
+    url = params[:url]    
+    if url.include? request.env["HTTP_HOST"]
+      url = Dir.pwd+'/public'+url.split(request.env["HTTP_HOST"])[1]
+      File.delete url if File.exist? url
     else
-      File.delete @url if File.exist? @url
+      File.delete url if File.exist? url
     end
+    if params[:cat].present? and params[:field].present?
+      cat = Category.find params[:cat]
+      cat.update params[:field] => (cat[params[:field]].split(',') - [url]).join(',')
+    end
+    if params[:product].present?
+      product = Product.find params[:product]
+      product.update images: (product.images.split(',') - [url]).join(',')
+    end
+    if params[:banner].present?
+      banner = Banner.find params[:banner]
+      banner.update image: (banner.image.split(',') - [url]).join(',')
+    end
+    render nothing: true
   end
 
 end

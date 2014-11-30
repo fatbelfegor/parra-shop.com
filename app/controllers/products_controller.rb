@@ -2,17 +2,10 @@
 # encoding: utf-8
 
 class ProductsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :index, :show_scode, :show_name, :buy]
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_filter :admin_required, except: [:show, :index, :show_scode, :show_name, :buy]
+  before_action :set_product, only: [:edit, :update, :destroy]
   
-  # GET /products/1
-  # GET /products/1.json
   def show
-    session[:proption] = nil
-    session[:prsize] = nil
-    session[:color] = nil
-    
-    redirect_to :controller => 'products', :action => 'show_scode', :product_scode => @product.scode, :status => :moved_permanently
   end
   
   def show_scode
@@ -39,10 +32,6 @@ class ProductsController < ApplicationController
   
   # GET /products/new
   def new
-    session[:proption] = nil
-    session[:prsize] = nil
-    session[:color] = nil
-    
     @product = Product.new
     if params[:category_id]
         @product.category = Category.find(params[:category_id])
@@ -51,9 +40,6 @@ class ProductsController < ApplicationController
   
   # GET /products/1/edit
   def edit
-    session[:proption] = nil
-    session[:prsize] = nil
-    session[:color] = nil
   end
   
   # POST /products
@@ -64,7 +50,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to '/kupit/'+@product.scode, notice: 'Product was successfully created.' }
+        format.html { redirect_to URI.encode('/kupit/'+@product.scode), notice: 'Product was successfully created.' }
         format.json { render action: 'show', status: :created, location: @product }
       else
         format.html { render action: 'new' }
@@ -79,8 +65,8 @@ class ProductsController < ApplicationController
     params[:product][:category_ids] ||= [params[:product][:category_id]]
     respond_to do |format|
       if @product.update(product_params) 
-        format.html { redirect_to '/kupit/'+@product.scode, notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to URI.encode("/kupit/#{@product.scode}"), notice: 'Product was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @product }
       else
         format.html { render action: 'edit' }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -140,6 +126,7 @@ private
       :seo_text,
       :old_price,
       :seo_title2,
+      :article,
   		:category_ids => []
     )
   end

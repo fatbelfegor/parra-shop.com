@@ -1,377 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @title || 'ParraShop' %></title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <meta name='yandex-verification' content='55e5e85d2e764276' />
+  <title>Novomeb</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class='<%= controller.controller_name %>'>
-<% if params[:controller] + params[:action] == 'mainindex' %>
-	<div id="preloader">
-		<p>Идет загрузка...</p>
-	</div>
-<% end %>
-<a href='/'><img class="logo" src="/assets/logo.png"></a>
-<% if user_signed_in? %>
-<div class="admin-nav">
-	<div>Действия</div>
-	<ul>
-		<% if current_user.admin? %>
-		<li><a href="/categories">Список категорий</a></li>
-		<li><a href="/users/">Пользователи</a></li>
-		<li><a href="/banners/">Баннеры</a></li>
-		<% end
-		if current_user.manager or current_user.admin? %>
-		<li><a href="/orders">Заказы</a></li>
-		<% end %>
-		<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
-	</ul>
-</div>
-<% end %>
-<div><form id="search" action="/catalog/index">
-	<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
-	<input type="submit" value="Поиск"/>
-</form></div>
-<div class="shopPhone">
-  <p>8-800-707-67-57</p>
-  <ins>Бесплатные звонки по России</ins>
-</div>
-<nav>
-  <ul id="mainMenu">  	 
-    <li><a href="">Спальни</a>
-	      <div>
-	        <div style="background-image: url(/assets/Bella.jpg); left: 0"></div>
-	        <div style="background-image: url(/assets/Plisset.jpg)"></div>
-	        <div style="background-image: url(/assets/Orly.jpg)"></div>
-	        <div style="background-image: url(/assets/Ritmika.jpg)"></div>
-	        <div style="background-image: url(/assets/Lorra.jpg)"></div>
-	        <div style="background-image: url(/assets/Leggero.jpg)"></div>
-	        <div style="background-image: url(/assets/Miro.jpg)"></div>
-			<div style="background-image: url(/assets/Mild.jpg)"></div>
-	      </div>     
-	      <ul>
-	<li><%= link_to('Bella', { :controller => '/catalog', :action => :index, :category_scode => :Bella} )%></li>
-	<li><%= link_to('Plisset', { :controller => '/catalog', :action => :index, :category_scode => :Plisset} )%></li>
-	<li><%= link_to('Orly', { :controller => '/catalog', :action => :index, :category_scode => :Orly} )%></li>
-	<li><%= link_to('Ritmika', { :controller => '/catalog', :action => :index, :category_scode => :Ritmika} )%></li>
-	<li><%= link_to('Lorra', { :controller => '/catalog', :action => :index, :category_scode => :Lorra} )%></li>
-	<li><%= link_to('Leggero', { :controller => '/catalog', :action => :index, :category_scode => :Leggero} )%></li>
-	<li><%= link_to('Miro', { :controller => '/catalog', :action => :index, :category_scode => :Miro} )%></li>
-	<li><%= link_to('Mild', { :controller => '/catalog', :action => :index, :category_scode => :Mild} )%></li>
-	      </ul>
-	    </li>
-	    <li><a href="">Гостинные</a>
-	  <div>
-	  	<div style="background: url(/assets/P3.jpg); left: 0"></div>
-	  	<div style="background: url(/assets/BellaGost.jpg)"></div>
-	  	<div style="background: url(/assets/Verro.jpg)"></div>
-	  	<div style="background: url(/assets/Style.jpg)"></div>
-	  	<div style="background: url(/assets/Joy.jpg)"></div>
-	  	<div style="background: url(/assets/Azzon.jpg)"></div>
-	  	<div style="background: url(/assets/Forma.jpg)"></div>
-	  </div>
-	 <ul>
-		<li><%= link_to('P3', { :controller => '/catalog', :action => :index, :category_scode => :P3} )%></li>
-		<li><%= link_to('Bella', { :controller => '/catalog', :action => :index, :category_scode => :BellaGost} )%></li>
-		<li><%= link_to('Verro', { :controller => '/catalog', :action => :index, :category_scode => :Verro} )%></li>
-		<li><%= link_to('Style', { :controller => '/catalog', :action => :index, :category_scode => :Style} )%></li>
-		<li><%= link_to('Joy', { :controller => '/catalog', :action => :index, :category_scode => :Joy} )%></li>
-	  	<li><%= link_to('Azzon', { :controller => '/catalog', :action => :index, :category_scode => :Azzon} )%></li>
-	  	<li><%= link_to('Forma', { :controller => '/catalog', :action => :index, :category_scode => :Forma} )%></li>
-	 </ul>
-	</li>
-
-	<li><a href="">Диваны</a>
-		<div>
-		  <div style="background: url(/assets/Trevi.jpg); left: 0"></div>
-		  <div style="background: url(/assets/Opera.jpg)"></div>
-		  <div style="background: url(/assets/Lucca.jpg)"></div>
-		  <div style="background: url(/assets/Ritmo.jpg)"></div>
-		  <div style="background: url(/assets/Nuvola.jpg)"></div>
-		  <div style="background: url(/assets/SoftAgioArteCircle.jpg)"></div>
+<body>
+<div id="main">
+	<% if user_signed_in? %>
+		<div class="menu-admin">
+			<% if current_user.admin? %>
+				<a href="/categories">Список категорий</a>
+				<a href="/users/">Пользователи</a>
+				<a href="/banners/">Баннеры</a>
+			<% end
+			if current_user.manager or current_user.admin? %>
+				<a href="/orders">Заказы</a>
+			<% end %>
+			<%= link_to "Выход", destroy_user_session_path, method: :delete %>
 		</div>
-		<ul>
-		  <li><%= link_to('Trevi', { :controller => '/catalog', :action => :index, :category_scode => :Trevi} )%></li>
-		  <li><%= link_to('Opera', { :controller => '/catalog', :action => :index, :category_scode => :Opera} )%></li>
-		  <li><%= link_to('Lucca', { :controller => '/catalog', :action => :index, :category_scode => :Lucca} )%></li>
-		  <li><%= link_to('Ritmo', { :controller => '/catalog', :action => :index, :category_scode => :Ritmo} )%></li>
-		  <li><%= link_to('Nuvola', { :controller => '/catalog', :action => :index, :category_scode => :Nuvola} )%></li>
-		<li><%= link_to('Кресла', { :controller => '/catalog', :action => :index, :category_scode => :Кресла} )%></li>
-		</ul>
-	</li>
-    <li><a href="">Матрасы</a>
-		<div>
-			<div style="background: url(/assets/SonberryOrganic.jpg)"></div>
-		  	<div style="background: url(/assets/SonberryAero.jpg)"></div>
-			<div style="background: url(/assets/SonberryActive.jpg); left: 0"></div>  
-		</div>
-		<ul>
-			<li><%= link_to('Organic', { :controller => '/catalog', :action => :index, :category_scode => :SonberryOrganic} )%></li>
-			<li><%= link_to('Aero', { :controller => '/catalog', :action => :index, :category_scode => :SonberryAero} )%></li>
-		    <li><%= link_to('Active', { :controller => '/catalog', :action => :index, :category_scode => :SonberryActive} )%></li>
-		 </ul>
-	</li>
-    <li class="allProducts">
-      <a>Все товары</a>
-      <div>
-	    	<p>
-		    	<%= link_to('Кровати', { :controller => '/catalog', :action => :index, :category_scode => :Кровати} )%>
-		    	<%= link_to('Шкафы', { :controller => '/catalog', :action => :index, :category_scode => :Шкафы} )%>
-	        <%= link_to('Комоды', { :controller => '/catalog', :action => :index, :category_scode => :Комоды} )%>
-	        <%= link_to('Тумбочки', { :controller => '/catalog', :action => :index, :category_scode => :Тумбочки} )%>
-        </p>
-        <p>
-	        <%= link_to('Зеркала', { :controller => '/catalog', :action => :index, :category_scode => :Зеркала} )%>
-					<%= link_to('Полки', { :controller => '/catalog', :action => :index, :category_scode => :Полки} )%>
-					<%= link_to('Столы', { :controller => '/catalog', :action => :index, :category_scode => :Столы} )%>
-					<%= link_to('Основания', { :controller => '/catalog', :action => :index, :category_scode => :Основания} )%>
-				</p>				
-      </div>
-    </li>
-    <li class="wherebuy"><%= link_to 'Где купить', stores_path %>
-      <span>
-        <div>
-          <div>
-            <%= link_to raw('Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29'), store1_path %>
-            <%= link_to raw('Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29'), store2_path %>
-            <%= link_to raw('Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1<br>(495) 665-11-52'), store3_path %>
-            <%= link_to raw('Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56'), store4_path %>
-            <%= link_to raw('Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26<br>(499) 426-46-06'), store5_path %>
-            <%= link_to raw('Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>66км МКАД,<br>(пересечение<br>Волоколамского ш. и<br>МКАД)<br>(499) 340-09-08'), store6_path %>
-            <%= link_to raw('Мебель PARRA<br>ТРЦ "РИО" Реутов<br>г. Реутов, 2-ой км<br>МКАД, д. 2, этаж 3<br>(499) 347-09-09'), store7_path %>
-			<%= link_to raw('Мебель PARRA<br>МЦ "Вагант" Подольск<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18'), store8_path %>
-          </div>
-        </div>      
-      </span>
-    </li>
-    <li class="cart"><a href="/cart">Корзина<b id="cartCount"></b></a>
-      <span id="menuCart">
-        <div></div>
-        <span>
-        <a onclick="order()" class="squareButton">Оформить заказ</a>
-        <h2>Итого: <b id="price"></b> руб.</h2>
-        </span>
-      </span>
-    </li>
-  </ul>
-</nav>
-
-<div class="main">
-	<ul id="mainMenuCompact">
-  		<li onclick="miniCatOpen(this)">Спальни<p></p>
-			<div>
-				<a href="/catalog/index?category_scode=Bella"><img src="/assets/Bella.jpg"></a>
-				<a href="/catalog/index?category_scode=Plisset"><img src="/assets/Plisset.jpg"></a>
-				<a href="/catalog/index?category_scode=Orly"><img src="/assets/Orly.jpg"></a>
-				<a href="/catalog/index?category_scode=Ritmika"><img src="/assets/Ritmika.jpg"></a>
-				<a href="/catalog/index?category_scode=Lorra"><img src="/assets/Lorra.jpg"></a>
-				<a href="/catalog/index?category_scode=Leggero"><img src="/assets/Leggero.jpg"></a>
-				<a href="/catalog/index?category_scode=Miro"><img src="/assets/Miro.jpg"></a>
-				<a href="/catalog/index?category_scode=Mild"><img src="/assets/Mild.jpg"></a>
-			</div>
-  		<li onclick="miniCatOpen(this)">Гостинные<p></p>
-  			<div>
-				<a href="/catalog/index?category_scode=P3"><img src="/assets/P3.jpg"></a>
-				<a href="/catalog/index?category_scode=BellaGost"><img src="/assets/BellaGost.jpg"></a>
-				<a href="/catalog/index?category_scode=Verro"><img src="/assets/Verro.jpg"></a>
-				<a href="/catalog/index?category_scode=Style"><img src="/assets/Style.jpg"></a>
-				<a href="/catalog/index?category_scode=Joy"><img src="/assets/Joy.jpg"></a>
-				<a href="/catalog/index?category_scode=Azzon"><img src="/assets/Azzon.jpg"></a>
-				<a href="/catalog/index?category_scode=Forma"><img src="/assets/Forma.jpg"></a>
-			</div>
-  		</li>
-  		<li onclick="miniCatOpen(this)">Диваны<p></p>
-  			<div>
-				<a href="/catalog/index?category_scode=Trevi"><img src="/assets/Trevi.jpg"></a>
-				<a href="/catalog/index?category_scode=Opera"><img src="/assets/Opera.jpg"></a>
-				<a href="/catalog/index?category_scode=Lucca"><img src="/assets/Lucca.jpg"></a>
-				<a href="/catalog/index?category_scode=Ritmo"><img src="/assets/Ritmo.jpg"></a>
-				<a href="/catalog/index?category_scode=Nuvola"><img src="/assets/Nuvola.jpg"></a>
-				<a href="/catalog/index?category_scode=Кресла"><img src="/assets/SoftAgioArteCircle.jpg"></a>
-			</div>
-  		</li>
-  		<li onclick="miniCatOpen(this)">Матрасы<p></p>
-  			<div>
-				<a href="/catalog/index?category_scode=SonberryOrganic"><img src="/assets/SonberryOrganic.jpg"></a>
-				<a href="/catalog/index?category_scode=SonberryAero"><img src="/assets/SonberryAero.jpg"></a>
-				<a href="/catalog/index?category_scode=SonberryActive"><img src="/assets/SonberryActive.jpg"></a>
-			</div>
-  		</li>
-  		<li class="allProducts" onclick="$(this).toggleClass('open')">Все товары<p></p>
-  			<div>
-	  			<p>
-	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Кровати">Кровати</a>
-	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Шкафы">Шкафы</a>
-	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Комоды">Комоды</a>
-	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Тумбочки">Тумбочки</a>
-	  			</p>
-	  			<p>
-	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Зеркала">Зеркала</a>
-	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Полки">Полки</a>
-	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Столы">Столы</a>
-	  				<a href="http://www.parra-shop.ru/catalog/index?category_scode=Основания">Основания</a>
-	  			</p>
-  			</div>
-  		</li>
-  		<li class="whereCanBuy" onclick="$(this).toggleClass('open')">Где купить<p></p>
-  			<div>
-				<a href="/store1">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
-				<a href="/store2">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
-				<a href="/store3">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1<br>(495) 665-11-52</a>
-				<a href="/store4">Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56</a>
-				<a href="/store5">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26<br>(499) 426-46-06</a>
-				<a href="/store6">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>66км МКАД,<br>(пересечение<br>Волоколамского ш. и<br>МКАД)<br>(499) 340-09-08</a>
-				<a href="/store7">Мебель PARRA<br>ТРЦ "РИО" Реутов<br>г. Реутов, 2-ой км<br>МКАД, д. 2, этаж 3<br>(499) 347-09-09</a>
-				<a href="/store8">Мебель PARRA<br>МЦ "Вагант" Подольск<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18</a>
-  			</div>
-  		</li>
-  		<li class="miniMenuCart">
-  			<a href="/cart">Корзина</a>
-  		</li>
-  	</ul>
-  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
-  	<% if notice == 'ordersave' %>
-  		<div id="orderSave" class="windows">
-			<p>Ваш заказ принят. Наш менеджер свяжется с вами с ближайшее время.</p>
-			<div class="btn-s" onclick="windowClose()">OK</div>
-		</div>
-		<script type="text/javascript">
-			$('#windowLayout').show()
-		</script>
-  	<% else %>
-		<div id="notice"><%= flash[:notice] %></div>
 	<% end %>
-    <%= yield %>
-  </div>
-</div>
-
-<nav class="footer">
-    <ul>
-        <li><%= link_to 'Доставка и сборка', service_path %></li>
-        <li><%= link_to 'Партнерам', partners_path %></li>
-        <li><%= link_to 'Новости', news_path %></li>
-        <li><%= link_to 'Статьи', articles_path %></li>
-        <li><%= link_to 'Гарантии', insurance_path %></li>
-    </ul>
-</nav>
-
-<div id="orderWindow">
-  <div onclick="this.parentNode.style.display = 'none'"></div>
-  <div>
-    <div class="header">
-      <h4>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</h4>
-      <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
-    </div>
-    <%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
-    <div class="row">
-    	<h4 class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    	<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :first_name, class: "form-control" %>
-	      </div>
-	    </div>
+	<div id="header">
+		<div class="top">
+			<a href="/" class="logo"></a>
+			<div class="numbers">
+				<div>
+					<b>8-495-728-20-90</b>
+					<p>Единый телефон продаж в Москве</p>
+				</div>
+				<div>
+					<b>8-800-707-67-57</b>
+					<p>Единый телефон продаж в России</p>
+				</div>
+			</div>
+			<div class="novomeb"></div>
+		</div>
+		<p class="logo">Дом для счастья и любви!</p>
+		<p class="orange">Самые низкие цены на Новомебель - Parra!</p>
+		<div id="menu-1">
+			<a href="#">Полезная информация</a>
+			<a href="#">Партнерам</a>
+			<a href="#">Новости</a>
+			<a href="#">Статьи</a>
+			<a href="#">Гарантии</a>
+			<a href="#">Магазины</a>
+			<a href="#">Доставка и сборка</a>
+		</div>
+		<div id="menu-2">
+			<% def menu items
+				ret = ''
+				for item in items
+					children = @categories.find_all{|r| r.parent_id == item.id}
+					if children.empty?
+						ret += "<a href='/#{item.scode}'>#{item.name}</a>"
+					else
+						ret += "<div><p>#{item.name}</p><div>#{menu children}</div></div>"
+					end
+				end
+				ret
+			end %>
+			<%= raw menu @categories.find_all{|r| !r.parent_id} %>
+			<a href="#">Все товары</a>
+		</div>
 	</div>
-	<div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-    	<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :phone, class: "form-control" %>
-	      </div>
-	    </div>
-    </div>
-	<div class="row">
-		<h4 class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-		<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :email, class: "form-control" %>
-	      </div>
-	    </div>
-    </div>
-    <div class="checkbox">
-	  <label>
-	    <input type="checkbox" onclick="orderShowAll()">
-	    <h4 class="text-left">Нужна доставка</h4>
-	  </label>
+	<div id="content">
+		<%= yield %>
 	</div>
-    <div id="otherInputs">
-	    <div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_street, "Улица:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-    	<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :addr_street, class: "form-control" %>
-	      </div>
-	    </div>
-	    </div>
-	    <div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_home, "Дом:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-    	<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :addr_home, class: "form-control" %>
-	      </div>
-	    </div>
-	    </div>
-	    <div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_block, "Корпус:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-	    	<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :addr_block, class: "form-control" %>
-		      </div>
-	    </div>
-	    </div>
-	    <div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_flat, "Квартира:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-	    	<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :addr_flat, class: "form-control" %>
-		      </div>
-	    </div>
-	    </div>
-    </div>
-    <input class="btn btn-success" type="submit" value="Отправить">
-    <input type="hidden" name="cartfield" id="cartfield">
-    <% end %>
-  </div>
+	<div id="footer">
+		<a href="#">Полезная информация</a>
+		<a href="#">Партнерам</a>
+		<a href="#">Новости</a>
+		<a href="#">Статьи</a>
+		<a href="#">Гарантии</a>
+		<a href="#">Магазины</a>
+		<a href="#">Доставка и сборка</a>
+	</div>
 </div>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-(function (d, w, c) {
-    (w[c] = w[c] || []).push(function() {
-        try {
-            w.yaCounter25900607 = new Ya.Metrika({id:25900607,
-                    webvisor:true,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true});
-        } catch(e) { }
-    });
-
-    var n = d.getElementsByTagName("script")[0],
-        s = d.createElement("script"),
-        f = function () { n.parentNode.insertBefore(s, n); };
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-    if (w.opera == "[object Opera]") {
-        d.addEventListener("DOMContentLoaded", f, false);
-    } else { f(); }
-})(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript><div><img src="//mc.yandex.ru/watch/25900607" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-<!-- /Google counter -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-54896395-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<!-- /Google counter -->
 </body>
 </html>

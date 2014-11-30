@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_categories
 
   def page404    
   end
@@ -27,5 +28,9 @@ class ApplicationController < ActionController::Base
       false
     end
     true
+  end
+
+  def set_categories
+    @categories = Category.order :position
   end
 end

@@ -1,47 +1,23 @@
-<%= form_for(@banner) do |f| %>
-<table class="table table-bordered table-striped">
-	<tr>
-		<td>
-		    <h4 class="col-md-4 text-right"><%= f.label :url, "Ссылка", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-		    <div class="col-md-4">
-		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :url, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
-		      </div>
-		    </div>
-		</td>
-	</tr>
-	<tr>
-		<td style="padding: 15px 30px 15px 20px">
-			<div class="text-center col-md-6">
-				<div id="addImages" class="banner_image">
-					<% if @banner.image %>
-					<h4>Изображение</h4>
-					<div>
-						<div>
-							<img class="img-thumbnail" src="<%= @banner.image %>">
-							<small class="btn btn-warning" onclick="deleteImageHeader(this)">Удалить</small>
-						</div>
-					</div>
-					<% else %>
-					<input onclick="addImageClick(this)" type="button" value="Добавить изображение" class="btn btn-primary">
-					<div>
-					</div>
-					<% end %>
-				</div>
-				<%= f.hidden_field :image, class: 'one' %>
-			</div>
-		</td>
-	</tr>
-</table>
-<br><br><br>
-<table class="table table-striped fixed-buttons text-center">
-	<tr>
-		<td>
-			<div class="absolute">
-			  <%= link_to 'Список Баннеров', banners_path, class: 'btn btn-default' %>
-			</div>
-			<%= f.submit 'Сохранить', class: "btn btn-success" %>
-		</td>
-	</tr>
-</table>
+<%= form_for(@banner, data: {banner: @banner.id}) do |f| %>
+	<label>Ссылка: <%= f.text_field :url, style: 'width: 280px' %></label>
+		<br><br>
+	<div class="addImage">
+		<% unless @banner.image.blank? %>
+			<p onclick="addImageButton(this)" class="btn btn-danger">Удалить</p>
+			<img src="<%= @banner.image %>">
+		<% else %>
+			<p onclick="addImageButton(this)" class="btn btn-primary">Добавить изображение</p>
+		<% end %>
+		<%= f.hidden_field :image %>
+	</div>
+	<div class="buttons">
+		<div>
+		  <% unless @banner.id.nil? %>
+		    <%= link_to 'Показать', @banner, class: 'btn btn-default' %>
+		    <%= link_to 'Создать новый', new_banner_path, class: 'btn btn-default' %>
+		  <% end %>
+		  <%= link_to 'Список баннеров', banners_path, class: 'btn btn-default' %>
+		</div>
+		<%= f.submit 'Сохранить', class: "btn btn-success" %>
+	</div>
 <% end %>
