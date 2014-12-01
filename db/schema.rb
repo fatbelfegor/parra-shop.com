@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128121318) do
+ActiveRecord::Schema.define(version: 20141201052514) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -55,23 +55,29 @@ ActiveRecord::Schema.define(version: 20141128121318) do
   end
 
   create_table "order_items", force: true do |t|
-    t.integer  "product_id",                                          null: false
-    t.integer  "quantity",                                            null: false
-    t.decimal  "price",        precision: 18, scale: 2, default: 0.0, null: false
-    t.string   "size"
-    t.string   "color"
-    t.string   "option"
+    t.integer  "order_id"
+    t.string   "articul"
+    t.integer  "color"
+    t.string   "color_name"
+    t.decimal  "color_price",  precision: 10, scale: 0
+    t.integer  "count"
+    t.integer  "product_id"
+    t.string   "images"
+    t.string   "name"
+    t.integer  "option"
+    t.string   "optionName"
+    t.decimal  "optionPrice",  precision: 10, scale: 0
+    t.decimal  "price",        precision: 10, scale: 0
+    t.string   "scode"
+    t.integer  "size"
+    t.string   "sizeName"
+    t.decimal  "sizePrice",    precision: 10, scale: 0
+    t.integer  "texture"
+    t.string   "textureName"
+    t.decimal  "texturePrice", precision: 10, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order_id"
-    t.string   "size_scode"
-    t.string   "color_scode"
-    t.string   "option_scode"
-    t.decimal  "discount",     precision: 10, scale: 0, default: 0
   end
-
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
-  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.string   "first_name"

@@ -31,19 +31,29 @@ class OrdersController < ApplicationController
         respond_to do |format|
             if params[:cartfield] and @order.save
             	items = JSON.parse params[:cartfield]
-            	items.each{ |i|
+            	for i in items
             		@order.order_items.create({
-            			product_id: i['i'],
-            			quantity: i['c'],
-            			price: i['p'].sub(' ', ''),
-                        size: i['s'],
-                        color: i['l'],
-                        option: i['o'],
-                        size_scode: i['ss'],
-                        color_scode: i['ls'],
-                        option_scode: i['os']
+                        articul: i[:articul],
+                        color: i[:color],
+                        color_name: i[:colorName],
+                        color_price: i[:colorPrice],
+                        count: i[:count],
+                        product_id: i[:id],
+                        images: i[:images],
+                        name: i[:name],
+                        option: i[:option],
+                        optionName: i[:optionName],
+                        optionPrice: i[:optionPrice],
+                        price: i[:price],
+                        scode: i[:scode],
+                        size: i[:size],
+                        sizeName: i[:sizeName],
+                        sizePrice: i[:sizePrice],
+                        texture: i[:texture],
+                        textureName: i[:textureName],
+                        texturePrice: i[:texturePrice]
             		})
-            	}
+            	end
                 if user_signed_in? && (current_user.admin? || current_user.manager)
                     format.html{redirect_to "/orders/#{@order.id}/edit"}
                 else

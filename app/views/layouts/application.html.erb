@@ -7,6 +7,120 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="windows">
+	<p class="bg" onclick="windowsClose()"></p>
+	<div id="window-buy">
+		<div>
+			<h2>Товар успешно добавлен в корзину</h2>
+			<div class="images-wrap">
+				<div class="left" onclick="product.left(this)"></div>
+				<div class="images">
+					<div class="wrap"></div>
+				</div>
+				<div class="right" onclick="product.right(this)"></div>
+			</div>
+			<div class="desc"></div>
+			<div onclick="windowsClose()" class="button left">Вернутся к покупкам</div>
+			<a href="/cart" class="button right">Перейти в корзину</a>
+		</div>
+	</div>
+	<div id="window-order">
+		<div>
+			<h2>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами</h2>
+			<%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
+				<label>Ваше имя: <input name="order[name]" type="text"></label>
+				<label>Контактный телефон: <input name="order[phone]" type="text"></label>
+				<label>Ваш e-mail: <input name="order[email]" type="text"></label>
+				<label class="checkbox"><input onchange="orderDelivery(this)" type="checkbox"> Нужна доставка</label>
+				<div>
+					<label>Улица: <input name="order[addr_street]" type="text"></label>
+					<label>Дом: <input name="order[addr_home]" type="text"></label>
+					<label>Корпус: <input name="order[addr_block]" type="text"></label>
+					<label>Квартира: <input name="order[addr_flat]" type="text"></label>
+				</div>
+				<input class="btn btn-success" type="submit" value="Отправить">
+	    		<input type="hidden" name="cartfield">
+	    	<% end %>
+		</div>
+	</div>
+</div>
+<!-- <div id="orderWindow">
+  <div onclick="this.parentNode.style.display = 'none'"></div>
+  <div>
+    <div class="header">
+      <h4>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</h4>
+      <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
+    </div>
+    <%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
+    <div class="row">
+    	<h4 class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :first_name, class: "form-control" %>
+	      </div>
+	    </div>
+	</div>
+	<div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :phone, class: "form-control" %>
+	      </div>
+	    </div>
+    </div>
+	<div class="row">
+		<h4 class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+		<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :email, class: "form-control" %>
+	      </div>
+	    </div>
+    </div>
+    <div class="checkbox">
+	  <label>
+	    <input type="checkbox" onclick="orderShowAll()">
+	    <h4 class="text-left">Нужна доставка</h4>
+	  </label>
+	</div>
+    <div id="otherInputs">
+	    <div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_street, "Улица:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :addr_street, class: "form-control" %>
+	      </div>
+	    </div>
+	    </div>
+	    <div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_home, "Дом:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    	<div class="col-md-5">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :addr_home, class: "form-control" %>
+	      </div>
+	    </div>
+	    </div>
+	    <div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_block, "Корпус:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :addr_block, class: "form-control" %>
+		      </div>
+	    </div>
+	    </div>
+	    <div class="row">
+	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_flat, "Квартира:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :addr_flat, class: "form-control" %>
+		      </div>
+	    </div>
+	    </div>
+    </div>
+    <input class="btn btn-success" type="submit" value="Отправить">
+    <input type="hidden" name="cartfield" id="cartfield">
+    <% end %>
+  </div>
+</div> -->
 <div id="main">
 	<% if user_signed_in? %>
 		<div class="menu-admin">
@@ -62,6 +176,7 @@
 			end %>
 			<%= raw menu @categories.find_all{|r| !r.parent_id} %>
 			<a href="#">Все товары</a>
+			<a href="/cart">Корзина</a>
 		</div>
 	</div>
 	<div id="content">

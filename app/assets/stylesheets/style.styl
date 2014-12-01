@@ -1001,3 +1001,314 @@ h1
 		display none
 	.catalog
 		cursor pointer
+#windows
+	position fixed
+	top 0
+	width 100%
+	height 100%
+	z-index 999
+	text-align center
+	display none
+	.bg
+		display block
+		width 100%
+		height 100%
+		background-color rgba(0, 0, 0, 0.5)
+	> div
+		width 500px
+		height 500px
+		background-color #4A3543
+		position absolute
+		top 50%
+		left 50%
+		margin-top -250px
+		margin-left -250px
+		box-shadow(0 0 30px #000)
+		display none
+		z-index 1000
+		> div
+			margin -20px 20px
+			padding 20px 0
+			height 100%
+			background-color white
+			border 1px solid #666
+			box-shadow(inset 0 0 30px #666, 0 0 30px #000)
+	#window-order
+		height 270px
+		margin-top -135px
+		transition(.3s)
+	#window-order.delivery
+		height 466px
+		margin-top -237px
+		form > div
+			margin-bottom 20px
+			label
+				height 36px
+				margin-bottom 10px
+	h2, h3
+		color #333
+		font-size 18px
+		margin-bottom 15px
+	h3
+		color black
+		font-size 20px
+		margin-bottom 9
+	.images-wrap
+		width 100%
+		height 250px
+		position relative
+		margin-bottom 10px
+		.left, .right
+			position absolute
+			top 50%
+			left 10px
+			margin-top -7px
+			width 0
+			height 0
+			border-style solid
+			border-color transparent #4A3543
+			border-width 14px 14px 14px 0
+			cursor pointer
+		.right
+			border-width 14px 0 14px 14px
+			left auto
+			right 10px
+	.images
+		margin 0 50px
+		height 100%
+		overflow hidden
+		border 1px solid #aaa
+		border-width 1px 0
+	.wrap
+		width 1000px
+		height 100%
+		position relative
+		left 0px
+		font-size 0
+		text-align left
+		a
+			display inline-block
+			width 357px
+			height 100%
+			background-size contain
+			background-position center
+			background-repeat no-repeat
+	.price
+		margin-top 10px
+		font-size 30px
+		color #333
+		i
+			margin 0 5px 0 0
+			position relative
+			top 2px
+	.button
+		text-decoration none
+		position absolute
+		bottom 0
+		margin-top 7px
+		width 200px
+		height 30px
+		line-height 30px
+		font-weight bold
+		font-size 15px
+		color white
+		text-align center
+		border 1px solid #52AC62
+		background-image url('btn-buy.png')
+		cursor pointer
+		transition(.3s)
+	.button:hover
+		z-index 1
+		border 1px solid #227C32
+		box-shadow(0 0 15px #000)
+		padding 0 5px
+	.button.left
+		left 48px
+		border-radius(5px 0 0 5px)
+	.button.right
+		right 48px
+		border-radius(0 5px 5px 0)
+	form
+		label
+			display block
+			height 36px
+			line-height 36px
+			text-align left
+			padding 0 40px
+			margin-bottom 10px
+			overflow hidden
+		input[type=text]
+			float right
+			padding 6px 12px
+			font-size 14px
+			line-height 1.42857143
+			color #555
+			background-color #fff
+			border 1px solid #ccc
+			border-radius 4px
+			box-shadow(inset 0 1px 1px rgba(0,0,0,.075))
+			transition(border-color ease-in-out .15s,box-shadow ease-in-out .15s)
+		input[type=text]:focus
+			outline none
+			border-color #66afe9
+			outline 0
+			box-shadow(unquote('inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)'))
+		.checkbox
+			cursor pointer
+			text-align center
+			input
+				position relative
+				top 1px
+		> div
+			transition(.3s)
+			label
+				height 0
+				margin-bottom 0
+				transition(.3s)
+		input[type=text].error
+			border-color #d88
+.cartPage
+	h1
+		text-align center
+		margin 10px 0
+		font-size 32px
+	.order
+		display block
+		margin 30px auto 0
+		text-decoration none
+		margin-top 7px
+		width 200px
+		height 30px
+		line-height 30px
+		font-weight bold
+		font-size 15px
+		color white
+		text-align center
+		border 1px solid #52AC62
+		background-image url('btn-buy.png')
+		cursor pointer
+		transition(.3s)
+	.order:hover
+		z-index 1
+		border 1px solid #227C32
+		padding 0 5px
+		box-shadow(0 0 15px #000)
+	.payment
+		display block
+		border 1px solid #C3C3C4
+		width 208px
+		height 55px
+		margin-top 7px
+		font-size 0
+		border-radius(5px)
+		margin 50px auto
+		> div
+			position relative
+			padding 0 3px
+			background-color white
+			color #626161
+			top -8px
+			font-size 13px
+			display inline-block
+			margin-left 10px
+			margin-bottom 5px
+		img
+			margin-left 10px
+	#cart
+		text-align center
+		margin 0 50px 20px
+		font-size 0
+		overflow hidden
+		.empty
+			color #f33
+			font-size 22px
+			line-height 40px
+		> div
+			height 150px
+			display table
+			width 100%
+			border 1px solid #888
+			border-width 1px 0
+			margin 20px 0
+			box-shadow(0 0 20px #aaa)
+			> *
+				display table-cell
+				vertical-align middle
+			.images-cell
+				width 200px
+				position relative
+			.left, .right
+				position absolute
+				top 50%
+				left 0
+				margin-top -8px
+				width 0
+				height 0
+				border-style solid
+				border-color transparent #4A3543
+				border-width 8px 8px 8px 0
+				cursor pointer
+			.right
+				border-width 8px 0 8px 8px
+				left auto
+				right 0
+			.images
+				margin 0 auto
+				width 150px
+				height 100%
+				overflow hidden
+			.wrap
+				width 300px
+				position relative
+				left 0px
+				height 100%
+				text-align left
+				a
+					display inline-block
+					width 150px
+					height 100%
+					background-size contain
+					background-position center
+					background-repeat no-repeat
+			.desc
+				font-size 16px
+				text-align left
+				padding-left 20px
+				color #222
+				text-decoration none
+				.name
+					color black
+					font-weight bold
+					margin-bottom 10px
+				.price
+					color black
+					margin-top 10px
+			.count
+				width 120px
+				.left, .right
+					position static
+					display inline-block
+					vertical-align middle
+					margin 0 10px
+				span
+					font-size 16px
+					display inline-block
+					vertical-align middle
+			.delete
+				font-size 16px
+				color #a33
+				text-decoration underline
+				width 120px
+				div
+					cursor pointer
+		#sum
+			text-align center
+			font-size 22px
+			border 0
+			height auto
+			margin-top 40px
+			b
+				color #44e
+			> *
+				display inline
+			box-shadow(none)

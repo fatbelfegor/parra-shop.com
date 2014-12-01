@@ -7,7 +7,7 @@
 		<p>Кровать Bella</p>
 	</div>
 	<div>
-		<div class="gallery">
+		<div id="images" data-images="<%= @product.images %>" class="gallery">
 			<% unless @product.images.blank? %>
 				<div class="mini">
 					<% images = @product.images.split ',' %>
@@ -25,16 +25,14 @@
 			<% end %>
 		</div>
 		<div class="description">
-			<h1>
-				<%= @product.name %>
-			</h1>
+			<h1 data-id="<%= @product.id %>" data-scode="<%= @product.scode %>"><%= @product.name %></h1>
 			<div class="text">
 				<% unless @product.article.blank? %>
-					<p><b>Артикул:</b> <%= @product.article %></p>
+					<p><b>Артикул:</b> <span id="articul"><%= @product.article %></span></p>
 				<% end %>
 				<%= raw @product.description %>
 			</div>
-			<div class="options" <% if !@product.prsizes.blank? or !@product.prcolors.blank? %>class="hidden"<% end %>>
+			<div id="choosed" class="options" <% if !@product.prsizes.blank? or !@product.prcolors.blank? %>class="hidden"<% end %>>
 				<u>Выбранные опции:</u>
 				<p>
 					<b>Размер:</b>
@@ -49,9 +47,9 @@
 					<span class="color">
 						<% if !@product.prcolors.blank?
 							if @product.prcolors.first.textures.blank? %>
-								<%= @product.prcolors.first.name %>
+								Каталог тканей <%= @product.prcolors.first.name %>
 							<% else %>
-								<%= @product.prcolors.first.textures.first.name %>
+								Каталог тканей <%= "#{@product.prcolors.first.name}: #{@product.prcolors.first.textures.first.scode} #{@product.prcolors.first.textures.first.name}" %>
 							<% end %>
 						<% end %>
 					</span>
@@ -65,16 +63,25 @@
 		<div class="panel-buy">
 			<div class="buy">
 				<div>
-					<% if @product.old_price > 0 %>
-						<del><%= @product.old_price.to_s.gsub(/\B(?=(\d{3})+(?!\d))/, " ") %><i class="icon-old-rubl"></i></del><br>
+					<% addToPrice = 0
+					addToPrice += @product.prsizes.first.price if !@product.prsizes.blank?
+					if !@product.prcolors.blank?
+						if @product.prcolors.first.textures.blank?
+							addToPrice += @product.prcolors.first.price
+						else
+							addToPrice += @product.prcolors.first.textures.first.price
+						end
+					end
+					if @product.old_price > 0 %>
+						<del><span id="product-old-price" data-price="<%= @product.old_price %>"><%= (@product.old_price + addToPrice).to_s.gsub(/\B(?=(\d{3})+(?!\d))/, " ") %></span><i class="icon-old-rubl"></i></del><br>
 					<% end %>
-					<b class="price"><%= @product.price.to_s.gsub(/\B(?=(\d{3})+(?!\d))/, " ") %></b><i class="icon-rubl"></i>
+					<b id="product-price" class="price" data-price="<%= @product.price %>"><%= (@product.price + addToPrice).to_s.gsub(/\B(?=(\d{3})+(?!\d))/, " ") %></b><i class="icon-rubl"></i>
 				</div>
 				<div>
 					<% if @product.old_price > 0 %>
 						<b class="discount">Скидка - <%= 100 - (@product.price / @product.old_price * 100).to_i %>%</b>
 					<% end %>
-					<div class="btn-buy">Купить</div>
+					<div class="btn-buy" onclick="productPageBuy()">Купить</div>
 				</div>
 			</div>
 			<div class="info">
@@ -114,40 +121,40 @@
 		</div>
 		<div class="tabs-pages">
 			<% unless @product.prsizes.blank? %>
-				<div class="prsizes">
+				<div class="prsizes tab">
 					<% checked = true
 					for size in @product.prsizes %>
-						<div onclick="checkboxClick(this)">
-							<i class="checkbox<% if checked then checked = false %> checked<% end %>"></i>
-							<%= size.name %>
+						<div onclick="checkboxClick(this)" data-price="<%= size.price %>">
+							<i data-id="<%= size.id %>" data-type="size" class="checkbox<% if checked then checked = false %> checked<% end %>"></i>
+							<span class="name"><%= size.name %></span>
 						</div>
 					<% end %>
 				</div>
 			<% end %>
 			<% unless @product.prcolors.blank? %>
-				<div class="active">
+				<div class="prcolors active tab">
 					<% checked = true
 					for color in @product.prcolors %>
 						<% textures = color.textures
 						if textures.blank? %>
-							<div class="color" onclick="checkboxClick(this)">
+							<div data-price="<%= color.price %>" class="color" onclick="checkboxClick(this)">
 								<img src="<%= color.images %>">
-								<p>Цвет <%= color.name %></p>
-								<i class="checkbox<% if checked then checked = false %> checked<% end %>"></i>
+								<p class="name">Цвет <%= color.name %></p>
+								<i data-id="<%= color.id %>" data-type="color" class="checkbox<% if checked then checked = false %> checked<% end %>"></i>
 							</div>
 						<% else %>
 							<div class="catalog">
-								<div onclick="$(this).toggleClass('open').find('i').toggleClass('color-down color-up')">
+								<div data-price="<%= color.price %>" data-type="color" data-id="<%= color.id %>" onclick="$(this).toggleClass('open').find('i').toggleClass('color-down color-up')">
 									<img src="<%= color.images %>">
-									<p>Каталог тканей <%= color.name %></p>
+									<p class="name">Каталог тканей <%= color.name %></p>
 									<i class="color-down"></i>
 								</div>
 								<div class="textures">
 									<% for texture in textures %>
-										<div onclick="colorClick(this)">
-											<p><%= texture.scode %> <%= texture.name %></p>
+										<div data-price="<%= texture.price %>" onclick="checkboxClick(this)">
+											<p class="name"><%= texture.scode %> <%= texture.name %></p>
 											<div style="background-image: url('<%= texture.image %>')"></div>
-											<i class="checkbox<% if checked then checked = false %> checked<% end %>"></i>
+											<i data-id="<%= texture.id %>" data-type="texture" class="checkbox<% if checked then checked = false %> checked<% end %>"></i>
 										</div>
 									<% end %>
 								</div>
@@ -157,15 +164,15 @@
 				</div>
 			<% end %>
 			<% unless @product.proptions.blank? %>
-				<div class="proptions">
-					<div onclick="checkboxClick(this)">
-						<i class="checkbox checked"></i>
-						Без опции
+				<div class="proptions tab">
+					<div data-price="0" onclick="checkboxClick(this)">
+						<i data-id="0" data-type="option" class="checkbox checked"></i>
+						<span class="name">Без опции</span>
 					</div>
 					<% for option in @product.proptions %>
-						<div onclick="checkboxClick(this)">
-							<i class="checkbox"></i>
-							<%= option.name %>
+						<div data-price="<%= option.price %>" onclick="checkboxClick(this)">
+							<i data-id="<%= option.id %>" data-type="option" class="checkbox"></i>
+							<span class="name"><%= option.name %></span>
 						</div>
 					<% end %>
 				</div>
