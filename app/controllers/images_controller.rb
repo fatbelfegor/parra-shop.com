@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_filter :admin_required
   layout false
 
   def new

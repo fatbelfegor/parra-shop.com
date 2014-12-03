@@ -25,7 +25,6 @@ iframe = document.createElement 'iframe'
 menuImages = []
 
 scrollFunc = ->
-	console.log 'asd'
 	unless window.productLoading
 		products = $('#products')
 		if products.length > 0
@@ -72,7 +71,6 @@ resizeFunc = ->
 
 ready = ->
 	$('#preloader').remove()
-	configurator()
 	curBg = 0
 	$('#mainMenu li div div').each (i) ->
 		this.style.backgroundImage = menuImages[i]
@@ -143,6 +141,14 @@ ready = ->
 		revert: true
 		update: ->
 			$.post '/products/sort', $(this).sortable 'serialize'
+	$('.productImages').sortable
+		revert: true
+		update: ->
+			images = []
+			el = $(@).sortable()
+			el.find('img').each ->
+				images.push $(@).attr 'src'
+			el.parent().next().val images.join ','
 	resizeFunc()
 	scrollFunc()
 @changeCount = (el) ->

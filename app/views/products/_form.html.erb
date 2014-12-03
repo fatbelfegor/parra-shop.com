@@ -131,7 +131,7 @@
   <div class="text-center">
     <div id="addImages" class="product_images">
       <input type="button" value="Добавить изображение" class="btn btn-primary">
-      <div>
+      <div class="productImages">
         <% if @product.images then @product.images.split(',').each do |i| %>
           <div>
             <img class="img-thumbnail" src="<%= i %>">

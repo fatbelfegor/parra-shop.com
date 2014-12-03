@@ -21,10 +21,12 @@ class ProductsController < ApplicationController
     session[:color] = nil
     @product = Product.find_by_scode(params[:scode])
     unless @product.s_title.blank?
-      @title = @product.s_title
+      @title = @product.seo_title2
     else
       @title = @product.name
     end
+    @seo_description = @product.s_description
+    @seo_keywords = @product.s_keyword
     @title = @product.category.title + " - " + @title
     return render :action => 'page404' unless @product
     if !@product.invisible || (user_signed_in? && current_user.admin?)
@@ -79,7 +81,7 @@ class ProductsController < ApplicationController
     params[:product][:category_ids] ||= [params[:product][:category_id]]
     respond_to do |format|
       if @product.update(product_params) 
-        format.html { redirect_to '/kupit/'+@product.scode, notice: 'Product was successfully updated.' }
+        format.html { redirect_to URI.encode("/kupit/#{@product.scode}"), notice: 'Product was successfully created.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

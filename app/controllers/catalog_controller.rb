@@ -9,6 +9,8 @@ class CatalogController < ApplicationController
         redirect_to "/catalog/#{@category.url}"
       end
       @title = @category.title
+      @seo_description = @category.s_description
+      @seo_keywords = @category.s_keyword
       return render :action => 'page404' unless @category
     elsif params[:q].present?
       @title = "Поиск: #{params[:q]}"
@@ -16,6 +18,8 @@ class CatalogController < ApplicationController
     elsif params[:url].present?
       @category = Category.find_by url: params[:url]
       @title = @category.title
+      @seo_description = @category.s_description
+      @seo_keywords = @category.s_keyword
     end
   end
 
