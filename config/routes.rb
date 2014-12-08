@@ -24,6 +24,7 @@ ParraShopCom::Application.routes.draw do
   get "tk-tvoj-dom-na-66-km-mkad", to: 'main#store6', as: 'store6'
   get "trc-rio-reutov", to: 'main#store7', as: 'store7'
   get "mc-vagant-podolsk", to: 'main#store8', as: 'store8'
+  get "store9", to: 'main#store9'
 
   get "service", to: 'main#service'
   get "partners", to: 'main#partners'
