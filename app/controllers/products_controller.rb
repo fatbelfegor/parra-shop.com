@@ -20,9 +20,12 @@ class ProductsController < ApplicationController
     session[:prsize] = nil
     session[:color] = nil
     @product = Product.find_by_scode(params[:scode])
-    unless @product.s_title.blank? && !@product.seo_title2.blank?
+    unless @product.s_title.blank?
       @title = @product.seo_title2
     else
+      @title = @product.name
+    end
+    if @title == nil || @title.blank?
       @title = @product.name
     end
     @seo_description = @product.s_description
