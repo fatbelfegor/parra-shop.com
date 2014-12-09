@@ -37,7 +37,7 @@ scrollFunc = ->
 					html = ''
 					for r in d
 						p = r.product
-						html += "<div>"
+						html += "<div><div>"
 						images = p.images.split ','
 						html += '<div class="left inactive"></div>'
 						if images[1]
@@ -57,7 +57,7 @@ scrollFunc = ->
 								else
 									html += "<div><b>Цвет:</b> <span class=\"color\">#{r.prcolors[0].name}</span><span class=\"hidden color-scode\">#{r.prcolors[0].scode}</span></div>"
 						html += "<div><b>Опция:</b> <span class=\"option\">#{r.proptions[0].name}</span><span class=\"hidden option-scode\">#{r.proptions[0].scode}</span></div>" if r.proptions.length > 0
-						html += "<div class=\"id hidden\">#{p.id}</div><div class=\"scode hidden\">#{p.scode}</div><div class=\"fancyButton\" onclick=\"addToCartFromCatalog('#{p.name}', this)\">Купить</div></div></div>"
+						html += "<div class=\"id hidden\">#{p.id}</div><div class=\"scode hidden\">#{p.scode}</div><div class=\"fancyButton\" onclick=\"addToCartFromCatalog('#{p.name}', this)\">Купить</div></div></div></div>"
 					if $('#products').append(html).find('> div').length == 0
 						$('#products').html('<p class="notFound">По Вашему запросу ничего не найдено, попробуйте его изменить.</p>')
 					window.productLoading = false
