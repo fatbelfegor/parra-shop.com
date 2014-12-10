@@ -88,4 +88,9 @@ class MainController < ApplicationController
     @title = 'Мебель parra-shop в ТЦ "Империя"'
     @seo_description = 'Мебель производства фабри Новомебель и вся продукция интерне магазина parra-shop в магазинах москвы. Тел. 8-800-707-67-57 звонок бесплатный по России.'
   end
+  def otzyvy
+    @title = 'Отзывы покупателей о мебели parra, производства - Новомебель.'
+    @seo_description = 'Читаем и пишем новые отзывы о мебельной продукции PARRA, производства Новомебель.'
+    @seo_keywords = 'мебель parra отзывы.'
+  end
 end
