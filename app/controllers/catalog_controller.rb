@@ -17,6 +17,7 @@ class CatalogController < ApplicationController
       @products = Product.where('invisible = false')
     elsif params[:url].present?
       @category = Category.find_by url: params[:url]
+      params[:category_scode] = @category.scode
       @title = @category.title
       @seo_description = @category.s_description
       @seo_keywords = @category.s_keyword

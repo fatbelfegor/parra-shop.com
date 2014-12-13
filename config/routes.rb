@@ -35,6 +35,7 @@ ParraShopCom::Application.routes.draw do
 
   get 'orders/:id/Заказ :user_id :order_id.xlsx', to: 'orders#xlsx'
 
+  post 'categories/copy', to: 'categories#copy'
   post 'catalog/products', to: 'catalog#products'
   post 'categories/sort', to: 'categories#sort'
   post 'products/sort', to: 'products#sort'
@@ -50,7 +51,12 @@ ParraShopCom::Application.routes.draw do
   post 'users/admin-create', to: 'users#adminCreate'
   post 'users/destroy', to: 'users#destroy'
   
-  resources :categories, :images, :prsizes, :textures, :proptions, :prcolors
+  resources :categories do
+    member do
+      resources :subcategories
+    end
+  end
+  resources :images, :prsizes, :textures, :proptions, :prcolors
   resources :orders do
     resources :order_item, except: [:index, :show, :edit] do
       post :plus, on: :member

@@ -88,6 +88,18 @@ class CategoriesController < ApplicationController
 		render "main/index"		
 	end
 
+  def copy
+    from = params[:from].to_i
+    to = params[:cat].to_i
+    cat = Category.find(from)
+    products = cat.products
+    for p in products
+      p.update(category_ids: p.category_ids.delete(from), subcategory_id: to)
+    end
+    cat.products.delete_all
+    render :nothing => true
+  end
+
 private
   def set_category
     @category = Category.find(params[:id])

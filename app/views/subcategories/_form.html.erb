@@ -1,0 +1,66 @@
+<%= form_for(@subcategory, html: { multipart: true }) do |f| %>
+<table class="table table-bordered table-striped">
+  <% if @subcategory.errors.any? %>
+    <tr><td style="padding: 15px 30px 0 20px">
+    <div id="error_explanation">
+      <h2><%= pluralize(@subcategory.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @subcategory.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    </td></tr>
+  <% end %>
+  <tr>
+    <td style="padding: 15px 100px 0 20px">
+      <div class="row form-group">
+        <h4 class="col-md-3 text-right"><%= f.label :name, "Название (Заголовок):", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+        <div class="col-md-7">
+          <div class="wrath-content-box" style="padding:0 15px">
+            <%= f.text_field :name, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <h4 class="col-md-2 text-right"><nobr><%= f.label :description, "Описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+        <div class="col-md-10">
+          <%= f.text_area :description, class: "tinymce", :rows => 12, :cols => 120 %>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 15px 100px 15px 20px" class="text-center">
+      <div class="btn btn-primary" onclick="addSubCatImage(this)">Добавить изображение</div>
+      <table class="table table-bordered table-striped">
+        <% for image in @subcategory.sub_cat_images %>
+          <tr>
+            <td>
+              <span style='float: right' class='btn btn-danger' onclick='td = $(this).parent();td.find("[name=\"images[]destroy\"]").val("true");td.parent().addClass("hidden")'>Удалить изображение</span>
+              <input type='file' name='images[]file'>
+              <img src="<%= image.url %>">
+              <p>Описание: </p>
+              <textarea class='tinymce' name='images[]description'><%= raw image.description %></textarea>
+              <input type='hidden' name='images[]id' value="<%= image.id %>">
+              <input type='hidden' name='images[]destroy'>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>
+  <table class="table table-striped text-center fixed-buttons">
+    <tr>
+      <td>
+        <div class="absolute">
+            <%= link_to 'Категория', @subcategory.category, class: 'btn btn-default' %>
+          </div>
+        <%= f.submit 'Сохранить', class: "btn btn-success" %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+<%= tinymce %>

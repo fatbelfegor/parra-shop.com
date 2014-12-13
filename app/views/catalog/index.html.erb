@@ -11,12 +11,27 @@
 			Поиск по запросу "<%= params[:q] %>"
 		<% end %>
 	</h2>
-	<div id="products"></div>
-	<script type="text/javascript">
-	productLoad = {}
-	<%= if params[:category_scode].present? || params[:url].present? then raw "productLoad.cat_id = '#{@category.id}'" end %>
-	<%= if params[:q].present? then raw "productLoad.q = '#{params[:q]}'" end %>
-	</script>
+	<% if params[:category_scode].present? %>
+		<% unless @category.images.blank? %>
+			<div class="category-images">
+				<% for image in @category.images.split(',') %>
+					<img src="<%= image %>">
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
+	<% if params[:category_scode].present? and @category.subcategories.blank? %>
+		<div id="products"></div>
+		<script type="text/javascript">
+		productLoad = {}
+		<%= if params[:category_scode].present? || params[:url].present? then raw "productLoad.cat_id = '#{@category.id}'" end %>
+		<%= if params[:q].present? then raw "productLoad.q = '#{params[:q]}'" end %>
+		</script>
+	<% else %>
+		<div id="subcategories">
+			<%= render partial: "subcategories/subcategory" , collection: @category.subcategories %>
+		</div>
+	<% end %>
 	<% unless !params[:category_scode].present? or @category.seo_text.blank? %>
 		<div class="seo_text">
 			<%= raw @category.seo_text %>

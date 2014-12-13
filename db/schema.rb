@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105121055) do
+ActiveRecord::Schema.define(version: 20141213033005) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20141105121055) do
   end
 
   create_table "categories_products", id: false, force: true do |t|
-    t.integer "category_id"
-    t.integer "product_id"
+    t.integer "category_id", null: false
+    t.integer "product_id",  null: false
   end
 
   create_table "manager_logs", force: true do |t|
@@ -143,11 +143,14 @@ ActiveRecord::Schema.define(version: 20141105121055) do
     t.string   "s_imagealt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price",         precision: 18, scale: 2, default: 0.0
+    t.decimal  "price",          precision: 18, scale: 2, default: 0.0
     t.text     "seo_text"
-    t.decimal  "old_price",     precision: 18, scale: 2, default: 0.0
+    t.decimal  "old_price",      precision: 18, scale: 2, default: 0.0
     t.string   "seo_title2"
+    t.integer  "subcategory_id"
   end
+
+  add_index "products", ["subcategory_id"], name: "index_products_on_subcategory_id", using: :btree
 
   create_table "proptions", force: true do |t|
     t.integer  "product_id"
@@ -170,6 +173,22 @@ ActiveRecord::Schema.define(version: 20141105121055) do
   create_table "statuses", force: true do |t|
     t.string "name"
   end
+
+  create_table "sub_cat_images", force: true do |t|
+    t.string  "url"
+    t.text    "description"
+    t.integer "subcategory_id"
+  end
+
+  add_index "sub_cat_images", ["subcategory_id"], name: "index_sub_cat_images_on_subcategory_id", using: :btree
+
+  create_table "subcategories", force: true do |t|
+    t.string  "name"
+    t.text    "description"
+    t.integer "category_id"
+  end
+
+  add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id", using: :btree
 
   create_table "textures", force: true do |t|
     t.integer  "prcolor_id"

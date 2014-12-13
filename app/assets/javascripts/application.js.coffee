@@ -918,3 +918,23 @@ writeChars = ->
 		$('#choosedChars').show()
 	else
 		$('#choosedChars').hide()
+@addSubCatImage = (el) ->
+	$(el).next().append "<tr><td>
+			<span style='float: right' class='btn btn-danger' onclick='$(this).parents(\"tr\").eq(0).remove()'>Удалить изображение</span>
+			<input type='file' name='images[]file'>
+			<p>Описание: </p>
+			<textarea class='tinymce' name='images[]description'></textarea>
+			<input hidden='images[]id'>
+			<input hidden='images[]destroy'>
+		</td></tr>"
+	tinyMCE.init
+		selector: "textarea.tinymce"
+		theme_advanced_toolbar_location: "top"
+		theme_advanced_toolbar_align: "left"
+		theme_advanced_statusbar_location: "bottom"
+		theme_advanced_buttons3_add: ["tablecontrols","fullscreen"]
+		plugins: "table,fullscreen,code"
+@copyCatProducts = (el, cat, from) ->
+	$(el).parents('.treebox').removeClass('active')
+	$.post '/categories/copy', cat: cat, from: from, ->
+		location.reload()

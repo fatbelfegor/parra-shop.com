@@ -8,18 +8,12 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    session[:proption] = nil
-    session[:prsize] = nil
-    session[:color] = nil
-    
     redirect_to :controller => 'products', :action => 'show_scode', :product_scode => @product.scode, :status => :moved_permanently
   end
   
   def show_scode
-    session[:proption] = nil
-    session[:prsize] = nil
-    session[:color] = nil
     @product = Product.find_by_scode(params[:scode])
+    return render :action => 'page404' unless @product
     unless @product.s_title.blank?
       @title = @product.seo_title2
     else
@@ -30,8 +24,11 @@ class ProductsController < ApplicationController
     end
     @seo_description = @product.s_description
     @seo_keywords = @product.s_keyword
-    @title = @product.category.title + " - " + @title
-    return render :action => 'page404' unless @product
+    if @product.category
+      @title = @product.category.title + " - " + @title
+    else
+      @title = @product.subcategory.name + " - " + @title
+    end
     if !@product.invisible || (user_signed_in? && current_user.admin?)
       respond_to do |format|
         format.html {render :action => 'show'}
@@ -44,13 +41,11 @@ class ProductsController < ApplicationController
   
   # GET /products/new
   def new
-    session[:proption] = nil
-    session[:prsize] = nil
-    session[:color] = nil
-    
     @product = Product.new
-    if params[:category_id]
-        @product.category = Category.find(params[:category_id])
+    if params[:subcategory_id]
+      @product.subcategory = Subcategory.find(params[:subcategory_id])
+    elsif params[:category_id]
+      @product.category = Category.find(params[:category_id])
     end
   end
   
@@ -97,8 +92,13 @@ class ProductsController < ApplicationController
   # DELETE /products/1.json
   def destroy
     @product.destroy
+    if @product.category
+      redirect = @product.category
+    else
+      redirect = @product.subcategory
+    end
     respond_to do |format|
-      format.html { redirect_to(@product.category) }
+      format.html { redirect_to(redirect) }
       format.json { head :no_content }
     end
   end
@@ -126,6 +126,7 @@ private
   def product_params
     params.require(:product).permit(
     	:category_id,
+      :subcategory_id,
   		:scode,
   		:name,
   		:description,

@@ -16,7 +16,17 @@
     <h4 class="col-md-2 text-right"><%= f.label :category_id, "Категория:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
     <div class="col-md-10">
       <div class="wrath-content-box" style="padding:0 15px">
-        <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", if @product then @product.category_id else 1 end), {}, {class: "form-control"} %>
+        <% collection = [Category.new(id: nil, name: 'Не выбрано')] + Category.all %>
+        <%= f.select :category_id, options_from_collection_for_select(collection, "id", "name", if @product then @product.category_id else nil end), {}, {class: "form-control"} %>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :subcategory_id, "Подкатегория:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-10">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <% collection = [Subcategory.new(id: nil, name: 'Не выбрано')] + Subcategory.all %>
+        <%= f.select :subcategory_id, options_from_collection_for_select(collection, "id", "name", if @product then @product.subcategory_id else nil end), {}, {class: "form-control"} %>
       </div>
     </div>
   </div>
@@ -24,7 +34,7 @@
     <% for category in Category.all %>
       <div class="col-md-2">
     		<%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
-    		<%= category.name %>
+        <%= category.name %>
       </div>
     <% end %>
   </div>

@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
 	include Elasticsearch::Model::Callbacks
 
 	belongs_to :category
+	belongs_to :subcategory
 	has_many :order_items
 	has_and_belongs_to_many :categories, :autosave => true
 	#has_and_belongs_to_many :categories , :join_table => :categories_products , :autosave => true

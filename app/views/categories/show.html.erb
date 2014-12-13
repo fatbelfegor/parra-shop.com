@@ -16,7 +16,15 @@
 			<%= link_to 'Редактировать', edit_category_path(@category), class: 'btn btn-warning' %>
 			<%= link_to 'Удалить', @category, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
 			<%= link_to 'Открыть', '/catalog/index?category_scode='+@category.scode, class: 'btn btn-info' %>
-			<%= link_to 'Список категорий', categories_path, class: 'btn btn-primary' %>	
+			<%= link_to 'Список категорий', categories_path, class: 'btn btn-primary' %>
+			<div class="treebox ib">
+		        <p class="btn btn-success" onclick="catDropDown(this)">Перенести продукты</p>
+		        <div class="windows">
+		        	<% for cat in Subcategory.all %>
+		          		<div class='cat'><p class='enable' onclick='copyCatProducts(this, <%= cat.id %>, <%= @category.id %>)'><%= cat.name %></p></div>
+		          	<% end %>
+        		</div>
+        	</div>	
 		</td>
 	</tr>
 </table>
@@ -27,4 +35,11 @@
 <ul id="productsSortable" class="text-center">
 	<%= render(:partial => "products/product" , :collection => @products) %>
 </ul>
+<h1 class="text-center" style="margin:15px 0">Подкатегории (<%= @category.subcategories.count %>)</h1>
+<div class="text-center" style="margin-bottom:15px">
+<%= link_to('Создать новую подкатегорию', "/categories/#{@category.id}/subcategories/new", class: 'btn btn-success' )%>
+</div>
+<div id="subcategories">
+	<%= render partial: "subcategories/subcategory" , collection: @category.subcategories %>
+</div>
 </div>
