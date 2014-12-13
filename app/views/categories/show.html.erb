@@ -28,13 +28,6 @@
 		</td>
 	</tr>
 </table>
-<h1 class="text-center" style="margin:15px 0">Список продуктов (<%= @category.products.count %>)</h1>
-<div class="text-center" style="margin-bottom:15px">
-<%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id }, class: 'btn btn-success' )%>
-</div>
-<ul id="productsSortable" class="text-center">
-	<%= render(:partial => "products/product" , :collection => @products) %>
-</ul>
 <h1 class="text-center" style="margin:15px 0">Подкатегории (<%= @category.subcategories.count %>)</h1>
 <div class="text-center" style="margin-bottom:15px">
 <%= link_to('Создать новую подкатегорию', "/categories/#{@category.id}/subcategories/new", class: 'btn btn-success' )%>
@@ -42,4 +35,11 @@
 <div id="subcategories">
 	<%= render partial: "subcategories/subcategory" , collection: @category.subcategories %>
 </div>
+<h1 class="text-center" style="margin:15px 0">Список продуктов (<%= @category.products.count %>)</h1>
+<div class="text-center" style="margin-bottom:15px">
+<%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id }, class: 'btn btn-success' )%>
+</div>
+<ul id="productsSortable" class="text-center">
+	<%= render(:partial => "products/product" , :collection => @products) %>
+</ul>
 </div>
