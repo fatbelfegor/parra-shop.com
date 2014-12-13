@@ -20,7 +20,7 @@
 			</div>
 		<% end %>
 	<% end %>
-	<% if params[:category_scode].present? and @category.subcategories.blank? %>
+	<% if (params[:category_scode].present? and @category.subcategories.blank?) or params[:q].present? %>
 		<div id="products"></div>
 		<script type="text/javascript">
 		productLoad = {}
