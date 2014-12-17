@@ -2573,6 +2573,16 @@ body.small-size {
 		color: #333;
 		margin-bottom: 18px;
 	}
+	.images {
+		img {
+			width: auto;
+			height: auto;
+			margin: 0;
+		}
+		td div {
+			margin: 0;
+		}
+	}
 	#products {
 		width: 100%;
 		margin-bottom: 20px;
