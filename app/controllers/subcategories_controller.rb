@@ -42,7 +42,7 @@ class SubcategoriesController < ApplicationController
 				if image[:id].blank?
 					file = image[:file]
 					sub_cat_image = {description: image[:description]}
-					if file
+					if !file.blank?
 						path = Rails.root.join('public', 'uploads')
 						name = file.original_filename
 						if File.exist? path + '/' + name
@@ -67,7 +67,7 @@ class SubcategoriesController < ApplicationController
 					scimage.update description: image[:description]
 					file = image[:file]
 					sub_cat_image = {description: image[:description]}
-					if file
+					if !file.blank?
 						path = Rails.root.to_s + '/public'
 						if !scimage.url.blank? and File.exist? path + scimage.url
 							File.delete path + scimage.url

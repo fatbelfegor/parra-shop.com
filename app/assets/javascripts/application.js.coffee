@@ -938,3 +938,7 @@ writeChars = ->
 	$(el).parents('.treebox').removeClass('active')
 	$.post '/categories/copy', cat: cat, from: from, ->
 		location.reload()
+@subCatSubmit = (el) ->
+	$(el).find('[type=file]').each ->
+		el = $ @
+		el.after "<input type='hidden' name='images[]file'>" if el.val() is ''
