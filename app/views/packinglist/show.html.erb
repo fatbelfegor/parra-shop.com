@@ -1,0 +1,75 @@
+<br><h2 class="text-center">Товарная накладная</h2><br>
+
+<%= form_for(@packinglist) do |f| %>
+<input type="hidden" name="id" value="<%= @packinglist.id %>">
+<table class="table table-bordered table-striped">
+	<tr>
+		<td style="padding: 15px 100px 0 20px">
+			<div class="row form-group">
+				<h4 class="col-md-3 text-right"><%= f.label :doc_number, "Номер документа:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+				<div class="col-md-2">
+					<div class="wrath-content-box" style="padding:0 15px">
+						<%= f.text_field :doc_number, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+					</div>
+				</div>
+				<h4 class="col-md-3 text-right" style="margin-left:-15px"><%= f.label :date, "Дата составления:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+				<div class="col-md-2" style="margin-right:15px">
+					<div class="wrath-content-box" style="padding:0 15px">
+						<%= f.text_field :date, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<table class="table table-bordered table-striped">
+		<% for i in @packinglist.packinglistitems %>
+			<tr>
+				<td>
+					<input type="hidden" name="packinglistitems[]id" value="<%= i.id %>">
+					<h4 class="col-md-4 text-right" style="margin-left:-15px"><%= f.label "", "ID товара:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+					<div class="col-md-4" style="margin-right:15px">
+						<div class="wrath-content-box" style="padding:0 15px">
+							<input value="<%= i.product_id %>" type="text" name="packinglistitems[]product_id" class="form-control" style="padding-top:0;padding-bottom:0">
+						</div>
+					</div>
+					<br>
+					<br>
+					<h4 class="col-md-4 text-right" style="margin-left:-15px"><%= f.label "", "Название и код ненайденного товара:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+					<div class="col-md-4" style="margin-right:15px">
+						<div class="wrath-content-box" style="padding:0 15px">
+							<input value="<%= i.product_name_article %>" type="text" name="packinglistitems[]product_name_article" class="form-control" style="padding-top:0;padding-bottom:0">
+						</div>
+					</div>
+					<br>
+					<br>
+					<h4 class="col-md-4 text-right" style="margin-left:-15px"><%= f.label "", "Количество товаров:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+					<div class="col-md-4" style="margin-right:15px">
+						<div class="wrath-content-box" style="padding:0 15px">
+							<input value="<%= i.amount %>" type="text" name="packinglistitems[]amount" class="form-control" style="padding-top:0;padding-bottom:0">
+						</div>
+					</div>
+					<br>
+					<br>
+					<h4 class="col-md-4 text-right" style="margin-left:-15px"><%= f.label "", "Цена (руб.):", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+					<div class="col-md-4" style="margin-right:15px">
+						<div class="wrath-content-box" style="padding:0 15px">
+							<input value="<%= i.price %>" type="text" name="packinglistitems[]price" class="form-control" style="padding-top:0;padding-bottom:0">
+						</div>
+					</div>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	<br><br><br>
+	<table class="table table-striped text-center fixed-buttons">
+		<tr>
+			<td>
+				<div class="absolute">
+					<%= link_to 'Импорт товарных накладных', '/packinglist', class: 'btn btn-default' %>
+				</div>
+				<%= f.submit 'Сохранить', class: "btn btn-success" %>
+			</td>
+		</tr>
+	</table>
+</table>
+<% end %>

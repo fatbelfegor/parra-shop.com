@@ -28,6 +28,7 @@
 		if current_user.manager or current_user.admin? %>
 		<li><a href="/orders">Заказы</a></li>
 		<% end %>
+		<li><a href="/packinglist">Импорт товарных накладных</a></li>
 		<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
 	</ul>
 </div>

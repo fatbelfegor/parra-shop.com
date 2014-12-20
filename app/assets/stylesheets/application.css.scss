@@ -753,6 +753,11 @@ nav {
 
 					.color {
 						height: 66px;
+						width: 405px;
+						> span {
+							vertical-align: middle;
+							width: 162px;
+						}
 					}
 
 					.catalog {
@@ -1974,7 +1979,8 @@ th {
 		background-color: white;
 	}
 	li {
-		line-height: 26px;
+		padding: 5px 0;
+		line-height: 16px;
 		border-bottom: 1px solid #aaa;
 		text-align: center;
 		@include transition(.3s);

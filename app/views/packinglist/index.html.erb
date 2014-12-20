@@ -1,0 +1,13 @@
+<br><h2 class="text-center">Импорт товарных накладных</h2><br>
+<%= form_for '/packinglist', html: {multipart: true, class: 'text-center'} do %>
+	<input type="file" name="file" style="display: inline">
+	<input type="submit" class="btn btn-primary" value="Загрузить XML">
+<% end %>
+<br>
+<% for p in Packinglist.all %>
+	<div class="row">
+		<a class="col-md-1 btn btn-success" href="/packinglist/<%= p.id %>"><%= p.date %></a>
+		<a class="col-md-9 btn btn-default" href="/packinglist/<%= p.id %>"><%= p.doc_number %></a>
+		<a class="col-md-1 btn btn-danger" data-confirm="Вы уверены?" data-method="delete" href="/packinglist/<%= p.id %>">Удалить</a>
+	</div>
+<% end %>

@@ -13,6 +13,11 @@ ParraShopCom::Application.routes.draw do
   get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
   get '/prcolors/copy', to: 'prcolors#copy'
+  get '/packinglist', to: 'packinglist#index'
+  post '/packinglist', to: 'packinglist#index'
+  get '/packinglist/:id', to: 'packinglist#show'
+  patch '/packinglist', to: 'packinglist#update'
+  delete '/packinglist/:id', to: 'packinglist#destroy'
   
   root to: 'main#index', as: 'index'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213033005) do
+ActiveRecord::Schema.define(version: 20141219160838) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -111,6 +111,20 @@ ActiveRecord::Schema.define(version: 20141213033005) do
     t.string   "deliver_date"
     t.integer  "status_id"
     t.integer  "number"
+  end
+
+  create_table "packinglistitems", force: true do |t|
+    t.integer "packinglist_id"
+    t.integer "product_id"
+    t.string  "product_name_article"
+    t.integer "amount"
+    t.decimal "price",                precision: 10, scale: 0
+  end
+
+  create_table "packinglists", force: true do |t|
+    t.string "doc_number"
+    t.date   "date"
+    t.string "user"
   end
 
   create_table "prcolors", force: true do |t|
