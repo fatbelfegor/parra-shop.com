@@ -47,13 +47,19 @@ class CatalogController < ApplicationController
     end
     ret = []
     for p in products
-      prcolors = p.prcolors
-      if prcolors[0]
-        textures = prcolors[0]
+      prsizes = p.prsizes
+      if prsizes[0]
+        prcolors = prsizes[0].prcolors
+        if prcolors[0]
+          textures = prcolors[0]
+        else
+          textures = []
+        end
+        proptions = prsizes[0].proptions
       else
-        textures = []
+        prcolors = textures = proptions = []
       end
-      ret << {product: p, prsizes: p.prsizes, prcolors: prcolors, textures: textures, proptions: p.proptions}
+      ret << {product: p, prsizes: prsizes, prcolors: prcolors, textures: textures, proptions: proptions}
     end
     render json: ret
   end

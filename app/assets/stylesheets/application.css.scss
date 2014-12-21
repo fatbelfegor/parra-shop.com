@@ -701,7 +701,7 @@ nav {
 				}
 			}
 
-			> div {
+			> div, > .prsize-wrap > div > div {
 				margin-left: 50px;
 				a {
 					cursor: pointer;
@@ -744,7 +744,7 @@ nav {
 						}
 						span {
 							width: 202px;
-							margin: -3px 0 0 22px;
+							margin: 0 0 0 22px;
 							color: #575759;
 							vertical-align: top;
 							font-size: 15px;
@@ -821,6 +821,17 @@ nav {
 						}
 					}				
 				}
+			}
+
+			> .prsize-wrap {
+				margin: 0;
+				> div > div {
+					display: none;
+				}
+			}
+
+			> .prsize-wrap > .active > div {
+				display: block;
 			}
 
 			> :last-child {
@@ -2603,6 +2614,113 @@ body.small-size {
 			.left, .right, .photoes, .appear {
 				margin-left: 0;
 			}
+		}
+	}
+}
+#admin-product {
+	text-align: center;
+	> div {
+		margin-top: 15px;
+	}
+	table {
+		width: 100%;
+		margin: 20px 0 40px;
+		border: 1px solid #ddd;
+		td, th {
+			border: 1px solid #ddd;
+			padding: 8px;
+			line-height: 1.42857143;
+			vertical-align: top;
+			background-color: white;
+		}
+		tr:nth-child(odd) {
+			> td, > th {
+				background-color: #f9f9f9;
+			}
+		}
+		.btn-success, .btn-danger, .btn-warning {
+			line-height: 9px;
+		}
+	}
+	h2 {
+		font-size: 20px;
+		font-weight: normal;
+		line-height: 20px;
+		margin: 10px;
+		vertical-align: middle;
+		display: inline-block;
+	}
+	.showHide {
+		display: none;
+	}
+	.catalog {
+		cursor: pointer;
+	}
+	.color, .option, .texture {
+		display: none;
+	}
+	.show {
+		display: table-row !important;
+	}
+	.hide {
+		tr {
+			display: none;
+		}
+		tr:first-child {
+			display: table-row;
+		}
+	}
+	table.hide {
+		display: table !important;
+	}
+}
+
+#dropdown {
+	position: relative;
+	text-align: left;
+	.show {
+		margin: 0;
+	}
+	> ul {
+		color: #333;
+		background-color: white;
+		position: absolute;
+		top: 32px;
+		left: -128px;
+		width: 500px;
+		border: 1px solid #aaa;
+		border-width: 0 1px;
+		z-index: 1;
+		ul {
+			border: 1px solid #aaa;
+			border-width: 0 1px;
+			margin: 0 20px;
+		}
+	}
+	li {
+		line-height: 34px;
+		list-style: none;
+		p {
+			height: 0;
+			overflow: hidden;
+			padding: 0 0 0 12px;
+			@include transition(.3s)
+		}
+		p:hover {
+			color: black;
+		}
+	}
+	span {
+		vertical-align: top;
+		float: right;
+		@include border-radius(0)
+	}
+}
+#dropdown.active {
+	> ul, .active {
+		border-width: 1px;
+		> li > p {
+			height: 34px;
 		}
 	}
 }

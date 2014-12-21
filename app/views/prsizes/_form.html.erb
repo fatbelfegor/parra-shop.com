@@ -6,7 +6,7 @@
           <h4 class="col-md-2 text-right"><%= f.label :product_id, "Продукт:", class: 'control-label wrath-content-box' %></h4>
           <div class="col-md-10">
             <div class="wrath-content-box">
-              <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", if @product_id then @product_id else 1 end), {}, {class: "form-control"} %>
+              <%= f.select :product_id, options_from_collection_for_select(@products, "id", "name", @prsize.product_id), {}, {class: "form-control"} %>
             </div>
           </div>
         </div>

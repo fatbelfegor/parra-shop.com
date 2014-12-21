@@ -20,18 +20,22 @@
 	<div><a href="/kupit/<%= productFooter.scode %>"><%= productFooter.name %></a></div>
 	<div><b>Цена:</b> <span class="price"><%= number_to_currency(productFooter.price) %></span></div>
 	<div class="appear">
-        <% if productFooter.prsizes[0] %>
-            <div><b>Размер:</b> <span class="size"><%= productFooter.prsizes[0].name %></span></div>
-        <% end %>
-        <% if productFooter.prcolors[0] %>
-            <% if productFooter.prcolors[0].textures[0] %>
-                <div><b>Цвет:</b> <span class="color"><%= productFooter.prcolors[0].textures[0].name %></span></div>
-            <% else %>
-                <div><b>Цвет:</b> <span class="color"><%= productFooter.prcolors[0].name %></span></div>
+		<% prsize = productFooter.prsizes[0] %>
+        <% if prsize %>
+            <div><b>Размер:</b> <span class="size"><%= prsize.name %></span></div>
+            <% prcolor = prsize.prcolors[0] %>
+            <% if prcolor %>
+            	<% texture = prcolor.textures[0] %>
+            	<% if texture %>
+            		<div><b>Цвет:</b> <span class="color"><%= texture.name %></span></div>
+            	<% else %>
+            		<div><b>Цвет:</b> <span class="color"><%= prcolor.name %></span></div>
+            	<% end %>
             <% end %>
-        <% end %>
-        <% if productFooter.proptions[0] %>
-            <div><b>Опция:</b> <span class="option"><%= productFooter.proptions[0].name %></span></div>
+            <% proption = prsize %>
+            <% if proption %>
+            	<div><b>Опция:</b> <span class="option"><%= proption.name %></span></div>
+            <% end %>
         <% end %>
         <div class="id hidden"><%= productFooter.id %></div>
         <div class="scode hidden"><%= productFooter.scode %></div>

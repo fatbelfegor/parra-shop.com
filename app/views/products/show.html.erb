@@ -1,3 +1,6 @@
+<% sizes_exist = !@product.prsizes.blank?
+sizes = @product.prsizes
+size_first = @product.prsizes.first %>
 <script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
 <link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 <div class="show page">
@@ -20,74 +23,85 @@
 				</div>
 			<% end %>
 		</div>
-		<div class="productContent" onchange="priceChange()">
+		<div class="productContent">
 			<h1><%= @product.name %></h1>
 			<%= sanitize(@product.description) %>
 			
-			<% if @product.prsizes && @product.prsizes.count > 0 %>
-			<div>
-				<a onclick="option(this)">Выбрать размер:<img src="/assets/optionArrow.png"></a>
-				<div class="option">
-					<label>
-						<input class="size-scode-<%= @product.prsizes[0].scode %>" value="<%= @product.prsizes[0].price %>" type="radio" name="prsizes" checked="checked" />
-						<span><%= @product.prsizes[0].name %></span>
-						<span class="hidden"><%= @product.prsizes[0].scode %></span>
-					</label>
-					<% @product.prsizes[1..-1].each do |p| %>
-						<label>
-							<input class="size-scode-<%= p.scode %>" value="<%= p.price %>" type="radio" name="prsizes" />
-							<span><%= p.name %></span>
-							<span class="hidden"><%= p.scode %></span>
-						</label>						
+			<% if !@product.prsizes.blank? %>
+				<div>
+					<a onclick="option(this)">Выбрать размер:<img src="/assets/optionArrow.png"></a>
+					<div class="option">
+						<% first = true %>
+						<% for prsize in @product.prsizes %>
+							<label onchange="priceChange(this)">
+								<input class="size-scode-<%= prsize.scode %>" value="<%= prsize.price %>" type="radio" name="prsizes"<% if first %><%= first = false; ' checked="checked"' %><% end %>/>
+								<span><%= prsize.name %></span>
+								<span class="hidden"><%= prsize.scode %></span>
+							</label>
+						<% end %>
+					</div>
+				</div>
+				<% active = true %>
+				<% first_color = true %>
+				<% first_option = true %>
+				<div class="prsize-wrap">
+					<% for prsize in @product.prsizes %>
+						<div class="<% if active %><%= active = false; ' active' %><% end %>" onchange="priceChange()">
+							<% if !prsize.prcolors.blank? %>
+								<div>
+									<a onclick="option(this)">Выбрать цвет:<img src="/assets/optionArrow.png"></a>
+									<div class="option">
+										<% for prcolor in prsize.prcolors %>
+											<% if prcolor.textures.blank? %>
+												<label class="color" data-color="<%= prcolor.name %>">
+													<input class="color-scode-<%= prcolor.scode %>" value="<%= prcolor.price %>" type="radio" name="prcolors"<% if first_color %><%= first_color = false; " checked=checked" %><% end %>>
+													<a href="<%= prcolor.images %>" data-lightbox="<%= prcolor.name %>" title="<%= prcolor.name %>"><img src="<%= prcolor.images %>"></a>
+													<span><%= sanitize(prcolor.description) %></span>
+												</label>
+											<% else %>
+												<div class="catalog">
+													<div class="header">
+														<div class="heading" style="background-image: url('<%= prcolor.images %>') !important"><p>Каталог тканей</p><p><%= prcolor.name %></p></div>
+														<div class="fancyButton" onclick="texturesWatch(this)">Выбрать</div>
+													</div>
+													<div class="textures" style="height:0">
+														<% for t in prcolor.textures %>
+															<label>
+																<p class="hidden"><%= t.scode %></p>
+																<p><%= t.scode %> <%= t.name %></p>
+																<a href="<%= t.image %>" data-lightbox="<%= prcolor.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
+																<input class="texture-scode-<%= t.scode %>" type="radio" name="prcolors" value="<%= t.price + prcolor.price %>"<% if first %><%= first = false; ' checked="checked"' %><% end %>>
+															</label>
+														<% end %>
+													</div>
+												</div>
+											<% end %>
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+							<% if !@product.proptions.blank? %>
+								<div>
+									<a onclick="option(this)">Выбрать опции:<img src="/assets/optionArrow.png"></a>
+									<div class="option">
+										<label>
+											<input value="0" type="radio" name="proptions"<% if first_option %><%= first_option = false; ' checked="checked"' %><% end %>>
+											<span>Без опций</span>
+											<span class="hidden">Без опций</span>
+										</label>
+										<% for proption in prsize.proptions %>
+											<label>
+												<input class="option-scode-<%= proption.scode %>" value="<%= proption.price %>" type="radio" name="proptions" />
+												<span><%= proption.name %></span>
+												<span class="hidden"><%= proption.scode %></span>
+											</label>						
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+						</div>
 					<% end %>
 				</div>
-			</div>
-			<% end %>
-			<% if @product.prcolors && @product.prcolors.count > 0 %>
-			<div>
-				<a onclick="option(this)">Выбрать цвет:<img src="/assets/optionArrow.png"></a>
-				<div class="option">
-					<% if @product.prcolors[0].textures.empty? %>
-					<label class="color" data-color="<%= @product.prcolors[0].name %>">
-						<input class="color-scode-<%= @product.prcolors[0].scode %>" value="<%= @product.prcolors[0].price %>" type="radio" name="prcolors" checked="checked" />
-						<a href="<%= @product.prcolors[0].images %>" data-lightbox="<%= @product.prcolors[0].name %>" title="<%= @product.prcolors[0].name %>"><img src="<%= @product.prcolors[0].images %>"></a>
-						<span><%= sanitize(@product.prcolors[0].description) %></span>
-					</label>
-					<% else %>
-						<%= render :partial => "prcolors/textures" , :object => @product.prcolors[0] %>
-					<% end %>
-					<% @product.prcolors[1..-1].each do |p| %>
-						<% if p.textures.empty? %>
-						<label class="color" data-color="<%= p.name %>">
-							<input class="color-scode-<%= p.scode %>" value="<%= p.price %>" type="radio" name="prcolors" />
-							<a href="<%= p.images %>" data-lightbox="<%= p.name %>" title="<%= p.name %>"><img src="<%= p.images %>"></a>
-							<span><%= sanitize(p.description) %></span>
-						</label>
-						<% else %>
-							<%= render :partial => "prcolors/textures" , :object => p %>
-						<% end %>			
-					<% end %>
-				</div>
-			</div>
-			<% end %>
-			<% if @product.proptions && @product.proptions.count > 0 %>
-			<div>
-				<a onclick="option(this)">Выбрать опции:<img src="/assets/optionArrow.png"></a>
-				<div class="option">
-					<label>
-						<input value="0" type="radio" name="proptions" checked="checked" />
-						<span>Без опций</span>
-						<span class="hidden">Без опций</span>
-					</label>
-					<% @product.proptions.each do |p| %>
-						<label>
-							<input class="option-scode-<%= p.scode %>" value="<%= p.price %>" type="radio" name="proptions" />
-							<span><%= p.name %></span>
-							<span class="hidden"><%= p.scode %></span>
-						</label>						
-					<% end %>
-				</div>
-			</div>
 			<% end %>
 			<div id="choosedChars" class="open">
 				<h5>Выбранные опции:</h5>
@@ -114,59 +128,140 @@
 		</div>
 	</div>
 	<% if current_user && current_user.admin? %>
-	<div class="text-center" style="margin-top:15px">
-	<%= link_to 'Редактировать', edit_product_path(@product), class: 'btn btn-success' %>
-	<%= link_to 'Удалить', @product, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
-	<%= link_to 'Список Продуктов',   if(@product.category) then @product.category else products_path end, class: 'btn btn-info' %>
-	</div>
-	<table class="table table-striped text-center table-bordered">
-		<tr><td>
-		<h2>Список размеров (<%= @product.prsizes.count %>)</h2>
-		<%= link_to 'Создать новый размер', {:controller => :prsizes, :action => :new , :product_id => @product.id}, class: 'btn btn-primary' %>
-		<% if @product.prsizes.count != 0 %>
-		<table class="table table-striped table-bordered">
-			<tr>
-				<th>Название</th>
-				<th>Цена</th>
-				<th>действия</th>
-			</tr>
-			<%= render(:partial => "prsizes/prsize" , :collection => @product.prsizes) %>
-		</table>
-		<% end %>
-		</td></tr>
-		<tr><td>
-		<h2>Список цветов (<%= @product.prcolors.count %>)</h2>
-
-		<%= link_to 'Создать новый цвет', { :controller => :prcolors, :action => :new , :product_id => @product.id }, class: 'btn btn-primary' %>
-		<%= link_to 'Скопировать цвет', { :controller => :prcolors, :action => :copy , :product_id => @product.id }, class: 'btn btn-warning' %>
-
-		<% if @product.prcolors.count != 0 %>
-		<table class="table table-striped table-bordered optionsTable">
-			<tr>
-				<th>Название</th>
-				<th>Цена</th>
-				<th>действия</th>
-			</tr>
-			<%= render(:partial => "prcolors/prcolor" , :collection => @product.prcolors) %>
-		</table>
-		<% end %>
-		</td></tr>
-		<tr><td>
-		<h2>Список опций (<%= @product.proptions.count %>)</h2>
-
-		<%= link_to 'Создать новую опцию', { :controller => :proptions, :action => :new , :product_id => @product.id }, class: 'btn btn-primary' %>
-		<% if @product.proptions.count != 0 %>
-		<table class="table table-striped table-bordered">
-			<li>
-				<div style="text-align: center">Название</div>
-				<div style="text-align: center">Цена</div>
-				<div style="text-align: center">действия</div>
-			</li>
-			<%= render(:partial => "proptions/proption" , :collection => @product.proptions) %>
-		</table>
-		<% end %>
-		</td></tr>
-	</table>
+		<% @products = Product.order :position %>
+		<div id="admin-product">
+			<div>
+				<%= link_to 'Редактировать', edit_product_path(@product), class: 'btn btn-warning' %>
+				<%= link_to 'Удалить', @product, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger' %>
+				<%= link_to 'Список Продуктов',   if(@product.category) then @product.category else products_path end, class: 'btn btn-info' %>
+				<span class="btn btn-success" id='dropdown'>
+					<p onclick='$(this).parent().toggleClass("active")'>Скопировать Размеры</p>
+					<% def dropdown cats
+						ret = '<ul>'
+						for cat in cats
+							ret += "<li><p onclick='$(this).next().toggleClass(\"active\")'>#{cat.name}</p>"
+							children = @categories.find_all{|c| c.parent_id == cat.id}
+							if children.blank?
+								products = @products.find_all{|p| p.category_id == cat.id}
+								if !products.blank?
+									ret += '<ul>'
+									for p in products
+										ret += "<li><p>#{p.name}<span class='btn btn-success' onclick='copyProduct(this, #{p.id})'>Выбрать</span></p></li>"
+									end
+									ret += '</ul>'
+								end
+							else
+								ret += dropdown children
+							end
+							ret += '</li>'
+						end
+						ret + '</ul>'
+					end %>
+					<%= raw dropdown @categories.find_all{|c| !c.parent_id} %>
+				</span>
+			</div>
+			<br><br>
+			<table>
+				<tr><h2>Список размеров (<%= sizes.count %>) <%= link_to 'Создать', new_prsize_path(@product.id), class: 'btn btn-primary' %>
+				<span class="btn btn-success" id='dropdown'>
+					<p onclick='$(this).parent().toggleClass("active")'>Скопировать Размер</p>
+					<ul>
+						<% for size in @product.prsizes %>
+							<li><p><%= size.name %><span class='btn btn-success' onclick='copySize(this, <%= size.id %>)'>Выбрать</span></p></li>
+						<% end %>
+					</ul>
+				</span>
+				</tr>
+				<tr>
+					<th>Название</th>
+					<th>Цена</th>
+					<th>действия</th>
+				</tr>
+				<% for size in sizes %>
+					<tr>
+						<td><%= size.name %></td>
+						<td><%= number_to_currency size.price %></td>
+						<td>
+							<%= link_to 'Удалить', size, data: {confirm: 'Вы уверены?'}, :method => :delete, class: 'btn btn-danger' %>
+							<%= link_to 'Редактировать', edit_prsize_path(size), class: 'btn btn-warning' %>
+							<div class="btn btn-success" onclick="sizeOpen(this)">Развернуть</div>
+						</td>
+					</tr>
+					<tr class="color">
+						<td colspan="3">
+							<table class="hide">
+								<tr>
+									<th colspan="3"><h2>Список цветов (<%= size.prcolors.count %>) <%= link_to 'Создать', new_prcolor_path(@product.id, size.id), class: 'btn btn-primary' %> <div class="btn btn-primary" onclick="sizeSubOpen(this)">Развернуть</div></h2></th>
+								</tr>
+								<tr>
+									<th>Название</th>
+									<th>Цена</th>
+									<th>действия</th>
+								</tr>
+								<% for color in size.prcolors %>
+									<tr>
+										<td><%= color.name %></td>
+										<td><%= number_to_currency color.price %></td>
+										<td>
+											<%= link_to 'Удалить', color, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+											<%= link_to 'Редактировать', "/products/#{@product.id}/prsizes/#{size.id}/colors/#{color.id}/edit", class: 'btn btn-warning' %> <div class="btn btn-success" onclick="colorOpen(this)">Развернуть</div>
+										</td>
+									</tr>
+									<tr class="texture">
+										<td colspan="3">
+											<table class="hide">
+												<tr>
+													<th colspan="3"><h2>Список текстур (<%= color.textures.count %>) <%= link_to 'Создать', "/products/#{@product.id}/prsizes/#{size.id}/colors/#{color.id}/edit", class: 'btn btn-primary' %> <div class="btn btn-primary" onclick="sizeSubOpen(this)">Развернуть</div></h2></th>
+												</tr>
+												<tr>
+													<th>Название</th>
+													<th>Цена</th>
+													<th>действия</th>
+												</tr>
+												<% for texture in color.textures %>
+													<tr>
+														<td><%= texture.name %></td>
+														<td><%= number_to_currency texture.price %></td>
+														<td>
+															<%= link_to 'Удалить', texture, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+															<%= link_to 'Редактировать', edit_texture_path(texture), class: 'btn btn-warning' %>
+														</td>
+													</tr>
+												<% end %>
+											</table>
+										</td>
+									</tr>
+								<% end %>
+							</table>
+						</td>
+					</tr>
+					<tr class="option">
+						<td colspan="3">
+							<table class="hide">
+								<tr>
+									<th colspan="3"><h2>Список опций (<%= size.proptions.count %>) <%= link_to 'Создать', new_proption_path(@product.id, size.id), class: 'btn btn-primary' %> <div class="btn btn-primary" onclick="sizeSubOpen(this)">Развернуть</div></h2></th>
+								</tr>
+								<tr>
+									<th>Название</th>
+									<th>Цена</th>
+									<th>действия</th>
+								</tr>
+								<% for option in size.proptions %>
+									<tr>
+										<td><%= option.name %></td>
+										<td><%= number_to_currency option.price %></td>
+										<td>
+											<%= link_to 'Удалить', option, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+											<%= link_to 'Редактировать', edit_proption_path(option), class: 'btn btn-success' %>
+										</td>
+									</tr>
+								<% end %>
+							</table>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
 	<% end %>
 	<div class="others">
 		<p>Похожие товары</p>

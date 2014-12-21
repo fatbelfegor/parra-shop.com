@@ -12,7 +12,6 @@ ParraShopCom::Application.routes.draw do
   devise_for :users
   get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
-  get '/prcolors/copy', to: 'prcolors#copy'
   get '/packinglist', to: 'packinglist#index'
   post '/packinglist', to: 'packinglist#index'
   get '/packinglist/:id', to: 'packinglist#show'
@@ -61,7 +60,7 @@ ParraShopCom::Application.routes.draw do
       resources :subcategories
     end
   end
-  resources :images, :prsizes, :textures, :proptions, :prcolors
+  resources :images
   resources :orders do
     resources :order_item, except: [:index, :show, :edit] do
       post :plus, on: :member
@@ -71,7 +70,20 @@ ParraShopCom::Application.routes.draw do
   resources :statuses, except: [:show]
   resources :banners, except: [:show]
   resources :products, except: :index do
-    get :show_scode, on: :member
+    member do
+      get :show_scode
+      resources :prsizes do
+        member do
+          resources :proptions
+          resources :prcolors do
+            get 'copy', to: 'prcolors#copy'
+            member do
+              resources :textures
+            end
+          end
+        end
+      end
+    end
   end
   
   get '/cart.json', to: 'main#cartjson'

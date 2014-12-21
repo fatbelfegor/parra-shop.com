@@ -27,7 +27,7 @@
 			"file": "application.css.scss",
 			"settings":
 			{
-				"buffer_size": 33382,
+				"buffer_size": 43942,
 				"line_ending": "Unix"
 			}
 		}
@@ -70,13 +70,6 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/home/romeo/work/parrashop",
-		"/home/romeo/work/parrashop/app",
-		"/home/romeo/work/parrashop/app/assets",
-		"/home/romeo/work/parrashop/app/assets/stylesheets"
-	],
 	"file_history":
 	[
 		"/home/romeo/work/parrashop/public/three.js/examples/js/shaders/CopyShader.js",
@@ -227,15 +220,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 33382,
+						"buffer_size": 43942,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								33262,
-								33262
+								0,
+								0
 							]
 						],
 						"settings":
@@ -351,6 +344,10 @@
 		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"novo",
+				"~/work/projects/novomeb.sublime-project"
+			],
 			[
 				"top",
 				"~/work/projects/topbeds.sublime-project"

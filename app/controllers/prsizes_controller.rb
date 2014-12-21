@@ -1,38 +1,29 @@
 class PrsizesController < ApplicationController
 	def new
-		@prsize = Prsize.new
+		@prsize = Prsize.new product_id: params[:id]
 		@products = Product.all
-		@product_id = params[:product_id]
-      
-		if params[:product_id]
-      @prsize.product = Product.find(params[:product_id])
-    end		
 	end
 
 	def create
-    @prsize = Prsize.new(prsize_params)
-
-    @prsize.save
-    redirect_to '/kupit/'+@prsize.product.scode
+    @prsize = Prsize.create prsize_params
+    redirect_to URI.encode '/kupit/'+@prsize.product.scode
   end
 
   def edit
-    @products = Product.all
     @prsize = Prsize.find(params[:id])
-    @product_id = @prsize.product_id
+    @products = Product.all
   end
 
   def update
     @prsize = Prsize.find(params[:id])
-
-    @prsize.update_attributes prsize_params
-    redirect_to '/kupit/'+@prsize.product.scode
+    @prsize.update prsize_params
+    redirect_to URI.encode '/kupit/'+@prsize.product.scode
   end
 
   def destroy
     @prsize = Prsize.find(params[:id])
     @prsize.destroy
-    redirect_to '/kupit/'+@prsize.product.scode
+    redirect_to URI.encode '/kupit/'+@prsize.product.scode
   end
 
 private

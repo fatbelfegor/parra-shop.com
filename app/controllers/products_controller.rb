@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
       @title = @product.subcategory.name + " - " + @title
     end
     if !@product.invisible || (user_signed_in? && current_user.admin?)
+      @categories = Category.all.order :position
       respond_to do |format|
         format.html {render :action => 'show'}
         format.xml  { render :xml => @product }

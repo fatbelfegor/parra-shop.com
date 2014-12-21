@@ -366,7 +366,13 @@ expire = ->
 	$.get "/images/delete",
 	  url: $(el).prev().attr 'src'
 	$(el).parents('#addImages').html('<input onclick="addImageClick(this)" type="button" value="Добавить изображение в поле header" class="btn btn-primary"><div></div>').next().val('')
-@priceChange = ->
+@priceChange = (prsize) ->
+	if prsize
+		prsize = $ prsize
+		wrap = prsize.parents('.productContent').find('.prsize-wrap')
+		wrap.find('> .active').removeClass 'active'
+		wrap.find('> div').eq(prsize.index()).addClass('active').find('> div').each ->
+			$(@).find(':radio').eq(0).prop 'checked', 'checked'
 	$('#summaryPrice').html optionsPrice(priceNum)
 	productKeepPage()
 	writeChars()
@@ -942,3 +948,24 @@ writeChars = ->
 	$(el).find('[type=file]').each ->
 		el = $ @
 		el.after "<input type='hidden' name='images[]file'>" if el.val() is ''
+@sizeOpen = (el) ->
+	el = $(el)
+	if el.html() is 'Развернуть'
+		el.html 'Свернуть'
+	else
+		el.html 'Развернуть'
+	el.parents('tr').next().toggleClass('show').next().toggleClass('show')
+@sizeSubOpen = (el) ->
+	el = $(el)
+	if el.html() is 'Развернуть'
+		el.html 'Свернуть'
+	else
+		el.html 'Развернуть'
+	el.parents('table').eq(0).toggleClass('hide')
+@colorOpen = (el) ->
+	el = $(el)
+	if el.html() is 'Развернуть'
+		el.html 'Свернуть'
+	else
+		el.html 'Развернуть'
+	el.parents('tr').next().toggleClass('show')

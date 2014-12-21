@@ -1,44 +1,33 @@
 class ProptionsController < ApplicationController
 	def new
-		@proption = Proption.new
-		@products = Product.all
-		@product_id = params[:product_id]
-      
-		if params[:product_id]
-      @proption.product = Product.find(params[:product_id])
-    end		
+		@proption = Prsize.find(params[:id]).proptions.new
+		@prsizes = Prsize.all
 	end
 
 	def create
-    @proption = Proption.new(proption_params)
-
-    @proption.save
-    redirect_to '/kupit/'+@proption.product.scode
+    @proption = Proption.create proption_params
+    redirect_to URI.encode '/kupit/'+@proption.prsize.product.scode
   end
 
   def edit
-    @products = Product.all
     @proption = Proption.find(params[:id])
-    @product_id = @proption.product_id
+    @prsizes = Prsize.all
   end
 
   def update
-    @proption = Proption.find(params[:id])
-
-    @proption.update_attributes proption_params
-    redirect_to '/kupit/'+@proption.product.scode
+    @proption = Proption.find(params[:id]).update proption_params
+    redirect_to URI.encode '/kupit/'+@proption.prsize.product.scode
   end
 
   def destroy
-    @proption = Proption.find(params[:id])
-    @proption.destroy
-    redirect_to '/kupit/'+@proption.product.scode
+    @proption = Proption.find(params[:id]).destroy
+    redirect_to URI.encode '/kupit/'+@proption.prsize.product.scode
   end
 
 private
   def proption_params
     params.require(:proption).permit(
-    	:product_id,
+    	:prsize_id,
 			:scode,
 			:name,
 			:price
