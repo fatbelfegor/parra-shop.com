@@ -51,8 +51,10 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    update = category_params
+    update[:header] = nil if update[:header] == ''
     respond_to do |format|
-      if @category.update(category_params)
+      if @category.update update
         format.html { redirect_to(categories_url) }
         #format.html { redirect_to(categories_url), notice: 'Category was successfully updated.' }
         format.json { head :no_content }
