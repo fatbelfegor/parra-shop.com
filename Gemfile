@@ -8,6 +8,7 @@ gem 'devise'
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'ox'
+gem 'stylus'
 
 gem 'tinymce-rails'
 

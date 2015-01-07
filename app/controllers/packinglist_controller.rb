@@ -27,9 +27,10 @@ class PackinglistController < ApplicationController
 							end
 							create = {}
 							s_title = p.nodes[scodeCell].nodes[0].nodes[0]
+							create[:name] = p.nodes[1].nodes[0].nodes.map{|n| n.nodes[0]}.join
 							product = Product.find_by_s_title s_title
 							if product.blank?
-								create[:product_name_article] = p.nodes[1].nodes[0].nodes[0].nodes[0] + ', артикул: ' + s_title
+								create[:product_name_article] = s_title
 							else
 								create[:product_id] = product.id
 							end

@@ -1,0 +1,2 @@
+<%= raw render(template: "admin/templates/#{@page}", formats: 'js') %>
+$.extend(true, app.data, eval(<%= raw @data.to_json %>))

@@ -1,0 +1,27 @@
+<script type="text/javascript">
+	<% if @page %>
+		<%= raw render(template: "admin/templates/#{@page}", formats: 'js') %>
+	<% end %>
+	function data () { return eval(
+		<%= raw @data.to_json %>
+	)}
+	<% models = {}
+		for model in ActiveRecord::Base.descendants
+			name = model.to_s
+			if name[0] != '#' and name != 'ActiveRecord::SchemaMigration'
+				underscore = name.underscore
+				columns = []
+				for c in model.columns
+					columns << {name: c.name, type: c.type}
+				end
+				models[underscore] = {
+					name: name,
+					singularize: underscore,
+					pluralize: underscore.pluralize,
+					columns: columns,
+					has_many: model.reflect_on_all_associations(:has_many).map(&:name)
+				}
+			end
+		end %>
+	window.tables = <%= raw models.to_json %>
+</script>

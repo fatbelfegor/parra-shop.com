@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220122917) do
+ActiveRecord::Schema.define(version: 20150107042550) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20141220122917) do
     t.string  "product_name_article"
     t.integer "amount"
     t.decimal "price",                precision: 10, scale: 0
+    t.string  "name"
   end
 
   create_table "packinglists", force: true do |t|
