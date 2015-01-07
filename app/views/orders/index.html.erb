@@ -33,7 +33,7 @@
 		<td><%= number_to_currency(price) %></td>
 		<td>
 			<%= link_to("Открыть", order, class: 'btn btn-info') %>
-			<a class="btn btn-primary" href="/orders/<%= order.id %>/Заказ <%= "#{current_user.prefix} #{order.number}" %>.xlsx">Распечатать</a>
+			<a class="btn btn-primary" href="/orders/<%= order.id %>/Заказ <%= "#{current_user.prefix} #{order.number || order.id}" %>.xlsx">Распечатать</a>
 			<div class="btn btn-success setStatus" onclick="orderStatus(this)">Статус
 				<div>
 					<ul>
