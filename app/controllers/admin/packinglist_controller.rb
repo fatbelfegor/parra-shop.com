@@ -11,6 +11,15 @@ class Admin::PackinglistController < Admin::AdminController
 		pack = Packinglist.find params[:id]
 		rend page: 'packinglist/show', data: {
 			records: {
+				'category' => Category.all.map{|p| {
+						record: p,
+						children: Category.where(parent_id: p.id).count,
+						habtm: {
+							products: p.product_ids
+						}
+					}
+				},
+				'product' => Product.all.map{|p| {record: p}},
 				'packinglist' => [{record: pack}],
 				'packinglistitem' => pack.packinglistitems.map{|p| {record: p}}
 			}
@@ -18,7 +27,16 @@ class Admin::PackinglistController < Admin::AdminController
 	end
 	def update
 		for item in params[:items]
-			Packinglistitem.find(item[:id]).update amount: item[:amount], price: item[:price]
+			update = {amount: item[:amount], price: item[:price]}
+			id = item[:id]
+			if id
+				product = Product.find_by_id id
+				if product
+					update[:id] = id
+					update[:product_name_article] = product.scode
+				end
+			end
+			Packinglistitem.find(item[:id]).update update
 		end
 		rend data: true
 	end
@@ -56,6 +74,7 @@ class Admin::PackinglistController < Admin::AdminController
 							create[:product_name_article] = s_title
 						else
 							create[:product_id] = product.id
+							create[:product_name_article] = product.scode
 						end
 						amount = p.nodes[scodeCell + 1].nodes[0].nodes[0].to_i
 						amount = 1 if amount == 0

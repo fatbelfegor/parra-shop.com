@@ -39,28 +39,6 @@ app.page = ->
 				$("#treebox_#{name}_id").html treeboxFill name
 			, (name) ->
 				ret += treeboxFill name
-			# records = table.records
-			# if records.length
-				# ret += "<p onclick='treebox.toggle(this)'><span>Корневая запись</span><i class='icon-arrow-down2'></i></p>"
-				# roots = []
-				# for record in all
-				# 	roots.push record if record[c.name] is null
-				# tree = (records) ->
-				# 	ret += '<ul>'
-				# 	for record in records
-				# 		ret += '<li>'
-				# 		children = $.grep all, (a) ->
-				# 			a[c.name] is record.id
-				# 		if children.length
-				# 			ret += "<div><i class='icon-arrow-down2' onclick='treebox.toggle(this)'></i><p onclick='treebox.pick(this)' data-id='#{record.id}'>#{record.name}</p></div>"
-				# 			tree children
-				# 		else
-				# 			ret += "<div><p onclick='treebox.pick(this)' data-id='#{record.id}'>#{record.name}</p></div>"
-				# 		ret += '</li>'
-				# 	ret += '</ul>'
-				# tree roots
-			# else
-			# 	ret += "<p><span>Корневая запись</span></p>"
 			ret += "</div>
 				</div>"
 		else if c.name is 'image'
