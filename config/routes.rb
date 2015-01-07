@@ -124,6 +124,7 @@ ParraShopCom::Application.routes.draw do
 
   match 'admin/packinglist', to: 'admin/packinglist#index', via: [:get, :post]
   post 'admin/packinglist/update', to: 'admin/packinglist#update'
+  post 'admin/packinglist/upload', to: 'admin/packinglist#upload'
   match 'admin/packinglist/:id', to: 'admin/packinglist#show', via: [:get, :post]
 
   get '*anything', to: 'application#page404'
