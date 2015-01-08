@@ -55,6 +55,7 @@
 			<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='add_items[]amount' value='1'></td>
 			<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='add_items[]price' value='0'></td>
 			<td style='width: 15%'>0</td>
+			<td class='btn red' onclick='$(this).parent().remove()'>Удалить</td>
 		</tr>"
 		packinglist.tree_out_click()
 	tree_out_click: ->
@@ -93,6 +94,7 @@ app.page = ->
 					<th>Количество</th>
 					<th>Цена (руб.)</th>
 					<th>Итоговая цена (руб.)</th>
+					<th></th>
 				</tr>"
 	cats = []
 	for rec in tables.category.records
@@ -121,6 +123,7 @@ app.page = ->
 			<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='items[]amount' value='#{item.amount}'></td>
 			<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='items[]price' value='#{item.price}'></td>
 			<td style='width: 15%'>#{item.price}</td>
+			<td class='btn red' onclick='record.destroy(this, \"packinglistitem\", #{item.id})'>Удалить</td>
 		</tr>"
 	ret += "</table>
 			<br>
