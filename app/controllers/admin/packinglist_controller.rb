@@ -28,11 +28,11 @@ class Admin::PackinglistController < Admin::AdminController
 	def update
 		for item in params[:items]
 			update = {amount: item[:amount], price: item[:price]}
-			id = item[:id]
-			if id
+			id = item[:product_id]
+			if id != ''
 				product = Product.find_by_id id
 				if product
-					update[:id] = id
+					update[:product_id] = id
 					update[:product_name_article] = product.scode
 				end
 			end

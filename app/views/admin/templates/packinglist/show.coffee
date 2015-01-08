@@ -49,7 +49,7 @@ app.page = ->
 			<td style='color: white; background-color: #{color}; cursor: pointer; white-space: nowrap' class='treebox' id='treebox_packinglist'>
 				<p onclick='treebox.toggle(this)'><span>#{item.product_name_article}</span></p>
 				<ul style='color: #333; width: 400px'>#{tree}</ul>
-				<input type='hidden' data-type='integer' name='items[].product_id'>
+				<input type='hidden' data-type='integer' name='items[]product_id'>
 			</td>
 			<td>#{item.name}</td>
 			<td style='width: 10%'><input style='text-align: center' type='text' name='items[]amount' value='#{item.amount}'></td>
@@ -88,7 +88,7 @@ app.page = ->
 					if rec.record.id in ids
 						products.push rec
 				for product in products
-					ret += "<li><div><p onclick='packinglist.pick(this)' data-id='product.record.id'>#{product.record.scode}</p></div></li>"
+					ret += "<li><div><p onclick='packinglist.pick(this)' data-id='#{product.record.id}'>#{product.record.scode}</p></div></li>"
 			ul.html ret
 	pick: (el) ->
 		el = $ el
