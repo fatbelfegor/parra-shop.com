@@ -146,81 +146,10 @@ ready = ->
 					</a>
 				</div>
 			<div>
-				<a href='/admin/model'>
-					<i class='icon-table2'></i>
-					<span>Модели</span>
-				</a>
-				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
-				<ul>
-					<li>
-						<a href='/admin/model/new'>
-							<i class='icon-plus-circle'></i>
-							<span>Создать новую</span>
-						</a>
-					</li>"
-		for n, table of tables
-			name = table.name
-			low = table.singularize
-			ret += "<li><a href='/admin/model/#{low}'><i class='icon-stack'></i><span>#{name}</span></a>
-				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
-				<ul>
-					<li><a href='/admin/model/#{low}/records'><i class='icon-menu2'></i><span>Все записи</span></a></li>
-					<li><a href='/admin/model/#{low}/new' data-out><i class='icon-quill2'></i><span>Добавить запись</span></a></li>
-					<li><a href='/admin/model/#{low}/edit'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
-					<li><p href='/admin/model/#{low}/destroy' onclick='ask(this, \"Вы действительно хотите удалить модель <b>#{low}</b>?\", 'model.destroy(\"#{low}\")')'><i class='icon-remove3'></i><span>Удалить модель</span></p></li>
-				</ul>
-			</li>"
-		ret += "</ul>
-			</div>
-			<div>
-				<a href='/admin/images' data-out>
-					<i class='icon-image'></i>
-					<span>Изображения</span>
-				</a>
-				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass('active')'></i>
-			</div>
-			<div>
 				<a href='/admin/packinglist'>
 					<i class='icon-credit'></i>
 					<span>Список накладных</span>
 				</a>
-			</div>
-			<div>
-				<a href='/admin/controllers'>
-					<i class='icon-sun'></i>
-					<span>Контроллеры</span>
-				</a>
-				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass('active')'></i>
-				<ul>
-					<li>
-						<a href='/admin/controllers/new'>
-							<i class='icon-plus-circle'></i>
-							<span>Создать новый</span>
-						</a>
-					</li>"
-		if app.data.controllers
-			for con, hash of app.data.controllers
-				ret += "<li>
-						<a href='/admin/controllers/#{con}'>
-							<i class='icon-cog'></i>
-							<span>#{con}</span>
-						</a>
-					</li>"
-		ret += "</ul>"
-		ret += "</div>
-			<div>
-				<a href='/admin/components'>
-					<i class='icon-share3'></i>
-					<span>Компоненты</span>
-				</a>
-				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass('active')'></i>
-			</div>
-			<div>
-				<a href='/admin' data-out>
-					<i class='icon-copy'></i>
-					<span>Шаблоны</span>
-				</a>
-				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass('active')'></i>
 			</div>
 			<div>
 				<a href='/users/sing_out'>
