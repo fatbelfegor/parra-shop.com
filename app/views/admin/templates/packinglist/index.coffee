@@ -34,7 +34,7 @@ app.page = ->
 						<a href='/admin/packinglist/#{pack.id}' onclick='app.aclick(this)'>#{pack.date}</a>
 					</td>
 					<td>
-						<a href='/admin/packinglist/#{pack.id}' onclick='app.aclick(this)'>#{pack.number || "id: #{pack.id}"}</a>
+						<a href='/admin/packinglist/#{pack.id}' onclick='app.aclick(this)'>#{pack.doc_number || "id: #{pack.id}"}</a>
 					</td>
 					<td>
 						<a href='/admin/packinglist/#{pack.id}' onclick='app.aclick(this)'>#{price}</a>

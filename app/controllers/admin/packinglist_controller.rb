@@ -38,6 +38,9 @@ class Admin::PackinglistController < Admin::AdminController
 			end
 			Packinglistitem.find(item[:id]).update update
 		end
+		for item in params[:add_items]
+			Packinglistitem.create packinglist_id: params[:packinglist_id], product_id: item[:product_id], product_name_article: Product.find_by_id(item[:product_id]).scode, amount: item[:amount], price: item[:price], name: item[:name]
+		end
 		rend data: true
 	end
 	def upload
