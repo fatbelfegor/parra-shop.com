@@ -4,19 +4,43 @@ class Admin::RecordController < Admin::AdminController
 	end
 
 	def edit
-		rend page: 'record/form', data: {
-			record: params[:model].classify.constantize.find(params[:id])
+		classify = params[:model].classify
+		model = classify.constantize
+		@records = {
+			classify.underscore => {
+				records: [model.find(params[:id])],
+				full: {id: params[:id]}
+			}
 		}
+		if model.reflect_on_all_associations(:has_many).map(&:name).include? :images
+			data[:images] = Image.where imageable_type: 'Product'
+		end
+		rend page: 'record/form'
+	end
+
+	def destroy
+		params[:model].classify.constantize.find(params[:id]).destroy
+		rend		
 	end
 
 	def create
-		record = params[:model].classify.constantize.create params.require(:record).permit!
-		if params[:images_urls]
-			for url in params[:images_urls]
-				record.images.create url: url
+		record = params[:model].classify.constantize.new params.require(:record).permit!
+		if record.save
+			if params[:images_urls]
+				for url in params[:images_urls]
+					record.images.create url: url
+				end
 			end
+			id = record.id
+		else
+			id = nil
 		end
-		rend data: record.id
+		rend data: id
+	end
+
+	def update
+		params[:model].classify.constantize.find(params[:id]).update params.require(:record).permit!
+		rend
 	end
 
 	def index
@@ -35,31 +59,48 @@ class Admin::RecordController < Admin::AdminController
 	end
 
 	def get
-		name = params[:model]
-		model = name.classify.constantize
-		where = {}
-		if params[:has_self_null]
-			where["#{name}_id"] = nil
-		end
-		if params[:where]
-			for k, v in params[:where]
-				where[k] = v
+		data = {}
+		for i, p in params[:models]
+			name = p[:model]
+			model = name.classify.constantize
+			where = {}
+			if p[:has_self_null]
+				where["#{name}_id"] = nil
 			end
-		end
-		data = {
-			records: model.where(where).limit(params[:limit]).offset(params[:offset])
-		}
-		if params[:has_self]
-			data[:children] = []
-			for rec in data[:records]
-				data[:children] << model.where("#{name}_id" => rec.id).count
+			if p[:where]
+				for k, v in p[:where]
+					where[k] = v
+				end
+			end
+			data[name] = {
+				records: model.where(where).limit(p[:limit]).offset(p[:offset])
+			}
+			if p[:has_self] or p[:has_many]
+				ids = []
+				for rec in data[name][:records]
+					ids << rec.id
+				end
+			end
+			if p[:has_self]
+				data[name][:children] = model.where("#{name}_id" => ids).count
+			end
+			if p[:has_many]
+				data[name][:has_many] = {}
+				for n in p[:has_many]
+					data[name][:has_many][n.singularize] = n.classify.constantize.where("#{name}_id" => ids)
+				end
+			end
+			if p[:belongs_to]
+				data[name][:belongs_to] = {}
+				for n in p[:belongs_to]
+					bt_ids = []
+					for rec in data[name][:records]
+						bt_ids << rec.send("#{n}_id")
+					end
+					data[name][:belongs_to][n] = n.classify.constantize.find(bt_ids.compact)
+				end
 			end
 		end
 		rend data: data
-	end
-
-	def destroy
-		params[:model].classify.constantize.find(params[:id]).destroy
-		rend data: true
 	end
 end

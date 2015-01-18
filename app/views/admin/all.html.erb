@@ -8,11 +8,11 @@
 	<% models = {}
 		for model in ActiveRecord::Base.descendants
 			name = model.to_s
-			if name[0] != '#' and name != 'ActiveRecord::SchemaMigration'
+			if name[0] != '#' and name != 'ActiveRecord::SchemaMigration' and !name.include? '::HABTM_'
 				underscore = name.underscore
 				columns = []
 				for c in model.columns
-					columns << {name: c.name, type: c.type}
+					columns << {name: c.name, type: c.type, null: c.null, default: c.default}
 				end
 				models[underscore] = {
 					name: name,
@@ -21,7 +21,17 @@
 					columns: columns,
 					has_many: model.reflect_on_all_associations(:has_many).map(&:name)
 				}
+				if @records and @records[underscore]
+					models[underscore][:records] = @records[underscore][:records]
+					models[underscore][:full] = @records[underscore][:full]
+					models[underscore][:children] = @records[underscore][:children] if @records[underscore][:children]
+					models[underscore][:habtm] = @records[underscore][:habtm] if @records[underscore][:habtm]
+				else
+					models[underscore][:records] = []
+					models[underscore][:full] = {}
+				end
 			end
 		end %>
-	window.tables = <%= raw models.to_json %>
+	tables = <%= raw models.to_json %>
+	me = <%= raw current_user.to_json %>
 </script>

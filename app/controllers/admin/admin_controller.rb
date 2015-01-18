@@ -12,7 +12,24 @@ class Admin::AdminController < ApplicationController
 		redirect_to '/admin'
 	end
 
+	def write
+		File.write Rails.root + params[:path], params[:file]
+		rend
+	end
+
 protected
+
+	def file_index path, ending
+		if File.exist? path + ending
+			index = 1
+			while File.exist? "#{path}#{index}#{ending}"
+				index += 1
+			end
+			index.to_s
+		else
+			''
+		end
+	end
 
 	def save_file path, name, file
 		i = file_index path, name
@@ -26,22 +43,30 @@ protected
 		Rails.application.eager_load!
 	end
 
-	def rend options
-		if options[:data]
-			@data = options[:data]
+	def rend *options
+		if options and options != [] and options[0][:data]
+			@data = options[0][:data]
 		else
 			@data = {}
 		end
-		@page = options[:page] if options[:page]
+		def set_page options
+			if options and options != [] and options[0][:page]
+				@page = options[0][:page] if options[0][:page]
+			else
+				@page = params[:controller].sub('admin/', '') + '/' + params[:action]
+			end
+		end
 		respond_to do |format|
 			if request.method == 'GET'
 				format.html do
 					Admin::AdminController.layout 'admin'
+					set_page options
 					render '/admin/all'
 				end
 			else
 				format.html do
 					Admin::AdminController.layout false
+					set_page options
 					render '/admin/_all'
 				end
 				format.json do
@@ -51,9 +76,9 @@ protected
 		end
 	end
 
-	# def admin_required
-	# 	redirect_to "/admin/welcome" unless current_user and current_user.role == 'admin'
-	# end
+	def admin_required
+		redirect_to "/admin/welcome" unless current_user and current_user.admin
+	end
 
 	def migration_index path, name, rb
 		i = 0
@@ -87,12 +112,21 @@ protected
 			under = name.underscore
 			plur = under.pluralize
 			ret = "class #{name} < ActiveRecord::Base"
-			if options[:has_and_belongs_to_many]
-				for hash in options[:has_and_belongs_to_many]
-					ret += "\n\thas_and_belongs_to_many :#{hash[:name].pluralize.underscore}"
+			ret += "\n\thas_many :images, as: :imageable" if options[:imageable]
+			if options[:belongs_to]
+				for hash in options[:belongs_to]
+					ret += "\n\tbelongs_to :#{hash[:name].singularize.underscore}"
 				end
-				ret += "\n"
-				Migration.has_and_belongs_to_many options[:has_and_belongs_to_many], name
+			end
+			if options[:has_one]
+				for hash in options[:has_one]
+					ret += "\n\thas_one :#{hash[:name].singularize.underscore}"
+				end
+			end
+			if options[:has_many]
+				for hash in options[:has_many]
+					ret += "\n\thas_many :#{hash[:name].pluralize.underscore}"
+				end
 			end
 			if options[:acts_as_tree]
 				ret += "\n\thas_many :#{plur}\n\tbelongs_to :#{under}"
@@ -126,6 +160,11 @@ protected
 			end
 			if options[:acts_as_tree]
 				ret += "\n\t\t\tt.belongs_to :#{name.underscore}"
+			end
+			if options[:belongs_to]
+				for hash in options[:belongs_to] 
+					ret += "\n\t\t\tt.belongs_to :#{hash[:name].singularize.underscore}"
+				end
 			end
 			ret += "\n\n\t\t\tt.timestamps null: false" if options[:timestamps]
 			ret += "\n\t\tend"

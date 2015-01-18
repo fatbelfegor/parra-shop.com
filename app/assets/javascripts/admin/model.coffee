@@ -1,46 +1,53 @@
 @model =
 	destroy: (model) ->
-		$.post "/admin/model/#{model}/destroy", (d) ->
-			notify "Модель <b>#{model}</b> успешно удалена" if d is 'success'
+		act.post "model/#{model}/destroy", {}, ->
+			notify "Модель <b>#{model}</b> успешно удалена"
 			menu.remove "model/#{model}"
-		, 'json'
 		dark.close()
 	create: (el) ->
 		form = $(el).parent()
-		ok = true
-		form.find('[data-validate]').each ->
-			f = $ @
-			validates = eval f.data 'validate'
-			f_ok = true
-			error = f.parent().find('.error')
-			for v in validates
-				switch v
-					when 'presence'
-						if f.val() is ''
-							f_ok = false
-							error.html "Нужно заполнить"
-			if f_ok
-				error.removeClass('active').html ''
-			else
-				error.addClass 'active'
-			ok = f_ok
-		if ok
+		validate form, ->
 			act.form form, "Модель успешно создана", (d) ->
-				console.log d
 				if d
 					name = $(el).parents('form').find('[name=model]').val()
 					name = name[0] + name[1..-1]
 					low = name.toLowerCase()
-					app.menu.find('> div > ul > li').eq(0).after "<li><a href='/admin/model/#{low}' data-path='#{low}'><i class='icon-stack'></i><span>#{name}</span></a>
+					app.menu.find('> div > ul > li').eq(0).after "<li><a onclick='app.aclick(this)' href='/admin/model/#{low}' data-path='#{low}'><i class='icon-stack'></i><span>#{word name}</span></a>
 						<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
 						<ul>
-							<li><a href='/admin/model/#{low}/records'><i class='icon-menu2'></i><span>Все записи</span></a></li>
-							<li><a href='/admin/model/#{low}/new' data-path='new'><i class='icon-quill2'></i><span>Добавить запись</span></a></li>
-							<li><a href='/admin/model/#{low}/edit'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
+							<li><a onclick='app.aclick(this)' href='/admin/model/#{low}/records'><i class='icon-menu2'></i><span>Все записи</span></a></li>
+							<li><a onclick='app.aclick(this)' href='/admin/model/#{low}/new' data-path='new'><i class='icon-quill2'></i><span>Добавить запись</span></a></li>
+							<li><a onclick='app.aclick(this)' href='/admin/model/#{low}/edit'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
 							<li><p href='/admin/model/#{low}/destroy' onclick='ask(this, \"Вы действительно хотите удалить модель <b>#{low}</b>?\", 'model.destroy(\"#{low}\")')'><i class='icon-remove3'></i><span>Удалить модель</span></p></li>
 						</ul>
 					</li>"
-					app.aclick()
+	update: (el) ->
+		form = $(el).parent()
+		model = $('h1 b').html()
+		table = tables[model]
+		serialize = form.serializeArray()
+		data = {}
+		for s in serialize
+			switch s.name
+				when 'imageable'
+					data.imageable = true
+				when 'timestamps'
+					data.timestamps = true
+				when 'remove[]'
+					data.remove = [] if !data.remove
+					data.remove.push s.value
+		for c, i in table.columns
+			if c.name is 'created_at' and table.columns[i + 1].name is 'updated_at'
+				if data.timestamps
+					delete data.timestamps
+				else
+					data.remove_timestamps = true
+		if 'images' in table.has_many
+			if data.imageable
+				delete data.imageable
+			else
+				data.remove_imageable = true
+		act.sendData "model/#{model}/update", data, 'Модель обновлена'
 	column:
 		add: (el, name) ->
 			params =
@@ -52,18 +59,18 @@
 			if name
 				params.name = name
 			switch name
+				when 'name'
+					params.null = false
 				when 'scode'
 					params.uniq = true
 					params.null = false
-				when 'description'
+				when 'description', 'short_desc', 'seo_description'
 					params.type = 'Text'
 				when 'price'
 					params.type = 'Decimal'
 					params.precision = 8
 					params.scale = 2
 					params.null = false
-				when 'seo_description'
-					params.type = 'Text'
 				when 'seo'
 					@add el, 'seo_title'
 					@add el, 'seo_description'
@@ -71,7 +78,7 @@
 					return
 				when 'position'
 					params.type = 'Integer'
-			tr = "<tr>"
+			tr = "<tr class='field'>"
 			tr += model.columnType params.type, 'addColumn[]type', 'td'
 			tr += "<td>
 						<input type='text' name='addColumn[]name' value='#{params.name}'>
@@ -103,9 +110,14 @@
 			tr += " checked='checked'" if params.null
 			tr += ">
 					</td>
-					<td class='btn red' onclick='act.remove.parent(this)'>Удалить</td>
+					<td class='btn red' onclick='rm(this)'>Удалить</td>
+					<td class='btn deepblue sortable'>Переместить</td>
 				</tr>"
-			$(el).parents('.add-column-wrap').find('table').append tr
+			table = $(el).parents('.add-column-wrap').find 'table'
+			table.append tr
+			table.sortable
+				items: "tr.field"
+				handle: ".sortable"
 		rename: (el) ->
 			tr = $(el).parent()
 			name = tr.find('.name').html()
@@ -113,7 +125,7 @@
 					<p>Переименовать <b>\"#{name}\"</b></p>
 					<input type='text' name='rename[]new'>
 					<input type='hidden' name='rename[]old' value='#{name}'>
-					<i class='icon-cancel-circle' onclick='$(this).parent().remove()'></i>
+					<i class='icon-cancel-circle' onclick='rm(this)'></i>
 				</div>"
 		change: (el) ->
 			tr = $(el).parent()
@@ -148,7 +160,7 @@
 					<p>Null: <input type='checkbox' name='change[]null'"
 			html += " checked" if null_column
 			html += "></p>
-					<i class='icon-cancel-circle' onclick='$(this).parent().remove()'></i>"
+					<i class='icon-cancel-circle' onclick='rm(this)'></i>"
 			html += "</div>"
 			app.yield.find('.change').show().append html
 		dropdown: (el) ->
@@ -161,11 +173,7 @@
 					tr.find("[data-type='limit']").prop 'disabled', false
 				else if val is 'Decimal'
 					tr.find("[data-type='precision'], [data-type='scale']").prop 'disabled', false
-	remove: (el) ->
-		tr = $(el).parent()
-		name = tr.find('.name').html()
-		app.yield.find('.remove').show().append "<div class='row'><input type='hidden' name='remove[]' value='#{name}'><p class='max'>Удалить <b>\"#{name}\"</b></p><i class='icon-cancel-circle' onclick='$(this).parent().remove()'></i></div>"
-	snakerize: (str) ->
+	underscore: (str) ->
 		str.split(/(?=[A-Z])/).join('_').toLowerCase()
 	association: (el, name) ->
 		el = $ el
@@ -174,7 +182,7 @@
 			<input type='text' name='#{wrap.data 'type'}[]name'"
 		ret += " value='#{el.html()}'" if name
 		ret += ">
-			<i class='icon-cancel-circle' onclick='act.remove.parent(this)'></i>
+			<i class='icon-cancel-circle' onclick='rm(this)'></i>
 		</label>"
 		wrap.find('.insert').append ret
 	columnType: (type, name, tag) ->

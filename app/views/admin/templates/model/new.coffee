@@ -12,9 +12,8 @@ app.page = ->
 			<div class='nav-tabs'>
 				<p onclick='openTab(this)' class='active'>Поля</p>
 				<p onclick='openTab(this)'>belongs_to</p>
-				<p onclick='openTab(this)'>has_one</p>
 				<p onclick='openTab(this)'>has_many</p>
-				<p onclick='openTab(this)'>has_and_belongs_to_many</p>
+				<p onclick='openTab(this)'>has_one</p>
 			</div>
 			<div class='tabs'>
 				<div class='active add-column-wrap'>
@@ -29,6 +28,7 @@ app.page = ->
 							<th>Uniq</th>
 							<th>Null</th>
 							<th></th>
+							<th></th>
 						</tr>
 					</table>
 					<br>
@@ -36,6 +36,8 @@ app.page = ->
 						<div class='btn green' onclick='model.column.add(this)'>Добавить поле</div>
 						<div class='btn white' onclick='model.column.add(this, \"name\")'>Название</div>
 						<div class='btn white' onclick='model.column.add(this, \"scode\")'>Код</div>
+						<div class='btn white' onclick='model.column.add(this, \"article\")'>Артикул</div>
+						<div class='btn white' onclick='model.column.add(this, \"short_desc\")'>Краткое описание</div>
 						<div class='btn white' onclick='model.column.add(this, \"description\")'>Описание</div>
 						<div class='btn white' onclick='model.column.add(this, \"price\")'>Цена</div>
 						<div class='btn white' onclick='model.column.add(this, \"image\")'>Изображение</div>
@@ -43,20 +45,17 @@ app.page = ->
 						<div class='btn white' onclick='model.column.add(this, \"position\")'>Позиция</div>
 					</div>
 					<br>
-					<div class='labels'>
-						<label class='checkbox'><div><input onchange='checkbox(this)' type='checkbox' name='imageable'></div>Множество картинок</label>
-						<label class='checkbox'><div><input onchange='checkbox(this)' type='checkbox' name='acts_as_tree'></div>Принадлежит сама себе</label>
+					<div class='labels'>"
+	for n of tables
+		if n is 'image'
+			ret += "<label class='checkbox'><div><input onchange='checkbox(this)' type='checkbox' name='imageable'></div>Множество картинок</label>"
+			break
+	ret += "<label class='checkbox'><div><input onchange='checkbox(this)' type='checkbox' name='acts_as_tree'></div>Принадлежит сама себе</label>
 						<label class='checkbox'><div><input onchange='checkbox(this)' type='checkbox' name='timestamps'></div>Timestamps</label>
 					</div>
 					<br>
 				</div>
-				<div>
-				</div>
-				<div>
-				</div>
-				<div>
-				</div>
-				<div class='association-wrap' data-type='has_and_belongs_to_many'>
+				<div class='association-wrap' data-type='belongs_to'>
 					<br>
 					<div data-content='model-names' class='buttons-list'>"
 	for n, table of tables
@@ -67,6 +66,39 @@ app.page = ->
 					<div class='btn green dashed' onclick='model.association(this)'>Добавить</div>
 					<br>
 				</div>
+				<div class='association-wrap' data-type='has_many'>
+					<br>
+					<div data-content='model-names' class='buttons-list'>"
+	for n, table of tables
+		ret += "<div class='btn deepblue' onclick='model.association(this, true)'>#{table.singularize}</div>"
+	ret += "</div>
+					<br>
+					<div class='center-row insert'></div>
+					<div class='btn green dashed' onclick='model.association(this)'>Добавить</div>
+					<br>
+				</div>
+				<div class='association-wrap' data-type='has_one'>
+					<br>
+					<div data-content='model-names' class='buttons-list'>"
+	for n, table of tables
+		ret += "<div class='btn deepblue' onclick='model.association(this, true)'>#{table.singularize}</div>"
+	ret += "</div>
+					<br>
+					<div class='center-row insert'></div>
+					<div class='btn green dashed' onclick='model.association(this)'>Добавить</div>
+					<br>
+				</div>
+				<!--<div class='association-wrap' data-type='has_and_belongs_to_many'>
+					<br>
+					<div data-content='model-names' class='buttons-list'>"
+	for n, table of tables
+		ret += "<div class='btn deepblue' onclick='model.association(this, true)'>#{table.singularize}</div>"
+	ret += "</div>
+					<br>
+					<div class='center-row insert'></div>
+					<div class='btn green dashed' onclick='model.association(this)'>Добавить</div>
+					<br>
+				</div>-->
 			</div>
 			<div class='btn green dashed' onclick='model.create(this)'>Создать</div>
 		</form>

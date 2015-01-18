@@ -1,6 +1,6 @@
 class Admin::ComponentsController < Admin::AdminController
 	def index
-		rend page: 'components/index'
+		rend
 	end
 	def create
 		case params[:name]
@@ -33,7 +33,14 @@ class Admin::ComponentsController < Admin::AdminController
 			routes = Rails.root.join('config', 'routes.rb')
 			File.write routes, File.read(routes).reverse.sub('end'.reverse, "\n\n\tget '/:page', to: 'pages#page'\nend".reverse).reverse
 			`rake db:migrate`
+		when 'images'
+			File.write Rails.root.join('app', 'models', 'image.rb'), "class Image < ActiveRecord::Base\n\tbelongs_to :imageable, polymorphic: true\nend"
+			path = Rails.root.join 'db', 'migrate'
+			mirgation_name = "_create_images"
+			i = Migration.index path, mirgation_name, '.rb'
+			File.write Rails.root.join('db', 'migrate', "#{Time.now.strftime "%Y%m%d%H%M%S"}#{mirgation_name}#{i}.rb"), "class CreateImages < ActiveRecord::Migration\n\tdef change\n\t\tcreate_table :images do |t|\n\t\t\tt.string :name\n\t\t\tt.references :imageable, polymorphic: true, index: true\n\t\tend\n\tend\nend"
+			`rake db:migrate`
 		end
-		rend data: true
+		rend
 	end
 end

@@ -1,29 +1,41 @@
 class Admin::PackinglistController < Admin::AdminController
 	def index
-		rend page: 'packinglist/index', data: {
-			records: {
-				'packinglist' => Packinglist.all.map{|p| {record: p}},
-				'packinglistitem' => Packinglistitem.all.map{|p| {record: p}}
-			}
+		@records = {
+			'packinglist' => {records: Packinglist.all, full: {all: true}},
+			'packinglistitem' => {records: Packinglistitem.all, full: {all: true}}
 		}
+		rend
 	end
 	def show
-		pack = Packinglist.find params[:id]
-		rend page: 'packinglist/show', data: {
-			records: {
-				'category' => Category.all.map{|p| {
-						record: p,
-						children: Category.where(parent_id: p.id).count,
-						habtm: {
-							products: p.product_ids
-						}
-					}
-				},
-				'product' => Product.all.map{|p| {record: p}},
-				'packinglist' => [{record: pack}],
-				'packinglistitem' => pack.packinglistitems.map{|p| {record: p}}
+		@records = {
+			'category' => {
+				records: [],
+				children: [],
+				habtm: {products: []}
+			},
+			'product' => {
+				records: Product.all,
+				habtm: {categories: []}
+			},
+			'packinglist' => {
+				records: [Packinglist.find(params[:id])],
+				full: {id: params[:id]}
+			},
+			'packinglistitem' => {
+				records: Packinglistitem.where(packinglist_id: params[:id]),
+				full: {packinglist_id: params[:id]}
 			}
 		}
+		for c in Category.all
+			@records['category'][:records] << c
+			@records['category'][:children] << Category.where(parent_id: c.id).count
+			@records['category'][:habtm][:products] << c.product_ids
+		end
+		for p in Product.all
+			@records['product'][:records] << p
+			@records['product'][:habtm][:categories] << p.category_ids
+		end
+		rend
 	end
 	def update
 		for item in params[:items]
@@ -38,8 +50,10 @@ class Admin::PackinglistController < Admin::AdminController
 			end
 			Packinglistitem.find(item[:id]).update update
 		end
-		for item in params[:add_items]
-			Packinglistitem.create packinglist_id: params[:packinglist_id], product_id: item[:product_id], product_name_article: Product.find_by_id(item[:product_id]).scode, amount: item[:amount], price: item[:price], name: item[:name]
+		if params[:add_items]
+			for item in params[:add_items]
+				Packinglistitem.create packinglist_id: params[:packinglist_id], product_id: item[:product_id], product_name_article: Product.find_by_id(item[:product_id]).scode, amount: item[:amount], price: item[:price], name: item[:name]
+			end
 		end
 		rend data: true
 	end

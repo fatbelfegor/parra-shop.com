@@ -1,11 +1,4 @@
 class Admin::ImageController < Admin::AdminController
-	def index
-		render_all {}
-	end
-
-	def upload
-		render_all {}
-	end
 
 	def save
 	    if image = params[:image]
@@ -16,7 +9,7 @@ class Admin::ImageController < Admin::AdminController
 				ret << save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image)
 			end
 		end
-		render_all ret
+		rend data: ret
 	end
 
 	def destroy
@@ -26,4 +19,5 @@ class Admin::ImageController < Admin::AdminController
 		end
 		render_all true
 	end
+	
 end

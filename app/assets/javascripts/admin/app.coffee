@@ -1,20 +1,29 @@
 #= require jquery
 #= require jquery_ujs
+#= require_self
 #= require_tree .
+
+@settings = template:
+	form: model: {}
+	index: model: {}
 
 @app =
 	routesSorted: {}
-	data:
-		route: {}
-	aclick: (el) ->
-		if window.history and history.pushState and $(el).data 'out'
+	data: {}
+	aclick: (el, options) ->
+		if window.history and history.pushState
 			event.preventDefault()
-			app.go $(el).attr 'href'
+			options ||= {}
+			options.ref = @pathname
+			app.go $(el).attr('href'), options
+	backButton: (title, ref) ->
+		$('#backButton').addClass('active').attr('href', ref).find('span').html title
 	routeFind: []
 	routes:
 		'': {}
 		'model/new': {}
-		'model/:model/edit': data: ['model/:model/table/indexes']
+		'model/habtm': {}
+		'model/:model/edit': {}
 		'model/:model': {}
 		'model/:model/new': {}
 		'404': ->
@@ -24,15 +33,24 @@
 		'components': {}
 		'controllers': data: ['controllers']
 		'controllers/:contr': data: ['controllers/:controller/code']
+		'settings/localization': {}
+		'settings/template_form': {}
+		'settings/template_index': {}
 		'packinglist': {}
 		'packinglist/:id': {}
 app.routes['model/:model/edit/:id'] = app.routes['model/:model/new']
 for k of app.routes
 	app.routeFind.push k.split '/'
-app.go = (url) ->
+app.go = (url, options) ->
 	unless @pathname is url
 		@pathname = url
 		history.pushState {}, '', url
+	pairs = window.location.search.substring(1).split "&"
+	@data.route = vars: {}
+	for p in pairs
+		continue if p is ''
+		pair = p.split '='
+		@data.route.vars[decodeURIComponent pair[0]] = decodeURIComponent pair[1]
 	@pathArray = @pathname.split('/')[2..-1]
 	@path = @pathArray.join '/'
 	len = @pathArray.length
@@ -90,6 +108,7 @@ app.go = (url) ->
 						app.after = null
 				app.yield.html route.page()
 				route.after() if route.after
+				app.backButton options.back, options.ref if options and options.back
 		else
 			params.success = (d) ->
 				$.extend true, app.data, d
@@ -98,6 +117,7 @@ app.go = (url) ->
 	else
 		@yield.html route.page()
 		route.after() if route.after
+		app.backButton options.back, options.ref if options and options.back
 	if @menu
 		@menu.find('.current').removeClass 'current'
 		@menu.find('.active').removeClass 'active'
@@ -113,29 +133,19 @@ ready = ->
 			if val.pluralize in val.has_many
 				val.has_many = val.has_many.filter (word) -> word isnt val.pluralize
 				val.has_self = true
+				val.children = []
 			else
 				val.has_self = false
-			val.records = []
-			records = app.data.records[key]
-			if records
-				for rec in records
-					val.records.push rec
-			val.full = {}
 			val.show_has_many = []
-			val.fields =
-				string: []
-				text: []
-			for c in val.columns
-				if c.name is 'name'
-					val.fields.string = ['name']
-					break
-			if val.fields.string.length is 0
-				for c in val.columns
-					if c.name is 'email'
-						val.fields.string = ['email']
-						break
-			if val.fields.string.length is 0
-				val.fields.string = ['id']
+			val.fields = {}
+			tmpl_index = settings.template.index.model[key]
+			if tmpl_index
+				val.fields.string = tmpl_index.string or []
+				val.fields.text = tmpl_index.text or []
+			else
+				tmpl_index = settings.template.index.common
+				val.fields.string = tmpl_index.string.filter((c) -> val.columns.filter((s) -> s.name is c).length > 0) if tmpl_index.string
+				val.fields.text = tmpl_index.text.filter((c) -> val.columns.filter((s) -> s.name is c).length > 0) if tmpl_index.text
 	app.yield = $ '#yield'
 	if !app.menu and tables
 		app.menu = $ '#menu'
@@ -145,11 +155,126 @@ ready = ->
 						<span>На главную</span>
 					</a>
 				</div>
+				<div>
+				<a href='/admin/model'>
+					<i class='icon-table2'></i>
+					<span>Модели</span>
+				</a>
+				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
+				<ul>
+					<li>
+						<a href='/admin/model/new'>
+							<i class='icon-plus-circle'></i>
+							<span>Создать новую</span>
+						</a>
+					</li>
+					<li>
+						<a href='/admin/model/habtm'>
+							<i class='icon-loop'></i>
+							<span>Создать связь HABTM</span>
+						</a>
+					</li>"
+		for n, table of tables
+			ret += "<li><a href='/admin/model/#{table.singularize}'><i class='icon-stack'></i><span>#{word table.name}</span></a>
+				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
+				<ul>
+					<li><a href='/admin/model/#{table.singularize}/records'><i class='icon-menu2'></i><span>Все записи</span></a></li>
+					<li><a href='/admin/model/#{table.singularize}/new' data-path='new'><i class='icon-quill2'></i><span>Добавить запись</span></a></li>
+					<li><a href='/admin/model/#{table.singularize}/edit'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
+					<li><p href='/admin/model/#{table.singularize}/destroy' onclick='ask(this, &quot;Вы действительно хотите удалить модель <b>#{table.singularize}</b>?&quot;, &quot;model.destroy(&#039;#{table.singularize}&#039;)&quot;)'><i class='icon-remove3'></i><span>Удалить модель</span></p></li>
+				</ul>
+			</li>"
+		ret += "</ul>
+			</div>
+			<div>
+				<a href='/admin/images'>
+					<i class='icon-image'></i>
+					<span>Изображения</span>
+				</a>
+				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
+			</div>
+			<div>
+				<a href='/admin/model/order/records'>
+					<i class='icon-cart4'></i>
+					<span>Заказы</span>
+				</a>
+			</div>
 			<div>
 				<a href='/admin/packinglist'>
 					<i class='icon-credit'></i>
 					<span>Список накладных</span>
 				</a>
+			</div>
+			<div>
+				<a href='/admin/controllers'>
+					<i class='icon-sun'></i>
+					<span>Контроллеры</span>
+				</a>
+				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
+				<ul>
+					<li>
+						<a href='/admin/controllers/new'>
+							<i class='icon-plus-circle'></i>
+							<span>Создать новый</span>
+						</a>
+					</li>"
+		if app.data.controllers
+			for con, hash of app.data.controllers
+				ret += "<li>
+						<a href='/admin/controllers/#{con}'>
+							<i class='icon-cog'></i>
+							<span>#{con}</span>
+						</a>
+					</li>"
+		ret += "</ul>"
+		ret += "</div>
+			<div>
+				<a href='/admin/components'>
+					<i class='icon-share3'></i>
+					<span>Компоненты</span>
+				</a>
+				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
+			</div>
+			<div>
+				<a href='/admin' data-path='templates'>
+					<i class='icon-copy'></i>
+					<span>Шаблоны</span>
+				</a>
+				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
+			</div>
+			<div>
+				<a href='/admin/components'>
+					<i class='icon-database2'></i>
+					<span>Базы данных</span>
+				</a>
+				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
+			</div>
+			<div>
+				<a href='/admin/settings'>
+					<i class='icon-wrench2'></i>
+					<span>Настройки</span>
+				</a>
+				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
+				<ul>
+					<li>
+						<a href='/admin/settings/template_index'>
+							<i class='icon-puzzle4'></i>
+							<span>Страница \"Все записи\"</span>
+						</a>
+					</li>
+					<li>
+						<a href='/admin/settings/template_form'>
+							<i class='icon-puzzle4'></i>
+							<span>Форма записи</span>
+						</a>
+					</li>
+					<li>
+						<a href='/admin/settings/localization'>
+							<i class='icon-flag'></i>
+							<span>Локализация</span>
+						</a>
+					</li>
+				</ul>
 			</div>
 			<div>
 				<a href='/users/sing_out'>
@@ -159,7 +284,7 @@ ready = ->
 			</div>"
 		app.menu.html ret
 	app.notify = $ '#notify'
-	app.go(app.pathname = window.location.pathname)
+	app.go app.pathname = window.location.pathname
 	$('a').click ->
 		app.aclick(@)
 $(document).ready ready
