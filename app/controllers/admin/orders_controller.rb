@@ -166,7 +166,7 @@ class Admin::OrdersController < Admin::AdminController
     format size: 11, bold: 1, align: :right
     write row += 3, 5, 'Долг клиента'
     format size: 11, bold: 1, align: :center, border: 1, bg_color: '#FFC7CE'
-    write row, 7, summary - order.prepayment_sum - order.doppayment_sum - order.finalpayment_sum
+    write row, 7, summary - (order.prepayment_sum || 0) - (order.doppayment_sum || 0) - (order.finalpayment_sum || 0)
     format(size: 11, bold: 1, align: :right, color: :red)
     write row += 1, 4, 'Способ оплаты заказа'
     format(size: 11, align: :center)
