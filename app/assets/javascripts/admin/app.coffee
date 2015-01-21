@@ -9,7 +9,8 @@
 
 @app =
 	routesSorted: {}
-	data: {}
+	data:
+		route: {}
 	aclick: (el, options) ->
 		if window.history and history.pushState
 			event.preventDefault()
@@ -45,12 +46,6 @@ app.go = (url, options) ->
 	unless @pathname is url
 		@pathname = url
 		history.pushState {}, '', url
-	pairs = window.location.search.substring(1).split "&"
-	@data.route = vars: {}
-	for p in pairs
-		continue if p is ''
-		pair = p.split '='
-		@data.route.vars[decodeURIComponent pair[0]] = decodeURIComponent pair[1]
 	@pathArray = @pathname.split('/')[2..-1]
 	@path = @pathArray.join '/'
 	len = @pathArray.length
@@ -144,7 +139,7 @@ ready = ->
 				val.fields.text = tmpl_index.text or []
 			else
 				tmpl_index = settings.template.index.common
-				val.fields.string = tmpl_index.string.filter((c) -> val.columns.filter((s) -> s.name is c).length > 0) if tmpl_index.string
+				val.fields.string = tmpl_index.string.filter((c) -> val.columns.filter((s) -> s.name is c.name).length > 0) if tmpl_index.string
 				val.fields.text = tmpl_index.text.filter((c) -> val.columns.filter((s) -> s.name is c).length > 0) if tmpl_index.text
 	app.yield = $ '#yield'
 	if !app.menu and tables
@@ -175,13 +170,15 @@ ready = ->
 						</a>
 					</li>"
 		for n, table of tables
-			ret += "<li><a href='/admin/model/#{table.singularize}'><i class='icon-stack'></i><span>#{word table.name}</span></a>
+			name = table.name
+			low = table.singularize
+			ret += "<li><a href='/admin/model/#{low}'><i class='icon-stack'></i><span>#{word name}</span></a>
 				<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
 				<ul>
-					<li><a href='/admin/model/#{table.singularize}/records'><i class='icon-menu2'></i><span>Все записи</span></a></li>
-					<li><a href='/admin/model/#{table.singularize}/new' data-path='new'><i class='icon-quill2'></i><span>Добавить запись</span></a></li>
-					<li><a href='/admin/model/#{table.singularize}/edit'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
-					<li><p href='/admin/model/#{table.singularize}/destroy' onclick='ask(this, &quot;Вы действительно хотите удалить модель <b>#{table.singularize}</b>?&quot;, &quot;model.destroy(&#039;#{table.singularize}&#039;)&quot;)'><i class='icon-remove3'></i><span>Удалить модель</span></p></li>
+					<li><a href='/admin/model/#{low}/records'><i class='icon-menu2'></i><span>Все записи</span></a></li>
+					<li><a href='/admin/model/#{low}/new' data-path='new'><i class='icon-quill2'></i><span>Добавить запись</span></a></li>
+					<li><a href='/admin/model/#{low}/edit'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
+					<li><p href='/admin/model/#{low}/destroy' onclick='ask(this, &quot;Вы действительно хотите удалить модель <b>#{low}</b>?&quot;, &quot;model.destroy(&#039;#{low}&#039;)&quot;)'><i class='icon-remove3'></i><span>Удалить модель</span></p></li>
 				</ul>
 			</li>"
 		ret += "</ul>

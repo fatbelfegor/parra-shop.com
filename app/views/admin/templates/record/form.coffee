@@ -102,15 +102,11 @@ app.page = ->
 					<div class='btn red square hidden' onclick='image.chooseToDel(this, true)'>Удалить с сервера</div>
 				</div>
 				<div class='input-images many empty'></div>"
-		for text in columns.text
-			name = switch text.name
-				when 'description'
-					'Описание'
-				when 'shortdesc'
-					'Короткое описание'
-				else
-					text.name
-			ret += "<h2 class='textarea'>#{name}</h2><textarea class='tinyMCE' rows='25' name='record[#{text.name}]'>#{record.col rec, text}</textarea>"
+		tabtext = {}
+		for c in columns.text
+			tabtext[c.name] = ->
+				"<textarea class='tinyMCE' rows='25' name='record[#{c.name}]'>#{record.col rec, c}</textarea>"
+		ret += tab.gen tabtext
 	ret += "<div class='btn green dashed' onclick='tinyMCE.triggerSave(); record.#{c_or_u 'create', 'update'}(this)'>#{c_or_u 'Создать', 'Сохранить'}</div>
 		</form>
 	</div>"

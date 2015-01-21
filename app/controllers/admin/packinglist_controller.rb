@@ -69,6 +69,7 @@ class Admin::PackinglistController < Admin::AdminController
 					login = current_user.email
 					packinglists << Packinglist.create(
 						doc_number: nextRow.nodes[0].nodes[0].nodes[0],
+						user: login,
 						date: Date.strptime(nextRow.nodes[1].nodes[0].nodes[0].split('-').map{|s| s = s.to_i}.join(' '), '%Y %m %d')
 					)
 				end
@@ -76,6 +77,18 @@ class Admin::PackinglistController < Admin::AdminController
 			end
 			begin
 				if row.nodes[0].nodes[0].nodes[0] == '1' and list[i - 1].nodes[0].nodes[0].nodes[0] != '1'
+					pos = {}
+					for c, k in list[i - 1].nodes
+						if c.nodes[0].nodes[0].is_a? String
+							case c.nodes[0].nodes[0]
+							when 'код'
+								pos[:product_name_article] = k
+							end
+						else
+							if c.nodes[0].nodes[0].nodes[0] == 'наименование'
+							end
+						end
+					end
 					until list[i += 1].nodes[0].nodes.empty?
 						p = list[i]
 						if !p.nodes[2].nodes.blank?
@@ -103,7 +116,7 @@ class Admin::PackinglistController < Admin::AdminController
 			rescue
 			end
 		end
-		rend data: {'packinglist' => Packinglist.all,
-			'packinglistitem' => Packinglistitem.all}
+		rend data: {'packinglist' => packinglists,
+			'packinglistitem' => packinglistitems}
 	end
 end
