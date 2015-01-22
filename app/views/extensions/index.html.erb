@@ -1,0 +1,25 @@
+<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
+<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
+<br><h2 class="text-center">Список Стаусов товаров</h2><br>
+
+<div class="text-center">
+<%= link_to 'Создать статус товара', new_extension_path, class: 'btn btn-primary' %>
+</div>
+<br>
+<table class="table table-striped table-bordered text-center table-lh-34">
+	<tr>
+		<th>Название</th>
+		<th>Изображение</th>
+		<th>Действия</th>
+	</tr>
+	<% for ext in @extensions %>
+		<tr>
+			<td><%= ext.name %></td>
+			<td><a href="<%= ext.image %>" data-lightbox="<%= ext.image %>" class="image"><img src="<%= ext.image %>"></a></td>
+			<td>
+				<%= link_to("Редактировать", edit_extension_path(ext.id), class: 'btn btn-warning') %>
+				<%= link_to("Удалить", ext, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
+			</td>
+		</tr>
+	<% end %>
+</table>

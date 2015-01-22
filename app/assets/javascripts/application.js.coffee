@@ -38,7 +38,9 @@ scrollFunc = ->
 					html = ''
 					for r in d
 						p = r.product
+						extension = r.extension
 						html += "<div><div>"
+						html += "<img class='extension-catalog' src='#{extension.image}'>" if extension
 						images = p.images.split ','
 						html += '<div class="left inactive"></div>'
 						if images[1]
@@ -332,6 +334,7 @@ expire = ->
 	addImages = iframe.parentNode
 	inputName = addImages.className
 	input = $('#'+inputName)
+	console.log input
 	if input.attr('class') != 'one'
 		images = input.val().split(',')
 		if images[0] == '' then images = [url] else images.push url

@@ -126,7 +126,8 @@ private
   end
   def product_params
     params.require(:product).permit(
-    	:category_id,
+      :category_id,
+    	:extension_id,
       :subcategory_id,
   		:scode,
   		:name,

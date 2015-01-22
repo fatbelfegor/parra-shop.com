@@ -21,6 +21,9 @@
 		<% for p in subcategory.products %>
 			<div>
 				<div>
+					<% if p.extension %>
+						<img src="<%= p.extension.image %>" class='extension-catalog'>
+					<% end %>
 					<% images = p.images.split ',' %>
 					<div class="left inactive"></div>
 					<% if images[1] %>

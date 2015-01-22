@@ -59,7 +59,7 @@ class CatalogController < ApplicationController
       else
         prcolors = textures = proptions = []
       end
-      ret << {product: p, prsizes: prsizes, prcolors: prcolors, textures: textures, proptions: proptions}
+      ret << {product: p, prsizes: prsizes, prcolors: prcolors, textures: textures, proptions: proptions, extension: p.extension}
     end
     render json: ret
   end

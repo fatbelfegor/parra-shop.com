@@ -60,7 +60,7 @@ ParraShopCom::Application.routes.draw do
       resources :subcategories
     end
   end
-  resources :images
+  resources :images, :extensions
   resources :orders do
     resources :order_item, except: [:index, :show, :edit] do
       post :plus, on: :member

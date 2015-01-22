@@ -2726,3 +2726,17 @@ body.small-size {
 		}
 	}
 }
+
+.extension-show, .extension-catalog, .extension-footer {
+	position: absolute;
+	margin: 20px
+}
+.extension-catalog {
+	width: 70px !important;
+	height: auto !important;
+}
+.extension-footer {
+	width: 50px;
+	margin: 0;
+	left: 0;
+}

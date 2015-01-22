@@ -1,6 +1,9 @@
 <% if @product.scode != productFooter.scode %>
 <div>
 	<div>
+		<% if productFooter.extension %>
+			<img src="<%= productFooter.extension.image %>" class='extension-footer'>
+		<% end %>
 		<% if productFooter.images %>
 			<% images = productFooter.images.split(',') %>
 		    <div class="left inactive"></div>

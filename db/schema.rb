@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107042550) do
+ActiveRecord::Schema.define(version: 20150122124716) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(version: 20150107042550) do
   create_table "categories_products", id: false, force: true do |t|
     t.integer "category_id", null: false
     t.integer "product_id",  null: false
+  end
+
+  create_table "extensions", force: true do |t|
+    t.string "name"
+    t.string "image"
   end
 
   create_table "manager_logs", force: true do |t|
@@ -166,8 +171,10 @@ ActiveRecord::Schema.define(version: 20150107042550) do
     t.decimal  "old_price",      precision: 18, scale: 2, default: 0.0
     t.string   "seo_title2"
     t.integer  "subcategory_id"
+    t.integer  "extension_id"
   end
 
+  add_index "products", ["extension_id"], name: "index_products_on_extension_id", using: :btree
   add_index "products", ["subcategory_id"], name: "index_products_on_subcategory_id", using: :btree
 
   create_table "proptions", force: true do |t|

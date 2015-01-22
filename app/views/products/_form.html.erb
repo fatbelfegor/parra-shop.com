@@ -13,6 +13,15 @@
     </div>
   <% end %>
   <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :extension_id, "Статус:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-10">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <% collection = [Extension.new(id: nil, name: 'Не выбрано')] + Extension.all %>
+        <%= f.select :extension_id, options_from_collection_for_select(collection, "id", "name", if @product then @product.extension_id else nil end), {}, {class: "form-control"} %>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
     <h4 class="col-md-2 text-right"><%= f.label :category_id, "Категория:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
     <div class="col-md-10">
       <div class="wrath-content-box" style="padding:0 15px">

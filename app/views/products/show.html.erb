@@ -15,6 +15,9 @@ size_first = @product.prsizes.first %>
 			    		<img onclick="choosePhoto(this)" src="<%= i %>">
 			    	<% end %>
 				</div>
+				<% if @product.extension %>
+					<img class='extension-show' src="<%= @product.extension.image %>">
+				<% end %>
 				<div class="photoes">
 			    	<a class="showPhoto" href="<%= images[0] %>" data-lightbox="images" class="image"><img src="<%= images[0] %>"></a>
 					<% images[1..-1].each do |i| %>
