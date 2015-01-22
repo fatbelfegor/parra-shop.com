@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150122124716) do
     t.decimal  "rate",          precision: 18, scale: 2, default: 0.0
     t.text     "seo_text"
     t.string   "url"
+    t.boolean  "menu"
   end
 
   create_table "categories_products", id: false, force: true do |t|
@@ -171,6 +172,7 @@ ActiveRecord::Schema.define(version: 20150122124716) do
     t.decimal  "old_price",      precision: 18, scale: 2, default: 0.0
     t.string   "seo_title2"
     t.integer  "subcategory_id"
+    t.string   "article"
     t.integer  "extension_id"
   end
 
@@ -226,7 +228,10 @@ ActiveRecord::Schema.define(version: 20150122124716) do
     t.decimal  "price",      precision: 18, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "color_id"
   end
+
+  add_index "textures", ["color_id"], name: "index_textures_on_color_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
