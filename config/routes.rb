@@ -76,7 +76,9 @@ ParraShopCom::Application.routes.draw do
         member do
           resources :proptions
           resources :prcolors do
-            get 'copy', to: 'prcolors#copy'
+            collection do
+              get 'copy', to: 'prcolors#copy'
+            end
             member do
               resources :textures
             end

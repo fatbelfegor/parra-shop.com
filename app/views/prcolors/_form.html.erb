@@ -20,7 +20,7 @@
           <% if action_name == 'new' %>
             <div class="text-center form-group">
               <a class="btn btn-success">Создать новый цвет</a>
-              <%= link_to 'Скопировать цвет', prcolor_copy_path(@prcolor.prsize.product_id, @prcolor.prsize_id), class: 'btn btn-default' %>
+              <a href="copy" class="btn btn-default">Скопировать цвет</a>
             </div>
           <% end %>
           <span id="newColor">

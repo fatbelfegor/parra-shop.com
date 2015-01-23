@@ -10,16 +10,20 @@ class PrcolorsController < ApplicationController
   def copy
     @categories = Category.roots
     @prcolor = Prcolor.new
-    @products = Product.all
-    @product_id = params[:product_id]
-      
-    if params[:product_id]
-      @prcolor.product = Product.find(params[:product_id])
-    end
+    @prsizes = Prsize.all
   end
 
 	def create
-    unless params[:copy_id].blank?
+    if params[:copy_size].present?
+      prsize = Prsize.find params[:id]
+      scode = prsize.product.scode
+      for p in Prsize.find(params[:copy_size]).prcolors
+        prcolor = prsize.prcolors.create scode: scode+'_'+p.scode.split('_').last, name: p.name, price: p.price, description: p.description, images: p.images
+        for t in p.textures
+          prcolor.textures.create name: t[:name], scode: t[:scode], price: t[:price], image: t[:image]
+        end
+      end
+    elsif params[:copy_id].present?
       prsize = Prsize.find prcolor_params[:prsize_id]
       scode = prsize.product.scode
       for p in Prsize.find(params[:copy_id]).prcolors
@@ -37,7 +41,7 @@ class PrcolorsController < ApplicationController
       end
       scode = prcolor.prsize.product.scode
     end
-    redirect_to URI.encode "/kupit/#{scode}"
+    # redirect_to URI.encode "/kupit/#{scode}"
   end
 
   def edit

@@ -511,8 +511,7 @@ expire = ->
 		$(el).parent().attr 'class', 'active'
 		$(el).parent().next().show(300)
 @copyPrcolorChoose = (el) ->
-	window.el = el
-	$('#copy_scode').val $(el).next().find('b').html()[1..-2]
+	$('#copy_size').val $(el).data('id')
 @showHideProductsList = (el) ->
 	products = $(el).parent().next()
 	if products.css('display') == 'none'
