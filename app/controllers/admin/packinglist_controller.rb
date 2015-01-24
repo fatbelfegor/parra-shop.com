@@ -77,40 +77,27 @@ class Admin::PackinglistController < Admin::AdminController
 			end
 			begin
 				if row.nodes[0].nodes[0].nodes[0] == '1' and list[i - 1].nodes[0].nodes[0].nodes[0] != '1'
-					pos = {}
-					for c, k in list[i - 1].nodes
-						if c.nodes[0].nodes[0].is_a? String
-							case c.nodes[0].nodes[0]
-							when 'код'
-								pos[:product_name_article] = k
-							end
-						else
-							if c.nodes[0].nodes[0].nodes[0] == 'наименование'
-							end
-						end
-					end
-					until list[i += 1].nodes[0].nodes.empty?
-						p = list[i]
-						if !p.nodes[2].nodes.blank?
-							scodeCell = 2
-						else
-							scodeCell = 3
-						end
+					while true
+						p = list[i += 1]
+						break if p.nodes[0].nodes.empty?
 						create = {}
-						s_title = p.nodes[scodeCell].nodes[0].nodes[0]
-						create[:name] = p.nodes[1].nodes[0].nodes.map{|n| n.nodes[0]}.join
-						product = Product.find_by_s_title s_title
-						if product.blank?
-							create[:product_name_article] = s_title
+						k = 1
+						create[:name] = p.nodes[k].nodes[0].nodes.map{|n| n.nodes[0]}.join.gsub("\r", " ")
+						create[:product_name_article] = p.nodes[k += 1].nodes[0].nodes[0]
+						if p.nodes[k += 6].nodes.empty?
+							create[:amount] = p.nodes[k += 1].nodes[0].nodes[0].to_i
 						else
-							create[:product_id] = product.id
-							create[:product_name_article] = product.scode
+							create[:amount] = p.nodes[k].nodes[0].nodes[0].to_i
 						end
-						amount = p.nodes[scodeCell + 1].nodes[0].nodes[0].to_i
-						amount = 1 if amount == 0
-						create[:amount] = amount
-						create[:price] = p.nodes[scodeCell + 14].nodes[0].nodes[0].gsub(' ','').gsub(',','.').to_f / amount
-						packinglistitems << Packinglist.last.packinglistitems.create(create)
+						if p.nodes[k += 1].nodes.empty?
+							create[:price] = p.nodes[k += 3].nodes[0].nodes[0].gsub(" ", "").gsub(",", ".").to_f / create[:amount]
+						else
+							create[:price] = p.nodes[k += 2].nodes[0].nodes[0].gsub(" ", "").gsub(",", ".").to_f / create[:amount]
+						end
+						product = Product.find_by_s_title(create[:product_name_article])
+						create[:product_id] = product.id if product
+						# @ret << create
+						Packinglist.last.packinglistitems.create create
 					end
 				end
 			rescue
