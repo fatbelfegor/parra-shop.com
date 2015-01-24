@@ -651,6 +651,7 @@ nav {
 			width: 50%;
 			display: inline-block;
 			vertical-align: top;
+			position: relative;
 		}
 
 		> :first-child {
@@ -2729,7 +2730,8 @@ body.small-size {
 
 .extension-show, .extension-catalog, .extension-footer {
 	position: absolute;
-	margin: 20px
+	margin: 20px;
+	right: 0;
 }
 .extension-catalog {
 	width: 70px !important;
@@ -2738,5 +2740,4 @@ body.small-size {
 .extension-footer {
 	width: 50px;
 	margin: 0;
-	left: 0;
 }
