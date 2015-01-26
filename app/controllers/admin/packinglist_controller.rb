@@ -104,7 +104,7 @@ class Admin::PackinglistController < Admin::AdminController
 						end
 						product = Product.find_by_s_title(create[:product_name_article])
 						create[:product_id] = product.id if product
-						Packinglist.last.packinglistitems.create create
+						packinglistitems << Packinglist.last.packinglistitems.create create
 					end
 				end
 			rescue
