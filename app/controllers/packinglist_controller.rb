@@ -24,7 +24,11 @@ class PackinglistController < ApplicationController
 							break if p.nodes[0].nodes.empty?
 							create = {}
 							k = 1
-							create[:name] = p.nodes[k].nodes[0].nodes.map{|n| n.nodes[0]}.join.gsub("\r", " ")
+							if p.nodes[k].nodes[0].nodes.size == 1
+								create[:name] = p.nodes[k].nodes[0].nodes[0]
+							else
+								create[:name] = p.nodes[k].nodes[0].nodes.map{|n| n.nodes[0]}.join.gsub("\r", " ")
+							end
 							create[:product_name_article] = p.nodes[k += 1].nodes[0].nodes[0]
 							if p.nodes[k += 6].nodes.empty?
 								create[:amount] = p.nodes[k += 1].nodes[0].nodes[0].to_i
@@ -32,14 +36,17 @@ class PackinglistController < ApplicationController
 								create[:amount] = p.nodes[k].nodes[0].nodes[0].to_i
 							end
 							if p.nodes[k += 1].nodes.empty?
-								create[:price] = p.nodes[k += 3].nodes[0].nodes[0].gsub(" ", "").gsub(",", ".").to_f / create[:amount]
+								if p.nodes[k + 3].nodes[0]
+									create[:price] = p.nodes[k + 3].nodes[0].nodes[0].gsub(" ", "").gsub(",", ".").to_f / create[:amount]
+								else
+									create[:price] = p.nodes[k + 4].nodes[0].nodes[0].to_f
+								end
 							else
-								create[:price] = p.nodes[k += 2].nodes[0].nodes[0].gsub(" ", "").gsub(",", ".").to_f / create[:amount]
+								create[:price] = p.nodes[k + 2].nodes[0].nodes[0].gsub(" ", "").gsub(",", ".").to_f / create[:amount]
 							end
 							product = Product.find_by_s_title(create[:product_name_article])
 							create[:product_id] = product.id if product
-							@ret << create
-							# Packinglist.last.packinglistitems.create create
+							Packinglist.last.packinglistitems.create create
 						end
 					end
 				rescue
