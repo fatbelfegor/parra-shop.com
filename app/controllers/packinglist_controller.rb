@@ -4,16 +4,16 @@ class PackinglistController < ApplicationController
 			require 'ox'
 			xml = Ox.parse params[:file].read.force_encoding('UTF-8')
 			list = xml.nodes[0].nodes[4].nodes[0].nodes
-			# @ret = []
+			@ret = []
 			list.each_with_index do |row, i|
 				begin
 					if row.nodes[0].nodes[0].nodes[0].nodes[0] == "Номер\rдокумента"
 						nextRow = list[i + 1]
 						login = current_user.email
-						Packinglist.create(
-							doc_number: nextRow.nodes[0].nodes[0].nodes[0],
-							date: Date.strptime(nextRow.nodes[1].nodes[0].nodes[0].split('-').map{|s| s = s.to_i}.join(' '), '%Y %m %d')
-						)
+						# Packinglist.create(
+						# 	doc_number: nextRow.nodes[0].nodes[0].nodes[0],
+						# 	date: Date.strptime(nextRow.nodes[1].nodes[0].nodes[0].split('-').map{|s| s = s.to_i}.join(' '), '%Y %m %d')
+						# )
 					end
 				rescue
 				end
@@ -38,8 +38,8 @@ class PackinglistController < ApplicationController
 							end
 							product = Product.find_by_s_title(create[:product_name_article])
 							create[:product_id] = product.id if product
-							# @ret << create
-							Packinglist.last.packinglistitems.create create
+							@ret << create
+							# Packinglist.last.packinglistitems.create create
 						end
 					end
 				rescue

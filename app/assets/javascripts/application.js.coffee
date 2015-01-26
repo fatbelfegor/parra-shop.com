@@ -30,9 +30,9 @@ scrollFunc = ->
 		products = $('#products')
 		if products.length > 0
 			win = $(this)
-			if win.scrollTop() + win.height() > products.offset().top + products.height()
+			if win.scrollTop() + win.height() > products.offset().top + products.height() - 300
 				window.productLoading = true
-				productLoad.limit = Math.floor(($('#products').width() + 50) / 350) * Math.ceil(($(window).height() + 10) / 460)
+				productLoad.limit = Math.floor(($('#products').width() + 50) / 350) * Math.ceil(($(window).height() + 10) / 460) * 2
 				productLoad.offset = products.find('> div').length
 				$.post '/catalog/products', productLoad, (d) ->
 					html = ''
@@ -154,6 +154,7 @@ ready = ->
 			el.parent().next().val images.join ','
 	resizeFunc()
 	scrollFunc()
+	$('.main').scroll scrollFunc
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'
@@ -178,8 +179,6 @@ ready = ->
 $(document).ready ->
 	$('#mainMenu li div div').each ->
 		menuImages.push this.style.backgroundImage
-	scroll = $('.main')
-	scroll.scroll scrollFunc
 	ready()
 $(document).on('page:load', ready)
 $(window).resize resizeFunc
