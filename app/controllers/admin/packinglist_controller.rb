@@ -61,7 +61,8 @@ class Admin::PackinglistController < Admin::AdminController
 		require 'ox'
 		xml = Ox.parse params[:file].read.force_encoding('UTF-8')
 		list = xml.nodes[0].nodes[4].nodes[0].nodes
-		packinglists = packinglistitems = []
+		packinglists = []
+		packinglistitems = []
 		list.each_with_index do |row, i|
 			begin
 				if row.nodes[0].nodes[0].nodes[0].nodes[0] == "Номер\rдокумента"
@@ -104,7 +105,7 @@ class Admin::PackinglistController < Admin::AdminController
 						end
 						product = Product.find_by_s_title(create[:product_name_article])
 						create[:product_id] = product.id if product
-						packinglistitems << Packinglist.last.packinglistitems.create create
+						packinglistitems << Packinglist.last.packinglistitems.create(create)
 					end
 				end
 			rescue

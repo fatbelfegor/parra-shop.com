@@ -1,61 +1,74 @@
-@packinglist =
-	treebox: (el) ->
-		treebox.toggle el
-		el = $ el
-		ul = el.parent().next()
-		if ul.html() is ''
-			id = el.data 'id'
-			ret = ''
-			for rec, i in tables.category.records
-				if rec.parent_id is id
-					ret += "<li>"
-					if tables.category.children > 0 or tables.category.habtm.products.length > 0
-						ret += "<div><i class='icon-arrow-down2' onclick='packinglist.treebox(this)' data-id='#{rec.id}'></i><p>#{rec.name}</p></div><ul></ul>"
-					else
-						ret += "<div><p>#{rec.name}</p></div>"
-					ret += "</li>"
-				else if rec.id is id
-					thisI = i
-			ids = tables.category.habtm.products[thisI]
-			if ids.length > 0
-				for rec in tables.product.records
-					if rec.id in ids
-						ret += "<li><div><p onclick='packinglist.pick(this)' data-id='#{rec.id}'>#{rec.scode}</p></div></li>"
-			ul.html ret
-	pick: (el) ->
-		el = $ el
-		tb = el.parents('.treebox').removeClass('active').css 'background-color', '#54BD48'
-		tb.find('input').val el.data 'id'
-		tb.find('> p').html el.html()
-	price: (el) ->
-		form = $(el).parents 'form'
-		price = 0
-		form.find("[name='items[]price'], [name='add_items[]price']").each ->
-			el = $ @
-			td = el.parents('td')
-			itemPrice = parseFloat(el.val()) * parseInt(td.prev().find('input').val())
-			td.next().html itemPrice
-			price += itemPrice
-		form.find('#end-price').html price
-	add: (el) ->
-		$(el).parent().find('table').append "<tr>
-			<td style='color: white; background-color: #DB4343; cursor: pointer; white-space: nowrap' class='treebox' id='treebox_packinglist'>
-				<p onclick='treebox.toggle(this)'><span>Выберите товар</span></p>
-				<ul style='color: #333; width: 400px'>#{packinglist.tree}</ul>
-				<input type='hidden' data-type='integer' name='add_items[]product_id'>
-			</td>
-			<td><input type='text' name='add_items[]name'></td>
-			<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='add_items[]amount' value='1'></td>
-			<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='add_items[]price' value='0'></td>
-			<td style='width: 15%'>0</td>
-			<td class='btn red' onclick='$(this).parent().remove()'>Удалить</td>
-		</tr>"
-		packinglist.tree_out_click()
-	tree_out_click: ->
-		$('html').click ->
-			$('.treebox').removeClass 'active'
-		$('.treebox').click (event) ->
-		    event.stopPropagation()
+@packinglist ||= {}
+packinglist.treebox = (el) ->
+	treebox.toggle el
+	el = $ el
+	ul = el.parent().next()
+	if ul.html() is ''
+		id = el.data 'id'
+		ret = ''
+		for rec, i in tables.category.records
+			if rec.parent_id is id
+				ret += "<li>"
+				if tables.category.children > 0 or tables.category.habtm.products.length > 0
+					ret += "<div><i class='icon-arrow-down2' onclick='packinglist.treebox(this)' data-id='#{rec.id}'></i><p>#{rec.name}</p></div><ul></ul>"
+				else
+					ret += "<div><p>#{rec.name}</p></div>"
+				ret += "</li>"
+			else if rec.id is id
+				thisI = i
+		ids = tables.category.habtm.products[thisI]
+		if ids.length > 0
+			for rec in tables.product.records
+				if rec.id in ids
+					ret += "<li><div><p onclick='packinglist.pick(this)' data-id='#{rec.id}'>#{rec.scode}</p></div></li>"
+		ul.html ret
+packinglist.pick = (el) ->
+	el = $ el
+	tb = el.parents('.treebox').removeClass('active').css 'background-color', '#54BD48'
+	tb.find('input').val el.data 'id'
+	tb.find('> p').html el.html()
+packinglist.price = (el) ->
+	form = $(el).parents 'form'
+	price = 0
+	form.find("[name='items[]price'], [name='add_items[]price']").each ->
+		el = $ @
+		td = el.parents('td')
+		itemPrice = parseFloat(el.val()) * parseInt(td.prev().find('input').val())
+		td.next().html itemPrice
+		price += itemPrice
+	form.find('#end-price').html price
+packinglist.add = (el) ->
+	$(el).parent().find('table').append "<tr>
+		<td style='color: white; background-color: #DB4343; cursor: pointer; white-space: nowrap' class='treebox' id='treebox_packinglist'>
+			<p onclick='treebox.toggle(this)'><span>Выберите товар</span></p>
+			<ul style='color: #333; width: 400px'>#{packinglist.tree}</ul>
+			<input type='hidden' data-type='integer' name='add_items[]product_id'>
+		</td>
+		<td><input type='text' name='add_items[]name'></td>
+		<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='add_items[]amount' value='1'></td>
+		<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='add_items[]price' value='0'></td>
+		<td style='width: 15%'>0</td>
+		<td class='btn red' onclick='$(this).parent().remove()'>Удалить</td>
+	</tr>"
+	packinglist.tree_out_click()
+packinglist.tree_out_click = ->
+	$('html').click ->
+		$('.treebox').removeClass 'active'
+	$('.treebox').click (event) ->
+	    event.stopPropagation()
+packinglist.save_cb = (el) ->
+	form = $(el).parent()
+	form.find("[name='items[]id']").each ->
+		el = $ @
+		tr = el.parent()
+		id = parseInt el.val()
+		rec = tables.packinglistitem.records.filter((r) -> r.id is id)[0]
+		product_id = el.next().find('input').val()
+		rec.product_id = product_id if product_id isnt ''
+		amount = tr.find("[name='items[]amount']").val()
+		rec.amount = amount if amount isnt ''
+		price = tr.find("[name='items[]price']").val()
+		rec.price = price if price isnt ''
 app.page = ->
 	pack = record.find tables.packinglist.records, parseInt app.data.route.id
 	price = 0
@@ -64,11 +77,12 @@ app.page = ->
 			price += r.price * r.amount
 		else
 			false
+	items
 	ret = "<h1>Товарная накладная</h1>
 	<div class='content'>
 		<form action='packinglist/update'>
 			<input type='hidden' name='packinglist_id' value='#{pack.id}'>
-			<div class='btn green dashed' onclick='act.send(this, \"Товарная накладная обновлена\")'>Сохранить</div>
+			<div class='btn green dashed' onclick='packinglist.save_cb(this); act.send(this, \"Товарная накладная обновлена\")'>Сохранить</div>
 			<br>
 			<div class='row'>
 				<p>Номер: #{pack.doc_number}</p>
@@ -108,14 +122,16 @@ app.page = ->
 			<td>#{item.name}</td>
 			<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='items[]amount' value='#{item.amount}'></td>
 			<td style='width: 10%'><input onkeyup='packinglist.price(this)' style='text-align: center' type='text' name='items[]price' value='#{item.price}'></td>
-			<td style='width: 15%'>#{item.price}</td>
+			<td style='width: 15%'>#{item.price * item.amount}</td>
 			<td class='btn red' onclick='record.destroy(this, \"packinglistitem\", #{item.id})'>Удалить</td>
 		</tr>"
 	ret += "</table>
 			<br>
 			<div class='btn deepblue' onclick='packinglist.add(this)'>Добавить новую запись</div>
+			<br><br>
+			<a class='btn purple' href='/products/new'>Создать товар</a>
 			<br>
-			<div class='btn green dashed' onclick='act.send(this, \"Товарная накладная обновлена\")'>Сохранить</div>
+			<div class='btn green dashed' onclick='packinglist.save_cb(this); act.send(this, \"Товарная накладная обновлена\")'>Сохранить</div>
 		</form>
 	</div>"
 	ret

@@ -281,7 +281,6 @@ ready = ->
 			</div>"
 		app.menu.html ret
 	app.notify = $ '#notify'
+	$('a').click -> app.aclick(@)
 	app.go app.pathname = window.location.pathname
-	$('a').click ->
-		app.aclick(@)
 $(document).ready ready

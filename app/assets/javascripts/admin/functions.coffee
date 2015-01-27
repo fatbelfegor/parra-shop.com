@@ -20,6 +20,7 @@
 @treebox =
 	toggle: (el) ->
 		$(el).parent().toggleClass 'active'
+		window.tree = $(el).parent()
 	pick: (el) ->
 		el = $ el
 		val = el.html()
