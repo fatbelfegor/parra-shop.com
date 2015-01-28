@@ -207,14 +207,14 @@ size_first = @product.prsizes.first %>
 										<td><%= number_to_currency color.price %></td>
 										<td>
 											<%= link_to 'Удалить', color, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
-											<%= link_to 'Редактировать', "/products/#{@product.id}/prsizes/#{size.id}/colors/#{color.id}/edit", class: 'btn btn-warning' %> <div class="btn btn-success" onclick="colorOpen(this)">Развернуть</div>
+											<%= link_to 'Редактировать', "/products/#{@product.id}/prsizes/#{size.id}/prcolors/#{color.id}/edit", class: 'btn btn-warning' %> <div class="btn btn-success" onclick="colorOpen(this)">Развернуть</div>
 										</td>
 									</tr>
 									<tr class="texture">
 										<td colspan="3">
 											<table class="hide">
 												<tr>
-													<th colspan="3"><h2>Список текстур (<%= color.textures.count %>) <%= link_to 'Создать', "/products/#{@product.id}/prsizes/#{size.id}/colors/#{color.id}/edit", class: 'btn btn-primary' %> <div class="btn btn-primary" onclick="sizeSubOpen(this)">Развернуть</div></h2></th>
+													<th colspan="3"><h2>Список текстур (<%= color.textures.count %>) <%= link_to 'Создать', "/products/#{@product.id}/prsizes/#{size.id}/prcolors/#{color.id}/edit", class: 'btn btn-primary' %> <div class="btn btn-primary" onclick="sizeSubOpen(this)">Развернуть</div></h2></th>
 												</tr>
 												<tr>
 													<th>Название</th>
