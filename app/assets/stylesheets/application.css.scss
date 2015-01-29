@@ -680,8 +680,7 @@ nav {
 		}
 
 		> .productContent {
-			position: relative;
-			padding-bottom: 150px;		
+			position: relative;	
 
 			h1 {
 				padding-top: 60px;
@@ -839,8 +838,6 @@ nav {
 
 			> :last-child {
 				margin-left: 50px;
-				position: absolute;
-				bottom: 25px;
 				color: black;
 				font-weight: bold;
 				font-size: 15px;

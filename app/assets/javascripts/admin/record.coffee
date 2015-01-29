@@ -7,6 +7,12 @@
 		string = table.fields.string
 		text = table.fields.text
 		records = table.records
+		if name is 'order'
+			records = records.sort (a, b) ->
+				if new Date(a.created_at).getTime() < new Date(b.created_at).getTime()
+					1
+				else
+					-1
 		children = table.children if table.has_self
 		ret = ''
 		switch wrap.data 'wrap'
@@ -81,7 +87,7 @@
 						d = new Date val
 						date = d.getDate()
 						date = '0' + date if date < 10
-						month = d.getMonth()
+						month = d.getMonth() + 1
 						month = '0' + month if month < 10
 						val = "#{date}.#{month}.#{d.getFullYear()}"
 				ret += "<p style='width: #{width}%'>#{val}</p>"
