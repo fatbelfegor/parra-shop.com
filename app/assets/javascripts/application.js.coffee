@@ -124,9 +124,14 @@ ready = ->
 	if $('.show')[0]
 		window.optionsPrice = (b) ->
 			b = parseFloat b
+			add = 0
 			$('.option :checked').each ->
-				b += parseFloat @.value
-			b.toCurrency()
+				add += parseFloat @.value
+			old_price_tag = $('#oldPrice')
+			old_price = parseFloat(old_price_tag.data('val')) + add
+			old_price_tag.html old_price.toCurrency()
+			$('#pricesDifference').html (old_price - b).toCurrency()
+			(b + add).toCurrency()
 		$('#summaryPrice').html optionsPrice(priceNum)
 	cartMenuGen()
 	$(".sortable").sortable
@@ -491,7 +496,7 @@ expire = ->
 	mini = $(el).parent()
 	mini.find('.active').attr 'class',''
 	$(el).attr 'class','active'
-	photoes = mini.parent().find('.photoes')
+	photoes = mini.parent().find('.photo')
 	photoes.find('.showPhoto').attr 'class', ''
 	$(photoes.children()[$(el).index()]).attr 'class', 'showPhoto'
 @colorToggle = (el, action) ->

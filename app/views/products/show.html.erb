@@ -115,13 +115,13 @@ size_first = @product.prsizes.first %>
 			<div class="price">
 				<div class="price-block">
 					<% if @product.old_price > 0 %>
-						<p class="old_price">Цена: <strike><%= to_money @product.old_price %></strike> <img src="/assets/rublGray.png"></p>
+						<p class="old_price">Цена: <strike id='oldPrice' data-val='<%= @product.old_price %>'><%= to_money @product.old_price %></strike> <img src="/assets/rublGray.png"></p>
 					<% end %>
 					<p class="main">
 						<b id="summaryPrice"><%= to_money @product.price %></b> <img src="/assets/rubl.png">
 					</p>
 					<% if @product.old_price > 0 %>
-						<p class="difference">Вы экономите: <strike><%= to_money(@product.old_price - @product.price) %></strike> <img src="/assets/rublGray.png"></p>
+						<p class="difference">Вы экономите: <span id='pricesDifference'><%= to_money(@product.old_price - @product.price) %></span> <img src="/assets/rublGray.png"></p>
 					<% end %>
 				</div>
 				<div class="buyButton" onclick="addToCart('<%= @product.name %>', this)">Купить</div>
