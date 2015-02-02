@@ -491,7 +491,7 @@ expire = ->
 	mini = $(el).parent()
 	mini.find('.active').attr 'class',''
 	$(el).attr 'class','active'
-	photoes = mini.next()
+	photoes = mini.parent().find('.photoes')
 	photoes.find('.showPhoto').attr 'class', ''
 	$(photoes.children()[$(el).index()]).attr 'class', 'showPhoto'
 @colorToggle = (el, action) ->
