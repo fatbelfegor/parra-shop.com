@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin</title>
+  <%= stylesheet_link_tag    'admin/admin', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'admin/app' %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="admin">
+<div id="menu-bg"></div>
+<div id="menu"></div>
+<div id="dark">
+	<p class="bg" onclick="dark.close()"></p>
+	<div class="ask">
+		<div class="title">Подтвердите действие</div>
+		<div class="text">
+			<p></p>
+		</div>
+		<div class="buttons">
+			<div class="btn white" onclick="dark.close()">Отменить</div>
+			<div class="btn red">Удалить</div>
+		</div>
+	</div>
+	<div class="images">
+		<div class="nav-tabs">
+			<p>Библиотека</p>
+			<p class="active">Загрузить</p>
+			<p>Ссылка</p>
+		</div>
+		<div class="tabs">
+			<div class="active">
+				<div class="file">
+					<label>
+						<div class="btn blue"><i class='icon-folder'></i><span>Открыть</span></div>
+						<input onchange="image.fileUpload(this)" type="file" multiple>
+					</label>
+					<div class="btn green hidden" onclick="image.loadAll(this)"><i class='icon-upload'></i><span>Загрузить все</span></div>
+					<div class="btn blue hidden" onclick="image.checkAll(this)"><i class="icon-checkbox-unchecked"></i><span>Отметить все</span></div>
+					<div class="btn purple hidden" onclick="image.returnAll(this)"><i class="icon-checkmark4"></i><span>Выбрать отмеченные</span></div>
+				</div>
+				<div class="image-preview"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="main">
+	<div id="notify"></div>
+	<div id="yield">
+		<%= yield %>
+	</div>
+	<div data-params="<%= @data %>"></div>
+</div>
+</body>
+</html>

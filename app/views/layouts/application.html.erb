@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MebelLitva</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="page">
+    <span id="imgTop">
+      <img id="img" style="margin-left: 0%; margin-top: 0px; position: fixed; height: 100%; left: 0pt; top: 0pt; width: 100%;" src="/images/BackgroundBig.jpg" alt=""/>
+    </span >
+    <div id="leftMenu" class="leftblock">
+      <%= raw PaintTree(false) %>
+    </div>
+    <div class="block">
+      <div id="MainDiv">
+      <table id="MainTable" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
+        <tr id="HeaderRow">
+          <td>
+            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tr>
+                <td rowspan="3"><img src="/images/header.png" alt=""/></td>
+                <td rowspan="2" valigh="bottom"><img src="/images/header2.png" alt=""/></td>
+                <td colspan="2" style="text-align: right;padding-right:10px;" aligh = "right" valigh="top"><img src="/images/phone.png" alt=""/></td>
+              </tr>
+              <tr>
+                <td valigh="top" style="text-align:center">
+          <a href="/catalog/show_cart"><img src="/images/cart.png"></a>
+				</td>
+                <td valigh="bottom" aling="center" style="text-valign:bottom;text-align: left;">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <table id="mainmenutable" style="background-color: #666666;" border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr style="height:27px; ">
+                      <td aling="center" style="text-align:center;"><a href="/">Главная</a></td>
+                      <td aling="center" style="text-align:center;"><a href="/about">О нас</a></td>
+                      <td aling="center" style="text-align:center;"><a href="/delivery">Доставка и оплата</a></td>
+                      <td aling="center" style="text-align:center;"><a href="/contacts">Контакты</a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr id="MainRow">
+          <td>
+            <div id="centercol">
+              <%= yield %>
+		        </div>
+          </td>
+        </tr>
+        <tr id="FooterRow">
+          <td aling="center" style="text-align:center;">
+            <div style="margin-left:20%; margin-right:20%;">
+            <table id="footermenutable" border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-bottom:10px;">
+              <tr>
+                <td valigh="bottom" aling="center" style="text-align:center;"><a href="/">Главная</a></td>
+                <td valigh="bottom" aling="center" style="text-align:center;"><a href="/about">О нас</a></td>
+                <td valigh="bottom" aling="center" style="text-align:center;"><a href="/delivery">Доставка и оплата</a></td>
+                <td valigh="bottom" aling="center" style="text-align:center;"><a href="/contacts">Контакты</a></td>
+              </tr>
+            </table>
+          </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    </div>
+  </div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter27411767 = new Ya.Metrika({
+                    id:27411767,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/27411767" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

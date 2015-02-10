@@ -1,0 +1,62 @@
+@import "mixins"
+
+td.pad
+	padding 0 12px
+table.style
+	width 100%
+	border-spacing 0
+	line-height 32px
+	border-collapse collapse
+	input[type=text]
+		box-shadow(inset 0 0 10px #aaa)
+		box-sizing(border-box)
+		border 0
+		width 100%
+	input[type=text]:focus
+		box-shadow(inset 0 0 12px #2C97ED)
+	.min
+		width 1%
+		input
+			text-align right
+	tr
+		background white
+	th, td
+		border 1px solid #aaa !important
+	th
+		color white
+		border-color #222 !important
+		padding 0 12px
+		text-shadow(0 1px 3px black)
+		btn-gradient(#444, #777, #555, #333, #444)
+	td
+		position relative
+		a
+			display block
+.group
+	width 100%
+	margin-bottom 5px
+	table
+		width 100%
+		color #444
+		line-height 34px
+		border-collapse collapse
+		td
+			border 1px solid #ccc
+			background-color white
+.records-header table
+	color white
+	line-height 34px
+	border-collapse collapse
+	td
+		background-color #444
+		padding 0 20px
+.records-header table:last-child
+	tr:last-child
+		td:first-child
+			border-radius(0 0 0 8px)
+		td:last-child
+			border-radius(0 0 8px 0)
+.form table
+	width 100%
+	border-spacing 20px
+	margin -20px 0 0

@@ -1,0 +1,1048 @@
+//= require_tree .
+//= require_self
+
+@import "mixins"
+
+@import url('http://fonts.googleapis.com/css?family=Droid+Sans')
+
+@keyframes animation-notify {
+  0% {
+  	opacity: 0;
+  	transform: scale3d(.3, .3, .3);
+  }
+  30% {
+  	opacity: 1;
+  	top: 30px;
+  	transform: scale3d(1, 1, 1);
+  }
+  90% {
+  	opacity: 1;
+  	top: 30px;
+  	transform: scale3d(1, 1, 1);
+  }
+  100% {
+  	opacity: 0;
+  	top: -30px;
+  	transform: scale3d(.3, .3, .3);
+  }
+}
+
+@keyframes spin {
+  0% {
+  	transform(rotate(0deg))
+  }
+  50% {
+  	transform(rotate(180deg))
+  }
+  100% {
+  	transform(rotate(360deg))
+  }
+}
+
+html
+	height 100%
+a
+	text-decoration none
+	color inherit
+*
+	margin 0
+	padding 0
+	font-family 'Droid Sans', sans-serif
+.b
+	font-weight bold
+.ib
+	display inline-block !important
+.tal
+	text-align left
+.tar
+	text-align right
+body
+	min-height 100%
+	position relative
+	font-size 0
+	overflow auto
+	background-color #E5E9EC
+.hide
+	display none
+.hidden
+	display none !important
+.text-center
+	text-align center
+.capitalize
+	text-transform capitalize
+.m15
+	margin 15px
+#menu-bg
+	background-color #3f3f3f
+	position absolute
+	width 250px
+	top 0
+	bottom 0
+#menu
+	background-color #3f3f3f
+	width 250px
+	float left
+	div
+		border-bottom 1px solid rgba(0, 0, 0, 0.3)
+	div, ul > li
+		position relative
+		color #eee
+		> a, > p
+			color #eee
+			padding 13px 0 14px 10px
+			display block
+			border-left 3px solid transparent
+			overflow hidden
+			cursor pointer
+			transition(.3s)
+			> *
+				display inline-block
+				vertical-align top
+			> span
+				font-size 14px
+			> i
+				font-size 16px
+				opacity 0.8
+				margin-right 10px
+				filter unquote('alpha(Opacity=80)')
+	div:first-child
+		border-top 1px solid rgba(0, 0, 0, 0.3)
+	ul > li
+		border-style solid
+		border-color rgba(0, 0, 0, 0.3)
+		border-width 0
+		> a, > p
+			height 0
+			padding 0 0 0 10px
+	a:hover, a.active, p:hover, p.active
+		color white
+		border-left 3px solid #D64535
+		background-image -webkit-gradient(linear,left top,right top,color-stop(0, #D64535),color-stop(1, #333333))
+		background-image -o-linear-gradient(right, #D64535 0%, #333333 100%)
+		background-image -moz-linear-gradient(right, #D64535 0%, #333333 100%)
+		background-image -webkit-linear-gradient(right, #D64535 0%, #333333 100%)
+		background-image -ms-linear-gradient(right, #D64535 0%, #333333 100%)
+		background-image linear-gradient(to right, #D64535 0%, #333333 100%)
+		> i
+			opacity 1
+			filter unquote('alpha(Opacity=100)')
+	a.active, p.active
+		background #D64535
+	a.active + .icon-arrow-right11:before, p.active + .icon-arrow-right11:before
+		content "\e362"
+	a.active + .icon-arrow-right11:hover, p.active + .icon-arrow-right11:hover
+		background-color #D83E2D
+	> div
+		> .active + .icon-arrow-right11 + ul, > .active + .icon-arrow-right11 + ul > li > .active + .icon-arrow-right11 + ul
+			> li
+				border-width 0 0 1px 0
+				> a, > p
+					height 16px
+					padding 13px 0 14px 10px
+				> .current
+					position relative
+					z-index 1
+					overflow visible !important
+					background #D64535
+					box-shadow(0 0 15px #D64535)
+				> .current:after
+					border-width 22px 0 22px 23px
+					border-color transparent #D64535
+					right -22px
+			> li:last-child
+				border-bottom 0
+			> li:first-child
+				border-width 1px 0
+	a.current:after, p.current:after
+		content ''
+		display block
+		border-style solid
+		border-color transparent transparent
+		border-width 0 0 0 0
+		position absolute
+		right 0
+		top 1px
+		z-index 1
+		transition(.3s)
+	ul
+		background-color rgba(0, 0, 0, 0.2)
+	div > ul > li
+		a, p
+			padding-left 30px
+	.icon-arrow-right11
+		position absolute
+		margin 0
+		top 0
+		right 0
+		width 43px
+		height 43px
+		text-align center
+		line-height 43px
+		cursor pointer
+		z-index 1
+		transition(.3s)
+	.icon-arrow-right11:hover
+		background-color rgba(0, 0, 0, 0.15)
+		box-shadow(unquote('inset 0 0 10px #E02F1B, 0 0 5px #000'))
+#main
+	font-size 14px
+	margin-left 250px
+	padding 0 50px
+#yield
+	padding-top 50px
+	max-width 1200px
+	margin 0 auto
+	text-align center
+#notify
+	position fixed
+	color white
+	font-size 0
+	top -30px
+	right 50px
+	opacity 0
+	z-index 10000
+	transition(.8s)
+	> *
+		vertical-align middle
+		display inline-block
+		background-color #5cb85c
+		border 1px solid #398439
+	i
+		font-size 40px
+		height 40px
+		width 40px
+		line-height 40px
+		padding 8px 10px 10px
+		text-align center
+		position relative
+		z-index 1
+		border-radius(30px)
+		box-shadow(inset 0 0 20px #398439)
+	p
+		font-size 22px
+		padding 10px 30px
+		margin-left -11px
+		border-radius(0 10px 10px 0)
+		box-shadow(unquote('inset 0 0 20px #398439, 0 0 50px #5cb85c'))
+#notify.show
+	animation(animation-notify 3s)
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, button:focus
+	outline 0
+button
+	cursor pointer
+h1
+	display inline-block
+	font-size 20px
+	color #333
+	padding 10px 30px
+	background-color white
+	border 1px solid #ddd
+	border-bottom 0
+	margin-bottom -1px
+	border-radius(3px 3px 0 0)
+	b
+		text-transform capitalize
+		color black
+h2
+	font-size 18px
+	color #333
+	margin 0 0 10px
+	text-align left
+	border-bottom 1px solid #333
+	padding 6px 24px
+.content
+	background-color white
+	padding 0 20px
+	border 1px solid #ddd
+	border-radius(4px)
+	box-shadow(0 3px 5px #aaa)
+.loading:before
+	content "\e0a3"
+	font-family 'icomoon'
+	display block
+	float left
+	margin-right 10px
+	animation(spin linear infinite 1s)
+.cancel
+	cursor pointer
+	transition(.3s)
+.cancel:hover
+	background-color #DB4343
+	color white
+.row
+	display table
+	border-spacing 0
+	border-collapse separate
+	width 100%
+	> *, .error.active
+		white-space nowrap
+		display table-cell
+		width 1%
+		border 1px solid #aaa
+		border-right 0
+		line-height 32px
+		z-index 1
+		btn-gradient(#FAFAFA, #FFFFFF, #F2F2F2, #D5D5D5, #E8E8E8)
+		box-sizing(border-box)
+	> *:last-child, .error.active
+		border-right 1px solid #aaa
+	> input[type=text], input[type=email], input[type=password]
+		background white
+		border 1px solid #bbb
+		width 100%
+		z-index 0
+	> input[type=text] + *, input[type=email] + *, input[type=password] + *
+		border-left 0
+	.min
+		width 1%
+		text-align right
+	.max
+		width 90%
+	> p
+		padding 0 12px
+		> i
+			position relative
+			top -1px
+	> i
+		text-align center
+		width 32px
+		color #555
+		cursor pointer
+		transition(.3s)
+	> .error
+		position static
+		background-color #d64535
+	> .error.active
+		color white
+	.noborder
+		border-width 0
+	* + .noborder
+		border-width 0 0 0 1px
+	.noborder + .noborder
+		border-width 0
+	.checkbox
+		position relative
+		width 100%
+		user-select(none)
+		div
+			float left
+			top 6px
+			left 6px
+			position absolute
+.row.textarea
+	> *
+		vertical-align middle
+	textarea
+		width 99%
+		line-height 18px
+		height 80px
+		padding 10px
+input[type=text], input[type=email], input[type=password]
+	padding 6px 12px
+	font-size 14px
+	line-height 1.42857143
+	color #555
+	background-color #fff
+	border 1px solid #bbb
+	position relative
+	box-shadow(inset 0 1px 1px rgba(0,0,0,.075))
+	transition(unquote('border-color ease-in-out .15s,box-shadow ease-in-out .15s'))
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus
+	outline none
+	border-color #66afe9
+	box-shadow(unquote('inset 0 0 8px rgba(0,0,0,.3),0 0 8px rgba(102,175,233,.6)'))
+input[type=text]:disabled
+	background-color #eaeaea
+input[type=checkbox]
+	cursor pointer
+	position relative
+	top 2px
+hr
+	border 0
+	border-top 1px solid #ccc
+#dark
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
+	z-index 999
+	display none
+	.bg
+		position absolute
+		height 100%
+		width 100%
+		background-color rgba(0, 0, 0, 0.3)
+		box-shadow(inset 0 0 150px rgba(0, 0, 0, 0.6))
+	> div
+		display none
+		position fixed
+		top 50%
+		left 50%
+		z-index 1000
+		box-shadow(0 5px 150px rgba(0, 0, 0, 0.8))
+	.ask
+		width 400px
+		height 200px
+		margin-top -100px
+		margin-left -200px
+		.title
+			height 42px
+			color white
+			font-size 18px
+			line-height 44px
+			padding-left 20px
+			background-color #54BD48
+			border 1px solid #3D9333
+			border-radius(3px 3px 0 0)
+		.text
+			background-color white
+			height 50px
+			border 1px solid #aaa
+			border-bottom 0
+			font-size 16px
+			color #333
+			padding 25px
+			line-height 25px
+			text-align center
+		.buttons
+			background-color white
+			border 1px solid #aaa
+			padding 10px
+			text-align right
+			border-radius(0 0 3px 3px)
+			> div
+				margin-left 10px
+	.images
+		width 600px
+		height 428px
+		margin-top -230px
+		margin-left -316px
+		background-color #eaeaea
+		border 1px solid #aaa
+		padding 15px
+		.tabs
+			height 387px
+#dark.show
+	display block
+	.show
+		display block
+.edit-model
+	.rename, .change, .remove
+		display none
+.nav-tabs
+	text-align center
+	border-bottom 1px solid #d64535
+	p
+		cursor pointer
+		color #333
+		display inline-block
+		vertical-align top
+		font-size 14px
+		padding 10px 15px 10px
+		border 1px solid transparent
+		border-bottom 0
+		transition(.3s)
+	p:hover
+		color black
+		background-color #f8f8f8
+		border-color #d64535
+	.active
+		color white !important
+		btn-gradient(#d64535, #FF7262, #F44936, #D7311F, #d64535)
+.tabs
+	background-color white
+	border 1px solid #aaa
+	border-top 0
+	.file
+		padding 10px 20px
+		display block
+		border-bottom 1px solid #aaa
+	> div
+		display none
+		padding 15px
+		form
+			> .row, > .checkbox, > .radio
+				margin 0 50px
+	> .active
+		display block
+.file
+	input
+		display none
+.image-preview
+	overflow auto
+	height 333px
+	> div
+		border-bottom 1px solid #aaa
+		display table
+		width 100%
+		> div
+			display table-cell
+			vertical-align middle
+			font-size 14px
+	.image
+		width 150px
+	img
+		max-width 100px
+		max-height 100px
+		padding 3px
+		border 1px solid #aaa
+		margin 10px 15px
+	p
+		line-height 22px
+.images-controls
+	margin-top 20px
+	font-size 0
+.input-images
+	a
+		display inline-block
+		padding 5px
+		border 1px solid #aaa
+		margin 10px
+		box-shadow(0 0 20px #888)
+		border-radius(4px)
+	img
+		max-width 150px
+		max-height 150px
+		border 1px solid #aaa
+		vertical-align middle
+.input-images.many
+	background-color #efefef
+	border 1px solid #aaa
+	padding 10px 0
+	overflow auto
+	white-space nowrap
+	transition(.3s)
+.input-images.empty
+	border-width 0
+	padding 0 0
+#admin
+	.mce-tinymce
+		margin 0
+		border 0
+	.mce-menubar
+		border 0
+	.mce-edit-area
+		border 1px solid #ddd !important
+		iframe
+			height 377px !important
+	.mce-statusbar
+		border-width 0 !important
+	.mce-panel
+		background transparent
+	.mce-btn-group
+		margin-right 10px
+		.mce-btn
+			background #fafafa
+			margin-left 1px
+			border 1px solid #ccc
+			border-radius(2px)
+			box-shadow(none)
+			transition(.3s)
+			button
+				padding 5px 6px 6px
+			.mce-caret
+				margin-top 11px
+				margin-right 3px
+		.mce-btn.mce-active
+			background white
+			box-shadow(unquote('rgba(0, 0, 0, 0.1) 0px 1px 2px inset'))
+			i
+				color black
+		.mce-btn:first-child
+			margin-left 0
+	.mce-ico
+		padding 2px 3px
+		width 16px
+		height 17px
+	.mce-menubtn
+		span
+			display inline-block
+			height 23px
+			line-height 24px
+			padding-left 3px
+		span:before
+			content ''
+			display inline-block
+			font-family icomoon
+			margin-right 3px
+	.mce-toolbar-grp
+		padding-bottom 15px
+	.mce-menu
+		border 0
+		padding 0
+		margin-top -1px
+		background-color white
+		border-radius(0)
+	.mce-menu-item
+		margin 0
+		border 1px solid #ccc
+		border-bottom-color transparent
+		transition(.15s)
+		.mce-text
+			transition(.15s)
+			font-size 14px !important
+	.mce-menu-item:hover, .mce-menu-item.mce-selected, .mce-menu-item:focus, .mce-menu-item.mce-active
+		background #435cdb
+		border-color #2243ec
+		box-shadow(inset 0 1px 6px #2243ec)
+	.mce-menu-item.mce-active
+		border 0
+		.mce-text
+			color white
+	.mce-colorbutton .mce-preview
+		left 40%
+	.mce-floatpanel.mce-popover.mce-bottom.mce-start
+		background-color white
+		padding 5px
+		height auto !important
+	.mce-colorbutton-grid
+		margin 0
+	.mce-grid td.mce-grid-cell div
+		border 0
+		width 20px
+		height 20px
+		margin-bottom 1px
+	.mce-grid-cell
+		border 0 !important
+	.mce-window
+		background-color white
+	.mce-path, .mce-resizehandle
+		background-color #fafafa
+		border 1px solid #ccc
+		border-top 0
+		padding 8px 20px
+		margin 0
+	.mce-i-resize
+		margin-left -3px
+	.mce-i-resize:before
+		content '\e330'
+		font-family icomoon
+#welcome
+	background-size cover
+	background-color white
+	font-size 16px
+	text-align center
+	position relative
+	color #333
+	position absolute
+	top 0
+	left 0
+	bottom 0
+	right 0
+	z-index 1
+	form
+		background-color rgba(255, 255, 255, 0.7)
+		display inline-block
+		width 276px
+		height 192px
+		position absolute
+		top 50%
+		left 50%
+		margin-top -117px
+		margin-left -159px
+		padding 20px
+		border 1px solid #aaa
+		border-radius(3px)
+		box-shadow(0 0 30px rgba(255, 255, 255, 0.7))
+		p
+			line-height 30px
+			margin-top 10px
+		p:first-child
+			margin-top 0
+		> div
+			margin-top 20px
+		input[type=email], input[type=password]
+			width 250px
+label.checkbox
+	display inline-block
+	height 34px
+	line-height 34px
+	input
+		display none
+	> div
+		display inline-block
+		vertical-align top
+		position relative
+		top 5px
+		width 18px
+		height 18px
+		background-color rgba(255, 255, 255, 0.8)
+		border 1px solid #aaa
+		cursor pointer
+		margin-right 8px
+		font-family 'icomoon'
+	> div:after
+		content "\e2aa"
+		width 16px
+		height 18px
+		line-height 18px
+		position absolute
+		left 0
+		padding-left 2px
+		color transparent
+		transition(.1s)
+	div.checked:after
+		color #333
+		box-shadow(inset 0 0 2px #aaa)
+#components
+	padding 30px 30px
+	text-align left
+	.component
+		padding 5px 25px
+		border-bottom 1px solid #aaa
+		.name
+			cursor pointer
+			font-size 18px
+			line-height 34px
+			i
+				position relative
+				top -3px
+				font-size 20px
+				margin-right 12px
+			div
+				margin-left 20px
+				opacity 0
+				transition(.3s)
+		.name:hover
+			div
+				opacity 1
+		.setup
+			transition(.3s)
+			> *
+				display block
+				height 0
+				overflow hidden
+				transition(.3s)
+			.checkbox div
+				margin-right 10px
+	.component.active
+		.setup
+			padding 15px 20px
+			> *
+				height 34px
+				padding 5px 10px
+				border-bottom 1px solid #aaa
+			> *:last-child
+				border 0
+	.component:last-child
+		border 0
+.ace-tabs, .ace-nav-tabs
+	margin 0 50px
+.ace-tabs
+	.checkbox, .radio
+		display block
+		margin-top 20px !important
+.ace-wrap
+	height 400px
+	margin 0 50px
+	position relative
+	border 1px solid #aaa
+	box-shadow(0 0 30px #aaa)
+	*
+		font-family monospace
+	.editor
+		width 100%
+		height 100%
+		text-align left
+label.radio
+	display block
+	> div:before, > div:after
+		content "\e0e1"
+		font-family 'icomoon'
+		display block
+		width 18px
+		height 18px
+		position absolute
+		top 0
+		left 0
+		font-size 18px
+	> div:after
+		content "\e0e2"
+		color transparent
+		transition(.3s)
+	div.checked:after
+		color #333
+	div
+		cursor pointer
+		width 18px
+		height 18px
+		position relative
+		display inline-block
+		margin-right 8px
+		position relative
+		top 1px
+		input
+			display none
+.labels label
+	display block
+.center-row .row
+	margin 0 auto 15px
+p.error
+	display none
+	font-size 16px
+	padding 0 15px
+	line-height 36px
+	position absolute
+	color transparent
+	transition(.3s)
+p.error.active
+	color #e22
+label.group.tags
+	display block
+	> p
+		float left
+		line-height 40px
+		width 200px
+		font-size 16px
+	> div
+		margin-left 200px
+		margin-right 32px
+		> form
+			width 100%
+			display table
+			border 1px solid #bbb
+			padding-right 26px
+			*
+				display table-cell
+				width 5%
+				vertical-align top
+			> div
+				padding 3px 0 3px 3px
+				position relative
+				white-space nowrap
+				*
+					background-color #239169
+					color white
+					height 34px
+					line-height 33px
+				i
+					font-size 13px
+					cursor pointer
+					padding 0 4px 0 8px
+				p
+					padding-right 8px
+			input
+				width 95%
+				padding 7px 13px
+				height 26px
+				width 100%
+				border 0
+			input:focus
+				box-shadow(none)
+label.group.tags.red > div > form > div *
+	background-color #D83E3E
+.tag-container
+	border 1px solid #bbb
+	line-height 28px
+	font-size 14px
+	padding-bottom 12px
+	h2
+		margin 0
+		padding 0
+		border 0
+		line-height 34px
+		font-size 16px
+		text-align center
+		margin-bottom 6px
+	div
+		min-height 34px
+	p
+		cursor pointer
+		display inline-block
+		padding 0 12px
+		margin 5px
+		color white
+		border 1px solid
+		i
+			position relative
+			top -2px
+			left -4px
+			margin-right 2px
+.tag-container.blue
+	background-color #84DCFC
+	border-color #3BA1C7
+	box-shadow(inset 0 0 15px #3BA1C7)
+	h2
+		color #0D3A56
+	p
+		background-color #174684
+		border-color #03183A
+.tag-container.green
+	background-color #A9E775
+	border-color #77B642
+	box-shadow(inset 0 0 15px #77B642)
+	h2
+		color #2D552D
+	p
+		background-color #366E1F
+		border-color #174107
+.tag-container.red
+	background-color #EF9090
+	border-color #C55F5F
+	box-shadow(inset 0 0 15px #C55F5F)
+	h2
+		color #552D2D
+	p
+		background-color #C72727
+		border-color #C55F5F
+#backButton
+	display none
+	float left
+	margin-left 25px
+	position absolute
+	font-size 16px
+	color #333
+	padding 10px 20px
+	background-color #fff
+	border 1px solid #ddd
+	border-bottom 0
+	margin-top 4px
+	height 19px
+	line-height 22px
+	border-radius(3px 3px 0 0)
+	transition(.3s)
+	i
+		position relative
+		top -2px
+		font-size 20px
+		margin-right 15px
+#backButton.active
+	display block
+#backButton:hover
+	background-color #d64535
+	color white
+.panel
+	border 1px solid #bbb
+	color #333
+	> *
+		padding 12px
+	> p
+		background-color #fafafa
+		line-height 16px
+		border-bottom 1px solid #bbb
+		font-weight bold
+		text-align left
+		box-shadow(inset 0 0 12px #eee)
+.panel.red
+	border-color #EC2222
+	> p
+		background-color #DB4343
+		border-color #EC2222
+		color white
+		box-shadow(inset 0 0 12px #EC2222)
+.panel.green
+	border-color #3FA932
+	> p
+		background-color #54BD48
+		border-color #3FA932
+		color white
+		box-shadow(inset 0 0 12px #3FA932)
+.panel.blue
+	border-color #2243EC
+	> p
+		background-color #435CDB
+		border-color #2243EC
+		color white
+		box-shadow(inset 0 0 12px #2243EC)
+#table-structure
+	line-height 32px
+	table
+		width 100%
+		outline 1px solid #FF5959
+		padding 5px
+		margin 45px 0 20px
+		transition(.3s)
+	table:before
+		content 'table'
+		display block
+		margin-top -39px
+		padding 0 12px
+		position absolute
+		z-index 1
+		background-color #FF5959
+		color white
+		cursor pointer
+		transition(.3s)
+	table.active
+		outline-color red
+		box-shadow(0 0 12px red)
+	table.active:before
+		background-color #FF4949
+		box-shadow(inset 0 0 12px red)
+	tr
+		outline 1px solid #41FF41
+		position relative
+		transition(.3s)
+	tr:before
+		content 'tr'
+		display block
+		margin-top -1px
+		margin-left -52px
+		width 50px
+		position relative
+		z-index 1
+		background-color #41FF41
+		cursor pointer
+		transition(.3s)
+	tr.active
+		outline-color green
+	tr.active:before
+		background-color #0f0
+		box-shadow(inset 0 0 12px green)
+	p
+		margin 5px
+		background-color #435CDB
+		border 1px solid #2243EC
+		color white
+		cursor pointer
+		transition(.3s)
+	td.active p
+		border 1px solid #00f
+		background-color #2243EC
+		box-shadow(0 0 12px #00f)
+.images-form
+	> div
+		font-size 0
+		display inline-block
+		vertical-align middle
+		border 1px solid #aaa
+		margin 10px
+		padding 5px
+		position relative
+		cursor pointer
+		transition(.3s)
+		btn-gradient(#FAFAFA, #FFFFFF, #F2F2F2, #D5D5D5, #E8E8E8)
+		box-shadow(0 0 8px #aaa)
+		border-radius(5px)
+		.remove
+			position absolute
+			top 5px
+			right 5px
+			width 20px
+			height 20px
+			line-height 20px
+			padding 5px
+			font-family 'icomoon'
+			text-shadow(none)
+		.remove:not(:hover)
+			color transparent
+			border-color transparent
+			background transparent
+		.remove:hover
+			box-shadow(none)
+		.remove:before
+			content "\e2c2"
+	> div:hover
+		box-shadow(0 0 16px #d64535)
+		.remove:not(:hover)
+			color #444
+			border-color #aaa
+			background rgba(255, 255, 255, 0.7)
+	.add
+		width 200px
+		height 200px
+	img
+		max-width 200px
+		max-height 200px
+		border 1px solid #aaa
