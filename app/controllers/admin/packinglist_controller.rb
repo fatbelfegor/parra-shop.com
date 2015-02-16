@@ -7,37 +7,22 @@ class Admin::PackinglistController < Admin::AdminController
 		rend
 	end
 	def show
+		pack = Packinglist.find params[:id]
+		cats = Category.where category_id: nil
 		@records = {
 			'category' => {
-				records: [],
-				children: [],
-				habtm: {products: []}
+				records: cats,
+				children: cats.map{|c| c.categories.count},
+				habtm: {'product' => cats.map{|c| c.product_ids}},
+				full: {category_id: nil}
 			},
-			'product' => {
-				records: Product.all,
-				habtm: {categories: []}
-			},
-			'packinglist' => {
-				records: [Packinglist.find(params[:id])],
-				full: {id: params[:id]}
-			},
-			'packinglistitem' => {
-				records: Packinglistitem.where(packinglist_id: params[:id]),
-				full: {packinglist_id: params[:id]}
-			}
+			'packinglist' => {records: [pack]},
+			'packinglistitem' => {records: pack.packinglistitems, full: {packinglist_id: pack.id}}
 		}
-		for c in Category.all
-			@records['category'][:records] << c
-			@records['category'][:children] << Category.where(parent_id: c.id).count
-			@records['category'][:habtm][:products] << c.product_ids
-		end
-		for p in Product.all
-			@records['product'][:records] << p
-			@records['product'][:habtm][:categories] << p.category_ids
-		end
-		rend
+		rend page: 'packinglist/show'
 	end
 	def update
+		data = {}
 		for item in params[:items]
 			update = {amount: item[:amount], price: item[:price]}
 			id = item[:product_id]
@@ -51,67 +36,31 @@ class Admin::PackinglistController < Admin::AdminController
 			Packinglistitem.find(item[:id]).update update
 		end
 		if params[:add_items]
+			data[:item_ids] = []
 			for item in params[:add_items]
-				Packinglistitem.create packinglist_id: params[:packinglist_id], product_id: item[:product_id], product_name_article: Product.find_by_id(item[:product_id]).scode, amount: item[:amount], price: item[:price], name: item[:name]
+				data[:item_ids] << Packinglistitem.create(packinglist_id: params[:packinglist_id], product_id: item[:product_id], product_name_article: Product.find_by_id(item[:product_id]).scode, amount: item[:amount], price: item[:price], name: item[:name]).id
 			end
 		end
-		rend data: true
+		rend data: data
 	end
-	def upload
-		require 'ox'
-		xml = Ox.parse params[:file].read.force_encoding('UTF-8')
-		list = xml.nodes[0].nodes[4].nodes[0].nodes
-		packinglists = []
-		packinglistitems = []
-		list.each_with_index do |row, i|
-			begin
-				if row.nodes[0].nodes[0].nodes[0].nodes[0] == "Номер\rдокумента"
-					nextRow = list[i + 1]
-					login = current_user.email
-					packinglists << Packinglist.create(
-						doc_number: nextRow.nodes[0].nodes[0].nodes[0],
-						user: login,
-						date: Date.strptime(nextRow.nodes[1].nodes[0].nodes[0].split('-').map{|s| s = s.to_i}.join(' '), '%Y %m %d')
-					)
-				end
-			rescue
+	def create
+		pack = Packinglist.create params.require(:pack).permit!
+		product_ids = []
+		product_scodes = []
+		item_ids = []
+		for i, item in params.require(:items).permit!
+			product = Product.find_by_s_title(item[:product_name_article])
+			if product.blank?
+				product_ids << nil
+				product_scodes << nil
+			else
+				product_ids << product.id
+				product_scodes << product.scode
+				item[:product_id] = product.id
+				item[:product_name_article] = product.scode
 			end
-			begin
-				if row.nodes[0].nodes[0].nodes[0] == '1' and list[i - 1].nodes[0].nodes[0].nodes[0] != '1'
-					while true
-						p = list[i += 1]
-						break if p.nodes[0].nodes.empty?
-						create = {}
-						k = 1
-						if p.nodes[k].nodes[0].nodes.size == 1
-							create[:name] = p.nodes[k].nodes[0].nodes[0]
-						else
-							create[:name] = p.nodes[k].nodes[0].nodes.map{|n| n.nodes[0]}.join.gsub("\r", " ")
-						end
-						create[:product_name_article] = p.nodes[k += 1].nodes[0].nodes[0]
-						if p.nodes[k += 6].nodes.empty?
-							create[:amount] = p.nodes[k += 1].nodes[0].nodes[0].to_i
-						else
-							create[:amount] = p.nodes[k].nodes[0].nodes[0].to_i
-						end
-						if p.nodes[k += 1].nodes.empty?
-							if p.nodes[k + 3].nodes[0]
-								create[:price] = p.nodes[k + 3].nodes[0].nodes[0].gsub(" ", "").gsub(",", ".").to_f / create[:amount]
-							else
-								create[:price] = p.nodes[k + 4].nodes[0].nodes[0].to_f
-							end
-						else
-							create[:price] = p.nodes[k + 2].nodes[0].nodes[0].gsub(" ", "").gsub(",", ".").to_f / create[:amount]
-						end
-						product = Product.find_by_s_title(create[:product_name_article])
-						create[:product_id] = product.id if product
-						packinglistitems << Packinglist.last.packinglistitems.create(create)
-					end
-				end
-			rescue
-			end
+			item_ids << pack.packinglistitems.create(item).id
 		end
-		rend data: {'packinglist' => packinglists,
-			'packinglistitem' => packinglistitems}
+		rend data: {pack_id: pack.id, item_ids: item_ids, product_ids: product_ids, product_scodes: product_scodes}
 	end
 end

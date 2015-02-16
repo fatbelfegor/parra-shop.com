@@ -4,50 +4,6 @@
 			notify "Модель <b>#{model}</b> успешно удалена"
 			menu.remove "model/#{model}"
 		dark.close()
-	create: (el) ->
-		form = $(el).parent()
-		validate form, ->
-			act.form form, "Модель успешно создана", (d) ->
-				if d
-					name = $(el).parents('form').find('[name=model]').val()
-					name = name[0] + name[1..-1]
-					low = name.toLowerCase()
-					app.menu.find('> div > ul > li').eq(0).after "<li><a onclick='app.aclick(this)' href='/admin/model/#{low}' data-path='#{low}'><i class='icon-stack'></i><span>#{word name}</span></a>
-						<i class='icon-arrow-right11' onclick='$(this).prev().toggleClass(\"active\")'></i>
-						<ul>
-							<li><a onclick='app.aclick(this)' href='/admin/model/#{low}/records'><i class='icon-menu2'></i><span>Все записи</span></a></li>
-							<li><a onclick='app.aclick(this)' href='/admin/model/#{low}/new' data-path='new'><i class='icon-quill2'></i><span>Добавить запись</span></a></li>
-							<li><a onclick='app.aclick(this)' href='/admin/model/#{low}/edit'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
-							<li><p href='/admin/model/#{low}/destroy' onclick='ask(this, \"Вы действительно хотите удалить модель <b>#{low}</b>?\", 'model.destroy(\"#{low}\")')'><i class='icon-remove3'></i><span>Удалить модель</span></p></li>
-						</ul>
-					</li>"
-	update: (el) ->
-		form = $(el).parent()
-		model = $('h1 b').html()
-		table = tables[model]
-		serialize = form.serializeArray()
-		data = {}
-		for s in serialize
-			switch s.name
-				when 'imageable'
-					data.imageable = true
-				when 'timestamps'
-					data.timestamps = true
-				when 'remove[]'
-					data.remove = [] if !data.remove
-					data.remove.push s.value
-		for c, i in table.columns
-			if c.name is 'created_at' and table.columns[i + 1].name is 'updated_at'
-				if data.timestamps
-					delete data.timestamps
-				else
-					data.remove_timestamps = true
-		if 'images' in table.has_many
-			if data.imageable
-				delete data.imageable
-			else
-				data.remove_imageable = true
-		act.sendData "model/#{model}/update", data, 'Модель обновлена'
 	column:
 		add: (el, name) ->
 			params =
@@ -111,7 +67,7 @@
 			tr += ">
 					</td>
 					<td class='btn red' onclick='rm(this)'>Удалить</td>
-					<td class='btn deepblue sortable'>Переместить</td>
+					<td class='btn blue sortable'>Переместить</td>
 				</tr>"
 			table = $(el).parents('.add-column-wrap').find 'table'
 			table.append tr
@@ -182,9 +138,13 @@
 			<input type='text' name='#{wrap.data 'type'}[]name'"
 		ret += " value='#{el.html()}'" if name
 		ret += ">
-			<i class='icon-cancel-circle' onclick='rm(this)'></i>
+			<i class='icon-cancel-circle' onclick='model.association_rm(this)'></i>
 		</label>"
 		wrap.find('.insert').append ret
+		el.remove()
+	association_rm: (el) ->
+		$(el).parents(".association-wrap").find("[data-content='model-names']").append "<div class='btn blue' onclick='model.association(this, true)'>#{$(el).prev().val()}</div>"
+		rm el
 	columnType: (type, name, tag) ->
 		tag ||= 'div'
 		ret = "<#{tag} class='dropdown' onclick='dropdown.toggle(this)'><p>#{type}<i class='icon-arrow-down2'></i></p><div>"

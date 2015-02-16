@@ -9,7 +9,7 @@
 				ret += "\n\t#{from}: \"#{to}\""
 			act.sendData "write", file: ret, path: "app/assets/javascripts/admin/settings/localization.coffee", "Локализация обновлена"
 	enter: (el) ->
-		@add $(el).find('.deepblue')[0]
+		@add $(el).find('.blue')[0]
 		false
 	add: (el) ->
 		$(el).next().next().after @row()
@@ -24,15 +24,15 @@ app.page = ->
 	ret = "<h1>Локализация</h1>
 	<div class='content'>
 		<form onsubmit='return localization.enter(this)'>
-			<div class='btn green dashed' onclick='localization.save(this)'>Сохранить</div>
+			<div class='btn green' onclick='localization.save(this)'>Сохранить</div>
 			<br>
-			<div class='btn deepblue' onclick='localization.add(this)'>Добавить (Enter)</div>
+			<div class='btn blue' onclick='localization.add(this)'>Добавить (Enter)</div>
 			<br>
 			<br>
 			#{localization.row()}"
 	ret += localization.row k, v for k, v of settings.localization if settings.localization?
 	ret += "<br>
-			<div class='btn green dashed' onclick='localization.save(this)'>Сохранить</div>
+			<div class='btn green' onclick='localization.save(this)'>Сохранить</div>
 			<input type='submit' class='hide'>
 		</form>
 	</div>"

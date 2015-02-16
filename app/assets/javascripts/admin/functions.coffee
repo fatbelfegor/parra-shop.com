@@ -1,87 +1,9 @@
-# DropDown
-
-@dropdown =
-	toggle: (el) ->
-		$(el).toggleClass 'active'
-	pick: (el, options) ->
-		el = $ el
-		val = el.html()
-		dropdown = el.parents('.dropdown')
-		dropdown.find('input').val val
-		if options
-			options.cb val if options.cb
-			val = options.valueWrap val if options.valueWrap
-		dropdown.find('.active').removeClass 'active'
-		el.addClass 'active'
-		dropdown.find('> p').html val
-
-# TreeBox
-
-@treebox =
-	toggle: (el) ->
-		$(el).parent().toggleClass 'active'
-		window.tree = $(el).parent()
-	pick: (el) ->
-		el = $ el
-		val = el.html()
-		treebox = el.parents('.treebox').removeClass 'active'
-		treebox.find('> p').html "<span>#{val}</span><i class='icon-arrow-down2'></i>"
-		treebox.find('input').val el.data 'val'
-	belongs_to: (belongs_to_col, width, rec) ->
-		belongs_model = belongs_to_col.name[0..-4]
-		ret = "<div#{width} class='treebox-row'>
-			<b>#{word tables[belongs_model].name}:</b>
-			<div class='treebox' id='treebox_#{belongs_to_col.name}'>"
-		treeboxFill = (name) ->
-			belongs_table = tables[name]
-			field = settings.template.form.model[name] or settings.template.form.common
-			field = field.treebox[0].name
-			records = belongs_table.records
-			if records.length
-				ret = "<p onclick='treebox.toggle(this)'><span>"
-				if rec and rec[belongs_to_col.name]
-					bt_id = rec[belongs_to_col.name]
-					for bt_rec in belongs_table.records
-						if bt_rec.id is bt_id
-							ret += bt_rec[field]
-							break
-				else if app.data.route.vars[belongs_to_col.name]
-					bt_id = parseInt app.data.route.vars[belongs_to_col.name]
-					for bt_rec in belongs_table.records
-						if bt_rec.id is bt_id
-							ret += bt_rec[field]
-							break
-				else
-					ret += "Выбрать"
-				ret += "</span><i class='icon-arrow-down2'></i></p>"
-				ret += "<ul>"
-				if belongs_table.has_self
-					roots = []
-					roots.push bt_rec if bt_rec.record[belongs_to_col.name] is null for bt_rec in records
-					for bt_rec in roots
-						ret += "<li>"
-						if bt_rec.children > 0
-							ret += "<div><i class='icon-arrow-down2' onclick='record.treebox(this, \"#{name}\")'></i><p onclick='treebox.pick(this)' data-val='#{rec.id}'>#{rec[field]}</p></div><ul></ul>"
-						else
-							ret += "<div><p onclick='treebox.pick(this)' data-val='#{bt_rec.id}'>#{bt_rec[field]}</p></div>"
-						ret += "</li>"
-				else
-					ret += "<li><div><p onclick='treebox.pick(this)' data-val='#{bt_rec.id}'>#{bt_rec[field]}</p></div></li>" for bt_rec in records
-				ret += "</ul>"
-			else
-				ret = "<p><span>Нет записей</span></p>"
-			if rec
-				val = record.val rec, belongs_to_col
-			else if bt_id
-				val = " value='#{bt_id}'"
-			else
-				val = ''
-			ret + "<input type='hidden' data-type='integer' name='record[#{name}_id]'#{val}>"
-		record.ask {model: belongs_model}, (name) ->
-			$("#treebox_#{name}_id").html treeboxFill name
-		, (name) ->
-			ret += treeboxFill name
-		ret + "</div></div>"
+Number.prototype.toCurrency = ->
+	(""+this.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+String.prototype.toNumber = ->
+	parseFloat @replace(/\ /g,'')
+String.prototype.toCurrency = ->
+	@toNumber().toCurrency()
 
 # Record
 
@@ -111,10 +33,12 @@
 
 # Ask
 
-@ask = (el, msg, action) ->
+@ask = (msg, action, options) ->
 	ask = dark.open('ask')
 	ask.find('.text p').html msg
-	ask.find('.red').attr 'onclick', action
+	ask.find('.red').click ->
+		action(options)
+		dark.close()
 
 # Dark
 
@@ -133,24 +57,23 @@
 		$('#menu').find("[href='/admin/#{url}']").parent().slideUp 300, ->
 			$(@).remove()
 
-# Form
+# Send
 
-@act =
-	post: (url, data, cb) ->
-		$.post "/admin/#{url}", data, cb, 'json'
-	sendData: (url, data, msg, cb) ->
-		@post url, data, (d) ->
-				act.notify msg
-				cb d if cb
-	form: (form, msg, cb) ->
-		@sendData form.attr('action'), form.serializeArray(), msg, cb
-	send: (el, msg, cb) ->
-		@form $(el).parent(), msg, cb
-	notify: (msg) ->
-		app.notify.html("<i class='icon-checkmark-circle'></i><p>#{msg}</p>").addClass 'show'
-		setTimeout ->
-				app.notify.removeClass 'show'
-			, 3000
+@form_send = (form, msg, cb) ->
+	send form.attr('action'), form.serializeArray(), msg, cb
+@btn_send = (el, msg, cb) ->
+	form_send $(el).parent(), msg, cb
+@post = (url, data, cb) ->
+	$.post "/admin/#{url}", data, cb, 'json'
+@send = (url, data, msg, cb) ->
+	post url, data, (d) ->
+		notify msg
+		cb d if cb
+@notify = (msg) ->
+	app.notify.html("<i class='icon-checkmark-circle'></i><p>#{msg}</p>").addClass 'show'
+	setTimeout ->
+		app.notify.removeClass 'show'
+	, 3000
 @textarea =
 	in: (el) ->
 		el = $ el
@@ -210,7 +133,7 @@
 # Word
 
 @word = (word) ->
-	settings.localization[word] or settings.localization[word.toLowerCase()] or word
+	localization[word] or localization[word.toLowerCase()] or word
 
 # Tag
 

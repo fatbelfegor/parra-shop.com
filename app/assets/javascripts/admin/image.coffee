@@ -3,36 +3,17 @@
 		@wait = el
 		@waitType = type
 		ask = dark.open 'images'
-	fileUpload: (input) ->
+	upload: (input) ->
 	    if input.files
-	    	label = $(input).parent()
-	    	i = $('[data-upload-image]').last().data 'uploadImage'
-	    	i ||= 0
+	    	images = $(input).parent().prev()
 	    	for f in input.files
 	    		reader = new FileReader()
 	    		reader.onload = (e) ->
-	    			label.parent().next().append "<div class='upload-image' data-upload-image='#{i += 1}'>
-	    				<div class='image'>
-	    					<img src='#{e.target.result}'>
-	    				</div>
-	    				<div>
-	    					<p class='title'><b>Название:</b> #{f.name}</p>
-	    					<p><b>Ширина:</b> <span class='width'></span>px</p>
-	    					<p><b>Высота:</b> <span class='height'></span>px</p>
-	    					<p><b>Размер: </b> #{Math.ceil f.size / 1024}Kb</p>
-	    				</div>
-	    				<div class='buttons'>
-	    					<div class='btn green square' onclick='image.load(this)'><i class='icon-upload'></i><span>Загрузить</span></div>
-	    					<div class='btn red square' onclick='image.remove(this)'><i class='icon-remove3'></i><span>Удалить</span></div>
-	    				</div>
-	    			</div>"
-	    			$('<img class="hidden"/>').attr('src', e.target.result).load ->
-	    				img = $("[data-upload-image='#{i}']")
-	    				img.find('.width').html @width
-	    				img.find('.height').html @height
+	    			images.append "<div>
+							<div class='btn red remove'></div>
+							<a href='#{e.target.result}' data-lightbox='product'><img src='#{e.target.result}'></a>
+						</div>"
 	    		reader.readAsDataURL f
-	    		image.files.push f
-	    	label.next().removeClass('hidden').html("<i class='icon-upload'></i><span>Загрузить все</span>").next().addClass 'hidden'
 	load: (el) ->
 		el = $ el
 		formData = new FormData()
@@ -138,7 +119,7 @@
 	removeOne: (el, server) ->
 		control = $(el).parent()
 		control.find('.red').addClass 'hidden'
-		control.find('.deepblue').removeClass 'hidden'
+		control.find('.blue').removeClass 'hidden'
 		removeFromInput control.next().addClass('empty').find('a'), server
 	removeFromInput: (el, server) ->
 		el = $ el

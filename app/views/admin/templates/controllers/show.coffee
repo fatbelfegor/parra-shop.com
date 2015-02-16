@@ -10,22 +10,22 @@ app.page = ->
 			<div class='tabs ace-tabs'>
 				<div class='active'>
 					<form action='controllers/#{contr}/update'>
-						<div class='btn green dashed' onclick='controller.code.update(this)'>Сохранить</div>
+						<div class='btn green' onclick='controller.code.update(this)'>Сохранить</div>
 						<div class='ace-wrap'>
 							<div id='ace-all' class='editor'></div>
 						</div>
 						<input type='hidden' name='code'>
-						<div class='btn green dashed' onclick='controller.code.update(this)'>Сохранить</div>
+						<div class='btn green' onclick='controller.code.update(this)'>Сохранить</div>
 					</form>
 				</div>
 				<div>
 					<form action='controllers/#{contr}/action/create'>
-						<div class='btn purple dashed' onclick='controller.action.create(this)'>Добавить</div>
+						<div class='btn purple' onclick='controller.action.create(this)'>Добавить</div>
 						<label class='row'><p>Название: </p><input type='text' name='name'></label>
 						<label class='checkbox'><div class='checked'><input onchange='checkbox(this)' type='checkbox' checked='checked' name='view'></div>Создать представление (view)</label>
 						<label class='checkbox'><div><input onchange='checkbox(this)' type='checkbox' name='root'></div>Сделать главной страницей</label>
 						<br>
-						<div class='btn purple dashed' onclick='controller.action.create(this)'>Добавить</div>
+						<div class='btn purple' onclick='controller.action.create(this)'>Добавить</div>
 					</form>
 				</div>
 			</div>

@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Admin</title>
-  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <%= stylesheet_link_tag    'admin/admin', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'admin/app' %>
   <%= csrf_meta_tags %>
 </head>
@@ -17,8 +17,8 @@
 			<p></p>
 		</div>
 		<div class="buttons">
-			<div class="btn white square" onclick="dark.close()">Отменить</div>
-			<div class="btn red square">Удалить</div>
+			<div class="btn white" onclick="dark.close()">Отменить</div>
+			<div class="btn red">Удалить</div>
 		</div>
 	</div>
 	<div class="images">
@@ -31,12 +31,12 @@
 			<div class="active">
 				<div class="file">
 					<label>
-						<div class="btn deepblue square"><i class='icon-folder'></i><span>Открыть</span></div>
+						<div class="btn blue"><i class='icon-folder'></i><span>Открыть</span></div>
 						<input onchange="image.fileUpload(this)" type="file" multiple>
 					</label>
-					<div class="btn green square hidden" onclick="image.loadAll(this)"><i class='icon-upload'></i><span>Загрузить все</span></div>
-					<div class="btn blue square hidden" onclick="image.checkAll(this)"><i class="icon-checkbox-unchecked"></i><span>Отметить все</span></div>
-					<div class="btn purple square hidden" onclick="image.returnAll(this)"><i class="icon-checkmark4"></i><span>Выбрать отмеченные</span></div>
+					<div class="btn green hidden" onclick="image.loadAll(this)"><i class='icon-upload'></i><span>Загрузить все</span></div>
+					<div class="btn blue hidden" onclick="image.checkAll(this)"><i class="icon-checkbox-unchecked"></i><span>Отметить все</span></div>
+					<div class="btn purple hidden" onclick="image.returnAll(this)"><i class="icon-checkmark4"></i><span>Выбрать отмеченные</span></div>
 				</div>
 				<div class="image-preview"></div>
 			</div>

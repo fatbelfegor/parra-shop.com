@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122124716) do
+ActiveRecord::Schema.define(version: 20150216111741) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -253,6 +253,7 @@ ActiveRecord::Schema.define(version: 20150122124716) do
     t.boolean  "admin"
     t.boolean  "manager"
     t.string   "prefix"
+    t.string   "role"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

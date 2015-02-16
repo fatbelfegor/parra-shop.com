@@ -1,0 +1,146 @@
+@import "mixins"
+
+.btn
+	display inline-block
+	padding 6px 12px
+	font 700 13px sans-serif
+	line-height 24px
+	text-align center
+	white-space nowrap
+	vertical-align middle
+	-ms-touch-action manipulation
+	touch-action manipulation
+	cursor pointer
+	text-decoration none
+	border 1px solid transparent
+	padding 5px 14px 3px
+	user-select(none)
+	transition(.3s)
+	border-radius(3px)
+	i
+		position relative
+		top -2px
+	i:first-child
+		margin-right 5px
+	i:last-child
+		margin-left 5px
+.btn.gray
+	color #333
+	border 1px solid #aaa
+	btn-gradient(#FAFAFA, #FFFFFF, #F2F2F2, #D5D5D5, #E8E8E8)
+.btn.gray:hover
+	box-shadow(inset 0 0 12px #fff)
+.btn.green
+	color white
+	border 1px solid #509e19
+	border-bottom-color #198d0f
+	border-top-color #6dbe38
+	text-shadow(0 1px 0 #25a811)
+	btn-gradient(#7ada4a, #b2ff4a, #6bde2d, #43b81a, #3bb118)
+.btn.green:hover
+	box-shadow(inset 0 0 8px #b2ff4a)
+.btn.red
+	color white
+	border 1px solid #9E1919
+	border-bottom-color #8D0F0F
+	border-top-color #BE3838
+	text-shadow(0 1px 0 #A81111)
+	btn-gradient(#DA4A4A, #FF4A4A, #DE2D2D, #B81A1A, #B11818)
+.btn.red:hover
+	box-shadow(inset 0 0 8px #FF4A4A)
+.btn.orange
+	color white
+	border 1px solid #ff6100
+	border-bottom-color #FF3A00
+	border-top-color #FF7400
+	text-shadow(0 1px 0 #ff4500)
+	btn-gradient(#FF6B00, #FFDF00, #FFAE00, #FF3A00, #FF5700)
+.btn.orange:hover
+	box-shadow(inset 0 0 8px #ffdf00)
+.btn.blue
+	color white
+	border 1px solid #0034ff
+	border-bottom-color #0034FF
+	border-top-color #3F7CFF
+	text-shadow(0 1px 0 #00f)
+	btn-gradient(#4B76FD, #84ABFF, #4B76FD, #0003FF, #0A4EFF)
+.btn.blue:hover
+	box-shadow(inset 0 0 8px #84ABFF)
+.btn.white
+	border-color #aaa
+	color #333
+.btn.white:hover
+	border-color #666
+	color black
+.btn.purple
+	color white
+	border 1px solid #A100FF
+	border-bottom-color #7000A7
+	border-top-color #C435FF
+	text-shadow(0 1px 0 #5e0062)
+	btn-gradient(#DE44FF, #DF69FF, #C944FF, #9700D5, #B121F7)
+.btn.purple:hover
+	box-shadow(inset 0 0 8px #DF69FF)
+
+.image-preview
+	.buttons
+		padding 0 20px
+		width 50px
+	.btn
+		display block
+	.btn.green, .btn.yellow
+		margin-bottom 10px
+	.btn.blue
+		width 100px
+		text-align left
+	.btn.blue + .btn.red
+		height 0
+		border 0
+		padding 0
+		overflow hidden
+	.btn.red
+		float right
+
+.buttons-list
+	border 1px solid #aaa
+	margin 0 30px
+	padding 10px
+	.btn
+		margin 0 2px
+
+.buttons-group
+	font-size 0
+	.btn
+		margin 2px
+
+table
+	td.btn, td .btn
+		border-radius(0)
+	td.btn
+		display table-cell
+	td .btn
+		display block
+	.btn > *
+		font-family 'icomoon'
+	td.btn:not(.always), td .btn:not(.always)
+		text-shadow(none)
+	td.btn:not(:hover):not(.always), td .btn:not(:hover):not(.always)
+		color #444
+		border-color #ccc
+		background white
+	td.btn:hover, td .btn:hover
+		box-shadow(none !important)
+
+.group table
+	td.btn
+		width 36px
+		padding 0
+		*
+			padding 5px
+			height 26px
+			display block
+
+.btn > .edit:before
+	content "\e11e"
+.btn > .remove:before
+	content "\e0d7"

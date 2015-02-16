@@ -1,120 +1,52 @@
 @record =
-	refresh: (wrap) ->
-		name = wrap.data 'records'
+	index: ->
+		name = app.data.route.model
 		table = tables[name]
-		template = settings.template.index.model[name] or settings.template.index.common
-		width = 100 / table.fields.string.length
-		string = table.fields.string
-		text = table.fields.text
-		records = table.records
-		if name is 'order'
-			records = records.sort (a, b) ->
-				if new Date(a.created_at).getTime() < new Date(b.created_at).getTime()
-					1
-				else
-					-1
-		children = table.children if table.has_self
-		ret = ''
-		switch wrap.data 'wrap'
-			when 'main'
-				ret = "<div data-records-header='#{name}' class='header'><div><div>"
-				for c in string
-					if c.belongs_to
-						ret += "<p>#{word c.belongs_to}: #{word c.name}</p>"
-					else if c.custom
-						ret += "<p>#{c.title}</p>"
-					else
-						ret += "<p>#{word c.name}</p>"
-				ret += "</div>"
-				for field in text
-					ret += "<div><p>#{word field}</p></div>"
-				ret += "</div></div>"
-				if table.has_self
-					recs = []
-					chis = []
-					for rec, i in records
-						if !rec["#{name}_id"]
-							recs.push rec
-							chis.push children[i]
-				else
-					recs = records
-			when 'children'
-				recs = []
-				chis = []
-				for rec, i in records
-					if rec["#{name}_id"] is id
-						recs.push rec
-						chis.push children[i]
-			when 'relation'
-				if wrap.html() is ''
-					ret = "<div class='model-name'>#{name}</div>"
-					relations = wrap.parent()
-					id = relations.data 'parentId'
-					parent_model = relations.parent().data 'model'
-					recs = []
-					chis = [] if table.has_self
-					for rec, i in records
-						if rec["#{parent_model}_id"] is id
-							recs.push rec
-							chis.push children[i] if table.has_self
-				else
-					records = []
-		for rec, i in recs
-			children = table.has_self and chis[i] > 0
-			ret += "<div data-model='#{name}' data-id='#{rec.id}' class='record-wrap'>"
-			ret += "<div class='btn btn-children' onclick='record.children(this)'></div>" if children
-			ret += "<div class='btn btn-destroy' onclick='record.btnDestroy(this)'></div>"
-			ret += btn rec for btn in template.buttons if template.buttons
-			if template.buttons then btnpx = template.buttons.length else btnpx = 0
-			ret += "<div class='record' style='margin: 0 #{(btnpx + 1) * 39}px 0 0'><a onclick='app.aclick(this)' href='/admin/model/#{name}/edit/#{rec.id}' class='string'>"
-			for c in string
-				if c.belongs_to
-					bt_id = c.belongs_to + '_id'
-					if tables[c.belongs_to].records.length is 0
-						val = ''
-					else
-						bt_id_val = rec[bt_id]
-						if bt_id_val
-							val = tables[c.belongs_to].records.filter((c) -> c.id is bt_id_val)[0][c.name]
-						else
-							val = "Не задан #{word tables[c.belongs_to].singularize}"
-				else if c.custom
-					val = eval c.cb
-				else
-					val = rec[c.name]
-				switch c.type
-					when 'datetime'
-						d = new Date val
-						date = d.getDate()
-						date = '0' + date if date < 10
-						month = d.getMonth() + 1
-						month = '0' + month if month < 10
-						val = "#{date}.#{month}.#{d.getFullYear()}"
-				ret += "<p style='width: #{width}%'>#{val}</p>"
-			ret += "</a>"
-			for field in text
-				ret += "<div class='text'>#{rec[field]}</div>"
-			ret += "<!--<div data-parent-id='#{rec.id}' class='relations'>"
-			for rel in table.has_many
-				for k, t of tables
-					if t.pluralize is rel
-						ret += "<div class='relation' data-records='#{t.singularize}' data-wrap='relation'></div>"
-			ret += "</div>--></div>"
-			ret += "<div data-records='#{name}' data-wrap='children' data-parent-id='#{rec.id}' class='children'></div>" if children
+		template = models["#{name}_index"]
+		ret = ""
+		for rec in table.records
+			ret += "<div class='group'>"
+			for t in template.table
+				ret += "<table>"
+				for tr in t.tr
+					ret += "<tr>"
+					for td in tr.td
+						ret += "<td"
+						ret += " colspan='#{td.colspan}'" if td.colspan
+						ret += " rowspan='#{td.rowspan}'" if td.rowspan
+						ret += " style='#{td.style}'" if td.style
+						if td.btn
+							ret += " class='btn"
+							ret += " #{td.btnTdClass}" if td.btnTdClass
+							ret += "'"
+						ret += ">"
+						if td.field
+							if td.belongs_to
+								val = @find td.belongs_to, rec[td.belongs_to + '_id']
+								if val then val = val[td.field] else val = ''
+							else
+								val = rec[td.field]
+							if td.cb
+								val = eval(td.cb) val, td.cbParams
+							ret += val
+						else if td.btn
+							if td.btnA
+								tag = "a"
+							else tag = "div"
+							ret += "<#{tag}"
+							ret += " href='#{eval(td.btnA) rec, name}'" if td.btnA
+							ret += " onclick='#{td.btnClick}'" if td.btnClick
+							ret += " class='#{td.btnClass}'" if td.btnClass
+							ret += ">"
+							ret += "<i class='#{td.btnIcon}'></i>" if td.btnIcon
+							ret += "</#{tag}>"
+						else if td.func
+							ret += eval(td.func) rec
+						ret += "</td>"
+					ret += "</tr>"
+				ret += "</table>"
 			ret += "</div>"
-		wrap.html ret
-	children: (el) ->
-		el = $ el
-		parent = el.parent()
-		childrenWrap = parent.find('> .children')
-		if el.hasClass 'active'
-			el.removeClass 'active'
-			childrenWrap.removeClass 'active'
-		else
-			el.addClass 'active'
-			childrenWrap.addClass 'active'
-			record.loadChildren parent.data('model'), parent.data('id'), ->
-				record.refresh childrenWrap
+		$('#records').html ret
 	send: (form, msg, cb) ->
 		validate form, ->
 			form.find('.tinyMCE').each ->
@@ -127,43 +59,75 @@
 		@send $(el).parent(), 'Запись обновлена', ->
 			console.log 'updated'
 	ask: (data, success, already) ->
-		data = [data] unless data[0]
-		load = false
+		data = [data] unless data.length
+		cb = already ? success
+		return cb() if data[0].length is 0
 		models = []
-		for d, i in data
-			name = d.model
-			table = tables[name]
-			if !table.full.all
-				if table.has_self
-					unless table.full["#{name}_id"] and table.full["#{name}_id"][data.has_self]
+		genModel = (d) ->
+			table = tables[d.model]
+			load = false
+			m = model: d.model
+			unless table.full.all
+				if d.find
+					if d.find in table.full.id
+						m.ids = [d.find] if d.has_many or d.belongs_to
+					else
 						load = true
-						table.full["#{name}_id"] ||= {}
-						table.full["#{name}_id"][d.has_self] = true
-						d.where = {}
-						if d.has_self is null
-							d.has_self_null = true
+						table.full.id.push d.find
+						m.find = d.find
+				else if d.where
+					for k, v of d.where
+						if table.full[k]
+							if v not in table.full[k]
+								load = true
+								table.full[k].push v
 						else
-							d.where["#{name}_id"] = d.has_self
-						d.has_self = true
+							load = true
+							table.full[k] = [v]
+					m.where = d.where
 				else
 					load = true
 					table.full.all = true
-				models.push d
-		if load
-			act.post "record/get", models: models, (res) ->
-				for m, r of res
-					table = tables[m]
-					$.extend true, tables[k].records, v for k, v of r.belongs_to if r.belongs_to
-					$.extend true, tables[k].records, v for k, v of r.has_many if r.has_many
-					$.extend true, table.records, r.records
-					table.children = table.children.concat r.children if table.has_self
-				success name if success
+			m.load = load
+			if d.has_many
+				for h in d.has_many
+					unless table.has_many[h.model]
+						load = true
+						table.has_many[h.model] = true
+						h = genModel h
+						if h.load
+							m.has_many ||= []
+							m.has_many.push h.model
+			if d.belongs_to
+				for h in d.belongs_to
+					unless table.belongs_to[h.model]
+						load = true
+						table.belongs_to[h.model] = true
+						h = genModel h
+						if h.load
+							m.belongs_to ||= []
+							m.belongs_to.push h.model
+			model: m, load: load
+		for d, i in data
+			m = genModel d
+			models.push m.model if m.load
+		if models.length > 0
+			post "record/get", models: models, (res) ->
+				setModel = (res) ->
+					for m, r of res
+						table = tables[m]
+						if r.records
+							table.records = table.records.concat r.records
+							table.children = table.children.concat r.children if r.children
+						setModel r.belongs_to if r.belongs_to
+						setModel r.has_many if r.has_many
+						table.habtm[k] = table.habtm[k].concat v for k, v of r.habtm if r.habtm
+				setModel res
+				success() if success
 		else if already
-			already name
+			already()
 		else if success
-			success name
-	loadChildren: (name, id, success, already) ->
-		@ask {model: name, has_self: id}, success, already
+			success()
 	treebox: (el, name) ->
 		treebox.toggle el
 		el = $ el
@@ -186,7 +150,7 @@
 			ul.html ret
 	col: (rec, c, wrap) ->
 		if rec
-			if wrap then wrap(rec[c.name] || '') else rec[c.name]
+			if wrap then wrap rec[c.name] else rec[c.name]
 		else
 			if c.default
 				if wrap then wrap c.default else c.default
@@ -195,15 +159,47 @@
 	val: (rec, c) ->
 		@col rec, c, (val) -> " value='#{val}'"
 	destroy: (name, id) ->
-		act.sendData "model/#{name}/destroy/#{id}", {}, "Запись удалена"
+		send "model/#{name}/destroy/#{id}", {}, "Запись удалена"
 	btnDestroy: (el) ->
 		rec = $(el).parent()
 		@destroy rec.data('model'), rec.data 'id'
 		rec.remove()
-	find: (recs, id) ->
-		return item if item.id is parseInt id for item in recs
-	where: (recs, scope) ->
-		recs.filter (r) ->
-		for rec in tables.category.records
-			if !rec.parent_id
-				cats.push rec
+	find: (recs, id, options) ->
+		recs = tables[recs]
+		for item, i in recs.records
+			if item.id is id
+				if options and options.habtm
+					item = record: item, habtm: {}
+					for m in options.habtm
+						item.habtm[m] = recs.habtm[m][i]
+				return item
+	where: (recs, options) ->
+		ret = records: []
+		options ||= {}
+		if options.children
+			children = tables[recs].children
+			ret.children = []
+		if options.habtm
+			habtm = tables[recs].habtm
+			ret.habtm = {}
+			ret.habtm[model] = [] for model in options.habtm
+		options.where ||= {}
+		for item, i in tables[recs].records
+			push = true
+			if options.where
+				for k, v of options.where
+					if item[k] isnt v
+						push = false
+						break
+			if options.in
+				for k, v of options.in
+					if item[k] not in v
+						push = false
+						break
+			if push
+				ret.records.push item
+				ret.children.push children[i] if options.children
+				if options.habtm
+					for m in options.habtm
+						ret.habtm[m].push habtm[m][i]
+		ret

@@ -1,4 +1,4 @@
-settings.localization =
+@localization =
 	name: "название"
 	created_at: "дата заказа"
 	comment: "комментарий"

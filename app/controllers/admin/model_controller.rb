@@ -9,8 +9,12 @@ class Admin::ModelController < Admin::AdminController
 	end
 
 	def create
-		Model.create name: params[:model].classify, columns: params[:addColumn], imageable: params[:imageable], timestamps: params[:timestamps], belongs_to: params[:belongs_to], has_one: params[:has_one], has_many: params[:has_many], acts_as_tree: params[:acts_as_tree]
+		name = params[:model].classify
+		down = name.downcase
+		Model.create name: name, columns: params[:addColumn], imageable: params[:imageable], timestamps: params[:timestamps], belongs_to: params[:belongs_to], has_one: params[:has_one], has_many: params[:has_many], acts_as_tree: params[:acts_as_tree]
 		`rake db:migrate`
+		Dir.mkdir Rails.root.join 'app', 'assets', 'javascripts', 'admin', 'models', down
+		File.write Rails.root.join('app', 'assets', 'javascripts', 'admin', 'models', down, 'index.coffee'), params[:index]
 		rend
 	end
 

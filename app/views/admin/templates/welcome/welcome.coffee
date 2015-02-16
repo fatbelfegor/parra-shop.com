@@ -31,7 +31,7 @@ app.page = ->
 					</div>" else ""}
 					#{if admin then "Администратор" else 'Запомнить меня'}
 				</label>
-				<input class='btn deepblue square' type='submit' value='#{if admin then 'Создать' else 'Войти'}'>
+				<input class='btn blue' type='submit' value='#{if admin then 'Создать' else 'Войти'}'>
 			</div>
 			<input name='authenticity_token' type='hidden' value='#{app.data.authenticity_token}'>
 		</form>

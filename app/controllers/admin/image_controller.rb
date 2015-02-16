@@ -17,7 +17,7 @@ class Admin::ImageController < Admin::AdminController
 			url = Rails.root.to_s + '/public' + image
 			File.delete url if File.exist? url
 		end
-		render_all true
+		rend data: true
 	end
 	
 end

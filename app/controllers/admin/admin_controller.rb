@@ -77,7 +77,7 @@ protected
 	end
 
 	def admin_required
-		redirect_to "/admin/welcome" unless current_user and current_user.admin
+		redirect_to "/admin/welcome" unless current_user and current_user.role == 'admin'
 	end
 
 	def migration_index path, name, rb

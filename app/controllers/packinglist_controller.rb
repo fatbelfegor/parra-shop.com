@@ -10,7 +10,6 @@ class PackinglistController < ApplicationController
 					if row.nodes[0].nodes[0].nodes[0].nodes[0] == "Номер\rдокумента"
 						nextRow = list[i + 1]
 						login = current_user.email
-						@ret << nextRow.nodes[0].nodes[0].nodes[0]
 						# Packinglist.create(
 						# 	doc_number: nextRow.nodes[0].nodes[0].nodes[0],
 						# 	date: Date.strptime(nextRow.nodes[1].nodes[0].nodes[0].split('-').map{|s| s = s.to_i}.join(' '), '%Y %m %d')
@@ -47,6 +46,8 @@ class PackinglistController < ApplicationController
 							end
 							product = Product.find_by_s_title(create[:product_name_article])
 							create[:product_id] = product.id if product
+							@ret = []
+							@ret << p.nodes[5]
 							# packinglistitems << Packinglist.last.packinglistitems.create(create)
 						end
 					end
