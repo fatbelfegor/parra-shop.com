@@ -15,5 +15,10 @@ app.page = ->
 	ret += "</div></div><div style='padding: 85px 50px 50px' id='records'></div>"
 	ret
 app.after = ->
-	record.ask model: app.data.route.model, ->
+	name = app.data.route.model
+	params = model: name
+	template = models["#{name}_index"]
+	params.belongs_to = template.belongs_to if template.belongs_to
+	params.has_many = template.has_many if template.has_many
+	record.ask params, ->
 		record.index()

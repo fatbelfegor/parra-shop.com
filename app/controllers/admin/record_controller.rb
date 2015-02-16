@@ -7,8 +7,9 @@ class Admin::RecordController < Admin::AdminController
 		classify = params[:model].classify
 		model = classify.constantize
 		@records = {}
-		rec = model.find(params[:id])
-		@records[params[:model]] = {records: [rec]}
+		id = params[:id].to_i
+		rec = model.find(id)
+		@records[params[:model]] = {records: [rec], full: {id: [id]}}
 		if model.reflect_on_all_associations(:has_many).map(&:name).include? :images
 			@records['image'] = {records: rec.images}
 		end
@@ -58,8 +59,17 @@ class Admin::RecordController < Admin::AdminController
 	def get
 		data = {}
 		for i, p in params[:models]
-			name = p[:model]
-			model = name.classify.constantize
+			data[p[:model]] = find p
+		end
+		rend data: data
+	end
+
+private
+	def find p
+		data = {}
+		name = p[:model]
+		model = name.classify.constantize
+		if p[:load]
 			where = {}
 			if p[:has_self_null]
 				where["#{name}_id"] = nil
@@ -70,48 +80,49 @@ class Admin::RecordController < Admin::AdminController
 				end
 			end
 			if p[:includes]
-				data[name] = {records: model.includes(p[:includes]).where(where).limit(p[:limit]).offset(p[:offset])}
+				data[:records] = model.includes(p[:includes]).where(where).limit(p[:limit]).offset(p[:offset])
 			else
-				data[name] = {records: model.where(where).limit(p[:limit]).offset(p[:offset])}
+				data[:records] = model.where(where).limit(p[:limit]).offset(p[:offset])
 			end
-			if p[:has_self] or p[:has_many]
-				ids = []
-				for rec in data[name][:records]
-					ids << rec.id
-				end
+		end
+		if p[:has_self] or p[:has_many]
+			if p[:load]
+				ids = data[:records].map{|r| r.id}
+			else
+				ids = p[:ids]
 			end
-			if p[:has_self]
-				data[name][:children] = []
-				for rec in data[name][:records]
-					data[name][:children] << model.where("#{name}_id" => rec.id).count
-				end
+		end
+		if p[:has_self]
+			data[name][:children] = []
+			for rec in data[name][:records]
+				data[name][:children] << model.where("#{name}_id" => rec.id).count
 			end
-			if p[:has_many]
-				data[name][:has_many] = {}
-				for n in p[:has_many]
-					data[name][:has_many][n.singularize] = n.classify.constantize.where("#{name}_id" => ids)
-				end
+		end
+		if p[:has_many]
+			data[:has_many] = {}
+			for i, m in p[:has_many]
+				m[:where] = {"#{name}_id" => ids}
+				data[:has_many][m[:model]] = find m
 			end
-			if p[:belongs_to]
-				data[name][:belongs_to] = {}
-				for n in p[:belongs_to]
-					bt_ids = []
-					for rec in data[name][:records]
-						bt_ids << rec.send("#{n}_id")
-					end
-					data[name][:belongs_to][n] = n.classify.constantize.find(bt_ids)
-				end
-			end
-			if p[:habtm]
-				data[name][:habtm] = {}
-				for n in p[:habtm]
-					data[name][:habtm][n] = []
-					for rec in data[name][:records]
-						data[name][:habtm][n] << rec.send(n + '_ids')
-					end
+		end
+		if p[:belongs_to]
+			data[:belongs_to] = {}
+			if p[:load]
+				for i, m in p[:belongs_to]
+					m[:where] = {id: data[:records].map{|r| r["#{m[:model]}_id"]}}
+					data[:belongs_to][m[:model]] = find m
 				end
 			end
 		end
-		rend data: data
+		if p[:habtm]
+			data[name][:habtm] = {}
+			for n in p[:habtm]
+				data[name][:habtm][n] = []
+				for rec in data[name][:records]
+					data[name][:habtm][n] << rec.send(n + '_ids')
+				end
+			end
+		end
+		data
 	end
 end

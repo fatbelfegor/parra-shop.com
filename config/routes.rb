@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post 'admin/model/:model/destroy/:id', to: 'admin/record#destroy'
   post 'admin/model/:model/update/:id', to: 'admin/record#update'
   post 'admin/model/:model/create', to: 'admin/record#create'
-  post 'admin/model/:model/update', to: 'admin/record#update'
+  post 'admin/model/:model/update/:id', to: 'admin/record#update'
   post 'admin/record/get', to: 'admin/record#get'
 
   get 'admin/images', to: 'admin/image#index'

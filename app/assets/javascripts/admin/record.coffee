@@ -16,14 +16,32 @@
 						ret += " rowspan='#{td.rowspan}'" if td.rowspan
 						if td.btn
 							ret += " class='btn"
-							if td.btn is 'edit'
-								ret += " orange'"
-							else if td.btn is 'remove'
-								ret += " red'"
+							ret += " #{td.btnTdClass}" if td.btnTdClass
+							ret += "'"
 						ret += ">"
-						ret += rec[td.field] if td.field
-						ret += "<a href='/admin/model/#{name}/edit/#{rec.id}' class='edit' onclick='app.aclick(this)'></a>" if td.btn and td.btn is 'edit'
-						ret += "<div class='remove'></div>" if td.btn and td.btn is 'remove'
+						if td.field
+							if td.belongs_to
+								val = @find(td.belongs_to, rec[td.belongs_to + '_id'])[td.field]
+							else
+								val = rec[td.field]
+							if td.cb
+								val = eval(td.cb) val, td.cbParams
+							ret += val
+						else if td.btn
+							if td.btnA
+								tag = "a"
+							else tag = "div"
+							ret += "<#{tag}"
+							ret += " href='#{eval(td.btnA) rec, name}'" if td.btnA
+							ret += " onclick='#{td.btnClick}'" if td.btnClick
+							ret += " class='#{td.btnClass}'" if td.btnClass
+							ret += ">"
+							ret += "<i class='#{td.btnIcon}'></i>" if td.btnIcon
+							ret += "</#{tag}>"
+							# ret += "<a href='/admin/model/#{name}/edit/#{rec.id}' class='edit' onclick='app.aclick(this)'></a>" if td.btn is 'edit'
+							# ret += "<div class='remove'></div>" if td.btn is 'remove'
+						else if td.func
+							ret += eval(td.func) rec
 						ret += "</td>"
 					ret += "</tr>"
 				ret += "</table>"
@@ -41,14 +59,23 @@
 		@send $(el).parent(), 'Запись обновлена', ->
 			console.log 'updated'
 	ask: (data, success, already) ->
-		data = [data] unless data[0]		
+		data = [data] unless data.length
+		cb = already ? success
+		return cb() if data[0].length is 0
 		models = []
-		for d, i in data
+		genModel = (d) ->
 			table = tables[d.model]
-			d.has_self = true if table.has_self
 			load = false
+			m = model: d.model
 			unless table.full.all
-				if d.where
+				if d.find
+					if d.find in table.full.id
+						m.ids = [d.find] if d.has_many or d.belongs_to
+					else
+						load = true
+						table.full.id.push d.find
+						m.find = d.find
+				else if d.where
 					for k, v of d.where
 						if table.full[k]
 							if v not in table.full[k]
@@ -57,19 +84,45 @@
 						else
 							load = true
 							table.full[k] = [v]
+					m.where = d.where
 				else
 					load = true
 					table.full.all = true
-			models.push d if load
+			m.load = load
+			if d.has_many
+				for h in d.has_many
+					unless table.has_many[h.model]
+						load = true
+						table.has_many[h.model] = true
+						h = genModel h
+						if h.load
+							m.has_many ||= []
+							m.has_many.push h.model
+			if d.belongs_to
+				for h in d.belongs_to
+					unless table.belongs_to[h.model]
+						load = true
+						table.belongs_to[h.model] = true
+						h = genModel h
+						if h.load
+							m.belongs_to ||= []
+							m.belongs_to.push h.model
+			model: m, load: load
+		for d, i in data
+			m = genModel d
+			models.push m.model if m.load
 		if models.length > 0
 			post "record/get", models: models, (res) ->
-				for m, r of res
-					table = tables[m]
-					$.extend true, tables[k].records, v for k, v of r.belongs_to if r.belongs_to
-					$.extend true, tables[k].records, v for k, v of r.has_many if r.has_many
-					table.records = table.records.concat r.records
-					table.children = table.children.concat r.children if table.has_self
-					table.habtm[k] = table.habtm[k].concat v for k, v of r.habtm if r.habtm
+				setModel = (res) ->
+					for m, r of res
+						table = tables[m]
+						if r.records
+							table.records = table.records.concat r.records
+							table.children = table.children.concat r.children if r.children
+						setModel r.belongs_to if r.belongs_to
+						setModel r.has_many if r.has_many
+						table.habtm[k] = table.habtm[k].concat v for k, v of r.habtm if r.habtm
+				setModel res
 				success() if success
 		else if already
 			already()

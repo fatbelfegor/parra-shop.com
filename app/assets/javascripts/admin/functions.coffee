@@ -1,3 +1,10 @@
+Number.prototype.toCurrency = ->
+	(""+this.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+String.prototype.toNumber = ->
+	parseFloat @replace(/\ /g,'')
+String.prototype.toCurrency = ->
+	@toNumber().toCurrency()
+
 # Record
 
 @record =

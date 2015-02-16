@@ -138,9 +138,13 @@
 			<input type='text' name='#{wrap.data 'type'}[]name'"
 		ret += " value='#{el.html()}'" if name
 		ret += ">
-			<i class='icon-cancel-circle' onclick='rm(this)'></i>
+			<i class='icon-cancel-circle' onclick='model.association_rm(this)'></i>
 		</label>"
 		wrap.find('.insert').append ret
+		el.remove()
+	association_rm: (el) ->
+		$(el).parents(".association-wrap").find("[data-content='model-names']").append "<div class='btn blue' onclick='model.association(this, true)'>#{$(el).prev().val()}</div>"
+		rm el
 	columnType: (type, name, tag) ->
 		tag ||= 'div'
 		ret = "<#{tag} class='dropdown' onclick='dropdown.toggle(this)'><p>#{type}<i class='icon-arrow-down2'></i></p><div>"

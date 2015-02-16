@@ -24,7 +24,8 @@
 						singularize: underscore,
 						pluralize: underscore.pluralize,
 						columns: columns,
-						has_many: model.reflect_on_all_associations(:has_many).map(&:name)
+						belongs_to: model.reflect_on_all_associations(:belongs_to).map{|m| {m.name => false}},
+						has_many: model.reflect_on_all_associations(:has_many).map{|m| {m.name.to_s.singularize => false}}
 					}
 					models[underscore][:habtm] = {}
 					for m in model.reflect_on_all_associations(:has_and_belongs_to_many).map(&:name)
