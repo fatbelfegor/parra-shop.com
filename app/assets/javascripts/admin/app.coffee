@@ -141,8 +141,6 @@ ready = ->
 					</a>
 				</li>"
 		# for name, model of models
-		# 	model.templates.form = app.templates.form[name] if app.templates.form[name]
-		# 	model.templates.index = app.templates.index[name] if app.templates.index[name]
 		# 	ret += "<li>
 		# 		<div class='icon fade'><a href='/admin/model/#{name}/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
 		# 		<a href='/admin/model/#{name}/records' onclick='app.aclick(this)'><i class='icon-stack'></i><span>#{model.classify}</span></a>
@@ -186,6 +184,8 @@ ready = ->
 								</a>
 							</li>"
 		for name, model of models
+			model.templates.form = app.templates.form[name] if app.templates.form[name]
+			model.templates.index = app.templates.index[name] if app.templates.index[name]
 			ret += "<li>
 				<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
 				<p><i class='icon-stack'></i><span>#{model.classify}</span></p>
