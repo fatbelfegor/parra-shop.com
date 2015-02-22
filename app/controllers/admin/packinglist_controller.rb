@@ -1,24 +1,8 @@
 class Admin::PackinglistController < Admin::AdminController
 	def index
-		@records = {
-			'packinglist' => {records: Packinglist.all, full: {all: true}},
-			'packinglistitem' => {records: Packinglistitem.all, full: {all: true}}
-		}
 		rend
 	end
 	def show
-		pack = Packinglist.find params[:id]
-		cats = Category.where category_id: nil
-		@records = {
-			'category' => {
-				records: cats,
-				children: cats.map{|c| c.categories.count},
-				habtm: {'product' => cats.map{|c| c.product_ids}},
-				full: {category_id: nil}
-			},
-			'packinglist' => {records: [pack]},
-			'packinglistitem' => {records: pack.packinglistitems, full: {packinglist_id: pack.id}}
-		}
 		rend page: 'packinglist/show'
 	end
 	def update

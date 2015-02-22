@@ -1,22 +1,20 @@
 app.preload = ->
-	id = parseInt app.data.route.id
-	name = app.data.route.model
-	template = models[name + "_form"]
+	id = parseInt param.id
+	name = param.model
+	template = models[name].templates.form
 	ret = []
 	if id
 		rec = model: name, find: id
+		rec.belongs_to = template.belongs_to if template.belongs_to
 		rec.has_many = template.has_many if template.has_many
 		ret.push rec
-	if template.preload
-		for m in template.preload
-			ret.push m
 	ret
 app.page = ->
-	name = app.data.route.model
-	id = parseInt app.data.route.id
-	table = tables[name]
-	rec = record.find name, id if id
-	images = record.where 'image', {imageable_type: table.name, imageable_id: id} if 'image' in table.has_many
+	id = parseInt param.id
+	name = param.model
+	model = models[name]
+	rec = model.find id if id
+	images = models.image.where imageable_type: model.name, imageable_id: id if 'images' in model.has_many
 	what = (c, u) ->
 		if id then u else c
 	action = what 'create', 'update'
@@ -30,9 +28,9 @@ app.page = ->
 			ret += "<tr>"
 			for td in tr.td
 				continue if td.only and td.only isnt action
+				rec = tr_rec[td.level || level]
 				if id and td.belongs_to
-					rec = record.find td.belongs_to, tr_rec[td.level || level]["#{td.belongs_to}_id"]
-				else rec = tr_rec[td.level || level]
+					rec = rec[td.belongs_to]()
 				if td.th
 					tag = 'th'
 				else tag = 'td'
@@ -41,6 +39,8 @@ app.page = ->
 				ret += " rowspan='#{td.rowspan}'" if td.rowspan
 				ret += " class='#{td.class}'" if td.class
 				ret += " style='#{td.style}'" if td.style
+				ret += " onclick='#{td.click}'" if td.click
+				ret += td.td_cb table: table, tr: tr, rec: rec, recs: tr_rec if td.td_cb
 				ret += ">"
 				if td.treebox
 					tb = td.treebox
@@ -48,8 +48,8 @@ app.page = ->
 					tb.style = 'width: 100%'
 					tb.input = name: "record[#{td.field}]"
 					tb.classes = td.class.concat td.class.split(' ') if td.class
-					tb_rec = tb.rec table: table, recs: tr_rec, rec: rec
-					ret += "<div class='row'><p>#{td.header}</p>#{treebox.gen tb, tb_rec}</div>"
+					tb.rec = rec if id
+					ret += "<div class='row'><p>#{td.header}</p>#{treebox.gen tb}</div>"
 				else if td.field
 					val = recf td.field
 					val = td.val_cb val if td.val_cb
@@ -93,7 +93,7 @@ app.page = ->
 				when 'has_many'
 					where = {}
 					where[name + '_id'] = id
-					for rec in record.where(tr.collection.model, where: where).records
+					for rec in models[tr.collection.model].where where
 						ret += trGen table, tr, tr_rec.concat(rec), level + 1, true
 		ret
 	tableGen = (tabls, rec, level) ->
@@ -107,10 +107,11 @@ app.page = ->
 				ret += trGen t, tr, rec, level
 			ret += "</table>"
 		ret
-	template = models[name + "_form"]
+	template = model.templates.form
 	window.vars = template.vars if template.vars
+	window.functions = template.functions if template.functions
 	"<a onclick='app.aclick(this)' id='backButton'><i class='icon-arrow-left5'></i><span></span></a>
-	<h1 class='title'>#{what 'Добавить запись', 'Редактировать запись'} <b>#{word name}</b></h1>
+	<h1 class='title'>#{what 'Добавить запись', 'Редактировать запись'} <b>#{name}</b></h1>
 	<form action='model/#{name}/#{action}#{what '', "/#{id}"}' class='content form'><div class='btn green m15' onclick='recordFormSubmit(this)'>#{what 'Создать', 'Сохранить'}</div>#{tableGen template.table, [rec], 0}<br><div class='btn green m15' onclick='recordFormSubmit(this)'>#{what 'Создать', 'Сохранить'}</div></form><link rel='stylesheet' type='text/css' href='/lightbox/lightbox.min.css'><script src='/tinyMCE/tinymce.min.js'><script src='/lightbox/lightbox.min.js'>"
 window.recordFormSubmit = (el) ->
 	msg = if app.data.route.id then 'Запись успешно сохранена' else 'Запись успешно создана'

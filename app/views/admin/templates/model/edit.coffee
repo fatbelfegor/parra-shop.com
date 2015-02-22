@@ -110,9 +110,6 @@ app.page = ->
 				ret += "<tr onclick='tableStructure.tr.pick(this)'>"
 				for td in tr.td
 					ret += "<td"
-					ret += " colspan='#{td.colspan}'" if td.colspan
-					ret += " rowspan='#{td.rowspan}'" if td.rowspan
-					ret += " style='#{td.style}'" if td.style
 					ret += " data-belongs_to='#{td.belongs_to}'" if td.belongs_to
 					ret += " data-header='#{td.header}'" if td.header
 					ret += " data-field='#{td.field}'" if td.field
@@ -163,7 +160,6 @@ app.page = ->
 							<div>
 								<label class='row mb10'><p>colspan</p><input type='text' name='colspan'></label>
 								<label class='row mb10'><p>rowspan</p><input type='text' name='rowspan'></label>
-								<label class='row mb10'><p>Стиль</p><input type='text' name='style'></label>
 								<div class='buttons-group'>
 									<div class='btn blue' onclick='tableStructure.td.before(this)'>Добавить td перед</div>
 									<div class='btn blue' onclick='tableStructure.td.after(this)'>Добавить td после</div>
@@ -336,10 +332,8 @@ app.page = ->
 			belongs_to = []
 			belongs_to.push n.model for n in template.belongs_to if template.belongs_to
 			for n in table.belongs_to
-				for n, v of n
-					if n not in belongs_to
-						ret += "<div class='btn blue' onclick='model.association(this, true)'>#{tables[n].singularize}</div>"
-					break
+				if n not in belongs_to
+					ret += "<div class='btn blue' onclick='model.association(this, true)'>#{tables[n].singularize}</div>"
 			ret += "</div><br><div class='center-row insert belongs_to'>"
 			for n in belongs_to
 				ret += "<label class='row'>
@@ -350,14 +344,10 @@ app.page = ->
 		'has_many': ->
 			ret = "<div class='association-wrap' data-type='has_many'><br><div data-content='model-names' class='buttons-list'>"
 			has_many = []
-			if template.has_many
-				for n in template.has_many
-					has_many.push n.model
+			has_many.push n.model for n in template.has_many if template.has_many
 			for n in table.has_many
-				for n, v of n
-					if n not in has_many
-						ret += "<div class='btn blue' onclick='model.association(this, true)'>#{tables[n].singularize}</div>"
-					break
+				if n not in has_many
+					ret += "<div class='btn blue' onclick='model.association(this, true)'>#{tables[n].singularize}</div>"
 			ret += "</div><br><div class='center-row insert has_many'>"
 			for n in has_many
 				ret += "<label class='row'>
@@ -461,8 +451,6 @@ window.view_index_save = (el) ->
 				data.colspan = colspan if colspan and colspan > 0
 				rowspan = el.attr 'rowspan'
 				data.rowspan = rowspan if rowspan and rowspan > 0
-				style = el.attr 'style'
-				data.style = style if style and style isnt ''
 				tr_json.td.push data
 			table_json.tr.push tr_json
 		models["#{name}_index"].table.push table_json
@@ -523,12 +511,6 @@ window.tableStructure =
 			if blue = tableStructure.pick el, 'blue'
 				el = $ el
 				data = el.data()
-				colspan = el.attr 'colspan'
-				rowspan = el.attr 'rowspan'
-				style = el.attr 'style'
-				blue.find("[name='colspan']").val colspan if colspan isnt ''
-				blue.find("[name='rowspan']").val rowspan if rowspan isnt ''
-				blue.find("[name='style']").val style if style isnt ''
 				blue.find("[name='header']").val data.header if data.header
 				if data.field
 					openTab blue.find(".nav-tabs > *")[1]
@@ -580,7 +562,7 @@ window.tableStructure =
 			index = blue.find "> div > .nav-tabs > .active"
 			active_tab = blue.find "> div > .tabs > .active"
 			td = panel.find('#table-structure .active')
-			td.attr colspan: (parseInt(blue.find("[name='colspan']").val()) or 0), rowspan: (parseInt(blue.find("[name='rowspan']").val()) or 0), style: blue.find("[name='style']").val()
+			td.attr colspan: (parseInt(blue.find("[name='colspan']").val()) or 0), rowspan: (parseInt(blue.find("[name='rowspan']").val()) or 0)
 			td.removeData()
 			cb = td.find('.cb').html ''
 			func = td.find('.func').html ''

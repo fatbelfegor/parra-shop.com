@@ -68,7 +68,6 @@ String.prototype.toCurrency = ->
 @send = (url, data, msg, cb) ->
 	post url, data, (d) ->
 		notify msg
-		cb d if cb
 @notify = (msg) ->
 	app.notify.html("<i class='icon-checkmark-circle'></i><p>#{msg}</p>").addClass 'show'
 	setTimeout ->
@@ -129,11 +128,6 @@ String.prototype.toCurrency = ->
 		true
 	if send
 		cb()
-
-# Word
-
-@word = (word) ->
-	localization[word] or localization[word.toLowerCase()] or word
 
 # Tag
 

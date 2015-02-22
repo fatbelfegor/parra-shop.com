@@ -1,4 +1,4 @@
-models.order_form =
+app.templates.form.order =
 	table: [
 		{
 			tr: [
@@ -32,7 +32,6 @@ models.order_form =
 								pick:
 									val: 'id'
 									header: 'name'
-								rec: (params) -> params.rec
 						},
 						{}
 					]
@@ -195,6 +194,7 @@ models.order_form =
 											{
 												th: true
 												html: 'Сумма'
+												colspan: 2
 											},
 										]
 									},
@@ -231,6 +231,7 @@ models.order_form =
 											{
 												cb: (params) ->
 													(params.rec.price * params.rec.quantity * (1 - (params.rec.discount / 100))).toCurrency() + ' руб.'
+												colspan: 2
 											}
 										]
 									},
@@ -251,6 +252,7 @@ models.order_form =
 											},
 											{
 												th: true
+												colspan: 2
 											}
 										]
 									},
@@ -276,6 +278,9 @@ models.order_form =
 											{
 												class: 'btn red'
 												html: 'Удалить'
+												colspan: 2
+												click: 'functions.destroyVirtproduct(this)'
+												td_cb: (params) -> " data-id='#{params.rec.id}'"
 											}
 										]
 									},
@@ -284,7 +289,8 @@ models.order_form =
 											{
 												class: 'btn green'
 												html: 'Добавить дополнительный товар'
-												colspan: 7
+												colspan: 8
+												click: "functions.addVirtproduct(this)"
 											}
 										]
 									},
@@ -308,6 +314,7 @@ models.order_form =
 											{
 												cb: (params) ->
 													vars.price.toCurrency() + ' руб.'
+												colspan: 2
 											}
 										]
 									},
@@ -327,6 +334,7 @@ models.order_form =
 											{
 												field: 'deliver_cost'
 												level: 0
+												colspan: 2
 											}
 										]
 									},
@@ -343,6 +351,7 @@ models.order_form =
 											{
 												cb: (params) ->
 													(vars.price + (params.rec.deliver_cost || 0)).toCurrency() + ' руб.'
+												colspan: 2
 											}
 										]
 									}
@@ -525,15 +534,56 @@ models.order_form =
 			]
 		}
 	]
-	preload: [
+	belongs_to: [
 		model: 'status'
 	]
 	has_many: [
 		{
-			model: 'order_item', belongs_to: [{model: 'product'}]
+			model: 'order_item', belongs_to: {model: 'product'}
 		},
 		{
 			model: 'virtproduct'
 		}
 	]
 	vars: {i: 0, quantity: 0, price: 0}
+	functions:
+		addVirtproduct: (el) ->
+			$(el).parent().before "<tr>
+				<td>#{vars.i += 1}</td>
+				<td colspan='3'><input type='text' placeholder='Описание'></td>
+				<td colspan='2'><input type='text' placeholder='Стоимость'></td>
+				<td class='btn green' onclick='functions.createVirtproduct(this)'>Сохранить</td>
+				<td class='btn red' onclick='functions.removeVirtproduct(this)'>Отменить</td>
+			</tr>"
+		removeVirtproduct: (el) ->
+			tr = $(el).parent()
+			vars.i -= 1
+			next = tr.next()
+			until next.find('td').length is 1
+				td = next.find('td').eq(0)
+				td.html td.html() - 1
+				next = next.next()
+			tr.remove()
+		createVirtproduct: (el) ->
+			td = $(el)
+			tdPrice = td.prev()
+			price = tdPrice.find('input').val()
+			tdText = tdPrice.prev()
+			text = tdText.find('input').val()
+			models.virtproduct.create order_id: param.id, text: text, price: price, 'Дополнительный товар добавлен', (id) ->
+				tdText.html text
+				tdPrice.html price.toCurrency() + ' руб.'
+				td.next().remove()
+				td.remove()
+				tdPrice.after "<td colspan='2' class='btn red' data-id='#{id}' onclick='functions.destroyVirtproduct(this)'>Удалить</td>"
+		destroyVirtproduct: (el) ->
+			el = $ el
+			models.virtproduct.destroy el.data('id'), msg: 'Удалить дополнительный товар?', cb: ->
+				vars.i -= 1
+				tr = el.parent()
+				next = tr.next()
+				until next.find('td').length is 1
+					td = next.find('td').eq(0)
+					td.html td.html() - 1
+					next = next.next()
+				tr.remove()

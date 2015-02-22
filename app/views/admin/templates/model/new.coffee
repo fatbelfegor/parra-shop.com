@@ -1,3 +1,4 @@
+@model = {}
 model.create = (el) ->
 	form = $(el).parent()
 	validate form, ->
@@ -17,8 +18,8 @@ model.create = (el) ->
 			console.log d
 app.page = ->
 	dropdown = "<div class='dropdown' data-action='modelRelation' onclick='dropdown.toggle(this)'><input type='text' placeholder='Model' onkeyup='window.model.addReference.inputChange(this)'><i class='icon-arrow-right4 blue hidden' onclick='model.addReference.icon(this)'></i><div>"
-	for n, table of tables
-		dropdown += "<p onclick='dropdown.pick(this)'>#{table.name}</p>"
+	for n, m of models
+		dropdown += "<p onclick='dropdown.pick(this)'>#{m.name}</p>"
 	dropdown += "</div></div>"
 	ret = "<h1>Создать новую модель</h1>
 	<div class='content'>
@@ -63,7 +64,7 @@ app.page = ->
 					</div>
 					<br>
 					<div class='labels'>"
-	for n of tables
+	for n of models
 		if n is 'image'
 			ret += "<label class='checkbox'><div><input onchange='checkbox(this)' type='checkbox' name='imageable'></div>Множество картинок</label>"
 			break
@@ -75,7 +76,7 @@ app.page = ->
 				<div class='association-wrap' data-type='belongs_to'>
 					<br>
 					<div data-content='model-names' class='buttons-list'>"
-	for n, table of tables
+	for n, table of models
 		ret += "<div class='btn blue' onclick='model.association(this, true)'>#{table.singularize}</div>"
 	ret += "</div>
 					<br>
@@ -86,7 +87,7 @@ app.page = ->
 				<div class='association-wrap' data-type='has_many'>
 					<br>
 					<div data-content='model-names' class='buttons-list'>"
-	for n, table of tables
+	for n, table of models
 		ret += "<div class='btn blue' onclick='model.association(this, true)'>#{table.singularize}</div>"
 	ret += "</div>
 					<br>
@@ -97,7 +98,7 @@ app.page = ->
 				<div class='association-wrap' data-type='has_one'>
 					<br>
 					<div data-content='model-names' class='buttons-list'>"
-	for n, table of tables
+	for n, table of models
 		ret += "<div class='btn blue' onclick='model.association(this, true)'>#{table.singularize}</div>"
 	ret += "</div>
 					<br>
@@ -108,7 +109,7 @@ app.page = ->
 				<!--<div class='association-wrap' data-type='has_and_belongs_to_many'>
 					<br>
 					<div data-content='model-names' class='buttons-list'>"
-	for n, table of tables
+	for n, table of models
 		ret += "<div class='btn blue' onclick='model.association(this, true)'>#{table.singularize}</div>"
 	ret += "</div>
 					<br>

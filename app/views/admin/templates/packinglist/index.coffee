@@ -58,13 +58,16 @@
 			record.destroy 'packinglist', options.id
 			$(options.el).parents('tr').remove()
 		, el: el, id: id
+app.preload = ->
+	{model: 'packinglist', has_many: {model: 'packinglistitem'}}
 app.page = ->
+	packinglists = models.packinglist.all()
 	packs = ""
 	price = 0
-	for pack in tables['packinglist'].records
+	for pack in packinglists
 		items_price = 0
 		amount = 0
-		price += items_price += item.price * (amount += item.amount) for item in tables['packinglistitem'].records
+		price += items_price += item.price * (amount += item.amount) for item in pack.packinglistitems()
 		packs += "<tr>
 			<td class='btn always "
 		if pack.product_id
@@ -85,7 +88,7 @@ app.page = ->
 			<table>
 				<tr>
 					<td></td>
-					<td><div class='row'><p>Общая стоимость: <span id='total_price'>#{price}</span> руб.</p></div></td>
+					<td><div class='row'><p>Общая стоимость: <span id='total_price'>#{price.toCurrency()}</span> руб.</p></div></td>
 					<td></td>
 				</tr>
 			</table>

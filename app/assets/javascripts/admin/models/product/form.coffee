@@ -1,4 +1,4 @@
-models.product_form =
+app.templates.form.product =
 	table: [
 		{
 			tr: [

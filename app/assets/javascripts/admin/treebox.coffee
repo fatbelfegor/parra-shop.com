@@ -11,9 +11,7 @@
 			header.removeClass('active').html header.data 'default'
 			input.val ''
 		else
-			treebox.find('.icon-checkmark2.active').removeClass 'active'
-			treebox.find('li.active').removeClass 'active'
-			treebox.removeClass 'active'
+			treebox.removeClass('active').find('.active').removeClass 'active'
 			el.addClass 'active'
 			data = el.data()
 			if data.header
@@ -23,7 +21,7 @@
 			if data.val
 				input.val data.val
 			else if data.val is undefined
-				input.val el.html()
+				input.val el.prev().html()
 			cb = @cb[treebox.data 'index']
 			params =
 				treebox: treebox
@@ -41,114 +39,174 @@
 					ret = @find_model model, v.habtm
 					break if ret
 		ret
-	draw: (model, recs, data, pick, index, rec_id) ->
-		options = @find_model model, data
-		if recs.records.length > 0
-			ret = "<ul>"
-			if options.group
-				ret += "<li class='group'>
-					<p class='capitalize'>#{options.group}</p>
-				</li>"
-			for rec, i in recs.records
-				ret += "<li>
-					<p>#{rec.name}</p>"
-				arrow = false
-				if recs.children and recs.children[i] > 0
-					arrow = true
-				else if recs.habtm
-					for k, v of recs.habtm
-						if v[i].length > 0
-							arrow = true
-				if options.pick
-					ret += "<i data-id='#{rec.id}'"
-					if pick
-						ret += " data-val='#{rec[pick.val]}'" if pick.val
-						if pick.header
-							ret += " data-header='#{rec[pick.header]}'"
-						else if pick.header is false
-							ret += " data-header='false'"
-					ret += " class='icon-checkmark2"
-					ret += " active" if pick and rec.id is rec_id
-					ret += "' onclick='treebox.pick(this)'></i>"
-				ret += "<i class='icon-arrow-down5' data-id='#{rec.id}' data-model='#{model}' onclick='treebox.open(this)'></i>" if arrow
-				ret += "</li>"
-			ret + "</ul>"
-		else ""
-	gen: (params, rec) ->
+	gen: (params) ->
 		params.tag ||= 'div'
 		params.header ||= 'Выбрать'
-		for model, v of params.data
-			options = {}
-			options.where = {}
-			if tables.has_self
-				options.where[model + '_id'] = null
-				options.children = true
-			if v.habtm
-				options.habtm = []
-				options.habtm.push k for k of v.habtm
-			recs = record.where model, options
 		index = $('.treebox').length
 		cb = params.cb || {}
 		@cb.push cb
-		rec_id = rec.id if rec
-		ret = "<#{params.tag} data-index='#{index}' data-treebox='#{JSON.stringify params.data}' data-pick='#{JSON.stringify params.pick}'"
-		ret += " data-rec-id='#{rec_id}'" if rec_id
-		ret += " class='treebox"
-		ret += ' ' + params.classes.join ' ' if params.classes
-		ret += "'"
-		ret += " colspan='#{params.colspan}'" if params.colspan
-		ret += " rowspan='#{params.rowspan}'" if params.rowspan
-		ret += " style='#{params.style}'" if params.style
-		ret += "><p data-default='#{params.header}' onclick='treebox.toggle(this)'"
-		if rec then ret += " class='active'>" + rec[params.pick.header]
-		else ret += ">" + params.header
-		ret += "</p>#{@draw model, recs, params.data, params.pick, index, rec_id}"
-		if params.input
-			ret += "<input type='hidden' name='#{params.input.name}'"
-			ret += "value='#{params.input.value}'" if params.input.value
-			ret += ">"
-		ret + "</#{params.tag}>"
+		rec_id = params.rec.id if params.rec
+		ret = "<#{params.tag}
+			data-index='#{index}'
+			data-treebox='#{JSON.stringify params.data}'
+			data-pick='#{JSON.stringify params.pick}'
+			#{if rec_id then " data-rec-id='#{rec_id}'" else ''}
+			#{if params.colspan then " colspan='#{params.colspan}'" else ''}
+			#{if params.rowspan then " rowspan='#{params.rowspan}'" else ''}
+			#{if params.style then " style='#{params.style}'" else ''}
+			class='treebox#{if params.classes then ' ' + params.classes.join ' ' else ''}'>
+				<p
+					data-default='#{params.header}'
+					onclick='treebox.start(this)'
+					#{if params.rec then " class='active'>" + params.rec[params.pick.header] else ">" + params.header}
+				</p>
+				<ul></ul>
+				#{if params.input then "<input type='hidden' name='#{params.input.name}'#{if params.rec then " value='#{params.rec[params.pick.val]}'" else if params.input.value then " value='#{params.input.value}'" else ''}>" else ''}
+			</#{params.tag}>"
+	start: (el) ->
+		tb = $(el).attr('onclick', 'treebox.toggle(this)').parent().addClass 'active'
+		tb_data = tb.data()
+		wrap = tb.find 'ul'
+		params = []
+		for k, v of tb_data.treebox
+			m = {model: k}
+			if v.has_self
+				where = {}
+				where[k + '_id'] = null
+				m.where = where
+				m.ids = [k]
+			if v.habtm
+				m.ids ||= []
+				for n, h of v.habtm
+					m.ids.push n
+			params.push m
+		record.load params, ->
+			treebox.draw wrap, tb_data, tb_data.treebox
+	draw: (wrap, tb_data, data) ->
+		ret = ""
+		for name, options of data
+			if options.has_self
+				where = {}
+				where['parent_id'] = null
+				recs = models[name].where where
+			else recs = models[name].all()
+			for rec in recs
+				ret += "<li>"
+				ret += "<p>#{rec[f]}</p>" for f in options.fields
+				if options.pick
+					ret += "<i class='icon-checkmark2#{if rec.id is tb_data.recId then ' active' else ''}' data-val='#{rec[tb_data.pick.val]}' data-header='#{rec[tb_data.pick.header]}' onclick='treebox.pick(this)'></i>"
+				arrow = false
+				if options.has_self
+					arrow = true if rec[name + '_ids'].length > 0
+				relations = {}
+				if options.habtm
+					relations.habtm = {}
+					for n, h of options.habtm
+						for q, m of models
+							if m.pluralize is n
+								ids = rec[m.name + '_ids']
+								if ids.length
+									arrow = true
+									relations.habtm[m.name] = ids
+								break
+				ret += "<i class='icon-arrow-down5' data-relations='#{JSON.stringify relations}' data-id='#{rec.id}' data-model='#{name}' data-treebox='#{JSON.stringify options}' onclick='treebox.open(this)'></i>" if arrow
+				ret += "</li>"
+		wrap.html ret
 	open: (el) ->
 		el = $ el
-		li = el.parent()
-		if li.hasClass 'active'
-			li.removeClass 'active'
-			li.find('li.active').removeClass 'active'
+		if el.hasClass 'active'
+			el.removeClass 'active'
+			el.parent().removeClass 'active'
 		else
-			li.addClass 'active'
-		unless el.data 'ready'
-			el.data 'ready', true
-			id = el.data 'id'
-			model = el.data 'model'
-			where = []
-			wrap = el.parents '.treebox'
-			data = eval wrap.data 'treebox'
-			pick = wrap.data 'pick'
-			pick = eval pick if pick
-			recId = wrap.data 'recId'
-			table = tables[model]
-			plur = table.pluralize
-			if tables[model].has_self
-				mainpush = model: model, where: {}
-				mainpush.where["#{model}_id"] = id
-			if data[model].habtm
-				mainpush.habtm = []
-				for m of data[model].habtm
-					mainpush.habtm.push m
-					push = model: m, includes: [plur], where: {}
-					push.where[plur] = {id: id}
-					where.push push
-			where.push mainpush
-			record.ask where, ->
-				where = {}
-				where["#{model}_id"] = id
-				recs = record.where model, where: where, children: true, habtm: mainpush.habtm
-				ret = ""
-				ret += treebox.draw model, recs, data, pick, recId
-				rec = record.find model, id, habtm: mainpush.habtm
-				for k, v of rec.habtm
-					ret += treebox.draw k, record.where(k, in: {id: v}), data, pick, recId
-				el.after ret
+			el.addClass 'active'
+			el.parent().addClass 'active'
+			treebox_data = el.parents('.treebox').data()
+			data = el.data()
+			unless data.ready
+				el.data 'ready', true
+				m = {model: data.model}
+				params = []
+				if data.treebox.has_self
+					m.where = {}
+					m.where[data.model + '_id'] = data.id
+					m.ids = [data.model]
+				if data.treebox.habtm
+					m.ids ||= []
+					for n, h of data.treebox.habtm
+						m.ids.push n
+						for r, mod of models
+							if mod.pluralize is n
+								params.push model: r, find: data.relations.habtm[r]
+								break
+				params.push m
+				record.load params, ->
+					ret = ""
+					model = models[data.model]
+					if data.treebox.habtm
+						for k, v of data.treebox.habtm
+							for n, m of models
+								if m.pluralize is k
+									recs = m.find data.relations.habtm[m.name]
+									if recs and recs.length > 0
+										ret += "<ul>"
+										if v.group
+											ret += "<li class='group'>
+												<p class='capitalize'>#{v.group}</p>
+											</li>"
+										for rec in m.find data.relations.habtm[m.name]
+											ret += "<li>"
+											ret += "<p>#{rec[f]}</p>" for f in v.fields
+											if v.pick
+												ret += "<i class='icon-checkmark2#{if rec.id is treebox_data.recId then ' active' else ''}' data-val='#{rec[treebox_data.pick.val]}' data-header='#{rec[treebox_data.pick.header]}' onclick='treebox.pick(this)'></i>"
+											else
+												arrow = false
+												relations = {}
+												if v.has_self
+													arrow = true if rec[m.model + '_ids'].length > 0
+												if v.habtm
+													relations.habtm = {}
+													for n, h of v.habtm
+														for q, m of models
+															if m.pluralize is n
+																ids = rec[m.name + '_ids']
+																if ids.length
+																	arrow = true
+																	relations.habtm[m.name] = ids
+																break
+												ret += "<i class='icon-arrow-down5' data-relations='#{JSON.stringify relations}' data-id='#{rec.id}' data-model='#{m.name}' data-treebox='#{JSON.stringify v}' onclick='treebox.open(this)'></i>" if arrow
+											ret += "</li>"
+										ret += "</ul>"
+					if data.treebox.has_self
+						where = {}
+						if model.name is 'category'
+							where['parent_id'] = data.id
+						else
+							where[model.name + '_id'] = data.id
+						recs = model.where where
+						if recs.length > 0
+							ret += "<ul>"
+							for rec in recs
+								ret += "<li>"
+								ret += "<p>#{rec[f]}</p>" for f in data.treebox.fields
+								if data.treebox.habtm
+									arrow = false
+									relations = {}
+									if data.treebox.has_self
+										arrow = true if rec[data.model + '_ids'].length > 0
+									if data.treebox.habtm
+										relations.habtm = {}
+										for n, h of data.treebox.habtm
+											for q, m of models
+												if m.pluralize is n
+													ids = rec[q + '_ids']
+													if ids.length
+														arrow = true
+														relations.habtm[m.name] = ids
+													break
+									ret += "<i class='icon-arrow-down5' data-relations='#{JSON.stringify relations}' data-id='#{rec.id}' data-model='#{data.model}' data-treebox='#{JSON.stringify data.treebox}' onclick='treebox.open(this)'></i>" if arrow
+								ret += "</li>"
+							ret += "</ul>"
+					el.after ret
 	out_click: ->
 		$('html').click ->
 			$('.treebox').removeClass 'active'

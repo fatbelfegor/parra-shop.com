@@ -1,5 +1,5 @@
 app.page = ->
-	template = models["#{app.data.route.model}_index"]
+	template = models[param.model].templates.index
 	ret = "<div style='position: absolute; top: 0; left: 250px; right: 0'><div class='ib records-header'>"
 	for t in template.table
 		ret += "<table>"
@@ -15,10 +15,9 @@ app.page = ->
 	ret += "</div></div><div style='padding: 85px 50px 50px' id='records'></div>"
 	ret
 app.after = ->
-	name = app.data.route.model
-	params = model: name
-	template = models["#{name}_index"]
-	params.belongs_to = template.belongs_to if template.belongs_to
-	params.has_many = template.has_many if template.has_many
-	record.ask params, ->
-		record.index()
+	model = models[param.model]
+	template = model.templates.index
+	options = model: model.name
+	options.belongs_to = template.belongs_to if template.belongs_to
+	options.has_many = template.has_many if template.has_many
+	record.load options, record.index
