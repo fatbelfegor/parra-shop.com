@@ -27,6 +27,7 @@ app.page = ->
 				tr.before table: table, recs: tr_rec, rec: tr_rec[level]
 			ret += "<tr>"
 			for td in tr.td
+				td.set table: table, tr: tr, rec: rec, recs: tr_rec if td.set
 				continue if td.only and td.only isnt action
 				rec = tr_rec[td.level || level]
 				if id and td.belongs_to
@@ -35,12 +36,9 @@ app.page = ->
 					tag = 'th'
 				else tag = 'td'
 				ret += "<#{tag}"
-				ret += " colspan='#{td.colspan}'" if td.colspan
-				ret += " rowspan='#{td.rowspan}'" if td.rowspan
-				ret += " class='#{td.class}'" if td.class
-				ret += " style='#{td.style}'" if td.style
-				ret += " onclick='#{td.click}'" if td.click
-				ret += td.td_cb table: table, tr: tr, rec: rec, recs: tr_rec if td.td_cb
+				if td.attrs
+					for k, v of td.attrs
+						ret += " #{k}='#{v}'"
 				ret += ">"
 				if td.treebox
 					tb = td.treebox
@@ -57,7 +55,12 @@ app.page = ->
 					ret += "<p>#{td.header}</p>" if td.header
 					ret += "<input type='text' name='record[#{td.field}]'"
 					ret += " value='#{val}'" if val
+					if td.fieldAttrs
+						for k, v of td.fieldAttrs
+							ret += " #{k}='#{v}'"
 					ret += "></label>"
+				else if td.show
+					ret += rec[td.show]
 				else if td.checkbox
 					ret += "<div class='row'><label class='checkbox'><div><input type='checkbox' name='record[#{td.checkbox}]' onchange='$(this).parent().toggleClass(\"checked\")'></div>"
 					ret += "#{td.header}" if td.header
@@ -80,12 +83,6 @@ app.page = ->
 						<label>"
 				else if td.table
 					ret += tableGen td.table, tr_rec, level
-				else if td.show
-					if td.cb
-						ret += td.cb rec[td.show]
-					else ret += rec[td.show]
-				else if id and td.cb
-					ret += td.cb table: table, tr: tr, rec: rec, recs: tr_rec
 				ret += "</#{tag}>"
 			ret += "</tr>"
 		else
@@ -101,7 +98,9 @@ app.page = ->
 		for t in tabls
 			t.before() if t.before
 			ret += "<table"
-			ret += " class='#{t.class}'" if t.class
+			if t.attrs
+				for k, v of t.attrs
+					ret += " #{k}='#{v}'"
 			ret += ">"
 			for tr in t.tr
 				ret += trGen t, tr, rec, level

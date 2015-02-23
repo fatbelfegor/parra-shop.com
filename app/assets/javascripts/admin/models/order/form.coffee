@@ -5,15 +5,15 @@ app.templates.form.order =
 				{
 					td: [
 						{
-							style: 'width: 33.3%'
+							attrs: style: 'width: 33.3%'
 						},
 						{
 							header: 'Номер'
 							field: 'number'
-							style: 'width: 33.3%'
+							attrs: style: 'width: 33.3%'
 						},
 						{
-							style: 'width: 33.3%'
+							attrs: style: 'width: 33.3%'
 						}
 					]
 				},
@@ -78,7 +78,7 @@ app.templates.form.order =
 					td: [
 						{
 							html: '<h2 class="tal pad m15" style="margin-bottom: 0">Заказчик</h2>'
-							colspan: 3
+							attrs: colspan: 3
 						}
 					]
 				},
@@ -152,7 +152,7 @@ app.templates.form.order =
 						{
 							header: 'Лифт'
 							field: 'addr_elevator'
-							style: 'margin-bottom: 32px'
+							attrs: style: 'margin-bottom: 32px'
 						},
 						{}
 					]
@@ -160,10 +160,10 @@ app.templates.form.order =
 				{
 					td: [
 						only: 'update'
-						colspan: 3
+						attrs: colspan: 3
 						table: [
 							{
-								class: 'style'
+								attrs: class: 'style'
 								tr: [
 									{
 										td: [
@@ -194,7 +194,7 @@ app.templates.form.order =
 											{
 												th: true
 												html: 'Сумма'
-												colspan: 2
+												attrs: colspan: 2
 											},
 										]
 									},
@@ -207,7 +207,7 @@ app.templates.form.order =
 											model: 'order_item'
 										td: [
 											{
-												cb: (params) -> vars.i += 1
+												set: -> @html = vars.i += 1
 											},
 											{
 												belongs_to: 'product'
@@ -218,9 +218,7 @@ app.templates.form.order =
 												show: 'name'
 											},
 											{
-												show: 'price'
-												cb: (price) ->
-													price.toCurrency() + ' руб.'
+												set: (params) -> @html = params.rec.price.toCurrency() + ' руб.'
 											},
 											{
 												show: 'quantity'
@@ -229,9 +227,9 @@ app.templates.form.order =
 												show: 'discount'
 											},
 											{
-												cb: (params) ->
-													(params.rec.price * params.rec.quantity * (1 - (params.rec.discount / 100))).toCurrency() + ' руб.'
-												colspan: 2
+												set: (params) ->
+													@html = (params.rec.price * params.rec.quantity * (1 - (params.rec.discount / 100))).toCurrency() + ' руб.'
+												attrs: colspan: 2
 											}
 										]
 									},
@@ -243,16 +241,16 @@ app.templates.form.order =
 											{
 												th: true
 												html: 'Описание дополнительного товара'
-												colspan: 3
+												attrs: colspan: 3
 											},
 											{
 												th: true
 												html: 'Цена дополнительного товара'
-												colspan: 2
+												attrs: colspan: 2
 											},
 											{
 												th: true
-												colspan: 2
+												attrs: colspan: 2
 											}
 										]
 									},
@@ -265,93 +263,107 @@ app.templates.form.order =
 											model: 'virtproduct'
 										td: [
 											{
-												cb: (params) -> vars.i += 1
+												set: (params) -> @html = vars.i += 1
 											},
 											{
 												show: 'text'
-												colspan: 3
+												attrs: colspan: 3
 											},
 											{
-												cb: (params) -> params.rec.price.toCurrency() + ' руб.'
-												colspan: 2
+												set: (params) -> @html = params.rec.price.toCurrency() + ' руб.'
+												attrs: colspan: 2
 											},
 											{
-												class: 'btn red'
 												html: 'Удалить'
-												colspan: 2
-												click: 'functions.destroyVirtproduct(this)'
-												td_cb: (params) -> " data-id='#{params.rec.id}'"
+												attrs:
+													onclick: 'functions.destroyVirtproduct(this)'
+													colspan: 2
+													class: 'btn red'
+												set: (params) -> @attrs['data-id'] = params.rec.id
 											}
 										]
 									},
 									{
 										td: [
 											{
-												class: 'btn green'
+												attrs:
+													class: 'btn green'
+													colspan: 8
+													onclick: "functions.addVirtproduct(this)"
 												html: 'Добавить дополнительный товар'
-												colspan: 8
-												click: "functions.addVirtproduct(this)"
 											}
 										]
 									},
 									{
 										td: [
 											{
-												class: 'tar b pad'
+												attrs:
+													class: 'tar b pad'
+													colspan: 4
 												html: 'Стоимость товара'
-												colspan: 4
 											},
 											{
-												style: 'color: red'
-												class: 'b'
-												cb: (params) ->
-													vars.quantity
-												colspan: 1
+												attrs:
+													style: 'color: red'
+													class: 'b'
+													colspan: 1
+												set: -> @html = vars.quantity
 											},
 											{
 												html: 'шт.'
 											},
 											{
-												cb: (params) ->
-													vars.price.toCurrency() + ' руб.'
-												colspan: 2
+												attrs:
+													colspan: 2
+													id: 'price'
+												set: ->
+													@attrs['data-price'] = vars.price
+													@html = vars.price.toCurrency() + ' руб.'
 											}
 										]
 									},
 									{
 										td: [
 											{
-												class: 'tar b pad'
+												attrs:
+													class: 'tar b pad'
+													colspan: 4
 												html: 'Стоимость доставки'
-												colspan: 4
 											},
 											{
 												header: 'Тип доставки'
 												field: 'deliver_type'
 												level: 0
-												colspan: 2
+												attrs: colspan: 2
 											},
 											{
 												field: 'deliver_cost'
+												fieldAttrs:
+													onkeyup: 'functions.countPrice()'
+													id: 'deliver-cost-input'
 												level: 0
-												colspan: 2
+												attrs:
+													colspan: 2
 											}
 										]
 									},
 									{
 										td: [
 											{
-												class: 'tar b pad'
 												html: 'Итого'
-												colspan: 4
+												attrs:
+													colspan: 4
+													class: 'tar b pad'
 											},
 											{
-												colspan: 2
+												attrs: colspan: 2
 											},
 											{
-												cb: (params) ->
-													(vars.price + (params.rec.deliver_cost || 0)).toCurrency() + ' руб.'
-												colspan: 2
+												set: (params) ->
+													@html = (vars.price + (params.rec.deliver_cost || 0)).toCurrency() + ' руб.'
+												attrs:
+													colspan: 2
+													id: 'final-price'
 											}
 										]
 									}
@@ -364,7 +376,7 @@ app.templates.form.order =
 					td: [
 						{
 							only: 'create'
-							colspan: 3
+							attrs: colspan: 3
 							table: [
 								{
 									tr: [
@@ -389,7 +401,7 @@ app.templates.form.order =
 				{
 					td: [
 						{
-							class: 'b'
+							attrs: class: 'b'
 							html: 'Предоплата'
 						},
 						{
@@ -399,13 +411,16 @@ app.templates.form.order =
 						{
 							header: 'Сумма предоплаты'
 							field: 'prepayment_sum'
+							fieldAttrs:
+								onkeyup: 'functions.countPrice()'
+								id: 'prepayment-sum'
 						}
 					]
 				},
 				{
 					td: [
 						{
-							class: 'b'
+							attrs: class: 'b'
 							html: 'Доплата'
 						},
 						{
@@ -415,13 +430,16 @@ app.templates.form.order =
 						{
 							header: 'Сумма доплаты'
 							field: 'doppayment_sum'
+							fieldAttrs:
+								onkeyup: 'functions.countPrice()'
+								id: 'doppayment-sum'
 						}
 					]
 				},
 				{
 					td: [
 						{
-							class: 'b'
+							attrs: class: 'b'
 							html: 'Окончательный расчет'
 						},
 						{
@@ -431,6 +449,9 @@ app.templates.form.order =
 						{
 							header: 'Сумма окончательного расчета'
 							field: 'finalpayment_sum'
+							fieldAttrs:
+								onkeyup: 'functions.countPrice()'
+								id: 'finalpayment-sum'
 						}
 					]
 				},
@@ -439,12 +460,12 @@ app.templates.form.order =
 						{},
 						{},
 						{
-							cb: (params) ->
+							set: (params) ->
 								payed = 0
 								payed += params.rec.prepayment_sum if params.rec.prepayment_sum
 								payed += params.rec.doppayment_sum if params.rec.doppayment_sum
 								payed += params.rec.finalpayment_sum if params.rec.finalpayment_sum
-								"<b>Долг клиента: <span style='color: red'>#{(vars.price - payed).toCurrency()} руб.</span></b>"
+								@html = "<b>Долг клиента: <span style='color: red' id='debt'>#{(vars.price - payed).toCurrency()} руб.</span></b>"
 						}
 					]
 				},
@@ -461,9 +482,10 @@ app.templates.form.order =
 				{
 					td: [
 						{
-							class: 'tal pad'
+							attrs:
+								class: 'tal pad'
+								colspan: 3
 							html: '<h2>Клиенту предоставлен кредит</h2>'
-							colspan: 3
 						}
 					]
 				},
@@ -486,9 +508,10 @@ app.templates.form.order =
 				{
 					td: [
 						{
-							class: 'tal pad'
+							attrs:
+								class: 'tal pad'
+								colspan: 3
 							html: '<h2>Информация о доставке</h2>'
-							colspan: 3
 						}
 					]
 				},
@@ -510,16 +533,17 @@ app.templates.form.order =
 					td: [
 						{
 							html: '<b>* при доставке за пределы МКАД</b>, в стоимость доставки включается фактический киллометраж (за 1 км. - 30р)'
-							colspan: 3
+							attrs: colspan: 3
 						}
 					]
 				},
 				{
 					td: [
 						{
-							class: 'tal pad'
 							html: '<h2>Дополнительная информация</h2>'
-							colspan: 3
+							attrs:
+								class: 'tal pad'
+								colspan: 3
 						}
 					]
 				},
@@ -527,7 +551,7 @@ app.templates.form.order =
 					td: [
 						{
 							html: '<b>сборка 6%=2200, подъем 300 руб</b>'
-							colspan: 3
+							attrs: colspan: 3
 						}
 					]
 				}
@@ -551,7 +575,7 @@ app.templates.form.order =
 			$(el).parent().before "<tr>
 				<td>#{vars.i += 1}</td>
 				<td colspan='3'><input type='text' placeholder='Описание'></td>
-				<td colspan='2'><input type='text' placeholder='Стоимость'></td>
+				<td colspan='2'><input class='virtproduct-price-input' onkeyup='functions.countPrice()' type='text' placeholder='Стоимость'></td>
 				<td class='btn green' onclick='functions.createVirtproduct(this)'>Сохранить</td>
 				<td class='btn red' onclick='functions.removeVirtproduct(this)'>Отменить</td>
 			</tr>"
@@ -567,15 +591,17 @@ app.templates.form.order =
 		createVirtproduct: (el) ->
 			td = $(el)
 			tdPrice = td.prev()
-			price = tdPrice.find('input').val()
+			price = parseFloat tdPrice.find('input').val()
 			tdText = tdPrice.prev()
 			text = tdText.find('input').val()
-			models.virtproduct.create order_id: param.id, text: text, price: price, 'Дополнительный товар добавлен', (id) ->
-				tdText.html text
-				tdPrice.html price.toCurrency() + ' руб.'
-				td.next().remove()
-				td.remove()
-				tdPrice.after "<td colspan='2' class='btn red' data-id='#{id}' onclick='functions.destroyVirtproduct(this)'>Удалить</td>"
+			if price
+				models.virtproduct.create order_id: param.id, text: text, price: price, 'Дополнительный товар добавлен', (id) ->
+					tdText.html text
+					vars.price += price
+					tdPrice.html price.toCurrency() + ' руб.'
+					td.next().remove()
+					td.remove()
+					tdPrice.after "<td colspan='2' class='btn red' data-id='#{id}' onclick='functions.destroyVirtproduct(this)'>Удалить</td>"
 		destroyVirtproduct: (el) ->
 			el = $ el
 			models.virtproduct.destroy el.data('id'), msg: 'Удалить дополнительный товар?', cb: ->
@@ -587,3 +613,21 @@ app.templates.form.order =
 					td.html td.html() - 1
 					next = next.next()
 				tr.remove()
+				functions.countPrice()
+		countPrice: (el) ->
+			virts = 0
+			$('.virtproduct-price-input').each ->
+				p = parseFloat $(@).val()
+				virts += p if p
+			price = virts + vars.price
+			$('#price').html price.toCurrency() + ' руб.'
+			deliver = parseFloat $('#deliver-cost-input').val()
+			price += deliver if deliver
+			$('#final-price').html price.toCurrency() + ' руб.'
+			prepayment = parseFloat $('#prepayment-sum').val()
+			doppayment = parseFloat $('#doppayment-sum').val()
+			finalpayment = parseFloat $('#finalpayment-sum').val()
+			price -= prepayment if prepayment
+			price -= doppayment if doppayment
+			price -= finalpayment if finalpayment
+			$('#debt').html price.toCurrency() + ' руб.'

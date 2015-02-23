@@ -139,13 +139,24 @@ ready = ->
 						<i class='icon-home4'></i>
 						<span>На главную</span>
 					</a>
-				</li>"
-		# for name, model of models
-		# 	ret += "<li>
-		# 		<div class='icon fade'><a href='/admin/model/#{name}/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
-		# 		<a href='/admin/model/#{name}/records' onclick='app.aclick(this)'><i class='icon-stack'></i><span>#{model.classify}</span></a>
-		# 	</li>"
-		ret += "<li data-route='model/order/records'>
+				</li>
+				<li>
+						<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
+						<p>
+							<i class='icon-table2'></i>
+							<span>Модели</span>
+						</p>
+						<ul>"
+		for name, model of models
+			model.templates.form = app.templates.form[name] if app.templates.form[name]
+			model.templates.index = app.templates.index[name] if app.templates.index[name]
+			ret += "<li>
+				<div class='icon fade'><a href='/admin/model/#{name}/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
+				<a href='/admin/model/#{name}/records' onclick='app.aclick(this)'><i class='icon-stack'></i><span>#{model.classify}</span></a>
+			</li>"
+		ret += "</ul>
+			</li>
+			<li data-route='model/order/records'>
 				<a href='/admin/model/order/records' onclick='app.aclick(this)'>
 					<i class='icon-cart4'></i>
 					<span>Заказы</span>
@@ -184,8 +195,6 @@ ready = ->
 								</a>
 							</li>"
 		for name, model of models
-			model.templates.form = app.templates.form[name] if app.templates.form[name]
-			model.templates.index = app.templates.index[name] if app.templates.index[name]
 			ret += "<li>
 				<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
 				<p><i class='icon-stack'></i><span>#{model.classify}</span></p>
