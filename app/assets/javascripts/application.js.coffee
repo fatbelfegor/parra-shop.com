@@ -130,7 +130,7 @@ ready = ->
 			old_price_tag = $('#oldPrice')
 			old_price = parseFloat(old_price_tag.data('val')) + add
 			old_price_tag.html old_price.toCurrency()
-			$('#pricesDifference').html (old_price - b).toCurrency()
+			$('#pricesDifference').html (old_price - b - add).toCurrency()
 			(b + add).toCurrency()
 		$('#summaryPrice').html optionsPrice(priceNum)
 	cartMenuGen()
