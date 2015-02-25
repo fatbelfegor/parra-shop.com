@@ -1211,7 +1211,7 @@ a.cart {
 		}
 
 		> :nth-child(3) {
-			width: 200px;
+			width: 160px;
 		}
 
 		.left, .right {
@@ -1242,16 +1242,16 @@ a.cart {
 		}
 
 		> :last-child {
-			line-height: 1;
 			cursor: pointer;
-			padding-top: 36px;
 			span {
-				vertical-align: top;
+				vertical-align: middle;
 				margin-right: 5px;
 				font-size: 0;
 				display: inline-block;
 				width: 15px;
 				height: 15px;
+				position: relative;
+				top: -2px;
 				background-color: #52B84A;
 				background-image: url(http://www.urbanika.ru/images/basket_del.png);
 				background-position: 50% 50%;
