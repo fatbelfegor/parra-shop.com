@@ -1115,6 +1115,10 @@ body > .main {
 					display: block;
 				}
 			}
+			.shortdesk {
+				overflow: hidden;
+				max-height: 50px;
+			}
 		}
 	}
 	> div:hover {

@@ -52,7 +52,7 @@ scrollFunc = ->
 							for i in images[1..-1]
 								html += "<a href=\"/kupit/#{p.scode}\" style=\"background-image: url('#{i}')\"></a>"
 							html += '</div>'
-						html += "<div><h3><a href=\"/kupit/#{p.scode}\">#{p.name}</a></h3></div><div>#{p.s_title}</div><div>#{p.shortdesk}</div><div><b>Цена:</b> <span class=\"price\">#{parseFloat(p.price).toCurrency()} руб.</span></div><div class=\"appear\">"
+						html += "<div><h3><a href=\"/kupit/#{p.scode}\">#{p.name}</a></h3></div><div>#{p.s_title}</div><div class='shortdesk'>#{p.shortdesk}</div><div><b>Цена:</b> <span class=\"price\">#{parseFloat(p.price).toCurrency()} руб.</span></div><div class=\"appear\">"
 						html += "<div><b>Размер:</b> <span class=\"size\">#{r.prsizes[0].name}</span><span class=\"hidden size-scode\">#{r.prsizes[0].scode}</span></div>" if r.prsizes.length > 0
 						if r.prcolors.length > 0
 							if r.textures.length > 0
