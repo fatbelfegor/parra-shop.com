@@ -2,15 +2,22 @@
 # encoding: utf-8
 
 class CategoriesController < ApplicationController
-  before_filter :admin_required
+  before_filter :admin_required, except: :index
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   
   # GET /categories
   # GET /categories.json
   def index
     @categories = Category.order('position')
+    @categoriesmobile = Category.where('isMobile = true')
     @products = Product.all
+    
+    respond_to do |format|
+        format.html { render :index }
+        format.json { render :json =>  @categoriesmobile.to_json(:include => [:parent])}
+      end
   end
+  
   
   # GET /categories/1
   # GET /categories/1.json
@@ -122,7 +129,8 @@ private
 			:commission,
 			:rate,
       :seo_text,
-      :url
+      :url,
+      :isMobile
 		)
 	end
 end

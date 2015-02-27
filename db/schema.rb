@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150216111741) do
     t.text     "seo_text"
     t.string   "url"
     t.boolean  "menu"
+    t.boolean  "isMobile",                               default: false
   end
 
   create_table "categories_products", id: false, force: true do |t|
