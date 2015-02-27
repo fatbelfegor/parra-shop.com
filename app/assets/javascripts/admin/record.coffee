@@ -4,7 +4,10 @@
 		model = models[name]
 		template = model.templates.index
 		ret = ""
-		for id, rec of model.all()
+		recs = model.all()
+		if model.name is 'order'
+			recs = recs.sort (a, b) -> new Date(b.created_at) - new Date(a.created_at)
+		for rec in recs
 			ret += "<div class='group'>"
 			for t in template.table
 				ret += "<table>"
