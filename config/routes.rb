@@ -12,11 +12,6 @@ ParraShopCom::Application.routes.draw do
   devise_for :users
   get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
-  get '/packinglist', to: 'packinglist#index'
-  post '/packinglist', to: 'packinglist#index'
-  get '/packinglist/:id', to: 'packinglist#show'
-  patch '/packinglist', to: 'packinglist#update'
-  delete '/packinglist/:id', to: 'packinglist#destroy'
   
   root to: 'main#index', as: 'index'
 
@@ -135,8 +130,8 @@ ParraShopCom::Application.routes.draw do
   get 'admin/ordergen/:id/*anything', to: 'admin/orders#xlsx'
 
   match 'admin/packinglist', to: 'admin/packinglist#index', via: [:get, :post]
+  post 'admin/packinglist/create', to: 'admin/packinglist#create'
   post 'admin/packinglist/update', to: 'admin/packinglist#update'
-  post 'admin/packinglist/upload', to: 'admin/packinglist#upload'
   match 'admin/packinglist/:id', to: 'admin/packinglist#show', via: [:get, :post]
 
   get '*anything', to: 'application#page404'

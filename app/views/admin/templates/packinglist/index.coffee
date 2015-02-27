@@ -1,4 +1,4 @@
-@packindex =
+window.packindex =
 	upload: (input) ->
 		if input.files
 			for f in input.files
@@ -24,18 +24,18 @@
 									cols.push td.text() if @innerHTML isnt "&nbsp;" or td.attr('class') not in ['ce1', 'ce5', 'ce27', 'ce30', 'Default']
 								items.push name: cols[1], product_name_article: cols[2], amount: parseInt(cols[7]), price: parseFloat(cols[10])
 								row = row.next()
-					send "packinglist/create", {pack: pack, items: items}, "Накладная сохранена", (d) ->
-						console.log items
+					post "packinglist/create", {pack: pack, items: items}, (d) ->
 						pack.id = d.pack_id
-						tables['packinglist'].records.push pack
+						models.packinglist.collect pack
 						items_price = 0
 						amount = 0
+						model = models.packinglistitem
 						for item, i in items
 							item.id = d.item_ids[i]
 							item.product_id = d.product_ids[i]
 							item.product_name_article = d.product_scodes[i] if d.product_scodes[i]
 							items_price += item.price * (amount += item.amount)
-						tables['packinglistitem'].records = tables['packinglistitem'].records.concat items
+							model.collect item
 						ret = "<tr>
 							<td class='btn always "
 						if pack.product_id
@@ -52,10 +52,14 @@
 						$('#packinglistTable').append ret
 						total_price = $ '#total_price'
 						total_price.html parseFloat(total_price.html()) + items_price
+						notify "Накладная сохранена"
 				reader.readAsText f
 	destroy: (el, id) ->
 		ask 'Удалить накладную?', (options) ->
-			record.destroy 'packinglist', options.id
+			pack = models.packinglist.find options.id
+			for item in pack.packinglistitems
+				post "model/packinglistitem/destroy/" + item.id
+			post "model/packinglist/destroy/" + options.id
 			$(options.el).parents('tr').remove()
 		, el: el, id: id
 app.preload = ->

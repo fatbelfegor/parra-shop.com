@@ -65,7 +65,7 @@ String.prototype.toCurrency = ->
 	form_send $(el).parent(), msg, cb
 @post = (url, data, cb) ->
 	$.post "/admin/#{url}", data, cb, 'json'
-@send = (url, data, msg, cb) ->
+@send = (url, data, msg) ->
 	post url, data, (d) ->
 		notify msg
 @notify = (msg) ->
