@@ -3,11 +3,6 @@
 .treebox
 	cursor pointer
 	position relative
-	> p
-		background white
-	> p.active
-		background-color #C0FFEE
-		box-shadow(inset 0 0 10px #87D5FD)
 	> ul
 		position absolute
 		top 100%
@@ -61,6 +56,12 @@
 		btn-gradient(#444, #777, #555, #333, #444)
 		p
 			padding 0 !important
+.treebox.default
+	> p
+		background white
+	> p.active
+		background-color #C0FFEE
+		box-shadow(inset 0 0 10px #87D5FD)
 .treebox.active
 	> ul, li.active > ul
 		border 1px solid #bbb

@@ -6,6 +6,8 @@ Rails.application.config.assets.precompile += %w( jquery.min.map )
 Rails.application.config.assets.precompile += %w( jquery2.min.map )
 Rails.application.config.assets.precompile += %w( admin/admin.css )
 Rails.application.config.assets.precompile += %w( admin/app.js )
+Rails.application.config.assets.precompile += %w( admin/welcome.css )
+Rails.application.config.assets.precompile += %w( admin/welcome.js )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

@@ -58,71 +58,81 @@ class Admin::RecordController < Admin::AdminController
 
 	def get
 		data = {}
+		collect = {}
 		for i, p in params[:models]
-			data[p[:model]] = find p
+			name = p[:model].singularize
+			model = name.classify.constantize
+			records = true
+			if p[:find]
+				recs = model.find(p[:find])
+				recs = [recs] unless recs.is_a? Array
+			elsif p[:null] or p[:where]
+				where = {}
+				if p[:null]
+					for f in p[:null]
+						where[f] = nil
+					end
+				end
+				if p[:where]
+					for k, v in p[:where]
+						where[k] = v
+					end
+				end
+				recs = model.where(where)
+			elsif p[:with]
+				for i, h in p[:with]
+					c = collect[h[:model]]
+					if h[:where]
+						where = {}
+						for k, v in h[:where]
+							where[k] = c[v]
+						end
+						recs = model.where where
+					end
+					if h[:find]
+						c[h[:find]].compact!
+						unless c[h[:find]].empty?
+							recs = model.find c[h[:find]]
+						end
+					end
+				end
+			elsif p[:all]
+				recs = model.all
+			else
+				records = false
+			end
+			data[name] = {}
+			if records
+				data[name][:model] = []
+				for rec in recs
+					data[name][:model] << rec.serializable_hash
+				end
+				if p[:ids]
+					for h in p[:ids]
+						n = h.singularize
+						recs.each_with_index do |rec, i|
+							data[name][:model][i][n + '_ids'] = rec.send(n + '_ids')
+						end
+					end
+				end
+			end
+			if p[:collect]
+				collect[name] = {}
+				for f in p[:collect]
+					if f == 'ids'
+						collect[name]['ids'] = []
+						for rec in data[name][:model]
+							collect[name]['ids'] << rec['id']
+						end
+					else
+						collect[name][f] = []
+						for rec in data[name][:model]
+							collect[name][f] << rec[f]
+						end
+					end
+				end
+			end
 		end
 		rend data: data
-	end
-
-private
-	def find p
-		data = {}
-		name = p[:model]
-		model = name.classify.constantize
-		if p[:load]
-			where = {}
-			if p[:has_self_null]
-				where["#{name}_id"] = nil
-			end
-			if p[:where]
-				for k, v in p[:where]
-					where[k] = v
-				end
-			end
-			if p[:includes]
-				data[:records] = model.includes(p[:includes]).where(where).limit(p[:limit]).offset(p[:offset])
-			else
-				data[:records] = model.where(where).limit(p[:limit]).offset(p[:offset])
-			end
-		end
-		if p[:has_self] or p[:has_many]
-			if p[:load]
-				ids = data[:records].map{|r| r.id}
-			else
-				ids = p[:ids]
-			end
-		end
-		if p[:has_self]
-			data[name][:children] = []
-			for rec in data[name][:records]
-				data[name][:children] << model.where("#{name}_id" => rec.id).count
-			end
-		end
-		if p[:has_many]
-			data[:has_many] = {}
-			for i, m in p[:has_many]
-				m[:where] = {"#{name}_id" => ids}
-				data[:has_many][m[:model]] = find m
-			end
-		end
-		if p[:belongs_to]
-			data[:belongs_to] = {}
-			if p[:load]
-				for i, m in p[:belongs_to]
-					m[:where] = {id: data[:records].map{|r| r["#{m[:model]}_id"]}}
-					data[:belongs_to][m[:model]] = find m
-				end
-			end
-		end
-		if p[:habtm]
-			data[name][:habtm] = {}
-			for n in p[:habtm]
-				data[name][:habtm][n] = []
-				for rec in data[name][:records]
-					data[name][:habtm][n] << rec.send(n + '_ids')
-				end
-			end
-		end
-		data
 	end
 end

@@ -17,6 +17,22 @@ class Admin::AdminController < ApplicationController
 		rend
 	end
 
+	def scripts
+		render 'admin/scripts/scripts'
+	end
+
+	def sort
+		parent_id = params[:parent_id]
+		parent_id = nil if parent_id == 'nil'
+		name = params[:model]
+		model = name.classify.constantize
+		params[:ids].each_with_index do |id, index|
+			model.find(id).update position: index+1, "#{name}_id" => parent_id
+			puts model.find(id).name + ' ' + (index + 1).to_s + ' ' + parent_id.to_s
+		end
+		render :nothing => true
+	end
+
 protected
 
 	def file_index path, ending

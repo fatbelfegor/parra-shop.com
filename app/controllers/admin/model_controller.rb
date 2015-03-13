@@ -85,4 +85,12 @@ class Admin::ModelController < Admin::AdminController
 	def habtm
 		rend
 	end
+
+	def template_form
+		rend
+	end
+
+	def template_index
+		rend	
+	end
 end

@@ -14,11 +14,23 @@
 ActiveRecord::Schema.define(version: 20150211174120) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "scode",       limit: 255
-    t.integer  "category_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",            limit: 255
+    t.text     "description",     limit: 65535
+    t.integer  "position",        limit: 4
+    t.string   "header",          limit: 255
+    t.string   "seo_title",       limit: 255
+    t.text     "seo_description", limit: 65535
+    t.string   "seo_keywords",    limit: 255
+    t.text     "seo_text",        limit: 65535
+    t.string   "s_name",          limit: 255
+    t.string   "scode",           limit: 255
+    t.decimal  "commission",                    precision: 10
+    t.decimal  "rate",                          precision: 10
+    t.string   "url",             limit: 255
+    t.boolean  "menu",            limit: 1
+    t.integer  "category_id",     limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "categories", ["category_id"], name: "index_categories_on_category_id", using: :btree
@@ -166,5 +178,4 @@ ActiveRecord::Schema.define(version: 20150211174120) do
     t.integer "order_id", limit: 4
   end
 
-  add_foreign_key "categories", "categories"
 end

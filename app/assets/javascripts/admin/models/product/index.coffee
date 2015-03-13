@@ -1,1 +1,0 @@
-models.product_index = {"table":[{"tr":[{"td":[{"field":"name","header":"name"},{"field":"scode","header":"scode"},{"field":"article","header":"article"},{"field":"price","header":"price"},{"field":"old_price","header":"old_price"},{"btn":"edit"},{"btn":"remove"}]}]}]}

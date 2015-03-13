@@ -1,0 +1,117 @@
+//= require admin/icons.css
+
+@import "mixins"
+
+@import url('http://fonts.googleapis.com/css?family=Droid+Sans')
+
+html, body
+	width 100%
+	height 100%
+*
+	margin 0
+	padding 0
+	font-family 'Droid Sans', sans-serif
+#welcome
+	background-size cover
+	font-size 16px
+	text-align center
+	color #333
+	width 100%
+	height 100%
+	form
+		btn-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6))
+		display inline-block
+		width 350px
+		height 190px
+		position absolute
+		top 50%
+		left 50%
+		margin-top -95px
+		margin-left -175px
+		padding 20px
+		border 1px solid #aaa
+		border-radius(3px)
+		box-shadow(0 0 30px rgba(255, 255, 255, 0.7))
+input[type=email], input[type=password]
+	padding 6px 12px
+	font-size 14px
+	line-height 1.42857143
+	color #555
+	background-color #fff
+	border 1px solid #bbb
+	position relative
+	width 190px
+	float right
+	box-shadow(inset 0 1px 1px rgba(0,0,0,.075))
+	transition(unquote('border-color ease-in-out .15s,box-shadow ease-in-out .15s'))
+input[type=email]:focus, input[type=password]:focus
+	outline none
+	border-color #66afe9
+	box-shadow(unquote('inset 0 0 8px rgba(0,0,0,.3),0 0 8px rgba(102,175,233,.6)'))
+label.checkbox
+	display inline-block
+	height 34px
+	line-height 34px
+	input
+		display none
+	> div
+		display inline-block
+		vertical-align top
+		position relative
+		top 5px
+		width 18px
+		height 18px
+		background-color rgba(255, 255, 255, 0.8)
+		border 1px solid #aaa
+		cursor pointer
+		margin-right 8px
+		font-family 'icomoon'
+	> div:after
+		content "\e2aa"
+		width 16px
+		height 18px
+		line-height 18px
+		position absolute
+		left 0
+		padding-left 2px
+		color transparent
+		transition(.1s)
+	div.checked:after
+		color #333
+		box-shadow(inset 0 0 2px #aaa)
+.btn
+	display block
+	font 700 13px sans-serif
+	line-height 24px
+	text-align center
+	white-space nowrap
+	vertical-align middle
+	-ms-touch-action manipulation
+	touch-action manipulation
+	cursor pointer
+	text-decoration none
+	border 1px solid transparent
+	padding 5px 22px 3px
+	margin auto
+	user-select(none)
+	transition(.3s)
+	border-radius(3px)
+.btn.blue
+	color white
+	border 1px solid #0034ff
+	border-bottom-color #0034FF
+	border-top-color #3F7CFF
+	text-shadow(0 1px 0 #00f)
+	btn-gradient(#4B76FD, #84ABFF, #4B76FD, #0003FF, #0A4EFF)
+.btn.blue:hover
+	box-shadow(inset 0 0 8px #84ABFF)
+.row
+	height 45px
+label.field
+	margin 5px 0 20px
+	display block
+	height 34px
+	line-height 34px
+	span
+		color black
+		float left

@@ -72,6 +72,7 @@
 		data:
 			category:
 				fields: ['name']
+				has_self: true
 				habtm:
 					product:
 						fields: ['name']
@@ -84,11 +85,13 @@
 			pick: (params) ->
 				params.treebox.removeClass('red').addClass 'green'
 
-app.page = ->
-	pack = record.find 'packinglist', parseInt app.data.route.id
+app.preload = ->
+	model: 'packinglist', has_many: {model: 'packinglistitem', belongs_to: {model: 'product'}}
+app.page = (recs) ->
 	price = 0
-	items = record.where 'packinglistitem', where: packinglist_id: pack.id
-	price += r.price * r.amount for r in items.records
+	pack = models.packinglist.find param.id
+	items = pack.packinglistitems()
+	price += r.price * r.amount for r in items
 	ret = "<h1>Товарная накладная</h1>
 	<div class='content'>
 		<br>
@@ -112,13 +115,15 @@ app.page = ->
 					<th>Итоговая цена (руб.)</th>
 					<th></th>
 				</tr>"
-	for item in items.records
+	for item in items
 		tp = $.extend true, {}, packshow.tree_params
-		tp.classes[1] = 'green'
-		if !item.product_id
+		if item.product_id
+			tp.classes[1] = 'green'
+			tp.input.value = item.product_id
+			tp.rec = models.product.find item.product_id
+		else
 			tp.classes[1] = 'red'
-		tp.input.value = item.product_id
-		tp.header = item.product_name_article
+			tp.header = item.product_name_article
 		ret += "<tr>#{treebox.gen tp}<td><p>#{item.name}</p></td>
 			<td style='width: 10%'><input onkeyup='packshow.price(this)' style='text-align: center' type='text' name='items[]amount' value='#{item.amount}'></td>
 			<td style='width: 10%'><input onkeyup='packshow.price(this)' style='text-align: center' type='text' name='items[]price' value='#{item.price}'></td>

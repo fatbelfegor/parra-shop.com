@@ -46,9 +46,7 @@
 .dropdown.active
 	border-color #222
 	> p, > p:hover
-		background #d64535
-		border-color #666
-		color white
+		box-shadow(inset 0 0 16px white)
 	> div
 		background-color #444
 		border-color #222
@@ -56,3 +54,8 @@
 		> *
 			height 32px !important
 			border-width 0 1px 1px
+td > .dropdown
+	display block
+	> p
+		border 0
+		white-space nowrap

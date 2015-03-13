@@ -1,9 +1,17 @@
-//= require_tree .
+//= require admin/mixins
+//= require admin/buttons
+//= require admin/dropdown
+//= require admin/icons
+//= require admin/lightbox
+//= require admin/menu
+//= require admin/panel
+//= require admin/table
+//= require admin/treebox
 //= require_self
 
-@import "mixins"
-
 @import url('http://fonts.googleapis.com/css?family=Droid+Sans')
+
+@import "mixins"
 
 @keyframes animation-notify {
   0% {
@@ -39,7 +47,7 @@
   }
 }
 
-html
+html, body
 	min-height 100%
 a
 	text-decoration none
@@ -56,9 +64,9 @@ a
 	text-align left
 .tar
 	text-align right
+.m0auto
+	margin 0 auto !important
 body
-	height 100%
-	position relative
 	font-size 0
 	overflow auto
 	background-color #E5E9EC
@@ -79,118 +87,9 @@ body
 	margin 15px
 .mb10
 	margin-bottom 10px
-#menu-bg
-	background-color #3f3f3f
-	position absolute
-	width 250px
-	top 0
-	bottom 0
-#menu
-	background-color #3f3f3f
-	width 250px
-	float left
-	div
-		border-bottom 1px solid rgba(0, 0, 0, 0.3)
-	div, ul > li
-		position relative
-		color #eee
-		> a, > p
-			color #eee
-			padding 13px 0 14px 10px
-			display block
-			border-left 3px solid transparent
-			overflow hidden
-			cursor pointer
-			transition(.3s)
-			> *
-				display inline-block
-				vertical-align top
-			> span
-				font-size 14px
-			> i
-				font-size 16px
-				opacity 0.8
-				margin-right 10px
-				filter unquote('alpha(Opacity=80)')
-	div:first-child
-		border-top 1px solid rgba(0, 0, 0, 0.3)
-	ul > li
-		border-style solid
-		border-color rgba(0, 0, 0, 0.3)
-		border-width 0
-		> a, > p
-			height 0
-			padding 0 0 0 10px
-	a:hover, a.active, p:hover, p.active
-		color white
-		border-left 3px solid #D64535
-		background-image -webkit-gradient(linear,left top,right top,color-stop(0, #D64535),color-stop(1, #333333))
-		background-image -o-linear-gradient(right, #D64535 0%, #333333 100%)
-		background-image -moz-linear-gradient(right, #D64535 0%, #333333 100%)
-		background-image -webkit-linear-gradient(right, #D64535 0%, #333333 100%)
-		background-image -ms-linear-gradient(right, #D64535 0%, #333333 100%)
-		background-image linear-gradient(to right, #D64535 0%, #333333 100%)
-		> i
-			opacity 1
-			filter unquote('alpha(Opacity=100)')
-	a.active, p.active
-		background #D64535
-	a.active + .icon-arrow-right11:before, p.active + .icon-arrow-right11:before
-		content "\e362"
-	a.active + .icon-arrow-right11:hover, p.active + .icon-arrow-right11:hover
-		background-color #D83E2D
-	> div
-		> .active + .icon-arrow-right11 + ul, > .active + .icon-arrow-right11 + ul > li > .active + .icon-arrow-right11 + ul
-			> li
-				border-width 0 0 1px 0
-				> a, > p
-					height 16px
-					padding 13px 0 14px 10px
-				> .current
-					position relative
-					z-index 1
-					overflow visible !important
-					background #D64535
-					box-shadow(0 0 15px #D64535)
-				> .current:after
-					border-width 22px 0 22px 23px
-					border-color transparent #D64535
-					right -22px
-			> li:last-child
-				border-bottom 0
-			> li:first-child
-				border-width 1px 0
-	a.current:after, p.current:after
-		content ''
-		display block
-		border-style solid
-		border-color transparent transparent
-		border-width 0 0 0 0
-		position absolute
-		right 0
-		top 1px
-		z-index 1
-		transition(.3s)
-	ul
-		background-color rgba(0, 0, 0, 0.2)
-	div > ul > li
-		a, p
-			padding-left 30px
-	.icon-arrow-right11
-		position absolute
-		margin 0
-		top 0
-		right 0
-		width 43px
-		height 43px
-		text-align center
-		line-height 43px
-		cursor pointer
-		z-index 1
-		transition(.3s)
-	.icon-arrow-right11:hover
-		background-color rgba(0, 0, 0, 0.15)
-		box-shadow(unquote('inset 0 0 10px #E02F1B, 0 0 5px #000'))
+.mlr10
+	margin-left 10px
+	margin-right 10px
 #main
 	font-size 14px
 	margin-left 250px
@@ -619,42 +518,6 @@ hr
 	.mce-i-resize:before
 		content '\e330'
 		font-family icomoon
-#welcome
-	background-size cover
-	background-color white
-	font-size 16px
-	text-align center
-	position relative
-	color #333
-	position absolute
-	top 0
-	left 0
-	bottom 0
-	right 0
-	z-index 1
-	form
-		background-color rgba(255, 255, 255, 0.7)
-		display inline-block
-		width 276px
-		height 192px
-		position absolute
-		top 50%
-		left 50%
-		margin-top -117px
-		margin-left -159px
-		padding 20px
-		border 1px solid #aaa
-		border-radius(3px)
-		box-shadow(0 0 30px rgba(255, 255, 255, 0.7))
-		p
-			line-height 30px
-			margin-top 10px
-		p:first-child
-			margin-top 0
-		> div
-			margin-top 20px
-		input[type=email], input[type=password]
-			width 250px
 label.checkbox
 	display inline-block
 	height 34px
@@ -663,9 +526,9 @@ label.checkbox
 		display none
 	> div
 		display inline-block
-		vertical-align top
+		vertical-align middle
 		position relative
-		top 5px
+		top -1px
 		width 18px
 		height 18px
 		background-color rgba(255, 255, 255, 0.8)
@@ -741,7 +604,7 @@ label.checkbox
 	border 1px solid #aaa
 	box-shadow(0 0 30px #aaa)
 	*
-		font-family monospace
+		font-family monospace !important
 	.editor
 		width 100%
 		height 100%

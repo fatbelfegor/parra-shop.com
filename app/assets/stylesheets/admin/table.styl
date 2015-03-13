@@ -4,6 +4,11 @@ table
 	line-height 32px
 td
 	display table-cell !important
+	> input[type=text], > input[type=email], > input[type=password]
+		height 34px
+	label.checkbox
+		> div
+			margin 0
 table.style
 	width 100%
 	border-spacing 0
@@ -39,6 +44,8 @@ table.style
 			border 0
 		p:first-child
 			border-right 1px solid #aaa
+#records
+	padding 85px 50px 50px
 .group
 	width 100%
 	margin-bottom 5px
@@ -50,6 +57,12 @@ table.style
 		td
 			border 1px solid #ccc
 			background-color white
+	.relations
+		border 1px solid #ccc
+		border-top 0
+		margin 0 30px 15px
+		padding 5px 10px
+		background-color rgba(255, 255, 255, 0.5)
 .records-header table
 	color white
 	line-height 34px
@@ -101,7 +114,7 @@ table.style
 		background-color #FF4949
 		box-shadow(inset 0 0 12px red)
 	tr
-		outline 1px solid #41FF41
+		outline 1px solid #9FFF6F
 		position relative
 		transition(.3s)
 	tr:before
@@ -133,17 +146,38 @@ table.style
 		box-shadow(inset 0 0 12px green)
 	td
 		cursor pointer
-	td:first-child p
+		white-space nowrap
+	td:first-child > div, td.hidden:first-child + td > div
 		margin-left 10px
-	td:last-child p
+	td:last-child > div
 		border-right 1px solid #bbb
 		margin-right 10px
-	p
+	td > div
 		background-color white
 		border 1px solid #ccc
 		border-right 0
 		margin 5px 0
 		transition(.3s)
-	td.active p, td:hover p
+	td.active > div, td:hover > div
 		border-color #aaa
 		box-shadow(inset 0 0 12px #aaa)
+	td.table-wrap
+		padding 20px
+	td.table-wrap:before
+		content 'td'
+		margin-left -20px
+		display inline-block
+		padding 0 12px
+		position absolute
+		z-index 1
+		line-height 32px
+		cursor pointer
+		color white
+		border 1px solid #0034ff
+		border-bottom-color #0034FF
+		border-top-color #3F7CFF
+		text-shadow(0 1px 0 #00f)
+		transition(.3s)
+		btn-gradient(#4B76FD, #84ABFF, #4B76FD, #0003FF, #0A4EFF)
+	td.table-wrap:hover:before
+		box-shadow(inset 0 0 8px #84ABFF)

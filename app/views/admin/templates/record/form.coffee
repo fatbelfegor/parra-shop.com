@@ -1,22 +1,20 @@
 app.preload = ->
-	id = parseInt app.data.route.id
-	name = app.data.route.model
-	template = models[name + "_form"]
+	id = parseInt param.id
+	name = param.model
+	template = models[name].templates.form
 	ret = []
 	if id
 		rec = model: name, find: id
+		rec.belongs_to = template.belongs_to if template.belongs_to
 		rec.has_many = template.has_many if template.has_many
 		ret.push rec
-	if template.preload
-		for m in template.preload
-			ret.push m
 	ret
 app.page = ->
-	name = app.data.route.model
-	id = parseInt app.data.route.id
-	table = tables[name]
-	rec = record.find name, id if id
-	images = record.where 'image', {imageable_type: table.name, imageable_id: id} if 'image' in table.has_many
+	id = parseInt param.id
+	name = param.model
+	model = models[name]
+	rec = model.find id if id
+	images = models.image.where imageable_type: model.name, imageable_id: id if 'images' in model.has_many
 	what = (c, u) ->
 		if id then u else c
 	action = what 'create', 'update'
@@ -25,22 +23,22 @@ app.page = ->
 	trGen = (table, tr, tr_rec, level, collection) ->
 		ret = ""
 		if collection or !tr.collection
-			if tr.before
-				tr.before table: table, recs: tr_rec, rec: tr_rec[level]
+			if tr.set
+				tr.set recs: tr_rec, rec: tr_rec[level]
 			ret += "<tr>"
 			for td in tr.td
+				td.set rec: rec, recs: tr_rec if td.set
 				continue if td.only and td.only isnt action
+				rec = tr_rec[td.level || level]
 				if id and td.belongs_to
-					rec = record.find td.belongs_to, tr_rec[td.level || level]["#{td.belongs_to}_id"]
-				else rec = tr_rec[td.level || level]
+					rec = rec[td.belongs_to]()
 				if td.th
 					tag = 'th'
 				else tag = 'td'
 				ret += "<#{tag}"
-				ret += " colspan='#{td.colspan}'" if td.colspan
-				ret += " rowspan='#{td.rowspan}'" if td.rowspan
-				ret += " class='#{td.class}'" if td.class
-				ret += " style='#{td.style}'" if td.style
+				if td.attrs
+					for k, v of td.attrs
+						ret += " #{k}='#{v}'"
 				ret += ">"
 				if td.treebox
 					tb = td.treebox
@@ -48,8 +46,8 @@ app.page = ->
 					tb.style = 'width: 100%'
 					tb.input = name: "record[#{td.field}]"
 					tb.classes = td.class.concat td.class.split(' ') if td.class
-					tb_rec = tb.rec table: table, recs: tr_rec, rec: rec
-					ret += "<div class='row'><p>#{td.header}</p>#{treebox.gen tb, tb_rec}</div>"
+					tb.rec = rec if id
+					ret += "<div class='row'><p>#{td.header}</p>#{treebox.gen tb}</div>"
 				else if td.field
 					val = recf td.field
 					val = td.val_cb val if td.val_cb
@@ -57,7 +55,12 @@ app.page = ->
 					ret += "<p>#{td.header}</p>" if td.header
 					ret += "<input type='text' name='record[#{td.field}]'"
 					ret += " value='#{val}'" if val
+					if td.fieldAttrs
+						for k, v of td.fieldAttrs
+							ret += " #{k}='#{v}'"
 					ret += "></label>"
+				else if td.show
+					ret += rec[td.show]
 				else if td.checkbox
 					ret += "<div class='row'><label class='checkbox'><div><input type='checkbox' name='record[#{td.checkbox}]' onchange='$(this).parent().toggleClass(\"checked\")'></div>"
 					ret += "#{td.header}" if td.header
@@ -80,12 +83,6 @@ app.page = ->
 						<label>"
 				else if td.table
 					ret += tableGen td.table, tr_rec, level
-				else if td.show
-					if td.cb
-						ret += td.cb rec[td.show]
-					else ret += rec[td.show]
-				else if id and td.cb
-					ret += td.cb table: table, tr: tr, rec: rec, recs: tr_rec
 				ret += "</#{tag}>"
 			ret += "</tr>"
 		else
@@ -93,7 +90,7 @@ app.page = ->
 				when 'has_many'
 					where = {}
 					where[name + '_id'] = id
-					for rec in record.where(tr.collection.model, where: where).records
+					for rec in models[tr.collection.model].where where
 						ret += trGen table, tr, tr_rec.concat(rec), level + 1, true
 		ret
 	tableGen = (tabls, rec, level) ->
@@ -101,16 +98,19 @@ app.page = ->
 		for t in tabls
 			t.before() if t.before
 			ret += "<table"
-			ret += " class='#{t.class}'" if t.class
+			if t.attrs
+				for k, v of t.attrs
+					ret += " #{k}='#{v}'"
 			ret += ">"
 			for tr in t.tr
 				ret += trGen t, tr, rec, level
 			ret += "</table>"
 		ret
-	template = models[name + "_form"]
+	template = model.templates.form
 	window.vars = template.vars if template.vars
+	window.functions = template.functions if template.functions
 	"<a onclick='app.aclick(this)' id='backButton'><i class='icon-arrow-left5'></i><span></span></a>
-	<h1 class='title'>#{what 'Добавить запись', 'Редактировать запись'} <b>#{word name}</b></h1>
+	<h1 class='title'>#{what 'Добавить запись', 'Редактировать запись'} <b>#{name}</b></h1>
 	<form action='model/#{name}/#{action}#{what '', "/#{id}"}' class='content form'><div class='btn green m15' onclick='recordFormSubmit(this)'>#{what 'Создать', 'Сохранить'}</div>#{tableGen template.table, [rec], 0}<br><div class='btn green m15' onclick='recordFormSubmit(this)'>#{what 'Создать', 'Сохранить'}</div></form><link rel='stylesheet' type='text/css' href='/lightbox/lightbox.min.css'><script src='/tinyMCE/tinymce.min.js'><script src='/lightbox/lightbox.min.js'>"
 window.recordFormSubmit = (el) ->
 	msg = if app.data.route.id then 'Запись успешно сохранена' else 'Запись успешно создана'

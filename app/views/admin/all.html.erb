@@ -5,49 +5,62 @@
 	function data () { return eval(
 		<%= raw @data.to_json %>
 	)}
-	<% models = {}
-		habtm = {}
-		for model in ActiveRecord::Base.descendants
-			name = model.to_s
-			if name[0] != '#' and name != 'ActiveRecord::SchemaMigration'
-				underscore = name.underscore
-				if name.include? '::HABTM_'
-					habtm_name = underscore.split('/habtm_').map{|m| m.singularize}.join('_')
-					habtm[habtm_name] = {}
-				else
-					columns = []
-					for c in model.columns
-						columns << {name: c.name, type: c.type, null: c.null, default: c.default}
-					end
-					models[underscore] = {
-						name: name,
-						singularize: underscore,
-						pluralize: underscore.pluralize,
-						columns: columns,
-						belongs_to: model.reflect_on_all_associations(:belongs_to).map{|m| {m.name => false}},
-						has_many: model.reflect_on_all_associations(:has_many).map{|m| {m.name.to_s.singularize => false}}
-					}
-					models[underscore][:habtm] = {}
-					for m in model.reflect_on_all_associations(:has_and_belongs_to_many).map(&:name)
-						models[underscore][:habtm][m.to_s.singularize] = []
-					end
-					if @records and @records[underscore]
-						models[underscore][:records] = @records[underscore][:records]
-						models[underscore][:children] = @records[underscore][:children] if @records[underscore][:children]
-						if @records[underscore][:habtm]
-							for k, v in @records[underscore][:habtm]
-								models[underscore][:habtm][k] = v
-							end
-						end
-						models[underscore][:full] = @records[underscore][:full]
-					else
-						models[underscore][:records] = []
-						models[underscore][:full] = {}
-					end
-				end
-			end
-		end %>
-	tables = <%= raw models.to_json %>
-	habtm = <%= raw habtm.to_json %>
+	models = {}
+	<% for model in ActiveRecord::Base.descendants
+		name = model.to_s
+		underscore = name.underscore
+		if name[0] != '#' and name != 'ActiveRecord::SchemaMigration'
+			if name.include? '::HABTM_' %>
+			<% else %>
+			<% belongs_to = model.reflect_on_all_associations(:belongs_to).map{|m| m.name} %>
+			<% has_many = model.reflect_on_all_associations(:has_many).map{|m| m.name} %>
+			models["<%= underscore %>"] = {
+				name: "<%= underscore %>",
+				classify: "<%= name %>",
+				pluralize: "<%= underscore.pluralize %>",
+				columns: <%= raw model.columns.to_json %>,
+				templates: {},
+				ready: {
+					all: false,
+					where: {},
+					null: []
+				},
+				collection: {},
+				collect: function(rec){
+					record.collect(this, rec)
+				},
+				all: function(options, cb){
+					return record.all(this, options, cb)
+				},
+				find: function(ids) {
+					return record.find(this, ids)
+				},
+				where: function(params) {
+					return record.where(this, params)
+				},
+				create: function(params, msg, cb) {
+					record.create(this, params, msg, cb)
+				},
+				destroy: function(id, params) {
+					record.destroy(this, id, params)
+				},
+				belongs_to: <%= raw belongs_to.to_json %>,
+				has_many: <%= raw has_many.to_json %>
+				<% for m in belongs_to %>
+				,
+				<%= m %>: function(){
+					return record.belongs_to("<%= m %>", this)
+				}
+				<% end %>
+				<% for m in has_many %>
+				,
+				<%= m %>: function(){
+					return record.has_many("<%= underscore %>", "<%= m %>", this)
+				}
+				<% end %>
+			}
+			<% end 
+		end
+	end %>
 	me = <%= raw current_user.to_json %>
 </script>

@@ -1,4 +1,4 @@
-models.product_form =
+app.templates.form.product =
 	table: [
 		{
 			tr: [
@@ -54,7 +54,7 @@ models.product_form =
 					td: [
 						{
 							images: true
-							colspan: 3
+							attrs: colspan: 3
 						}
 					]
 				},
@@ -65,7 +65,7 @@ models.product_form =
 								'Описание': 'description',
 								'Краткое описание': 'short_desc'
 							}
-							colspan: 3
+							attrs: colspan: 3
 						}
 					]
 				}
