@@ -12,10 +12,10 @@ class CategoriesController < ApplicationController
     @categoriesmobile = Category.where('isMobile = true')
     @products = Product.all
     
-    respond_to do |format|
-        format.html { render :index }
-        format.json { render :json =>  @categoriesmobile.to_json(:include => [:parent])}
-      end
+    # respond_to do |format|
+#         format.html { render :index }
+#         format.json { render :json =>  @categoriesmobile.to_json(:include => [:parent])}
+#       end
   end
   
   
@@ -130,7 +130,8 @@ private
 			:rate,
       :seo_text,
       :url,
-      :isMobile
+      :isMobile,
+      :mobile_image_url
 		)
 	end
 end

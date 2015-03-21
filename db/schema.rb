@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216111741) do
+ActiveRecord::Schema.define(version: 20150318024310) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -34,11 +34,13 @@ ActiveRecord::Schema.define(version: 20150216111741) do
     t.string   "scode"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "commission",    precision: 18, scale: 2, default: 0.0
-    t.decimal  "rate",          precision: 18, scale: 2, default: 0.0
+    t.decimal  "commission",       precision: 18, scale: 2, default: 0.0
+    t.decimal  "rate",             precision: 18, scale: 2, default: 0.0
     t.text     "seo_text"
     t.string   "url"
-    t.boolean  "isMobile",                               default: false
+    t.boolean  "menu"
+    t.boolean  "isMobile",                                  default: false
+    t.string   "mobile_image_url"
   end
 
   create_table "categories_products", id: false, force: true do |t|
