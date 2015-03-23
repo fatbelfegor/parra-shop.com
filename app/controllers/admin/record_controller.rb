@@ -1,6 +1,22 @@
 class Admin::RecordController < Admin::AdminController
 	def new
-		rend page: 'record/form'
+		records = {}
+		params.each do |key,value|
+		  	if key[-3..-1] == '_id'
+		  		name = key[0..-4]
+		  		model = name.classify.constantize
+		  		id = value.to_i
+		  		rec = model.find(id)
+		  		if records[name]
+		  			records[name][:records] << rec
+		  			records[name][:full][:id] << id
+		  		else
+		  			records[name] = {records: [rec]}
+		  		end
+		  		p records
+		  	end
+		end
+		rend page: 'record/form', data: {records: records}
 	end
 
 	def edit
@@ -22,23 +38,49 @@ class Admin::RecordController < Admin::AdminController
 	end
 
 	def create
-		record = params[:model].classify.constantize.new params.require(:record).permit!
+		fields = params.require(:record).permit!
+		if params[:image]
+			for field, image in params[:image]
+				fields[field] = '/images/' + save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image)
+			end
+		end
+		record = params[:model].classify.constantize.find(params[:id]).new fields
+		data = {}
 		if record.save
-			if params[:images_urls]
-				for url in params[:images_urls]
-					record.images.create url: url
+			data[:id] = record.id
+			if params[:images]
+				for image in params[:images]
+					record.images.create url: '/images/' + save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image)
 				end
 			end
-			id = record.id
-		else
-			id = nil
 		end
-		rend data: id
+		rend data: data
 	end
 
 	def update
-		params[:model].classify.constantize.find(params[:id]).update params.require(:record).permit!
-		rend
+		fields = params.require(:record).permit!
+		if params[:removeImage]
+			for field, image in params[:removeImage]
+				fields[field] = ''
+				path = Rails.root.join('public').to_s + image
+				File.delete(path) if File.exist? path
+			end
+		end
+		data = {}
+		if params[:image]
+			data[:image] = {}
+			for field, image in params[:image]
+				fields[field] = '/images/' + save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image)
+			end
+			data[:image][field] = fields[field]
+		end
+		record = params[:model].classify.constantize.find(params[:id]).update fields
+		if params[:images]
+			for image in params[:images]
+				record.images.create url: '/images/' + save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image)
+			end
+		end
+		rend data: data
 	end
 
 	def index
@@ -90,9 +132,13 @@ class Admin::RecordController < Admin::AdminController
 						recs = model.where where
 					end
 					if h[:find]
-						c[h[:find]].compact!
-						unless c[h[:find]].empty?
-							recs = model.find c[h[:find]]
+						if c
+							c[h[:find]].compact!
+							unless c[h[:find]].empty?
+								recs = model.find c[h[:find]]
+							end
+						else
+							recs = []
 						end
 					end
 				end

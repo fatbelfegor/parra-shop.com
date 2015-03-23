@@ -12,6 +12,7 @@
 			input.val ''
 		else
 			treebox.removeClass('active').find('.active').removeClass 'active'
+			treebox.find('.open').removeClass 'open'
 			el.addClass 'active'
 			data = el.data()
 			if data.header
@@ -54,6 +55,8 @@
 			#{if params.colspan then " colspan='#{params.colspan}'" else ''}
 			#{if params.rowspan then " rowspan='#{params.rowspan}'" else ''}
 			#{if params.style then " style='#{params.style}'" else ''}
+			#{if params.notModel then " data-not-model='#{params.notModel}'" else ''}
+			#{if params.notId then " data-not-id='#{params.notId}'" else ''}
 			class='treebox#{if params.classes then ' ' + params.classes.join ' ' else ''}'>
 				<p
 					data-default='#{params.header}'
@@ -65,6 +68,7 @@
 			</#{params.tag}>"
 	start: (el) ->
 		tb = $(el).attr('onclick', 'treebox.toggle(this)').parent().addClass 'active'
+		tb.find('> p').css 'width', '100%'
 		tb_data = tb.data()
 		wrap = tb.find 'ul'
 		params = []
@@ -91,33 +95,36 @@
 				recs = models[name].where where
 			else recs = models[name].all()
 			for rec in recs
-				ret += "<li>"
-				ret += "<p>#{rec[f]}</p>" for f in options.fields
-				if options.pick
-					ret += "<i class='icon-checkmark2#{if rec.id is tb_data.recId then ' active' else ''}' data-val='#{rec[tb_data.pick.val]}' data-header='#{rec[tb_data.pick.header]}' onclick='treebox.pick(this)'></i>"
-				arrow = false
-				if options.has_self
-					arrow = true if rec[name + '_ids'].length > 0
-				relations = {}
-				if options.habtm
-					relations.habtm = {}
-					for n, h of options.habtm
-						ids = rec[n + '_ids']
-						if ids.length
-							arrow = true
-							relations.habtm[n] = ids
-						break
-				ret += "<i class='icon-arrow-down5' data-relations='#{JSON.stringify relations}' data-id='#{rec.id}' data-model='#{name}' data-treebox='#{JSON.stringify options}' onclick='treebox.open(this)'></i>" if arrow
-				ret += "</li>"
+				if !(name is tb_data.notModel and rec.id is tb_data.notId)
+					ret += "<li>"
+					if options.pick
+						ret += "<i class='icon-checkmark2#{if rec.id is tb_data.recId then ' active' else ''}' data-val='#{rec[tb_data.pick.val]}' data-header='#{rec[tb_data.pick.header]}' onclick='treebox.pick(this)'></i>"
+					arrow = false
+					if options.has_self
+						arrow = true if rec[name + '_ids'].length > 0
+					relations = {}
+					if options.habtm
+						relations.habtm = {}
+						for n, h of options.habtm
+							ids = rec[n + '_ids']
+							if ids.length
+								arrow = true
+								relations.habtm[n] = ids
+							break
+					ret += "<i class='icon-arrow-down5' data-relations='#{JSON.stringify relations}' data-id='#{rec.id}' data-model='#{name}' data-treebox='#{JSON.stringify options}' onclick='treebox.open(this)'></i>" if arrow
+					ret += "<p>#{rec[f]}</p>" for f in options.fields
+					ret += "</li>"
+		if ret is ''
+			ret = "<li><p>Отсутствуют записи</p></li>"
 		wrap.html ret
 	open: (el) ->
 		el = $ el
 		if el.hasClass 'active'
 			el.removeClass 'active'
-			el.parent().removeClass 'active'
+			el.parent().removeClass 'open'
 		else
 			el.addClass 'active'
-			el.parent().addClass 'active'
+			el.parent().addClass 'open'
 			treebox_data = el.parents('.treebox').data()
 			data = el.data()
 			unless data.ready
@@ -178,6 +185,8 @@
 							for rec in recs
 								ret += "<li>"
 								ret += "<p>#{rec[f]}</p>" for f in data.treebox.fields
+								if data.treebox.pick
+									ret += "<i class='icon-checkmark2#{if rec.id is treebox_data.recId then ' active' else ''}' data-val='#{rec[treebox_data.pick.val]}' data-header='#{rec[treebox_data.pick.header]}' onclick='treebox.pick(this)'></i>"
 								if data.treebox.habtm
 									arrow = false
 									relations = {}
@@ -194,7 +203,7 @@
 									ret += "<i class='icon-arrow-down5' data-relations='#{JSON.stringify relations}' data-id='#{rec.id}' data-model='#{data.model}' data-treebox='#{JSON.stringify data.treebox}' onclick='treebox.open(this)'></i>" if arrow
 								ret += "</li>"
 							ret += "</ul>"
-					el.after ret
+					el.next().after ret
 	out_click: ->
 		$('html').click ->
 			$('.treebox').removeClass 'active'

@@ -5,39 +5,47 @@ String.prototype.toNumber = ->
 String.prototype.toCurrency = ->
 	@toNumber().toCurrency()
 
-# Record
-
-@record =
-	create: (el) ->
-		form = $(el).parent()
-		params = {}
-		for field in form.serializeArray()
-			params[field.name] = field.value
-		if validate form
-			$.post "/admin/model/#{form.data('model-name')}/create", record: params, (resp) ->
-				act.notify 'Запись успешно добавлена'
-
 # Validate
 
-@validate = (form) ->
-	form.find('.error').remove()
-	ok = true
-	for input in form.find('input')
-		switch input.type
-			when 'text'
-				if input.value == ''
-					unless $(input).data('null')
-						$(input).after "<p class='error'><i class='icon-spam'></i><span>Заполните поле</span></p>"
-						ok = false
-	ok
+@validate = (el) ->
+	el = $ el
+	val = el.val()
+	msg = []
+	v = el.data 'validate'
+	div = el.next()
+	active = false
+	cb = ->
+		if v.presence
+			if val is ''
+				active = true
+				msg.push "Поле не должно быть пустым"
+		if active
+			div.addClass('active').find('p').html msg.join '. '
+		else
+			div.removeClass 'active'
+	if v
+		if v.uniq and val isnt el.data 'validateWas'
+			post 'checkuniq', model: param.model, field: el.attr('name'), val: val, (nil) ->
+				if nil isnt true
+					active = true
+					msg.push "Такое значение уже есть"
+				cb()
+		else
+			cb()
 
 # Ask
 
-@ask = (msg, action, options) ->
+@ask = (msg, params) ->
 	ask = dark.open('ask')
 	ask.find('.text p').html msg
-	ask.find('.red').click ->
-		action(options)
+	btn = ask.find('.ok')
+	if params.ok
+		if params.ok.html
+			btn.html params.ok.html
+		if params.ok.class
+			btn.attr 'class', 'btn ' + params.ok.class
+	btn.click ->
+		params.action(params.options)
 		dark.close()
 
 # Dark
@@ -107,28 +115,6 @@ String.prototype.toCurrency = ->
 			$(@).parent().removeClass 'checked'
 @checkbox = (el) ->
 	$(el).parent().toggleClass 'checked'
-@validate = (form, cb) ->
-	send = true
-	form.find('[data-validate]').each ->
-		f = $ @
-		validates = eval f.data 'validate'
-		f_ok = true
-		error = f.parent().find('.error')
-		for v in validates
-			switch v
-				when 'presence'
-					if f.val() is ''
-						f_ok = false
-						error.html "Нужно заполнить"
-		if f_ok
-			error.removeClass('active').html ''
-		else
-			error.addClass 'active'
-		send = f_ok if send
-		true
-	if send
-		cb()
-
 # Tag
 
 @tag =

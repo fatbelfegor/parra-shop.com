@@ -16,6 +16,8 @@ class CreateCategories < ActiveRecord::Migration
       t.string :url
       t.boolean :menu
       t.belongs_to :category, index: true
+      t.boolean :isMobile, default: false
+      t.string :mobile_image_url
 
       t.timestamps
     end

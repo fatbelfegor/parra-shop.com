@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   post 'admin/model/:model/destroy/:id', to: 'admin/record#destroy'
   post 'admin/model/:model/update/:id', to: 'admin/record#update'
   post 'admin/model/:model/create', to: 'admin/record#create'
-  post 'admin/model/:model/update/:id', to: 'admin/record#update'
   post 'admin/record/all', to: 'admin/record#all'
   post 'admin/record/get', to: 'admin/record#get'
 
@@ -39,6 +38,7 @@ Rails.application.routes.draw do
 
   post 'admin/write', to: 'admin/admin#write'
   post 'admin/sort', to: 'admin/admin#sort'
+  post 'admin/checkuniq', to: 'admin/admin#checkuniq'
 
   get 'admin/ordergen/:id/*anything', to: 'admin/orders#xlsx'
 

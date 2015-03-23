@@ -7,6 +7,7 @@
 //= require admin/panel
 //= require admin/table
 //= require admin/treebox
+//= require admin/validation
 //= require_self
 
 @import url('http://fonts.googleapis.com/css?family=Droid+Sans')
@@ -777,7 +778,7 @@ label.group.tags.red > div > form > div *
 #backButton:hover
 	background-color #d64535
 	color white
-.images-form
+.images-form, .image-form
 	> div
 		font-size 0
 		display inline-block
@@ -822,8 +823,20 @@ label.group.tags.red > div > form > div *
 		max-width 200px
 		max-height 200px
 		border 1px solid #aaa
+		display block
 .radio-tabs
 	> div
 		display none
 	> .active
 		display block
+.textarea-wrap
+	padding-right 40px !important
+	background #eee
+	padding-bottom 5px !important
+	textarea
+		width 100%
+		min-height 300px
+		padding 12px
+		color #555
+		background-color #ffb
+		box-shadow(0 0 20px #bbb)

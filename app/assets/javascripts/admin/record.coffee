@@ -22,65 +22,19 @@
 							-1
 						else 0
 				allrecs = allrecs.sort cb
-		if allrecs.length
-			switch template.display
-				when 'open-tree'
-					recs = []
-					for rec in allrecs
-						if rec["#{name}_id"] is null
-							recs.push rec
-				else
-					recs = allrecs
-			renderRecords = (recs) ->
-				for rec in recs
-					ret += "<div class='group' data-model='#{name}' data-id='#{rec.id}'>"
-					for t in template.table
-						ret += "<table>"
-						for tr in t.tr
-							ret += "<tr"
-							if tr.attrs
-								for k, v of tr.attrs
-									ret += " #{k}=\"#{v}\""
-							ret += ">"
-							for td in tr.td
-								if td.set
-									td.set rec
-								ret += "<td"
-								if td.attrs
-									for k, v of td.attrs
-										ret += " #{k}=\"#{v}\""
-								ret += ">"
-								if td.show
-									if td.belongs_to
-										r = rec[td.belongs_to]()
-										val = if r then r[td.show] else ''
-									else
-										val = rec[td.show]
-									if td.format
-										if td.format.date
-											val = new Date(val).toString td.format.date
-									if td.cb
-										val = eval(td.cb) val, td.cbParams
-									ret += val
-								else if td.html
-									ret += td.html
-								ret += "</td>"
-							ret += "</tr>"
-						ret += "</table>"
-					switch template.display
-						when 'open-tree'
-							subrecs = []
-							for r in allrecs
-								if r["#{name}_id"] is rec.id
-									subrecs.push r
-							if subrecs.length
-								ret += "<div class='relations' data-model-wrap='#{name}'>"
-								renderRecords subrecs
-								ret += "</div>"
-					ret += "</div>"
-			renderRecords recs
-		else
-			ret += "<h3>Нет записей</h3>"
+		switch template.display
+			when 'open-tree'
+				recs = []
+				for rec in allrecs
+					if rec["#{name}_id"] is null
+						recs.push rec
+				if recs.length
+					ret += record.renderRecords all: allrecs, template: template, name: name, subrecs: recs
+				else ret += "<h3>Нет записей</h3>"
+			else
+				if allrecs.length
+					ret += record.renderRecords all: allrecs, template: template, name: name
+				else ret += "<h3>Нет записей</h3>"
 		$('#records').html ret
 		window.functions = template.functions if template.functions
 		if template.sortable is 'tree'
@@ -98,6 +52,70 @@
 					ids = []
 					$(@).find("> [data-model='#{model_name}']").each -> ids.push $(@).data 'id'
 					$.post '/admin/sort', ids: ids, parent_id: parent_id, model: model_name
+	renderRecords: (params) ->
+		ret = ""
+		switch params.template.display
+			when 'open-tree'
+				recs = params.subrecs
+			else
+				recs = params.all
+		for rec in recs
+			ret += "<div class='group' data-model='#{params.name}' data-id='#{rec.id}'>"
+			for t in params.template.table
+				ret += "<table>"
+				for tr in t.tr
+					ret += "<tr"
+					if tr.attrs
+						for k, v of tr.attrs
+							ret += " #{k}=\"#{v}\""
+					ret += ">"
+					for td in tr.td
+						if td.set
+							td.set rec
+						ret += "<td"
+						if td.attrs
+							for k, v of td.attrs
+								ret += " #{k}=\"#{v}\""
+						ret += ">"
+						if td.show
+							if td.belongs_to
+								r = rec[td.belongs_to]()
+								val = if r then r[td.show] else ''
+							else
+								val = rec[td.show]
+							if td.format
+								if td.format.date
+									val = new Date(val).toString td.format.date
+							if td.cb
+								val = eval(td.cb) val, td.cbParams
+							ret += val
+						else if td.html
+							ret += td.html
+						ret += "</td>"
+					ret += "</tr>"
+				ret += "</table>"
+			subrecs = []
+			switch params.template.display
+				when 'open-tree'
+					for r in params.all
+						if r["#{params.name}_id"] is rec.id
+							subrecs.push r
+			ret += "<div class='relations"
+			ret += " active" if subrecs.length
+			ret += "'>"
+			if params.template.relations
+				if params.template.relations.close
+					for k, v of params.template.relations.close
+						ids = rec["#{k}_ids"]
+						ret += "<div class='relation-wrap' data-model-wrap='#{k}' data-ids='[#{ids.join ','}]'>
+							<div class='relation-header'>#{v.header} (<span class='relations-count'>#{ids.length}</span>)</div>
+						</div>"
+			if subrecs.length
+				ret += "<div class='relation-wrap start' data-model-wrap='#{params.name}'>"
+				ret += record.renderRecords all: recs, template: params.template, name: params.name, subrecs: subrecs
+				ret += "</div>"
+			ret += "</div></div>"
+		ret
 	send: (form, msg, cb) ->
 		validate form, ->
 			form.find('.tinyMCE').each ->
@@ -197,7 +215,7 @@
 					for id in m.find
 						ids.push id unless model.find id
 					if ids.length > 0
-						m.find = ids
+						par.find = ids
 						load = true
 				else if !model.find(m.find)
 					par.find = m.find
@@ -302,13 +320,6 @@
 				if rec[k] is v
 					ret.push rec
 		ret
-	create: (mod, params, msg, cb) ->
-		@cb = cb
-		post "model/#{mod.name}/create", record: params, (id) ->
-			notify msg or 'Запись успешно создана'
-			params.id = id
-			mod.collect params
-			record.cb id if record.cb
 	destroy: (mod, id, params) ->
 		params ?= {}
 		ask (params.msg or 'Удалить запись?'), (d) ->
@@ -320,3 +331,44 @@
 					params.cb params.cb_data
 				else params.cb()
 		, id: id, params: params
+	update: (mod, id, data, params) ->
+		params ?= {}
+		if params.formData
+			sendData = params.formData
+		else sendData = data
+		$.ajax
+			url: "/admin/model/#{mod.name}/update/#{id}"
+			data: sendData
+			type: 'POST'
+			contentType: false
+			processData: false
+			dataType: "json"
+			success: (res) ->
+				notify params.notify or "Запись обновлена"
+				for k, v of data.record
+					mod.collection[id][k] = v
+				if data.removeImage
+					for k in data.removeImage
+						mod.collection[id][k] = ''
+				if res.image
+					for k, v of image
+						mod.collection[id][k] = v
+	create: (mod, data, params) ->
+		params ?= {}
+		if params.formData
+			sendData = params.formData
+		else sendData = data
+		$.ajax
+			url: "/admin/model/#{mod.name}/create"
+			data: sendData
+			type: 'POST'
+			contentType: false
+			processData: false
+			dataType: "json"
+			success: (res) ->
+				notify params.notify or "Запись создана"
+				data.id = res.id
+				if res.image
+					for k, v of image
+						data[k] = v
+				mod.collect data

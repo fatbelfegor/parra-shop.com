@@ -57,12 +57,51 @@ table.style
 		td
 			border 1px solid #ccc
 			background-color white
+			> .icon-cursor
+				margin 0
+				padding 7px 6px 0 13px
+			> i
+				top 2px
+			> p
+				padding 0 12px !important
 	.relations
 		border 1px solid #ccc
+		border-width 0 1px
 		border-top 0
-		margin 0 30px 15px
-		padding 5px 10px
+		margin 0 30px
+		padding 0 10px
 		background-color rgba(255, 255, 255, 0.5)
+		transition(.3s)
+	.relations.active
+		border-width 1px
+		margin-bottom 15px
+		padding 10px
+	.relation-header
+		overflow hidden
+		height 0
+		line-height 36px
+		border 1px solid #aaa
+		border-width 0 1px
+		font-weight bold
+		btn-gradient(#FAFAFA, #FFFFFF, #F2F2F2, #D5D5D5, #E8E8E8)
+		transition(.3s)
+	.relation-wrap
+		transition(.3s)
+		> .group
+			display none
+	.relation-wrap.active
+		margin-bottom 10px
+		> .relation-header
+			height 36px
+			border-width 1px
+		> .group
+			display block
+	.relation-wrap.start > .group
+		display block
+	.relation-wrap:last-child
+		margin-bottom 0
+.group:last-child
+	margin-bottom 0
 .records-header table
 	color white
 	line-height 34px
@@ -181,3 +220,5 @@ table.style
 		btn-gradient(#4B76FD, #84ABFF, #4B76FD, #0003FF, #0A4EFF)
 	td.table-wrap:hover:before
 		box-shadow(inset 0 0 8px #84ABFF)
+	#current > div
+		box-shadow(0 0 12px 1px #0a4eff)

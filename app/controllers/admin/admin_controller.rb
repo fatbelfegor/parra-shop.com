@@ -21,6 +21,10 @@ class Admin::AdminController < ApplicationController
 		render 'admin/scripts/scripts'
 	end
 
+	def checkuniq
+		rend data: params[:model].classify.constantize.send("find_by_#{params[:field]}", params[:val]).nil?
+	end
+
 	def sort
 		parent_id = params[:parent_id]
 		parent_id = nil if parent_id == 'nil'

@@ -1,14 +1,7 @@
 #= require jquery
 #= require jquery_ujs
-#= require admin/functions
-#= require admin/date
-#= require admin/dropdown
-#= require admin/image
-#= require admin/jquery-ui.min
-#= require admin/record
 #= require_self
-
-@param = {}
+#= require_tree
 
 @app =
 	routesSorted: {}
@@ -67,6 +60,7 @@ app.go = (url) ->
 		if f.length is len
 			find.push f
 	routeArray = []
+	window.param = {}
 	for f in find
 		for a, i in f
 			if a[0] is ':'
@@ -96,6 +90,35 @@ app.go = (url) ->
 	askPage = false
 	if !@setPage() and !@route.page
 		askPage = true
+	if @menu
+		@menu.find('.current').removeClass 'current'
+		@menu.find('.active').removeClass 'active'
+		@menu.find('.open').removeClass 'open'
+		li = @menu.find "[data-route='#{@path}']"
+		if li.length is 0
+			li = @menu.find "[data-route='#{routeString}']"
+		li.addClass 'current open'
+		parent = li.parents('li').eq(0)
+		while parent.length
+			parent.addClass 'active open'
+			parent = parent.parents('li').eq(0)
+	app.qparam = {}
+	query = window.location.search.substring 1
+	vars = query.split '&'
+	i = 0
+	while i < vars.length
+		pair = vars[i].split '='
+		if typeof app.qparam[pair[0]] == 'undefined'
+			app.qparam[pair[0]] = pair[1]
+		else if typeof app.qparam[pair[0]] == 'string'
+			arr = [
+				app.qparam[pair[0]]
+				pair[1]
+			]
+			app.qparam[pair[0]] = arr
+		else
+			app.qparam[pair[0]].push pair[1]
+		i++
 	if askData or askPage
 		params = 
 			url: url
@@ -112,14 +135,6 @@ app.go = (url) ->
 		$.ajax params
 	else
 		@renderPage()
-	if @menu
-		@menu.find('.current').removeClass 'current'
-		@menu.find('.active').removeClass 'active'
-		@menu.find('.open').removeClass 'open'
-		li = @menu.find "[data-route='#{@path}']"
-		if li.length is 0
-			li = @menu.find "[data-route='#{routeString}']"
-		li.addClass 'current open'
 app.setPage = ->
 	if app.page
 		@route.page = app.page
@@ -134,25 +149,44 @@ app.renderPage = ->
 		app.yield.html app.route.page()
 		app.route.after() if app.route.after
 		app.backButton app.options.back, app.options.ref if app.options and app.options.back
+	pre_cb = ->
+		if app.preload
+			preload = app.preload()
+		else
+			preload = false
+		if preload
+			record.load preload, cb
+			app.preload = null
+		else cb()
 	if app.script
-		scripts = app.script()
-		scripts = [scripts] if typeof scripts is 'string'
-		$.ajax
-			url: "/admin/scripts"
-			data: scripts: scripts
-			dataType: "script"
-			success: ->
-				for s in scripts
-					app.scripts[s] = true
-				cb()
-			error: (data) ->
-				app.scripts[data.responseText.match(/admin\/scripts\/(.*?) with/)[1]] = false
-				cb()
-	else if app.preload
-		record.load app.preload(), cb
-		app.preload = null
-	else cb()
+		req_scripts = app.script()
+		req_scripts = [req_scripts] if typeof req_scripts is 'string'
+		load_scripts = []
+		for s in req_scripts
+			load_scripts.push s if @scripts[s] is undefined
+		if load_scripts.length
+			$.ajax
+				url: "/admin/scripts"
+				data: scripts: load_scripts
+				dataType: "script"
+				success: ->
+					for s in load_scripts
+						app.scripts[s] = true
+					pre_cb()
+				error: (data) ->
+					app.scripts[data.responseText.match(/admin\/scripts\/(.*?) with/)[1]] = false
+					pre_cb()
+		else
+			pre_cb()
+	else pre_cb()
 ready = ->
+	if window.data
+		data = window.data()
+		if data.records
+			for k, v of data.records
+				model = models[k]
+				for rec in v.records
+					model.collect rec
 	app.yield = $ '#yield'
 	if !app.menu
 		app.menu = $ '#menu'
@@ -172,7 +206,7 @@ ready = ->
 		for name, model of models
 			model.templates.form = app.templates.form[name] if app.templates.form[name]
 			model.templates.index = app.templates.index[name] if app.templates.index[name]
-			ret += "<li>
+			ret += "<li data-route='model/#{name}'>
 				<div class='icon fade'><a href='/admin/model/#{name}/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
 				<a href='/admin/model/#{name}/records' onclick='app.aclick(this)'><i class='icon-stack'></i><span>#{model.classify}</span></a>
 			</li>"

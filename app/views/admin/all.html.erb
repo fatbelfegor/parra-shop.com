@@ -18,7 +18,7 @@
 				name: "<%= underscore %>",
 				classify: "<%= name %>",
 				pluralize: "<%= underscore.pluralize %>",
-				columns: <%= raw model.columns.to_json %>,
+				columns: <%= raw model.columns.map{|c| {name: c.name, type: c.type}}.to_json %>,
 				templates: {},
 				ready: {
 					all: false,
@@ -37,6 +37,9 @@
 				},
 				where: function(params) {
 					return record.where(this, params)
+				},
+				update: function(params, msg, cb) {
+					record.update(this, params, msg, cb)
 				},
 				create: function(params, msg, cb) {
 					record.create(this, params, msg, cb)

@@ -1,9 +1,12 @@
+app.script = ->
+	"models/#{param.model}/form"
 app.page = ->
 	model = models[param.model]
-	template = model.templates.form
+	template = app.templates.form[param.model]
 	ret = "<h1>Форма <b>#{param.model}</b></h1>
 	<div class='content'>
 		<div class='btn green m15' onclick='functions.save()'>Сохранить</div>
+		<div class='btn purple' onclick='functions.generateAsk()'>Создать автоматически</div>
 		<div id='table-structure'>"
 	drawTable = (t) ->
 		ret = "<table onclick='functions.pick(\"table\", this)'"
@@ -34,13 +37,18 @@ app.page = ->
 				ret += " data-show='#{td.show}'" if td.show
 				ret += " data-only='#{td.only}'" if td.only
 				ret += " data-th='true'" if td.th
+				ret += " data-images='true'" if td.images
 				ret += " data-level='#{td.level}'" if td.level or td.level is 0
+				ret += " data-validation='#{JSON.stringify td.validation}'" if td.validation
+				ret += " data-checkbox='#{td.checkbox}'" if td.checkbox
+				ret += " data-image='#{td.image}'" if td.image
+				ret += " data-text='#{JSON.stringify td.text}'" if td.text
 				if td.attrs
 					ret += " data-attrs='#{JSON.stringify td.attrs}'"
 					for k, v of td.attrs
 						ret += " #{k}='#{v}'" unless k in ['class', 'onclick']
 				if td.fieldAttrs
-					ret += " data-field-attrs='#{JSON.stringify td.fieldAttrs}'"
+					ret += " data-field-attrs='#{td.fieldAttrs}'"
 					for k, v of td.fieldAttrs
 						ret += " #{k}='#{v}'" unless k in ['class', 'onclick']
 				ret += ">"
@@ -48,16 +56,26 @@ app.page = ->
 					ret += drawTable tdt for tdt in td.table
 				else
 					ret += "<div>"
-					if td.header
+					if td.html
+						ret += td.html
+					else if td.header
 						ret += td.header
 					else if td.field
 						ret += td.field
 					else if td.show
 						ret += td.show
-					else if td.html
-						ret += td.html
 					else if td.set
 						ret += "* функция *"
+					else if td.description
+						descs = []
+						descs.push n for n of td.description
+						ret += "Описание: #{descs.join ', '}"
+					else if td.images
+						ret += "Изображения"
+					else if td.checkbox
+						ret += td.checkbox
+					else if td.text
+						ret += "Текст"
 					else
 						ret += "&nbsp;"
 					ret += "</div>"
@@ -80,18 +98,31 @@ app.page = ->
 								ret += "\n\tfields: [#{fields.join ','}]"
 							if v.pick
 								ret += "\n\tpick: true"
+							if v.has_self
+								ret += "\n\thas_self: true"
 						ret += "</div>"
+					if td.description
+						ret += "<div class='description hide'>#{JSON.stringify td.description}</div>"
 					ret += "<div class='set hide'>#{td.setPlain}</div>" if td.setPlain
 				ret += "</td>"
 			ret += "</tr>"
 		ret + "</table>"
-	ret += drawTable t for t in template.table
+	if template
+		ret += drawTable t for t in template.table
+	else
+		ret += "<table onclick='functions.pick(\"table\", this)'>
+			<tr onclick='functions.pick(\"tr\", this)'>
+				<td onclick='functions.pick(\"td\", this)' data-html='true'>
+					<div>Новая ячейка</div>
+				</td>
+			</tr>
+		</table>"
 	ret += "</div>
 		<div id='panels'>
 			<div class='panel red hide'>
 				<p>Table</p>
 				<div>
-					<div class='btn green mb10'>Сохранить</div>
+					<div class='btn green mb10' onclick='functions.saveTable()'>Сохранить</div>
 					<br>
 					<div class='btn gray' onclick='functions.add(\"table\", \"before\")'>Добавить <b>Table</b> перед</div>
 					<div class='btn gray' onclick='functions.add(\"table\", \"after\")'>Добавить <b>Table</b> после</div>
@@ -128,7 +159,7 @@ app.page = ->
 			<div class='panel green hide'>
 				<p>Tr</p>
 				<div>
-					<div class='btn green mb10'>Сохранить</div>
+					<div class='btn green mb10' onclick='functions.saveTr()'>Сохранить</div>
 					<br>
 					<div class='btn gray' onclick='functions.add(\"tr\", \"before\")'>Добавить <b>Tr</b> перед</div>
 					<div class='btn gray' onclick='functions.add(\"tr\", \"after\")'>Добавить <b>Tr</b> после</div>
@@ -167,8 +198,6 @@ app.page = ->
 							<div class='ace-wrap'>
 								<div id='ace-tr-set' class='editor'></div>
 							</div>
-							<br>
-							<div class='btn green' onclick='functions.addAttr(this)'>Сохранить функцию</div>
 						</div>
 					</div>
 					<label class='checkbox'>
@@ -188,7 +217,7 @@ app.page = ->
 			<div class='panel blue hide'>
 				<p>Td</p>
 				<div>
-					<div class='btn green mb10'>Сохранить</div>
+					<div class='btn green mb10' onclick='functions.saveTd()'>Сохранить</div>
 					<br>
 					<div class='btn gray' onclick='functions.add(\"td\", \"before\")'>Добавить <b>Td</b> перед</div>
 					<div class='btn gray' onclick='functions.add(\"td\", \"after\")'>Добавить <b>Td</b> после</div>
@@ -249,8 +278,17 @@ app.page = ->
 			ret = "<label class='checkbox'><div><input type='checkbox' onchange='$(this).parents(\"label\").next().toggleClass(\"hidden\"); checkbox(this)'></div>Без заглавия</label>
 			<label class='row mb10'><p>Заглавие</p><input type='text' name='header'></label>
 			<label class='row mb10'><p>Поле</p><input type='text' name='field'></label>
+			<label class='checkbox mb10'><div><input type='checkbox' name='validation' onchange='$(this).parents(\"label\").next().toggleClass(\"hidden\"); checkbox(this)'></div>Валидация</label>
+			<div class='hidden panel'>
+				<p>Валидация</p>
+				<div id='validation-wrap'>
+					<label class='checkbox mb10'><div><input type='checkbox' name='presence' onchange='checkbox(this)'></div>Не пустое</label><br>
+					<label class='checkbox mb10'><div><input type='checkbox' name='uniq' onchange='checkbox(this)'></div>Уникальное</label>
+				</div>
+			</div>
+			<br>
 			<label class='checkbox mb10'><div><input type='checkbox' name='format' onchange='$(this).parents(\"label\").next().toggleClass(\"hidden\"); checkbox(this)'></div>Формат</label>
-			<div class='hidden'>"
+			<div class='hidden format-tabs mb10'>"
 			ret += tab.gen
 				"Дата": ->
 					"<label class='row'><p>Задать формат даты</p><input type='text' name='format-date'></label>"
@@ -282,8 +320,6 @@ app.page = ->
 			<label class='checkbox'><div><input onclick='$(this).parent().parent().next().toggleClass(\"hidden\"); checkbox(this)' type='checkbox' name='levelCb'></div>Указать уровень записи</label>
 			<label class='row hidden'><p>Уровень записи</p><input type='text' name='level'></label>"
 		'Выпадающий список': ->
-			''
-		'Выпадающее дерево': ->
 			ret = "<label class='row mb10'><p>Заглавие</p><input type='text' name='header'></label>
 			<label class='row mb10'><p>Поле</p><input type='text' name='field'></label>
 			<form class='mb10'>
@@ -308,15 +344,43 @@ app.page = ->
 			</form>
 			<label class='row hidden mb10'><p>Модель</p><input type='text' name='model'></label>
 			<label class='row'><p>Выводить поле</p><input type='text' name='show'></label>"
-			# list = []
-			# list.push c.name for c in models[param.model].columns
-			# dropdown.gen
-			# 	list: list
-			# 	name: 'show'
 		'Чекбокс': ->
-			''
+			"<label class='row mb10'><p>Заглавие</p><input type='text' name='header'></label>
+			<label class='row mb10'><p>Поле</p><input type='text' name='checkbox'></label>"
 		'Изображения': ->
-			''
+			"<label class='row mb10'><p>Надпись на кнопке</p><input type='text' name='header'></label>
+			<form class='mb10'>
+				<label class='radio ib' style='margin: 0 15px'><div class='checked'><input checked='checked' onchange='$(this).parents(\"form\").eq(0).next().fadeIn(300); radio(this)' type='radio' name='image-count' value='one'></div>Одно изображение</label>
+				<label class='radio ib' style='margin: 0 15px'><div><input onchange='$(this).parents(\"form\").eq(0).next().fadeOut(300); radio(this)' type='radio' name='image-count' value='many'></div>Множество изображений</label>
+			</form>
+			<label class='row mb10'><p>Поле</p><input type='text' name='image'></label>"
+		'Текст': ->
+			"<table class='style mb10'>
+				<tr>
+					<th>Название вкладки</th>
+					<th>Поле</th>
+					<th>Тип</th>
+					<th></th>
+				</tr>
+				<tr>
+					<td>
+						<input type='text' name='header'>
+					</td>
+					<td>
+						<input type='text' name='field'>
+					</td>
+					<td>
+						<form>
+							<label class='radio ib' style='margin: 0 15px'><div style='vertical-align: top' class='checked'><input checked='checked' onchange='radio(this)' type='radio' name='type' value='editor'></div>Редактор TinyMCE</label>
+							<label class='radio ib' style='margin: 0 15px'><div style='vertical-align: top'><input onchange='radio(this)' type='radio' name='type' value='textarea'></div>Textarea</label>
+						</form>
+					</td>
+					<td>
+						<div class='btn red' onclick='$(this).parents(\"tr\").remove()'>Удалить</div>
+					</td>
+				</tr>
+			</table>
+			<div class='btn blue' onclick='functions.addText(this)'>Добавить</div>"
 		'Table': ->
 			'В <b>td</b> будет помещен <b>table</b>'
 	ret + "</div>
@@ -362,12 +426,14 @@ app.page = ->
 	<script src='/ace/ace.js'><\/script>"
 window.functions =
 	add: (tag, action) ->
-		$('#current')[action] "<#{tag} onclick='functions.pick(\"#{tag}\", this)'></#{tag}>"
+		$('#current')[action] "<#{tag} onclick='functions.pick(\"#{tag}\", this)'#{if tag is 'td' then "data-html='true'><div>Новая ячейка</div>" else ">"}</#{tag}>"
 	remove: (el) ->
 		$(el).parents('.panel').addClass 'hide'
 		$('#current').remove()
 	addAttr: (el) ->
 		$(el).prev().append "<tr><td><input type='text' name='name'></td><td><input type='text' name='val'></td><td><div class='btn red' onclick='$(this).parents(\"tr\").remove()'>Удалить</div></td></tr>"
+	addText: (el) ->
+		$(el).prev().append "<tr><td><input type='text' name='header'></td><td><input type='text' name='field'></td><td><form><label class='radio ib' style='margin: 0 15px'><div style='vertical-align: top' class='checked'><input checked='checked' onchange='radio(this)' type='radio' name='type' value='editor'></div>Редактор TinyMCE</label><label class='radio ib' style='margin: 0 15px'><div style='vertical-align: top'><input onchange='radio(this)' type='radio' name='type' value='textarea'></div>Textarea</label></form></td><td><div class='btn red' onclick='$(this).parents(\"tr\").remove()'>Удалить</div></td></tr>"
 	trCollection: (el) ->
 		checkbox el
 		$(el).parents('label').next().toggleClass 'hide'
@@ -399,7 +465,7 @@ window.functions =
 				treebox = el.find '.treebox'
 				div = el.find '> div'
 				if treebox.length > 0
-					openTab nav.find('p')[3]
+					openTab nav.find('p')[2]
 					tab = panel.find '.tabs > .active'
 					tab.find("[name='header']").val data.header if data.header
 					tab.find("[name='field']").val data.field if data.field
@@ -422,6 +488,12 @@ window.functions =
 					tab = panel.find '.tabs > .active'
 					tab.find("[name='header']").val data.header if data.header
 					tab.find("[name='field']").val data.field
+					if data.validation
+						wrap = tab.find("[name='validation']").prop('checked', true).parent().addClass('checked').parent().next().removeClass('hidden')
+						if data.validation.presence
+							checkbox wrap.find("[name='presence']").prop('checked', true)[0]
+						if data.validation.uniq
+							checkbox wrap.find("[name='uniq']").prop('checked', true)[0]
 					if data.format
 						format = tab.find("[name='format']").prop('checked', true).parent().addClass('checked').parent().next().removeClass('hidden')
 						if data.format.date
@@ -447,7 +519,7 @@ window.functions =
 					openTab nav.find('p')[0]
 					aceTdHtml.getSession().setValue div.html()
 				else if data.show
-					openTab nav.find('p')[4]
+					openTab nav.find('p')[3]
 					tab = panel.find '.tabs > .active'
 					tab.find("[name='show']").val data.show
 					if data.belongs_to
@@ -465,6 +537,28 @@ window.functions =
 								label.removeClass 'hidden'
 						else
 							a.prop('checked', false).parent().removeClass('checked').parent().next()
+				else if data.checkbox
+					openTab nav.find('p')[4]
+					tab = panel.find '.tabs > .active'
+					tab.find("[name='header']").val data.header if data.header
+					tab.find("[name='checkbox']").val data.checkbox
+				else if data.image
+					openTab nav.find('p')[5]
+					tab = panel.find '.tabs > .active'
+					tab.find("[name='header']").val data.header if data.header
+					radio tab.find("[name='image-count'][value='one']").prop('checked', true)[0]
+					tab.find("[name='image']").val(data.image).parents('label').show(300)
+				else if data.text
+					openTab nav.find('p')[6]
+					ret = "<tr><th>Название вкладки</th><th>Поле</th><th>Тип</th><th></th>"
+					for k, v of data.text
+						ret += "<tr><td><input type='text' name='header' value='#{k}'><td><input type='text' name='field' value='#{v.field}'></td><td><form><label class='radio ib' style='margin: 0 15px'><div style='vertical-align: top' "
+						if v.type is 'editor'
+							ret += "class='checked'><input checked='checked' onchange='radio(this)' type='radio' name='type' value='editor'></div>Редактор TinyMCE</label><label class='radio ib' style='margin: 0 15px'><div style='vertical-align: top'><input onchange='radio(this)' type='radio' name='type' value='textarea'></div>Textarea</label>"
+						else
+							ret += "><input onchange='radio(this)' type='radio' name='type' value='editor'></div>Редактор TinyMCE</label><label class='radio ib' style='margin: 0 15px'><div style='vertical-align: top' class='checked'><input checked='checked' onchange='radio(this)' type='radio' name='type' value='textarea'></div>Textarea</label>"
+						ret += "</form></td><td><div class='btn red' onclick='$(this).parents(\"tr\").remove()'>Удалить</div></td></tr>"
+					panel.find('.tabs > .active > table').html ret
 				else if data.table
 					openTab nav.find('p')[7]
 				data.only ?= 'both'
@@ -534,10 +628,13 @@ window.functions =
 						td += "\n\tbelongs_to: \"#{data.belongs_to}\"" if data.belongs_to
 						td += "\n\tonly: \"#{data.only}\"" if data.only
 						td += "\n\tshow: \"#{data.show}\"" if data.show
+						td += "\n\tcheckbox: \"#{data.checkbox}\"" if data.checkbox
 						td += "\n\tlevel: \"#{data.level}\"" if data.level
+						td += "\n\timages: true" if data.images
+						td += "\n\timage: '#{data.image}'" if data.image
 						if data.fieldAttrs
 							td += "\n\tfieldAttrs:"
-							for k, v of data.fieldAttrs
+							for k, v of JSON.parse data.fieldAttrs
 								td += "\n\t\t#{k}: \"#{v}\""
 						treebox = el.find '.treebox'
 						if treebox.length
@@ -546,9 +643,13 @@ window.functions =
 							td += "\n\t\tpick:" if tb_data.pickVal or tb_data.pickHeader
 							td += "\n\t\t\tval: \"#{tb_data.pickVal}\"" if tb_data.pickVal
 							td += "\n\t\t\theader: \"#{tb_data.pickHeader}\"" if tb_data.pickHeader
+						if data.validation
+							td += "\n\tvalidation:"
+							for k, v of data.validation
+								td += "\n\t\t#{k}: #{v}"
 						if data.format
 							td += "\n\tformat:"
-							for k, v of data.format
+							for k, v of JSON.parse data.format
 								td += "\n\t\t#{k}: \"#{v}\""
 						if data.html
 							td += "\n\thtml: "
@@ -556,12 +657,21 @@ window.functions =
 								html = $ @
 								unless html.hasClass('hidden') or html.hasClass('hide')
 									td += JSON.stringify html.html()
+						if data.text
+							td += "\n\ttext: "
+							for header, v of data.text
+								td += "\n\t\t\"#{header}\":\n\t\t\tfield: \"#{v.field}\"\n\t\t\ttype: \"#{v.type}\""
 						if data.table
 							tables = []
 							el.find('> table').each ->
 								tables.push genTable $ @
 							td += "\n\ttable: [#{tables.join(',').replace(/\n/g,"\n\t\t")}\n\t]"
 						td += "\n\tth: true" if data.th
+						description = el.find '> .description'
+						if description.length
+							td += "\n\tdescription:"
+							for k, v of JSON.parse description.html()
+								td += "\n\t\t#{k}: \"#{v}\""
 						set = el.find '> .set'
 						if set.length
 							set = set.text()
@@ -589,8 +699,216 @@ window.functions =
 		functions = aceFunctions.getValue()
 		unless functions is ''
 			file += "\n\tfunctions:\n\t\t#{functions.replace(/\n/g, "\n\t\t")}\n\tfunctions_plain: " + JSON.stringify(functions).replace /#{/g, '\\#{'
-		post "write", path: "app/assets/javascripts/admin/models/#{param.model}/form.coffee", file: file, ->
+		post "write", path: "app/views/admin/scripts/models/#{param.model}/form.coffee", file: file, ->
 			notify "Форма обновлена"
+	generateAsk: ->
+		ask "<b>Создать шаблон?</b><br>Предыдущие данные будут удалены.",
+			action: ->
+				integers = []
+				strings = []
+				texts = []
+				ret = ''
+				for c in models[param.model].columns[1..-1]
+					switch c.type
+						when 'integer'
+							integers.push c
+						when 'string'
+							strings.push c
+						when 'text'
+							texts.push c
+				belongs_to = []
+				for c in integers
+					if c.name[-3..-1] is '_id'
+						belongs_to.push c
+				ret += "<table onclick='functions.pick(\"table\", this)'>"
+				for c in belongs_to
+					field_name = c.name
+					name = c.name[0..-4]
+					cols = models[name].columns
+					pick = false
+					for c in cols
+						if c.name is 'name'
+							pick = 'name'
+							break
+					unless pick
+						for c in cols
+							if c.name is 'scode'
+								pick = 'scode'
+								break
+						unless pick
+							for c in cols
+								if c.type is 'string'
+									pick = c.name
+									break
+							pick = 'id' unless pick
+					ret += "<tr onclick='functions.pick(\"tr\", this)'>
+						<td onclick='functions.pick(\"td\", this)'
+						data-field='#{field_name}'
+						data-header='#{name}'
+						data-belongs_to='#{name}'>
+							<div>#{name}</div>
+							<div data-pick-val='id'
+							data-pick-header='#{pick}'
+							class='hide treebox'>#{name}:\n\tfields: ['#{pick}']\n\tpick: true"
+					if name is param.model
+						ret += "\n\thas_self: true"
+					ret += "</div>
+						</td>
+					</tr>"
+				for c in integers
+					unless c.name is 'position' or c.name[-3..-1] is '_id'
+						ret += "<tr onclick='functions.pick(\"tr\", this)'><td data-header='#{c.name}' data-field='#{c.name}'><div>#{c.name}</div></td></tr>"
+				for c in strings
+					ret += "<tr onclick='functions.pick(\"tr\", this)'><td data-header='#{c.name}' data-field='#{c.name}'><div>#{c.name}</div></td></tr>"
+				if 'images' in models[param.model].has_many
+					ret += "<tr><td data-images='true'><div>Изображения</div></td></tr>"
+				if texts.length
+					descs = []
+					descs.push c.name for c in texts
+					jdescs = {}
+					jdescs[c.name] = c.name for c in texts
+					ret += "<tr><td><div>Описание: #{descs.join ', '}</div><div class='description hide'>#{JSON.stringify jdescs}</div></td></tr>"
+				ret += "</table>"
+				$('#table-structure').html ret
+				if belongs_to.length
+					belongs_to_plain = []
+					for c in belongs_to
+						belongs_to_plain.push "\n\t{model: \"#{c.name[0..-4]}\"}"
+					aceBelongsTo.getSession().setValue "[" + belongs_to_plain.join(',') + "\n]"
+			ok:
+				html: 'Создать'
+				class: 'green'
+	saveTd: ->
+		el = $ '#current' # Текущая ячейка
+		for a in el[0].attributes # Убираем аттрибуты, чтобы потом добавить новые
+			if a and a.name not in ['onclick', 'id'] and a.name[0..4] isnt 'data-'
+				el.removeAttr a.name
+		panel = $ '.panel.blue'
+		el.removeData()
+		ret = ""
+		el.data 'th', true if panel.find("[name='tag'][value='th']")[0].checked # Если тэг th
+		switch panel.find("[name='create-or-update']:checked").val() # Для каких типов страниц
+			when 'create'
+				el.data 'only', 'create'
+			when 'update'
+				el.data 'only', 'update'
+		attrs = {} # Установка атрибутов ячейки
+		addAttrs = false
+		panel.find('.attr tr').each ->
+			tr = $ @
+			name = tr.find("[name='name']").val()
+			val = tr.find("[name='val']").val()
+			if name isnt '' and name? and val isnt '' and val?
+				addAttrs = true
+				attrs[name] = val
+		if addAttrs
+			el.data 'attrs', attrs
+			for k, v of attrs
+				el.attr k, v unless k in ['class', 'onclick']
+		set = aceTdSet.getValue() # Добавляем функцию ячейки
+		unless set is ''
+			ret += "<div>* функция *</div><div class='set hide'>#{set}</div>"
+		switch panel.find('> div > .nav-tabs > .active').html() # Поиск текущего типа ячейки
+			when 'Html'
+				html = aceTdHtml.getValue()
+				unless html is ''
+					el.data 'html', true
+					ret = "<div>#{html}</div>"
+			when 'Поле'
+				div = panel.find('> div > .tabs > .active')
+				header = div.find("[name='header']").val() # Заглавие
+				unless header is ''
+					el.data 'header', header
+					ret = "<div>#{header}</div>"
+				field = div.find("[name='field']").val() # Поле
+				el.data 'field', field
+				ret = "<div>#{field}</div>" if header is ''
+				if div.find("[name='validation']")[0].checked # Валидация
+					wrap = $ '#validation-wrap'
+					validation = {}
+					validation.presence = true if wrap.find("[name='presence']")[0].checked
+					validation.uniq = true if wrap.find("[name='uniq']")[0].checked
+					el.data 'validation', validation
+				if div.find("[name='format']")[0].checked # Формат
+					switch div.find('.format-tabs > .nav-tabs > .active').html()
+						when 'Дата'
+							formatDate = div.find("[name='format-date']").val()
+							unless formatDate is ''
+								el.data 'format', {date: formatDate}
+				attrs = {} # Установка атрибутов поля
+				addAttrs = false
+				div.find('.field-attr tr').each ->
+					tr = $ @
+					name = tr.find("[name='name']").val()
+					val = tr.find("[name='val']").val()
+					if name isnt '' and name? and val isnt '' and val?
+						addAttrs = true
+						attrs[name] = val
+				if addAttrs
+					el.data 'fieldAttrs', attrs
+					for k, v of attrs
+						el.attr k, v unless k in ['class', 'onclick']
+				level = div.find("[name='level']").val() # Установка уровня записи
+				el.data 'level', level unless level is ''
+			when 'Выпадающий список'
+				div = panel.find('> div > .tabs > .active')
+				header = div.find("[name='header']").val() # Заглавие
+				field = div.find("[name='field']").val() # Поле
+				relationType = div.find("[name='relation-type']:checked").val() # Тип отношения
+				relationTo = div.find("[name='relation-to']").val() # Относится к
+				pickVal = div.find("[name='pick-val']").val() # Поля значения
+				pickHeader = div.find("[name='pick-header']").val() # Поля заглавия
+				el.data 'field', field
+				if relationType is 'belongs_to'
+					el.data 'belongs_to', relationTo
+				else if relationType is 'has_many'
+					el.data 'has_many', relationTo
+				if header isnt ''
+					el.data 'header', header
+					ret += "<div>#{header}</div>"
+				else if relationTo isnt ''
+					ret += "<div>#{relationTo}</div>"
+				else ret += "<div>#{field}</div>"
+				ret += "<div"
+				ret += " data-pick-val='#{pickVal}'" if pickVal
+				ret += " data-pick-header='#{pickHeader}'" if pickHeader
+				ret += " class='hide treebox'>#{aceTdTreebox.getValue()}</div>"
+			when 'Чекбокс'
+				div = panel.find('> div > .tabs > .active')
+				header = div.find("[name='header']").val() # Заглавие
+				field = div.find("[name='checkbox']").val() # Чекбокс
+				el.data 'checkbox', field
+				if header is ''
+					ret += "<div>#{field}</div>"
+				else
+					el.data 'header', header
+					ret += "<div>#{header}</div>"
+			when 'Изображения'
+				div = panel.find('> div > .tabs > .active')
+				header = div.find("[name='header']").val() # Надпись на кнопке
+				count = div.find("[name='image-count']:checked").val()
+				if count is 'one'
+					image = div.find("[name='image']").val()
+					el.data 'image', image
+					header = "Добавить изображение " + image if header is ''
+				else
+					el.data "images", true
+					header = "Добавить изображения" if header is ''
+				el.data 'header', header
+				ret +=  "<div>#{header}</div>"
+			when 'Текст'
+				text = {}
+				panel.find('> div > .tabs > .active > table tr').each ->
+					tr = $ @
+					unless tr.find('th').length
+						header = tr.find("[name='header']").val()
+						field = tr.find("[name='field']").val()
+						if header isnt '' or field isnt ''
+							type = tr.find("[name='type']:checked").val()
+							text[header] = field: field, type: type
+				el.data 'text', text
+				ret = '<div>Текст</div>'
+		el.html ret
 app.after = ->
 	model = models[param.model]
 	template = model.templates.form
@@ -602,19 +920,20 @@ app.after = ->
 	aceTdTreebox.getSession().setMode "ace/mode/coffee"
 	window.aceBelongsTo = ace.edit "ace-belongs-to"
 	aceBelongsTo.getSession().setMode "ace/mode/coffee"
-	if template.belongs_to_plain
-		aceBelongsTo.getSession().setValue template.belongs_to_plain
 	window.aceHasMany = ace.edit "ace-has-many"
 	aceHasMany.getSession().setMode "ace/mode/coffee"
-	if template.has_many_plain
-		aceHasMany.getSession().setValue template.has_many_plain
 	window.aceVars = ace.edit "ace-vars"
 	aceVars.getSession().setMode "ace/mode/coffee"
-	if template.vars_plain
-		aceVars.getSession().setValue template.vars_plain
 	window.aceFunctions = ace.edit "ace-functions"
 	aceFunctions.getSession().setMode "ace/mode/coffee"
-	if template.functions_plain
-		aceFunctions.getSession().setValue template.functions_plain
 	window.aceTdHtml = ace.edit "ace-td-html"
 	aceTdHtml.getSession().setMode "ace/mode/html"
+	if template
+		if template.belongs_to_plain
+			aceBelongsTo.getSession().setValue template.belongs_to_plain
+		if template.has_many_plain
+			aceHasMany.getSession().setValue template.has_many_plain
+		if template.vars_plain
+			aceVars.getSession().setValue template.vars_plain
+		if template.functions_plain
+			aceFunctions.getSession().setValue template.functions_plain

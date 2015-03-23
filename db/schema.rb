@@ -11,24 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211174120) do
+ActiveRecord::Schema.define(version: 20150322233054) do
+
+  create_table "asds", force: :cascade do |t|
+    t.string "name",  limit: 255, null: false
+    t.string "scode", limit: 255, null: false
+  end
+
+  add_index "asds", ["scode"], name: "index_asds_on_scode", unique: true, using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.text     "description",     limit: 65535
-    t.integer  "position",        limit: 4
-    t.string   "header",          limit: 255
-    t.string   "seo_title",       limit: 255
-    t.text     "seo_description", limit: 65535
-    t.string   "seo_keywords",    limit: 255
-    t.text     "seo_text",        limit: 65535
-    t.string   "s_name",          limit: 255
-    t.string   "scode",           limit: 255
-    t.decimal  "commission",                    precision: 10
-    t.decimal  "rate",                          precision: 10
-    t.string   "url",             limit: 255
-    t.boolean  "menu",            limit: 1
-    t.integer  "category_id",     limit: 4
+    t.string   "name",             limit: 255
+    t.text     "description",      limit: 65535
+    t.integer  "position",         limit: 4
+    t.string   "header",           limit: 255
+    t.string   "seo_title",        limit: 255
+    t.text     "seo_description",  limit: 65535
+    t.string   "seo_keywords",     limit: 255
+    t.text     "seo_text",         limit: 65535
+    t.string   "s_name",           limit: 255
+    t.string   "scode",            limit: 255
+    t.decimal  "commission",                     precision: 10
+    t.decimal  "rate",                           precision: 10
+    t.string   "url",              limit: 255
+    t.boolean  "menu",             limit: 1
+    t.integer  "category_id",      limit: 4
+    t.boolean  "isMobile",         limit: 1,                    default: false
+    t.string   "mobile_image_url", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -145,6 +154,18 @@ ActiveRecord::Schema.define(version: 20150211174120) do
 
   create_table "statuses", force: :cascade do |t|
     t.string "name", limit: 255
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string  "name",        limit: 255
+    t.text    "description", limit: 65535
+    t.integer "category_id", limit: 4
+  end
+
+  create_table "subcategory_items", force: :cascade do |t|
+    t.string  "image",          limit: 255
+    t.text    "description",    limit: 65535
+    t.integer "subcategory_id", limit: 4
   end
 
   create_table "users", force: :cascade do |t|

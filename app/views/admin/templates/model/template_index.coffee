@@ -4,7 +4,9 @@ app.page = ->
 	template = app.templates.index[param.model]
 	ret = "<h1>Все записи <b>#{param.model}</b></h1>
 	<div class='content'>
-		<div class='btn green m15' onclick='functions.save()'>Сохранить</div>
+		<br>
+		<div class='btn green mb10' onclick='functions.save()'>Сохранить</div><br>
+		<div class='btn purple' onclick='functions.generateAsk()'>Создать автоматически</div>
 		<div id='table-structure'>"
 	if template
 		for t in template.table
@@ -34,12 +36,12 @@ app.page = ->
 						for k, v of td.attrs
 							ret += " #{k}='#{v}'" unless k in ['class', 'onclick']
 					ret += "><div>"
-					if td.header
+					if td.html
+						ret += td.html
+					else if td.header
 						ret += td.header
 					else if td.show
 						ret += td.show
-					else if td.html
-						ret += td.html
 					else if td.set
 						ret += "* функция *"
 					else
@@ -53,6 +55,7 @@ app.page = ->
 		ret += "<table onclick='functions.pick(\"table\", this)'>
 			<tr onclick='functions.pick(\"tr\", this)'>
 				<td onclick='functions.pick(\"td\", this)' data-html='true'>
+					<div class='html hide'>Ячейка</div>
 					<p>Ячейка</p>
 				</td>
 			</tr>
@@ -290,9 +293,32 @@ app.page = ->
 			''
 		'Table': ->
 			'В <b>td</b> будет помещен <b>table</b>'
-	ret + "</div>
+	ret += "</div>
 			</div>
+		</div>"
+	for c in models[param.model].columns
+		if c.name is "#{param.model}_id"
+			ret += "<form class='mb10'><label class='radio ib' style='margin: 0 15px'><div class='checked'><input checked='checked' onchange='radio(this)' type='radio' name='display-tree' value='none'></div>Выводить подряд</label>
+			<label class='radio ib' style='margin: 0 15px'><div><input onchange='radio(this)' type='radio' name='display-tree' value='open-tree'></div>Показать открытым деревом</label>
+			<label class='radio ib' style='margin: 0 15px'><div><input onchange='radio(this)' type='radio' name='display-tree' value='tree'></div>Показать закрытым деревом</label></form>"
+		else if c.name is 'position'
+			ret += "<form class='mb10'>
+				<label class='radio ib' style='margin: 0 15px'><div class='checked'><input checked='checked' onchange='radio(this)' type='radio' name='sortable' value='none'></div>Без возможности сортировки</label>
+				<label class='radio ib' style='margin: 0 15px'><div><input onchange='radio(this)' type='radio' name='sortable' value='tree'></div>Сортировка деревом</label>
+			</form>"
+	ret += "<div id='order' class='dropdown mb10' onclick='dropdown.toggle(this)'>
+			<p>Не сортировать</p>
+			<div>
+				<p class='active' data-val='none' onclick='dropdown.pick(this)'>Не сортировать</p>"
+	for c in models[param.model].columns
+		ret += "<p onclick='dropdown.pick(this)'>#{c.name}</p>"
+	ret += "</div>
+			<input type='hidden' value='none'>
 		</div>
+		<form class='mb10'>
+			<label class='radio ib' style='margin: 0 15px'><div class='checked'><input checked='checked' onchange='radio(this)' type='radio' name='order-type' value='asc'></div>asc</label>
+			<label class='radio ib' style='margin: 0 15px'><div><input onchange='radio(this)' type='radio' name='order-type' value='desc'></div>desc</label>
+		</form>
 		<div class='panel'>
 			<p>Загружать модели по belongs_to для записи</p>
 			<div>
@@ -356,3 +382,171 @@ app.after = ->
 			aceVars.getSession().setValue template.vars_plain
 		if template.functions_plain
 			aceFunctions.getSession().setValue template.functions_plain
+window.functions =
+	generateAsk: ->
+		ask "<b>Создать шаблон?</b><br>Предыдущие данные будут удалены.",
+			action: ->
+				integers = []
+				strings = []
+				position = false
+				has_self = false
+				ret = ''
+				for c in models[param.model].columns[1..-1]
+					switch c.type
+						when 'integer'
+							integers.push c
+						when 'string'
+							strings.push c
+				for c in integers
+					if c.name is 'position'
+						position = true
+					else if c.name is "#{param.model}_id"
+						has_self = true
+				ret += "<table onclick='functions.pick(\"table\", this)'>"
+				ret += "<tr onclick='functions.pick(\"tr\", this)'>"
+				if position
+					ret += "<td data-header='Переместить' data-attrs='{\"class\": \"sort-handler\", \"style\": \"width: 1px\"}' data-html='true'><div class='html hide'><div class='btn lightblue always'>[drag]</div></div><div class='btn lightblue always'>[drag]</div></td>"
+				for c in strings
+					header = c.name
+					switch c.name
+						when 'name'
+							header = 'Название'
+						when 'scode'
+							header = 'Код'
+					ret += "<td data-header='#{header}' data-show='#{c.name}'>#{header}</td>"
+				if has_self
+					ret += "<td data-header='Создать дочерний #{param.model}' data-attrs='{\"style\": \"width: 1%\"}'>
+					Создать дочерний #{param.model}
+					<div class='set hide'><!--(rec) -> @html = \"<a class='btn green always' onclick='app.aclick(this)' href='/admin/model/#{param.model}/new?#{param.model}_id=\#{rec.id}'><i class='icon-plus'></i></a>\"--></div>
+					</td>"
+				ret += "<td data-header='Редактировать' data-attrs='{\"style\": \"width: 1%\"}'>
+				Редактировать
+				<div class='set hide'><!--(rec) -> @html = \"<a class='btn orange always' onclick='app.aclick(this)' href='/admin/model/\#{param.model}/edit/\#{rec.id}'><i class='icon-pencil3'></i></a>\"--></div>
+				</td>
+				<td data-header='Удалить' data-attrs='{\"style\": \"width: 1%\"}'>
+				Удалить
+				<div class='set hide'><!--(rec) -> @html = \"<div class='btn red always' onclick='functions.removeRecord(this)'><i class='icon-remove3'></i></div>\"--></div>
+				</td>"
+				ret += "</tr>"
+				ret += "</table>"
+				$('#table-structure').html ret
+				if has_self
+					r = $("[name='display-tree'][value='open-tree']")
+					r.parents('form').eq(0).find('input').each ->
+						el = $ @
+						if el.val() is 'open-tree'
+							el.prop 'checked', true
+							el.parent().addClass 'checked'
+						else
+							el.prop 'checked', false
+							el.parent().removeClass 'checked'
+				if position
+					r = $("[name='sortable'][value='tree']")
+					r.parents('form').eq(0).find('input').each ->
+						el = $ @
+						if el.val() is 'tree'
+							el.prop 'checked', true
+							el.parent().addClass 'checked'
+						else
+							el.prop 'checked', false
+							el.parent().removeClass 'checked'
+					order = $('#order')
+					order.find('> p').html 'position'
+					order.find('> div > p').each ->
+						el = $ @
+						if el.html() is 'position'
+							el.addClass 'active'
+						else
+							el.removeClass 'active'
+					order.find('input').val 'position'
+					r = $("[name='order-type'][value='asc']")
+					r.parents('form').eq(0).find('input').each ->
+						el = $ @
+						if el.val() is 'asc'
+							el.prop 'checked', true
+							el.parent().addClass 'checked'
+						else
+							el.prop 'checked', false
+							el.parent().removeClass 'checked'
+			ok:
+				html: 'Создать'
+				class: 'green'
+	save: ->
+		addTab = (str) ->
+			str.replace /\n/g, "\n\t"
+		attrsGen = (data) ->
+			if data.attrs
+				ret = "\n\tattrs:"
+				for k, v of data.attrs
+					ret += "\n\t\t#{k}: \"#{v}\""
+				ret
+			else
+				""
+		genTable = (el) ->
+			data = el.data()
+			table = "\n{" + attrsGen data
+			trs = []
+			el.find('> tbody > tr').each ->
+				el = $ @
+				data = el.data()
+				tr = "\n{" + attrsGen data
+				set = el.find '> .set'
+				if set.length
+					set = set.text()
+					tr += "\n\tset: #{addTab set}\n\tsetPlain: " + JSON.stringify(set).replace /#{/g, '\\#{'
+				tds = []
+				el.find('> td').each ->
+					el = $ @
+					unless el.hasClass 'hidden'
+						data = el.data()
+						td = "\n{" + attrsGen data
+						td += "\n\theader: \"#{data.header}\"" if data.header
+						td += "\n\tshow: \"#{data.show}\"" if data.show
+						if data.format
+							td += "\n\tformat:"
+							for k, v of data.format
+								td += "\n\t\t#{k}: \"#{v}\""
+						if data.html
+							td += "\n\thtml: " + JSON.stringify el.find('> .html').html()
+						if data.table
+							tables = []
+							el.find('> table').each ->
+								tables.push genTable $ @
+							td += "\n\ttable: [#{tables.join(',').replace(/\n/g,"\n\t\t")}\n\t]"
+						td += "\n\tth: true" if data.th
+						set = el.find '> .set'
+						if set.length
+							set = set.html()[4..-4]
+							td += "\n\tset: #{addTab set}\n\tsetPlain: " + JSON.stringify(set).replace /#{/g, '\\#{'
+						tds.push td + "\n}"
+				tr += "\n\ttd: [#{tds.join(',').replace(/\n/g, "\n\t\t")}\n\t]" if tds.length
+				tr += "\n}"
+				trs.push tr
+			if trs.length
+				table += "\n\ttr: [#{trs.join(',').replace(/\n/g,"\n\t\t")}\n\t]"
+			table + "\n}"
+		tables = []
+		$("#table-structure > table").each ->
+			tables.push genTable($ @).replace /\n/g, "\n\t\t"
+		file = "app.templates.index.#{param.model} =\n\ttable: [#{tables.join ','}\n\t]"
+		belongs_to = aceBelongsTo.getValue()
+		unless belongs_to is ''
+			file += "\n\tbelongs_to: #{$.trim belongs_to.replace(/\ {2}/g, "\t").replace(/\n/g, "\n\t\t")}\n\tbelongs_to_plain: " + JSON.stringify(belongs_to).replace /#{/g, '\\#{'
+		has_many = aceHasMany.getValue()
+		unless has_many is ''
+			file += "\n\thas_many: #{$.trim has_many.replace(/\ {2}/g, "\t").replace(/\n/g, "\n\t\t")}\n\thas_many_plain: " + JSON.stringify(has_many).replace /#{/g, '\\#{'
+		vars = aceVars.getValue()
+		unless vars is ''
+			file += "\n\tvars:\n\t\t#{$.trim vars.replace(/\ {2}/g, "\t").replace(/\n/g, "\n\t\t")}\n\tvars_plain: " + JSON.stringify(vars).replace /#{/g, '\\#{'
+		functions = aceFunctions.getValue()
+		unless functions is ''
+			file += "\n\tfunctions:\n\t\t#{functions.replace(/\n/g, "\n\t\t")}\n\tfunctions_plain: " + JSON.stringify(functions).replace /#{/g, '\\#{'
+		$("[name='display-tree']").each ->
+			file += "\n\tdisplay: \"#{@.value}\"" if @.checked and @.value isnt 'none'
+		$("[name='sortable']").each ->
+			file += "\n\tsortable: \"#{@.value}\"" if @.checked and @.value isnt 'none'
+		order = $('#order > p').html()
+		unless order is 'Не сортировать'
+			file += "\n\torder: #{order}: \"#{$(".checked [name='order-type']").val()}\""
+		post "write", path: "app/views/admin/scripts/models/#{param.model}/index.coffee", file: file, ->
+			notify "Страница записей обновлена"

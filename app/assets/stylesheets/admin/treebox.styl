@@ -3,6 +3,7 @@
 .treebox
 	cursor pointer
 	position relative
+	z-index 2 !important
 	> ul
 		position absolute
 		top 100%
@@ -43,6 +44,8 @@
 			margin 0 !important
 			box-shadow(inset 0 0 10px #87D5FD)
 			transition(.3s)
+		i + i
+			left 33px
 	li i:hover, li.active > i, i.active
 		color white
 		background-color #00A8FF
@@ -63,10 +66,10 @@
 		background-color #C0FFEE
 		box-shadow(inset 0 0 10px #87D5FD)
 .treebox.active
-	> ul, li.active > ul
+	> ul, li.open > ul
 		border 1px solid #bbb
 		box-shadow(0 0 12px #aaa)
-	li.active
+	li.open
 		> p
 			border-bottom 1px solid #bbb
 		> ul
@@ -74,13 +77,15 @@
 			transition(.3s)
 		> ul:nth-child(3)
 			margin-top 5px
-	> ul > li, li.active > ul > li
+	> ul > li, li.open > ul > li
 		border-bottom 1px solid #bbb
 		> p
 			padding-left 40px
+		> i + i + p
+			padding-left 77px
 		> i, > p
 			height 32px
 		i
 			width 32px
-	> ul > li:last-child, li.active > ul > li:last-child
+	> ul > li:last-child, li.open > ul > li:last-child
 		border-bottom 0
