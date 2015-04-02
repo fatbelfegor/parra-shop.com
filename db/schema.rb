@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318024310) do
+ActiveRecord::Schema.define(version: 20150325162456) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20150318024310) do
   end
 
   create_table "categories_products", id: false, force: true do |t|
-    t.integer "category_id"
-    t.integer "product_id"
+    t.integer "category_id", null: false
+    t.integer "product_id",  null: false
   end
 
   create_table "extensions", force: true do |t|
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20150318024310) do
     t.integer "product_id"
     t.string  "product_name_article"
     t.integer "amount"
-    t.decimal "price",                precision: 10, scale: 0
+    t.decimal "price",                precision: 18, scale: 2
     t.string  "name"
   end
 
@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(version: 20150318024310) do
     t.decimal  "old_price",      precision: 18, scale: 2, default: 0.0
     t.string   "seo_title2"
     t.integer  "subcategory_id"
+    t.string   "article"
     t.integer  "extension_id"
   end
 
@@ -229,7 +230,10 @@ ActiveRecord::Schema.define(version: 20150318024310) do
     t.decimal  "price",      precision: 18, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "color_id"
   end
+
+  add_index "textures", ["color_id"], name: "index_textures_on_color_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
