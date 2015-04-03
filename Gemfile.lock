@@ -112,12 +112,12 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
-    mysql2 (0.3.17)
     nenv (0.1.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     ox (2.1.4)
+    pg (0.18.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -211,8 +211,8 @@ DEPENDENCIES
   guard-livereload
   jbuilder (~> 2.0)
   jquery-rails
-  mysql2
   ox
+  pg
   rails (= 4.2.0)
   sdoc (~> 0.4.0)
   spring
