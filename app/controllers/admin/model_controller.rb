@@ -13,7 +13,7 @@ class Admin::ModelController < Admin::AdminController
 		down = name.downcase
 		Model.create name: name, columns: params[:addColumn], imageable: params[:imageable], timestamps: params[:timestamps], belongs_to: params[:belongs_to], has_one: params[:has_one], has_many: params[:has_many], acts_as_tree: params[:acts_as_tree]
 		`rake db:migrate`
-		Dir.mkdir Rails.root.join('app', 'views', 'admin', 'scripts', 'models', down)
+		Dir.mkdir Rails.root.join('app', 'assets', 'javascripts', 'admin', 'templates', down)
 		rend
 	end
 

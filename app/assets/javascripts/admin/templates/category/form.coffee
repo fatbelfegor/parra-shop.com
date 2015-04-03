@@ -7,7 +7,7 @@ app.templates.form.category =
 						{
 							attrs:
 								colspan: "6"
-							header: "category"
+							header: "Родительская категория"
 							field: "category_id"
 							belongs_to: "category"
 							treebox:

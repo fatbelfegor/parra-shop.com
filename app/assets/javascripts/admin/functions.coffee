@@ -19,6 +19,20 @@ String.prototype.toCurrency = ->
 			if val is ''
 				active = true
 				msg.push "Поле не должно быть пустым"
+		if v.email
+			unless /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test val
+				active = true
+				msg.push "E-mail введён неверно"
+		if v.minLength
+			if val.length < v.minLength
+				active = true
+				if v.minLength < 2
+					end = ''
+				else if v.minLength < 5
+					end = 'а'
+				else
+					end = 'ов'
+				msg.push "Значение должно содержать минимум #{v.minLength} знак#{end}"
 		if active
 			div.addClass('active').find('p').html msg.join '. '
 		else
@@ -38,15 +52,20 @@ String.prototype.toCurrency = ->
 @ask = (msg, params) ->
 	ask = dark.open('ask')
 	ask.find('.text p').html msg
-	btn = ask.find('.ok')
+	btn = ask.find '.ok'
 	if params.ok
 		if params.ok.html
 			btn.html params.ok.html
 		if params.ok.class
 			btn.attr 'class', 'btn ' + params.ok.class
+	btn.off 'click'
 	btn.click ->
-		params.action(params.options)
+		params.action()
 		dark.close()
+	if params.cancel
+		ask.find('.cancel').click ->
+			params.cancel()
+			dark.close()
 
 # Dark
 
@@ -73,13 +92,17 @@ String.prototype.toCurrency = ->
 	form_send $(el).parent(), msg, cb
 @post = (url, data, cb) ->
 	$.post "/admin/#{url}", data, cb, 'json'
-@send = (url, data, msg, cb) ->
+@send = (url, data, msg) ->
 	post url, data, (d) ->
 		notify msg
-@notify = (msg) ->
-	app.notify.html("<i class='icon-checkmark-circle'></i><p>#{msg}</p>").addClass 'show'
+@notify = (msg, options) ->
+	clas = 'show'
+	if options
+		if options.class
+			clas += ' ' + options.class
+	app.notify.html("<i class='icon-checkmark-circle'></i><p>#{msg}</p>").attr 'class', clas
 	setTimeout ->
-		app.notify.removeClass 'show'
+		app.notify.attr 'class', 'show'
 	, 3000
 @textarea =
 	in: (el) ->

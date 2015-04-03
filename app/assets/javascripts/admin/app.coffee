@@ -44,7 +44,6 @@
 	templates:
 		index: {}
 		form: {}
-	scripts: {}
 app.routes['model/:model/edit/:id'] = app.routes['model/:model/new']
 for k of app.routes
 	app.routeFind.push k.split '/'
@@ -142,43 +141,24 @@ app.setPage = ->
 		if app.after
 			@route.after = app.after
 			app.after = null
+		if app.functions
+			@route.functions = app.functions
+			app.functions = null
 		true
 	else false
 app.renderPage = ->
 	cb = ->
+		window.functions = app.route.functions
 		app.yield.html app.route.page()
 		app.route.after() if app.route.after
 		app.backButton app.options.back, app.options.ref if app.options and app.options.back
-	pre_cb = ->
-		if app.preload
-			preload = app.preload()
-		else
-			preload = false
-		if preload
-			record.load preload, cb
-			app.preload = null
-		else cb()
-	if app.script
-		req_scripts = app.script()
-		req_scripts = [req_scripts] if typeof req_scripts is 'string'
-		load_scripts = []
-		for s in req_scripts
-			load_scripts.push s if @scripts[s] is undefined
-		if load_scripts.length
-			$.ajax
-				url: "/admin/scripts"
-				data: scripts: load_scripts
-				dataType: "script"
-				success: ->
-					for s in load_scripts
-						app.scripts[s] = true
-					pre_cb()
-				error: (data) ->
-					app.scripts[data.responseText.match(/admin\/scripts\/(.*?) with/)[1]] = false
-					pre_cb()
-		else
-			pre_cb()
-	else pre_cb()
+	if app.preload
+		preload = app.preload()
+	else preload = false
+	if preload
+		record.load preload, cb
+		app.preload = null
+	else cb()
 ready = ->
 	if window.data
 		data = window.data()
@@ -190,93 +170,89 @@ ready = ->
 	app.yield = $ '#yield'
 	if !app.menu
 		app.menu = $ '#menu'
-		ret = "<li>
-					<a href='/'>
-						<i class='icon-home4'></i>
-						<span>На главную</span>
-					</a>
-				</li>
-				<li>
-						<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
-						<p>
-							<i class='icon-table2'></i>
-							<span>Модели</span>
-						</p>
-						<ul>"
-		for name, model of models
-			model.templates.form = app.templates.form[name] if app.templates.form[name]
-			model.templates.index = app.templates.index[name] if app.templates.index[name]
-			ret += "<li data-route='model/#{name}'>
-				<div class='icon fade'><a href='/admin/model/#{name}/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
-				<a href='/admin/model/#{name}/records' onclick='app.aclick(this)'><i class='icon-stack'></i><span>#{model.classify}</span></a>
+		menu_settings = app.menu_settings[me.role]
+		ret = ""
+		menu_model = (model, name, icon) ->
+			"<li data-route='model/#{model}'>
+				<div class='icon fade'><a href='/admin/model/#{model}/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
+				<a href='/admin/model/#{model}/records' onclick='app.aclick(this)'>#{if icon then "<i class='#{icon}'></i>" else ''}<span>#{name}</span></a>
 			</li>"
-		ret += "</ul>
-			</li>
-			<li data-route='model/order/records'>
-				<a href='/admin/model/order/records' onclick='app.aclick(this)'>
-					<i class='icon-cart4'></i>
-					<span>Заказы</span>
-				</a>
-			</li>
-			<li data-route='packinglist'>
-				<a href='/admin/packinglist' onclick='app.aclick(this)'>
-					<i class='icon-credit'></i>
-					<span>Список накладных</span>
-				</a>
-			</li>
-			<li>
-				<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
-				<a href='/admin/settings' onclick='app.aclick(this)'>
-					<i class='icon-wrench2'></i>
-					<span>Настройки</span>
-				</a>
-				<ul>
-					<li>
+		for s in menu_settings
+			switch s
+				when 'home'
+					ret += "<li><a href='/'><i class='icon-home4'></i><span>На главную</span></a></li>"
+				when 'all_models'
+					ret += "<li><div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
+						<p><i class='icon-table2'></i><span>Модели</span></p><ul>"
+					for name, model of models
+						ret += menu_model name, model.classify, 'icon-stack'
+					ret += "</ul></li>"
+				when 'orders'
+					ret += "<li data-route='model/order/records'>
+						<a href='/admin/model/order/records' onclick='app.aclick(this)'>
+							<i class='icon-cart4'></i><span>Заказы</span>
+						</a>
+					</li>"
+				when 'packinglists'
+					ret += "<li data-route='packinglist'>
+						<a href='/admin/packinglist' onclick='app.aclick(this)'>
+							<i class='icon-credit'></i><span>Список накладных</span>
+						</a>
+					</li>"
+				when 'settings'
+					ret += "<li>
 						<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
-						<p>
-							<i class='icon-table2'></i>
-							<span>Модели</span>
-						</p>
+						<a href='/admin/settings' onclick='app.aclick(this)'>
+							<i class='icon-wrench2'></i><span>Настройки</span>
+						</a>
 						<ul>
 							<li>
-								<a href='/admin/model/new' onclick='app.aclick(this)'>
-									<i class='icon-plus-circle'></i>
-									<span>Создать новую</span>
-								</a>
-							</li>
-							<li>
-								<a href='/admin/model/habtm' onclick='app.aclick(this)'>
-									<i class='icon-loop'></i>
-									<span>Создать связь HABTM</span>
-								</a>
-							</li>"
-		for name, model of models
-			ret += "<li>
-				<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
-				<p><i class='icon-stack'></i><span>#{model.classify}</span></p>
-				<ul>
-					<li><a href='/admin/model/#{name}/edit' onclick='app.aclick(this)'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
-					<li><a href='/admin/model/#{name}/templates/index' onclick='app.aclick(this)'><i class='icon-menu3'></i><span>Все записи</span></a></li>
-					<li><a href='/admin/model/#{name}/templates/form' onclick='app.aclick(this)'><i class='icon-pencil3'></i><span>Форма записи</span></a></li>
-					<li><a href='/admin/model/#{name}/templates/destroy' onclick='ask(this, &quot;Вы действительно хотите удалить модель <b>#{name}</b>?&quot;, &quot;model.destroy(&#039;#{name}&#039;)&quot;)'><i class='icon-remove3'></i><span>Удалить модель</span></a></li>
-				</ul>
-			</li>"
-		ret += "</ul>
-					</li>
-					<li>
-						<a href='/admin/components' onclick='app.aclick(this)'>
-							<i class='icon-share3'></i>
-							<span>Компоненты</span>
+								<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
+								<p>
+									<i class='icon-table2'></i><span>Модели</span>
+								</p>
+								<ul>
+									<li>
+										<a href='/admin/model/new' onclick='app.aclick(this)'>
+											<i class='icon-plus-circle'></i><span>Создать новую</span>
+										</a>
+									</li>
+									<li>
+										<a href='/admin/model/habtm' onclick='app.aclick(this)'>
+											<i class='icon-loop'></i><span>Создать связь HABTM</span>
+										</a>
+									</li>"
+					for name, model of models
+						ret += "<li>
+							<div onclick='$(this).parent().toggleClass(\"open\")'><i class='icon-arrow-right11'></i></div>
+							<p><i class='icon-stack'></i><span>#{model.classify}</span></p>
+							<ul>
+								<li><a href='/admin/model/#{name}/edit' onclick='app.aclick(this)'><i class='icon-settings'></i><span>Редактировать модель</span></a></li>
+								<li><a href='/admin/model/#{name}/templates/index' onclick='app.aclick(this)'><i class='icon-menu3'></i><span>Все записи</span></a></li>
+								<li><a href='/admin/model/#{name}/templates/form' onclick='app.aclick(this)'><i class='icon-pencil3'></i><span>Форма записи</span></a></li>
+								<li><a href='/admin/model/#{name}/templates/destroy' onclick='ask(this, &quot;Вы действительно хотите удалить модель <b>#{name}</b>?&quot;, &quot;model.destroy(&#039;#{name}&#039;)&quot;)'><i class='icon-remove3'></i><span>Удалить модель</span></a></li>
+							</ul>
+						</li>"
+					ret += "</ul>
+								</li>
+								<li>
+									<a href='/admin/components' onclick='app.aclick(this)'>
+										<i class='icon-share3'></i><span>Компоненты</span>
+									</a>
+								</li>
+							</ul>
+						</li>"
+				when 'sign_out'
+					ret += "<li>
+						<a rel='nofollow' data-method='delete' href='/users/sign_out'>
+							<i class='icon-exit'></i>
+							<span>Выход</span>
 						</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href='/users/sing_out'>
-					<i class='icon-exit'></i>
-					<span>Выход</span>
-				</a>
-			</li>"
+					</li>"
+				else
+					if typeof s is 'object'
+						if s.model
+							ret += menu_model s.model, (s.name || models[s.model].classify), (s.icon || 'icon-stack')
 		app.menu.html ret
 	app.notify = $ '#notify'
 	app.go app.pathname = window.location.pathname

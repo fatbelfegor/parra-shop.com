@@ -112,8 +112,10 @@ body
 	> *
 		vertical-align middle
 		display inline-block
-		background-color #5cb85c
-		border 1px solid #398439
+		border 1px solid #509e19
+		border-bottom-color #198d0f
+		border-top-color #6dbe38
+		btn-gradient(#7ada4a, #b2ff4a, #6bde2d, #43b81a, #3bb118)
 	i
 		font-size 40px
 		height 40px
@@ -124,13 +126,19 @@ body
 		position relative
 		z-index 1
 		border-radius(30px)
-		box-shadow(inset 0 0 20px #398439)
 	p
 		font-size 22px
 		padding 10px 30px
 		margin-left -11px
 		border-radius(0 10px 10px 0)
-		box-shadow(unquote('inset 0 0 20px #398439, 0 0 50px #5cb85c'))
+#notify.red
+	> *
+		border 1px solid #9E1919
+		border-bottom-color #8D0F0F
+		border-top-color #BE3838
+		btn-gradient(#DA4A4A, #FF4A4A, #DE2D2D, #B81A1A, #B11818)
+	i:before
+		content "\e2c2"
 #notify.show
 	animation(animation-notify 3s)
 input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, button:focus
@@ -778,39 +786,38 @@ label.group.tags.red > div > form > div *
 #backButton:hover
 	background-color #d64535
 	color white
-.images-form, .image-form
-	> div
-		font-size 0
-		display inline-block
-		vertical-align middle
-		border 1px solid #aaa
-		margin 10px
+.images-form > div, .image-form > div, td.image
+	font-size 0
+	display inline-block
+	vertical-align middle
+	border 1px solid #aaa
+	margin 10px
+	padding 5px
+	position relative
+	cursor pointer
+	transition(.3s)
+	btn-gradient(#FAFAFA, #FFFFFF, #F2F2F2, #D5D5D5, #E8E8E8)
+	box-shadow(0 0 8px #aaa)
+	border-radius(5px)
+	.remove
+		position absolute
+		top 5px
+		right 5px
+		width 20px
+		height 20px
+		line-height 20px
 		padding 5px
-		position relative
-		cursor pointer
-		transition(.3s)
-		btn-gradient(#FAFAFA, #FFFFFF, #F2F2F2, #D5D5D5, #E8E8E8)
-		box-shadow(0 0 8px #aaa)
-		border-radius(5px)
-		.remove
-			position absolute
-			top 5px
-			right 5px
-			width 20px
-			height 20px
-			line-height 20px
-			padding 5px
-			font-family 'icomoon'
-			text-shadow(none)
-		.remove:not(:hover)
-			color transparent
-			border-color transparent
-			background transparent
-		.remove:hover
-			box-shadow(none)
-		.remove:before
-			content "\e2c2"
-	> div:hover
+		font-family 'icomoon'
+		text-shadow(none)
+	.remove:not(:hover)
+		color transparent
+		border-color transparent
+		background transparent
+	.remove:hover
+		box-shadow(none)
+	.remove:before
+		content "\e2c2"
+.images-form > div:hover, .image-form > div:hover, td.image:hover
 		box-shadow(0 0 16px #d64535)
 		.remove:not(:hover)
 			color #444
@@ -824,6 +831,8 @@ label.group.tags.red > div > form > div *
 		max-height 200px
 		border 1px solid #aaa
 		display block
+td.image
+	width 1px
 .radio-tabs
 	> div
 		display none
@@ -840,3 +849,18 @@ label.group.tags.red > div > form > div *
 		color #555
 		background-color #ffb
 		box-shadow(0 0 20px #bbb)
+.form-relation-wrap > div
+	border 1px solid #aaa
+	margin-top 15px
+.relation-record-wrap
+	position relative
+	box-shadow(0 0 16px #ccc)
+	> .removeRecord
+		display inline-block
+		position absolute
+		top -34px
+		right 34px
+		border-radius(8px 8px 0 0)
+	> .removeRecord:not(:hover)
+		border-color #aaa !important
+		border-bottom-color white !important

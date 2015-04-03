@@ -36,7 +36,6 @@
 					ret += record.renderRecords all: allrecs, template: template, name: name
 				else ret += "<h3>Нет записей</h3>"
 		$('#records').html ret
-		window.functions = template.functions if template.functions
 		if template.sortable is 'tree'
 			$("[data-model-wrap=#{name}]").sortable
 				items: "[data-model=#{name}]"
@@ -71,7 +70,8 @@
 					ret += ">"
 					for td in tr.td
 						if td.set
-							td.set rec
+							td.set rec, params.name
+						continue if td.continue
 						ret += "<td"
 						if td.attrs
 							for k, v of td.attrs
@@ -86,11 +86,13 @@
 							if td.format
 								if td.format.date
 									val = new Date(val).toString td.format.date
-							if td.cb
-								val = eval(td.cb) val, td.cbParams
-							ret += val
+								if td.format.replaceNull
+									val = td.format.replaceNull if val == null
+							ret += "<p>#{val}</p>"
 						else if td.html
 							ret += td.html
+						else if td.image
+							ret += "<a href='#{rec[td.image.name]}' data-lightbox='product'><img src='#{rec[td.image.name]}'></a>"
 						ret += "</td>"
 					ret += "</tr>"
 				ret += "</table>"
@@ -108,8 +110,13 @@
 					for k, v of params.template.relations.close
 						ids = rec["#{k}_ids"]
 						ret += "<div class='relation-wrap' data-model-wrap='#{k}' data-ids='[#{ids.join ','}]'>
-							<div class='relation-header'>#{v.header} (<span class='relations-count'>#{ids.length}</span>)</div>
-						</div>"
+							<div class='relation-header'><div class='row'>"
+						for cell in v.header
+							if cell.name
+								ret += "<p style='width: 100%'>#{cell.name} (<span class='relations-count'>#{ids.length}</span>)</p>"
+							else
+								ret += cell rec
+						ret += "</div></div></div>"
 			if subrecs.length
 				ret += "<div class='relation-wrap start' data-model-wrap='#{params.name}'>"
 				ret += record.renderRecords all: recs, template: params.template, name: params.name, subrecs: subrecs
@@ -135,7 +142,11 @@
 	val: (rec, c) ->
 		@col rec, c, (val) -> " value='#{val}'"
 	destroy: (name, id) ->
-		send "model/#{name}/destroy/#{id}", {}, "Запись удалена"
+		$.post "/admin/model/#{name}/destroy/#{id}", {}, (res) ->
+			if res is 'permission denied'
+				notify 'Доступ запрещен', class: 'red'
+			else notify 'Запись удалена'
+		, 'json'
 	btnDestroy: (el) ->
 		rec = $(el).parent()
 		@destroy rec.data('model'), rec.data 'id'
@@ -181,13 +192,14 @@
 		ret
 	collect: (mod, rec) ->
 		ret = rec
+		ret.modelName = mod.name
 		ret[m] = mod[m] for m in mod.belongs_to
 		ret[m] = mod[m] for m in mod.has_many
 		mod.collection[rec.id] = ret
 	load: (options, cb) ->
+		common_load = false
 		options = [options] unless options[0]
 		params = []
-		load = false
 		pushModel = (m) ->
 			if m.has_many
 				m.has_many = [m.has_many] unless m.has_many[0]
@@ -205,8 +217,8 @@
 					pushModel h
 		pushModel m for m in options
 		for m in options
-			load = false
 			model = models[m.model]
+			load = false
 			par = {model: model.name}
 			par.all = false
 			if m.find
@@ -217,9 +229,11 @@
 					if ids.length > 0
 						par.find = ids
 						load = true
-				else if !model.find(m.find)
-					par.find = m.find
-					load = true
+					else recs = model.find m.find
+				else
+					recs = model.find(m.find)
+					load = true unless recs
+				par.find = m.find
 			else if m.where
 				for k, v of m.where
 					if v is null
@@ -241,8 +255,26 @@
 							par.where[k] = v
 							load = true
 			else if m.with
+				for p in params
+					if p.ready and p.model is m.with[0].model
+						r = p
+						break
+				if r
+					if m.with[0].where
+						for k, v of m.with[0].where
+							if k is r.model + '_id' and v is 'ids'
+								if model.ready.where[r.model + '_id']
+									for id in r.collect.ids
+										load = true if id not in model.ready.where[r.model + '_id']
+								else load = true
+					if m.with[0].find and r.collect
+						q = r.collect[m.with[0].find]
+						load = true if q and !model.find q
+				else load = true
 				par.with = m.with
-				load = true
+			else if model.ready.all
+				par.all = true
+				recs = model.all()
 			else
 				par.all = true
 				load = true
@@ -254,35 +286,87 @@
 				par.collect ||= []
 				for h in m.belongs_to
 					par.collect.push h.model + '_id'
-			par.ids = m.ids if m.ids
-			params.push par if load
-		if load
+			recs = [recs] if recs and !recs[0]
+			if m.ids
+				ids = []
+				if recs
+					for m_ids in m.ids
+						for rec in recs
+							unless rec[m_ids + '_ids']
+								ids.push m_ids
+								break
+				else ids = m.ids
+				if ids.length
+					par.ids = ids
+					load = true
+			if load or par.collect
+				if !load
+					par.ready = true
+					new_collect = {}
+					for f in par.collect
+						if f is 'ids'
+							new_collect.ids = []
+							new_collect.ids.push rec.id for rec in recs
+						else
+							new_collect[f] = []
+							new_collect[f].push rec[f] unless rec[f] in [0, null] for rec in recs
+					clear_collect = {}
+					ok_collect = false
+					for k, v of new_collect
+						if v.length
+							ok_collect = true
+							clear_collect[k] = v
+					if ok_collect
+						par.collect = clear_collect
+					else delete par.collect
+				if (par.ready and par.collect) or par.ids
+					common_load = true
+					params.push par
+				else if load
+					common_load = true
+					params.push par
+		if common_load
 			post 'record/get', models: params, (res) ->
+				return notify 'Доступ запрещен', class: 'red' if res is 'permission denied'
 				collect = {}
 				for m in params
-					model = models[m.model]
-					model_res = res[m.model]
-					if m.find
-					else if m.where
-						for k, v in m.where
-							console.log k, v
-					else if m.with
-						for h in m.with
-							c = collect[h.model]
-							if h.where
-								for k, v of h.where
-									model.ready.where[k] = (model.ready.where[k] || []).concat c[v]
+					if m.ready
+						if m.collect
+							collect[m.model] = {}
+							for f, v of m.collect
+								collect[m.model][f] = v
+						if m.ids
+							model = models[m.model]
+							model_res = res[m.model]
+							for n, v of model_res.ids
+								for id, ids of v
+									model.collection[id][n + '_ids'] = ids
 					else
-						model.ready.all = true
-					for rec in model_res.model
-						model.collect rec
-					if m.collect
-						collect[m.model] = {}
-						for f in m.collect
-							if f is 'ids'
-								collect[m.model].ids = []
-								for rec in model_res.model
-									collect[m.model].ids.push rec.id
+						model = models[m.model]
+						model_res = res[m.model]
+						if m.where
+							for k, v in m.where
+								console.log k, v
+						else if m.with
+							for h in m.with
+								c = collect[h.model]
+								if h.where
+									for k, v of h.where
+										model.ready.where[k] = (model.ready.where[k] || []).concat c[v]
+						else if !m.find
+							model.ready.all = true
+						for rec in model_res.model
+							if model.collection[rec.id]
+								for k, v of rec
+									model.collection[rec.id][k] = v
+							else model.collect rec
+						if m.collect
+							collect[m.model] = {}
+							for f in m.collect
+								if f is 'ids'
+									collect[m.model].ids = []
+									for rec in model_res.model
+										collect[m.model].ids.push rec.id
 				cb()
 		else
 			cb()
@@ -299,6 +383,13 @@
 				for id, r of v.collection
 					ret.push r if r[name + '_id'] is rec.id
 				break
+		ret
+	has_many_as: (name, model, as, rec) ->
+		ret = []
+		for k, v of models
+			if v.pluralize is model
+				for id, r of v.collection
+					ret.push r if r[as + '_id'] is rec.id and r[as + '_type'] is name
 		ret
 	find: (mod, ids) ->
 		type = typeof ids
@@ -320,55 +411,54 @@
 				if rec[k] is v
 					ret.push rec
 		ret
-	destroy: (mod, id, params) ->
-		params ?= {}
-		ask (params.msg or 'Удалить запись?'), (d) ->
-			delete mod.collection[d.id]
-			post "model/#{mod.name}/destroy/#{d.id}"
-			params = d.params
-			if params.cb
-				if params.cb_data
-					params.cb params.cb_data
-				else params.cb()
-		, id: id, params: params
-	update: (mod, id, data, params) ->
+	save: (mod, data, params) ->
 		params ?= {}
 		if params.formData
 			sendData = params.formData
 		else sendData = data
 		$.ajax
-			url: "/admin/model/#{mod.name}/update/#{id}"
+			url: "/admin/record/save"
 			data: sendData
 			type: 'POST'
 			contentType: false
 			processData: false
 			dataType: "json"
 			success: (res) ->
-				notify params.notify or "Запись обновлена"
-				for k, v of data.record
-					mod.collection[id][k] = v
-				if data.removeImage
-					for k in data.removeImage
-						mod.collection[id][k] = ''
-				if res.image
-					for k, v of image
-						mod.collection[id][k] = v
-	create: (mod, data, params) ->
-		params ?= {}
-		if params.formData
-			sendData = params.formData
-		else sendData = data
-		$.ajax
-			url: "/admin/model/#{mod.name}/create"
-			data: sendData
-			type: 'POST'
-			contentType: false
-			processData: false
-			dataType: "json"
-			success: (res) ->
-				notify params.notify or "Запись создана"
-				data.id = res.id
-				if res.image
-					for k, v of image
-						data[k] = v
-				mod.collect data
+				if res is 'permission denied'
+					notify 'Доступ запрещен', class: 'red'
+				else
+					image = models.image
+					notify params.notify or "Запись сохранена"
+					for rel_id, rel of res.relation
+						data_rel = data.relation[rel_id]
+						model = models[data_rel.model]
+						if rel.new_records
+							for rec_i, rec of rel.new_records
+								rec_save = {}
+								for k, v of data_rel.new_records[rec_i].fields
+									rec_save[k] = v
+								for k, v of rec.record
+									rec_save[k] = v
+								if rec.image
+									for k, v of rec.image
+										rec_save[k] = v
+								if rec.images
+									for img in rec.images
+										image.collect img
+								for bt in model.belongs_to
+									if rec_save[bt + '_id']
+										bt_rec = models[bt].find(rec_save[bt + '_id'])
+										bt_rec[data_rel.model + '_ids'] ?= []
+										bt_rec[data_rel.model + '_ids'].push rec.record.id
+								model.collect rec_save
+						if rel.update_records
+							for rec_i, rec of rel.update_records
+								rec_save = model.collection[data_rel.update_records[rec_i].id]
+								for k, v of data_rel.update_records[rec_i].fields
+									rec_save[k] = v
+								if rec.image
+									for k, v of rec.image
+										rec_save[k] = v
+								if rec.images
+									for img in rec.images
+										image.collect img

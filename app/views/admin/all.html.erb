@@ -10,10 +10,10 @@
 		name = model.to_s
 		underscore = name.underscore
 		if name[0] != '#' and name != 'ActiveRecord::SchemaMigration'
-			if name.include? '::HABTM_' %>
-			<% else %>
-			<% belongs_to = model.reflect_on_all_associations(:belongs_to).map{|m| m.name} %>
-			<% has_many = model.reflect_on_all_associations(:has_many).map{|m| m.name} %>
+			if !name.include? '::HABTM_'
+			belongs_to = model.reflect_on_all_associations(:belongs_to).map{|m| m.name}
+			has_and_belongs_to_many = model.reflect_on_all_associations(:has_and_belongs_to_many).map{|m| m.name}
+			has_many = model.reflect_on_all_associations(:has_many).map{|m| {name: m.name, options: m.options}} %>
 			models["<%= underscore %>"] = {
 				name: "<%= underscore %>",
 				classify: "<%= name %>",
@@ -48,7 +48,7 @@
 					record.destroy(this, id, params)
 				},
 				belongs_to: <%= raw belongs_to.to_json %>,
-				has_many: <%= raw has_many.to_json %>
+				has_many: <%= raw (has_many.map{|m| m[:name]} + has_and_belongs_to_many).to_json %>
 				<% for m in belongs_to %>
 				,
 				<%= m %>: function(){
@@ -56,6 +56,16 @@
 				}
 				<% end %>
 				<% for m in has_many %>
+				,
+				<%= m[:name] %>: function(){
+					<% if m[:options][:as] %>
+					return record.has_many_as("<%= name %>", "<%= m[:name] %>", "<%= m[:options][:as] %>", this)
+					<% else %>
+					return record.has_many("<%= underscore %>", "<%= m[:name] %>", this)
+					<% end %>
+				}
+				<% end %>
+				<% for m in has_and_belongs_to_many %>
 				,
 				<%= m %>: function(){
 					return record.has_many("<%= underscore %>", "<%= m %>", this)
@@ -66,4 +76,5 @@
 		end
 	end %>
 	me = <%= raw current_user.to_json %>
+	authenticity_token = '<%= form_authenticity_token %>';
 </script>

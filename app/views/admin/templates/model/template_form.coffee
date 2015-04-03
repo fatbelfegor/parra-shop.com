@@ -1,5 +1,3 @@
-app.script = ->
-	"models/#{param.model}/form"
 app.page = ->
 	model = models[param.model]
 	template = app.templates.form[param.model]
@@ -66,16 +64,14 @@ app.page = ->
 						ret += td.show
 					else if td.set
 						ret += "* функция *"
-					else if td.description
+					else if td.text
 						descs = []
-						descs.push n for n of td.description
-						ret += "Описание: #{descs.join ', '}"
+						descs.push n for n of td.text
+						ret += "Текст: #{descs.join ', '}"
 					else if td.images
 						ret += "Изображения"
 					else if td.checkbox
 						ret += td.checkbox
-					else if td.text
-						ret += "Текст"
 					else
 						ret += "&nbsp;"
 					ret += "</div>"
@@ -101,8 +97,6 @@ app.page = ->
 							if v.has_self
 								ret += "\n\thas_self: true"
 						ret += "</div>"
-					if td.description
-						ret += "<div class='description hide'>#{JSON.stringify td.description}</div>"
 					ret += "<div class='set hide'>#{td.setPlain}</div>" if td.setPlain
 				ret += "</td>"
 			ret += "</tr>"
@@ -424,7 +418,7 @@ app.page = ->
 		<br>
 	</div>
 	<script src='/ace/ace.js'><\/script>"
-window.functions =
+app.functions =
 	add: (tag, action) ->
 		$('#current')[action] "<#{tag} onclick='functions.pick(\"#{tag}\", this)'#{if tag is 'td' then "data-html='true'><div>Новая ячейка</div>" else ">"}</#{tag}>"
 	remove: (el) ->
@@ -667,11 +661,6 @@ window.functions =
 								tables.push genTable $ @
 							td += "\n\ttable: [#{tables.join(',').replace(/\n/g,"\n\t\t")}\n\t]"
 						td += "\n\tth: true" if data.th
-						description = el.find '> .description'
-						if description.length
-							td += "\n\tdescription:"
-							for k, v of JSON.parse description.html()
-								td += "\n\t\t#{k}: \"#{v}\""
 						set = el.find '> .set'
 						if set.length
 							set = set.text()
@@ -699,7 +688,7 @@ window.functions =
 		functions = aceFunctions.getValue()
 		unless functions is ''
 			file += "\n\tfunctions:\n\t\t#{functions.replace(/\n/g, "\n\t\t")}\n\tfunctions_plain: " + JSON.stringify(functions).replace /#{/g, '\\#{'
-		post "write", path: "app/views/admin/scripts/models/#{param.model}/form.coffee", file: file, ->
+		post "write", path: "app/assets/javascripts/admin/templates/#{param.model}/form.coffee", file: file, ->
 			notify "Форма обновлена"
 	generateAsk: ->
 		ask "<b>Создать шаблон?</b><br>Предыдущие данные будут удалены.",
@@ -726,10 +715,12 @@ window.functions =
 					name = c.name[0..-4]
 					cols = models[name].columns
 					pick = false
+					has_self = false
 					for c in cols
 						if c.name is 'name'
 							pick = 'name'
-							break
+						else if c.name is field_name
+							has_self = true
 					unless pick
 						for c in cols
 							if c.name is 'scode'
@@ -745,13 +736,14 @@ window.functions =
 						<td onclick='functions.pick(\"td\", this)'
 						data-field='#{field_name}'
 						data-header='#{name}'
-						data-belongs_to='#{name}'>
+						data-belongs_to='#{name}'"
+					ret += " data-has_self='true'" if has_self
+					ret += ">
 							<div>#{name}</div>
 							<div data-pick-val='id'
 							data-pick-header='#{pick}'
 							class='hide treebox'>#{name}:\n\tfields: ['#{pick}']\n\tpick: true"
-					if name is param.model
-						ret += "\n\thas_self: true"
+					ret += "\n\thas_self: true" if has_self
 					ret += "</div>
 						</td>
 					</tr>"
@@ -759,15 +751,22 @@ window.functions =
 					unless c.name is 'position' or c.name[-3..-1] is '_id'
 						ret += "<tr onclick='functions.pick(\"tr\", this)'><td data-header='#{c.name}' data-field='#{c.name}'><div>#{c.name}</div></td></tr>"
 				for c in strings
-					ret += "<tr onclick='functions.pick(\"tr\", this)'><td data-header='#{c.name}' data-field='#{c.name}'><div>#{c.name}</div></td></tr>"
+					if c.name is 'image'
+						ret += "<tr onclick='functions.pick(\"tr\", this)'><td onclick='functions.pick(\"td\", this)' data-header='Добавить изображение' data-image='image'><div>Добавить изображение заголовка</div></td></tr>"
+					else
+						ret += "<tr onclick='functions.pick(\"tr\", this)'><td onclick='functions.pick(\"td\", this)' data-header='#{c.name}' data-field='#{c.name}'><div>#{c.name}</div></td></tr>"
 				if 'images' in models[param.model].has_many
-					ret += "<tr><td data-images='true'><div>Изображения</div></td></tr>"
+					ret += "<tr><td data-images='true' onclick='functions.pick(\"td\", this)'><div>Изображения</div></td></tr>"
 				if texts.length
 					descs = []
 					descs.push c.name for c in texts
 					jdescs = {}
-					jdescs[c.name] = c.name for c in texts
-					ret += "<tr><td><div>Описание: #{descs.join ', '}</div><div class='description hide'>#{JSON.stringify jdescs}</div></td></tr>"
+					for c in texts
+						if c.name is "seo_descriptions"
+							type = "textarea"
+						else type = "editor"
+						jdescs[c.name] = field: c.name, type: type
+					ret += "<tr><td data-images='true' onclick='functions.pick(\"td\", this)' data-text='#{JSON.stringify jdescs}'><div>Текст: #{descs.join ', '}</div></td></tr>"
 				ret += "</table>"
 				$('#table-structure').html ret
 				if belongs_to.length

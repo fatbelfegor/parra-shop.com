@@ -1,5 +1,3 @@
-app.script = ->
-	"models/#{param.model}/index"
 app.page = ->
 	template = app.templates.index[param.model]
 	ret = "<h1>Все записи <b>#{param.model}</b></h1>
@@ -382,7 +380,7 @@ app.after = ->
 			aceVars.getSession().setValue template.vars_plain
 		if template.functions_plain
 			aceFunctions.getSession().setValue template.functions_plain
-window.functions =
+app.functions =
 	generateAsk: ->
 		ask "<b>Создать шаблон?</b><br>Предыдущие данные будут удалены.",
 			action: ->
@@ -548,5 +546,5 @@ window.functions =
 		order = $('#order > p').html()
 		unless order is 'Не сортировать'
 			file += "\n\torder: #{order}: \"#{$(".checked [name='order-type']").val()}\""
-		post "write", path: "app/views/admin/scripts/models/#{param.model}/index.coffee", file: file, ->
+		post "write", path: "app/assets/javascripts/admin/templates/#{param.model}/index.coffee", file: file, ->
 			notify "Страница записей обновлена"

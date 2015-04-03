@@ -1,21 +1,28 @@
-app.script = ->
-	"models/#{param.model}/index"
 app.page = ->
 	template = app.templates.index[param.model]
+	@functions[k] = v for k, v of template.functions if template.functions
 	if template
-		ret = "<div style='position: absolute; top: 0; left: 250px; right: 0'><div class='ib records-header'>"
-		for t in template.table
-			ret += "<table>"
-			for tr in t.tr
-				ret += "<tr>"
-				for td in tr.td
-					ret += "<td"
-					ret += " colspan='#{td.colspan}'" if td.colspan
-					ret += " rowspan='#{td.rowspan}'" if td.rowspan
-					ret += ">#{td.header or td.field or td.btn}</td>"
-				ret += "</tr>"
-			ret += "</table>"
-		ret += "</div></div><div id='records' data-model-wrap='#{param.model}'></div>"
+		ret = ""
+		if template.header
+			ret += "<div class='group-header'><div>"
+			for h in template.header
+				if typeof h is 'string'
+					ret += "<p>#{h}</p>"
+				else
+					ret += "<p style='"
+					if h[1]
+						ret += "width: "
+						if h[1] is 'min'
+							ret += '1%; '
+						else if h[1] is 'max'
+							ret += '100%; '
+						else ret += h[1] + '; '
+					if h[2]
+						ret += "padding: 0 #{h[2]}px"
+					ret += "'"
+					ret += ">#{h[0]}</p>"
+			ret += "</div></div>"
+		ret += "<div id='records' data-model-wrap='#{param.model}'></div>"
 	else
 		ret = "<div class='content'>
 			<br>
@@ -43,15 +50,18 @@ app.after = ->
 	while parent.length
 		parent.addClass 'active open'
 		parent = parent.parents('li').eq(0)
-window.functions =
+app.functions =
 	relationToggle: (el, rel) ->
-		relations = $(el).parents('table').eq(0).next()
+		el = $ el
+		relations = el.parents('table').eq(0).next()
 		wrap = relations.find "> div[data-model-wrap='#{rel}']"
 		if wrap.hasClass 'active'
+			el.removeClass 'always'
 			wrap.removeClass 'active'
 			unless relations.find('> .active, > .start').length
 				relations.removeClass 'active'
 		else
+			el.addClass 'always'
 			wrap.addClass 'active'
 			relations.addClass 'active'
 			unless wrap.data 'ready'
@@ -74,3 +84,27 @@ window.functions =
 									options.ids.push k
 						record.load options, ->
 							wrap.data('ready', true).append record.renderRecords all: model.find(ids), template: template, name: model_name
+	removeRecord: (el) ->
+		group = $(el).parents('.group').eq(0).attr 'id', 'removeRecord'
+		ask "Удалить запись?",
+			ok:
+				html: "Удалить"
+				class: "red"
+			action: ->
+				group = $('#removeRecord').attr 'id', ''
+				model = group.data 'model'
+				id = group.data 'id'
+				$.ajax
+					url: "/admin/model/#{model}/destroy/#{id}"
+					type: 'POST'
+					contentType: false
+					processData: false
+					dataType: "json"
+					success: (res) ->
+						if res is 'permission denied'
+							notify 'Доступ запрещен', class: 'red'
+						else
+							group.remove()
+							delete models[model].collection[id]
+							notify "Запись удалена"
+			cancel: -> $('#removeRecord').attr 'id', ''

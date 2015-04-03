@@ -1,5 +1,6 @@
 class Admin::AdminController < ApplicationController
-	before_filter :admin_required, except: [:welcome, :create_admin]
+	# before_filter :admin_required, except: [:welcome, :create_admin]
+	before_filter :role_check
 	before_filter :eager_load
 
 	def home
@@ -15,10 +16,6 @@ class Admin::AdminController < ApplicationController
 	def write
 		File.write Rails.root + params[:path], params[:file]
 		rend
-	end
-
-	def scripts
-		render 'admin/scripts/scripts'
 	end
 
 	def checkuniq
@@ -37,7 +34,72 @@ class Admin::AdminController < ApplicationController
 		render :nothing => true
 	end
 
+	def images_sort
+		urls = params[:urls]
+		params[:model].classify.constantize.find(params[:id]).images.each_with_index do |image, i|
+			image.update url: urls[i]
+		end
+		rend
+	end
+
 protected
+
+	def user_log action, req, object
+		if @rules[:log] and @rules[:log][action]
+			for r in @rules[:log][action]
+				create = true
+				for k, v in req
+					create = false if !r[k] or r[k] != v
+				end
+				if create
+					create = false if !r[:action] and !r[:type]
+					if create
+						user_log = {}
+						if r[:action]
+							user_log[:action] = r[:action].call(object)
+						end
+						current_user.user_logs.create user_log
+					end
+				end
+			end
+		end
+	end
+
+	def role_records_all
+		if @rules[:all] then true else false end
+	end
+
+	def role_records_model name
+		p name
+		if @rules[:record]
+			for r in @rules[:record]
+				return true if r[:model] == name
+			end
+		end
+		false
+	end
+
+	def role_check
+		controller = params[:controller]
+		action = params[:action]
+		if current_user
+			@rules = Admin::RoleList[current_user.role.to_sym]
+			return if @rules[:all]
+			route = @rules[controller + '#' + action]
+			return redirect_to "/" if route == nil
+			unless route == true
+				for k, v in route
+					if v.is_a? Array
+						return redirect_to "/" unless v.include? params[k]
+					else
+						return redirect_to "/" unless params[k] == v
+					end
+				end
+			end
+		elsif action != 'welcome' and action != 'create_admin'
+			redirect_to "/admin/welcome" unless current_user and current_user.role == 'admin'
+		end
+	end
 
 	def file_index path, ending
 		if File.exist? path + ending
@@ -94,10 +156,6 @@ protected
 				end
 			end
 		end
-	end
-
-	def admin_required
-		redirect_to "/admin/welcome" unless current_user and current_user.role == 'admin'
 	end
 
 	def migration_index path, name, rb

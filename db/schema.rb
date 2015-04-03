@@ -11,14 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322233054) do
+ActiveRecord::Schema.define(version: 20150331185829) do
 
-  create_table "asds", force: :cascade do |t|
-    t.string "name",  limit: 255, null: false
-    t.string "scode", limit: 255, null: false
+  create_table "banners", force: :cascade do |t|
+    t.string "image", limit: 255
+    t.string "url",   limit: 255
   end
-
-  add_index "asds", ["scode"], name: "index_asds_on_scode", unique: true, using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",             limit: 255
@@ -49,6 +47,20 @@ ActiveRecord::Schema.define(version: 20150322233054) do
     t.integer "product_id",  limit: 4
   end
 
+  create_table "colors", force: :cascade do |t|
+    t.integer "size_id",     limit: 4
+    t.string  "name",        limit: 255
+    t.string  "scode",       limit: 255
+    t.string  "image",       limit: 255
+    t.text    "description", limit: 65535
+    t.decimal "price",                     precision: 18, scale: 2, default: 0.0
+  end
+
+  create_table "extensions", force: :cascade do |t|
+    t.string "name",  limit: 255
+    t.string "image", limit: 255
+  end
+
   create_table "images", force: :cascade do |t|
     t.string  "url",            limit: 255
     t.integer "imageable_id",   limit: 4
@@ -56,6 +68,13 @@ ActiveRecord::Schema.define(version: 20150322233054) do
   end
 
   add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
+
+  create_table "options", force: :cascade do |t|
+    t.integer "size_id", limit: 4
+    t.string  "name",    limit: 255
+    t.string  "scode",   limit: 255
+    t.decimal "price",               precision: 18, scale: 2, default: 0.0
+  end
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "product_id",   limit: 4,                                          null: false
@@ -135,22 +154,38 @@ ActiveRecord::Schema.define(version: 20150322233054) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string  "name",            limit: 255,                                           null: false
-    t.string  "scode",           limit: 255,                                           null: false
-    t.string  "article",         limit: 255
-    t.string  "s_title",         limit: 255
+    t.integer "category_id",     limit: 4
+    t.string  "scode",           limit: 255,                                          null: false
+    t.string  "name",            limit: 255,                                          null: false
     t.text    "description",     limit: 65535
-    t.text    "short_desc",      limit: 65535
-    t.decimal "price",                         precision: 8, scale: 2,                 null: false
-    t.decimal "old_price",                     precision: 8, scale: 2
-    t.string  "seo_title",       limit: 255
-    t.text    "seo_description", limit: 65535
-    t.string  "seo_keywords",    limit: 255
+    t.text    "shortdesk",       limit: 65535
+    t.boolean "delemiter",       limit: 1
+    t.boolean "invisible",       limit: 1
+    t.boolean "main",            limit: 1
+    t.boolean "action",          limit: 1
+    t.boolean "best",            limit: 1
     t.integer "position",        limit: 4
-    t.boolean "invisible",       limit: 1,                             default: false, null: false
+    t.string  "seo_title",       limit: 255
+    t.string  "seo_description", limit: 255
+    t.string  "seo_keywords",    limit: 255
+    t.string  "seo_imagealt",    limit: 255
+    t.decimal "price",                         precision: 18, scale: 2, default: 0.0
+    t.text    "seo_text",        limit: 65535
+    t.decimal "old_price",                     precision: 18, scale: 2, default: 0.0
+    t.string  "seo_title2",      limit: 255
+    t.integer "subcategory_id",  limit: 4
+    t.string  "article",         limit: 255
+    t.integer "extension_id",    limit: 4
   end
 
   add_index "products", ["scode"], name: "index_products_on_scode", unique: true, using: :btree
+
+  create_table "sizes", force: :cascade do |t|
+    t.integer "product_id", limit: 4
+    t.string  "name",       limit: 255
+    t.string  "scode",      limit: 255
+    t.decimal "price",                  precision: 18, scale: 2, default: 0.0
+  end
 
   create_table "statuses", force: :cascade do |t|
     t.string "name", limit: 255
@@ -166,6 +201,21 @@ ActiveRecord::Schema.define(version: 20150322233054) do
     t.string  "image",          limit: 255
     t.text    "description",    limit: 65535
     t.integer "subcategory_id", limit: 4
+  end
+
+  create_table "textures", force: :cascade do |t|
+    t.integer "color_id", limit: 4
+    t.string  "name",     limit: 255
+    t.string  "scode",    limit: 255
+    t.string  "image",    limit: 255
+    t.decimal "price",                precision: 18, scale: 2, default: 0.0
+  end
+
+  create_table "user_logs", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "type",       limit: 255
+    t.string   "action",     limit: 255
+    t.datetime "created_at"
   end
 
   create_table "users", force: :cascade do |t|
