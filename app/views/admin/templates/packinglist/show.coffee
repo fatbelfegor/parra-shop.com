@@ -156,5 +156,6 @@ app.page = (recs) ->
 		</form>
 	</div>"
 	ret
+
 app.after = ->
 	treebox.out_click()
