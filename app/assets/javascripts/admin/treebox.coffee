@@ -140,8 +140,9 @@
 						relations.habtm[k] = ids
 						break
 				ret += "<i class='icon-arrow-down5' data-relations='#{JSON.stringify relations}' data-id='#{rec.id}' data-model='#{name}' data-treebox='#{JSON.stringify params}' onclick='treebox.open(this)'></i>" if arrow
-				ret += "<p>#{rec[f]}</p>" for f in params.fields
-				ret += "</li>"
+				ret += "<p>"
+				ret += "<span>#{rec[f]}</span>" for f in params.fields
+				ret += "</p></li>"
 		ret
 	drawGroup: (data, name, params, recs) ->
 		ret = ""

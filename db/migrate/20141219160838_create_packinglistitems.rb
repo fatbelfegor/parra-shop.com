@@ -5,7 +5,7 @@ class CreatePackinglistitems < ActiveRecord::Migration
       t.integer :product_id, index: true
       t.string :product_name_article
       t.integer :amount
-      t.decimal :price
+      t.decimal :price, precision: 10, scale: 2
       t.string :name
     end
   end

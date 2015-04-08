@@ -102,7 +102,7 @@ String.prototype.toCurrency = ->
 			clas += ' ' + options.class
 	app.notify.html("<i class='icon-checkmark-circle'></i><p>#{msg}</p>").attr 'class', clas
 	setTimeout ->
-		app.notify.attr 'class', 'show'
+		app.notify.attr 'class', ''
 	, 3000
 @textarea =
 	in: (el) ->
@@ -167,3 +167,43 @@ String.prototype.toCurrency = ->
 			ret += "</div>"
 		ret += "</div>"
 		ret
+
+@editorimage =
+	add: (cb) ->
+		@cb = cb
+		dark.open 'image'
+	open: (input) ->
+		if input.files
+			$input = $ input
+			label = $input.parent()
+			controls = label.parent()
+			controls.find('.hidden').removeClass 'hidden'
+			preview = controls.next()
+			reader = new FileReader()
+			reader.onload = (e) ->
+				preview.append "<a href='#{e.target.result}' data-lightbox='product'><img src='#{e.target.result}'></a>"
+			reader.readAsDataURL input.files[0]
+			label.addClass 'hidden'
+	remove: (el) ->
+		controls = $(el).parent()
+		controls.find('> *').toggleClass 'hidden'
+		input = controls.find 'input'
+		input.replaceWith(input = input.clone true)
+		controls.next().html ""
+	upload: (el) ->
+		formData = new FormData()
+		formData.append "image", $(el).parent().find('input')[0].files[0]
+		$.ajax
+			url: "/admin/editorimage"
+			data: formData
+			type: 'POST'
+			contentType: false
+			processData: false
+			dataType: "json"
+			success: (url) ->
+				notify 'Изображение загружено'
+				dark.close()
+				editorimage.cb url
+	link: (el) ->
+		dark.close()
+		editorimage.cb $(el).parent().next().find('input').val()

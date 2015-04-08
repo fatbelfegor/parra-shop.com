@@ -33,7 +33,7 @@ class Admin::PackinglistController < Admin::AdminController
 		product_scodes = []
 		item_ids = []
 		for i, item in params.require(:items).permit!
-			product = Product.find_by_s_title(item[:product_name_article])
+			product = Product.find_by_title(item[:product_name_article])
 			if product.blank?
 				product_ids << nil
 				product_scodes << nil

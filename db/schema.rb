@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20150331185829) do
     t.integer "product_id",           limit: 4
     t.string  "product_name_article", limit: 255
     t.integer "amount",               limit: 4
-    t.decimal "price",                            precision: 10
+    t.decimal "price",                            precision: 10, scale: 2
     t.string  "name",                 limit: 255
   end
 
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20150331185829) do
     t.decimal "price",                         precision: 18, scale: 2, default: 0.0
     t.text    "seo_text",        limit: 65535
     t.decimal "old_price",                     precision: 18, scale: 2, default: 0.0
-    t.string  "seo_title2",      limit: 255
+    t.string  "title",           limit: 255
     t.integer "subcategory_id",  limit: 4
     t.string  "article",         limit: 255
     t.integer "extension_id",    limit: 4

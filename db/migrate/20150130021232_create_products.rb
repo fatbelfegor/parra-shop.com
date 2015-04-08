@@ -19,7 +19,7 @@ class CreateProducts < ActiveRecord::Migration
 			t.decimal "price", precision: 18, scale: 2, default: 0.0
 			t.text "seo_text"
 			t.decimal "old_price", precision: 18, scale: 2, default: 0.0
-			t.string "seo_title2"
+			t.string "title"
 			t.integer "subcategory_id"
 			t.string "article"
 			t.integer "extension_id"

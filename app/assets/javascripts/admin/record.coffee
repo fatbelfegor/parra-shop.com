@@ -411,7 +411,7 @@
 				if rec[k] is v
 					ret.push rec
 		ret
-	save: (mod, data, params) ->
+	save: (data, params) ->
 		params ?= {}
 		if params.formData
 			sendData = params.formData
@@ -462,3 +462,4 @@
 								if rec.images
 									for img in rec.images
 										image.collect img
+					params.cb res if params.cb

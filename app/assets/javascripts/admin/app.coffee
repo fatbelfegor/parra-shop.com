@@ -253,6 +253,12 @@ ready = ->
 					if typeof s is 'object'
 						if s.model
 							ret += menu_model s.model, (s.name || models[s.model].classify), (s.icon || 'icon-stack')
+						else if s.url
+							ret += "<li"
+							ret += " data-route='#{s.route}'" if s.route
+							ret += "><a href='#{s.url}' onclick='app.aclick(this)'>"
+							ret += "<i class='#{s.icon}'></i>" if s.icon
+							ret += "<span>#{s.name}</span></a></li>"
 		app.menu.html ret
 	app.notify = $ '#notify'
 	app.go app.pathname = window.location.pathname

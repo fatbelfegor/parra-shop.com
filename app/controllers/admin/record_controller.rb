@@ -231,6 +231,11 @@ class Admin::RecordController < Admin::AdminController
 		rend data: records
 	end
 
+	def editorimage
+		image = params[:image]
+		rend data: ('/images/' + save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image))
+	end
+
 private
 
 	def get_records model, p, collect

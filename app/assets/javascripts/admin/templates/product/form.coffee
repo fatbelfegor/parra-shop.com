@@ -126,8 +126,8 @@ app.templates.form.product =
 							field: "seo_title"
 						},
 						{
-							header: "SEO title 2"
-							field: "seo_title2"
+							header: "title"
+							field: "title"
 						},
 						{
 							header: "SEO keywords (через запятую)"

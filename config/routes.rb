@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   post 'admin/sort', to: 'admin/admin#sort'
   post 'admin/images_sort', to: 'admin/admin#images_sort'
   post 'admin/checkuniq', to: 'admin/admin#checkuniq'
+  post 'admin/editorimage', to: 'admin/record#editorimage'
 
   get 'admin/ordergen/:id/*anything', to: 'admin/orders#xlsx'
 

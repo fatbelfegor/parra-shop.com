@@ -6,7 +6,8 @@
 		<%= raw @data.to_json %>
 	)}
 	models = {}
-	<% for model in ActiveRecord::Base.descendants
+	<% @ready ||= {}
+	for model in ActiveRecord::Base.descendants
 		name = model.to_s
 		underscore = name.underscore
 		if name[0] != '#' and name != 'ActiveRecord::SchemaMigration'
@@ -20,11 +21,14 @@
 				pluralize: "<%= underscore.pluralize %>",
 				columns: <%= raw model.columns.map{|c| {name: c.name, type: c.type}}.to_json %>,
 				templates: {},
-				ready: {
-					all: false,
+				ready:
+				<% if @ready[underscore] %>
+				<%= raw({all: false, where: {}, null: []}.merge(@ready[underscore]).to_json) %>
+				<% else %>
+					{all: false,
 					where: {},
-					null: []
-				},
+					null: []}
+				<% end %>,
 				collection: {},
 				collect: function(rec){
 					record.collect(this, rec)
