@@ -1,23 +1,3 @@
 app.templates.form.extension =
-	table: [
-		{
-			tr: [
-				{
-					td: [
-						{
-							header: "name"
-							field: "name"
-						}
-					]
-				},
-				{
-					td: [
-						{
-							header: "Добавить изображение"
-							image: 'image'
-						}
-					]
-				}
-			]
-		}
-	]
+	page: ->
+		title('статус товара') + form btn_save() + "<table>" + tr field("Название", "name", validation: presence: true) + image_field 'Добавить изображение', 'image'

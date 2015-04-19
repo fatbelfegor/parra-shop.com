@@ -10,7 +10,18 @@
 //= require admin/validation
 //= require_self
 
-@import url('http://fonts.googleapis.com/css?family=Droid+Sans')
+@font-face
+  font-family 'Droid Sans'
+  font-style normal
+  font-weight 400
+  src unquote("local('Droid Sans'), local('DroidSans'), url('http://fonts.gstatic.com/s/droidsans/v6/s-BiyweUPV0v-yRb-cjciPk_vArhqVIZ0nv9q090hN8.woff2') format('woff2')")
+  unicode-range unquote("U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000")
+@font-face
+	font-family 'Monoton'
+	font-style normal
+	font-weight 400
+	src unquote("local('Monoton'), local('Monoton-Regular'), url('http://fonts.gstatic.com/s/monoton/v6/y6oxFxU60dYw9khW6q8jGw.woff2') format('woff2')")
+	unicode-range unquote("U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000")
 
 @import "mixins"
 
@@ -86,6 +97,8 @@ body
 	padding 0 12px
 .m15
 	margin 15px
+.mt10
+	margin-top 10px
 .mb10
 	margin-bottom 10px
 .mlr10
@@ -754,32 +767,6 @@ label.group.tags.red > div > form > div *
 	p
 		background-color #C72727
 		border-color #C55F5F
-#backButton
-	display none
-	float left
-	margin-left 25px
-	position absolute
-	font-size 16px
-	color #333
-	padding 10px 20px
-	background-color #fff
-	border 1px solid #ddd
-	border-bottom 0
-	margin-top 4px
-	height 19px
-	line-height 22px
-	border-radius(3px 3px 0 0)
-	transition(.3s)
-	i
-		position relative
-		top -2px
-		font-size 20px
-		margin-right 15px
-#backButton.active
-	display block
-#backButton:hover
-	background-color #d64535
-	color white
 .images-form > div, .image-form > div, td.image
 	font-size 0
 	display inline-block
@@ -811,12 +798,6 @@ label.group.tags.red > div > form > div *
 		box-shadow(none)
 	.remove:before
 		content "\e2c2"
-.images-form > div:hover, .image-form > div:hover, td.image:hover
-		box-shadow(0 0 16px #d64535)
-		.remove:not(:hover)
-			color #444
-			border-color #aaa
-			background rgba(255, 255, 255, 0.7)
 	.add
 		width 200px
 		height 200px
@@ -825,6 +806,12 @@ label.group.tags.red > div > form > div *
 		max-height 200px
 		border 1px solid #aaa
 		display block
+.images-form > div:hover, .image-form > div:hover, td.image:hover
+	box-shadow(0 0 16px #d64535)
+	.remove:not(:hover)
+		color #444
+		border-color #aaa
+		background rgba(255, 255, 255, 0.7)
 td.image
 	width 1px
 .radio-tabs
@@ -843,18 +830,78 @@ td.image
 		color #555
 		background-color #ffb
 		box-shadow(0 0 20px #bbb)
-.form-relation-wrap > div
+.relation-window, .relation-record
 	border 1px solid #aaa
-	margin-top 15px
-.relation-record-wrap
+.relation-record
+	margin 15px
 	position relative
-	box-shadow(0 0 16px #ccc)
-	> .removeRecord
-		display inline-block
+	.remove-relation
 		position absolute
 		top -34px
-		right 34px
-		border-radius(8px 8px 0 0)
-	> .removeRecord:not(:hover)
-		border-color #aaa !important
-		border-bottom-color white !important
+		right 40px
+		border-radius(5px 5px 0 0)
+.relation-record + .relation-record
+	margin-top 30px
+
+@keyframes upper {
+  0%,19.999%,22%,62.999%,64%, 64.999%,70%,100% {
+    opacity:.99; text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
+  }
+  20%,21.999%,63%,63.999%,65%,69.999% {
+    opacity:0.4; text-shadow: none; 
+  }
+}
+@keyframes lower {
+  0%,12%,18.999%,23%,31.999%,37%,44.999%,46%,49.999%,51%,58.999%,61%,68.999%,71%,85.999%,96%,100% {
+    opacity:0.99; text-shadow: 0 0 80px green,0 0 30px rgb(54, 178, 34),0 0 6px rgb(14, 139, 0);
+  }
+  19%,22.99%,32%,36.999%,45%,45.999%,50%,50.99%,59%,60.999%,69%,70.999%,86%,95.999% { 
+    opacity:0.4; text-shadow: none; 
+  }
+}
+
+#admin-home
+	position absolute
+	top 0
+	left 250px
+	bottom 0
+	right 0
+	border-left 1px solid rgba(0,0,0,0.3)
+	background-color #3f3f3f
+	text-transform uppercase
+	*
+		font-family 'Monoton'
+		font-size 75px
+	div
+		background-image url('/assets/admin/home-page-frame.png')
+		background-repeat no-repeat
+		background-size 100% 100%
+		position absolute
+		width 547px
+		height 356px
+		border 0
+		left 400px
+		top 140px
+#error
+	margin-top 200px
+	color white
+	text-shadow(unquote('0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff'))
+	span
+		animation(unquote('upper 11s linear infinite'))
+#code
+	span:nth-of-type(1)
+		text-shadow(unquote('0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;'))
+		color red
+	span:nth-of-type(2)
+		color #FF6B00
+		text-shadow none
+		opacity .4;
+	span:nth-of-type(3)
+		text-shadow(unquote('0 0 80px yellow,0 0 30px rgb(174, 178, 34),0 0 6px rgb(139, 137, 0)'))
+		color yellow
+	span:nth-of-type(4)
+		animation(unquote('lower 10s linear infinite'))
+		color green
+	span:nth-of-type(5)
+		text-shadow(unquote('0 0 80px blue,0 0 30px rgb(34, 118, 178),0 0 6px rgb(9, 0, 139)'))
+		color blue

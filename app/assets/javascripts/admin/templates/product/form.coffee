@@ -1,214 +1,39 @@
 app.templates.form.product =
-	table: [
-		{
-			tr: [		   		
-				{
-					td: [
-						{
-							attrs:
-								"colspan": "3"
-							header: "Статус"
-							field: "extension_id"
-							belongs_to: "extension"
-							treebox:
-								data:
-									extension:
-										fields: ['name']
-										pick: true
-								pick:
-									val: "id"
-									header: "name"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs:
-								"colspan": "3"
-							header: "Категория"
-							field: "category_id"
-							belongs_to: "category"
-							treebox:
-								data:
-									category:
-										fields: ['name']
-										pick: true
-										has_self: true
-								pick:
-									val: "id"
-									header: "name"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs:
-								"colspan": "3"
-							header: "Подкатегория"
-							field: "subcategory_id"
-							belongs_to: "subcategory"
-							treebox:
-								data:
-									subcategory:
-										fields: ['name']
-										pick: true
-								pick:
-									val: "id"
-									header: "name"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs:
-								"colspan": "3"
-							header: "Категории"
-							habtm_checkboxes:
-								model: "category"
-								header: "name"
-							row: 6
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Название"
-							field: "name"
-							validation:
-								presence: true
-						},
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Код"
-							field: "scode"
-							validation:
-								uniq: true
-						},
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Артикул"
-							field: "article"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Цена"
-							field: "price"
-							format:
-								decimal: "currency"
-							validation:
-								presence: true
-						},
-						{
-							header: "Старая цена"
-							field: "old_price"
-						},
-						{
-							header: "Позиция"
-							field: "position"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "SEO title"
-							field: "seo_title"
-						},
-						{
-							header: "title"
-							field: "title"
-						},
-						{
-							header: "SEO keywords (через запятую)"
-							field: "seo_keywords"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Отображать на главной странице"
-							checkbox: "main"
-						},
-						{
-							header: "Отображать на панели скидки"
-							checkbox: "action"
-						},
-						{
-							header: "Отображать на панели Хиты продаж"
-							checkbox: "best"
-						}
-					]
-				},
-				{
-					td: [
-						{
-							header: "Сделать Невидимым"
-							checkbox: "invisible"
-						},
-						{
-							header: "Сделать Разделителем"
-							checkbox: "delemiter"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs:
-								colspan: "3"
-							images: true
-						}
-					]
-				},
-				{
-					td: [
-						{
-							attrs:
-								colspan: "3"
-							text: 
-								"Описание":
-									field: "description"
-									type: "editor"
-								"Короткое описание":
-									field: "shortdesk"
-									type: "editor"
-								"SEO текст":
-									field: "seo_text"
-									type: "editor"
-								"SEO description":
-									field: "seo_description"
-									type: "textarea"
-						}
-					]
-				}
-			]
-		}
-	]
-	belongs_to: [
-			{model: "extension"}
-			{model: "subcategory"}
+	page: ->
+		ret = btn_save() + "<table>"
+		ret += tr td tb("Статус", 'extension', data: {extension: {fields: ['name'], pick: true}}), attrs: colspan: 3
+		ret += tr td tb("Категория", 'category', data: {category: {fields: ['name'], pick: true, has_self: true}}), attrs: colspan: 3
+		ret += tr td tb("Подкатегория", 'subcategory', data: {subcategory: {fields: ['name'], pick: true}}), attrs: colspan: 3
+		ret += tr td habtm_checkboxes("Категории", "category", "name", 6), attrs: colspan: 3
+		ret += tr [
+			td field("Название", "name", {validation: presence: true}), attrs: {width: "33.3%"}
+			td field("Код", "scode", {validation: {presence: true, uniq: true}}), attrs: {width: "33.3%"}
+			td field("Артикул", "article"), attrs: {width: "33.3%"}
 		]
-	preload: [
-		{model: "category"}
-	]
-	with_id: [
-		{
-			param: {model: "image", where: {imageable_type: "Product"}}
-			id: (id) -> @.param.where.imageable_id = id
-		}
-	]
-	ids: [
-		"category"
-	]
+		ret += tr [
+			td field "Цена", "price", {format: {decimal: "currency"}, validation: true}
+			td field "Старая цена", "old_price"
+			td field "Позиция", "position"
+		]
+		ret += tr [
+			td field "SEO title", "seo_title"
+			td field "title", "title"
+			td field "SEO keywords (через запятую)", "seo_keywords"
+		]
+		ret += tr [
+			td checkbox "Отображать на главной странице", "main"
+			td checkbox "Отображать на панели скидки", "action"
+			td checkbox "Отображать на панели Хиты продаж", "best"
+		]
+		ret += tr [
+			td checkbox "Сделать Невидимым", "invisible"
+			td checkbox "Сделать Разделителем", "delemiter"
+		]
+		ret += tr td images(), attrs: colspan: 3
+		ret += tr td text("Описание": "description", "Короткое описание": "shortdesk", "SEO текст": "seo_text", "SEO description": "seo_description": "textarea"), attrs: colspan: 3
+		ret += "</table>" + btn_save()
+		title('товар') + form ret
+	belongs_to: ["extension", "subcategory"]
+	has_many: "image"
+	ids: "category"
+	get: [{model: "category", select: ['id', 'name']}]

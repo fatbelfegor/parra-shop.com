@@ -1,12 +1,155 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Title</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title><%= @title || 'ParraShop' %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <meta name='yandex-verification' content='55e5e85d2e764276' />
+  <meta name="description" content="<%= @seo_description || '' %>">
+  <meta name="keywords" content="<%= @seo_keywords || '' %>">
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= yield %>
+<div id="header">
+	<a class="logo" href='/'>
+		<img src="/assets/logo.png">
+	</a>
+	<div id="search">
+		<form action="/catalog/index">
+			<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
+			<input type="submit" value="Поиск"/>
+		</form>
+	</div>
+	<div class="phone">
+		<p>8-800-707-67-57</p>
+		<ins>Бесплатные звонки по России</ins>
+	</div>
+	<div id="menu">
+		<div class='catalog'>
+			<p>Спальни</p>
+			<div class='background'>
+				<div class='active' style="background-image: url('/assets/Bella.jpg')"></div>
+				<div style="background-image: url('/assets/Plisset.jpg')"></div>
+				<div style="background-image: url('/assets/Orly.jpg')"></div>
+				<div style="background-image: url('/assets/Ritmika.jpg')"></div>
+				<div style="background-image: url('/assets/Lorra.jpg')"></div>
+				<div style="background-image: url('/assets/Leggero.jpg')"></div>
+				<div style="background-image: url('/assets/Miro.jpg')"></div>
+				<div style="background-image: url('/assets/Mild.jpg')"></div>
+			</div>
+			<div class='categories'>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Bella">Bella</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Plisset">Plisset</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Orly">Orly</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Ritmika">Ritmika</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Lorra">Lorra</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Leggero">Leggero</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Miro">Miro</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Mild">Mild</a>
+			</div>
+		</div>
+		<div class='catalog'>
+			<p>Гостинные</p>
+			<div class='background'>
+				<div class='active' style="background-image: url(/assets/P3.jpg)"></div>
+				<div style="background-image: url(/assets/BellaGost.jpg)"></div>
+				<div style="background-image: url(/assets/Verro.jpg)"></div>
+				<div style="background-image: url(/assets/Style.jpg)"></div>
+				<div style="background-image: url(/assets/Joy.jpg)"></div>
+				<div style="background-image: url(/assets/Azzon.jpg)"></div>
+				<div style="background-image: url(/assets/Forma.jpg)"></div>
+			</div>
+			<div class='categories'>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=P3">P3</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Bella">BellaGost</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Verro">Verro</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Style">Style</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Joy">Joy</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Azzon">Azzon</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Forma">Forma</a>
+			</div>
+		</div>
+		<div class='catalog'>
+			<p>Диваны</p>
+			<div class='background'>
+				<div class='active' style="background-image: url(/assets/Trevi.jpg)"></div>
+				<div style="background-image: url(/assets/Opera.jpg)"></div>
+				<div style="background-image: url(/assets/Lucca.jpg)"></div>
+				<div style="background-image: url(/assets/Ritmo.jpg)"></div>
+				<div style="background-image: url(/assets/Nuvola.jpg)"></div>
+				<div style="background-image: url(/assets/SoftAgioArteCircle.jpg)"></div>
+			</div>
+			<div class='categories'>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Trevi">Trevi</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Opera">Opera</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Lucca">Lucca</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Ritmo">Ritmo</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Nuvola">Nuvola</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=Кресла">Кресла</a>
+			</div>
+		</div>
+		<div class='catalog'>
+			<p>Матрасы</p>
+			<div class='background'>
+				<div class='active' style="background-image: url(/assets/SonberryOrganic.jpg)"></div>
+				<div style="background-image: url(/assets/SonberryAero.jpg)"></div>
+				<div style="background-image: url(/assets/SonberryActive.jpg)"></div>
+			</div>
+			<div class='categories'>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=SonberryOrganic">Organic</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=SonberryAero">Aero</a>
+				<a onmouseenter='menuBg(this)' href="/catalog?category_scode=SonberryActive">Active</a>
+			</div>
+		</div>
+		<div class='catalog all-products'>
+			<p>Все товары</p>
+      		<div class='background'>
+      			<p>
+      				<a href="/catalog?category_scode=Кровати">Кровати</a>
+      				<a href="/catalog?category_scode=Шкафы">Шкафы</a>
+      				<a href="/catalog?category_scode=Комоды">Комоды</a>
+      				<a href="/catalog?category_scode=Тумбочки">Тумбочки</a>
+      				<a href="/catalog?category_scode=ТумбыподTV">Тумбы TV</a>
+      			</p>
+      			<p>
+      				<a href="/catalog?category_scode=Зеркала">Зеркала</a>
+      				<a href="/catalog?category_scode=Полки">Полки</a>
+      				<a href="/catalog?category_scode=Столы">Столы</a>
+      				<a href="/catalog?category_scode=Основания">Основания</a>
+      				<a href="/catalog?category_scode=Буфеты">Буфеты</a>
+      			</p>
+      		</div>
+		</div>
+		<div class='catalog wherebuy'>
+			<a href="/stores">Где купить</a>
+			<div class="background">
+				<a href="http://www.parra-shop.ru/store1">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
+				<a href="http://www.parra-shop.ru/mebelnyj-gipermarket-family-room">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
+				<a style="border-color: #737E76" href="http://www.parra-shop.ru/tk-armada">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
+				<a style="border-color: #F88800" href="http://www.parra-shop.ru/tk-armada">Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56</a>
+				<a style="border-color: #06450C" href="http://www.parra-shop.ru/tc%20roomer">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
+				<a style="border-color: #07298A" href="http://www.parra-shop.ru/tk-tvoj-dom-na-66-km-mkad">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение<br>Волоколамского ш. и<br> 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
+				<a style="border-color: #FEDD02" href="http://www.parra-shop.ru/trc-rio-reutov">Мебель PARRA<br>ТРЦ "РИО" Реутов<br>г. Реутов, 2-ой км<br>МКАД, д. 2, этаж 3<br>(499) 347-09-09</a>
+				<a style="border-color: #737E76" href="http://www.parra-shop.ru/mc-vagant-podolsk">Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18</a>
+				<a style="border-color: #737E76" href="http://www.parra-shop.ru/store9">Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
+			</div>
+		</div>
+		<div class='catalog'>
+			<a href="/cart">Корзина</a>
+		</div>
+	</div>
+</div>
+<div id="main">
+	<div>
+	<%= yield %>
+	</div>
+</div>
+<div id="footer">
+	<a href="/service">Доставка и сборка</a>
+	<a href="/partners">Партнерам</a>
+	<a href="/news">Новости</a>
+	<a href="/articles">Статьи</a>
+	<a href="/insurance">Гарантии</a>
+</div>
 </body>
 </html>

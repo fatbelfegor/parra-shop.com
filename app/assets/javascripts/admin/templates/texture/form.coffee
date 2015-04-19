@@ -1,65 +1,14 @@
 app.templates.form.texture =
-	table: [
-		{
-			tr: [
-				{
-					without_tr: [1]
-					td: [
-						{
-							attrs:
-								colspan: "3"
-							header: "Цвет"
-							field: "color_id"
-							belongs_to: "color"
-							treebox:
-								data:
-									color:
-										fields: ['name']
-										pick: true
-								pick:
-									val: "id"
-									header: "name"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Название"
-							field: "name"
-							validation:
-								presence: true
-						},
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Код"
-							field: "scode"
-							validation:
-								presence: true
-						},
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Цена"
-							field: "price"
-							format:
-								decimal: "currency"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs:
-								colspan: 3
-							header: "Добавить изображение"
-							image: 'image'
-						}
-					]
-				}
-			]
-		}
-	]
+	page: ->
+		ret = btn_save() + "<table>"
+		ret += tr td tb("Цвет", 'color', data: {category: {fields: ['name'], has_self: true, habtm: product: {fields: ['name'], has_many: size: {fields: ['name'], has_many: color: {fields: ['name'], pick: true}}}}}), attrs: colspan: 3
+		ret += tr image_field 'Добавить изображение', 'image', attrs: colspan: 3
+		ret += tr [
+			td field("Название", "name", {validation: presence: true}), attrs: {width: "33.3%"}
+			td field("Код", "scode", {validation: {presence: true, uniq: true}}), attrs: {width: "33.3%"}
+			td field "Цена", "price", {format: {decimal: "currency"}, validation: true}
+		]
+		ret += "</table>"
+		ret += btn_save()
+		title('текстуру') + form ret
+	belongs_to: ["color"]

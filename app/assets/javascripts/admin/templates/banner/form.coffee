@@ -1,23 +1,3 @@
 app.templates.form.banner =
-	table: [
-		{
-			tr: [
-				{
-					td: [
-						{
-							header: "Ссылка"
-							field: "url"
-						}
-					]
-				},
-				{
-					td: [
-						{
-							header: "Добавить изображение"
-							image: 'image'
-						}
-					]
-				}
-			]
-		}
-	]
+	page: ->
+		title('баннер') + form btn_save() + "<table>" + tr field("url", "url") + image_field('Добавить изображение', 'image') + "</table>"

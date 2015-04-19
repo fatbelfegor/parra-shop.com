@@ -22,18 +22,6 @@ class Admin::AdminController < ApplicationController
 		rend data: params[:model].classify.constantize.send("find_by_#{params[:field]}", params[:val]).nil?
 	end
 
-	def sort
-		parent_id = params[:parent_id]
-		parent_id = nil if parent_id == 'nil'
-		name = params[:model]
-		model = name.classify.constantize
-		params[:ids].each_with_index do |id, index|
-			model.find(id).update position: index+1, "#{name}_id" => parent_id
-			puts model.find(id).name + ' ' + (index + 1).to_s + ' ' + parent_id.to_s
-		end
-		render :nothing => true
-	end
-
 	def images_sort
 		urls = params[:urls]
 		params[:model].classify.constantize.find(params[:id]).images.each_with_index do |image, i|

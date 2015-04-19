@@ -23,6 +23,7 @@ class CreateProducts < ActiveRecord::Migration
 			t.integer "subcategory_id"
 			t.string "article"
 			t.integer "extension_id"
+			t.timestamp :created_at
 		end
 
 		add_index :products, :scode, unique: true

@@ -1,55 +1,13 @@
 app.templates.form.option =
-	table: [
-		{
-			tr: [
-				{
-					without_tr: [1]
-					td: [
-						{
-							attrs:
-								colspan: "3"
-							header: "Размер"
-							field: "size_id"
-							belongs_to: "size"
-							treebox:
-								data:
-									size:
-										fields: ['name']
-										pick: true
-								pick:
-									val: "id"
-									header: "name"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Название"
-							field: "name"
-							validation:
-								presence: true
-						},
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Код"
-							field: "scode"
-							validation:
-								presence: true
-						},
-						{
-							attrs:
-								"width": "33.3%"
-							header: "Цена"
-							field: "price"
-							format:
-								decimal: "currency"
-						}
-					]
-				}
-			]
-		}
-	]
+	page: ->
+		ret = btn_save() + "<table>"
+		ret += tr td tb("Размер", 'size', data: {category: {fields: ['name'], has_self: true, habtm: product: {fields: ['name'], has_many: size: {fields: ['name'], pick: true}}}}), attrs: colspan: 3
+		ret += tr [
+			td field("Название", "name", {validation: presence: true}), attrs: {width: "33.3%"}
+			td field("Код", "scode", {validation: {presence: true, uniq: true}}), attrs: {width: "33.3%"}
+			td field "Цена", "price", {format: {decimal: "currency"}, validation: true}
+		]
+		ret += "</table>"
+		ret += btn_save()
+		title('опцию') + form ret
+	belongs_to: ["size"]

@@ -19,11 +19,11 @@ Admin::RoleList = {
 				{model: "order"}
 			],
 		"admin/admin#home" => true,
-		"admin/record#get" => true,
+		"admin/db#get" => true,
 		"admin/record#new" => true,
 		"admin/record#index" => true,
 		"admin/record#edit" => true,
-		"admin/record#save" => true,
-		"admin/record#destroy" => true
+		"admin/db#save" => true,
+		"admin/db#destroy" => true
 	}
 }

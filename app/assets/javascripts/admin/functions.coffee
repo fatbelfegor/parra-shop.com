@@ -4,6 +4,8 @@ String.prototype.toNumber = ->
 	parseFloat @replace(/\ /g,'')
 String.prototype.toCurrency = ->
 	@toNumber().toCurrency()
+String.prototype.classify = ->
+	(@charAt(0).toUpperCase() + @slice(1)).replace /(\_\w)/g, (m) -> m[1].toUpperCase()
 
 # Validate
 

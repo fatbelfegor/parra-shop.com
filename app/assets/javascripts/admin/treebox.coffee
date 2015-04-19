@@ -49,6 +49,11 @@
 		params.treeboxAttrs ?= {}
 		@cb.push cb
 		rec_id = params.rec.id if params.rec
+		unless params.pick
+			params.pick = val: 'id', header: 'name'
+		else
+			params.pick.val ?= 'id'
+			params.pick.header ?= 'name'
 		ret = "<#{params.tag}
 			data-index='#{index}'
 			data-treebox='#{JSON.stringify params.data}'
@@ -87,14 +92,15 @@
 		tb.find('> p').css 'width', '100%'
 		data = tb.data()
 		wrap = tb.find 'ul'
-		params = []
+		get = []
 		for k, v of data.treebox
-			m = {model: k}
+			m = model: k, select: []
+			m.select.push f for f in v.fields
+			m.select.push 'id' if 'id' not in m.select
 			if v.has_self
-				where = {}
-				where[k + '_id'] = null
-				m.where = where
+				m.where_null = [k + '_id']
 				m.ids = [k]
+				m.select.push m.model + '_id' if m.model + '_id' not in m.select
 			if v.has_many
 				m.ids ||= []
 				for n, h of v.has_many
@@ -103,28 +109,28 @@
 				m.ids ||= []
 				for n, h of v.habtm
 					m.ids.push n
-			params.push m
-		record.load params, ->
+			get.push m
+		db.get get, ->
 			ret = ""
 			for name, params of data.treebox
 				if params.has_self
 					where = {}
 					where[name + '_id'] = null
-					recs = models[name].where where
-				else recs = models[name].all()
+					recs = db.where name, where
+				else recs = db.all name
 				ret += treebox.draw data, name, params, recs
 			ret = "<li><p>Отсутствуют записи</p></li>" if ret is ''
 			wrap.html ret
 	draw: (data, name, params, recs) ->
 		ret = ""
 		for rec in recs
-			if !(rec.modelName is data.notModel and rec.id is data.notId)
+			if !(name is data.notModel and rec.id is data.notId)
 				ret += "<li>"
 				if params.pick
 					ret += "<i class='icon-checkmark2#{if rec.id is data.recId then ' active' else ''}' data-val='#{rec[data.pick.val]}' data-header='#{rec[data.pick.header]}' onclick='#{data.pickAction}'></i>"
 				arrow = false
 				if params.has_self
-					arrow = true if rec[name + '_ids'].length > 0
+					arrow = true if rec[name + '_ids'].length
 				relations = {}
 				if params.has_many
 					relations.has_many = {}
@@ -138,7 +144,6 @@
 						ids = rec[k + '_ids']
 						arrow = true
 						relations.habtm[k] = ids
-						break
 				ret += "<i class='icon-arrow-down5' data-relations='#{JSON.stringify relations}' data-id='#{rec.id}' data-model='#{name}' data-treebox='#{JSON.stringify params}' onclick='treebox.open(this)'></i>" if arrow
 				ret += "<p>"
 				ret += "<span>#{rec[f]}</span>" for f in params.fields
@@ -170,7 +175,10 @@
 				el.data 'ready', true
 				params = []
 				if data.treebox.has_self
-					m = model: data.model, ids: [data.model], where: {}
+					m = model: data.model, ids: [data.model], where: {}, select: []
+					m.select.push f for f in data.treebox.fields
+					m.select.push m.model + '_id' if m.model + '_id' not in m.select
+					m.select.push 'id' if 'id' not in m.select
 					m.where[data.model + '_id'] = data.id
 					m.ids.push n for n, h of data.treebox.has_many if data.treebox.has_many
 					m.ids.push n for n, h of data.treebox.habtm if data.treebox.habtm
@@ -195,20 +203,18 @@
 							m.ids ?= []
 							m.ids.push a for a of h.habtm
 						params.push m
-				console.log params
-				record.load params, ->
+				db.get params, ->
 					ret = ""
-					model = models[data.model]
 					if data.treebox.has_many
 						for k, v of data.treebox.has_many
-							ret += treebox.drawGroup treebox_data, k, v, models[k].find data.relations.has_many[k]
+							ret += treebox.drawGroup treebox_data, k, v, db.find k, data.relations.has_many[k] if data.relations.has_many[k].length
 					if data.treebox.habtm
 						for k, v of data.treebox.habtm
-							ret += treebox.drawGroup treebox_data, k, v, models[k].find data.relations.habtm[k]
+							ret += treebox.drawGroup treebox_data, k, v, db.find k, data.relations.habtm[k] if data.relations.habtm[k].length
 					if data.treebox.has_self
 						where = {}
-						where[model.name + '_id'] = data.id
-						ret += treebox.drawGroup treebox_data, model.name, data.treebox, model.where where
+						where[data.model + '_id'] = data.id
+						ret += treebox.drawGroup treebox_data, data.model, data.treebox, db.where data.model, where
 					el.parent().append ret
 	out_click: ->
 		$('html').click ->

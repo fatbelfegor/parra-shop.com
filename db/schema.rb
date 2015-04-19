@@ -154,28 +154,29 @@ ActiveRecord::Schema.define(version: 20150331185829) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "category_id",     limit: 4
-    t.string  "scode",           limit: 255,                                          null: false
-    t.string  "name",            limit: 255,                                          null: false
-    t.text    "description",     limit: 65535
-    t.text    "shortdesk",       limit: 65535
-    t.boolean "delemiter",       limit: 1
-    t.boolean "invisible",       limit: 1
-    t.boolean "main",            limit: 1
-    t.boolean "action",          limit: 1
-    t.boolean "best",            limit: 1
-    t.integer "position",        limit: 4
-    t.string  "seo_title",       limit: 255
-    t.string  "seo_description", limit: 255
-    t.string  "seo_keywords",    limit: 255
-    t.string  "seo_imagealt",    limit: 255
-    t.decimal "price",                         precision: 18, scale: 2, default: 0.0
-    t.text    "seo_text",        limit: 65535
-    t.decimal "old_price",                     precision: 18, scale: 2, default: 0.0
-    t.string  "title",           limit: 255
-    t.integer "subcategory_id",  limit: 4
-    t.string  "article",         limit: 255
-    t.integer "extension_id",    limit: 4
+    t.integer  "category_id",     limit: 4
+    t.string   "scode",           limit: 255,                                          null: false
+    t.string   "name",            limit: 255,                                          null: false
+    t.text     "description",     limit: 65535
+    t.text     "shortdesk",       limit: 65535
+    t.boolean  "delemiter",       limit: 1
+    t.boolean  "invisible",       limit: 1
+    t.boolean  "main",            limit: 1
+    t.boolean  "action",          limit: 1
+    t.boolean  "best",            limit: 1
+    t.integer  "position",        limit: 4
+    t.string   "seo_title",       limit: 255
+    t.string   "seo_description", limit: 255
+    t.string   "seo_keywords",    limit: 255
+    t.string   "seo_imagealt",    limit: 255
+    t.decimal  "price",                         precision: 18, scale: 2, default: 0.0
+    t.text     "seo_text",        limit: 65535
+    t.decimal  "old_price",                     precision: 18, scale: 2, default: 0.0
+    t.string   "title",           limit: 255
+    t.integer  "subcategory_id",  limit: 4
+    t.string   "article",         limit: 255
+    t.integer  "extension_id",    limit: 4
+    t.datetime "created_at"
   end
 
   add_index "products", ["scode"], name: "index_products_on_scode", unique: true, using: :btree

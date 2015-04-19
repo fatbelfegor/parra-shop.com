@@ -1,18 +1,4 @@
 app.templates.form.status =
-	table: [
-		{
-			tr: [
-				{
-					td: [
-						{
-							header: "name"
-							field: "name"
-							validation:
-								presence: true
-								uniq: true
-						}
-					]
-				}
-			]
-		}
-	]
+	page: ->
+		ret = btn_save() + "<table>" + tr(td field "Название", "name", validation: presence: true) + "</table>" + btn_save()
+		title('статус заказа') + form ret

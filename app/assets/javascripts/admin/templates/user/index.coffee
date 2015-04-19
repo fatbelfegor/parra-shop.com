@@ -1,54 +1,26 @@
 app.templates.index.user =
-	header: [['Логи', 'min'], ['Префикс', '90px'], 'E-mail', ['Роль', '141px'], ['Действия', 'min']]
-	table: [
-		{
-			tr: [
-				{
-					td: [
-						{
-							attrs:
-								class: 'btn green'
-								style: 'width: 1px'
-								onclick: "functions.relationToggle(this, 'user_log')"
-							html: "<p>Логи</p>"
-							set: (rec) -> @continue = if rec.user_log_ids.length then false else true
-						}
-						{
-							attrs:
-								width: '175px'
-							show: "prefix"
-							format:
-								replaceNull: "Без префикса"
-						}
-						{
-							show: "email"
-						}
-						{
-							attrs:
-								width: '175px'
-							show: "role"
-						}
-						{
-							attrs:
-								class: 'btn orange always'
-								style: 'width: 1px'
-							set: (rec, model) -> @html = "<a onclick='app.aclick(this)' href='/admin/model/#{model}/edit/#{rec.id}'><i class='icon-pencil3'></i></a>"
-						}
-						{
-							attrs:
-								class: 'btn red always'
-								onclick: 'functions.removeRecord(this)'
-								style: 'width: 1px'
-							html: "<i class='icon-remove3'></i>"
-						}
-					]
-				}
+	page: (recs) ->
+		ret = ""
+		for rec in recs
+			window.rec = rec
+			ret += group tr([
+				if rec.user_log_ids.length then btn_relation "Логи", "user_log" else ''
+				show 'prefix', attrs: {width: '175px'}, format: replace_null: 'Без префикса'
+				show 'email'
+				show 'role', attrs: style: '175px'
+				buttons()
+			]), relations:
+				close:
+					user_log:
+						header: "<p style='width: 100%'>Логи (<span class='relations-count'>#{window.rec['user_log_ids'].length}</span>)</p>"
+						render: 'renderUserLogs'
+		header([['Логи', 'min'], ['Префикс', '90px'], 'E-mail', ['Роль', '141px'], ['Действия', 'min']]) + records ret
+	has_many: "user_log"
+	ids: ["user_log"]
+	functions:
+		renderUserLogs: ->
+			group tr [
+				show "created_at", attrs: {style: 'width: 1px'}, format: date: "dd.MM.yyyy, hh:mm"
+				show "action"
+				destroy()
 			]
-		}
-	]
-	relations:
-		close:
-			user_log:
-				header: [
-					name: 'Логи'
-				]

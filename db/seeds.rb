@@ -1023,7 +1023,8 @@ product = Product.create({
 	title: "[KRO-600]+[IZG-607/GRA]",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 14:40:52 +0400"
 })
 
 product.images.create({
@@ -1058,7 +1059,8 @@ product = Product.create({
 	title: "KRO-600/ZEB+IZG-601/ZEB; KRO-600/ORE+IZG-601/ORE",
 	subcategory_id: nil,
 	article: "KRO-600/ZEB+IZG-601/ZEB; KRO-600/ORE+IZG-601/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 16:50:30 +0400"
 })
 
 product.images.create({
@@ -1105,7 +1107,8 @@ product = Product.create({
 	title: "TUM-602/ZEB; TUM-602/ORE",
 	subcategory_id: nil,
 	article: "TUM-602/ZEB; TUM-602/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 17:20:19 +0400"
 })
 
 product.images.create({
@@ -1152,7 +1155,8 @@ product = Product.create({
 	title: "KOM-603/ZEB; KOM-603/ORE",
 	subcategory_id: nil,
 	article: "KOM-603/ZEB; KOM-603/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 17:27:17 +0400"
 })
 
 product.images.create({
@@ -1203,7 +1207,8 @@ product = Product.create({
 	title: "KOM-605/ZEB; KOM-605/ORE",
 	subcategory_id: nil,
 	article: "KOM-605/ZEB; KOM-605/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 17:32:54 +0400"
 })
 
 product.images.create({
@@ -1254,7 +1259,8 @@ product = Product.create({
 	title: "KOM-609/ZEB; KOM-609/ORE",
 	subcategory_id: nil,
 	article: "KOM-609/ZEB; KOM-609/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 17:43:18 +0400"
 })
 
 product.images.create({
@@ -1293,7 +1299,8 @@ product = Product.create({
 	title: "ZER-604/ZEB; ZER-604/ORE",
 	subcategory_id: nil,
 	article: "ZER-604/ZEB; ZER-604/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 17:53:44 +0400"
 })
 
 product.images.create({
@@ -1344,7 +1351,8 @@ product = Product.create({
 	title: "STT-606/ZEB; STT-606/ORE",
 	subcategory_id: nil,
 	article: "STT-606/ZEB; STT-606/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 17:57:02 +0400"
 })
 
 product.images.create({
@@ -1395,7 +1403,8 @@ product = Product.create({
 	title: "PUF-610/GRA; PUF-610/CER",
 	subcategory_id: nil,
 	article: "PUF-610/GRA; PUF-610/CER",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 18:05:27 +0400"
 })
 
 product.images.create({
@@ -1442,7 +1451,8 @@ product = Product.create({
 	title: "MOD-700/ZEB",
 	subcategory_id: 11,
 	article: "MOD-700/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 18:09:47 +0400"
 })
 
 product.images.create({
@@ -1477,7 +1487,8 @@ product = Product.create({
 	title: "MOD-700/ORE",
 	subcategory_id: 11,
 	article: "MOD-700/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-09 18:13:00 +0400"
 })
 
 product.images.create({
@@ -1512,7 +1523,8 @@ product = Product.create({
 	title: "KRO-16/BEL",
 	subcategory_id: nil,
 	article: "KRO-16/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-20 15:53:03 +0400"
 })
 
 product.images.create({
@@ -1555,7 +1567,8 @@ product = Product.create({
 	title: "TUM-12/BEL",
 	subcategory_id: nil,
 	article: "TUM-12/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-20 23:44:57 +0400"
 })
 
 product.images.create({
@@ -1594,7 +1607,8 @@ product = Product.create({
 	title: "KOM-13/BEL",
 	subcategory_id: nil,
 	article: "KOM-13/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-20 23:51:45 +0400"
 })
 
 product.images.create({
@@ -1633,7 +1647,8 @@ product = Product.create({
 	title: "KOM-14/BEL",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-20 23:56:04 +0400"
 })
 
 product.images.create({
@@ -1664,7 +1679,8 @@ product = Product.create({
 	title: "KOM-14/BEL",
 	subcategory_id: nil,
 	article: "KOM-14/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 00:09:18 +0400"
 })
 
 product.images.create({
@@ -1703,7 +1719,8 @@ product = Product.create({
 	title: "STT-08/BEL",
 	subcategory_id: nil,
 	article: "STT-08/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 00:12:59 +0400"
 })
 
 product.images.create({
@@ -1742,7 +1759,8 @@ product = Product.create({
 	title: "ZER-15/BEL",
 	subcategory_id: nil,
 	article: "ZER-15/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 00:15:55 +0400"
 })
 
 product.images.create({
@@ -1781,7 +1799,8 @@ product = Product.create({
 	title: "MOD-720/BEL",
 	subcategory_id: nil,
 	article: "MOD-720/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 00:24:22 +0400"
 })
 
 product.images.create({
@@ -1820,7 +1839,8 @@ product = Product.create({
 	title: "MOD-720/BEL",
 	subcategory_id: nil,
 	article: "MOD-720/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 00:33:17 +0400"
 })
 
 product.images.create({
@@ -1866,7 +1886,8 @@ product = Product.create({
 	title: "KRO-16/CH",
 	subcategory_id: nil,
 	article: "KRO-16/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 12:48:12 +0400"
 })
 
 product.images.create({
@@ -1905,7 +1926,8 @@ product = Product.create({
 	title: "TUM-12/CH",
 	subcategory_id: nil,
 	article: "TUM-12/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 12:53:15 +0400"
 })
 
 product.images.create({
@@ -1944,7 +1966,8 @@ product = Product.create({
 	title: "KOM-13/CH",
 	subcategory_id: nil,
 	article: "KOM-13/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 12:57:29 +0400"
 })
 
 product.images.create({
@@ -1983,7 +2006,8 @@ product = Product.create({
 	title: "KOM-14/CH",
 	subcategory_id: nil,
 	article: "KOM-14/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 16:25:30 +0400"
 })
 
 product.images.create({
@@ -2022,7 +2046,8 @@ product = Product.create({
 	title: "STT-08/CH",
 	subcategory_id: nil,
 	article: "STT-08/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 16:30:30 +0400"
 })
 
 product.images.create({
@@ -2061,7 +2086,8 @@ product = Product.create({
 	title: "ZER-15/CH",
 	subcategory_id: nil,
 	article: "ZER-15/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 16:36:42 +0400"
 })
 
 product.images.create({
@@ -2100,7 +2126,8 @@ product = Product.create({
 	title: "PUF-610/BEL1; PUF-610/CER",
 	subcategory_id: nil,
 	article: "PUF-610/BEL1; PUF-610/CER",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 17:51:12 +0400"
 })
 
 product.images.create({
@@ -2147,7 +2174,8 @@ product = Product.create({
 	title: "MOD-700/CH1",
 	subcategory_id: 11,
 	article: "MOD-700/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 17:58:25 +0400"
 })
 
 product.images.create({
@@ -2186,7 +2214,8 @@ product = Product.create({
 	title: "MOD-700/CH1",
 	subcategory_id: 11,
 	article: "MOD-700/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 18:02:50 +0400"
 })
 
 product.images.create({
@@ -2225,7 +2254,8 @@ product = Product.create({
 	title: "KRO-647/DUB+IZG-641/GRA/BEL; KRO-647/ORE+IZG-641/GRA/BEL; KRO-647-03/DUB+IZG-641-03/GRA/BEL; KRO-647-03/ORE+IZG-641-03/GRA/BEL",
 	subcategory_id: nil,
 	article: "KRO-647/DUB+IZG-641/GRA/BEL; KRO-647/ORE+IZG-641/GRA/BEL; KRO-647-03/DUB+IZG-641-03/GRA/BEL; KRO-647-03/ORE+IZG-641-03/GRA/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 18:44:56 +0400"
 })
 
 product.images.create({
@@ -2276,7 +2306,8 @@ product = Product.create({
 	title: "TUM-642/DUB; TUM-642/ORE",
 	subcategory_id: nil,
 	article: "TUM-642/DUB; TUM-642/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 18:51:39 +0400"
 })
 
 product.images.create({
@@ -2327,7 +2358,8 @@ product = Product.create({
 	title: "KOM-643/DUB; KOM-643/ORE",
 	subcategory_id: nil,
 	article: "KOM-643/DUB; KOM-643/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 19:36:28 +0400"
 })
 
 product.images.create({
@@ -2378,7 +2410,8 @@ product = Product.create({
 	title: "KOM-644/DUB; KOM-644/ORE",
 	subcategory_id: nil,
 	article: "KOM-644/DUB; KOM-644/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 19:41:57 +0400"
 })
 
 product.images.create({
@@ -2429,7 +2462,8 @@ product = Product.create({
 	title: "STT-646/DUB; STT-646/ORE",
 	subcategory_id: nil,
 	article: "STT-646/DUB; STT-646/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 19:52:12 +0400"
 })
 
 product.images.create({
@@ -2480,7 +2514,8 @@ product = Product.create({
 	title: "ZER-645/DUB; ZER-645/ORE",
 	subcategory_id: nil,
 	article: "ZER-645/DUB; ZER-645/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 19:57:36 +0400"
 })
 
 product.images.create({
@@ -2531,7 +2566,8 @@ product = Product.create({
 	title: "PUF-610/GRA; PUF-610/BEL1",
 	subcategory_id: nil,
 	article: "PUF-610/GRA; PUF-610/BEL1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 20:03:56 +0400"
 })
 
 product.images.create({
@@ -2574,7 +2610,8 @@ product = Product.create({
 	title: "MOD-720/ORE",
 	subcategory_id: 11,
 	article: "MOD-720/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 22:24:10 +0400"
 })
 
 product.images.create({
@@ -2617,7 +2654,8 @@ product = Product.create({
 	title: "MOD-700/ORE",
 	subcategory_id: 11,
 	article: "MOD-700/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 22:33:04 +0400"
 })
 
 product.images.create({
@@ -2660,7 +2698,8 @@ product = Product.create({
 	title: "MOD-700/ORE",
 	subcategory_id: 11,
 	article: "MOD-700/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 22:38:35 +0400"
 })
 
 product.images.create({
@@ -2703,7 +2742,8 @@ product = Product.create({
 	title: "MOD-700/ORE",
 	subcategory_id: 11,
 	article: "MOD-700/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 22:43:18 +0400"
 })
 
 product.images.create({
@@ -2750,7 +2790,8 @@ product = Product.create({
 	title: "MOD-700/ORE",
 	subcategory_id: 11,
 	article: "MOD-700/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 22:47:05 +0400"
 })
 
 product.images.create({
@@ -2797,7 +2838,8 @@ product = Product.create({
 	title: "KRO-620/DUB; KRO-620/ORE; KRO-620-03/DUB; KRO-620-03/ORE",
 	subcategory_id: nil,
 	article: "KRO-620/DUB; KRO-620/ORE; KRO-620-03/DUB; KRO-620-03/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-21 23:49:02 +0400"
 })
 
 product.images.create({
@@ -2836,7 +2878,8 @@ product = Product.create({
 	title: "TUM-752R/DUB; TUM-752L/DUB; TUM-622R/ORE; TUM-622L/ORE",
 	subcategory_id: nil,
 	article: "TUM-752R/DUB; TUM-752L/DUB; TUM-622R/ORE; TUM-622L/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 09:23:20 +0400"
 })
 
 product.images.create({
@@ -2875,7 +2918,8 @@ product = Product.create({
 	title: "KOM-753/DUB; KOM-623/ORE",
 	subcategory_id: nil,
 	article: "KOM-753/DUB; KOM-623/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 09:31:02 +0400"
 })
 
 product.images.create({
@@ -2914,7 +2958,8 @@ product = Product.create({
 	title: "KOM-754/DUB; KOM-624/ORE",
 	subcategory_id: nil,
 	article: "KOM-754/DUB; KOM-624/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 09:34:56 +0400"
 })
 
 product.images.create({
@@ -2953,7 +2998,8 @@ product = Product.create({
 	title: "STT-756/DUB; STT-626/ORE",
 	subcategory_id: nil,
 	article: "STT-756/DUB; STT-626/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 09:39:36 +0400"
 })
 
 product.images.create({
@@ -2992,7 +3038,8 @@ product = Product.create({
 	title: "ZER-625/DUB; ZER-625/ORE",
 	subcategory_id: nil,
 	article: "ZER-625/DUB; ZER-625/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 09:44:17 +0400"
 })
 
 product.images.create({
@@ -3031,7 +3078,8 @@ product = Product.create({
 	title: "MOD-720/ORE",
 	subcategory_id: 11,
 	article: "MOD-720/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 09:54:29 +0400"
 })
 
 product.images.create({
@@ -3070,7 +3118,8 @@ product = Product.create({
 	title: "MOD-720/ORE",
 	subcategory_id: 11,
 	article: "MOD-720/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 09:58:23 +0400"
 })
 
 product.images.create({
@@ -3109,7 +3158,8 @@ product = Product.create({
 	title: "MOD-720/DUB",
 	subcategory_id: 11,
 	article: "MOD-720/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 11:16:31 +0400"
 })
 
 product.images.create({
@@ -3148,7 +3198,8 @@ product = Product.create({
 	title: "MOD-720/DUB",
 	subcategory_id: 11,
 	article: "MOD-720/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-22 11:20:55 +0400"
 })
 
 product.images.create({
@@ -3191,7 +3242,8 @@ product = Product.create({
 	title: "KRO-760/CH1; KRO-760/DUB; KRO-760-03/CH1; KRO-760-03/DUB",
 	subcategory_id: nil,
 	article: "KRO-760/CH1; KRO-760/DUB; KRO-760-03/CH1; KRO-760-03/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 22:36:48 +0400"
 })
 
 product.images.create({
@@ -3230,7 +3282,8 @@ product = Product.create({
 	title: "TUM-762/CH1; TUM-762/DUB",
 	subcategory_id: nil,
 	article: "TUM-762/CH1; TUM-762/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 22:40:54 +0400"
 })
 
 product.images.create({
@@ -3269,7 +3322,8 @@ product = Product.create({
 	title: "KOM-763/CH1; KOM-763/DUB",
 	subcategory_id: nil,
 	article: "KOM-763/CH1; KOM-763/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 22:44:27 +0400"
 })
 
 product.images.create({
@@ -3308,7 +3362,8 @@ product = Product.create({
 	title: "KOM-764/CH1; KOM-764/DUB",
 	subcategory_id: nil,
 	article: "KOM-764/CH1; KOM-764/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 22:51:35 +0400"
 })
 
 product.images.create({
@@ -3347,7 +3402,8 @@ product = Product.create({
 	title: "STT-766/CH1; STT-766/DUB",
 	subcategory_id: nil,
 	article: "STT-766/CH1; STT-766/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 22:57:13 +0400"
 })
 
 product.images.create({
@@ -3386,7 +3442,8 @@ product = Product.create({
 	title: "ZER-765/CH1; ZER-765/DUB",
 	subcategory_id: nil,
 	article: "ZER-765/CH1; ZER-765/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 23:01:29 +0400"
 })
 
 product.images.create({
@@ -3425,7 +3482,8 @@ product = Product.create({
 	title: "POL-767/CH1",
 	subcategory_id: nil,
 	article: "POL-767/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 23:05:44 +0400"
 })
 
 product.images.create({
@@ -3464,7 +3522,8 @@ product = Product.create({
 	title: "MOD-720/DUB",
 	subcategory_id: 11,
 	article: "MOD-720/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 23:15:06 +0400"
 })
 
 product.images.create({
@@ -3503,7 +3562,8 @@ product = Product.create({
 	title: "MOD-720/CH1",
 	subcategory_id: 11,
 	article: "MOD-720/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 23:23:05 +0400"
 })
 
 product.images.create({
@@ -3542,7 +3602,8 @@ product = Product.create({
 	title: "KRO-590/CH1; KRO-590-03/CH1",
 	subcategory_id: nil,
 	article: "KRO-590/CH1; KRO-590-03/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-23 23:57:27 +0400"
 })
 
 product.images.create({
@@ -3589,7 +3650,8 @@ product = Product.create({
 	title: "TUM-592/CH1",
 	subcategory_id: nil,
 	article: "TUM-592/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 00:02:22 +0400"
 })
 
 product.images.create({
@@ -3628,7 +3690,8 @@ product = Product.create({
 	title: "KOM-593/CH1",
 	subcategory_id: nil,
 	article: "KOM-593/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 00:10:57 +0400"
 })
 
 product.images.create({
@@ -3667,7 +3730,8 @@ product = Product.create({
 	title: "KOM-597/CH1; KOM-597/ORE",
 	subcategory_id: nil,
 	article: "KOM-597/CH1; KOM-597/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 00:20:05 +0400"
 })
 
 product.images.create({
@@ -3698,7 +3762,8 @@ product = Product.create({
 	title: "KOM-595/CH1",
 	subcategory_id: nil,
 	article: "KOM-595/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 00:29:10 +0400"
 })
 
 product.images.create({
@@ -3737,7 +3802,8 @@ product = Product.create({
 	title: "KOM-598/CH1; KOM-598/ORE",
 	subcategory_id: nil,
 	article: "KOM-598/CH1; KOM-598/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 00:32:46 +0400"
 })
 
 product.images.create({
@@ -3768,7 +3834,8 @@ product = Product.create({
 	title: "STT-596/CH1",
 	subcategory_id: nil,
 	article: "STT-596/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 00:39:26 +0400"
 })
 
 product.images.create({
@@ -3807,7 +3874,8 @@ product = Product.create({
 	title: "ZER-594/CH1",
 	subcategory_id: nil,
 	article: "ZER-594/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 00:46:18 +0400"
 })
 
 product.images.create({
@@ -3850,7 +3918,8 @@ product = Product.create({
 	title: "POL-207/CH1/ORE",
 	subcategory_id: nil,
 	article: "POL-207/CH1/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 00:55:33 +0400"
 })
 
 product.images.create({
@@ -3885,7 +3954,8 @@ product = Product.create({
 	title: "MOD-700/CH1/ORE",
 	subcategory_id: 11,
 	article: "MOD-700/CH1/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 01:06:05 +0400"
 })
 
 product.images.create({
@@ -3924,7 +3994,8 @@ product = Product.create({
 	title: "MOD-700/CH1/ORE",
 	subcategory_id: 11,
 	article: "MOD-700/CH1/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 01:11:21 +0400"
 })
 
 product.images.create({
@@ -3963,7 +4034,8 @@ product = Product.create({
 	title: "MOD-700/CH1/ORE",
 	subcategory_id: 11,
 	article: "MOD-700/CH1/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 01:14:57 +0400"
 })
 
 product.images.create({
@@ -4002,7 +4074,8 @@ product = Product.create({
 	title: "BUF-161-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-161-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 23:45:35 +0400"
 })
 
 product.images.create({
@@ -4061,7 +4134,8 @@ product = Product.create({
 	title: "BUF-162-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-162-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 23:51:15 +0400"
 })
 
 product.images.create({
@@ -4116,7 +4190,8 @@ product = Product.create({
 	title: "BUF-163-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-163-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-24 23:54:24 +0400"
 })
 
 product.images.create({
@@ -4171,7 +4246,8 @@ product = Product.create({
 	title: "KOM-164-01/ORE",
 	subcategory_id: nil,
 	article: "KOM-164-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 00:01:58 +0400"
 })
 
 product.images.create({
@@ -4226,7 +4302,8 @@ product = Product.create({
 	title: "BUF-165-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-165-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 00:07:05 +0400"
 })
 
 product.images.create({
@@ -4281,7 +4358,8 @@ product = Product.create({
 	title: "TUM-166-01/ORE",
 	subcategory_id: nil,
 	article: "TUM-166-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 00:12:53 +0400"
 })
 
 product.images.create({
@@ -4336,7 +4414,8 @@ product = Product.create({
 	title: "TUM-168-01/ORE",
 	subcategory_id: nil,
 	article: "TUM-168-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 00:17:41 +0400"
 })
 
 product.images.create({
@@ -4391,7 +4470,8 @@ product = Product.create({
 	title: "TUM-167-01/ORE",
 	subcategory_id: nil,
 	article: "TUM-167-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 01:00:47 +0400"
 })
 
 product.images.create({
@@ -4446,7 +4526,8 @@ product = Product.create({
 	title: "POL-170-01/CH1",
 	subcategory_id: nil,
 	article: "POL-170-01/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 01:10:14 +0400"
 })
 
 product.images.create({
@@ -4501,7 +4582,8 @@ product = Product.create({
 	title: "POL-172-01/CH1; POL-171-01/CH1",
 	subcategory_id: nil,
 	article: "POL-172-01/CH1; POL-171-01/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 01:18:23 +0400"
 })
 
 product.images.create({
@@ -4556,7 +4638,8 @@ product = Product.create({
 	title: "TUM-253/ORE",
 	subcategory_id: nil,
 	article: "TUM-253/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 01:51:09 +0400"
 })
 
 product.images.create({
@@ -4595,7 +4678,8 @@ product = Product.create({
 	title: "BUF-251/ORE",
 	subcategory_id: nil,
 	article: "BUF-251/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 01:55:33 +0400"
 })
 
 product.images.create({
@@ -4634,7 +4718,8 @@ product = Product.create({
 	title: "BUF-250/ORE; DVE-250-01L/ORE; DVE-250-01R/ORE",
 	subcategory_id: nil,
 	article: "BUF-250/ORE; DVE-250-01L/ORE; DVE-250-01R/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 02:00:22 +0400"
 })
 
 product.images.create({
@@ -4673,7 +4758,8 @@ product = Product.create({
 	title: "BUF-260/ORE; DVE-260-01L/ORE; DVE-260-01R/ORE",
 	subcategory_id: nil,
 	article: "BUF-252/ORE; DVE-252-01L/ORE; DVE-252-01R/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 16:45:46 +0400"
 })
 
 product.images.create({
@@ -4716,7 +4802,8 @@ product = Product.create({
 	title: "KOM-254/ORE",
 	subcategory_id: nil,
 	article: "KOM-254/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 16:51:25 +0400"
 })
 
 product.images.create({
@@ -4751,7 +4838,8 @@ product = Product.create({
 	title: "POL-257/ORE",
 	subcategory_id: nil,
 	article: "POL-257/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 17:01:08 +0400"
 })
 
 product.images.create({
@@ -4790,7 +4878,8 @@ product = Product.create({
 	title: "POL-256/ORE; POL-255/ORE",
 	subcategory_id: nil,
 	article: "POL-256/ORE; POL-255/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 17:10:07 +0400"
 })
 
 product.images.create({
@@ -4833,7 +4922,8 @@ product = Product.create({
 	title: "STZ-258/ORE; STZ-259/ORE",
 	subcategory_id: nil,
 	article: "STZ-258/ORE; STZ-259/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 17:25:26 +0400"
 })
 
 product.images.create({
@@ -4876,7 +4966,8 @@ product = Product.create({
 	title: "TUM-P3-01/BEL; TUM-P3-01/SE",
 	subcategory_id: nil,
 	article: "TUM-P3-01/BEL; TUM-P3-01/SE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 18:46:01 +0400"
 })
 
 product.images.create({
@@ -4927,7 +5018,8 @@ product = Product.create({
 	title: "BUF-P3-02L/BEL; BUF-P3-02R/BEL; BUF-P3-02L/SE; BUF-P3-02R/SE",
 	subcategory_id: nil,
 	article: "BUF-P3-02L/BEL; BUF-P3-02R/BEL; BUF-P3-02L/SE; BUF-P3-02R/SE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 18:53:55 +0400"
 })
 
 product.images.create({
@@ -4978,7 +5070,8 @@ product = Product.create({
 	title: "SKA-P3-03/BEL; SKA-P3-03/SE",
 	subcategory_id: nil,
 	article: "SKA-P3-03/BEL; SKA-P3-03/SE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 18:59:10 +0400"
 })
 
 product.images.create({
@@ -5029,7 +5122,8 @@ product = Product.create({
 	title: "SKA-P3-04/BEL; SKA-P3-04/SE",
 	subcategory_id: nil,
 	article: "SKA-P3-04/BEL; SKA-P3-04/SE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 19:04:19 +0400"
 })
 
 product.images.create({
@@ -5080,7 +5174,8 @@ product = Product.create({
 	title: "BUF-P3-06L/BEL; BUF-P3-06R/BEL; BUF-P3-06L/SE; BUF-P3-06R/SE",
 	subcategory_id: nil,
 	article: "BUF-P3-06L/BEL; BUF-P3-06R/BEL; BUF-P3-06L/SE; BUF-P3-06R/SE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 19:09:41 +0400"
 })
 
 product.images.create({
@@ -5131,7 +5226,8 @@ product = Product.create({
 	title: "KOM-P3-35/BEL; KOM-P3-35/SE",
 	subcategory_id: nil,
 	article: "KOM-P3-35/BEL; KOM-P3-35/SE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 19:14:03 +0400"
 })
 
 product.images.create({
@@ -5182,7 +5278,8 @@ product = Product.create({
 	title: "POL-P3-05/DUB",
 	subcategory_id: nil,
 	article: "POL-P3-05/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 19:18:06 +0400"
 })
 
 product.images.create({
@@ -5233,7 +5330,8 @@ product = Product.create({
 	title: "BUF-203/CH1",
 	subcategory_id: nil,
 	article: "BUF-203/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 19:55:30 +0400"
 })
 
 product.images.create({
@@ -5280,7 +5378,8 @@ product = Product.create({
 	title: "BUF-202/CH1",
 	subcategory_id: nil,
 	article: "BUF-202/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-25 20:12:12 +0400"
 })
 
 product.images.create({
@@ -5323,7 +5422,8 @@ product = Product.create({
 	title: "POL-204/CH1",
 	subcategory_id: nil,
 	article: "POL-204/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-27 18:09:55 +0400"
 })
 
 product.images.create({
@@ -5366,7 +5466,8 @@ product = Product.create({
 	title: "TUM-205/CH1",
 	subcategory_id: nil,
 	article: "TUM-205/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-27 18:15:28 +0400"
 })
 
 product.images.create({
@@ -5413,7 +5514,8 @@ product = Product.create({
 	title: "TUM-206/CH1",
 	subcategory_id: nil,
 	article: "TUM-206/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-27 18:21:32 +0400"
 })
 
 product.images.create({
@@ -5460,7 +5562,8 @@ product = Product.create({
 	title: "STZ-209/CH1",
 	subcategory_id: nil,
 	article: "STZ-209/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-27 18:28:00 +0400"
 })
 
 product.images.create({
@@ -5507,7 +5610,8 @@ product = Product.create({
 	title: "POL-208/CH1; POL-207/CH1",
 	subcategory_id: nil,
 	article: "POL-208/CH1; POL-207/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-27 18:46:47 +0400"
 })
 
 product.images.create({
@@ -5554,7 +5658,8 @@ product = Product.create({
 	title: "BUF-201/CH1",
 	subcategory_id: nil,
 	article: "BUF-201/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-27 18:50:33 +0400"
 })
 
 product.images.create({
@@ -5601,7 +5706,8 @@ product = Product.create({
 	title: "BUF-200/CH1",
 	subcategory_id: nil,
 	article: "BUF-200/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-27 18:53:33 +0400"
 })
 
 product.images.create({
@@ -5648,7 +5754,8 @@ product = Product.create({
 	title: "TUM-215-01/ORE",
 	subcategory_id: nil,
 	article: "TUM-215-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 09:37:12 +0400"
 })
 
 product.images.create({
@@ -5695,7 +5802,8 @@ product = Product.create({
 	title: "TUM-216/ORE",
 	subcategory_id: nil,
 	article: "TUM-216/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 09:43:19 +0400"
 })
 
 product.images.create({
@@ -5742,7 +5850,8 @@ product = Product.create({
 	title: "TUM-217/ORE",
 	subcategory_id: nil,
 	article: "TUM-217/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 10:18:09 +0400"
 })
 
 product.images.create({
@@ -5789,7 +5898,8 @@ product = Product.create({
 	title: "KOM-218-01/ORE",
 	subcategory_id: nil,
 	article: "KOM-218-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 10:22:45 +0400"
 })
 
 product.images.create({
@@ -5836,7 +5946,8 @@ product = Product.create({
 	title: "BUF-219-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-219-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 10:29:10 +0400"
 })
 
 product.images.create({
@@ -5883,7 +5994,8 @@ product = Product.create({
 	title: "BUF-221/ORE",
 	subcategory_id: nil,
 	article: "BUF-221/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 10:40:14 +0400"
 })
 
 product.images.create({
@@ -5930,7 +6042,8 @@ product = Product.create({
 	title: "BUF-223/ORE",
 	subcategory_id: nil,
 	article: "BUF-223/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 10:45:37 +0400"
 })
 
 product.images.create({
@@ -5977,7 +6090,8 @@ product = Product.create({
 	title: "BUF-222-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-222-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 10:49:13 +0400"
 })
 
 product.images.create({
@@ -6024,7 +6138,8 @@ product = Product.create({
 	title: "BUF-220-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-220-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 10:52:23 +0400"
 })
 
 product.images.create({
@@ -6071,7 +6186,8 @@ product = Product.create({
 	title: "POL-233/ORE; POL-234/ORE",
 	subcategory_id: nil,
 	article: "POL-233/ORE; POL-234/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 11:00:34 +0400"
 })
 
 product.images.create({
@@ -6118,7 +6234,8 @@ product = Product.create({
 	title: "POL-235/ORE",
 	subcategory_id: nil,
 	article: "POL-235/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 11:09:35 +0400"
 })
 
 product.images.create({
@@ -6161,7 +6278,8 @@ product = Product.create({
 	title: "STO-131/ORE",
 	subcategory_id: nil,
 	article: "STO-131/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 11:36:27 +0400"
 })
 
 product.images.create({
@@ -6196,7 +6314,8 @@ product = Product.create({
 	title: "STZ-312-01/ORE",
 	subcategory_id: nil,
 	article: "STZ-312-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 11:46:35 +0400"
 })
 
 product.images.create({
@@ -6235,7 +6354,8 @@ product = Product.create({
 	title: "STZ-313-01/ORE",
 	subcategory_id: nil,
 	article: "STZ-313-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 11:50:42 +0400"
 })
 
 product.images.create({
@@ -6278,7 +6398,8 @@ product = Product.create({
 	title: "STO-215-01/ORE",
 	subcategory_id: nil,
 	article: "STO-215-01/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 12:05:53 +0400"
 })
 
 product.images.create({
@@ -6317,7 +6438,8 @@ product = Product.create({
 	title: "TUM-238/N/ORE; TUM-238/N/CH",
 	subcategory_id: nil,
 	article: "TUM-238/N/ORE; TUM-238/N/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 12:29:23 +0400"
 })
 
 product.images.create({
@@ -6356,7 +6478,8 @@ product = Product.create({
 	title: "BUF-236/N/ORE; BUF-236/N/CH",
 	subcategory_id: nil,
 	article: "BUF-236/N/ORE; BUF-236/N/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 12:34:22 +0400"
 })
 
 product.images.create({
@@ -6395,7 +6518,8 @@ product = Product.create({
 	title: "BUF-237/N/ORE; BUF-237/N/CH",
 	subcategory_id: nil,
 	article: "BUF-237/N/ORE; BUF-237/N/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 12:37:26 +0400"
 })
 
 product.images.create({
@@ -6434,7 +6558,8 @@ product = Product.create({
 	title: "KOM-239/N/ORE; KOM-239/N/CH",
 	subcategory_id: nil,
 	article: "KOM-239/N/ORE; KOM-239/N/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 12:40:43 +0400"
 })
 
 product.images.create({
@@ -6473,7 +6598,8 @@ product = Product.create({
 	title: "BUF-242/N/ORE; BUF-242/N/CH",
 	subcategory_id: nil,
 	article: "BUF-242/N/ORE; BUF-242/N/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 12:44:43 +0400"
 })
 
 product.images.create({
@@ -6512,7 +6638,8 @@ product = Product.create({
 	title: "BUF-241L/N/ORE; BUF-241R/N/ORE; BUF-241L/N/CH; BUF-241R/N/CH",
 	subcategory_id: nil,
 	article: "BUF-241L/N/ORE; BUF-241R/N/ORE; BUF-241L/N/CH; BUF-241R/N/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-28 12:48:05 +0400"
 })
 
 product.images.create({
@@ -6551,7 +6678,8 @@ product = Product.create({
 	title: "BUF-181L/ORE; BUF-181R/ORE",
 	subcategory_id: nil,
 	article: "BUF-181L/ORE; BUF-181R/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:05:02 +0400"
 })
 
 product.images.create({
@@ -6610,7 +6738,8 @@ product = Product.create({
 	title: "BUF-182/ORE",
 	subcategory_id: nil,
 	article: "BUF-182/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:09:19 +0400"
 })
 
 product.images.create({
@@ -6669,7 +6798,8 @@ product = Product.create({
 	title: "BUF-183L/ORE; BUF-183R/ORE",
 	subcategory_id: nil,
 	article: "BUF-183L/ORE; BUF-183R/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:14:37 +0400"
 })
 
 product.images.create({
@@ -6728,7 +6858,8 @@ product = Product.create({
 	title: "KOM-184/ORE",
 	subcategory_id: nil,
 	article: "KOM-184/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:18:07 +0400"
 })
 
 product.images.create({
@@ -6783,7 +6914,8 @@ product = Product.create({
 	title: "TUM-188/ORE",
 	subcategory_id: nil,
 	article: "TUM-188/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:22:56 +0400"
 })
 
 product.images.create({
@@ -6834,7 +6966,8 @@ product = Product.create({
 	title: "TUM-186/ORE",
 	subcategory_id: nil,
 	article: "TUM-186/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:26:05 +0400"
 })
 
 product.images.create({
@@ -6885,7 +7018,8 @@ product = Product.create({
 	title: "POL-190/ORE",
 	subcategory_id: nil,
 	article: "POL-190/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:29:36 +0400"
 })
 
 product.images.create({
@@ -6940,7 +7074,8 @@ product = Product.create({
 	title: "POL-192/ORE",
 	subcategory_id: nil,
 	article: "POL-192/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:33:07 +0400"
 })
 
 product.images.create({
@@ -6999,7 +7134,8 @@ product = Product.create({
 	title: "TUM-230/N/CH; TUM-230/N/ORE",
 	subcategory_id: nil,
 	article: "TUM-230/N/CH; TUM-230/N/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:50:01 +0400"
 })
 
 product.images.create({
@@ -7038,7 +7174,8 @@ product = Product.create({
 	title: "BUF-231/N/CH; BUF-231/N/ORE",
 	subcategory_id: nil,
 	article: "BUF-231/N/CH; BUF-231/N/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:54:43 +0400"
 })
 
 product.images.create({
@@ -7077,7 +7214,8 @@ product = Product.create({
 	title: "BUF-232L/N/CH; BUF-232R/N/CH; BUF-232L/N/ORE; BUF-232R/N/ORE",
 	subcategory_id: nil,
 	article: "BUF-232L/N/CH; BUF-232R/N/CH; BUF-232L/N/ORE; BUF-232R/N/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 19:58:52 +0400"
 })
 
 product.images.create({
@@ -7116,7 +7254,8 @@ product = Product.create({
 	title: "POL-235/CH; POL-235/ORE",
 	subcategory_id: nil,
 	article: "POL-235/CH; POL-235/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 20:02:36 +0400"
 })
 
 product.images.create({
@@ -7155,7 +7294,8 @@ product = Product.create({
 	title: "POL-233/CH; POL-233/ORE",
 	subcategory_id: nil,
 	article: "POL-233/CH; POL-233/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 20:06:42 +0400"
 })
 
 product.images.create({
@@ -7194,7 +7334,8 @@ product = Product.create({
 	title: "DIV-385/SE",
 	subcategory_id: nil,
 	article: "DIV-385/SE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 20:59:31 +0400"
 })
 
 product.images.create({
@@ -7237,7 +7378,8 @@ product = Product.create({
 	title: "DIV-384R; DIV-384L",
 	subcategory_id: nil,
 	article: "DIV-384R; DIV-384L",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 21:06:14 +0400"
 })
 
 product.images.create({
@@ -7272,7 +7414,8 @@ product = Product.create({
 	title: "DIV-389/SEK",
 	subcategory_id: nil,
 	article: "DIV-389/SEK",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 21:55:30 +0400"
 })
 
 product.images.create({
@@ -7315,7 +7458,8 @@ product = Product.create({
 	title: "DIV-382L/SBE; DIV-382R/SBE",
 	subcategory_id: nil,
 	article: "DIV-382L/SBE; DIV-382R/SBE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 22:00:15 +0400"
 })
 
 product.images.create({
@@ -7362,7 +7506,8 @@ product = Product.create({
 	title: "DIV-383/KAP",
 	subcategory_id: nil,
 	article: "DIV-383/KAP",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 22:14:38 +0400"
 })
 
 product.images.create({
@@ -7397,7 +7542,8 @@ product = Product.create({
 	title: "DIV-391",
 	subcategory_id: nil,
 	article: "DIV-391",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 22:22:02 +0400"
 })
 
 product.images.create({
@@ -7440,7 +7586,8 @@ product = Product.create({
 	title: "DIV-390L; DIV-390R",
 	subcategory_id: nil,
 	article: "DIV-390L; DIV-390R",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 22:27:13 +0400"
 })
 
 product.images.create({
@@ -7483,7 +7630,8 @@ product = Product.create({
 	title: "DIV-387",
 	subcategory_id: nil,
 	article: "DIV-387",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 22:38:05 +0400"
 })
 
 product.images.create({
@@ -7526,7 +7674,8 @@ product = Product.create({
 	title: "DIV-386",
 	subcategory_id: nil,
 	article: "DIV-386",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-04-30 22:44:52 +0400"
 })
 
 product.images.create({
@@ -7561,7 +7710,8 @@ product = Product.create({
 	title: "KRE-301/SI",
 	subcategory_id: nil,
 	article: "KRE-301/SI",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 00:21:35 +0400"
 })
 
 product.images.create({
@@ -7604,7 +7754,8 @@ product = Product.create({
 	title: "KRE-302/BEL",
 	subcategory_id: nil,
 	article: "KRE-302/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 00:26:32 +0400"
 })
 
 product.images.create({
@@ -7663,7 +7814,8 @@ product = Product.create({
 	title: "KRE-302/SEK",
 	subcategory_id: nil,
 	article: "KRE-302/SEK",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 00:28:56 +0400"
 })
 
 product.images.create({
@@ -7722,7 +7874,8 @@ product = Product.create({
 	title: "KRE-303/BEL",
 	subcategory_id: nil,
 	article: "KRE-303/BEL",
-	extension_id: "5"
+	extension_id: "5",
+	created_at: "2014-05-01 00:37:15 +0400"
 })
 
 product.images.create({
@@ -7753,7 +7906,8 @@ product = Product.create({
 	title: "KRE-303/SE",
 	subcategory_id: nil,
 	article: "KRE-303/SE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 00:40:28 +0400"
 })
 
 product.images.create({
@@ -7784,7 +7938,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 13:53:50 +0400"
 })
 
 product.images.create({
@@ -7831,7 +7986,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 14:03:43 +0400"
 })
 
 product.images.create({
@@ -7878,7 +8034,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 14:10:32 +0400"
 })
 
 product.images.create({
@@ -7925,7 +8082,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "1"
+	extension_id: "1",
+	created_at: "2014-05-01 14:16:07 +0400"
 })
 
 product.images.create({
@@ -7972,7 +8130,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 16:28:32 +0400"
 })
 
 product.images.create({
@@ -8019,7 +8178,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 16:35:58 +0400"
 })
 
 product.images.create({
@@ -8066,7 +8226,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "1"
+	extension_id: "1",
+	created_at: "2014-05-01 16:53:04 +0400"
 })
 
 product.images.create({
@@ -8113,7 +8274,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 16:59:39 +0400"
 })
 
 product.images.create({
@@ -8160,7 +8322,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "1"
+	extension_id: "1",
+	created_at: "2014-05-01 17:12:44 +0400"
 })
 
 product.images.create({
@@ -8207,7 +8370,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 17:20:37 +0400"
 })
 
 product.images.create({
@@ -8254,7 +8418,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-01 17:32:23 +0400"
 })
 
 product.images.create({
@@ -8301,7 +8466,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2014-05-02 00:37:01 +0400"
 })
 
 product.images.create({
@@ -8348,7 +8514,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 00:41:24 +0400"
 })
 
 product.images.create({
@@ -8395,7 +8562,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 00:46:18 +0400"
 })
 
 product.images.create({
@@ -8442,7 +8610,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2014-05-02 00:50:41 +0400"
 })
 
 product.images.create({
@@ -8489,7 +8658,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 00:54:35 +0400"
 })
 
 product.images.create({
@@ -8536,7 +8706,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 00:58:47 +0400"
 })
 
 product.images.create({
@@ -8583,7 +8754,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 01:06:02 +0400"
 })
 
 product.images.create({
@@ -8630,7 +8802,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 01:11:03 +0400"
 })
 
 product.images.create({
@@ -8677,7 +8850,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "3"
+	extension_id: "3",
+	created_at: "2014-05-02 01:16:01 +0400"
 })
 
 product.images.create({
@@ -8724,7 +8898,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 01:22:55 +0400"
 })
 
 product.images.create({
@@ -8771,7 +8946,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 01:28:00 +0400"
 })
 
 product.images.create({
@@ -8818,7 +8994,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "3"
+	extension_id: "3",
+	created_at: "2014-05-02 01:33:07 +0400"
 })
 
 product.images.create({
@@ -8865,7 +9042,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 01:38:24 +0400"
 })
 
 product.images.create({
@@ -8912,7 +9090,8 @@ product = Product.create({
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-02 01:43:04 +0400"
 })
 
 product.images.create({
@@ -8959,7 +9138,8 @@ product = Product.create({
 	title: "KRO-530/CR/BEZ; KRO-530/CR/KOR",
 	subcategory_id: nil,
 	article: "KRO-530/CR/BEZ; KRO-530/CR/KOR",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-03 02:33:24 +0400"
 })
 
 product.images.create({
@@ -8998,7 +9178,8 @@ product = Product.create({
 	title: "KRO-565-06P/CR/BEZ; KRO-565-06P/CR/KOR",
 	subcategory_id: nil,
 	article: "KRO-565-06P/CR/BEZ; KRO-565-06P/CR/KOR",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-03 02:44:00 +0400"
 })
 
 product.images.create({
@@ -9042,7 +9223,8 @@ product = Product.create({
 	title: "KRO-564-06P/CR/BEZ; KRO-564-06P/CR/BEL; KRO-564-06P/CR/KOR; KRO-564-08P/CR/BEZ/BEL/KOR",
 	subcategory_id: nil,
 	article: "KRO-564-06P/CR/BEZ; KRO-564-06P/CR/BEL; KRO-564-06P/CR/KOR; KRO-564-08P/CR/BEZ/BEL/KOR",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-03 02:53:39 +0400"
 })
 
 product.images.create({
@@ -9085,7 +9267,8 @@ product = Product.create({
 	title: "KRO-536-06P/CR/BEZ/BEL/KOR; KRO-536-08P/CR/BEZ/BEL/KOR",
 	subcategory_id: nil,
 	article: "KRO-536-06P/CR/BEZ/BEL/KOR; KRO-536-08P/CR/BEZ/BEL/KOR",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-03 12:23:09 +0400"
 })
 
 product.images.create({
@@ -9124,7 +9307,8 @@ product = Product.create({
 	title: "KRO-568-06P/CR/BEZ; KRO-568-06P/CR/KOR",
 	subcategory_id: nil,
 	article: "KRO-568-06P/CR/BEZ; KRO-568-06P/CR/KOR",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-03 12:32:01 +0400"
 })
 
 product.images.create({
@@ -9167,7 +9351,8 @@ product = Product.create({
 	title: "KRO-567-06P/BEL; KRO-567-06P/BEZ; KRO-567-06P/KOR",
 	subcategory_id: nil,
 	article: "KRO-567-06P/BEL; KRO-567-06P/BEZ; KRO-567-06P/KOR",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-09 17:44:37 +0400"
 })
 
 product.images.create({
@@ -9198,7 +9383,8 @@ product = Product.create({
 	title: "TUM-581/CH",
 	subcategory_id: nil,
 	article: "TUM-581/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-13 18:01:37 +0400"
 })
 
 product.images.create({
@@ -9237,7 +9423,8 @@ product = Product.create({
 	title: "KOM-583/CH",
 	subcategory_id: nil,
 	article: "KOM-583/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-13 18:11:14 +0400"
 })
 
 product.images.create({
@@ -9276,7 +9463,8 @@ product = Product.create({
 	title: "KOM-586/CH",
 	subcategory_id: nil,
 	article: "KOM-586/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-13 18:17:11 +0400"
 })
 
 product.images.create({
@@ -9315,7 +9503,8 @@ product = Product.create({
 	title: "ZER-584/CH",
 	subcategory_id: nil,
 	article: "ZER-584/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-13 18:28:18 +0400"
 })
 
 product.images.create({
@@ -9354,7 +9543,8 @@ product = Product.create({
 	title: "STZ-110/CH",
 	subcategory_id: nil,
 	article: "STZ-110/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-13 18:39:39 +0400"
 })
 
 product.images.create({
@@ -9393,7 +9583,8 @@ product = Product.create({
 	title: "STO-140/CH",
 	subcategory_id: nil,
 	article: "STO-140/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-13 18:43:55 +0400"
 })
 
 product.images.create({
@@ -9436,7 +9627,8 @@ product = Product.create({
 	title: "MOD-721/CH",
 	subcategory_id: 11,
 	article: "MOD-721/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 00:11:06 +0400"
 })
 
 product.images.create({
@@ -9471,7 +9663,8 @@ product = Product.create({
 	title: "MOD-724/CH",
 	subcategory_id: 11,
 	article: "MOD-724/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 00:18:34 +0400"
 })
 
 product.images.create({
@@ -9506,7 +9699,8 @@ product = Product.create({
 	title: "MOD-720/CH",
 	subcategory_id: 11,
 	article: "MOD-720/CH1",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 00:27:58 +0400"
 })
 
 product.images.create({
@@ -9541,7 +9735,8 @@ product = Product.create({
 	title: "KRO-484-06P/BEL; KRO-484-08P/BEL ",
 	subcategory_id: nil,
 	article: "KRO-484-06P/BEL; KRO-484-08P/BEL ",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 11:38:26 +0400"
 })
 
 product.images.create({
@@ -9572,7 +9767,8 @@ product = Product.create({
 	title: "KRO-485-06P/BEL; KRO-485-08P/BEL ",
 	subcategory_id: nil,
 	article: "KRO-485-06P/BEL; KRO-485-08P/BEL ",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 11:51:17 +0400"
 })
 
 product.images.create({
@@ -9603,7 +9799,8 @@ product = Product.create({
 	title: "KRO-483-06P/BEL; KRO-483-08P/BEL ",
 	subcategory_id: nil,
 	article: "KRO-483-06P/BEL; KRO-483-08P/BEL ",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 12:10:05 +0400"
 })
 
 product.images.create({
@@ -9634,7 +9831,8 @@ product = Product.create({
 	title: "KRO-569-06P/BEL; KRO-569-06P/BEZ; KRO-569-08P/BEL; KRO-569-08P/BEZ",
 	subcategory_id: nil,
 	article: "KRO-569-06P/BEL; KRO-569-06P/BEZ; KRO-569-08P/BEL; KRO-569-08P/BEZ",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 15:18:54 +0400"
 })
 
 product.images.create({
@@ -9665,7 +9863,8 @@ product = Product.create({
 	title: "KRO-481/; KRO-481-03/",
 	subcategory_id: nil,
 	article: "KRO-481/; KRO-481-03/",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 15:35:49 +0400"
 })
 
 product.images.create({
@@ -9696,7 +9895,8 @@ product = Product.create({
 	title: "KRO-482; KRO-482-03",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-14 16:06:34 +0400"
 })
 
 product.images.create({
@@ -9727,7 +9927,8 @@ product = Product.create({
 	title: "STO-132/BEL",
 	subcategory_id: nil,
 	article: "STO-132/BEL",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-15 11:20:33 +0400"
 })
 
 product.images.create({
@@ -9778,7 +9979,8 @@ product = Product.create({
 	title: "STZ-324/N/ORE; STZ-324/N/CH",
 	subcategory_id: nil,
 	article: "STZ-324/N/ORE; STZ-324/N/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-15 11:26:09 +0400"
 })
 
 product.images.create({
@@ -9817,7 +10019,8 @@ product = Product.create({
 	title: "STZ-325/N/CH; STZ-325/N/ORE",
 	subcategory_id: nil,
 	article: "STZ-325/N/CH; STZ-325/N/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-15 11:43:12 +0400"
 })
 
 product.images.create({
@@ -9856,7 +10059,8 @@ product = Product.create({
 	title: "STU-305/KOR; STU-305/1/BEZ",
 	subcategory_id: nil,
 	article: "STU-305/KOR; STU-305/1/BEZ",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-05-15 11:50:55 +0400"
 })
 
 product.images.create({
@@ -9891,7 +10095,8 @@ product = Product.create({
 	title: "KRE-316",
 	subcategory_id: nil,
 	article: "KRE-316",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-06-17 18:20:05 +0400"
 })
 
 product.images.create({
@@ -9922,7 +10127,8 @@ product = Product.create({
 	title: "KRO-590/ORE; KRO-590-03/ORE",
 	subcategory_id: nil,
 	article: "KRO-590/ORE; KRO-590-03/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-06-17 18:54:45 +0400"
 })
 
 product.images.create({
@@ -9965,7 +10171,8 @@ product = Product.create({
 	title: "TUM-592/ORE",
 	subcategory_id: nil,
 	article: "TUM-592/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-06-17 19:09:35 +0400"
 })
 
 product.images.create({
@@ -10008,7 +10215,8 @@ product = Product.create({
 	title: "KOM-593/ORE",
 	subcategory_id: nil,
 	article: "KOM-593/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-06-17 19:16:27 +0400"
 })
 
 product.images.create({
@@ -10047,7 +10255,8 @@ product = Product.create({
 	title: "KOM-595/ORE",
 	subcategory_id: nil,
 	article: "KOM-595/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-06-17 19:28:05 +0400"
 })
 
 product.images.create({
@@ -10090,7 +10299,8 @@ product = Product.create({
 	title: "STT-596/ORE",
 	subcategory_id: nil,
 	article: "STT-596/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-06-17 21:09:52 +0400"
 })
 
 product.images.create({
@@ -10133,7 +10343,8 @@ product = Product.create({
 	title: "ZER-594/ORE",
 	subcategory_id: nil,
 	article: "ZER-594/ORE",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-06-17 21:17:55 +0400"
 })
 
 product.images.create({
@@ -10176,7 +10387,8 @@ product = Product.create({
 	title: "KRO-033/BEZ/KOR",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-06-18 23:20:10 +0400"
 })
 
 product.images.create({
@@ -10223,7 +10435,8 @@ product = Product.create({
 	title: "DIV-ASTER",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-09-06 00:24:36 +0400"
 })
 
 product.images.create({
@@ -10254,7 +10467,8 @@ product = Product.create({
 	title: "MOD-721/ORE; MOD-721/CH1; MOD-721/BEL; MOD-721/DUB",
 	subcategory_id: 3,
 	article: "MOD-721/ORE; MOD-721/CH1; MOD-721/BEL; MOD-721/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-10-22 00:10:26 +0400"
 })
 
 product.images.create({
@@ -10289,7 +10503,8 @@ product = Product.create({
 	title: "MOD-720/ORE; MOD-720/CH1; MOD-720/BEL; MOD-720/DUB",
 	subcategory_id: 3,
 	article: "MOD-720/ORE; MOD-720/CH1; MOD-720/BEL; MOD-720/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-14 23:14:41 +0300"
 })
 
 product.images.create({
@@ -10324,7 +10539,8 @@ product = Product.create({
 	title: "MOD-724/ORE; MOD-724/CH1; MOD-724/BEL; MOD-724/DUB",
 	subcategory_id: 3,
 	article: "MOD-724/ORE; MOD-724/CH1; MOD-724/BEL; MOD-724/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-14 23:47:21 +0300"
 })
 
 product.images.create({
@@ -10359,7 +10575,8 @@ product = Product.create({
 	title: "MOD-705/ORE; MOD-705/CH1; MOD-705/BEL; MOD-705/DUB; MOD-705/ZEB",
 	subcategory_id: 4,
 	article: "MOD-705/ORE; MOD-705/CH1; MOD-705/BEL; MOD-705/DUB; MOD-705/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-15 00:27:03 +0300"
 })
 
 product.images.create({
@@ -10390,7 +10607,8 @@ product = Product.create({
 	title: "DVE-710-01L/ORE; DVE-710-01R/ORE; DVE-710-01L/CH1; DVE-710-01R/CH1; DVE-710-01L/BEL; DVE-710-01R/BEL; DVE-710-01L/DUB; DVE-710-01R/DUB",
 	subcategory_id: 8,
 	article: "DVE-710-01L/ORE; DVE-710-01R/ORE; DVE-710-01L/CH1; DVE-710-01R/CH1; DVE-710-01L/BEL; DVE-710-01R/BEL; DVE-710-01L/DUB; DVE-710-01R/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-16 23:20:36 +0300"
 })
 
 product.images.create({
@@ -10421,7 +10639,8 @@ product = Product.create({
 	title: "DVE-710-02L/ORE; DVE-710-02R/ORE; DVE-710-02L/CH1; DVE-710-02R/CH1; DVE-710-02L/BEL; DVE-710-02R/BEL; DVE-710-02L/DUB; DVE-710-02R/DUB",
 	subcategory_id: 8,
 	article: "DVE-710-02L/ORE; DVE-710-02R/ORE; DVE-710-02L/CH1; DVE-710-02R/CH1; DVE-710-02L/BEL; DVE-710-02R/BEL; DVE-710-02L/DUB; DVE-710-02R/DUB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-16 23:30:37 +0300"
 })
 
 product.images.create({
@@ -10452,7 +10671,8 @@ product = Product.create({
 	title: "DVE-710-03L/ORE; DVE-710-03R/ORE; DVE-710-03L/CH1; DVE-710-03R/CH1; DVE-710-03L/BEL;  DVE-710-03R/BEL; DVE-710-03L/DUB; DVE-710-03R/DUB; DVE-710-03L/CH1GRA; DVE-710-03R/CH1GRA",
 	subcategory_id: 8,
 	article: "DVE-710-03L/ORE; DVE-710-03R/ORE; DVE-710-03L/CH1; DVE-710-03R/CH1; DVE-710-03L/BEL;  DVE-710-03R/BEL; DVE-710-03L/DUB; DVE-710-03R/DUB; DVE-710-03L/CH1GRA; DVE-710-03R/CH1GRA",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-16 23:45:28 +0300"
 })
 
 product.images.create({
@@ -10491,7 +10711,8 @@ product = Product.create({
 	title: "KAR-708-04/ORE; KAR-708-04/CH1; KAR-708-04/BEL; KAR-708-04/DUB; KAR-708-04/ZEB",
 	subcategory_id: 10,
 	article: "KAR-708-04/ORE; KAR-708-04/CH1; KAR-708-04/BEL; KAR-708-04/DUB; KAR-708-04/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 00:07:50 +0300"
 })
 
 product.images.create({
@@ -10522,7 +10743,8 @@ product = Product.create({
 	title: "KAR-708-05/ORE; KAR-708-05/CH1; KAR-708-05/BEL; KAR-708-05/DUB; KAR-708-05/ZEB",
 	subcategory_id: 10,
 	article: "KAR-708-05/ORE; KAR-708-05/CH1; KAR-708-05/BEL; KAR-708-05/DUB; KAR-708-05/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 00:19:49 +0300"
 })
 
 product.images.create({
@@ -10553,7 +10775,8 @@ product = Product.create({
 	title: "KAR-709-01/ORE; KAR-709-01/CH1; KAR-709-01/BEL; KAR-709-01/DUB; KAR-709-01/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-01/ORE; KAR-709-01/CH1; KAR-709-01/BEL; KAR-709-01/DUB; KAR-709-01/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 00:27:04 +0300"
 })
 
 product.images.create({
@@ -10584,7 +10807,8 @@ product = Product.create({
 	title: "KAR-709-02/ORE; KAR-709-02/CH1; KAR-709-02/BEL; KAR-709-02/DUB; KAR-709-02/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-02/ORE; KAR-709-02/CH1; KAR-709-02/BEL; KAR-709-02/DUB; KAR-709-02/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 00:33:38 +0300"
 })
 
 product.images.create({
@@ -10615,7 +10839,8 @@ product = Product.create({
 	title: "KAR-709-03/ORE; KAR-709-03/CH1; KAR-709-03/BEL; KAR-709-03/DUB; KAR-709-03/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-03/ORE; KAR-709-03/CH1; KAR-709-03/BEL; KAR-709-03/DUB; KAR-709-03/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 00:39:38 +0300"
 })
 
 product.images.create({
@@ -10646,7 +10871,8 @@ product = Product.create({
 	title: "KAR-709-04/ORE; KAR-709-04/CH1; KAR-709-04/BEL; KAR-709-04/DUB; KAR-709-04/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-04/ORE; KAR-709-04/CH1; KAR-709-04/BEL; KAR-709-04/DUB; KAR-709-04/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 00:45:13 +0300"
 })
 
 product.images.create({
@@ -10677,7 +10903,8 @@ product = Product.create({
 	title: "KAR-709-06/ORE; KAR-709-06/CH1; KAR-709-06/BEL; KAR-709-06/DUB; KAR-709-06/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-06/ORE; KAR-709-06/CH1; KAR-709-06/BEL; KAR-709-06/DUB; KAR-709-06/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 00:51:29 +0300"
 })
 
 product.images.create({
@@ -10708,7 +10935,8 @@ product = Product.create({
 	title: "KAR-709-07/ORE; KAR-709-07/CH1; KAR-709-07/BEL; KAR-709-07/DUB; KAR-709-07/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-07/ORE; KAR-709-07/CH1; KAR-709-07/BEL; KAR-709-07/DUB; KAR-709-07/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 00:59:26 +0300"
 })
 
 product.images.create({
@@ -10739,7 +10967,8 @@ product = Product.create({
 	title: "KAR-709-08/ORE; KAR-709-08/CH1; KAR-709-08/BEL; KAR-709-08/DUB; KAR-709-08/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-08/ORE; KAR-709-08/CH1; KAR-709-08/BEL; KAR-709-08/DUB; KAR-709-08/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:07:19 +0300"
 })
 
 product.images.create({
@@ -10770,7 +10999,8 @@ product = Product.create({
 	title: "KAR-709-09/ORE; KAR-709-09/CH1; KAR-709-09/BEL; KAR-709-09/DUB; KAR-709-09/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-09/ORE; KAR-709-09/CH1; KAR-709-09/BEL; KAR-709-09/DUB; KAR-709-09/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:14:37 +0300"
 })
 
 product.images.create({
@@ -10801,7 +11031,8 @@ product = Product.create({
 	title: "KAR-709-10/ORE; KAR-709-10/CH1; KAR-709-10/BEL; KAR-709-10/DUB; KAR-709-10/ZEB",
 	subcategory_id: 10,
 	article: "KAR-709-10/ORE; KAR-709-10/CH1; KAR-709-10/BEL; KAR-709-10/DUB; KAR-709-10/ZEB",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:20:23 +0300"
 })
 
 product.images.create({
@@ -10832,7 +11063,8 @@ product = Product.create({
 	title: "MOD-723/LEN",
 	subcategory_id: 5,
 	article: "MOD-723/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:38:37 +0300"
 })
 
 product.images.create({
@@ -10863,7 +11095,8 @@ product = Product.create({
 	title: "MOD-722/LEN",
 	subcategory_id: 5,
 	article: "MOD-722/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:41:01 +0300"
 })
 
 product.images.create({
@@ -10894,7 +11127,8 @@ product = Product.create({
 	title: "POL-707-01/LEN",
 	subcategory_id: 6,
 	article: "POL-707-01/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:43:36 +0300"
 })
 
 product.images.create({
@@ -10925,7 +11159,8 @@ product = Product.create({
 	title: "POL-707-02/LEN",
 	subcategory_id: 6,
 	article: "POL-707-02/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:47:23 +0300"
 })
 
 product.images.create({
@@ -10956,7 +11191,8 @@ product = Product.create({
 	title: "POL-707-10/LEN",
 	subcategory_id: 6,
 	article: "POL-707-10/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:50:03 +0300"
 })
 
 product.images.create({
@@ -10987,7 +11223,8 @@ product = Product.create({
 	title: "POL-707-11/LEN",
 	subcategory_id: 6,
 	article: "POL-707-11/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 02:52:26 +0300"
 })
 
 product.images.create({
@@ -11018,7 +11255,8 @@ product = Product.create({
 	title: "POL-707-12/LEN",
 	subcategory_id: 6,
 	article: "POL-707-12/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 08:58:16 +0300"
 })
 
 product.images.create({
@@ -11049,7 +11287,8 @@ product = Product.create({
 	title: "POL-707-13/LEN",
 	subcategory_id: 6,
 	article: "POL-707-13/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 09:01:23 +0300"
 })
 
 product.images.create({
@@ -11080,7 +11319,8 @@ product = Product.create({
 	title: "POL-707-14/LEN",
 	subcategory_id: 6,
 	article: "POL-707-14/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 09:04:13 +0300"
 })
 
 product.images.create({
@@ -11111,7 +11351,8 @@ product = Product.create({
 	title: "TUM-707-03/LEN",
 	subcategory_id: 6,
 	article: "TUM-707-03/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 09:07:00 +0300"
 })
 
 product.images.create({
@@ -11142,7 +11383,8 @@ product = Product.create({
 	title: "TUM-707-04/LEN",
 	subcategory_id: 6,
 	article: "TUM-707-04/LEN",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-17 09:09:39 +0300"
 })
 
 product.images.create({
@@ -11173,7 +11415,8 @@ product = Product.create({
 	title: "RUC_553-53",
 	subcategory_id: 9,
 	article: "RUC_553-53",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 21:56:16 +0300"
 })
 
 product.images.create({
@@ -11204,7 +11447,8 @@ product = Product.create({
 	title: "RUC_553-54",
 	subcategory_id: 9,
 	article: "RUC_553-54",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:00:30 +0300"
 })
 
 product.images.create({
@@ -11235,7 +11479,8 @@ product = Product.create({
 	title: "RUC_553-55",
 	subcategory_id: 9,
 	article: "RUC_553-55",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:04:00 +0300"
 })
 
 product.images.create({
@@ -11266,7 +11511,8 @@ product = Product.create({
 	title: "DRG-707-05/N",
 	subcategory_id: 7,
 	article: "DRG-707-05/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:10:06 +0300"
 })
 
 product.images.create({
@@ -11297,7 +11543,8 @@ product = Product.create({
 	title: "DRG-707-06/N",
 	subcategory_id: 7,
 	article: "DRG-707-06/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:13:48 +0300"
 })
 
 product.images.create({
@@ -11328,7 +11575,8 @@ product = Product.create({
 	title: "DRG-707-07/N",
 	subcategory_id: 7,
 	article: "DRG-707-07/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:16:58 +0300"
 })
 
 product.images.create({
@@ -11359,7 +11607,8 @@ product = Product.create({
 	title: "DRG-707-08/N",
 	subcategory_id: 7,
 	article: "DRG-707-08/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:19:36 +0300"
 })
 
 product.images.create({
@@ -11390,7 +11639,8 @@ product = Product.create({
 	title: "DRG-707-09/N",
 	subcategory_id: 7,
 	article: "DRG-707-09/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:22:52 +0300"
 })
 
 product.images.create({
@@ -11421,7 +11671,8 @@ product = Product.create({
 	title: "DRG-707-15/1/N",
 	subcategory_id: 7,
 	article: "DRG-707-15/1/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:25:54 +0300"
 })
 
 product.images.create({
@@ -11452,7 +11703,8 @@ product = Product.create({
 	title: "DRG-707-16/N",
 	subcategory_id: 7,
 	article: "DRG-707-16/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:28:18 +0300"
 })
 
 product.images.create({
@@ -11483,7 +11735,8 @@ product = Product.create({
 	title: "DRG-707-17/N",
 	subcategory_id: 7,
 	article: "DRG-707-17/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:31:01 +0300"
 })
 
 product.images.create({
@@ -11514,7 +11767,8 @@ product = Product.create({
 	title: "DRG_071",
 	subcategory_id: nil,
 	article: "DRG_071",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:54:33 +0300"
 })
 
 product.images.create({
@@ -11545,7 +11799,8 @@ product = Product.create({
 	title: "DRG_070",
 	subcategory_id: nil,
 	article: "DRG_070",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:56:40 +0300"
 })
 
 product.images.create({
@@ -11576,7 +11831,8 @@ product = Product.create({
 	title: "DRG_077",
 	subcategory_id: nil,
 	article: "DRG_077",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 22:58:57 +0300"
 })
 
 product.images.create({
@@ -11607,7 +11863,8 @@ product = Product.create({
 	title: "DRG-716/N, DRG-715/N",
 	subcategory_id: nil,
 	article: "DRG-716/N, DRG-715/N",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-20 23:03:08 +0300"
 })
 
 product.images.create({
@@ -11638,7 +11895,8 @@ product = Product.create({
 	title: "DRG_030; DRG_031",
 	subcategory_id: nil,
 	article: "DRG_030; DRG_031",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-21 00:18:45 +0300"
 })
 
 product.images.create({
@@ -11669,7 +11927,8 @@ product = Product.create({
 	title: "DRG_023; DRG_024",
 	subcategory_id: nil,
 	article: "DRG_023; DRG_024",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-21 00:23:14 +0300"
 })
 
 product.images.create({
@@ -11700,7 +11959,8 @@ product = Product.create({
 	title: "DRG_013",
 	subcategory_id: nil,
 	article: "DRG_013",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-21 00:28:54 +0300"
 })
 
 product.images.create({
@@ -11731,7 +11991,8 @@ product = Product.create({
 	title: "DRG_014",
 	subcategory_id: nil,
 	article: "DRG_014",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-21 00:31:41 +0300"
 })
 
 product.images.create({
@@ -11762,7 +12023,8 @@ product = Product.create({
 	title: "JAS-599/CER; JAS-599-03/CER",
 	subcategory_id: nil,
 	article: "JAS-599/CER; JAS-599-03/CER",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-11-21 00:37:24 +0300"
 })
 
 product.images.create({
@@ -11793,7 +12055,8 @@ product = Product.create({
 	title: "KRO-580/CH",
 	subcategory_id: nil,
 	article: "KRO-580/CH",
-	extension_id: "nil"
+	extension_id: "nil",
+	created_at: "2014-12-25 09:56:57 +0300"
 })
 
 product.images.create({
@@ -11828,7 +12091,8 @@ product = Product.create({
 	title: "KRO-564-06P/CR/BEZ; KRO-564-06P/CR/BEL; KRO-564-06P/CR/KOR; KRO-564-08P/CR/BEZ/BEL/KOR",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "3"
+	extension_id: "3",
+	created_at: "2015-01-22 21:24:27 +0300"
 })
 
 product.images.create({
@@ -11871,7 +12135,8 @@ product = Product.create({
 	title: "KRO-536-08P/KOR ",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "3"
+	extension_id: "3",
+	created_at: "2015-01-22 22:39:09 +0300"
 })
 
 product.images.create({
@@ -11902,7 +12167,8 @@ product = Product.create({
 	title: "KRO-016-03/BEL",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "5"
+	extension_id: "5",
+	created_at: "2015-01-22 22:57:44 +0300"
 })
 
 product.images.create({
@@ -11937,7 +12203,8 @@ product = Product.create({
 	title: "TUM-215-01/ORE",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-22 23:14:24 +0300"
 })
 
 product.images.create({
@@ -11968,7 +12235,8 @@ product = Product.create({
 	title: "TUM-112/ORE",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-23 16:47:23 +0300"
 })
 
 product.images.create({
@@ -11999,7 +12267,8 @@ product = Product.create({
 	title: "BUF-207/ORE",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-23 16:57:08 +0300"
 })
 
 product.images.create({
@@ -12030,7 +12299,8 @@ product = Product.create({
 	title: "STO-215-01/ORE",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-23 18:20:04 +0300"
 })
 
 product.images.create({
@@ -12065,7 +12335,8 @@ product = Product.create({
 	title: "STO-215-01/CH",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "4"
+	extension_id: "4",
+	created_at: "2015-01-23 18:54:02 +0300"
 })
 
 product.images.create({
@@ -12100,7 +12371,8 @@ product = Product.create({
 	title: "STZ-313-01/ORE",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-23 19:05:55 +0300"
 })
 
 product.images.create({
@@ -12131,7 +12403,8 @@ product = Product.create({
 	title: "BUF-161-01/ORE",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-23 23:02:24 +0300"
 })
 
 product.images.create({
@@ -12182,7 +12455,8 @@ product = Product.create({
 	title: "TUM-168-01/ORE",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-23 23:42:11 +0300"
 })
 
 product.images.create({
@@ -12237,7 +12511,8 @@ product = Product.create({
 	title: "Н.Г.166",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-23 23:52:43 +0300"
 })
 
 product.images.create({
@@ -12272,38 +12547,12 @@ product = Product.create({
 	title: "Н.Г.169",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2"
+	extension_id: "2",
+	created_at: "2015-01-24 00:05:49 +0300"
 })
 
 product.images.create({
 	url: "/uploads/169.png"
-})
-
-product = Product.create({
-	id: 295,
-	category_id: nil,
-	category_ids: [2, 18],
-	scode: "test_product",
-	name: "test_product",
-	description: "",
-	shortdesk: "",
-	delemiter: nil,
-	invisible: nil,
-	main: nil,
-	action: nil,
-	best: nil,
-	position: 1,
-	seo_title: "",
-	seo_description: "",
-	seo_keywords: "",
-	seo_imagealt: "",
-	seo_text: "",
-	price: 100.0,
-	old_price: 0.0,
-	title: "",
-	subcategory_id: nil,
-	article: "",
-	extension_id: "nil"
 })
 
 Extension.create({

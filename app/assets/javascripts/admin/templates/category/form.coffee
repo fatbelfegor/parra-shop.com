@@ -1,130 +1,25 @@
 app.templates.form.category =
-	table: [
-		{
-			tr: [
-				{
-					td: [
-						{
-							attrs:
-								colspan: "6"
-							header: "Родительская категория"
-							field: "category_id"
-							belongs_to: "category"
-							treebox:
-								data:
-									category:
-										fields: ['name']
-										pick: true
-										has_self: true
-								pick:
-									val: "id"
-									header: "name"
-						}
-					]
-				},
-				{
-					td: [
-						{
-							attrs:
-								colspan: "3"
-								style: "width: 50%"
-							header: "Название"
-							field: "name"
-							validation:
-								presence: true
-						},
-						{
-							attrs:
-								colspan: "3"
-							header: "Код"
-							field: "scode"
-							validation:
-								uniq: true
-						}
-					]
-				},
-				{
-					td: [
-						{
-							attrs:
-								colspan: "3"
-							header: "Наценка продавца"
-							field: "commission"
-						},
-						{
-							attrs:
-								colspan: "3"
-							header: "Наша наценка"
-							field: "rate"
-						}
-					]
-				},
-				{
-					td: [
-						{
-							attrs:
-								colspan: "3"
-							header: "SEO title"
-							field: "seo_title"
-						},
-						{
-							attrs:
-								colspan: "3"
-							header: "SEO keywords (через запятую)"
-							field: "seo_keywords"
-						}
-					]
-				},
-				{
-					td: [
-						{
-							attrs:
-								colspan: "2"
-							header: "Краткий url"
-							field: "url"
-						},
-						{
-							attrs:
-								colspan: "2"
-							header: "Мобильные url"
-							field: "mobile_image_url"
-						},
-						{
-							attrs:
-								colspan: "2"
-							header: "Показывать в мобильном клиенте"
-							checkbox: "isMobile"
-						}
-					]
-				},
-				{
-					td: [
-						{
-							attrs:
-								colspan: "6"
-							header: "Добавить изображение заголовка"
-							image: 'header'
-						}
-					]
-				},
-				{
-					td: [
-						{
-							attrs:
-								colspan: "6"
-							text: 
-								"Описание":
-									field: "description"
-									type: "editor"
-								"SEO текст":
-									field: "seo_text"
-									type: "editor"
-								"SEO description":
-									field: "seo_description"
-									type: "textarea"
-						}
-					]
-				}
-			]
-		}
-	]
+	page: ->
+		ret = btn_save() + "<table>"
+		ret += tr td tb("Категория", 'category', data: {category: {fields: ['name'], pick: true, has_self: true}}), attrs: colspan: 6
+		ret += tr [
+			td field("Название", "name", {validation: presence: true}), attrs: {colspan: 3, width: "50%"}
+			td field("Код", "scode", {validation: {presence: true, uniq: true}}), attrs: {colspan: 3, width: "50%"}
+		]
+		ret += tr [
+			td field("Наценка продавца", "commission"), attrs: colspan: 3
+			td field("Наша наценка", "rate"), attrs: colspan: 3
+		]
+		ret += tr [
+			td field("SEO title", "seo_title"), attrs: colspan: 3
+			td field("SEO description (через запятую)", "seo_keywords"), attrs: colspan: 3
+		]
+		ret += tr [
+			td field("Краткий url", "url"), attrs: colspan: 2
+			td field("Мобильные url", "mobile_image_url"), attrs: colspan: 2
+			td field("Показывать в мобильном клиенте", "isMobile"), attrs: colspan: 2
+		]
+		ret += tr image_field 'Добавить изображение заголовка', 'header', attrs: colspan: 6
+		ret += tr td text("Описание": "description", "SEO текст": "seo_text", "SEO description": "seo_description": "textarea"), attrs: colspan: 6
+		title('категорию') + form ret
+	belongs_to: ["category"]

@@ -1,382 +1,163 @@
 app.templates.form.order =
-	table: [
-		{
-			tr: [
-				{
-					td: [
-						{
-							attrs: style: 'width: 33.3%'
-						}
-						{
-							attrs: style: 'width: 33.3%'
-							header: "Номер"
-							field: "number"
-						}
-						{
-							attrs: style: 'width: 33.3%'
-						}
-					]
-				}
-				{
-					td: [
-						{}
-						{
-							header: "Статус"
-							field: "status_id"
-							belongs_to: "status"
-							treebox:
-								data:
-									status:
-										fields: ['name']
-										pick: true
-								pick:
-									val: "id"
-									header: "name"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Дата заказа"
-							field: "created_at"
-							format: date: "dd.MM.yyyy"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Салон"
-							field: "salon"
-						}
-						{}
-						{
-							header: "Телефон салона"
-							field: "salon_tel"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Менеджер"
-							field: "manager"
-						}
-						{}
-						{
-							header: "Телефон менеджера"
-							field: "manager_tel"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs: colspan: 3
-							html: "<h2 class='tal pad m15' style='margin-bottom: 0'>Заказчик</h2>"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Фамилия"
-							field: "last_name"
-						}
-						{
-							header: "Имя"
-							field: "first_name"
-						}
-						{
-							header: "Отчество"
-							field: "middle_name"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Улица"
-							field: "addr_street"
-						}
-						{
-							header: "Подъезд"
-							field: "addr_block"
-						}
-						{
-							header: "Дом"
-							field: "addr_home"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Телефон"
-							field: "phone"
-						}
-						{
-							header: "Корпус"
-							field: "addr_staircase"
-						}
-						{
-							header: "Этаж"
-							field: "addr_floor"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Метро"
-							field: "addr_metro"
-						}
-						{
-							header: "Квартира"
-							field: "addr_flat"
-						}
-						{
-							header: "Код"
-							field: "addr_code"
-						}
-					]
-				}
-				{
-					td: [
-						{}
-						{
-							header: "Лифт"
-							field: "addr_elevator"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs: colspan: 3
-							set: (rec) ->
-								ret = "<table class='style'>
-									<tr>
-										<th>№ п/п</th>
-										<th>Артикул</th>
-										<th>Наименование изделия</th>
-										<th>Цена за ед.</th>
-										<th>Кол-во</th>
-										<th>%</th>
-										<th colspan='2'>Сумма</th>
-									</tr>"
-								i = 0
-								quantity = 0
-								total = 0
-								for c in rec.order_items()
-									p = c.product()
-									quantity += c.quantity
-									price = c.price * c.quantity * (1 - (c.discount / 100))
-									total += price
-									ret += "<tr>
-										<td>#{i += 1}</td>
-										<td>#{p.article}</td>
-										<td>#{p.name}</td>
-										<td>#{c.price.toCurrency()} руб.</td>
-										<td>#{c.quantity}</td>
-										<td>#{c.discount}</td>
-										<td colspan='2' class='price'>#{price.toCurrency()} руб.</td>
-									</tr>"
-								ret += "<tr>
-									<th></th>
-									<th colspan='3'>Описание дополнительного товара</th>
-									<th colspan='2'>Цена дополнительного товара</th>
-									<th colspan='2'></th>
-								</tr>"
-								for c in rec.virtproducts()
-									quantity += 1
-									total += parseFloat c.price
-									ret += "<tr data-id='#{c.id}'>
-										<td>#{i += 1}</td>
-										<td colspan='3'>#{c.text}</td>
-										<td colspan='2' class='price'>#{c.price.toCurrency()} руб.</td>
-										<td colspan='2' class='btn red' onclick='functions.removeVirtproduct(this)'>Удалить</td>
-									</tr>"
-								window.debt = total + rec.deliver_cost
-								ret += "<tr>
-									<td colspan='8' class='btn green' onclick='functions.addVirtproduct(this)'>Добавить дополнительный товар</td>
-								</tr>
-								<tr>
-									<td colspan='4' class='tar pad'><b>Стоимость товара</b></td>
-									<td style='color: red'><b>#{quantity}</b></td>
-									<td>шт.</td>
-									<td colspan='2'>#{total.toCurrency()} руб.</td>
-								</tr>
-								<tr>
-									<td colspan='4' class='tar pad'><b>Стоимость доставки</b></td>
-									<td colspan='2'><label class='row'><p>Тип доставки</p><input type='text' name='deliver_type'#{if rec.deliver_type then " value='#{rec.deliver_type}'" else ''}></label></td>
-									<td colspan='2'><input onkeyup='functions.countPrices()' type='text' name='deliver_cost'#{if rec.deliver_cost then " value='#{rec.deliver_cost}'" else ''}></td>
-								</tr>
-								<tr>
-									<td colspan='4' class='tar pad'><b>Итого</b></td>
-									<td colspan='2'></td>
-									<td colspan='2' id='itogo'>#{(window.debt).toCurrency()} руб.</td>
-								</tr>"
-								ret += "</table>"
-								@html = ret
-						}
-					]
-				}
-				{
-					td: [
-						{
-							html: "<b>Предоплата</b>"
-						}
-						{
-							header: "Дата предоплаты"
-							field: "prepayment_date"
-							format: date: "dd.MM.yyyy"
-						}
-						{
-							header: "Сумма предоплаты"
-							field: "prepayment_sum"
-							fieldAttrs: onkeyup: "functions.countPrices()"
-							format: decimal: "currency"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							html: "<b>Доплата</b>"
-						}
-						{
-							header: "Дата доплаты"
-							field: "doppayment_date"
-							fieldAttrs: onkeyup: "functions.countPrices()"
-							format: date: "dd.MM.yyyy"
-						}
-						{
-							header: "Сумма доплаты"
-							field: "doppayment_sum"
-							fieldAttrs: onkeyup: "functions.countPrices()"
-							format: decimal: "currency"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							html: "<b>Окончательный расчет</b>"
-						}
-						{
-							header: "Дата окончательного расчета"
-							field: "finalpayment_date"
-							format: date: "dd.MM.yyyy"
-						}
-						{
-							header: "Сумма окончательного расчета"
-							field: "finalpayment_sum"
-							fieldAttrs: onkeyup: "functions.countPrices()"
-							format: decimal: "currency"
-						}
-					]
-				}
-				{
-					td: [
-						{}
-						{}
-						{
-							set: ->
-								@html = "<b>Долг клиента: <span style='color: red' id='debt'>#{window.debt.toCurrency()} руб.</span></b>"
-						}
-					]
-				}
-				{
-					td: [
-						{}
-						{}
-						{
-							header: "Способ оплаты"
-							field: "payment_type"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs: colspan: 3
-							html: "<h2 class='tal pad m15' style='margin-bottom: 0'>Клиенту предоставлен кредит</h2>"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Сумма кредита"
-							field: "credit_sum"
-						}
-						{
-							header: "Кол-Во Месяцев Кредита"
-							field: "credit_month"
-						}
-						{
-							header: "Проценты кредита"
-							field: "credit_procent"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs: colspan: 3
-							html: "<h2 class='tal pad m15' style='margin-bottom: 0'>Информация о доставке</h2>"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							header: "Дата доставки"
-							field: "deliver_date"
-						}
-						{
-							html: "<b>Сборка</b> - оплата по факту"
-						}
-						{
-							html: "<b>Подъем</b> - оплата см. Приложение №2"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs: colspan: 3
-							html: "<b>* при доставке за пределы МКАД</b>, в стоимость доставки включается фактический киллометраж (за 1 км. - 30р)"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs: colspan: 3
-							html: "<h2 class='tal pad m15' style='margin-bottom: 0'>Дополнительная информация</h2>"
-						}
-					]
-				}
-				{
-					td: [
-						{
-							attrs: colspan: 3
-							html: "<b>сборка 6%=2200, подъем 300 руб</b>"
-						}
-					]
-				}
+	page: ->
+		ret = cells [
+			[
+				td '', attrs: style: 'width: 33.3%'
+				td field('Номер', 'number', val_cb: (v) -> if v then v else ''), attrs: style: 'width: 33.3%'
+				td '', attrs: style: 'width: 33.3%'
 			]
-		}
-	]
-	belongs_to: [
-		{model: "status"}
-	]
+			[
+				td ''
+				td tb "Статус", 'status', data: {status: {fields: ['name'], pick: true}}
+				td ''
+			]
+			td field "Дата заказа", "created_at", format: date: "dd.MM.yyyy"
+			[
+				td field 'Салон', 'salon'
+				td ''
+				td field 'Телефон салона', 'salon_tel'
+			]
+			[
+				td field 'Менеджер', 'manager'
+				td ''
+				td field 'Телефон менеджера', 'manager_tel'
+			]
+			td "<h2 class='tal pad m15' style='margin-bottom: 0'>Заказчик</h2>", attrs: colspan: 3
+			[
+				td field 'Фамилия', 'last_name'
+				td field 'Имя', 'first_name'
+				td field 'Отчество', 'middle_name'
+			]
+			[
+				td field 'Улица', 'addr_street'
+				td field 'Подъезд', 'addr_block'
+				td field 'Дом', 'addr_home'
+			]
+			[
+				td field 'Телефон', 'phone'
+				td field 'Корпус', 'addr_staircase'
+				td field 'Этаж', 'addr_floor'
+			]
+			[
+				td field 'Метро', 'addr_metro'
+				td field 'Квартира', 'addr_flat'
+				td field 'Код', 'addr_code'
+			]
+			[
+				td ''
+				td field 'Лифт', 'addr_elevator'
+			]
+		]
+		ret += "<td colspan='3'>
+			<table class='style'>
+				<tr>
+					<th>№ п/п</th>
+					<th>Артикул</th>
+					<th>Наименование изделия</th>
+					<th>Цена за ед.</th>
+					<th>Кол-во</th>
+					<th>%</th>
+					<th colspan='2'>Сумма</th>
+				</tr>"
+		i = 0
+		quantity = 0
+		total = 0
+		for c in db.where('order_item', order_id: param.id)
+			p = db.find('product', c.product_id)[0]
+			quantity += c.quantity
+			price = c.price * c.quantity * (1 - (c.discount / 100))
+			total += price
+			ret += "<tr>
+				<td>#{i += 1}</td>
+				<td>#{p.article}</td>
+				<td>#{p.name}</td>
+				<td>#{c.price.toCurrency()} руб.</td>
+				<td>#{c.quantity}</td>
+				<td>#{c.discount}</td>
+				<td colspan='2' class='price'>#{price.toCurrency()} руб.</td>
+			</tr>"
+		ret += "<tr>
+			<th></th>
+			<th colspan='3'>Описание дополнительного товара</th>
+			<th colspan='2'>Цена дополнительного товара</th>
+			<th colspan='2'></th>
+		</tr>"
+		for c in db.where('virtproduct', order_id: param.id)
+			quantity += 1
+			total += parseFloat c.price
+			ret += "<tr data-id='#{c.id}'>
+				<td>#{i += 1}</td>
+				<td colspan='3'>#{c.text}</td>
+				<td colspan='2' class='price'>#{c.price.toCurrency()} руб.</td>
+				<td colspan='2' class='btn red' onclick='removeVirtproduct(this)'>Удалить</td>
+			</tr>"
+		window.debt = total + window.rec.deliver_cost
+		ret += "<tr>
+			<td colspan='8' class='btn green' onclick='addVirtproduct(this)'>Добавить дополнительный товар</td>
+		</tr>
+		<tr>
+			<td colspan='4' class='tar pad'><b>Стоимость товара</b></td>
+			<td style='color: red'><b>#{quantity}</b></td>
+			<td>шт.</td>
+			<td colspan='2'>#{total.toCurrency()} руб.</td>
+		</tr>
+		<tr>
+			<td colspan='4' class='tar pad'><b>Стоимость доставки</b></td>
+			<td colspan='2'><label class='row'><p>Тип доставки</p><input type='text' name='deliver_type'#{if rec.deliver_type then " value='#{rec.deliver_type}'" else ''}></label></td>
+			<td colspan='2'><input onkeyup='countPrices()' type='text' name='deliver_cost'#{if rec.deliver_cost then " value='#{rec.deliver_cost}'" else ''}></td>
+		</tr>
+		<tr>
+			<td colspan='4' class='tar pad'><b>Итого</b></td>
+			<td colspan='2'></td>
+			<td colspan='2' id='itogo'>#{(window.debt).toCurrency()} руб.</td>
+		</tr>"
+		ret += "</table></td>" + cells [
+			[
+				td "<b>Предоплата</b>"
+				td field "Дата предоплаты", "prepayment_date", format: date: "dd.MM.yyyy"
+				td field "Сумма предоплаты", "prepayment_sum", {attrs: {onkeyup: "countPrices()"}, format: decimal: "currency"}
+			]
+			[
+				td "<b>Доплата</b>"
+				td field "Дата доплаты", "doppayment_date", format: date: "dd.MM.yyyy"
+				td field "Сумма доплаты", "doppayment_sum", {attrs: {onkeyup: "countPrices()"}, format: decimal: "currency"}
+			]
+			[
+				td "<b>Окончательный расчет</b>"
+				td field "Дата окончательного расчета", "finalpayment_date", format: date: "dd.MM.yyyy"
+				td field "Сумма окончательного расчета", "finalpayment_sum", {attrs: {onkeyup: "countPrices()"}, format: decimal: "currency"}
+			]
+			[
+				td ''
+				td ''
+				td "<b>Долг клиента: <span style='color: red' id='debt'>#{window.debt.toCurrency()} руб.</span></b>"
+			]
+			[
+				td ''
+				td ''
+				td field "Способ оплаты", "payment_type"
+			]
+			td "<h2 class='tal pad m15' style='margin-bottom: 0'>Клиенту предоставлен кредит</h2>", attrs: colspan: 3
+			[
+				td field "Сумма кредита", "credit_sum", {format: decimal: "currency"}
+				td field "Кол-Во Месяцев Кредита", "credit_month"
+				td field "Проценты кредита", "credit_procent"
+			]
+			td "<h2 class='tal pad m15' style='margin-bottom: 0'>Информация о доставке</h2>", attrs: colspan: 3
+			[
+				td field "Дата доставки", "deliver_date"
+				td "<b>Сборка</b> - оплата по факту"
+				td "<b>Подъем</b> - оплата см. Приложение №2"
+			]
+			td "<b>* при доставке за пределы МКАД</b>, в стоимость доставки включается фактический киллометраж (за 1 км. - 30р)", attrs: colspan: 3
+			td "<h2 class='tal pad m15' style='margin-bottom: 0'>Дополнительная информация</h2>", attrs: colspan: 3
+			td "<b>сборка 6%=2200, подъем 300 руб</b>", attrs: colspan: 3
+		]
+		title('заказ') + form btn_save() + "<table>" + ret + "</table>" + btn_save()
+	belongs_to: ["status"]
 	has_many: [
-		{model: "order_item", belongs_to: {model: "product"}}
-		{model: "virtproduct"}
+		model: 'order_item', belongs_to: ["product"]
+		model: 'virtproduct'
 	]
 	functions:
 		addVirtproduct: (el) ->
@@ -384,27 +165,22 @@ app.templates.form.order =
 			tr.before "<tr>
 				<td>#{(parseInt(tr.prev().find('td:first-child').html()) or 0) + 1}</td>
 				<td colspan='3'><input type='text' placeholder='Описание'></td>
-				<td colspan='2' class='inputprice'><input onkeyup='functions.countPrices()' type='text' placeholder='Стоимость'></td>
-				<td class='btn green' onclick='functions.saveVirtproduct(this)'>Сохранить</td>
-				<td class='btn red' onclick='functions.cancelVirtproduct(this)'>Отменить</td>
+				<td colspan='2' class='inputprice'><input onkeyup='countPrices()' type='text' placeholder='Стоимость'></td>
+				<td class='btn green' onclick='saveVirtproduct(this)'>Сохранить</td>
+				<td class='btn red' onclick='cancelVirtproduct(this)'>Отменить</td>
 			</tr>"
 		saveVirtproduct: (el) ->
 			el = $ el
 			priceTd = el.prev()
 			textTd = priceTd.prev()
-			text = textTd.find('input').val()
-			price = priceTd.find('input').val()
-			data = {relation: [{model: 'virtproduct', new_records: [fields: {order_id: param.id, price: price, text: text}]}]}
-			formData =  new FormData()
-			formData.append "relation[0]model", 'virtproduct'
-			formData.append "relation[0]new_records[0]fields[order_id]", param.id
-			formData.append "relation[0]new_records[0]fields[price]", price
-			formData.append "relation[0]new_records[0]fields[text]", text
-			record.save data, formData: formData, cb: (res) ->
-				el.parent().data 'id', res.relation[0].new_records[0].record.id
-				textTd.html text
-				priceTd.toggleClass('inputprice price').html price.toCurrency() + ' руб.'
-				priceTd.after "<td colspan='2' class='btn red' onclick='functions.removeVirtproduct(this)'>Удалить</td>"
+			text_val = textTd.find('input').val()
+			price_val = priceTd.find('input').val()
+			params = order_id: param.id, text: text_val, price: price_val
+			db.create_one 'virtproduct', params, (id) ->
+				el.parent().data 'id', 'id'
+				textTd.html text_val
+				priceTd.toggleClass('inputprice price').html price_val.toCurrency() + ' руб.'
+				priceTd.after "<td colspan='2' class='btn red' onclick='removeVirtproduct(this)'>Удалить</td>"
 				el.next().remove()
 				el.remove()
 		cancelVirtproduct: (el) ->
@@ -418,24 +194,13 @@ app.templates.form.order =
 				action: ->
 					tr = $('#removeRecord').attr 'id', ''
 					id = tr.data 'id'
-					$.ajax
-						url: "/admin/model/virtproduct/destroy/#{id}"
-						type: 'POST'
-						contentType: false
-						processData: false
-						dataType: "json"
-						success: (res) ->
-							if res is 'permission denied'
-								notify 'Доступ запрещен', class: 'red'
-							else
-								next = tr.next()
-								while next.data 'id'
-									i = next.find('td:first-child')
-									i.html i.html() - 1
-									next = next.next()
-								tr.remove()
-								delete models['virtproduct'].collection[id]
-								notify "Запись удалена"
+					db.destroy 'virtproduct', id, ->
+						next = tr.next()
+						while next.data 'id'
+							i = next.find('td:first-child')
+							i.html i.html() - 1
+							next = next.next()
+						tr.remove()
 				cancel: -> $('#removeRecord').attr 'id', ''
 		countPrices: ->
 			total = 0

@@ -1,10 +1,4 @@
 class Admin::PackinglistController < Admin::AdminController
-	def index
-		rend
-	end
-	def show
-		rend page: 'packinglist/show'
-	end
 	def update
 		data = {}
 		for item in params[:items]

@@ -1,0 +1,53 @@
+<div id='home'>
+	<% unless @banners.blank? %>
+	<div class="banners">
+		<div id="slider">
+			<div class="prev" onclick="sliderPrev(this)"></div>
+			<div class="wrap">
+				<% @banners.each_with_index do |b, i| %>
+					<a href="<%= b.url %>" class="<%= 'active' if i == 0 %>" style="background-image: url('<%= b.image %>')"></a>
+				<% end %>
+			</div>
+			<div class="next" onclick="sliderNext(this)"></div>
+			<div class="buttons">
+				<div class="active" onclick="sliderChoose(this)"></div>
+				<% (@banners.count - 1).times do %>
+					<div onclick="sliderChoose(this)"></div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<div class='row'>
+		<a class='link' href="/catalog/sales"><img alt="Sales" src="/assets/sales.jpg"></a>
+	</div>
+	<div class='row'>
+		<div class='two container'>
+			<img src="/assets/main1.png">
+			<div class='items'>
+				<div class='row'>
+					<% if @cat1.size > 1 then @cat1[0..2].each do |p| %>
+					<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
+							<h2><%= p.name %></h2>
+							<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
+					</a>
+					<% end end %>
+				</div>
+				<div class='row'>
+					<% if @cat1.size > 3 then @cat1[3..4].each do |p| %>
+					<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
+							<h2><%= p.name %></h2>
+							<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
+					</a>
+					<% end end %>
+					<a href="<%= url_for({ :controller => '/catalog', :action => :index, :category_scode => :Bella} )%>" class="showAll">
+						Посмотреть всю<br> коллекцию >><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+					</a>
+				</div>
+			</div>
+		</div>
+		<a class='link one' href="/catalog/index?category_scode=Матрасы по акции">
+			<img src="/assets/main2.png">
+		</a>
+	</div>
+</div>
