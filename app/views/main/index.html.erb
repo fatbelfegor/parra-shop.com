@@ -2,13 +2,11 @@
 	<% unless @banners.blank? %>
 	<div class="banners">
 		<div id="slider">
-			<div class="prev" onclick="sliderPrev(this)"></div>
 			<div class="wrap">
 				<% @banners.each_with_index do |b, i| %>
 					<a href="<%= b.url %>" class="<%= 'active' if i == 0 %>" style="background-image: url('<%= b.image %>')"></a>
 				<% end %>
 			</div>
-			<div class="next" onclick="sliderNext(this)"></div>
 			<div class="buttons">
 				<div class="active" onclick="sliderChoose(this)"></div>
 				<% (@banners.count - 1).times do %>
@@ -67,7 +65,7 @@
 
 	<table border="0" cellspacing="0" cellpadding="0" width="90%">
 		<tr>
-			<td class="opacity"><%= link_to(image_tag("main3.png", style: "margin-top:30px"), { :controller => '/catalog', :action => :index, :category_scode => :Столы} )%></td>
+			<td class="opacity"><%= link_to(image_tag("main3.png", style: "margin-top:30px"), { :controller => '/catalog', :action => :index, :category_scode => :Столы } )%></td>
 			<td>
 				<div class="margin">
 					<table>

@@ -2319,28 +2319,13 @@ th {
 	max-height: 200px;
 }
 .banners {
-	width: 95%;
+	width: 100%;
 	border: 1px solid #D9D9D9;
 	margin-bottom: 43px;
 	position: relative;
 }
 #slider {
 	height: 328px;
-	padding: 0 25px;
-	.prev, .next {
-		position: absolute;
-		left: 8px;
-		top: 156px;
-		cursor: pointer;
-		background-image: url('/assets/arrowLeft.png');
-		width: 12px;
-		height: 22px;
-	}
-	.next {
-		left: auto;
-		right: 8px;
-		background-image: url('/assets/arrowRight.png');
-	}
 	.wrap {
 		overflow: hidden;
 		position: relative;
