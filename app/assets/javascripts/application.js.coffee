@@ -870,6 +870,7 @@ sliderRight = (steps, products) ->
 		move = active.next()
 	active.addClass('active')
 @sliderChoose = (el) ->
+	console.log 'qwe'
 	unless $(el).hasClass('.active')
 		buttons = $(el).parent()
 		products = buttons.prev().prev()

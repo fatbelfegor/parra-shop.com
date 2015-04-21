@@ -2,11 +2,13 @@
 	<% unless @banners.blank? %>
 	<div class="banners">
 		<div id="slider">
+			<div class="prev"></div>
 			<div class="wrap">
 				<% @banners.each_with_index do |b, i| %>
 					<a href="<%= b.url %>" class="<%= 'active' if i == 0 %>" style="background-image: url('<%= b.image %>')"></a>
 				<% end %>
 			</div>
+			<div class="next"></div>
 			<div class="buttons">
 				<div class="active" onclick="sliderChoose(this)"></div>
 				<% (@banners.count - 1).times do %>
