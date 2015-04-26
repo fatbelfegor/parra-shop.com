@@ -122,6 +122,10 @@ ready = ->
 			<li data-route='model/user'>
 				<div class='icon fade'><a href='/admin/model/user/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
 				<a href='/admin/model/user/records' onclick='app.aclick(this)'><i class='icon-users'></i><span>Пользователи</span></a>
+			</li>
+			<li data-route='model/page'>
+				<div class='icon fade'><a href='/admin/model/page/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
+				<a href='/admin/model/page/records' onclick='app.aclick(this)'><i class='icon-file6'></i><span>Страницы</span></a>
 			</li>"
 		else
 			ret += "<li data-route='model/order/records'>

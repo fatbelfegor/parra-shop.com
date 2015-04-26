@@ -20,6 +20,7 @@ app.templates.form.category =
 			td field("Показывать в мобильном клиенте", "isMobile"), attrs: colspan: 2
 		]
 		ret += tr image_field 'Добавить изображение заголовка', 'header', attrs: colspan: 6
+		ret += tr td images(), attrs: colspan: 6
 		ret += tr td text("Описание": "description", "SEO текст": "seo_text", "SEO description": "seo_description": "textarea"), attrs: colspan: 6
 		title('категорию') + form ret
 	belongs_to: ["category"]

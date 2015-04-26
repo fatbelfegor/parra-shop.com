@@ -12,4 +12,21 @@ class PageController < ApplicationController
 	end
 	@banners = Banner.all  
 	end
+
+	def cart
+	end
+
+	def cartjson
+		@product = Product.find_by_name params[:name]
+		render json: @product
+	end
+	
+	def show
+		@page = Page.find_by_url params[:url]
+		if @page
+			@title = @page.seo_title unless @page.seo_title.blank?
+			@seo_keywords = @page.seo_keywords unless @page.seo_keywords.blank?
+			@seo_description = @page.seo_description unless @page.seo_description.blank?
+		end
+	end
 end

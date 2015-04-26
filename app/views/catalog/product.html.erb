@@ -1,0 +1,147 @@
+<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
+<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
+<div class="show page">
+	<h2><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end %></h2>
+	<div class="main">
+		<div>			
+			<% unless @product.images.empty? %>
+				<div class="mini">
+					<img onclick="choosePhoto(this)" class="active" src="<%= @product.images.first.url %>">
+					<% @product.images[1..-1].each do |i| %>
+			    		<img onclick="choosePhoto(this)" src="<%= i.url %>">
+			    	<% end %>
+				</div>
+				<% if @product.extension %>
+					<img class='extension-show' src="<%= @product.extension.image %>">
+				<% end %>
+				<div class="photoes">
+			    	<a class="showPhoto" href="<%= @product.images.first.url %>" data-lightbox="images" class="image"><img src="<%= @product.images.first.url %>"></a>
+					<% @product.images[1..-1].each do |i| %>
+						<a href="<%= i.url %>" data-lightbox="images" class="image hidden"><img src="<%= i.url %>"></a>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+		<div class="productContent">
+			<h1><%= @product.name %></h1>
+			<%= sanitize(@product.description) %>
+			
+			<% if !@product.sizes.empty? %>
+				<div>
+					<a onclick="option(this)">Выбрать размер:<img src="/assets/optionArrow.png"></a>
+					<div class="option">
+						<% first = true %>
+						<% for size in @product.sizes %>
+							<label onchange="priceChange(this)">
+								<input class="size-scode-<%= size.scode %>" value="<%= size.price %>" type="radio" name="sizes"<% if first %><%= first = false; ' checked="checked"' %><% end %>/>
+								<span><%= size.name %></span>
+								<span class="hidden"><%= size.scode %></span>
+							</label>
+						<% end %>
+					</div>
+				</div>
+				<% active = true %>
+				<% first_color = true %>
+				<% first_option = true %>
+				<div class="prsize-wrap">
+					<% for size in @product.sizes %>
+						<div class="<% if active %><%= active = false; ' active' %><% end %>" onchange="priceChange()">
+							<% if !size.colors.blank? %>
+								<div>
+									<a onclick="option(this)">Выбрать цвет:<img src="/assets/optionArrow.png"></a>
+									<div class="option">
+										<% for color in size.colors %>
+											<% if color.textures.blank? %>
+												<label class="color" data-color="<%= color.name %>">
+													<input class="color-scode-<%= color.scode %>" value="<%= color.price %>" type="radio" name="colors"<% if first_color %><%= first_color = false; " checked=checked" %><% end %>>
+													<a href="<%= color.image %>" data-lightbox="<%= color.name %>" title="<%= color.name %>"><img src="<%= color.image %>"></a>
+													<span><%= sanitize(color.description) %></span>
+												</label>
+											<% else %>
+												<div class="catalog">
+													<div class="header">
+														<div class="heading" style="background-image: url('<%= color.image %>') !important"><p>Каталог тканей</p><p><%= color.name %></p></div>
+														<div class="fancyButton" onclick="texturesWatch(this)">Выбрать</div>
+													</div>
+													<div class="textures" style="height:0">
+														<% for t in color.textures %>
+															<label>
+																<p class="hidden"><%= t.scode %></p>
+																<p><%= t.scode %> <%= t.name %></p>
+																<a href="<%= t.image %>" data-lightbox="<%= color.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
+																<input class="texture-scode-<%= t.scode %>" type="radio" name="colors" value="<%= t.price + color.price %>"<% if first %><%= first = false; ' checked="checked"' %><% end %>>
+															</label>
+														<% end %>
+													</div>
+												</div>
+											<% end %>
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+							<% if !size.options.blank? %>
+								<div>
+									<a onclick="option(this)">Выбрать опции:<img src="/assets/optionArrow.png"></a>
+									<div class="option">
+										<label>
+											<input value="0" type="radio" name="options"<% if first_option %><%= first_option = false; ' checked="checked"' %><% end %>>
+											<span>Без опций</span>
+											<span class="hidden">Без опций</span>
+										</label>
+										<% for option in size.options %>
+											<label>
+												<input class="option-scode-<%= option.scode %>" value="<%= option.price %>" type="radio" name="options" />
+												<span><%= option.name %></span>
+												<span class="hidden"><%= option.scode %></span>
+											</label>						
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+			<div id="choosedChars" class="open">
+				<h5>Выбранные опции:</h5>
+				<p class="size">Размер: <b></b></p>
+				<p class="color">Цвет: <b></b></p>
+				<p class="opt">Опция: <b></b></p>
+			</div>
+			<div class="price">
+				<div class="price-block">
+					<% if @product.old_price > 0 %>
+						<p class="old_price">Цена: <strike id='oldPrice' data-val='<%= @product.old_price %>'><%= to_money @product.old_price %></strike> <img src="/assets/rublGray.png"></p>
+					<% end %>
+					<p class="main">
+						<b id="summaryPrice"><%= to_money @product.price %></b> <img src="/assets/rubl.png">
+					</p>
+					<% if @product.old_price > 0 %>
+						<p class="difference">Вы экономите: <span id='pricesDifference'><%= to_money(@product.old_price - @product.price) %></span> <img src="/assets/rublGray.png"></p>
+					<% end %>
+				</div>
+				<div class="buyButton" onclick="addToCart('<%= @product.name %>', this)">Купить</div>
+				<%= hidden_field_tag :product_id_field, @product.id %>
+				<%= hidden_field_tag :product_scode, @product.scode %>
+			</div>
+		</div>
+	</div>
+	<div class="others">
+		<p>Похожие товары</p>
+		<% if @product.category %>
+			<%= render(:partial => "catalog/productFooter" , collection: @product.category.products) %>
+		<% else %>
+			<%= render(:partial => "catalog/productFooter" , collection: @product.subcategory.products) %>
+		<% end %>
+	</div>
+	<% unless @product.seo_text.blank? %>
+		<div class="seo_text">
+			<%= raw @product.seo_text %>
+		</div>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	priceNum = $('#summaryPrice').html().replace(/ /g,'');
+	productPage()
+</script>

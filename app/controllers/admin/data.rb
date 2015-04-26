@@ -83,6 +83,9 @@ Admin::Data = {
 					record: rec,
 					belongs_to: {
 						category: rec.category
+					},
+					has_many: {
+						image: rec.images
 					}
 				}
 			}
@@ -129,6 +132,13 @@ Admin::Data = {
 			{
 				banner: {
 					record: Banner.find(p[:id])
+				}
+			}
+		},
+		page: lambda { |p|
+			{
+				page: {
+					record: Page.find(p[:id])
 				}
 			}
 		}
@@ -204,6 +214,7 @@ Admin::Data = {
 		},
 		banner: lambda { |p|
 			{
+				all: true,
 				banner: {
 					records: Banner.all
 				}
@@ -223,6 +234,15 @@ Admin::Data = {
 							}
 						}
 					}
+				}
+			}
+		},
+		page: lambda { |p|
+			{
+				page: {
+					all: true,
+					select: [:id, :url, :name],
+					records: Page.select(:id, :url, :name)
 				}
 			}
 		}

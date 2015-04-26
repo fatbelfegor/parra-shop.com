@@ -1,0 +1,48 @@
+<% if @product.scode != productFooter.scode %>
+<div>
+	<div>
+		<% if productFooter.extension %>
+			<img src="<%= productFooter.extension.image %>" class='extension-footer'>
+		<% end %>
+		<% if productFooter.images %>
+			<% images = productFooter.images %>
+		    <div class="left inactive"></div>
+	        <% if images.size > 1 %>
+	        <div class="right" onclick="photoRight(this)"></div>
+	        <% else %>
+	        <div class="right inactive"></div>
+	        <% end %>       
+	        <div class="photoes">
+	            <a class="showPhoto" href="/kupit/<%= productFooter.scode %>" style="background-image: url('<%= images[0].url %>')"></a>
+	        	<% images[1..-1].each do |i| %>
+	        		<a href="/kupit/<%= productFooter.scode %>" style="background-image: url('<%= i.url %>')"></a>
+	        	<% end %>
+	        </div>
+		<% end %>
+	</div>
+	<div><a href="/kupit/<%= productFooter.scode %>"><%= productFooter.name %></a></div>
+	<div><b>Цена:</b> <span class="price"><%= number_to_currency(productFooter.price) %></span></div>
+	<div class="appear">
+		<% size = productFooter.sizes[0] %>
+        <% if size %>
+            <div><b>Размер:</b> <span class="size"><%= size.name %></span></div>
+            <% color = size.colors[0] %>
+            <% if color %>
+            	<% texture = color.textures[0] %>
+            	<% if texture %>
+            		<div><b>Цвет:</b> <span class="color"><%= texture.name %></span></div>
+            	<% else %>
+            		<div><b>Цвет:</b> <span class="color"><%= color.name %></span></div>
+            	<% end %>
+            <% end %>
+            <% option = size %>
+            <% if option %>
+            	<div><b>Опция:</b> <span class="option"><%= option.name %></span></div>
+            <% end %>
+        <% end %>
+        <div class="id hidden"><%= productFooter.id %></div>
+        <div class="scode hidden"><%= productFooter.scode %></div>
+        <div class="fancyButton" onclick="addToCartFromCatalog('<%= productFooter.name %>', this)">Купить</div>
+    </div>
+</div>
+<% end %>

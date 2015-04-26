@@ -1,0 +1,45 @@
+<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
+<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
+<div class="index">
+	<h2 class="categoryLogo">
+		<% if params[:category_scode].present? %>
+			<% unless @category.header.blank? %>
+			<img src='<%= @category.header %>'> / 
+			<% end %>
+			<%= @category.name %>
+		<% elsif params[:q].present? %>
+			Поиск по запросу "<%= params[:q] %>"
+		<% end %>
+	</h2>
+	<% if params[:category_scode].present? %>
+		<% unless @category.images.blank? %>
+			<div class="category-images">
+				<% for image in @category.images %>
+					<img src="<%= image.url %>">
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
+	<% if (params[:category_scode].present? and @category.subcategories.blank?) or params[:q].present? %>
+		<div id="products"></div>
+		<script type="text/javascript">
+		productLoad = {}
+		<%= if params[:category_scode].present? || params[:url].present? then raw "productLoad.cat_id = '#{@category.id}'" end %>
+		<%= if params[:q].present? then raw "productLoad.q = '#{params[:q]}'" end %>
+		</script>
+	<% elsif @category %>
+		<div id="subcategories">
+			<%= render partial: "subcategory" , collection: @category.subcategories %>
+		</div>
+	<% else %>
+		<div id="products"></div>
+		<script type="text/javascript">
+		productLoad = {}
+		</script>
+	<% end %>
+	<% unless !params[:category_scode].present? or @category.seo_text.blank? %>
+		<div class="seo_text">
+			<%= raw @category.seo_text %>
+		</div>
+	<% end %>
+</div>

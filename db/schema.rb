@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331185829) do
+ActiveRecord::Schema.define(version: 20150426165456) do
 
   create_table "banners", force: :cascade do |t|
     t.string "image", limit: 255
@@ -151,6 +151,15 @@ ActiveRecord::Schema.define(version: 20150331185829) do
     t.string "doc_number", limit: 255
     t.date   "date"
     t.string "user",       limit: 255
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "name",            limit: 255
+    t.string "url",             limit: 255
+    t.string "seo_title",       limit: 255
+    t.string "seo_keywords",    limit: 255
+    t.text   "seo_description", limit: 65535
+    t.text   "description",     limit: 65535
   end
 
   create_table "products", force: :cascade do |t|

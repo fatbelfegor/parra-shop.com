@@ -8,6 +8,8 @@ gem 'mysql2'
 # gem 'pg'
 # Use stylus for stylesheets
 gem 'stylus'
+gem 'sass'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

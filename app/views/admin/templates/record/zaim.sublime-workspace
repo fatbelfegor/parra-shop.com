@@ -300,7 +300,7 @@
 	"build_system_choices":
 	[
 	],
-	"build_varint": "",
+	"build_varint": "Run",
 	"command_palette":
 	{
 		"height": 392.0,
@@ -927,9 +927,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "z",
+		"last_filter": "ve",
 		"selected_items":
 		[
+			[
+				"ve",
+				"~/work/projects/velluto.sublime-project"
+			],
 			[
 				"z",
 				"~/work/projects/zaimtut.sublime-project"

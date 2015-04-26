@@ -1,0 +1,92 @@
+<p class="title"><%= subcategory.name %><% if user_signed_in? && (current_user.role == 'admin' || current_user.role == 'manager') %><a style='margin-left: 50px' class="btn btn-primary" href="/admin/model/subcategory/edit/<%= subcategory.id %>">Редактировать</a><% end %></p>
+<% if subcategory.description %>
+	<div class="description">
+		<%= raw subcategory.description %>
+	</div>
+<% end %>
+<% if subcategory.subcategory_items %>
+	<table class="images">
+		<tr>
+			<% for item in subcategory.subcategory_items %>
+				<td>
+					<img src="<%= item.image %>">
+					<div class="image-description"><%= raw item.description %></div>
+				</td>
+			<% end %>
+		</tr>
+	</table>
+<% end %>
+<% if subcategory.products %>
+	<div id="products">
+		<% for p in subcategory.products %>
+			<div>
+				<div>
+					<% if p.extension %>
+						<img src="<%= p.extension.image %>" class='extension-catalog'>
+					<% end %>
+					<% images = p.images %>
+					<div class="left inactive"></div>
+					<% if images[1] %>
+						<div class="right" onclick="photoRight(this)"></div>
+					<% else %>
+						<div class="right inactive"></div>
+					<% end %>
+					<% if images.length > 0 %>
+						<div class="photoes"><a class="showPhoto" href="/kupit/<%= p.scode %>" style="background-image: url('<%= images[0].url %>')"></a>
+						<% for i in images[1..-1] %>
+							<a href="/kupit/<%= p.scode %>" style="background-image: url('<%= i.url %>')"></a>
+						<% end %>
+						</div>
+					<% end %>
+					<div>
+						<h3>
+							<a href="/kupit/<%= p.scode %>"><%= p.name %></a>
+						</h3>
+					</div>
+					<div><%= p.title %></div>
+					<div><%= raw p.shortdesk %></div>
+					<div>
+						<b>Цена:</b>
+						<span class="price"><%= number_to_currency p.price %> руб.</span>
+					</div>
+					<div class="appear">
+						<% if !p.sizes.blank? %>
+							<% size = p.sizes[0] %>
+							<div>
+								<b>Размер:</b>
+								<span class="size"><%= size.name %></span>
+								<span class="hidden size-scode"><%= size.scode %></span>
+							</div>
+							<% if !size.colors.blank? %>
+								<% color = size.colors.first %>
+								<% if !color.textures.blank? %>
+									<div>
+										<b>Цвет:</b>
+										<span class="color"><%= color.textures[0].name %></span>
+										<span class="hidden color-scode"><%= color.textures[0].scode %></span>
+									</div>
+								<% else %>
+									<div>
+										<b>Цвет:</b>
+										<span class="color"><%= color.name %></span>
+										<span class="hidden color-scode"><%= color.scode %></span>
+									</div>
+								<% end %>
+							<% end %>
+							<% if !size.options.blank? %>
+								<div>
+									<b>Опция:</b>
+									<span class="option"><%= size.options[0].name %></span>
+									<span class="hidden option-scode"><%= size.options[0].scode %></span>
+								</div>
+							<% end %>
+						<% end %>
+						<div class="id hidden"><%= p.id %></div>
+						<div class="scode hidden"><%= p.scode %></div>
+						<div class="fancyButton" onclick="addToCartFromCatalog('<%= p.name %>', this)">Купить</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% end %>
