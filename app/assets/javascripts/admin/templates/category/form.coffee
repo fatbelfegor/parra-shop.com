@@ -12,7 +12,7 @@ app.templates.form.category =
 		]
 		ret += tr [
 			td field("SEO title", "seo_title"), attrs: colspan: 3
-			td field("SEO description (через запятую)", "seo_keywords"), attrs: colspan: 3
+			td field("SEO keywords (через запятую)", "seo_keywords"), attrs: colspan: 3
 		]
 		ret += tr [
 			td field("Краткий url", "url"), attrs: colspan: 2

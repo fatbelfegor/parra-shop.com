@@ -10,14 +10,23 @@ app.routes['model/:model/records'].page = ->
 					recs.push rec if rec[k] is v
 		else recs.push rec for id, rec of db[param.model].records
 		if template.order
-			recs.sort (a, b) ->
-				if a[template.order] > b[template.order]
-					return 1
-				if a[template.order] < b[template.order]
-					return -1
-				0
+			if typeof template.order is 'string'
+				recs.sort (a, b) ->
+					if a[template.order] > b[template.order]
+						return 1
+					if a[template.order] < b[template.order]
+						return -1
+					0
+			else if typeof template.order is 'function'
+				recs.sort template.order
 		app.yield.html template.page recs
 		template.after() if template.after
+		app.menu.find(".current").removeClass 'current'
+		app.menu.find(".active").removeClass 'active'
+		parent = app.menu.find("[data-route='model/#{param.model}']").addClass('current open').parents('li').eq(0)
+		while parent.length
+			parent.addClass 'active open'
+			parent = parent.parents('li').eq(0)
 	window.header = (header) ->
 		ret = "<div class='group-header'><div>"
 		for h in header

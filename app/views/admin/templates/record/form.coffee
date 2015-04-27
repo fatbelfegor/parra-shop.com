@@ -15,6 +15,8 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 		window.model = param.model
 		app.yield.html template.page() + "<link rel='stylesheet' type='text/css' href='/lightbox/lightbox.min.css'><script src='/tinyMCE/tinymce.min.js'><script src='/lightbox/lightbox.min.js'>"
 		addFormCb()
+		app.menu.find(".current").removeClass 'current'
+		app.menu.find(".active").removeClass 'active'
 		parent = app.menu.find("[data-route='model/#{param.model}']").addClass('current open').parents('li').eq(0)
 		while parent.length
 			parent.addClass 'active open'
@@ -95,13 +97,11 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 			if val
 				if window.rec and params.format.decimal
 					if params.format.decimal is "currency"
-						if val is null
-							val = ''
-						else val = val.toCurrency() + ' руб.'
+						val = val.toCurrency() + ' руб.'
 				else if params.format.date
-					if val is null
-						val = ''
-					else val = new Date(val).toString params.format.date
+					val = new Date(val).toString params.format.date
+			else if (params.format.not_null or params.format.decimal or params.format.date) and val is null
+				val = ''
 		ret += " value='#{val}'"
 		onchanges = []
 		if params.attrs
@@ -137,7 +137,7 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 	window.images = (header) ->
 		ret = "<div class='images-form' #{if window.rec then " data-record-id='#{window.rec.id}'" else ''}>"
 		if window.rec
-			images = db.images window.model.classify, window.rec.id
+			images = db.images window.model.classify(), window.rec.id
 			for img in images
 				ret += "<div data-id='#{img.id}'>
 					<div class='btn red remove' onclick='window.image.removeImage(this)'></div>
@@ -162,10 +162,12 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 					ret += "<div class='textarea-wrap#{if active then active = false; " active" else ''}'><textarea name='#{n}'>#{if window.rec then window.rec[n] || '' else ''}</textarea></div>"
 		ret + "</div>"
 	window.save = ->
-		return if $('.validation.active').length
 		form = $ '#main-form'
 		action = form.data 'action'
 		model = form.data 'model'
+		app.templates.form[model].beforeSave() if app.templates.form[model].beforeSave
+		form.find("[data-validate]").each -> validate @
+		return if $('.validation.active').length
 		fd = new FormData()
 		d = {}
 		d[model] = rec: [{fields: {}}]
@@ -222,16 +224,17 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 			data
 		fd_path = "model[#{model}]rec[0]"
 		form.find('input, textarea').each ->
-			return if $(@).parents('.relation').length
-			ret = fillData @, fd_path, model
-			for k, v of ret.fields
-				d[model].rec[0].fields[k] = v
-			if ret.removeImage
-				d[model].rec[0].removeImage ?= []
-				d[model].rec[0].removeImage.push ret.removeImage
-			if ret.removeImages
-				d[model].rec[0].removeImages ?= []
-				d[model].rec[0].removeImages.push ret.removeImages
+			unless $(@).data 'ignore'
+				return if $(@).parents('.relation').length
+				ret = fillData @, fd_path, model
+				for k, v of ret.fields
+					d[model].rec[0].fields[k] = v
+				if ret.removeImage
+					d[model].rec[0].removeImage ?= []
+					d[model].rec[0].removeImage.push ret.removeImage
+				if ret.removeImages
+					d[model].rec[0].removeImages ?= []
+					d[model].rec[0].removeImages.push ret.removeImages
 		fillRelations = (wrap, path) ->
 			relations = wrap.find('> .relation')
 			if relations.length
@@ -250,16 +253,17 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 							rel_data[rel_model].rec[index].fields.id = id
 							fd.append "#{next_path}fields[id]", id
 						rel_wrap.find('input, textarea').each ->
-							if $(@).parents('.relation').first().data('model') is rel_model
-								ret = fillData @, next_path, rel_model
-								for k, v of ret.fields
-									rel_data[rel_model].rec[index].fields[k] = v
-								if ret.removeImage
-									rel_data[rel_model].rec[index].removeImage ?= []
-									rel_data[rel_model].rec[index].removeImage.push ret.removeImage
-								if ret.removeImages
-									rel_data[rel_model].rec[index].removeImages ?= []
-									rel_data[rel_model].rec[index].removeImages.push ret.removeImages
+							unless $(@).data 'ignore'
+								if $(@).parents('.relation').first().data('model') is rel_model
+									ret = fillData @, next_path, rel_model
+									for k, v of ret.fields
+										rel_data[rel_model].rec[index].fields[k] = v
+									if ret.removeImage
+										rel_data[rel_model].rec[index].removeImage ?= []
+										rel_data[rel_model].rec[index].removeImage.push ret.removeImage
+									if ret.removeImages
+										rel_data[rel_model].rec[index].removeImages ?= []
+										rel_data[rel_model].rec[index].removeImages.push ret.removeImages
 						next_rel_data = fillRelations rel_wrap, next_path
 						rel_data[rel_model].rec[index].model = next_rel_data if next_rel_data
 						index += 1

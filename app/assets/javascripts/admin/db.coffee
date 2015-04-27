@@ -283,4 +283,3 @@
 		$.post "/admin/db/create_one", model: model, fields: fields, cb, 'json'
 	update_one: (model, id, fields, cb) ->
 		$.post "/admin/db/update_one", id: id, model: model, fields: fields, cb, 'json'
-@db.init ['image', 'product', 'extension', 'category', 'subcategory', 'subcategory_item', 'size', 'color', 'texture', 'option', 'order', 'status', 'order_item', 'virtproduct', 'packinglist', 'packinglistitem', 'banner', 'user', 'user_log', 'page']

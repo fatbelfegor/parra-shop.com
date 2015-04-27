@@ -49,7 +49,7 @@ app.templates.form.order =
 			]
 		]
 		ret += "<td colspan='3'>
-			<table class='style'>
+			<table class='style' style='white-space: nowrap'>
 				<tr>
 					<th>№ п/п</th>
 					<th>Артикул</th>
@@ -64,15 +64,15 @@ app.templates.form.order =
 		total = 0
 		for c in db.where('order_item', order_id: param.id)
 			p = db.find('product', c.product_id)[0]
-			quantity += c.quantity
-			price = c.price * c.quantity * (1 - (c.discount / 100))
+			quantity += c.count
+			price = c.price * c.count * (1 - (c.discount / 100))
 			total += price
 			ret += "<tr>
 				<td>#{i += 1}</td>
 				<td>#{p.article}</td>
 				<td>#{p.name}</td>
 				<td>#{c.price.toCurrency()} руб.</td>
-				<td>#{c.quantity}</td>
+				<td>#{c.count}</td>
 				<td>#{c.discount}</td>
 				<td colspan='2' class='price'>#{price.toCurrency()} руб.</td>
 			</tr>"

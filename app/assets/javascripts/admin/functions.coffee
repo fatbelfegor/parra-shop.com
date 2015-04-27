@@ -35,6 +35,11 @@ String.prototype.classify = ->
 				else
 					end = 'ов'
 				msg.push "Значение должно содержать минимум #{v.minLength} знак#{end}"
+		if v.custom
+			res = eval(v.custom) val
+			if !res.ok
+				active = true
+				msg.push res.msg
 		if active
 			div.addClass('active').find('p').html msg.join '. '
 		else

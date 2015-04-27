@@ -7,7 +7,7 @@ app.templates.index.user =
 				if rec.user_log_ids.length then btn_relation "Логи", "user_log" else ''
 				show 'prefix', attrs: {width: '175px'}, format: replace_null: 'Без префикса'
 				show 'email'
-				show 'role', attrs: style: '175px'
+				show 'role', attrs: style: 'width: 175px'
 				buttons()
 			]), relations:
 				close:

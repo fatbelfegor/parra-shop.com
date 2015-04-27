@@ -22,6 +22,13 @@ Admin::Data = {
 				}
 			}
 		},
+		extension: lambda { |p|
+			{
+				extension: {
+					record: Extension.find(p[:id])
+				}
+			}
+		},
 		subcategory: lambda { |p|
 			rec = Subcategory.find(p[:id])
 			{
@@ -201,6 +208,7 @@ Admin::Data = {
 		status: lambda { |p|
 			{
 				status: {
+					all: true,
 					records: Status.all
 				}
 			}
@@ -278,6 +286,11 @@ Admin::Data = {
 			end
 		},
 		category: lambda { |p|
+			if p[:category_id]
+				{category: Category.find(p[:category_id])}
+			end
+		},
+		subcategory: lambda { |p|
 			if p[:category_id]
 				{category: Category.find(p[:category_id])}
 			end
