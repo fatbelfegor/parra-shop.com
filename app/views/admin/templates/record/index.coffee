@@ -249,8 +249,8 @@ app.routes['model/:model/records'].page = ->
 					parent.find("[data-model=#{window.model}]").each -> ids.push $(@).data 'id'
 					$.post '/admin/record/sort_all', ids: ids, model: model
 	if template
-		if data?
-			db.save_many data
+		if window.data
+			db.save_many window.data
 			cb()
 		else
 			rec = model: param.model

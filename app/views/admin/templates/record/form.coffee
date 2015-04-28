@@ -124,6 +124,17 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 				</div>#{header or ''}
 			</label>
 		</div>"
+	window.radio_input = (name, header, value, params) ->
+		params ?= {}
+		attrs = ""
+		attrs += " #{k}='#{v}'" for k, v of params.attrs if params.attrs
+		"<div class='row'>
+			<label class='radio'>
+				<div#{if params.checked then " class='checked'" else ''}>
+					<input#{if params.checked then " checked" else ''}#{attrs} type='radio' value='#{value}' name='#{name}' onclick='window.el = this;radio(this)'>
+				</div>#{header}
+			</label>
+		</div>"
 	window.image_field = (header, name, params) ->
 		ret = "<div class='image-form'>"
 		if window.rec and window.rec[name]
