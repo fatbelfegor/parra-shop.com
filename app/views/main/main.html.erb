@@ -26,7 +26,7 @@
     <% end %>
     <div><%= link_to @product.name, "/kupit/" + @product.scode %></div>
     <div><%= sanitize(@product.shortdesk) %></div>
-    <div><b>Цена:</b> <%= number_to_currency(@product.price) %></div>
+    <div><b>Цена:</b> <%= currency(@product.price) %></div>
 </div>
 <% end %>
 <% end %>

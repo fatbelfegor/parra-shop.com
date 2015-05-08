@@ -2,7 +2,7 @@ class Export
 	def self.create
 		ret = ""
 		for c in Category.all
-			ret += "Category.create({"
+			ret += "category = Category.create({"
 			ret += "\n\tid: #{c.id},"
 			ret += "\n\tname: \"#{c.name}\","
 			ret += "\n\tdescription: \"#{c.description}\","
@@ -22,6 +22,13 @@ class Export
 			ret += "\n\tisMobile: #{if c.isMobile == nil then 'nil' else c.isMobile end},"
 			ret += "\n\tmobile_image_url: \"#{c.mobile_image_url}\""
 			ret += "\n})\n\n"
+			unless c.images.blank?
+				for i in c.images.split ','
+					ret += "category.images.create({"
+					ret += "\n\turl: \"#{i}\""
+					ret += "\n})\n\n"
+				end
+			end
 		end
 		for c in Subcategory.all
 			ret += "Subcategory.create({"
@@ -48,7 +55,7 @@ class Export
 			end
 			ret += "\n\tcategory_ids: #{category_ids},"
 			ret += "\n\tscode: \"#{c.scode}\","
-			ret += "\n\tname: \"#{c.name}\","
+			ret += "\n\tname: \"#{if c.name then c.name else "\"\"" end}\","
 			ret += "\n\tdescription: #{if c.description then c.description.dump else "\"\"" end},"
 			ret += "\n\tshortdesk: #{if c.shortdesk then c.shortdesk.dump else "\"\"" end},"
 			ret += "\n\tdelemiter: #{if c.delemiter == nil then 'nil' else c.delemiter end},"
@@ -63,7 +70,7 @@ class Export
 			ret += "\n\tseo_imagealt: \"#{c.s_imagealt}\","
 			ret += "\n\tseo_text: \"#{c.seo_text}\","
 			ret += "\n\tprice: #{c.price},"
-			ret += "\n\told_price: #{c.old_price},"
+			ret += "\n\told_price: #{c.old_price || 'nil'},"
 			ret += "\n\ttitle: \"#{c.s_title}\","
 			ret += "\n\tsubcategory_id: #{c.subcategory_id || 'nil'},"
 			ret += "\n\tarticle: \"#{c.article}\","

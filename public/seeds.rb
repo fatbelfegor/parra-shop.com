@@ -1,4 +1,4 @@
-Category.create({
+category = Category.create({
 	id: 1,
 	name: "Спальни",
 	description: "",
@@ -19,7 +19,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 2,
 	name: "Bella",
 	description: "<p>Объединение двух начал - холодный блеск стекла, как воплощение ультрамодного шика, и тепло натурального дерева, как символ чувственной романтики, вместе создают гармонию. Гармонию которую мы ищем в отношениях! Мебель Parra.</p>",
@@ -45,7 +45,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 3,
 	name: "Plisset",
 	description: "<p>Новая коллекция PLISSET/ПЛИССЕТ вдохновит Ваши сны самыми нежными чувствами. Плавные линии несут ощущение легкости, отделка ясень CHOCO дарит умиротворенность. Вы проснетесь счастливой, когда зеркальная кромка заиграет солнечными лучами &hellip; Мебель Parra.</p>",
@@ -70,7 +70,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 4,
 	name: "Orly",
 	description: "<p>Спальня ORLY/ОРЛИ пропитана атмосферой романтики. Среди округлых форм витает нежность. Дополнить ее может лишь шлейф духов, нитка бус, небрежно брошенная на кровать, и любимый голос. Мебель Parra.</p>",
@@ -99,7 +99,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 5,
 	name: "Ritmika",
 	description: "",
@@ -120,7 +120,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 6,
 	name: "Lorra",
 	description: "",
@@ -141,7 +141,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 7,
 	name: "Leggero",
 	description: "",
@@ -162,7 +162,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 8,
 	name: "Miro",
 	description: "",
@@ -183,7 +183,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 9,
 	name: "Гостиные",
 	description: "",
@@ -204,7 +204,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 10,
 	name: "Azzon",
 	description: "",
@@ -225,7 +225,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 11,
 	name: "Bella",
 	description: "",
@@ -266,7 +266,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 12,
 	name: "P3",
 	description: "",
@@ -287,7 +287,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 14,
 	name: "Joy",
 	description: "",
@@ -308,7 +308,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 15,
 	name: "Style",
 	description: "",
@@ -329,7 +329,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 16,
 	name: "Verro",
 	description: "",
@@ -350,7 +350,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 18,
 	name: "Кровати",
 	description: "",
@@ -377,7 +377,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 19,
 	name: "Шкафы",
 	description: "",
@@ -398,7 +398,11 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category.images.create({
+	url: "/uploads/11elementy.jpg"
+})
+
+category = Category.create({
 	id: 20,
 	name: "Комоды",
 	description: "",
@@ -419,7 +423,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 21,
 	name: "Тумбочки",
 	description: "",
@@ -447,7 +451,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 22,
 	name: "Зеркала",
 	description: "",
@@ -472,7 +476,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 23,
 	name: "Полки",
 	description: "",
@@ -493,7 +497,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 24,
 	name: "Столы",
 	description: "",
@@ -514,7 +518,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 25,
 	name: "Основания",
 	description: "",
@@ -535,7 +539,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 26,
 	name: "Диваны",
 	description: "",
@@ -556,7 +560,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 30,
 	name: "Trevi",
 	description: "",
@@ -577,7 +581,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 31,
 	name: "Opera",
 	description: "",
@@ -598,7 +602,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 32,
 	name: "Lucca",
 	description: "",
@@ -619,7 +623,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 33,
 	name: "Ritmo",
 	description: "",
@@ -640,7 +644,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 34,
 	name: "Nuvola",
 	description: "",
@@ -661,7 +665,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 35,
 	name: "Кресла",
 	description: "",
@@ -682,7 +686,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 36,
 	name: "Матрасы",
 	description: "",
@@ -703,7 +707,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 37,
 	name: "Sonberry Active",
 	description: "",
@@ -724,7 +728,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 38,
 	name: "Sonberry Aero",
 	description: "",
@@ -745,7 +749,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 39,
 	name: "Sonberry Organic",
 	description: "",
@@ -770,7 +774,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 40,
 	name: "Mild",
 	description: "<p>Коллекция MILD - это эстетика и продуманность форм в оформлении пространства. Плавные линии и закругленные углы в сочетании с мягким изголовьем украсят интерьер и создадут особую атмосферу любви, уюта и комфорта. Мебель Parra.</p>",
@@ -791,7 +795,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 42,
 	name: "Матрасы по акции",
 	description: "",
@@ -812,7 +816,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 43,
 	name: "Все товары",
 	description: "",
@@ -833,7 +837,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 44,
 	name: "Тумбы под TV",
 	description: "",
@@ -854,7 +858,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 45,
 	name: "Буфеты",
 	description: "",
@@ -875,7 +879,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 46,
 	name: "Диваны",
 	description: "",
@@ -896,7 +900,7 @@ Category.create({
 	mobile_image_url: ""
 })
 
-Category.create({
+category = Category.create({
 	id: 47,
 	name: "Распродажа",
 	description: "",
