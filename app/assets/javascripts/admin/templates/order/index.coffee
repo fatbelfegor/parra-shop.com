@@ -1,14 +1,9 @@
 app.templates.index.order =
-	order: (a, b) ->
-		a = new Date a['created_at']
-		b = new Date b['created_at']
-		if a < b
-			return 1
-		if a > b
-			return -1
-		0
+	order: 'created_at asc'
 	page: (recs) ->
-		ret = header [['Статус', '22%'], ['Дата заказа', '22%'], ['Телефон', '22%'], 'Сумма заказа', ['Действия', 'min']]
+		ret = header
+			name: 'Заказы'
+			header: [['Статус', '22%'], ['Дата заказа', '22%'], ['Телефон', '22%'], 'Сумма заказа', ['Действия', 'min']]
 		html = ""
 		for rec in recs
 			window.rec = rec
@@ -16,7 +11,7 @@ app.templates.index.order =
 			price = 0
 			for r in db.find('order_item', rec.order_item_ids)
 				if r
-					price += r.price * r.count * (1 - r.discount / 100)
+					price += r.price * r.quantity * (1 - r.discount / 100)
 			for r in db.find('virtproduct', rec.virtproduct_ids)
 				if r
 					price += parseFloat r.price
@@ -30,3 +25,4 @@ app.templates.index.order =
 		ret + records html
 	belongs_to: ['status']
 	has_many: ['order_item', 'virtproduct']
+	select: ['created_at', 'phone', 'status_id']

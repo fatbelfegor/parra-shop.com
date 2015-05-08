@@ -1,8 +1,17 @@
 app.templates.index.product =
+	pagination: 50
+	order: 'position'
 	page: (recs) ->
-		ret = header [['Размеры', 'min'], 'Название', ['Действия', '225px']]
+		ret = header
+			name: 'Товары'
+			order: [
+				{name: 'названию'}
+				{position: 'позиции', active: true}
+				{price: 'цене'}
+			]
+			header: [['Размеры', 'min'], 'Название', ['Действия', '225px']]
 		html = ""
-		tb = treebox.gen
+		window.tb = treebox.gen
 			header: "Скопировать размеры"
 			treeboxAttrs:
 				style: 'width: 165px'
@@ -39,7 +48,14 @@ app.templates.index.product =
 			pickAction: 'productCopySizes(this)'
 		for id, rec of recs
 			window.rec = rec
-			html += group tr([
+			html += record()
+		ret += records html
+		ret
+	select: ['id', 'name']
+	ids: 'size'
+	functions:
+		record: ->
+			group tr([
 				btn_relation "Размеры", "size"
 				show "name"
 				td tb, attrs: style: 'width: 1px'
@@ -51,11 +67,6 @@ app.templates.index.product =
 						render: 'renderSizes'
 						data:
 							ids: ['color', 'option']
-		ret += records html
-		ret
-	select: ['id', 'name']
-	ids: 'size'
-	functions:
 		renderSizes: ->
 			group tr([
 				btn_relation "Цвета", "color"

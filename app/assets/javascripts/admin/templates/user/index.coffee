@@ -14,7 +14,7 @@ app.templates.index.user =
 					user_log:
 						header: "<p style='width: 100%'>Логи (<span class='relations-count'>#{window.rec['user_log_ids'].length}</span>)</p>"
 						render: 'renderUserLogs'
-		header([['Логи', 'min'], ['Префикс', '90px'], 'E-mail', ['Роль', '141px'], ['Действия', 'min']]) + records ret
+		header(name: 'Пользователи', header: [['Логи', 'min'], ['Префикс', '90px'], 'E-mail', ['Роль', '141px'], ['Действия', 'min']]) + records ret
 	has_many: "user_log"
 	ids: ["user_log"]
 	functions:

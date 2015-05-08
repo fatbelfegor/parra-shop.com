@@ -1,41 +1,15 @@
 class Admin::DbController < Admin::AdminController
 	def get
-		permit_all = role_records_all
 		@data = {}
-		for i, p in params[:models]
-			name = p[:model]
-			return rend(data: 'permission denied') if !permit_all and !role_records_model name
-			model = name.classify.constantize
-			if p[:ready] and (p[:belongs_to] || p[:has_many] || p[:ids])
-				recs = model.find(p[:find])
-				recs = [recs] unless recs.is_a? Array
-				@data[name] = {}
-				get_relations p, recs, name, model
-			else
-				if p[:find]
-					recs = model.find(p[:find])
-					recs = [recs] unless recs.is_a? Array
-				elsif p[:where] or p[:where_null]
-					where = {}
-					if p[:where]
-						for k, v in p[:where]
-							where[k] = v
-						end
-					end
-					if p[:where_null]
-						for f in p[:where_null]
-							where[f] = nil
-						end
-					end
-					recs = model.where(where)
-				else
-					recs = model.all
-				end
-				if p[:select]
-					recs = recs.select(p[:select])
-				end
-				@data[name] = {records: recs}
-				get_relations p, recs, name, model
+		if params[:models]
+			for i, p in params[:models]
+				@data[p[:model]] = get_records p
+			end
+		end
+		if params[:count]
+			@data[:count] = {}
+			for model in params[:count]
+				@data[:count][model] = model.classify.constantize.count
 			end
 		end
 		rend data: @data
@@ -119,39 +93,75 @@ class Admin::DbController < Admin::AdminController
 		rend
 	end
 private
-	def get_relations p, recs, name, model
-		if p[:belongs_to]
-			@data[name][:belongs_to] = {}
-			for i, m in p[:belongs_to]
-				@data[name][:belongs_to][m[:model]] = {}
-				if m[:find]
-					@data[name][:belongs_to][m[:model]][:records] = m[:model].classify.constantize.find(m[:find])
-				else
-					@data[name][:belongs_to][m[:model]][:records] = []
-					for rec in recs
-						@data[name][:belongs_to][m[:model]][:records] << rec.send(m[:model])
+	def get_records p
+		name = p[:model]
+		model = name.classify.constantize
+		if p[:find]
+			recs = model.where(id: p[:find])
+		else
+			if p[:where] or p[:where_null]
+				where = {}
+				if p[:where]
+					for k, v in p[:where]
+						where[k] = v
 					end
 				end
+				if p[:where_null]
+					for f in p[:where_null]
+						where[f] = nil
+					end
+				end
+				recs = model.where(where)
+			else
+				recs = model.all
+			end
+			if p[:order]
+				recs = recs.order(p[:order])
+			end
+			if p[:offset]
+				recs = recs.offset(p[:offset])
+			end
+			if p[:limit]
+				recs = recs.limit(p[:limit])
+			end
+		end
+		if p[:select]
+			recs = recs.select(p[:select] << :id)
+		end
+		if p[:ids]
+			recs = recs.map do |r|
+				ret = r.as_json
+				for id in p[:ids]
+					ret[id + '_ids'] = r.send(id + '_ids')
+				end
+				ret
+			end
+		end
+		ret = {records: recs}
+		if p[:belongs_to]
+			ret[:belongs_to] = {}
+			for i, a in p[:belongs_to]
+				ids = recs.map{|r| r[a[:model] + '_id']}.compact
+				if a[:find]
+					a[:find] += ids
+				else
+					a[:find] = ids
+				end
+				ret[:belongs_to][a[:model]] = get_records a
 			end
 		end
 		if p[:has_many]
-			@data[name][:has_many] = {}
-			for i, m in p[:has_many]
-				@data[name][:has_many][m[:model]] = {} 
-				@data[name][:has_many][m[:model]][:records] = []
-				for rec in recs
-					@data[name][:has_many][m[:model]][:records] += rec.send(m[:model].pluralize)
+			ret[:has_many] = {}
+			for i, a in p[:has_many]
+				ids = recs.map{|r| r[a[:model] + '_ids']}.reduce(:+)
+				if a[:find]
+					a[:find] += ids
+				else
+					a[:find] = ids
 				end
+				ret[:has_many][a[:model]] = get_records a
 			end
 		end
-		if p[:ids]
-			@data[name][:ids] = {}
-			for f in p[:ids]
-				@data[name][:ids][f] = {}
-				for rec in recs
-					@data[name][:ids][f][rec.id] = rec.send(f + '_ids')
-				end
-			end
-		end
+		ret
 	end
 end

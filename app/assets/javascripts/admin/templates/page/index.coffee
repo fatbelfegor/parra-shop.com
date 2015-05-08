@@ -1,6 +1,8 @@
 app.templates.index.page =
 	page: (recs) ->
-		ret = header [['URL', '30%'], 'Название', ['Действия', 'min']]
+		ret = header
+			name: 'Страницы'
+			header: [['URL', '30%'], 'Название', ['Действия', 'min']]
 		html = ""
 		for rec in recs
 			window.rec = rec

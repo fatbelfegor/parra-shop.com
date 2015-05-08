@@ -337,7 +337,6 @@ expire = ->
 	addImages = iframe.parentNode
 	inputName = addImages.className
 	input = $('#'+inputName)
-	console.log input
 	if input.attr('class') != 'one'
 		images = input.val().split(',')
 		if images[0] == '' then images = [url] else images.push url

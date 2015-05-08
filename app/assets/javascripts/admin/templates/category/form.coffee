@@ -17,7 +17,7 @@ app.templates.form.category =
 		ret += tr [
 			td field("Краткий url", "url"), attrs: colspan: 2
 			td field("Мобильные url", "mobile_image_url"), attrs: colspan: 2
-			td field("Показывать в мобильном клиенте", "isMobile"), attrs: colspan: 2
+			td checkbox("Показывать в мобильном клиенте", "isMobile"), attrs: colspan: 2
 		]
 		ret += tr image_field 'Добавить изображение заголовка', 'header', attrs: colspan: 6
 		ret += tr td images(), attrs: colspan: 6

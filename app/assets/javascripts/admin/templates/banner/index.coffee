@@ -1,6 +1,8 @@
 app.templates.index.banner =
 	page: (recs) ->
-		ret = header [['Изображение', '188px'], 'url', ['Действия', 'min']]
+		ret = header
+		 	name: 'Баннеры'
+		 	header: [['Изображение', '188px'], 'url', ['Действия', 'min']]
 		html = ""
 		for rec in recs
 			window.rec = rec

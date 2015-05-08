@@ -1,4 +1,4 @@
-app.routes['model/:model/records'].page = ->
+app.routes['model/:model/records'] = page: ->
 	template = app.templates.index[param.model]
 	window[k] = v for k, v of template.functions if template.functions
 	cb = ->
@@ -21,31 +21,143 @@ app.routes['model/:model/records'].page = ->
 				recs.sort template.order
 		app.yield.html template.page recs
 		template.after() if template.after
+		if template.pagination
+			paginator.wrap = $('#records')
+			paginator.pages = $('#paginator')
+			paginator.ready = [1]
+			paginator.top = paginator.wrap.offset().top + 54
+			paginator.load = false
+			paginator.limit = template.pagination
+			paginator.order = template.order or 'id'
+			paginator.select = template.select or 'id'
+			paginator.belongs_to = template.belongs_to
+			paginator.has_many = template.has_many
+			paginator.ids = template.ids
+			paginator.scrollTop = $(window).scrollTop() - paginator.top
+			paginator.page = 1
+			$(window).scroll ->
+				top = $(@).scrollTop() + paginator.top
+				height = $(@).height()
+				half = top + height / 2
+				bottom = top + height
+				pages = paginator.wrap.find('> .group')
+				if paginator.scrollTop > top
+					eq = -1
+					for i in [1..paginator.page]
+						eq += 1 if i in paginator.ready
+					prev = pages.eq eq * paginator.limit
+					offtop = prev.offset().top
+					if !paginator.load and top < offtop
+						unless paginator.page - 1 in paginator.ready
+							paginator.load = true
+							rec = model: param.model
+							rec.offset = (paginator.page - 2) * paginator.limit
+							rec.limit = paginator.limit
+							rec.select = paginator.select if paginator.select
+							rec.belongs_to = paginator.belongs_to if paginator.belongs_to
+							rec.has_many = paginator.has_many if paginator.has_many
+							rec.ids = paginator.ids if paginator.ids
+							rec.order = paginator.order if paginator.order
+							get = [rec]
+							before = prev
+							db.get get, ->
+								ret = ''
+								for rec in db.select rec
+									window.rec = rec
+									ret += record()
+								was = paginator.wrap.height()
+								before.before ret
+								$(window).scrollTop $(window).scrollTop() + paginator.wrap.height() - was
+								paginator.ready.push paginator.page - 1
+								paginator.load = false
+					if half < offtop
+						paginator.page -= 1
+						paginator.pages.find('.active').removeClass('active').prev().addClass('active')
+				else
+					eq = 0
+					for i in [0..paginator.page - 1]
+						eq += paginator.limit if i + 1 in paginator.ready
+					next = paginator.wrap.find('> .group').eq eq - 1
+					if next.length
+						offtop = next.offset().top + next.height()
+						if !paginator.load and bottom > offtop
+							unless paginator.page + 1 in paginator.ready
+								paginator.load = true
+								rec = model: param.model
+								rec.offset = paginator.page * paginator.limit
+								rec.limit = paginator.limit
+								rec.select = paginator.select if paginator.select
+								rec.belongs_to = paginator.belongs_to if paginator.belongs_to
+								rec.has_many = paginator.has_many if paginator.has_many
+								rec.ids = paginator.ids if paginator.ids
+								rec.order = paginator.order if paginator.order
+								get = [rec]
+								after = next
+								db.get get, ->
+									ret = ''
+									for rec in db.select rec
+										window.rec = rec
+										ret += record()
+									after.after ret
+									paginator.ready.push paginator.page + 1
+									paginator.load = false
+						if half > offtop
+							paginator.page += 1
+							paginator.pages.find('.active').removeClass('active').next().addClass('active')
+				paginator.scrollTop = top
 		app.menu.find(".current").removeClass 'current'
-		app.menu.find(".active").removeClass 'active'
-		parent = app.menu.find("[data-route='model/#{param.model}']").addClass('current open').parents('li').eq(0)
-		while parent.length
-			parent.addClass 'active open'
-			parent = parent.parents('li').eq(0)
-	window.header = (header) ->
-		ret = "<div class='group-header'><div>"
-		for h in header
-			if typeof h is 'string'
-				ret += "<p>#{h}</p>"
-			else
-				ret += "<p style='"
-				if h[1]
-					ret += "width: "
-					if h[1] is 'min'
-						ret += '1%; '
-					else if h[1] is 'max'
-						ret += '100%; '
-					else ret += h[1] + '; '
-				if h[2]
-					ret += "padding: 0 #{h[2]}px"
-				ret += "'"
-				ret += ">#{h[0]}</p>"
-		ret + "</div></div>"
+		app.menu.find("[data-route='model/#{param.model}']").addClass 'current'
+	window.header = (params) ->
+		ret = "<div class='header'>
+			<div>
+				<div>
+					<div class='name'>#{params.name}</div>"
+		if params.order
+			ret += "<div id='order'>"
+			for o in params.order
+				if o.active
+					ret += "<p onclick='order.open(this)'>Сортировать по: "
+					for k, v of o
+						ret += "<b>#{v} <i class='icon-arrow-down5'></i></b>"
+						break
+					ret += "</p>"
+			ret += "<div>"
+			for o in params.order
+				for k, v of o
+					ret += "<p><i class='icon-arrow-down5' onclick='order.pick(this)'></i><span data-column='#{k}'>#{v}</span><i class='icon-arrow-up5' onclick='order.pick(this)'></i></p>"
+					break
+			ret += "</div></div>"
+		if template.pagination
+			ret += "<div id='paginator'>
+					<div class='prev' onclick='paginator.prev()'><i class='icon-arrow-left'></i></div>
+					<div class='active' onclick='paginator.go(this)'>1</div>"
+			ret += "<div onclick='paginator.go(this)'>#{page}</div>" for page in [2..1 + Math.floor db[param.model].count / template.pagination]
+			ret += "<div class='next' onclick='paginator.next()'><i class='icon-arrow-right2'></i></div>
+				</div>"
+		ret += "<div><a href='/admin/model/#{param.model}/new' onclick='app.aclick(this)' class='btn green'>Добавить</a></div>
+				</div>
+			</div>
+		</div>"
+		if params.header
+			ret += "<div class='group-header'><div>"
+			for h in params.header
+				if typeof h is 'string'
+					ret += "<p>#{h}</p>"
+				else
+					ret += "<p style='"
+					if h[1]
+						ret += "width: "
+						if h[1] is 'min'
+							ret += '1%; '
+						else if h[1] is 'max'
+							ret += '100%; '
+						else ret += h[1] + '; '
+					if h[2]
+						ret += "padding: 0 #{h[2]}px"
+					ret += "'"
+					ret += ">#{h[0]}</p>"
+			ret += "</div></div>"
+		ret
 	window.records = (html, params) ->
 		params ?= {}
 		ret ="<div id='records' data-model-wrap='#{params.model or param.model}'>#{html}</div>"
@@ -63,7 +175,7 @@ app.routes['model/:model/records'].page = ->
 			ret += "'>"
 			if params.relations.close
 				for k, v of params.relations.close
-					ids = window.rec["#{k}_ids"]
+					ids = window.rec["#{k}_ids"] or []
 					ret += "<div class='relation-wrap' data-model-wrap='#{k}' data-ids='[#{ids.join ','}]' data-render='#{v.render}' data-data='#{JSON.stringify v.data}'>
 						<div class='relation-header'>
 							<div class='row'>#{if v.header then v.header else ''}</div>
@@ -76,7 +188,7 @@ app.routes['model/:model/records'].page = ->
 			ret += "</div>"
 		ret + "</div>"
 	window.rel_header = (header, name) ->
-		"<p style='width: 100%'>#{header} (<span class='relations-count'>#{window.rec[name + '_ids'].length}</span>)</p>
+		"<p style='width: 100%'>#{header} (<span class='relations-count'>#{(window.rec[name + '_ids'] or []).length}</span>)</p>
 		<a class='btn green square' onclick='app.aclick(this)' href='/admin/model/#{name}/new?#{window.model}_id=#{window.rec.id}'>Создать</a>"
 	window.tr = (html, params) ->
 		ret = "<tr"
@@ -250,19 +362,20 @@ app.routes['model/:model/records'].page = ->
 					$.post '/admin/record/sort_all', ids: ids, model: model
 	if template
 		if window.data
-			db.save_many window.data
+			db.collect window.data
 			cb()
 		else
 			rec = model: param.model
+			rec.limit = template.pagination
 			rec.select = template.select if template.select
 			rec.belongs_to = template.belongs_to if template.belongs_to
 			rec.has_many = template.has_many if template.has_many
 			rec.ids = template.ids if template.ids
+			rec.order = template.order if template.order
 			get = []
 			get.push rec
+			get.push count: [param.model] if template.pagination
 			get.push p for p in template.get if template.get
-			if get.length
-				db.get get, cb
-			else cb()
+			db.get get, cb
 	else
 		app.yield.html "<h2>Отсутствует шаблон страницы.</h2>"

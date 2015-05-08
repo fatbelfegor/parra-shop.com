@@ -4,4 +4,4 @@ app.templates.index.status =
 		for rec in recs
 			window.rec = rec
 			ret += group tr show("name") + buttons()
-		header(['Название', ['Действия', '225px']]) + records ret
+		header({name: 'Статусы заказов', header: [['Название', 'max'], ['Действия', '225px']]}) + records ret

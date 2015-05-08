@@ -20,7 +20,7 @@ app.templates.index.packinglist =
 				<td>#{pack.doc_number}</td>
 				<td>#{items_price.toCurrency()} руб.</td>
 				<td>#{amount}</td>
-				<td><a class='btn blue' href='/admin/model/packinglist/edit/#{pack.id}' onclick='app.click(this)'>Открыть</a></td>
+				<td><a class='btn blue' href='/admin/model/packinglist/edit/#{pack.id}' onclick='app.aclick(this)'>Открыть</a></td>
 				<td class='btn red' onclick='packinglist_destroy(this)'>Удалить</td>
 			</tr>"
 		"<h1>Товарные накладные</h1>

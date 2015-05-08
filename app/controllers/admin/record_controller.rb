@@ -1,13 +1,20 @@
 class Admin::RecordController < Admin::AdminController
 
 	def index
-		rend data: Admin::Data[:index][params[:model].to_sym].call(params)
+		cb = Admin::Data[:index][params[:model].to_sym]
+		if cb
+			data = cb.call(params)
+		else
+			data = {params[:model] => {records: params[:model].classify.constantize.all}}
+		end
+		rend data: data
 	end
 
 	def new
 		r = {page: 'record/form'}
 		model = params[:model].to_sym
-		r[:data] = Admin::Data[:new][model].call(params) if Admin::Data[:new][model]
+		cb = Admin::Data[:new][model]
+		r[:data] = cb.call(params) if cb
 		rend r
 	end
 

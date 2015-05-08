@@ -1,6 +1,8 @@
 app.templates.index.extension =
 	page: (recs) ->
-		ret = header [['Изображение', '188px'], 'Название', ['Действия', 'min']]
+		ret = header
+			name: 'Статусы товаров'
+			header: [['Изображение', '188px'], 'Название', ['Действия', 'min']]
 		html = ""
 		for rec in recs
 			window.rec = rec

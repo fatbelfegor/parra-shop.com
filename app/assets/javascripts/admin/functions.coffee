@@ -7,6 +7,89 @@ String.prototype.toCurrency = ->
 String.prototype.classify = ->
 	(@charAt(0).toUpperCase() + @slice(1)).replace /(\_\w)/g, (m) -> m[1].toUpperCase()
 
+@paginator =
+	go: (el) ->
+		el = $ el
+		unless el.hasClass 'active'
+			paginator.page = parseInt el.html()
+			if paginator.page in paginator.ready
+				eq = 0
+				for i in [0..paginator.page - 1]
+					eq += paginator.limit if i and i + 1 in paginator.ready
+				$(window).scrollTop paginator.wrap.find('> .group').eq(eq).offset().top - paginator.top + 5
+				paginator.pages.find('.active').removeClass 'active'
+				el.addClass 'active'
+			else
+				paginator.load = true
+				rec = model: param.model
+				rec.offset = offset = (paginator.page - 1) * paginator.limit
+				rec.limit = paginator.limit
+				rec.select = paginator.select if paginator.select
+				rec.belongs_to = paginator.belongs_to if paginator.belongs_to
+				rec.has_many = paginator.has_many if paginator.has_many
+				rec.ids = paginator.ids if paginator.ids
+				rec.order = paginator.order if paginator.order
+				get = [rec]
+				db.get get, ->
+					ret = ''
+					for rec in db.select rec
+						window.rec = rec
+						ret += record()
+					eq = 0
+					for i in [0..paginator.page - 1]
+						eq += paginator.limit if i + 1 in paginator.ready
+					rec = paginator.wrap.find('> .group').eq eq - 1
+					rec.after ret
+					$(window).scrollTop rec.next().offset().top - paginator.top + 5
+					paginator.ready.push paginator.page
+					paginator.pages.find('.active').removeClass 'active'
+					el.addClass 'active'
+					paginator.load = false
+	prev: () ->
+		if paginator.page is 1
+			@go paginator.pages.find('.next').prev()[0]
+		else @go paginator.pages.find('.active').prev()[0]
+	next: () ->
+		if paginator.page is paginator.pages.find('div').length - 2
+			@go paginator.pages.find('.prev').next()[0]
+		else @go paginator.pages.find('.active').next()[0]
+
+@order =
+	open: (el) ->
+		$(el).next().toggleClass 'active'
+	pick: (el) ->
+		el = $ el
+		if el.hasClass 'icon-arrow-down5'
+			where = 'down'
+			order = el.next()
+		else
+			where = 'up'
+			order = el.prev()
+		column = order.data 'column'
+		name = order.html()
+		el.parents('div').first().removeClass('active').prev().find('b').html name + " <i class='icon-arrow-#{where}5'></i>"
+		template = app.templates.index[param.model]
+		rec = model: param.model
+		rec.limit = template.pagination
+		rec.select = template.select if template.select
+		rec.belongs_to = template.belongs_to if template.belongs_to
+		rec.has_many = template.has_many if template.has_many
+		rec.ids = template.ids if template.ids
+		rec.order = column
+		db.get [rec], ->
+			ret = ''
+			for rec in db.select rec
+				window.rec = rec
+				ret += record()
+			$('#records').html ret
+			if template.pagination
+				$(window).scrollTop 0
+				paginator.ready = [1]
+				paginator.order = column
+				paginator.page = 1
+				paginator.pages.find('.active').removeClass 'active'
+				paginator.pages.eq(1).addClass 'active'
+
 # Validate
 
 @validate = (el) ->

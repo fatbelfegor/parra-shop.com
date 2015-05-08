@@ -22,10 +22,10 @@
 	routeFind: []
 	routes:
 		'': {}
-		'model/:model/edit/:id': {}
 		'model/:model/new': {}
+		'model/:model/edit/:id': {}
+		'model/:model/edit/:id': {}
 		'model/:model/records': {}
-		'404': {}
 	templates:
 		index: {}
 		form: {}
@@ -74,16 +74,9 @@ app.go = (url, params) ->
 		else
 			app.qparam[pair[0]].push pair[1]
 		i++
-	if !@route.page
-		$.post url, {}, (d) ->
-			eval d
-			app.routes[routeString].page()
-			delete window.data if window.data
-			params.cb() if params and params.cb
-	else
-		@route.page()
-		delete window.data if window.data
-		params.cb() if params and params.cb
+	@route.page()
+	delete window.data if window.data
+	params.cb() if params and params.cb
 ready = ->
 	app.yield = $ '#yield'
 	if !app.menu

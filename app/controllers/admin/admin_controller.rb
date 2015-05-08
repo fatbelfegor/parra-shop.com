@@ -4,7 +4,7 @@ class Admin::AdminController < ApplicationController
 	before_filter :eager_load
 
 	def home
-		rend page: 'home'
+		rend
 	end
 
 	def create_admin
@@ -119,26 +119,13 @@ protected
 		else
 			@data = {}
 		end
-		def set_page options
-			if options and options != [] and options[0][:page]
-				@page = options[0][:page] if options[0][:page]
-			else
-				@page = params[:controller].sub('admin/', '') + '/' + params[:action]
-			end
-		end
 		respond_to do |format|
 			if request.method == 'GET'
 				format.html do
 					Admin::AdminController.layout 'admin'
-					set_page options
 					render '/admin/all'
 				end
 			else
-				format.html do
-					Admin::AdminController.layout false
-					set_page options
-					render '/admin/_all'
-				end
 				format.json do
 					render json: @data.to_json
 				end

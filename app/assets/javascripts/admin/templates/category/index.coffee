@@ -2,7 +2,9 @@ app.templates.index.category =
 	where: category_id: null
 	order: 'position'
 	page: (recs) ->
-		ret = header ['Перетащить', 'Подкатегории', 'Товары', ['Название', 'max'], ['Действия', false, 30]]
+		ret = header
+			name: 'Категории'
+			header: ['Перетащить', 'Подкатегории', 'Товары', ['Название', 'max'], ['Действия', false, 30]]
 		window.productCopySizesTb = treebox.gen
 			header: "Скопировать размеры"
 			treeboxAttrs:

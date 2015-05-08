@@ -106,10 +106,10 @@ Admin::Data = {
 						status: rec.status
 					},
 					has_many: {
-						order_item: rec.order_items.map{|r|
-							{
-								record: r,
-								belongs_to: {product: r.product}
+						order_item: {
+							records: rec.order_items,
+							belongs_to: {
+								product: rec.order_items.map{|r| r.product}
 							}
 						},
 						virtproduct: rec.virtproducts
@@ -130,7 +130,12 @@ Admin::Data = {
 				packinglist: {
 					record: rec,
 					has_many: {
-						packinglistitem: rec.packinglistitems.map{|r| {record: r, belongs_to: {product: r.product}}}
+						packinglistitem: {
+							records: rec.packinglistitems,
+							belongs_to: {
+								product: {records: rec.packinglistitems.map{|r| r.product}}
+							}
+						}
 					}
 				}
 			}
@@ -152,10 +157,12 @@ Admin::Data = {
 	},
 	index: {
 		product: lambda { |p|
-			products = Product.all
+			products = Product.order(:name).limit(50)
 			{
 				product: {
-					all: true,
+					limit: 50,
+					count: Product.count,
+					order: :name,
 					select: [:id, :name],
 					records: products.select(:id, :name),
 					ids: {size: products.map{|r| r.size_ids}}
@@ -166,7 +173,6 @@ Admin::Data = {
 			recs = Category.all
 			{
 				category: {
-					all: true,
 					select: [:id, :name, :position, :category_id],
 					records: recs.select(:id, :name, :position, :category_id),
 					ids: {
@@ -185,46 +191,33 @@ Admin::Data = {
 			}
 		},
 		order: lambda { |p|
-			recs = Order.all
+			recs = Order.select(:id, :created_at, :phone, :status_id)
 			{
 				order: {
 					all: true,
-					select: [:id, :created_at, :phone, :status_id],
-					records: recs.select(:id, :created_at, :phone, :status_id).map{ |r|
-						{
-							record: r,
-							belongs_to: {
-								status: r.status
-							},
-							has_many: {
-								order_item: r.order_items,
-								virtproduct: r.virtproducts
-							}
-						}
+					select: [:created_at, :phone, :status_id],
+					records: recs,
+					belongs_to: {
+						status: {records: recs.map{|r| r.status}}
+					},
+					has_many: {
+						order_item: recs.map{|r| r.order_items},
+						virtproduct: recs.map{|r| r.virtproducts}
 					}
 				}
 			}
 		},
-		status: lambda { |p|
-			{
-				status: {
-					all: true,
-					records: Status.all
-				}
-			}
-		},
 		packinglist: lambda { |p|
+			recs = Packinglist.all
 			{
 				packinglist: {
-					records: Packinglist.all.map{|r| {record: r, has_many: {packinglistitem: r.packinglistitems}}}
-				}
-			}
-		},
-		banner: lambda { |p|
-			{
-				all: true,
-				banner: {
-					records: Banner.all
+					records: recs,
+					ids: {
+						packinglistitem: recs.map{|r| r.packinglistitem_ids}
+					},
+					has_many: {
+						packinglistitem: recs.map{|r| r.packinglistitems}
+					}
 				}
 			}
 		},

@@ -16,11 +16,7 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 		app.yield.html template.page() + "<link rel='stylesheet' type='text/css' href='/lightbox/lightbox.min.css'><script src='/tinyMCE/tinymce.min.js'><script src='/lightbox/lightbox.min.js'>"
 		addFormCb()
 		app.menu.find(".current").removeClass 'current'
-		app.menu.find(".active").removeClass 'active'
-		parent = app.menu.find("[data-route='model/#{param.model}']").addClass('current open').parents('li').eq(0)
-		while parent.length
-			parent.addClass 'active open'
-			parent = parent.parents('li').eq(0)
+		app.menu.find("[data-route='model/#{param.model}']").addClass 'current'
 	window.form = (html, rel) ->
 		"<form class='content form'#{unless rel then " id='main-form'" else ''} data-model='#{window.model}' data-action='#{if id then 'update' else 'new'}'>#{if window.rec then "<input type='hidden' name='id' value='#{window.rec.id}'>" else ''}#{html}</form>"
 	window.relation = (name, visible, html, params) ->
@@ -302,12 +298,12 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 							image.url = urls[i]
 					, 'json'
 	if window.data
-		db.save_many data
+		db.collect window.data
 		cb()
 	else
 		get = []
-		if id
-			rec = model: name, find: id
+		if param.id
+			rec = model: param.model, find: param.id
 			rec.belongs_to = template.belongs_to if template.belongs_to
 			rec.has_many = template.has_many if template.has_many
 			rec.ids = template.ids if template.ids
