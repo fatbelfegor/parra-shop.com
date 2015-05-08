@@ -125,7 +125,7 @@
 						limit = p.offset + p.limit - 1
 					else
 						push.records.offset = p.offset
-						limit = -1
+						limit = p.records.length - 1
 					for i in [p.offset..limit]
 						rec = p.records[i - p.offset]
 						if rec
@@ -141,7 +141,7 @@
 						limit = p.offset + p.limit - 1
 					else
 						push.records.offset = p.offset
-						limit = -1
+						limit = p.records.length - 1
 					for i in [p.offset..limit]
 						rec = p.records[i - p.offset]
 						if rec
@@ -156,7 +156,7 @@
 						limit = p.offset + p.limit - 1
 					else
 						r.where[order][where].records.offset = p.offset
-						limit = -1
+						limit = p.records.length - 1
 					for i in [p.offset..limit]
 						rec = p.records[i - p.offset]
 						if rec
@@ -201,7 +201,7 @@
 		p.offset ?= 0
 		if p.limit
 			limit = p.offset + p.limit - 1
-		else limit = -1
+		else limit = arr.length - 1
 		for i in [p.offset..limit]
 			rec = arr[i - p.offset]
 			if rec
@@ -554,7 +554,7 @@
 		p.offset ?= 0
 		if p.limit
 			limit = p.offset + p.limit - 1
-		else limit = -1
+		else limit = records.length - 1
 		for i in [p.offset..limit]
 			rec = records[i]
 			ids.push rec if rec

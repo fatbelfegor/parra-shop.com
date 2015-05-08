@@ -3,23 +3,7 @@ app.routes['model/:model/records'] = page: ->
 	window[k] = v for k, v of template.functions if template.functions
 	cb = ->
 		window.model = param.model
-		recs = []
-		if template.where
-			for id, rec of db[param.model].records
-				for k, v of template.where
-					recs.push rec if rec[k] is v
-		else recs.push rec for id, rec of db[param.model].records
-		if template.order
-			if typeof template.order is 'string'
-				recs.sort (a, b) ->
-					if a[template.order] > b[template.order]
-						return 1
-					if a[template.order] < b[template.order]
-						return -1
-					0
-			else if typeof template.order is 'function'
-				recs.sort template.order
-		app.yield.html template.page recs
+		app.yield.html template.page db.select window.rec
 		template.after() if template.after
 		if template.pagination
 			paginator.wrap = $('#records')
@@ -361,19 +345,18 @@ app.routes['model/:model/records'] = page: ->
 					parent.find("[data-model=#{window.model}]").each -> ids.push $(@).data 'id'
 					$.post '/admin/record/sort_all', ids: ids, model: model
 	if template
+		window.rec = model: param.model
+		window.rec.limit = template.pagination if template.pagination
+		window.rec.select = template.select if template.select
+		window.rec.belongs_to = template.belongs_to if template.belongs_to
+		window.rec.has_many = template.has_many if template.has_many
+		window.rec.ids = template.ids if template.ids
+		window.rec.order = template.order if template.order
 		if window.data
 			db.collect window.data
 			cb()
 		else
-			rec = model: param.model
-			rec.limit = template.pagination
-			rec.select = template.select if template.select
-			rec.belongs_to = template.belongs_to if template.belongs_to
-			rec.has_many = template.has_many if template.has_many
-			rec.ids = template.ids if template.ids
-			rec.order = template.order if template.order
-			get = []
-			get.push rec
+			get = [window.rec]
 			get.push count: [param.model] if template.pagination
 			get.push p for p in template.get if template.get
 			db.get get, cb

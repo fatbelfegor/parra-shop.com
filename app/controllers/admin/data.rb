@@ -191,12 +191,13 @@ Admin::Data = {
 			}
 		},
 		order: lambda { |p|
-			recs = Order.select(:id, :created_at, :phone, :status_id)
+			recs = Order.order('created_at DESC').select(:id, :created_at, :phone, :status_id)
 			{
 				order: {
 					all: true,
 					select: [:created_at, :phone, :status_id],
 					records: recs,
+					order: 'created_at DESC',
 					belongs_to: {
 						status: {records: recs.map{|r| r.status}}
 					},
