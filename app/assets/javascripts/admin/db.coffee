@@ -55,7 +55,7 @@
 				else
 					r.find.records = [p.record.id]
 				model.records[p.record.id] = p.record
-			else
+			else if p.records.length
 				ids = p.records.map (r) -> r.id
 				if p.order
 					p.order = [p.order] if typeof p.order is 'string'
@@ -436,7 +436,7 @@
 		ret.push rec for id, rec of db[model].records
 		ret
 	find: (model, find) ->
-		return [] unless find
+		return [] if !find or !find.length 
 		find = [find] unless find[0]
 		ret = []
 		for f in find
