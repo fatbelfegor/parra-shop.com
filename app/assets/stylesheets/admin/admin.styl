@@ -972,7 +972,9 @@ td.image
 	> p
 		cursor pointer
 	div
-		text-align center
+		text-align left
+		opacity 0
+		transition(.3s)
 		i
 			margin 0 10px
 			border 1px solid #aaa
@@ -982,10 +984,17 @@ td.image
 			btn-gradient(#FFFFFF, #FFFFFF, #fcfcfc, #e0e0e0, #f1f1f1)
 		p
 			height 0
+			line-height 25px
 			overflow hidden
 			transition(.3s)
+		.icon-arrow-down5
+			float left
+		.icon-arrow-up5
+			float right
 	.active
+		opacity 1
 		p
-			height 50px
+			height 25px
+			padding 10px 0
 		p + p
 			border-top 1px solid #aaa

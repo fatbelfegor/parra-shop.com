@@ -13,6 +13,7 @@ app.routes['model/:model/records'] = page: ->
 			paginator.load = false
 			paginator.limit = template.pagination
 			paginator.order = template.order or 'id'
+			paginator.where = template.where or 'all'
 			paginator.select = template.select or 'id'
 			paginator.belongs_to = template.belongs_to
 			paginator.has_many = template.has_many
@@ -41,7 +42,8 @@ app.routes['model/:model/records'] = page: ->
 							rec.belongs_to = paginator.belongs_to if paginator.belongs_to
 							rec.has_many = paginator.has_many if paginator.has_many
 							rec.ids = paginator.ids if paginator.ids
-							rec.order = paginator.order if paginator.order
+							rec.order = paginator.order
+							rec.where = paginator.where
 							get = [rec]
 							before = prev
 							db.get get, ->
@@ -74,7 +76,8 @@ app.routes['model/:model/records'] = page: ->
 								rec.belongs_to = paginator.belongs_to if paginator.belongs_to
 								rec.has_many = paginator.has_many if paginator.has_many
 								rec.ids = paginator.ids if paginator.ids
-								rec.order = paginator.order if paginator.order
+								rec.order = paginator.order
+								rec.where = paginator.where
 								get = [rec]
 								after = next
 								db.get get, ->
@@ -108,14 +111,15 @@ app.routes['model/:model/records'] = page: ->
 			ret += "<div>"
 			for o in params.order
 				for k, v of o
-					ret += "<p><i class='icon-arrow-down5' onclick='order.pick(this)'></i><span data-column='#{k}'>#{v}</span><i class='icon-arrow-up5' onclick='order.pick(this)'></i></p>"
+					ret += "<p><i class='icon-arrow-down5' onclick='order.pick(this)'></i>по <span data-column='#{k}'>#{v}</span><i class='icon-arrow-up5' onclick='order.pick(this)'></i></p>"
 					break
 			ret += "</div></div>"
 		if template.pagination
 			ret += "<div id='paginator'>
 					<div class='prev' onclick='paginator.prev()'><i class='icon-arrow-left'></i></div>
 					<div class='active' onclick='paginator.go(this)'>1</div>"
-			ret += "<div onclick='paginator.go(this)'>#{page}</div>" for page in [2..1 + Math.floor db[param.model].count / template.pagination]
+			divide = db[param.model].count / template.pagination
+			ret += "<div onclick='paginator.go(this)'>#{page}</div>" for page in [2..1 + Math.floor divide] if divide >= 1
 			ret += "<div class='next' onclick='paginator.next()'><i class='icon-arrow-right2'></i></div>
 				</div>"
 		ret += "<div><a href='/admin/model/#{param.model}/new' onclick='app.aclick(this)' class='btn green'>Добавить</a></div>
@@ -352,6 +356,7 @@ app.routes['model/:model/records'] = page: ->
 		window.rec.has_many = template.has_many if template.has_many
 		window.rec.ids = template.ids if template.ids
 		window.rec.order = template.order if template.order
+		window.rec.where = template.where if template.where
 		if window.data
 			db.collect window.data
 			cb()

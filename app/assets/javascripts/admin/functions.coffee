@@ -88,7 +88,7 @@ String.prototype.classify = ->
 				paginator.order = column
 				paginator.page = 1
 				paginator.pages.find('.active').removeClass 'active'
-				paginator.pages.eq(1).addClass 'active'
+				paginator.pages.find('div').eq(1).addClass 'active'
 
 # Validate
 

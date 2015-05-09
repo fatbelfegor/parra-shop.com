@@ -70,14 +70,16 @@
 							select: []
 				else order = 'id'
 				if p.where
-					where = []
-					for k, v of p.where
-						where.push k + ':' + v
-						if v is null
-							delete p.where[k]
-							p.where_null ?= []
-							p.where_null.push k
-					where = where.sort().join()
+					if typeof p.where is 'object'
+						where = []
+						for k, v of p.where
+							where.push k + ' = ' + v
+							if v is null
+								delete p.where[k]
+								p.where_null ?= []
+								p.where_null.push k
+						where = where.sort().join(' AND ')
+					else where = p.where
 					r.where[order][where] =
 						ids: []
 						records:
@@ -179,14 +181,17 @@
 						select: []
 		else order = 'id'
 		if p.where
-			where = []
-			for k, v of p.where
-				where.push k + ':' + v
-				if v is null
-					delete p.where[k]
-					p.where_null ?= []
-					p.where_null.push k
-			where = where.sort().join()
+			if typeof p.where is 'object'
+				where = []
+				for k, v of p.where
+					where.push k + ' = ' + v
+					if v is null
+						delete p.where[k]
+						p.where_null ?= []
+						p.where_null.push k
+				where = where.sort().join(' AND ')
+				p.where = where
+			else where = p.where
 			unless r.where[order][where]
 				r.where[order][where] =
 					ids: []
@@ -547,6 +552,7 @@
 		ids = []
 		r = @_get_ready @[p.model].ready, p
 		if p.ids
+			p.ids = [p.ids] if typeof p.ids is 'string'
 			records = @_find_in_ready(r.ids, p.ids).positions
 		else if p.select
 			records = @_find_in_ready(r.select, p.select).positions
