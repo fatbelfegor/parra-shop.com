@@ -316,33 +316,7 @@
 					if p.find
 						recs = db.find model, records
 					else
-						recs = []
-						recs.push r for id, r of db[model].records
-						if p.order
-							order = order_array.map((o) -> o).reverse()
-							for o in order
-								s = o.split ' '
-								c = s[0]
-								if s[1] and (s[1] is 'DESC' or s[1] is 'desc')
-									recs.sort (a, b) ->
-										if a[c] < b[c]
-											1
-										else if a[c] > b[c]
-											-1
-										else 0
-								else
-									recs.sort (a, b) ->
-										if a[c] > b[c]
-											1
-										else if a[c] < b[c]
-											-1
-										else 0
-						if p.offset and p.limit
-							recs = recs[p.offset..p.offset + p.limit - 1]
-						else if p.limit
-							recs = recs[0..p.limit - 1]
-						else if p.offset
-							recs = recs[p.offset..-1]
+						recs = db.select p
 					if p.belongs_to
 						for bt in p.belongs_to
 							ids = []
