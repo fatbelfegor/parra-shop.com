@@ -998,3 +998,34 @@ td.image
 			padding 10px 0
 		p + p
 			border-top 1px solid #aaa
+#where
+	border-bottom 1px solid #aaa
+	position relative
+	p
+		text-align center
+	> p
+		cursor pointer
+		width 50px
+	div
+		position absolute
+		width 350px
+		margin-left -150px
+		transition(.3s)
+		btn-gradient(#FFFFFF, #FFFFFF, #fcfcfc, #e0e0e0, #f1f1f1)
+		p
+			line-height 40px
+			height 0
+			overflow hidden
+			transition(.3s)
+			span, input
+				display inline-block
+			span
+				width 100px
+				padding-right 20px
+				text-align right
+	.active
+		padding 10px 0
+		border 1px solid #aaa
+		box-shadow(0 0 16px #aaa)
+		p
+			height 40px

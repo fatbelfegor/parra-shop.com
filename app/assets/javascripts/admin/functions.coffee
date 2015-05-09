@@ -66,11 +66,12 @@ String.prototype.classify = ->
 			where = 'up'
 			order = el.prev()
 		column = order.data 'column'
+		column += ' DESC' if where is 'up'
 		name = order.html()
 		el.parents('div').first().removeClass('active').prev().find('b').html name + " <i class='icon-arrow-#{where}5'></i>"
 		template = app.templates.index[param.model]
 		rec = model: param.model
-		rec.limit = template.pagination
+		rec.limit = template.pagination if template.pagination
 		rec.select = template.select if template.select
 		rec.belongs_to = template.belongs_to if template.belongs_to
 		rec.has_many = template.has_many if template.has_many
@@ -89,6 +90,43 @@ String.prototype.classify = ->
 				paginator.page = 1
 				paginator.pages.find('.active').removeClass 'active'
 				paginator.pages.find('div').eq(1).addClass 'active'
+
+@filter = (el) ->
+	where = []
+	$(el).parent().parent().find('input').each ->
+		val = $(@).val()
+		unless $.trim(val) is ''
+			where.push "#{@.name} #{val}"
+	where = where.join ' AND '
+	if !window.filter_loading
+		window.filter_loading = true
+		template = app.templates.index[param.model]
+		rec = model: param.model
+		rec.limit = template.pagination if template.pagination
+		rec.select = template.select if template.select
+		rec.belongs_to = template.belongs_to if template.belongs_to
+		rec.has_many = template.has_many if template.has_many
+		rec.ids = template.ids if template.ids
+		rec.order = template.order or 'id'
+		rec.where = where
+		db.get [rec], ->
+			recs = db.select rec
+			if recs[0]
+				ret = ''
+				for rec in db.select rec
+					window.rec = rec
+					ret += record()
+				$('#records').html ret
+				template = app.templates.index[param.model]
+				if template.pagination
+					$(window).scrollTop 0
+					paginator.ready = [1]
+					paginator.order = template.order or 'id'
+					paginator.page = 1
+					paginator.pages.find('.active').removeClass 'active'
+					paginator.pages.find('div').eq(1).addClass 'active'
+			window.filter_loading = false
+		, -> window.filter_loading = false
 
 # Validate
 

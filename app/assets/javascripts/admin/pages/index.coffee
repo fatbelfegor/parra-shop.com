@@ -3,7 +3,12 @@ app.routes['model/:model/records'] = page: ->
 	window[k] = v for k, v of template.functions if template.functions
 	cb = ->
 		window.model = param.model
-		app.yield.html template.page db.select window.rec
+		if template.tree
+			recs = []
+			for r in db.select window.rec
+				recs.push r unless r[param.model + '_id']
+		else recs = db.select window.rec
+		app.yield.html template.page recs
 		template.after() if template.after
 		if template.pagination
 			paginator.wrap = $('#records')
@@ -99,6 +104,11 @@ app.routes['model/:model/records'] = page: ->
 			<div>
 				<div>
 					<div class='name'>#{params.name}</div>"
+		if params.where
+			ret += "<div id='where'><p onclick='$(this).next().toggleClass(\"active\")'>Фильтр</p><div>"
+			for k, v of params.where
+				ret += "<p><span>#{v}:</span><input type='text' name='#{k}' onkeyup='filter(this)'></p>"
+			ret += "</div></div>"
 		if params.order
 			ret += "<div id='order'>"
 			for o in params.order

@@ -74,10 +74,6 @@
 						where = []
 						for k, v of p.where
 							where.push k + ' = ' + v
-							if v is null
-								delete p.where[k]
-								p.where_null ?= []
-								p.where_null.push k
 						where = where.sort().join(' AND ')
 					else where = p.where
 					r.where[order][where] =
@@ -185,10 +181,6 @@
 				where = []
 				for k, v of p.where
 					where.push k + ' = ' + v
-					if v is null
-						delete p.where[k]
-						p.where_null ?= []
-						p.where_null.push k
 				where = where.sort().join(' AND ')
 				p.where = where
 			else where = p.where
@@ -224,7 +216,7 @@
 				records = a.records
 				break
 		records
-	get: (params, cb) ->
+	get: (params, cb, error) ->
 		params = [params] unless params[0]
 		string_to_array = (p) ->
 			p.find = [p.find] if p.find and typeof p.find is 'number'
@@ -389,7 +381,7 @@
 		len = load_params.length
 		if len or send_params.count
 			send_params.models = load_params if len
-			$.post '/admin/db/get', send_params, (res) ->
+			$.ajax type: "POST", url: '/admin/db/get', data: send_params, dataType: 'json', success: (res) ->
 				recursion_save = (p, res) ->
 					db_records = db[p.model].records
 					r = db[p.model].ready
@@ -462,7 +454,7 @@
 					for k, v of res.count
 						db[k].count = v
 				cb() if cb
-			, 'json'
+			, error: -> error() if error
 		else
 			cb() if cb
 	all: (model) ->
