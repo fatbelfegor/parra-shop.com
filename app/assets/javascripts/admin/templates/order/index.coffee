@@ -1,5 +1,5 @@
 app.templates.index.order =
-	order: 'created_at asc'
+	order: 'created_at DESC'
 	page: (recs) ->
 		ret = header
 			name: 'Заказы'

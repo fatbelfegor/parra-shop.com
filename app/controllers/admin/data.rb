@@ -157,14 +157,14 @@ Admin::Data = {
 	},
 	index: {
 		product: lambda { |p|
-			products = Product.order(:name).limit(50)
+			products = Product.order(:position)
 			{
 				product: {
 					limit: 50,
-					count: Product.count,
-					order: :name,
-					select: [:id, :name],
-					records: products.select(:id, :name),
+					count: products.count,
+					order: :position,
+					select: [:id, :name, :position],
+					records: products.limit(50).select(:id, :name, :position),
 					ids: {size: products.map{|r| r.size_ids}}
 				}
 			}
@@ -191,12 +191,13 @@ Admin::Data = {
 			}
 		},
 		order: lambda { |p|
-			recs = Order.select(:id, :created_at, :phone, :status_id)
+			recs = Order.order('created_at DESC').select(:id, :created_at, :phone, :status_id)
 			{
 				order: {
 					all: true,
 					select: [:created_at, :phone, :status_id],
 					records: recs,
+					order: 'created_at DESC',
 					belongs_to: {
 						status: {records: recs.map{|r| r.status}}
 					},

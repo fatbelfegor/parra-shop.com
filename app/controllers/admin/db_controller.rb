@@ -99,19 +99,8 @@ private
 		if p[:find]
 			recs = model.where(id: p[:find])
 		else
-			if p[:where] or p[:where_null]
-				where = {}
-				if p[:where]
-					for k, v in p[:where]
-						where[k] = v
-					end
-				end
-				if p[:where_null]
-					for f in p[:where_null]
-						where[f] = nil
-					end
-				end
-				recs = model.where(where)
+			if p[:where]
+				recs = model.where(p[:where])
 			else
 				recs = model.all
 			end

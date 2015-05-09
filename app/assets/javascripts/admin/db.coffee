@@ -70,14 +70,16 @@
 							select: []
 				else order = 'id'
 				if p.where
-					where = []
-					for k, v of p.where
-						where.push k + ':' + v
-						if v is null
-							delete p.where[k]
-							p.where_null ?= []
-							p.where_null.push k
-					where = where.sort().join()
+					if typeof p.where is 'object'
+						where = []
+						for k, v of p.where
+							where.push k + ' = ' + v
+							if v is null
+								delete p.where[k]
+								p.where_null ?= []
+								p.where_null.push k
+						where = where.sort().join(' AND ')
+					else where = p.where
 					r.where[order][where] =
 						ids: []
 						records:
@@ -125,7 +127,7 @@
 						limit = p.offset + p.limit - 1
 					else
 						push.records.offset = p.offset
-						limit = -1
+						limit = p.records.length - 1
 					for i in [p.offset..limit]
 						rec = p.records[i - p.offset]
 						if rec
@@ -141,7 +143,7 @@
 						limit = p.offset + p.limit - 1
 					else
 						push.records.offset = p.offset
-						limit = -1
+						limit = p.records.length - 1
 					for i in [p.offset..limit]
 						rec = p.records[i - p.offset]
 						if rec
@@ -156,7 +158,7 @@
 						limit = p.offset + p.limit - 1
 					else
 						r.where[order][where].records.offset = p.offset
-						limit = -1
+						limit = p.records.length - 1
 					for i in [p.offset..limit]
 						rec = p.records[i - p.offset]
 						if rec
@@ -179,14 +181,17 @@
 						select: []
 		else order = 'id'
 		if p.where
-			where = []
-			for k, v of p.where
-				where.push k + ':' + v
-				if v is null
-					delete p.where[k]
-					p.where_null ?= []
-					p.where_null.push k
-			where = where.sort().join()
+			if typeof p.where is 'object'
+				where = []
+				for k, v of p.where
+					where.push k + ' = ' + v
+					if v is null
+						delete p.where[k]
+						p.where_null ?= []
+						p.where_null.push k
+				where = where.sort().join(' AND ')
+				p.where = where
+			else where = p.where
 			unless r.where[order][where]
 				r.where[order][where] =
 					ids: []
@@ -201,7 +206,7 @@
 		p.offset ?= 0
 		if p.limit
 			limit = p.offset + p.limit - 1
-		else limit = -1
+		else limit = arr.length - 1
 		for i in [p.offset..limit]
 			rec = arr[i - p.offset]
 			if rec
@@ -547,6 +552,7 @@
 		ids = []
 		r = @_get_ready @[p.model].ready, p
 		if p.ids
+			p.ids = [p.ids] if typeof p.ids is 'string'
 			records = @_find_in_ready(r.ids, p.ids).positions
 		else if p.select
 			records = @_find_in_ready(r.select, p.select).positions
@@ -554,7 +560,7 @@
 		p.offset ?= 0
 		if p.limit
 			limit = p.offset + p.limit - 1
-		else limit = -1
+		else limit = records.length - 1
 		for i in [p.offset..limit]
 			rec = records[i]
 			ids.push rec if rec
