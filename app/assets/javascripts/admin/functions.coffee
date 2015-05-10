@@ -91,42 +91,50 @@ String.prototype.classify = ->
 				paginator.pages.find('.active').removeClass 'active'
 				paginator.pages.find('div').eq(1).addClass 'active'
 
-@filter = (el) ->
-	where = []
-	$(el).parent().parent().find('input').each ->
-		val = $(@).val()
-		unless $.trim(val) is ''
-			where.push "#{@.name} #{val}"
-	where = where.join ' AND '
-	if !window.filter_loading
-		window.filter_loading = true
-		template = app.templates.index[param.model]
-		rec = model: param.model
-		rec.limit = template.pagination if template.pagination
-		rec.select = template.select if template.select
-		rec.belongs_to = template.belongs_to if template.belongs_to
-		rec.has_many = template.has_many if template.has_many
-		rec.ids = template.ids if template.ids
-		rec.order = template.order or 'id'
-		rec.where = where
-		db.get [rec], ->
-			recs = db.select rec
-			if recs[0]
-				ret = ''
-				for rec in db.select rec
-					window.rec = rec
-					ret += record()
-				$('#records').html ret
-				template = app.templates.index[param.model]
-				if template.pagination
-					$(window).scrollTop 0
-					paginator.ready = [1]
-					paginator.order = template.order or 'id'
-					paginator.page = 1
-					paginator.pages.find('.active').removeClass 'active'
-					paginator.pages.find('div').eq(1).addClass 'active'
-			window.filter_loading = false
-		, -> window.filter_loading = false
+@filter =
+	open: ->
+		wrap = $ "#where"
+		if wrap.css('display') is 'none'
+			$('#records').animate 'padding-top': 129, 300
+			wrap.slideDown 300
+		else
+			wrap.slideUp 300
+			$('#records').animate 'padding-top': 54, 300
+	change: (el) ->
+		where = $(el).find("[name='where']").val()
+		if !window.filter_loading
+			window.filter_loading = true
+			template = app.templates.index[param.model]
+			window.tmp = model: param.model
+			window.tmp.limit = template.pagination if template.pagination
+			window.tmp.select = template.select if template.select
+			window.tmp.belongs_to = template.belongs_to if template.belongs_to
+			window.tmp.has_many = template.has_many if template.has_many
+			window.tmp.ids = template.ids if template.ids
+			window.tmp.count = true if template.pagination
+			window.tmp.order = template.order or 'id'
+			window.tmp.where = where
+			db.get [window.tmp], ->
+				recs = db.select window.tmp
+				if recs[0]
+					ret = ''
+					for rec in recs
+						window.rec = rec
+						ret += record()
+					$('#records').html ret
+					template = app.templates.index[param.model]
+					if template.pagination
+						$(window).scrollTop 0
+						paginator.ready = [1]
+						paginator.order = template.order or 'id'
+						paginator.page = 1
+						pages = "<div class='prev' onclick='paginator.prev()'><i class='icon-arrow-left'></i></div><div class='active' onclick='paginator.go(this)'>1</div>"
+						divide = db.count(window.tmp) / template.pagination
+						pages += "<div onclick='paginator.go(this)'>#{page}</div>" for page in [2..1 + Math.floor divide] if divide >= 1
+						paginator.pages.html pages + "<div class='next' onclick='paginator.next()'><i class='icon-arrow-right2'></i></div>"
+				window.filter_loading = false
+			, -> window.filter_loading = false
+		event.preventDefault();
 
 # Validate
 

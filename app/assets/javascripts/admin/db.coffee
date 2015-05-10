@@ -10,7 +10,7 @@
 						select: []
 					where:
 						id:
-							all:
+							'':
 								ids: []
 								records:
 									all: false
@@ -20,8 +20,6 @@
 		for n, p of hash
 			model = @[n]
 			r = model.ready
-			if p.count
-				model.count = p.count
 			if p.record
 				if p.belongs_to
 					for k, v of p.belongs_to
@@ -62,7 +60,7 @@
 					p.order = p.order.join()
 					order = p.order
 					r.where[order] =
-						all:
+						'':
 							ids: []
 							records:
 								all: false
@@ -82,7 +80,7 @@
 							all: false
 							positions: []
 						select: []
-				else where = 'all'
+				else where = ''
 				if p.belongs_to
 					for k, v of p.belongs_to
 						unless v.records
@@ -160,6 +158,7 @@
 						if rec
 							r.where[order][where].records.positions[i] = rec.id
 						else r.where[order][where].records.positions[i] = 0
+				r.where[order][where].count = p.count if p.count
 				model.records[rec.id] = rec for rec in p.records
 	_get_ready: (r, p) ->
 		if p.order
@@ -169,7 +168,7 @@
 			order = p.order
 			unless r.where[order]
 				r.where[order] =
-					all:
+					'':
 						ids: []
 						records:
 							all: false
@@ -191,7 +190,7 @@
 						all: false
 						positions: []
 					select: []
-		else where = 'all'
+		else where = ''
 		r.where[order][where]
 	_fill_where: (records, p, arr) ->
 		records.all = true if !p.offset and !p.limit
@@ -275,8 +274,8 @@
 							else false
 						else p
 				else p
-		check = (p, model) ->
-			r = db[model].ready
+		check = (p) ->
+			r = db[p.model].ready
 			load = false
 			if p.find
 				if p.ids
@@ -314,7 +313,7 @@
 			if !load
 				if p.belongs_to or p.has_many
 					if p.find
-						recs = db.find model, records
+						recs = db.find p.model, records
 					else
 						recs = db.select p
 					if p.belongs_to
@@ -341,21 +340,10 @@
 		send_params = {}
 		load_params = []
 		for p, i in params
-			model = p.model
-			if model
-				params[i] = check p, model
-				load_params.push params[i] if params[i]
-			else
-				p.count = [p.count] if typeof p.count is 'string'
-				ret = []
-				for count in p.count
-					unless db[count].count?
-						ret.push count
-				send_params.count = ret if ret.length
-		len = load_params.length
-		if len or send_params.count
-			send_params.models = load_params if len
-			$.ajax type: "POST", url: '/admin/db/get', data: send_params, dataType: 'json', success: (res) ->
+			params[i] = check p
+			load_params.push params[i] if params[i]
+		if load_params.length
+			$.ajax type: "POST", url: '/admin/db/get', data: {models: load_params}, dataType: 'json', success: (res) ->
 				recursion_save = (p, res) ->
 					db_records = db[p.model].records
 					r = db[p.model].ready
@@ -411,6 +399,8 @@
 						unless p.find
 							r = db._get_ready r, p
 							db._fill_where r.records, p, res_records
+					if res_model.count
+						r.count = res_model.count
 					if p.belongs_to
 						for bt in p.belongs_to
 							ids = []
@@ -424,9 +414,6 @@
 								recursion_save hm, res_model.has_many
 				for p, i in load_params
 					recursion_save p, res
-				if send_params.count
-					for k, v of res.count
-						db[k].count = v
 				cb() if cb
 			, error: -> error() if error
 		else
@@ -531,3 +518,4 @@
 			rec = records[i]
 			ids.push rec if rec
 		@find p.model, ids
+	count: (p) -> @_get_ready(@[p.model].ready, p).count

@@ -4,7 +4,7 @@ app.templates.index.product =
 	page: (recs) ->
 		ret = header
 			name: 'Товары'
-			where: name: 'название', scode: 'код', price: 'цена'
+			where: true
 			order: [
 				{name: 'названию'}
 				{position: 'позиции', active: true}

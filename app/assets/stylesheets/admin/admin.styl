@@ -911,10 +911,9 @@ td.image
 	top 0
 	left 250px
 	right 0
-	height 60px
 	line-height 50px
 	background-color #E5E9EC
-	> div
+	> .top
 		height 50px
 		border-bottom 1px solid #aaa
 		btn-gradient(#FAFAFA, #FFFFFF, #F2F2F2, #D5D5D5, #E8E8E8)
@@ -932,12 +931,12 @@ td.image
 				margin-left 20px
 				box-shadow(0 0 16px #aaa)
 				btn-gradient(#FFFFFF, #FFFFFF, #fafafa, #dcdcdc, #eee)
-	.name
-		font-size 22px
-		font-weight bold
-		color #444
-		float left
-		margin-left 0
+			.name
+				font-size 22px
+				font-weight bold
+				color #444
+				float left
+				margin-left 0
 #paginator
 	font-size 0
 	height 50px
@@ -969,6 +968,8 @@ td.image
 		border-radius(0 3px 3px 0)
 #order
 	border-bottom 1px solid #aaa
+	position relative
+	z-index 15
 	> p
 		cursor pointer
 	div
@@ -998,34 +999,21 @@ td.image
 			padding 10px 0
 		p + p
 			border-top 1px solid #aaa
+#where-wrap
+	max-width 1100px
+	padding 0 50px
+	margin 0 auto
 #where
-	border-bottom 1px solid #aaa
-	position relative
-	p
-		text-align center
-	> p
-		cursor pointer
-		width 50px
-	div
-		position absolute
-		width 350px
-		margin-left -150px
-		transition(.3s)
-		btn-gradient(#FFFFFF, #FFFFFF, #fcfcfc, #e0e0e0, #f1f1f1)
-		p
-			line-height 40px
-			height 0
-			overflow hidden
-			transition(.3s)
-			span, input
-				display inline-block
-			span
-				width 100px
-				padding-right 20px
-				text-align right
-	.active
-		padding 10px 0
-		border 1px solid #aaa
-		box-shadow(0 0 16px #aaa)
-		p
-			height 40px
+	border 1px solid #aaa
+	border-top 0
+	padding 20px 0
+	height 34px
+	box-shadow(0 0 16px #aaa)
+	btn-gradient(#FFFFFF, #FFFFFF, #fcfcfc, #e0e0e0, #f1f1f1)
+	> *
+		vertical-align top
+	> input
+		width 300px
+	label
+		input
+			display none

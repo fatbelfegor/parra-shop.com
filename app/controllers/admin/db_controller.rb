@@ -6,12 +6,6 @@ class Admin::DbController < Admin::AdminController
 				@data[p[:model]] = get_records p
 			end
 		end
-		if params[:count]
-			@data[:count] = {}
-			for model in params[:count]
-				@data[:count][model] = model.classify.constantize.count
-			end
-		end
 		rend data: @data
 	end
 	def save
@@ -96,6 +90,7 @@ private
 	def get_records p
 		name = p[:model]
 		model = name.classify.constantize
+		ret = {}
 		if p[:find]
 			recs = model.where(id: p[:find])
 		else
@@ -110,6 +105,9 @@ private
 			if p[:offset]
 				recs = recs.offset(p[:offset])
 			end
+			if p[:count]
+				ret[:count] = recs.count
+			end
 			if p[:limit]
 				recs = recs.limit(p[:limit])
 			end
@@ -119,14 +117,14 @@ private
 		end
 		if p[:ids]
 			recs = recs.map do |r|
-				ret = r.as_json
+				ids_ret = r.as_json
 				for id in p[:ids]
-					ret[id + '_ids'] = r.send(id + '_ids')
+					ids_ret[id + '_ids'] = r.send(id + '_ids')
 				end
-				ret
+				ids_ret
 			end
 		end
-		ret = {records: recs}
+		ret[:records] = recs
 		if p[:belongs_to]
 			ret[:belongs_to] = {}
 			for i, a in p[:belongs_to]
