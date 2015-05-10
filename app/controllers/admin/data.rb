@@ -174,6 +174,7 @@ Admin::Data = {
 			{
 				category: {
 					select: [:id, :name, :position, :category_id],
+					order: 'position',
 					records: recs.select(:id, :name, :position, :category_id),
 					ids: {
 						subcategory: recs.map{|r| r.subcategory_ids},

@@ -1,5 +1,5 @@
 app.templates.index.category =
-	where: category_id: null
+	tree: true
 	order: 'position'
 	page: (recs) ->
 		ret = header

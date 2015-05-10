@@ -3,17 +3,22 @@ app.routes['model/:model/records'] = page: ->
 	window[k] = v for k, v of template.functions if template.functions
 	cb = ->
 		window.model = param.model
-		app.yield.html template.page db.select window.rec
+		if template.tree
+			recs = []
+			for r in db.select window.rec
+				recs.push r unless r[param.model + '_id']
+		else recs = db.select window.rec
+		app.yield.html template.page recs
 		template.after() if template.after
 		if template.pagination
 			paginator.wrap = $('#records')
 			paginator.pages = $('#paginator')
 			paginator.ready = [1]
-			paginator.top = paginator.wrap.offset().top + 54
+			paginator.top = paginator.wrap.offset().top + parseInt paginator.wrap.css 'padding-top'
 			paginator.load = false
 			paginator.limit = template.pagination
 			paginator.order = template.order or 'id'
-			paginator.where = template.where or 'all'
+			paginator.where = template.where or ''
 			paginator.select = template.select or 'id'
 			paginator.belongs_to = template.belongs_to
 			paginator.has_many = template.has_many
@@ -96,9 +101,11 @@ app.routes['model/:model/records'] = page: ->
 		app.menu.find("[data-route='model/#{param.model}']").addClass 'current'
 	window.header = (params) ->
 		ret = "<div class='header'>
-			<div>
+			<div class='top'>
 				<div>
 					<div class='name'>#{params.name}</div>"
+		if params.where
+			ret += "<div><p style='cursor: pointer' onclick='filter.open()'>Фильтр</p></div>"
 		if params.order
 			ret += "<div id='order'>"
 			for o in params.order
@@ -118,14 +125,18 @@ app.routes['model/:model/records'] = page: ->
 			ret += "<div id='paginator'>
 					<div class='prev' onclick='paginator.prev()'><i class='icon-arrow-left'></i></div>
 					<div class='active' onclick='paginator.go(this)'>1</div>"
-			divide = db[param.model].count / template.pagination
+			divide = db.count(window.rec) / template.pagination
 			ret += "<div onclick='paginator.go(this)'>#{page}</div>" for page in [2..1 + Math.floor divide] if divide >= 1
 			ret += "<div class='next' onclick='paginator.next()'><i class='icon-arrow-right2'></i></div>
 				</div>"
 		ret += "<div><a href='/admin/model/#{param.model}/new' onclick='app.aclick(this)' class='btn green'>Добавить</a></div>
 				</div>
-			</div>
-		</div>"
+			</div>"
+		if params.where
+			ret += "<div id='where-wrap'><form id='where' onsubmit='filter.change(this)' style='display: none'>
+				<input type='text' name='where'>
+				<label class='submit btn green'>Применить<input type='submit'></label>
+			</form></div>"
 		if params.header
 			ret += "<div class='group-header'><div>"
 			for h in params.header
@@ -145,7 +156,7 @@ app.routes['model/:model/records'] = page: ->
 					ret += "'"
 					ret += ">#{h[0]}</p>"
 			ret += "</div></div>"
-		ret
+		ret + "</div>"
 	window.records = (html, params) ->
 		params ?= {}
 		ret ="<div id='records' data-model-wrap='#{params.model or param.model}'>#{html}</div>"
@@ -357,12 +368,12 @@ app.routes['model/:model/records'] = page: ->
 		window.rec.ids = template.ids if template.ids
 		window.rec.order = template.order if template.order
 		window.rec.where = template.where if template.where
+		window.rec.count = true if template.pagination
 		if window.data
 			db.collect window.data
 			cb()
 		else
 			get = [window.rec]
-			get.push count: [param.model] if template.pagination
 			get.push p for p in template.get if template.get
 			db.get get, cb
 	else
