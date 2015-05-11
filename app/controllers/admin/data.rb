@@ -156,98 +156,34 @@ Admin::Data = {
 		}
 	},
 	index: {
-		product: lambda { |p|
-			products = Product.order(:position)
-			{
-				product: {
-					limit: 50,
-					count: products.count,
-					order: :position,
-					select: [:id, :name, :position],
-					records: products.limit(50).select(:id, :name, :position),
-					ids: {size: products.map{|r| r.size_ids}}
-				}
-			}
+		product: {
+			limit: 50,
+			count: true,
+			order: :position,
+			select: [:name, :position],
+			ids: [:size]
 		},
-		category: lambda { |p|
-			recs = Category.all
-			{
-				category: {
-					select: [:id, :name, :position, :category_id],
-					order: 'position',
-					records: recs.select(:id, :name, :position, :category_id),
-					ids: {
-						subcategory: recs.map{|r| r.subcategory_ids},
-						product: recs.map{|r| r.product_ids}
-					}
-				}
-			}
+		category: {
+			select: [:name, :position, :category_id],
+			order: 'position',
+			ids: [:subcategory, :product]
 		},
-		extension: lambda { |p|
-			{
-				extension: {
-					all: true,
-					records: Extension.all
-				}
-			}
+		order: {
+			order: 'created_at DESC',
+			select: [:created_at, :phone, :status_id],
+			belongs_to: [:status],
+			has_many: [:order_item, :virtproduct]
 		},
-		order: lambda { |p|
-			recs = Order.order('created_at DESC').select(:id, :created_at, :phone, :status_id)
-			{
-				order: {
-					all: true,
-					select: [:created_at, :phone, :status_id],
-					records: recs,
-					order: 'created_at DESC',
-					belongs_to: {
-						status: {records: recs.map{|r| r.status}}
-					},
-					has_many: {
-						order_item: recs.map{|r| r.order_items},
-						virtproduct: recs.map{|r| r.virtproducts}
-					}
-				}
-			}
+		packinglist: {
+			ids: [:packinglistitem],
+			has_many: [:packinglistitem]
 		},
-		packinglist: lambda { |p|
-			recs = Packinglist.all
-			{
-				packinglist: {
-					records: recs,
-					ids: {
-						packinglistitem: recs.map{|r| r.packinglistitem_ids}
-					},
-					has_many: {
-						packinglistitem: recs.map{|r| r.packinglistitems}
-					}
-				}
-			}
+		user: {
+			select: [:email, :prefix, :role],
+			has_many: [:user_log]
 		},
-		user: lambda { |p|
-			recs = User.all
-			{
-				user: {
-					all: true,
-					select: [:id, :email, :prefix, :role],
-					records: recs.select(:id, :email, :prefix, :role).map{ |r|
-						{
-							record: r,
-							has_many: {
-								user_log: r.user_logs
-							}
-						}
-					}
-				}
-			}
-		},
-		page: lambda { |p|
-			{
-				page: {
-					all: true,
-					select: [:id, :url, :name],
-					records: Page.select(:id, :url, :name)
-				}
-			}
+		page: {
+			select: [:url, :name]
 		}
 	},
 	new: {

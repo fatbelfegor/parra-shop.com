@@ -1,12 +1,56 @@
 class Admin::RecordController < Admin::AdminController
 
 	def index
-		cb = Admin::Data[:index][params[:model].to_sym]
-		if cb
-			data = cb.call(params)
-		else
-			data = {params[:model] => {records: params[:model].classify.constantize.all}}
+		p = Admin::Data[:index][params[:model].to_sym]
+		unless p
+			p = {}
 		end
+		model = params[:model].classify.constantize
+		recs = model.all
+		ret = {}
+		if p[:order]
+			recs = recs.order(p[:order])
+			ret[:order] = p[:order]
+		end
+		if p[:where]
+			recs = recs.where(p[:where])
+			ret[:where] = p[:where]
+		end
+		if p[:count]
+			ret[:count] = recs.count
+		end
+		if p[:select]
+			recs = recs.select(p[:select] << :id)
+			ret[:select] = p[:select]
+		end
+		if p[:offset]
+			recs = recs.offset(p[:offset])
+			ret[:offset] = p[:offset]
+		end
+		if p[:limit]
+			recs = recs.limit(p[:limit])
+			ret[:limit] = p[:limit]
+		end
+		if p[:ids]
+			ret[:ids] = {}
+			for id in p[:ids]
+				ret[:ids][id] = recs.map {|r| r.send(id.to_s + '_ids')}
+			end
+		end
+		if p[:belongs_to]
+			ret[:belongs_to] = {}
+			for bt in p[:belongs_to]
+				ret[:belongs_to][bt] = recs.map {|r| r.send(bt)}
+			end
+		end
+		if p[:has_many]
+			ret[:has_many] = {}
+			for hm in p[:has_many]
+				ret[:has_many][hm] = recs.map {|r| r.send(hm.to_s.pluralize)}
+			end
+		end
+		ret[:records] = recs
+		data = {params[:model] => ret}
 		rend data: data
 	end
 

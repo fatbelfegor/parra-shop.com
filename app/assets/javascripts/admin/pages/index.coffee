@@ -129,14 +129,25 @@ app.routes['model/:model/records'] = page: ->
 			ret += "<div onclick='paginator.go(this)'>#{page}</div>" for page in [2..1 + Math.floor divide] if divide >= 1
 			ret += "<div class='next' onclick='paginator.next()'><i class='icon-arrow-right2'></i></div>
 				</div>"
-		ret += "<div><a href='/admin/model/#{param.model}/new' onclick='app.aclick(this)' class='btn green'>Добавить</a></div>
-				</div>
+		ret += "<div><a href='/admin/model/#{param.model}/new' onclick='app.aclick(this)' class='btn green'>Добавить</a></div>" unless params.save is false
+		ret += "</div>
 			</div>"
 		if params.where
-			ret += "<div id='where-wrap'><form id='where' onsubmit='filter.change(this)' style='display: none'>
-				<input type='text' name='where'>
-				<label class='submit btn green'>Применить<input type='submit'></label>
-			</form></div>"
+			ret += "<div id='where-wrap'><form id='where' onsubmit='filter.change(this)' style='display: none'>"
+			for w in params.where
+				if w is 'all'
+					ret += "<input type='text' name='sql'>"
+				else
+					for k, v of w
+						if typeof v is 'string'
+							name = v
+							cb = ''
+						else
+							for n, t of v
+								name = n
+								cb = " data-cb='#{t}'"
+						ret += "<p><label>#{k}:<input type='text' name='#{name}'#{cb}></label></p>"
+			ret += "<label class='submit btn green'>Применить<input type='submit'></label></form></div>"
 		if params.header
 			ret += "<div class='group-header'><div>"
 			for h in params.header
@@ -161,8 +172,16 @@ app.routes['model/:model/records'] = page: ->
 		params ?= {}
 		ret ="<div id='records' data-model-wrap='#{params.model or param.model}'>#{html}</div>"
 	window.group = (html, params) ->
-		params ?= {}
-		ret = "<div class='group' data-model='#{params.model or window.model}' data-id='#{window.rec.id}'><table>#{html}</table>"
+		if params
+			if params.attrs
+				if params.attrs.class
+					params.attrs.class += ' group'
+				else params.attrs.class = 'group'
+			else params.attrs = class: 'group'
+		else params = attrs: group: 'group'
+		ret = "<div"
+		ret += " #{k}='#{v}'" for k, v of params.attrs
+		ret += " data-model='#{params.model or window.model}' data-id='#{window.rec.id}'><table>#{html}</table>"
 		if params.relations
 			subrecs = []
 			if params.relations.has_self_open
@@ -197,15 +216,18 @@ app.routes['model/:model/records'] = page: ->
 		ret = "<td"
 		ret += " #{k}='#{v}'" for k, v of params.attrs if params and params.attrs
 		ret + ">#{html}</td>"
-	window.show_image = (name, params) ->
-		url = window.rec[name]
+	window.show_image = (name, params, header) ->
 		params ?= {}
 		if params.attrs
 			if params.attrs.class
 				params.attrs.class += ' image'
 			else params.attrs.class = 'image'
 		else params.attrs = class: 'image'
-		td "<a href='#{url}' data-lightbox='#{window.model}'><img src='#{url}'></a>", params
+		if header
+			image_field header, name, params
+		else
+			url = window.rec[name]
+			td "<a href='#{url}' data-lightbox='#{window.model}'><img src='#{url}'></a>", params
 	window.btn_relation = (header, name, params) ->
 		attrs = onclick: "relationToggle(this, \"#{name}\")"
 		params ?= {}
@@ -264,6 +286,20 @@ app.routes['model/:model/records'] = page: ->
 		else
 			params.attrs = class: 'btn red always', onclick: 'removeRecord(this)', style: 'width: 1px'
 		td "<i class='icon-remove3'></i>", params
+	window.save = (params) ->
+		params ?= {}
+		if params.attrs
+			if params.attrs.class
+				params.attrs.class += ' btn green'
+			else params.attrs.class = 'btn green'
+			if params.attrs.onclick
+				params.attrs.onclick += '; removeRecord(this)'
+			if params.style
+				params.style = 'width: 1px; border: 1px solid #aaa' + params.style
+			else params.style = 'width: 1px; border: 1px solid #aaa'
+		else
+			params.attrs = class: 'btn green', onclick: 'removeRecord(this)', style: 'width: 1px'
+		td "<p>Сохранить</p>", params
 	window.drag = (params) ->
 		params ?= {}
 		if params.attrs
@@ -277,6 +313,11 @@ app.routes['model/:model/records'] = page: ->
 			params.attrs = class: 'btn lightblue always drag-handler', style: 'width: 1px'
 		td "<i class='icon-cursor'></i>", params
 	window.buttons = (params) -> edit(params) + destroy(params)
+	window.add = (cb) ->
+		"<div class='btn green' onclick='addRecord(this, \"#{cb}\")'>Добавить</div>"
+	window.addRecord = (el, cb) ->
+		delete window.rec
+		$(el).before window[cb]()
 	window.relationToggle = (el, rel) ->
 		el = $ el
 		relations = el.parents('table').eq(0).next()
@@ -363,7 +404,9 @@ app.routes['model/:model/records'] = page: ->
 		window.rec = model: param.model
 		window.rec.limit = template.pagination if template.pagination
 		window.rec.select = template.select if template.select
-		window.rec.belongs_to = template.belongs_to if template.belongs_to
+		if template.belongs_to
+			window.rec.belongs_to = []
+			window.rec.belongs_to.push bt for bt in template.belongs_to
 		window.rec.has_many = template.has_many if template.has_many
 		window.rec.ids = template.ids if template.ids
 		window.rec.order = template.order if template.order

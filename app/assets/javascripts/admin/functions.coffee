@@ -1,3 +1,5 @@
+# Прототипы
+
 Number.prototype.toCurrency = ->
 	(""+this.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 String.prototype.toNumber = ->
@@ -6,6 +8,52 @@ String.prototype.toCurrency = ->
 	@toNumber().toCurrency()
 String.prototype.classify = ->
 	(@charAt(0).toUpperCase() + @slice(1)).replace /(\_\w)/g, (m) -> m[1].toUpperCase()
+
+# Индекс и форма
+
+@field = (header, name, params) ->
+	params ?= {}
+	val = if window.rec then window.rec[name] else ''
+	val = params.val_cb val if params.val_cb
+	ret = "<label class='row'#{if params.validation then " style='position: relative'" else ''}>"
+	ret += "<p>#{header}</p>" if header isnt ''
+	ret += "<input type='#{params.type || 'text'}' name='#{name}'"
+	if params.format
+		ret += " data-format='#{JSON.stringify params.format}'"
+		if val
+			if window.rec and params.format.decimal
+				if params.format.decimal is "currency"
+					val = val.toCurrency() + ' руб.'
+			else if params.format.date
+				val = new Date(val).toString params.format.date
+		else if (params.format.not_null or params.format.decimal or params.format.date) and val is null
+			val = ''
+	ret += " value='#{val}'"
+	onchanges = []
+	if params.attrs
+		for k, v of params.attrs
+			if k is 'onchange'
+				onchanges.push v
+			else ret += " #{k}='#{v}'"
+	if params.validation
+		onchanges.push "validate(this)"
+		ret += " data-validate-was='#{if window.rec then window.rec[name] else ''}'
+			data-validate='#{JSON.stringify params.validation}'"
+	ret += "#{if onchanges.length then " onchange='#{onchanges.join ';'}'" else ''}>"
+	ret += "<div class='validation'><p></p></div>" if params.validation
+	ret + "</label>"
+@image_field = (header, name, params) ->
+	ret = "<div class='image-form'>"
+	if window.rec and window.rec[name]
+		url = window.rec[name]
+		ret += "<div>
+			<div class='btn red remove' onclick='image.removeOneImage(this, \"#{name}\", \"#{url}\")'></div>
+			<a href='#{url}' data-lightbox='product'><img src='#{url}'></a>
+		</div>"
+		hide = true
+	td ret + "</div><label class='text-center#{if hide then ' hide' else ''}'><div class='btn blue ib'>#{header}</div><input class='hide image-file' onchange='window.image.upload(this)' name='#{name}' type='file'></label>", params
+
+# Пагинация
 
 @paginator =
 	go: (el) ->
@@ -54,6 +102,8 @@ String.prototype.classify = ->
 			@go paginator.pages.find('.prev').next()[0]
 		else @go paginator.pages.find('.active').next()[0]
 
+# Сортировать по
+
 @order =
 	open: (el) ->
 		$(el).next().toggleClass 'active'
@@ -91,6 +141,8 @@ String.prototype.classify = ->
 				paginator.pages.find('.active').removeClass 'active'
 				paginator.pages.find('div').eq(1).addClass 'active'
 
+# Фильтр
+
 @filter =
 	open: ->
 		wrap = $ "#where"
@@ -101,20 +153,33 @@ String.prototype.classify = ->
 			wrap.slideUp 300
 			$('#records').animate 'padding-top': 54, 300
 	change: (el) ->
-		where = $(el).find("[name='where']").val()
+		where = []
+		$(el).find("[type='text']").each ->
+			i = $ @
+			val = i.val()
+			if val isnt ''
+				if @name is 'sql'
+					where.push val 
+				else
+					where.push @name + ' ' + switch i.data 'cb'
+						when 'begin'
+							"regexp \"^#{val}\""
+						else
+							val
+		where = where.join ' AND '
 		if !window.filter_loading
 			window.filter_loading = true
 			template = app.templates.index[param.model]
 			window.tmp = model: param.model
-			window.tmp.limit = template.pagination if template.pagination
-			window.tmp.select = template.select if template.select
-			window.tmp.belongs_to = template.belongs_to if template.belongs_to
-			window.tmp.has_many = template.has_many if template.has_many
-			window.tmp.ids = template.ids if template.ids
-			window.tmp.count = true if template.pagination
-			window.tmp.order = template.order or 'id'
-			window.tmp.where = where
-			db.get [window.tmp], ->
+			tmp.limit = template.pagination if template.pagination
+			tmp.select = template.select if template.select
+			tmp.belongs_to = template.belongs_to if template.belongs_to
+			tmp.has_many = template.has_many if template.has_many
+			tmp.ids = template.ids if template.ids
+			tmp.count = true if template.pagination
+			tmp.order = template.order or 'id'
+			tmp.where = where
+			db.get [tmp], ->
 				recs = db.select window.tmp
 				if recs[0]
 					ret = ''
@@ -136,7 +201,7 @@ String.prototype.classify = ->
 			, -> window.filter_loading = false
 		event.preventDefault();
 
-# Validate
+# Валидатор
 
 @validate = (el) ->
 	el = $ el
@@ -183,7 +248,7 @@ String.prototype.classify = ->
 		else
 			cb()
 
-# Ask
+# Окошко подтверждения
 
 @ask = (msg, params) ->
 	ask = dark.open('ask')
@@ -203,7 +268,7 @@ String.prototype.classify = ->
 			params.cancel()
 			dark.close()
 
-# Dark
+# Темный фон
 
 @dark =
 	close: ->
@@ -212,13 +277,6 @@ String.prototype.classify = ->
 	open: (name) ->
 		dark = $('#dark').addClass('show')
 		dark.find(".#{name}").addClass('show')
-
-# Menu
-
-@menu =
-	remove: (url) ->
-		$('#menu').find("[href='/admin/#{url}']").parent().slideUp 300, ->
-			$(@).remove()
 
 # Send
 
@@ -274,6 +332,7 @@ String.prototype.classify = ->
 			$(@).parent().removeClass 'checked'
 @checkbox = (el) ->
 	$(el).parent().toggleClass 'checked'
+
 # Tag
 
 @tag =

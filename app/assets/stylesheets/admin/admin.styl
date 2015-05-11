@@ -767,6 +767,8 @@ label.group.tags.red > div > form > div *
 	p
 		background-color #C72727
 		border-color #C55F5F
+td.image
+	border-width 1px !important
 .images-form > div, .image-form > div, td.image
 	font-size 0
 	display inline-block
@@ -1007,13 +1009,23 @@ td.image
 	border 1px solid #aaa
 	border-top 0
 	padding 20px 0
-	height 34px
+	line-height 34px
+	p
+		height 34px
+		line-height 34px
+		text-align right
+		width 451px
+		margin 0 auto 12px
+		input
+			margin-left 20px
 	box-shadow(0 0 16px #aaa)
 	btn-gradient(#FFFFFF, #FFFFFF, #fcfcfc, #e0e0e0, #f1f1f1)
 	> *
 		vertical-align top
-	> input
+	input
 		width 300px
-	label
+	.submit
+		margin-left 20px
+		width 75px
 		input
 			display none

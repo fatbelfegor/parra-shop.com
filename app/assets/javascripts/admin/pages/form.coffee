@@ -81,37 +81,6 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 				</td>"
 			ret += "</tr>"
 		ret + "</table></div></div>"
-	window.field = (header, name, params) ->
-		params ?= {}
-		val = if window.rec then window.rec[name] else ''
-		val = params.val_cb val if params.val_cb
-		ret = "<label class='row'#{if params.validation then " style='position: relative'" else ''}>"
-		ret += "<p>#{header}</p>" if header
-		ret += "<input type='#{params.type || 'text'}' name='#{name}'"
-		if params.format
-			ret += " data-format='#{JSON.stringify params.format}'"
-			if val
-				if window.rec and params.format.decimal
-					if params.format.decimal is "currency"
-						val = val.toCurrency() + ' руб.'
-				else if params.format.date
-					val = new Date(val).toString params.format.date
-			else if (params.format.not_null or params.format.decimal or params.format.date) and val is null
-				val = ''
-		ret += " value='#{val}'"
-		onchanges = []
-		if params.attrs
-			for k, v of params.attrs
-				if k is 'onchange'
-					onchanges.push v
-				else ret += " #{k}='#{v}'"
-		if params.validation
-			onchanges.push "validate(this)"
-			ret += " data-validate-was='#{if window.rec then window.rec[name] else ''}'
-				data-validate='#{JSON.stringify params.validation}'"
-		ret += "#{if onchanges.length then " onchange='#{onchanges.join ';'}'" else ''}>"
-		ret += "<div class='validation'><p></p></div>" if params.validation
-		ret + "</label>"
 	window.checkbox = (header, name) ->
 		"<div class='row'>
 			<label class='checkbox'>
@@ -131,16 +100,6 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 				</div>#{header}
 			</label>
 		</div>"
-	window.image_field = (header, name, params) ->
-		ret = "<div class='image-form'>"
-		if window.rec and window.rec[name]
-			url = window.rec[name]
-			ret += "<div>
-				<div class='btn red remove' onclick='image.removeOneImage(this, \"#{name}\", \"#{url}\")'></div>
-				<a href='#{url}' data-lightbox='product'><img src='#{url}'></a>
-			</div>"
-			hide = true
-		td ret + "</div><label class='text-center#{if hide then ' hide' else ''}'><div class='btn blue ib'>#{header}</div><input class='hide image-file' onchange='window.image.upload(this)' name='#{name}' type='file'></label>", params
 	window.images = (header) ->
 		ret = "<div class='images-form' #{if window.rec then " data-record-id='#{window.rec.id}'" else ''}>"
 		if window.rec
@@ -304,7 +263,9 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 		get = []
 		if param.id
 			rec = model: param.model, find: param.id
-			rec.belongs_to = template.belongs_to if template.belongs_to
+			if template.belongs_to
+				window.rec.belongs_to = []
+				window.rec.belongs_to.push bt for bt in template.belongs_to
 			rec.has_many = template.has_many if template.has_many
 			rec.ids = template.ids if template.ids
 			get.push rec
