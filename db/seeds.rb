@@ -921,6 +921,27 @@ category = Category.create({
 	mobile_image_url: ""
 })
 
+category = Category.create({
+	id: 48,
+	name: "Акция 'Скажи комфорту Да'",
+	description: "",
+	position: 9,
+	header: "",
+	category_id: nil,
+	seo_title: "",
+	seo_description: "",
+	seo_keywords: "",
+	seo_text: "",
+	s_name: "",
+	scode: "АкцияСкажиКомфортуДа",
+	commission: 0.0,
+	rate: 0.0,
+	url: "saycomfortyes",
+	menu: nil,
+	isMobile: false,
+	mobile_image_url: ""
+})
+
 Subcategory.create({
 	id: 2,
 	name: "Подбор и компановка модулей",
@@ -1042,7 +1063,7 @@ product.images.create({
 product = Product.create({
 	id: 17,
 	category_id: 2,
-	category_ids: [2, 18],
+	category_ids: [2, 18, 48],
 	scode: "КроватьBELLA3",
 	name: "Кровать BELLA",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>KRO-600/ZEB+IZG-601/ZEB; KRO-600/ORE+IZG-601/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong><span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1600\u{445}2000</span>&nbsp;- 1000 x 1724 x 2154;&nbsp;</p>\r\n<p style=\"padding-left: 60px;\">&nbsp; &nbsp;<span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1800\u{445}2000</span>&nbsp;- 1000 \u{445} 1924 \u{445} 2154</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;\u{43a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c}&nbsp;</span>KRO-600/ZEB+IZG-601/ZEB</p>\r\n<p style=\"padding-left: 120px;\">\u{437}\u{435}\u{431}\u{440}\u{430}\u{43d}\u{43e}/\u{438}\u{441}\u{43a}\u{443}\u{441}\u{441}\u{442}\u{432}\u{435}\u{43d}\u{43d}\u{430}\u{44f} \u{43a}\u{43e}\u{436}\u{430} \u{447}\u{435}\u{440}\u{43d}\u{430}\u{44f} \u{417}\u{415}\u{412}\u{421} 01 207;&nbsp;</p>\r\n<p style=\"padding-left: 120px;\"><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">\u{43a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c}&nbsp;</span>KRO-600/ORE+IZG-601/ORE</p>\r\n<p style=\"padding-left: 120px;\">\u{43e}\u{440}\u{435}\u{445}/\u{438}\u{441}\u{43a}\u{443}\u{441}\u{441}\u{442}\u{432}\u{435}\u{43d}\u{43d}\u{430}\u{44f} \u{43a}\u{43e}\u{436}\u{430} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442} (\u{441}\u{435}\u{440}\u{430}\u{44f})&nbsp;\u{41e}\u{420}\u{418}\u{41e}\u{41d} 17</p>",
@@ -1058,12 +1079,12 @@ product = Product.create({
 	seo_keywords: "Кровать BELLA",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 52349.0,
-	old_price: 0.0,
+	price: 42000.0,
+	old_price: 52349.0,
 	title: "KRO-600/ZEB+IZG-601/ZEB; KRO-600/ORE+IZG-601/ORE",
 	subcategory_id: nil,
 	article: "KRO-600/ZEB+IZG-601/ZEB; KRO-600/ORE+IZG-601/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-09 16:50:30 +0400"
 })
 
@@ -2237,7 +2258,7 @@ product.images.create({
 product = Product.create({
 	id: 46,
 	category_id: 4,
-	category_ids: [4, 18],
+	category_ids: [4, 18, 48],
 	scode: "КроватьORLY",
 	name: "Кровать ORLY",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>KRO-647/DUB+IZG-641/GRA/BEL; KRO-647/ORE+IZG-641/GRA/BEL; KRO-647-03/DUB+IZG-641-03/GRA/BEL; KRO-647-03/ORE+IZG-641-03/GRA/BEL</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong><span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1600\u{445}2000</span>&nbsp;- 1021 x 1872 x 2122;&nbsp;</p>\r\n<p style=\"padding-left: 60px;\">&nbsp; &nbsp;<span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1800\u{445}2000</span>&nbsp;- 1021 x 2072 x 2122</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong>&nbsp;\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{434}\u{443}\u{431}/\u{438}\u{441}\u{43a}\u{443}\u{441}\u{441}\u{442}\u{432}\u{435}\u{43d}\u{43d}\u{430}\u{44f} \u{43a}\u{43e}\u{436}\u{430} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442} \u{438}\u{43b}\u{438} \u{431}\u{435}\u{43b}\u{430}\u{44f}.&nbsp;</p>",
@@ -2253,12 +2274,12 @@ product = Product.create({
 	seo_keywords: "Кровать ORLY",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 45249.0,
-	old_price: 0.0,
+	price: 36200.0,
+	old_price: 45249.0,
 	title: "KRO-647/DUB+IZG-641/GRA/BEL; KRO-647/ORE+IZG-641/GRA/BEL; KRO-647-03/DUB+IZG-641-03/GRA/BEL; KRO-647-03/ORE+IZG-641-03/GRA/BEL",
 	subcategory_id: nil,
 	article: "KRO-647/DUB+IZG-641/GRA/BEL; KRO-647/ORE+IZG-641/GRA/BEL; KRO-647-03/DUB+IZG-641-03/GRA/BEL; KRO-647-03/ORE+IZG-641-03/GRA/BEL",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-21 18:44:56 +0400"
 })
 
@@ -2821,7 +2842,7 @@ product.images.create({
 product = Product.create({
 	id: 58,
 	category_id: 5,
-	category_ids: [5, 18],
+	category_ids: [5, 18, 48],
 	scode: "КроватьRITMIKA ",
 	name: "Кровать RITMIKA ",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>KRO-620/DUB; KRO-620/ORE; KRO-620-03/DUB; KRO-620-03/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong><span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1600\u{445}2000</span>&nbsp;- 1017 x 1964 x 2171;&nbsp;</p>\r\n<p style=\"padding-left: 60px;\">&nbsp; &nbsp;<span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1800\u{445}2000</span>&nbsp;- 1000 \u{445} 2164 \u{445} 2154</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong>&nbsp;\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}: \u{434}\u{443}\u{431} \u{431}\u{435}\u{43b}\u{44b}\u{439}/\u{43e}\u{440}\u{435}\u{445}/\u{438}\u{441}\u{43a}\u{443}\u{441}\u{441}\u{442}\u{432}\u{435}\u{43d}\u{43d}\u{430}\u{44f} \u{43a}\u{43e}\u{436}\u{430} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442} \u{438}\u{43b}\u{438} \u{431}\u{435}\u{43b}\u{430}\u{44f}.&nbsp;</p>",
@@ -2837,12 +2858,12 @@ product = Product.create({
 	seo_keywords: "Кровать RITMIKA ",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 44549.0,
-	old_price: 0.0,
+	price: 35700.0,
+	old_price: 44549.0,
 	title: "KRO-620/DUB; KRO-620/ORE; KRO-620-03/DUB; KRO-620-03/ORE",
 	subcategory_id: nil,
 	article: "KRO-620/DUB; KRO-620/ORE; KRO-620-03/DUB; KRO-620-03/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-21 23:49:02 +0400"
 })
 
@@ -3221,7 +3242,7 @@ product.images.create({
 product = Product.create({
 	id: 68,
 	category_id: 6,
-	category_ids: [6, 18],
+	category_ids: [6, 18, 48],
 	scode: "КроватьLORRAСH1",
 	name: "Кровать LORRA",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">KRO-760/CH1;&nbsp;</span><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">KRO-760/DUB;&nbsp;</span><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">KRO-760-03/CH1;&nbsp;</span><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">KRO-760-03/DUB</span></p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong><span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1600\u{445}2000</span>&nbsp;-&nbsp;1044 x 1700 x 2174;&nbsp;</p>\r\n<p style=\"padding-left: 60px;\">&nbsp; &nbsp;<span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1800\u{445}2000</span>&nbsp;- 1044 x 1900 x 2174</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{44f}\u{441}\u{435}\u{43d}\u{44c} choco1/\u{434}\u{443}\u{431}.</p>",
@@ -3241,12 +3262,12 @@ product = Product.create({
 <p>Шпон &ndash; не что иное как тончайшие срезы дерева. Они экологически безопасны, не позволяют конструкции сгнить, устойчивы к различным видам повреждений и надежны, как и деревянные массивы. Кроме того, шпон не способствует проявлению аллергических реакций и абсолютно безопасен для производства детской мебели.</p>
 <p>Шпонированная мебель инициирует текстуру той или иной породы. Бытует мнение, что данный материал как раз и используют для того, чтобы &laquo;раскрасить&raquo; комнату в деревянные цвета. А если их дополнят аналогичные прикроватные тумбы для спальни или гардеробные из шпона, будет создано впечатление, что все в комнате сделано из натурального дуба или ольхи. Но стоимость изделий будет на порядок ниже.</p>
 <p>Обращайтесь в Parra-Shop, заказывайте кровати из шпона и превратите вашу спальню в красивое место для качественного отдыха!</p>",
-	price: 41999.0,
-	old_price: 0.0,
+	price: 33600.0,
+	old_price: 41999.0,
 	title: "KRO-760/CH1; KRO-760/DUB; KRO-760-03/CH1; KRO-760-03/DUB",
 	subcategory_id: nil,
 	article: "KRO-760/CH1; KRO-760/DUB; KRO-760-03/CH1; KRO-760-03/DUB",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-23 22:36:48 +0400"
 })
 
@@ -3585,7 +3606,7 @@ product.images.create({
 product = Product.create({
 	id: 77,
 	category_id: 7,
-	category_ids: [7, 18],
+	category_ids: [7, 18, 48],
 	scode: "КроватьLEGGEROCH1",
 	name: "Кровать LEGGERO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>KRO-590/CH1; KRO-590-03/CH1</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong><span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1600\u{445}2000</span>&nbsp;-&nbsp;884 x 1732 x 2110;&nbsp;</p>\r\n<p style=\"padding-left: 60px;\">&nbsp; &nbsp;<span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1800\u{445}2000</span>&nbsp;-&nbsp;884 x 1932 x 2110</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}: \u{44f}\u{441}\u{435}\u{43d}\u{44c} choco1.</p>",
@@ -3601,12 +3622,12 @@ product = Product.create({
 	seo_keywords: "Кровать LEGGERO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 31599.0,
-	old_price: 0.0,
+	price: 25300.0,
+	old_price: 31599.0,
 	title: "KRO-590/CH1; KRO-590-03/CH1",
 	subcategory_id: nil,
 	article: "KRO-590/CH1; KRO-590-03/CH1",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-23 23:57:27 +0400"
 })
 
@@ -5737,7 +5758,7 @@ product.images.create({
 product = Product.create({
 	id: 123,
 	category_id: 14,
-	category_ids: [14],
+	category_ids: [14, 48],
 	scode: "ТумбадлямультимедиаJOY101 ",
 	name: "Тумба для мультимедиа JOY 101 ",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>TUM-215-01/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>465 x 1444 x 604</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}.</p>",
@@ -5753,12 +5774,12 @@ product = Product.create({
 	seo_keywords: "Тумба для мультимедиа JOY 101 ",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 27699.0,
-	old_price: 0.0,
+	price: 22200.0,
+	old_price: 27699.0,
 	title: "TUM-215-01/ORE",
 	subcategory_id: nil,
 	article: "TUM-215-01/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-28 09:37:12 +0400"
 })
 
@@ -5881,7 +5902,7 @@ product.images.create({
 product = Product.create({
 	id: 126,
 	category_id: 14,
-	category_ids: [14],
+	category_ids: [14, 48],
 	scode: "ШкафJOY202",
 	name: "Шкаф JOY 202",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>KOM-218-01/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>938 x 1774 x 404</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e}.</p>",
@@ -5897,12 +5918,12 @@ product = Product.create({
 	seo_keywords: "Шкаф JOY 202",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 46999.0,
-	old_price: 0.0,
+	price: 37600.0,
+	old_price: 46999.0,
 	title: "KOM-218-01/ORE",
 	subcategory_id: nil,
 	article: "KOM-218-01/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-28 10:22:45 +0400"
 })
 
@@ -5929,7 +5950,7 @@ product.images.create({
 product = Product.create({
 	id: 127,
 	category_id: 14,
-	category_ids: [14],
+	category_ids: [14, 48],
 	scode: "БуфетмалыйJOY203",
 	name: "Буфет малый JOY 203",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>BUF-219-01/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>1522 x 604 x 364</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}.</p>",
@@ -5945,12 +5966,12 @@ product = Product.create({
 	seo_keywords: "Буфет малый JOY 203",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 27699.0,
-	old_price: 0.0,
+	price: 22200.0,
+	old_price: 27699.0,
 	title: "BUF-219-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-219-01/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-28 10:29:10 +0400"
 })
 
@@ -6073,7 +6094,7 @@ product.images.create({
 product = Product.create({
 	id: 130,
 	category_id: 14,
-	category_ids: [14],
+	category_ids: [14, 48],
 	scode: "БуфетJOY207",
 	name: "Буфет JOY 207",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>BUF-222-01/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>2084 x 604 x 364</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e}.</p>",
@@ -6089,12 +6110,12 @@ product = Product.create({
 	seo_keywords: "Буфет JOY 207",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 31499.0,
-	old_price: 0.0,
+	price: 25200.0,
+	old_price: 31499.0,
 	title: "BUF-222-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-222-01/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-28 10:49:13 +0400"
 })
 
@@ -6121,7 +6142,7 @@ product.images.create({
 product = Product.create({
 	id: 131,
 	category_id: 14,
-	category_ids: [14],
+	category_ids: [14, 48],
 	scode: "БуфетбольшойJOY204",
 	name: "Буфет большой JOY 204",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>BUF-220-01/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>2105 x 934 x 364</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e}.</p>",
@@ -6137,12 +6158,12 @@ product = Product.create({
 	seo_keywords: "Буфет большой JOY 204",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 50399.0,
-	old_price: 0.0,
+	price: 40400.0,
+	old_price: 50399.0,
 	title: "BUF-220-01/ORE",
 	subcategory_id: nil,
 	article: "BUF-220-01/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-28 10:52:23 +0400"
 })
 
@@ -6169,7 +6190,7 @@ product.images.create({
 product = Product.create({
 	id: 132,
 	category_id: 14,
-	category_ids: [14],
+	category_ids: [14, 48],
 	scode: "ПолкаJOYSTYLE401402",
 	name: "Полка JOY/STYLE 401 402",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>POL-233/ORE; POL-234/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>320 x 1444 x 247;</p>\r\n<p style=\"padding-left: 60px;\">&nbsp; 320 x 2164 x 247</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}.</p>",
@@ -6185,12 +6206,12 @@ product = Product.create({
 	seo_keywords: "Полка JOY/STYLE 401 402",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 8399.0,
-	old_price: 0.0,
+	price: 6700.0,
+	old_price: 8399.0,
 	title: "POL-233/ORE; POL-234/ORE",
 	subcategory_id: nil,
 	article: "POL-233/ORE; POL-234/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-28 11:00:34 +0400"
 })
 
@@ -6217,7 +6238,7 @@ product.images.create({
 product = Product.create({
 	id: 133,
 	category_id: 14,
-	category_ids: [14],
+	category_ids: [14, 48],
 	scode: "ПолкаJOYSTYLE404",
 	name: "Полка JOY/STYLE 404",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>POL-235/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>840 x 1444 x 247</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}.</p>",
@@ -6233,12 +6254,12 @@ product = Product.create({
 	seo_keywords: "Полка JOY/STYLE 404",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 16599.0,
-	old_price: 0.0,
+	price: 13300.0,
+	old_price: 16599.0,
 	title: "POL-235/ORE",
 	subcategory_id: nil,
 	article: "POL-235/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-28 11:09:35 +0400"
 })
 
@@ -6661,7 +6682,7 @@ product.images.create({
 product = Product.create({
 	id: 144,
 	category_id: 16,
-	category_ids: [16],
+	category_ids: [16, 48],
 	scode: "ШкафвитринаVERRO",
 	name: "Шкаф-витрина VERRO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>BUF-181L/ORE; BUF-181R/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>2123 x 475 x 380</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}.</p>",
@@ -6677,12 +6698,12 @@ product = Product.create({
 	seo_keywords: "Шкаф-витрина VERRO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 49999.0,
-	old_price: 0.0,
+	price: 40000.0,
+	old_price: 49999.0,
 	title: "BUF-181L/ORE; BUF-181R/ORE",
 	subcategory_id: nil,
 	article: "BUF-181L/ORE; BUF-181R/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-30 19:05:02 +0400"
 })
 
@@ -6721,7 +6742,7 @@ product.images.create({
 product = Product.create({
 	id: 145,
 	category_id: 16,
-	category_ids: [16],
+	category_ids: [16, 48],
 	scode: "Буфет2хдверныйVERRO",
 	name: "Буфет 2-х дверный VERRO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>BUF-182/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>1533 x 985 x 380</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}.</p>",
@@ -6737,12 +6758,12 @@ product = Product.create({
 	seo_keywords: "Буфет 2-х дверный VERRO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 60899.0,
-	old_price: 0.0,
+	price: 48800.0,
+	old_price: 60899.0,
 	title: "BUF-182/ORE",
 	subcategory_id: nil,
 	article: "BUF-182/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-30 19:09:19 +0400"
 })
 
@@ -6781,7 +6802,7 @@ product.images.create({
 product = Product.create({
 	id: 146,
 	category_id: 16,
-	category_ids: [16],
+	category_ids: [16, 48],
 	scode: "Буфет1нодверныйVERRO",
 	name: "Буфет 1-но дверный VERRO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>BUF-183L/ORE; BUF-183R/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>1533 x 475 x 380</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}.</p>",
@@ -6797,12 +6818,12 @@ product = Product.create({
 	seo_keywords: "Буфет 1-но дверный VERRO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 38399.0,
-	old_price: 0.0,
+	price: 30800.0,
+	old_price: 38399.0,
 	title: "BUF-183L/ORE; BUF-183R/ORE",
 	subcategory_id: nil,
 	article: "BUF-183L/ORE; BUF-183R/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-30 19:14:37 +0400"
 })
 
@@ -6841,7 +6862,7 @@ product.images.create({
 product = Product.create({
 	id: 147,
 	category_id: 16,
-	category_ids: [16],
+	category_ids: [16, 48],
 	scode: "ТумбакомодVERRO",
 	name: "Тумба-комод VERRO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>KOM-184/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>957 x 1720 x 380</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}.</p>",
@@ -6857,12 +6878,12 @@ product = Product.create({
 	seo_keywords: "Тумба-комод VERRO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 73999.0,
-	old_price: 0.0,
+	price: 59200.0,
+	old_price: 73999.0,
 	title: "KOM-184/ORE",
 	subcategory_id: nil,
 	article: "KOM-184/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-30 19:18:07 +0400"
 })
 
@@ -6897,7 +6918,7 @@ product.images.create({
 product = Product.create({
 	id: 148,
 	category_id: 16,
-	category_ids: [16],
+	category_ids: [16, 48],
 	scode: "Тумба2дляаппаратурыVERRO",
 	name: "Тумба 2 для аппаратуры VERRO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>TUM-188/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>363 x 1441 x 380</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}.</p>",
@@ -6913,12 +6934,12 @@ product = Product.create({
 	seo_keywords: "Тумба 2 для аппаратуры VERRO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 33599.0,
-	old_price: 0.0,
+	price: 26900.0,
+	old_price: 33599.0,
 	title: "TUM-188/ORE",
 	subcategory_id: nil,
 	article: "TUM-188/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-30 19:22:56 +0400"
 })
 
@@ -7001,7 +7022,7 @@ product.images.create({
 product = Product.create({
 	id: 150,
 	category_id: 16,
-	category_ids: [16],
+	category_ids: [16, 48],
 	scode: "ПолкаTVVERRO",
 	name: "Полка TV VERRO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>POL-190/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>220 x 1441 x 860</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}.</p>",
@@ -7017,12 +7038,12 @@ product = Product.create({
 	seo_keywords: "Полка TV VERRO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 18199.0,
-	old_price: 0.0,
+	price: 14600.0,
+	old_price: 18199.0,
 	title: "POL-190/ORE",
 	subcategory_id: nil,
 	article: "POL-190/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-30 19:29:36 +0400"
 })
 
@@ -7057,7 +7078,7 @@ product.images.create({
 product = Product.create({
 	id: 151,
 	category_id: 16,
-	category_ids: [16],
+	category_ids: [16, 48],
 	scode: "ПолкащитоваяспанельюVERRO",
 	name: "Полка щитовая с панелью VERRO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>POL-192/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>250 x 1441 x 250</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}.</p>",
@@ -7073,12 +7094,12 @@ product = Product.create({
 	seo_keywords: "Полка щитовая с панелью VERRO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 13499.0,
-	old_price: 0.0,
+	price: 10800.0,
+	old_price: 13499.0,
 	title: "POL-192/ORE",
 	subcategory_id: nil,
 	article: "POL-192/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-04-30 19:33:07 +0400"
 })
 
@@ -8065,10 +8086,10 @@ product.images.create({
 product = Product.create({
 	id: 174,
 	category_id: 37,
-	category_ids: [37, 42],
+	category_ids: [37],
 	scode: "МатрасSonberryACTIVEFLEX",
 	name: "Матрас Sonberry ACTIVE FLEX",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:&nbsp;</strong>18 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:&nbsp;</strong>\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;100&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft Cloud, \u{445}\u{43b}\u{43e}\u{43f}\u{43a}\u{43e}\u{432}\u{44b}\u{439} \u{436}\u{430}\u{43a}\u{43a}\u{430}\u{440}\u{434}</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3. \u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;C\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support 7 zone, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} TFK (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Flex &ndash; \u{43e}\u{434}\u{438}\u{43d} \u{438}\u{437} \u{441}\u{430}\u{43c}\u{44b}\u{445} \u{43f}\u{43e}\u{43f}\u{443}\u{43b}\u{44f}\u{440}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{43e}\u{432} \u{434}\u{430}\u{43d}\u{43d}\u{43e}\u{439} \u{43a}\u{43e}\u{43b}\u{43b}\u{435}\u{43a}\u{446}\u{438}\u{438}, \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{441} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{43c} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{43e}\u{43c}, \u{432} \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{435} \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{43e}\u{433}\u{43e} \u{43b}\u{435}\u{436}\u{438}\u{442} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a} Fusion Support 7 zone, \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{44e}\u{449}\u{438}\u{439} \u{43e}\u{442}\u{43b}\u{438}\u{447}\u{43d}\u{443}\u{44e} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{443} \u{442}\u{435}\u{43b}\u{430}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} Soft Cloud, \u{441}\u{43e}\u{441}\u{442}\u{43e}\u{44f}\u{449}\u{430}\u{44f} \u{438}\u{437} \u{43c}\u{44f}\u{433}\u{43a}\u{43e}\u{433}\u{43e} \u{445}\u{43b}\u{43e}\u{43f}\u{43a}\u{43e}\u{432}\u{43e}\u{433}\u{43e} \u{436}\u{430}\u{43a}\u{43a}\u{430}\u{440}\u{434}\u{430}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430}, \u{437}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439} \u{438} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e}. \u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{44b}\u{435} \u{432}\u{43e}\u{43b}\u{43e}\u{43a}\u{43d}\u{430} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{44e}\u{442} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443}, \u{442}\u{435}\u{43c} \u{441}\u{430}\u{43c}\u{44b}\u{43c} \u{43f}\u{43e}\u{437}\u{432}\u{43e}\u{43b}\u{44f}\u{44e}\u{442} \u{432}\u{44b}\u{434}\u{435}\u{440}\u{436}\u{438}\u{432}\u{430}\u{442}\u{44c} \u{431}\u{43e}\u{43b}\u{44c}\u{448}\u{438}\u{435} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{438} \u{43d}\u{430} \u{43d}\u{435}\u{433}\u{43e}.</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 15%</span></p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:&nbsp;</strong>18 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:&nbsp;</strong>\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;100&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft Cloud, \u{445}\u{43b}\u{43e}\u{43f}\u{43a}\u{43e}\u{432}\u{44b}\u{439} \u{436}\u{430}\u{43a}\u{43a}\u{430}\u{440}\u{434}</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3. \u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;C\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support 7 zone, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} TFK (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Flex &ndash; \u{43e}\u{434}\u{438}\u{43d} \u{438}\u{437} \u{441}\u{430}\u{43c}\u{44b}\u{445} \u{43f}\u{43e}\u{43f}\u{443}\u{43b}\u{44f}\u{440}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{43e}\u{432} \u{434}\u{430}\u{43d}\u{43d}\u{43e}\u{439} \u{43a}\u{43e}\u{43b}\u{43b}\u{435}\u{43a}\u{446}\u{438}\u{438}, \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{441} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{43c} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{43e}\u{43c}, \u{432} \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{435} \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{43e}\u{433}\u{43e} \u{43b}\u{435}\u{436}\u{438}\u{442} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a} Fusion Support 7 zone, \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{44e}\u{449}\u{438}\u{439} \u{43e}\u{442}\u{43b}\u{438}\u{447}\u{43d}\u{443}\u{44e} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{443} \u{442}\u{435}\u{43b}\u{430}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} Soft Cloud, \u{441}\u{43e}\u{441}\u{442}\u{43e}\u{44f}\u{449}\u{430}\u{44f} \u{438}\u{437} \u{43c}\u{44f}\u{433}\u{43a}\u{43e}\u{433}\u{43e} \u{445}\u{43b}\u{43e}\u{43f}\u{43a}\u{43e}\u{432}\u{43e}\u{433}\u{43e} \u{436}\u{430}\u{43a}\u{43a}\u{430}\u{440}\u{434}\u{430}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430}, \u{437}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439} \u{438} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e}. \u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{44b}\u{435} \u{432}\u{43e}\u{43b}\u{43e}\u{43a}\u{43d}\u{430} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{44e}\u{442} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443}, \u{442}\u{435}\u{43c} \u{441}\u{430}\u{43c}\u{44b}\u{43c} \u{43f}\u{43e}\u{437}\u{432}\u{43e}\u{43b}\u{44f}\u{44e}\u{442} \u{432}\u{44b}\u{434}\u{435}\u{440}\u{436}\u{438}\u{432}\u{430}\u{442}\u{44c} \u{431}\u{43e}\u{43b}\u{44c}\u{448}\u{438}\u{435} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{438} \u{43d}\u{430} \u{43d}\u{435}\u{433}\u{43e}.</p>\r\n<p>&nbsp;</p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8081,12 +8102,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry ACTIVE FLEX",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 9171.5,
-	old_price: 10790.0,
+	price: 10790.0,
+	old_price: 0.0,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "1",
+	extension_id: "nil",
 	created_at: "2014-05-01 14:16:07 +0400"
 })
 
@@ -8401,10 +8422,10 @@ product.images.create({
 product = Product.create({
 	id: 181,
 	category_id: 38,
-	category_ids: [38],
+	category_ids: [38, 42],
 	scode: "МатрасSonberryAEROVIRGIN",
 	name: "Матрас Sonberry AERO VIRGIN",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;20 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Virgin &ndash; \u{43f}\u{43e}\u{43f}\u{443}\u{43b}\u{44f}\u{440}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{441} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{43c} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{43e}\u{43c}, \u{441} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{43e}\u{439} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} Fusion Support \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{43e}\u{439} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} Soft Cloud+, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{43e}\u{439} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{43e}\u{439} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438}. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{43f}\u{440}\u{438}\u{440}\u{43e}\u{434}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b} &ndash; \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44c}. \u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} &ndash; \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{439} \u{438} \u{43f}\u{440}\u{43e}\u{447}\u{43d}\u{44b}\u{439}, \u{43e}\u{43d} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{435}\u{442} \u{412}\u{430}\u{448}\u{435}\u{43c}\u{443} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{438} \u{443}\u{43f}\u{440}\u{443}\u{433}\u{43e}\u{441}\u{442}\u{44c}.</p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;20 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Virgin &ndash; \u{43f}\u{43e}\u{43f}\u{443}\u{43b}\u{44f}\u{440}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{441} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{43c} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{43e}\u{43c}, \u{441} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{43e}\u{439} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} Fusion Support \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{43e}\u{439} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} Soft Cloud+, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{43e}\u{439} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{43e}\u{439} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438}. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{43f}\u{440}\u{438}\u{440}\u{43e}\u{434}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b} &ndash; \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44c}. \u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} &ndash; \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{439} \u{438} \u{43f}\u{440}\u{43e}\u{447}\u{43d}\u{44b}\u{439}, \u{43e}\u{43d} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{435}\u{442} \u{412}\u{430}\u{448}\u{435}\u{43c}\u{443} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{438} \u{443}\u{43f}\u{440}\u{443}\u{433}\u{43e}\u{441}\u{442}\u{44c}.</p>\r\n<p>&nbsp;</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 20%</span></p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8417,12 +8438,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry AERO VIRGIN",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 15490.0,
-	old_price: 0.0,
+	price: 12392.0,
+	old_price: 15490.0,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil",
+	extension_id: "2",
 	created_at: "2014-05-01 17:32:23 +0400"
 })
 
@@ -8449,10 +8470,10 @@ product.images.create({
 product = Product.create({
 	id: 182,
 	category_id: 38,
-	category_ids: [38, 42],
+	category_ids: [38],
 	scode: "МатрасSonberryAEROMODUS",
 	name: "Матрас Sonberry AERO MODUS",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;22 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">5.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Modus &ndash; \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43d}\u{430} \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{435} \u{44d}\u{43a}\u{441}\u{43a}\u{43b}\u{44e}\u{437}\u{438}\u{432}\u{43d}\u{43e}\u{439} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} \u{438}\u{437} \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{430}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438} \u{43c}\u{44f}\u{433}\u{43a}\u{43e}\u{433}\u{43e} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{433}\u{43e} \u{441}\u{43b}\u{43e}\u{44f} \u{432} \u{432}\u{438}\u{434}\u{435} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{43e}\u{433}\u{43e} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}\u{430}. \u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{435}\u{442} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e}, \u{440}\u{430}\u{441}\u{43f}\u{43e}\u{43b}\u{43e}\u{436}\u{435}\u{43d}\u{43d}\u{43e}\u{435} \u{441} \u{43e}\u{431}\u{435}\u{438}\u{445} \u{441}\u{442}\u{43e}\u{440}\u{43e}\u{43d} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430}. \u{41a}\u{43e}\u{43c}\u{431}\u{438}\u{43d}\u{430}\u{446}\u{438}\u{44f} \u{438}\u{437} \u{434}\u{432}\u{443}\u{445} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{445} \u{430}\u{43d}\u{442}\u{438}\u{441}\u{442}\u{430}\u{442}\u{438}\u{447}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{43e}\u{432} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}\u{430} \u{438} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{430} \u{438} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{44e}\u{442} \u{432}\u{44b}\u{441}\u{43e}\u{43a}\u{438}\u{435} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{435} \u{445}\u{430}\u{440}\u{430}\u{43a}\u{442}\u{435}\u{440}\u{438}\u{441}\u{442}\u{438}\u{43a}\u{438} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430}.</p>\r\n<p>&nbsp;</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 20%</span></p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;22 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">5.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Modus &ndash; \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43d}\u{430} \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{435} \u{44d}\u{43a}\u{441}\u{43a}\u{43b}\u{44e}\u{437}\u{438}\u{432}\u{43d}\u{43e}\u{439} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} \u{438}\u{437} \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{430}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438} \u{43c}\u{44f}\u{433}\u{43a}\u{43e}\u{433}\u{43e} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{433}\u{43e} \u{441}\u{43b}\u{43e}\u{44f} \u{432} \u{432}\u{438}\u{434}\u{435} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{43e}\u{433}\u{43e} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}\u{430}. \u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{435}\u{442} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e}, \u{440}\u{430}\u{441}\u{43f}\u{43e}\u{43b}\u{43e}\u{436}\u{435}\u{43d}\u{43d}\u{43e}\u{435} \u{441} \u{43e}\u{431}\u{435}\u{438}\u{445} \u{441}\u{442}\u{43e}\u{440}\u{43e}\u{43d} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430}. \u{41a}\u{43e}\u{43c}\u{431}\u{438}\u{43d}\u{430}\u{446}\u{438}\u{44f} \u{438}\u{437} \u{434}\u{432}\u{443}\u{445} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{445} \u{430}\u{43d}\u{442}\u{438}\u{441}\u{442}\u{430}\u{442}\u{438}\u{447}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{43e}\u{432} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}\u{430} \u{438} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{430} \u{438} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{44e}\u{442} \u{432}\u{44b}\u{441}\u{43e}\u{43a}\u{438}\u{435} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{435} \u{445}\u{430}\u{440}\u{430}\u{43a}\u{442}\u{435}\u{440}\u{438}\u{441}\u{442}\u{438}\u{43a}\u{438} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430}.</p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8465,12 +8486,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry AERO MODUS",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 12712.0,
-	old_price: 15890.0,
+	price: 15890.0,
+	old_price: 0.0,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2",
+	extension_id: "nil",
 	created_at: "2014-05-02 00:37:01 +0400"
 })
 
@@ -8497,10 +8518,10 @@ product.images.create({
 product = Product.create({
 	id: 183,
 	category_id: 38,
-	category_ids: [38],
+	category_ids: [38, 42],
 	scode: "МатрасSonberryAEROSERENIA",
 	name: "Матрас Sonberry AERO SERENIA",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;24 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;140&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Serenia &ndash; \u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{438} \u{432} \u{442}\u{43e} \u{436}\u{435} \u{432}\u{440}\u{435}\u{43c}\u{44f} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{438}\u{43c}\u{435}\u{435}\u{442} \u{43c}\u{44f}\u{433}\u{43a}\u{438}\u{439} \u{432}\u{435}\u{440}\u{445}\u{43d}\u{438}\u{439} \u{441}\u{43b}\u{43e}\u{439} Soft Cloud+, \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{435} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438}\u{437} \u{43f}\u{435}\u{43d}\u{43e}\u{43f}\u{43e}\u{43b}\u{438}\u{443}\u{440}\u{435}\u{442}\u{430}\u{43d}\u{430} \u{438} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{443} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438}, \u{432} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{43e}\u{439} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e}. \u{414}\u{430}\u{43d}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{441}\u{43f}\u{43e}\u{441}\u{43e}\u{431}\u{435}\u{43d} \u{432}\u{44b}\u{434}\u{435}\u{440}\u{436}\u{438}\u{432}\u{430}\u{442}\u{44c} \u{432}\u{44b}\u{441}\u{43e}\u{43a}\u{438}\u{435} \u{432}\u{435}\u{441}\u{43e}\u{432}\u{44b}\u{435} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{438}. \u{42d}\u{442}\u{430} \u{43c}\u{43e}\u{434}\u{435}\u{43b}\u{44c} \u{434}\u{43b}\u{44f} \u{43b}\u{44e}\u{434}\u{435}\u{439}, \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{44b}\u{435} \u{43b}\u{44e}\u{431}\u{44f}\u{442} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{435} \u{441}\u{43f}\u{430}\u{43b}\u{44c}\u{43d}\u{43e}\u{435} \u{43c}\u{435}\u{441}\u{442}\u{43e}.&nbsp;</p>\r\n<p>&nbsp;</p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;24 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;140&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Serenia &ndash; \u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{438} \u{432} \u{442}\u{43e} \u{436}\u{435} \u{432}\u{440}\u{435}\u{43c}\u{44f} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{438}\u{43c}\u{435}\u{435}\u{442} \u{43c}\u{44f}\u{433}\u{43a}\u{438}\u{439} \u{432}\u{435}\u{440}\u{445}\u{43d}\u{438}\u{439} \u{441}\u{43b}\u{43e}\u{439} Soft Cloud+, \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{435} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438}\u{437} \u{43f}\u{435}\u{43d}\u{43e}\u{43f}\u{43e}\u{43b}\u{438}\u{443}\u{440}\u{435}\u{442}\u{430}\u{43d}\u{430} \u{438} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{443} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438}, \u{432} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{43e}\u{439} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e}. \u{414}\u{430}\u{43d}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{441}\u{43f}\u{43e}\u{441}\u{43e}\u{431}\u{435}\u{43d} \u{432}\u{44b}\u{434}\u{435}\u{440}\u{436}\u{438}\u{432}\u{430}\u{442}\u{44c} \u{432}\u{44b}\u{441}\u{43e}\u{43a}\u{438}\u{435} \u{432}\u{435}\u{441}\u{43e}\u{432}\u{44b}\u{435} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{438}. \u{42d}\u{442}\u{430} \u{43c}\u{43e}\u{434}\u{435}\u{43b}\u{44c} \u{434}\u{43b}\u{44f} \u{43b}\u{44e}\u{434}\u{435}\u{439}, \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{44b}\u{435} \u{43b}\u{44e}\u{431}\u{44f}\u{442} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{435} \u{441}\u{43f}\u{430}\u{43b}\u{44c}\u{43d}\u{43e}\u{435} \u{43c}\u{435}\u{441}\u{442}\u{43e}.&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 20%</span></p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8513,12 +8534,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry AERO SERENIA",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 17390.0,
-	old_price: 0.0,
+	price: 13912.0,
+	old_price: 17390.0,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil",
+	extension_id: "2",
 	created_at: "2014-05-02 00:41:24 +0400"
 })
 
@@ -8593,10 +8614,10 @@ product.images.create({
 product = Product.create({
 	id: 185,
 	category_id: 38,
-	category_ids: [38, 42],
+	category_ids: [38],
 	scode: "МатрасSonberryAEROOZZA",
 	name: "Матрас Sonberry AERO OZZA",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;26 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}</p>\r\n<p style=\"padding-left: 60px;\">2. \u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">5.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Ozza &ndash; \u{43e}\u{434}\u{438}\u{43d} \u{438}\u{437} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{43e}\u{432} \u{441} \u{43a}\u{43e}\u{43c}\u{431}\u{438}\u{43d}\u{438}\u{440}\u{43e}\u{432}\u{430}\u{43d}\u{43d}\u{44b}\u{43c}\u{438} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{430}\u{43c}\u{438} \u{438} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{43c} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{43e}\u{43c}, \u{432} \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{435} \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{43e}\u{433}\u{43e} \u{43b}\u{435}\u{436}\u{438}\u{442} \u{443}\u{43d}\u{438}\u{432}\u{435}\u{440}\u{441}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} Fusion Support \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution. \u{41c}\u{44f}\u{433}\u{43a}\u{438}\u{439} \u{432}\u{435}\u{440}\u{445}\u{43d}\u{438}\u{439} \u{441}\u{43b}\u{43e}\u{439} \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{435}\u{442} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} Soft Cloud+. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{445} \u{43a}\u{43e}\u{43c}\u{43f}\u{43e}\u{43d}\u{435}\u{43d}\u{442}\u{43e}\u{432} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{44e}\u{442}\u{441}\u{44f} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441} \u{438} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e}, \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{43e}\u{435} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{435}\u{442} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{438} \u{443}\u{43f}\u{440}\u{443}\u{433}\u{43e}\u{441}\u{442}\u{44c} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443}, \u{442}\u{435}\u{43c} \u{441}\u{430}\u{43c}\u{44b}\u{43c} \u{43f}\u{43e}\u{437}\u{432}\u{43e}\u{43b}\u{44f}\u{44f} \u{432}\u{44b}\u{434}\u{435}\u{440}\u{436}\u{438}\u{432}\u{430}\u{442}\u{44c} \u{431}\u{43e}\u{43b}\u{44c}\u{448}\u{438}\u{435} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{438} \u{43d}\u{430} \u{43d}\u{435}\u{433}\u{43e}.</p>\r\n<p>&nbsp;</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 20%</span></p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;26 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}</p>\r\n<p style=\"padding-left: 60px;\">2. \u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">5.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Ozza &ndash; \u{43e}\u{434}\u{438}\u{43d} \u{438}\u{437} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{43e}\u{432} \u{441} \u{43a}\u{43e}\u{43c}\u{431}\u{438}\u{43d}\u{438}\u{440}\u{43e}\u{432}\u{430}\u{43d}\u{43d}\u{44b}\u{43c}\u{438} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{430}\u{43c}\u{438} \u{438} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{43c} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{43e}\u{43c}, \u{432} \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{435} \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{43e}\u{433}\u{43e} \u{43b}\u{435}\u{436}\u{438}\u{442} \u{443}\u{43d}\u{438}\u{432}\u{435}\u{440}\u{441}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} Fusion Support \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution. \u{41c}\u{44f}\u{433}\u{43a}\u{438}\u{439} \u{432}\u{435}\u{440}\u{445}\u{43d}\u{438}\u{439} \u{441}\u{43b}\u{43e}\u{439} \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{435}\u{442} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} Soft Cloud+. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{445} \u{43a}\u{43e}\u{43c}\u{43f}\u{43e}\u{43d}\u{435}\u{43d}\u{442}\u{43e}\u{432} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{44e}\u{442}\u{441}\u{44f} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441} \u{438} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e}, \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{43e}\u{435} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{435}\u{442} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{438} \u{443}\u{43f}\u{440}\u{443}\u{433}\u{43e}\u{441}\u{442}\u{44c} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443}, \u{442}\u{435}\u{43c} \u{441}\u{430}\u{43c}\u{44b}\u{43c} \u{43f}\u{43e}\u{437}\u{432}\u{43e}\u{43b}\u{44f}\u{44f} \u{432}\u{44b}\u{434}\u{435}\u{440}\u{436}\u{438}\u{432}\u{430}\u{442}\u{44c} \u{431}\u{43e}\u{43b}\u{44c}\u{448}\u{438}\u{435} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{438} \u{43d}\u{430} \u{43d}\u{435}\u{433}\u{43e}.</p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8609,12 +8630,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry AERO OZZA",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 16792.0,
-	old_price: 20990.0,
+	price: 20990.0,
+	old_price: 0.0,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "2",
+	extension_id: "nil",
 	created_at: "2014-05-02 00:50:41 +0400"
 })
 
@@ -8737,10 +8758,10 @@ product.images.create({
 product = Product.create({
 	id: 188,
 	category_id: 39,
-	category_ids: [39],
+	category_ids: [39, 42],
 	scode: "МатрасSonberryORGANICCAMILLA",
 	name: "Матрас Sonberry ORGANIC CAMILLA",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;27 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}&nbsp;\u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439}&nbsp;&nbsp;Aloe Vera</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Camilla &ndash; \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{441} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{43c} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{43e}\u{43c}, \u{441}\u{43e}\u{447}\u{435}\u{442}\u{430}\u{44e}\u{449}\u{438}\u{439} \u{432} \u{441}\u{435}\u{431}\u{435} \u{441}\u{43b}\u{43e}\u{438} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{43e}\u{432} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}\u{430} \u{438} \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44f}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{443} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} Fusion Support \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{443} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} Soft Cloud Lux. \u{41e}\u{431}\u{44a}\u{435}\u{434}\u{438}\u{43d}\u{44f}\u{44f} \u{432} \u{441}\u{435}\u{431}\u{435} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{435} \u{441}\u{432}\u{43e}\u{439}\u{441}\u{442}\u{432}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{43e}\u{433}\u{43e} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{43e}\u{433}\u{43e} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{438} \u{43f}\u{440}\u{438}\u{440}\u{43e}\u{434}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{43e}\u{432}, \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{435}\u{442} \u{43e}\u{43f}\u{442}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{435} \u{443}\u{441}\u{43b}\u{43e}\u{432}\u{438}\u{44f} \u{434}\u{43b}\u{44f} \u{43f}\u{440}\u{438}\u{44f}\u{442}\u{43d}\u{43e}\u{433}\u{43e} \u{43e}\u{442}\u{434}\u{44b}\u{445}\u{430} \u{438} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{433}\u{43e} \u{441}\u{43d}\u{430}.</p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;27 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}&nbsp;\u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439}&nbsp;&nbsp;Aloe Vera</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Camilla &ndash; \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{441} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{43c} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{43e}\u{43c}, \u{441}\u{43e}\u{447}\u{435}\u{442}\u{430}\u{44e}\u{449}\u{438}\u{439} \u{432} \u{441}\u{435}\u{431}\u{435} \u{441}\u{43b}\u{43e}\u{438} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{43e}\u{432} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}\u{430} \u{438} \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44f}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{443} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} Fusion Support \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{443} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} Soft Cloud Lux. \u{41e}\u{431}\u{44a}\u{435}\u{434}\u{438}\u{43d}\u{44f}\u{44f} \u{432} \u{441}\u{435}\u{431}\u{435} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{435} \u{441}\u{432}\u{43e}\u{439}\u{441}\u{442}\u{432}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{43e}\u{433}\u{43e} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{43e}\u{433}\u{43e} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{438} \u{43f}\u{440}\u{438}\u{440}\u{43e}\u{434}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{43e}\u{432}, \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{435}\u{442} \u{43e}\u{43f}\u{442}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{435} \u{443}\u{441}\u{43b}\u{43e}\u{432}\u{438}\u{44f} \u{434}\u{43b}\u{44f} \u{43f}\u{440}\u{438}\u{44f}\u{442}\u{43d}\u{43e}\u{433}\u{43e} \u{43e}\u{442}\u{434}\u{44b}\u{445}\u{430} \u{438} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{433}\u{43e} \u{441}\u{43d}\u{430}.</p>\r\n<p>&nbsp;</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 25%</span></p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8753,12 +8774,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry ORGANIC CAMILLA",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 19790.0,
-	old_price: 0.0,
+	price: 14842.0,
+	old_price: 19790.0,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil",
+	extension_id: "3",
 	created_at: "2014-05-02 01:06:02 +0400"
 })
 
@@ -8785,10 +8806,10 @@ product.images.create({
 product = Product.create({
 	id: 189,
 	category_id: 39,
-	category_ids: [39],
+	category_ids: [39, 42],
 	scode: "МатрасSonberryORGANICSOMELY",
 	name: "Матрас Sonberry ORGANIC SOMELY",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;30 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}&nbsp;\u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439}&nbsp;&nbsp;Aloe Vera</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">5.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Somely &ndash; \u{43e}\u{434}\u{438}\u{43d} \u{438}\u{437} \u{43f}\u{43e}\u{43f}\u{443}\u{43b}\u{44f}\u{440}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{43e}\u{432} \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{432}\u{435}\u{440}\u{445}\u{43d}\u{435}\u{433}\u{43e} \u{441}\u{43b}\u{43e}\u{44f} \u{438}\u{437} \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{430}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438}\u{437} \u{433}\u{438}\u{43f}\u{43e}\u{430}\u{43b}\u{43b}\u{435}\u{440}\u{433}\u{435}\u{43d}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{435}\u{43d}\u{43e}\u{43f}\u{43e}\u{43b}\u{438}\u{443}\u{440}\u{435}\u{442}\u{430}\u{43d}\u{430}, \u{43c}\u{44f}\u{433}\u{43a}\u{43e}\u{433}\u{43e} \u{441}\u{43b}\u{43e}\u{44f} \u{432} \u{432}\u{438}\u{434}\u{435} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{43e}\u{433}\u{43e} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}\u{430} \u{438} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438}. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{432}\u{44b}\u{441}\u{43e}\u{43a}\u{43e}\u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435}\u{43d}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b} \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44c}, \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{44b}\u{439} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{435}\u{442} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{443}\u{43f}\u{440}\u{443}\u{433}\u{43e}\u{441}\u{442}\u{44c} \u{438} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{44c}.</p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;30 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}&nbsp;\u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439}&nbsp;&nbsp;Aloe Vera</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">5.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Fusion Support Revolution, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{44b} Revolution (256 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Somely &ndash; \u{43e}\u{434}\u{438}\u{43d} \u{438}\u{437} \u{43f}\u{43e}\u{43f}\u{443}\u{43b}\u{44f}\u{440}\u{43d}\u{44b}\u{445} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{43e}\u{432} \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Revolution, \u{432}\u{435}\u{440}\u{445}\u{43d}\u{435}\u{433}\u{43e} \u{441}\u{43b}\u{43e}\u{44f} \u{438}\u{437} \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{430}, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438}\u{437} \u{433}\u{438}\u{43f}\u{43e}\u{430}\u{43b}\u{43b}\u{435}\u{440}\u{433}\u{435}\u{43d}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{435}\u{43d}\u{43e}\u{43f}\u{43e}\u{43b}\u{438}\u{443}\u{440}\u{435}\u{442}\u{430}\u{43d}\u{430}, \u{43c}\u{44f}\u{433}\u{43a}\u{43e}\u{433}\u{43e} \u{441}\u{43b}\u{43e}\u{44f} \u{432} \u{432}\u{438}\u{434}\u{435} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{43e}\u{433}\u{43e} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}\u{430} \u{438} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438}. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{432}\u{44b}\u{441}\u{43e}\u{43a}\u{43e}\u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435}\u{43d}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b} \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44c}, \u{43a}\u{43e}\u{442}\u{43e}\u{440}\u{44b}\u{439} \u{43f}\u{440}\u{438}\u{434}\u{430}\u{435}\u{442} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{443} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{443}\u{43f}\u{440}\u{443}\u{433}\u{43e}\u{441}\u{442}\u{44c} \u{438} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{44c}.</p>\r\n<p>&nbsp;</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 25%</span></p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8801,12 +8822,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry ORGANIC SOMELY",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 22790.0,
-	old_price: 0.0,
+	price: 17092.0,
+	old_price: 22790.0,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "nil",
+	extension_id: "3",
 	created_at: "2014-05-02 01:11:03 +0400"
 })
 
@@ -8833,10 +8854,10 @@ product.images.create({
 product = Product.create({
 	id: 190,
 	category_id: 39,
-	category_ids: [39, 42],
+	category_ids: [39],
 	scode: "МатрасSonberryORGANICANGELO",
 	name: "Матрас Sonberry ORGANIC ANGELO",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;28 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;140&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}&nbsp;\u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439}&nbsp;&nbsp;Aloe Vera</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Super Fusion Support, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - Multi Pocket 550 (550 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Angelo &ndash; \u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{438} \u{432} \u{442}\u{43e}\u{436}\u{435} \u{432}\u{440}\u{435}\u{43c}\u{44f} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Multi Pocket. \u{412}\u{435}\u{440}\u{445}\u{43d}\u{438}\u{439} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430} \u{441}\u{43e}\u{441}\u{442}\u{43e}\u{438}\u{442} \u{438}\u{437} \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{430}. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438} \u{441} \u{43e}\u{431}\u{435}\u{438}\u{445} \u{441}\u{442}\u{43e}\u{440}\u{43e}\u{43d} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}. \u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{430}\u{44f} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} SuperFusionSupport \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{435}\u{442} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{438}\u{432}\u{43d}\u{443}\u{44e} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{443} \u{43f}\u{43e}\u{437}\u{432}\u{43e}\u{43d}\u{43e}\u{447}\u{43d}\u{438}\u{43a}\u{430}, \u{431}\u{43b}\u{430}\u{433}\u{43e}\u{434}\u{430}\u{440}\u{44f} \u{440}\u{430}\u{432}\u{43d}\u{43e}\u{43c}\u{435}\u{440}\u{43d}\u{43e}\u{439} \u{442}\u{43e}\u{447}\u{435}\u{447}\u{43d}\u{43e}\u{439} \u{43f}\u{43e}\u{434}\u{441}\u{442}\u{440}\u{43e}\u{439}\u{43a}\u{435} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43f}\u{43e}\u{434} \u{43a}\u{430}\u{436}\u{434}\u{443}\u{44e} \u{447}\u{430}\u{441}\u{442}\u{44c} \u{442}\u{435}\u{43b}\u{430}, \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{44f} \u{43d}\u{430}\u{438}\u{43b}\u{443}\u{447}\u{448}\u{438}\u{439} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{439} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}.</p>\r\n<p>&nbsp;</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 25%</span></p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;28 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;140&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft&nbsp;Cloud+, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}&nbsp;\u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439}&nbsp;&nbsp;Aloe Vera</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{43e}\u{435} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{43e} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{417}\u{430}\u{449}\u{438}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Super Fusion Support, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - Multi Pocket 550 (550 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Angelo &ndash; \u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{438} \u{432} \u{442}\u{43e}\u{436}\u{435} \u{432}\u{440}\u{435}\u{43c}\u{44f} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Multi Pocket. \u{412}\u{435}\u{440}\u{445}\u{43d}\u{438}\u{439} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430} \u{441}\u{43e}\u{441}\u{442}\u{43e}\u{438}\u{442} \u{438}\u{437} \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{43e}\u{43b}\u{43e}\u{442}\u{43d}\u{430}. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{44b} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438} \u{441} \u{43e}\u{431}\u{435}\u{438}\u{445} \u{441}\u{442}\u{43e}\u{440}\u{43e}\u{43d} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}\u{430} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{43a}\u{43e}\u{43a}\u{43e}\u{441}\u{43e}\u{432}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439}. \u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{430}\u{44f} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} SuperFusionSupport \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{435}\u{442} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}\u{438}\u{432}\u{43d}\u{443}\u{44e} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{443} \u{43f}\u{43e}\u{437}\u{432}\u{43e}\u{43d}\u{43e}\u{447}\u{43d}\u{438}\u{43a}\u{430}, \u{431}\u{43b}\u{430}\u{433}\u{43e}\u{434}\u{430}\u{440}\u{44f} \u{440}\u{430}\u{432}\u{43d}\u{43e}\u{43c}\u{435}\u{440}\u{43d}\u{43e}\u{439} \u{442}\u{43e}\u{447}\u{435}\u{447}\u{43d}\u{43e}\u{439} \u{43f}\u{43e}\u{434}\u{441}\u{442}\u{440}\u{43e}\u{439}\u{43a}\u{435} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43f}\u{43e}\u{434} \u{43a}\u{430}\u{436}\u{434}\u{443}\u{44e} \u{447}\u{430}\u{441}\u{442}\u{44c} \u{442}\u{435}\u{43b}\u{430}, \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{44f} \u{43d}\u{430}\u{438}\u{43b}\u{443}\u{447}\u{448}\u{438}\u{439} \u{43e}\u{440}\u{442}\u{43e}\u{43f}\u{435}\u{434}\u{438}\u{447}\u{435}\u{441}\u{43a}\u{438}\u{439} \u{44d}\u{444}\u{444}\u{435}\u{43a}\u{442}.</p>\r\n<p>&nbsp;</p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8849,12 +8870,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry ORGANIC ANGELO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 17992.5,
-	old_price: 23990.0,
+	price: 23990.0,
+	old_price: nil,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "3",
+	extension_id: "nil",
 	created_at: "2014-05-02 01:16:01 +0400"
 })
 
@@ -8977,10 +8998,10 @@ product.images.create({
 product = Product.create({
 	id: 193,
 	category_id: 39,
-	category_ids: [39, 42],
+	category_ids: [39],
 	scode: "МатрасSonberryORGANICPIETRA",
 	name: "Матрас Sonberry ORGANIC PIETRA",
-	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;30 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft Cloud Lux, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436} \u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439} Aloe Vera</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Super Fusion Support, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - Multi Pocket 550 (550 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Pietra &ndash; \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43d}\u{43e}\u{432}\u{43e}\u{433}\u{43e} \u{43f}\u{43e}\u{43a}\u{43e}\u{43b}\u{435}\u{43d}\u{438}\u{44f}, \u{441}\u{43e}\u{447}\u{435}\u{442}\u{430}\u{44e}\u{449}\u{438}\u{439} \u{432} \u{441}\u{435}\u{431}\u{435} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{435} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{44b} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441} \u{438} \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44c}. \u{412} \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{435} \u{43c}\u{43e}\u{434}\u{435}\u{43b}\u{438} \u{43b}\u{435}\u{436}\u{438}\u{442} \u{438}\u{43d}\u{43d}\u{43e}\u{432}\u{430}\u{446}\u{438}\u{43e}\u{43d}\u{43d}\u{430}\u{44f} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Multi Pocket, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{432}\u{44b}\u{448}\u{435}\u{43d}\u{43d}\u{43e}\u{439} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} \u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439} AloeVera, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438}\u{437} \u{433}\u{438}\u{43f}\u{43e}\u{430}\u{43b}\u{43b}\u{435}\u{440}\u{433}\u{435}\u{43d}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{435}\u{43d}\u{43e}\u{43f}\u{43e}\u{43b}\u{438}\u{443}\u{440}\u{435}\u{442}\u{430}\u{43d}\u{430}, \u{43c}\u{44f}\u{433}\u{43a}\u{438}\u{439} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439} \u{438} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438}. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{43c}\u{44f}\u{433}\u{43a}\u{43e}\u{433}\u{43e} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{433}\u{43e} \u{441}\u{43b}\u{43e}\u{44f} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{439} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}. \u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{438} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{443}\u{43f}\u{440}\u{443}\u{433}\u{43e}\u{441}\u{442}\u{44c} \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{435}\u{442} \u{43f}\u{440}\u{438}\u{440}\u{43e}\u{434}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b} &ndash; \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44c}. \u{41c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43e}\u{442}\u{43b}\u{438}\u{447}\u{430}\u{435}\u{442}\u{441}\u{44f} \u{43f}\u{43e}\u{432}\u{44b}\u{448}\u{435}\u{43d}\u{43d}\u{43e}\u{439} \u{434}\u{43e}\u{43b}\u{433}\u{43e}\u{432}\u{435}\u{447}\u{43d}\u{43e}\u{441}\u{442}\u{44c}\u{44e} \u{438} \u{43d}\u{430}\u{434}\u{435}\u{436}\u{43d}\u{43e}\u{441}\u{442}\u{44c}\u{44e} \u{438} \u{441}\u{442}\u{430}\u{43d}\u{435}\u{442} \u{43d}\u{435}\u{437}\u{430}\u{43c}\u{435}\u{43d}\u{438}\u{43c}\u{44b}\u{43c} \u{43f}\u{440}\u{438}\u{43e}\u{431}\u{440}\u{435}\u{442}\u{435}\u{43d}\u{438}\u{435}\u{43c} \u{434}\u{43b}\u{44f} \u{412}\u{430}\u{448}\u{435}\u{439} \u{441}\u{43f}\u{430}\u{43b}\u{44c}\u{43d}\u{438}!</p>\r\n<p>&nbsp;</p>\r\n<p><span style=\"color: #ff0000; font-family: 'Myriad Pro'; font-size: 18px; font-weight: bold;\">\u{421}\u{43a}\u{438}\u{434}\u{43a}\u{430} - 25%</span></p>",
+	description: "<p><strong>\u{412}\u{44b}\u{441}\u{43e}\u{442}\u{430}:</strong>&nbsp;30 \u{441}\u{43c}</p>\r\n<p><strong>\u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c}:</strong>&nbsp;\u{441}\u{440}\u{435}\u{434}\u{43d}\u{435}\u{436}\u{435}\u{441}\u{442}\u{43a}\u{438}\u{439} \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441}</p>\r\n<p><strong>\u{41c}\u{430}\u{43a}\u{441}\u{438}\u{43c}\u{430}\u{43b}\u{44c}\u{43d}\u{430}\u{44f} \u{43d}\u{430}\u{433}\u{440}\u{443}\u{437}\u{43a}\u{430}:</strong>&nbsp;130&nbsp;\u{43a}\u{433}</p>\r\n<p><strong>\u{41f}\u{440}\u{443}\u{436}\u{438}\u{43d}\u{43d}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}:</strong>&nbsp;\u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{439} \u{431}\u{43b}\u{43e}\u{43a}</p>\r\n<p><strong>\u{421}\u{43e}\u{441}\u{442}\u{430}\u{432}: &nbsp;&nbsp;</strong>1.\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} -&nbsp;Soft Cloud Lux, \u{442}\u{440}\u{438}\u{43a}\u{43e}\u{442}\u{430}\u{436} \u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439} Aloe Vera</p>\r\n<p style=\"padding-left: 60px;\">2.&nbsp;\u{41b}\u{430}\u{442}\u{435}\u{43a}\u{441} 30 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">3.&nbsp;\u{421}\u{438}\u{437}\u{430}\u{43b}\u{44c} 10 \u{43c}\u{43c}</p>\r\n<p style=\"padding-left: 60px;\">4.&nbsp;\u{421}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} - Super Fusion Support, \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{430} - Multi Pocket 550 (550 \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} \u{43d}\u{430} 1 \u{43c}<sup>2</sup>)</p>\r\n<p>Pietra &ndash; \u{43c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43d}\u{43e}\u{432}\u{43e}\u{433}\u{43e} \u{43f}\u{43e}\u{43a}\u{43e}\u{43b}\u{435}\u{43d}\u{438}\u{44f}, \u{441}\u{43e}\u{447}\u{435}\u{442}\u{430}\u{44e}\u{449}\u{438}\u{439} \u{432} \u{441}\u{435}\u{431}\u{435} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{435} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b}\u{44b} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441} \u{438} \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44c}. \u{412} \u{43e}\u{441}\u{43d}\u{43e}\u{432}\u{435} \u{43c}\u{43e}\u{434}\u{435}\u{43b}\u{438} \u{43b}\u{435}\u{436}\u{438}\u{442} \u{438}\u{43d}\u{43d}\u{43e}\u{432}\u{430}\u{446}\u{438}\u{43e}\u{43d}\u{43d}\u{430}\u{44f} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{434}\u{434}\u{435}\u{440}\u{436}\u{43a}\u{438} \u{43d}\u{430} \u{431}\u{430}\u{437}\u{435} \u{431}\u{43b}\u{43e}\u{43a}\u{430} \u{43d}\u{435}\u{437}\u{430}\u{432}\u{438}\u{441}\u{438}\u{43c}\u{44b}\u{445} \u{43f}\u{440}\u{443}\u{436}\u{438}\u{43d} Multi Pocket, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{43f}\u{43e}\u{432}\u{44b}\u{448}\u{435}\u{43d}\u{43d}\u{43e}\u{439} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{441}\u{442}\u{438} \u{441} \u{43f}\u{440}\u{43e}\u{43f}\u{438}\u{442}\u{43a}\u{43e}\u{439} AloeVera, \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{443}\u{441}\u{438}\u{43b}\u{435}\u{43d}\u{438}\u{44f} \u{43f}\u{435}\u{440}\u{438}\u{43c}\u{435}\u{442}\u{440}\u{430} \u{438}\u{437} \u{433}\u{438}\u{43f}\u{43e}\u{430}\u{43b}\u{43b}\u{435}\u{440}\u{433}\u{435}\u{43d}\u{43d}\u{43e}\u{433}\u{43e} \u{43f}\u{435}\u{43d}\u{43e}\u{43f}\u{43e}\u{43b}\u{438}\u{443}\u{440}\u{435}\u{442}\u{430}\u{43d}\u{430}, \u{43c}\u{44f}\u{433}\u{43a}\u{438}\u{439} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{44b}\u{439} \u{441}\u{43b}\u{43e}\u{439} \u{438} \u{441}\u{438}\u{441}\u{442}\u{435}\u{43c}\u{430} \u{436}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{438}. \u{412} \u{43a}\u{430}\u{447}\u{435}\u{441}\u{442}\u{432}\u{435} \u{43c}\u{44f}\u{433}\u{43a}\u{43e}\u{433}\u{43e} \u{43a}\u{43e}\u{43c}\u{444}\u{43e}\u{440}\u{442}\u{43d}\u{43e}\u{433}\u{43e} \u{441}\u{43b}\u{43e}\u{44f} \u{438}\u{441}\u{43f}\u{43e}\u{43b}\u{44c}\u{437}\u{443}\u{435}\u{442}\u{441}\u{44f} \u{43d}\u{430}\u{442}\u{443}\u{440}\u{430}\u{43b}\u{44c}\u{43d}\u{44b}\u{439} \u{43b}\u{430}\u{442}\u{435}\u{43a}\u{441}. \u{416}\u{435}\u{441}\u{442}\u{43a}\u{43e}\u{441}\u{442}\u{44c} \u{438} \u{434}\u{43e}\u{43f}\u{43e}\u{43b}\u{43d}\u{438}\u{442}\u{435}\u{43b}\u{44c}\u{43d}\u{443}\u{44e} \u{443}\u{43f}\u{440}\u{443}\u{433}\u{43e}\u{441}\u{442}\u{44c} \u{43e}\u{431}\u{435}\u{441}\u{43f}\u{435}\u{447}\u{438}\u{432}\u{430}\u{435}\u{442} \u{43f}\u{440}\u{438}\u{440}\u{43e}\u{434}\u{43d}\u{44b}\u{439} \u{43c}\u{430}\u{442}\u{435}\u{440}\u{438}\u{430}\u{43b} &ndash; \u{441}\u{438}\u{437}\u{430}\u{43b}\u{44c}. \u{41c}\u{430}\u{442}\u{440}\u{430}\u{441} \u{43e}\u{442}\u{43b}\u{438}\u{447}\u{430}\u{435}\u{442}\u{441}\u{44f} \u{43f}\u{43e}\u{432}\u{44b}\u{448}\u{435}\u{43d}\u{43d}\u{43e}\u{439} \u{434}\u{43e}\u{43b}\u{433}\u{43e}\u{432}\u{435}\u{447}\u{43d}\u{43e}\u{441}\u{442}\u{44c}\u{44e} \u{438} \u{43d}\u{430}\u{434}\u{435}\u{436}\u{43d}\u{43e}\u{441}\u{442}\u{44c}\u{44e} \u{438} \u{441}\u{442}\u{430}\u{43d}\u{435}\u{442} \u{43d}\u{435}\u{437}\u{430}\u{43c}\u{435}\u{43d}\u{438}\u{43c}\u{44b}\u{43c} \u{43f}\u{440}\u{438}\u{43e}\u{431}\u{440}\u{435}\u{442}\u{435}\u{43d}\u{438}\u{435}\u{43c} \u{434}\u{43b}\u{44f} \u{412}\u{430}\u{448}\u{435}\u{439} \u{441}\u{43f}\u{430}\u{43b}\u{44c}\u{43d}\u{438}!</p>",
 	shortdesk: "",
 	delemiter: false,
 	invisible: false,
@@ -8993,12 +9014,12 @@ product = Product.create({
 	seo_keywords: "Матрас Sonberry ORGANIC PIETRA",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 25192.5,
-	old_price: 33590.0,
+	price: 33590.0,
+	old_price: 0.0,
 	title: "",
 	subcategory_id: nil,
 	article: "",
-	extension_id: "3",
+	extension_id: "nil",
 	created_at: "2014-05-02 01:33:07 +0400"
 })
 
@@ -10110,7 +10131,7 @@ product.images.create({
 product = Product.create({
 	id: 222,
 	category_id: 7,
-	category_ids: [7, 18],
+	category_ids: [7, 18, 48],
 	scode: "КроватьLEGGEROORE",
 	name: "Кровать LEGGERO",
 	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>KRO-590/ORE; KRO-590-03/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong><span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1600\u{445}2000</span>&nbsp;-&nbsp;884 x 1732 x 2110;&nbsp;</p>\r\n<p style=\"padding-left: 60px;\">&nbsp; &nbsp;<span style=\"text-decoration: underline;\">\u{41a}\u{440}\u{43e}\u{432}\u{430}\u{442}\u{44c} 1800\u{445}2000</span>&nbsp;-&nbsp;884 x 1932 x 2110</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}: \u{43e}\u{440}\u{435}\u{445}.</p>",
@@ -10126,12 +10147,12 @@ product = Product.create({
 	seo_keywords: "Кровать LEGGERO",
 	seo_imagealt: "",
 	seo_text: "",
-	price: 33999.0,
-	old_price: 0.0,
+	price: 27200.0,
+	old_price: 33999.0,
 	title: "KRO-590/ORE; KRO-590-03/ORE",
 	subcategory_id: nil,
 	article: "KRO-590/ORE; KRO-590-03/ORE",
-	extension_id: "nil",
+	extension_id: "7",
 	created_at: "2014-06-17 18:54:45 +0400"
 })
 
@@ -12559,6 +12580,186 @@ product.images.create({
 	url: "/uploads/169.png"
 })
 
+product = Product.create({
+	id: 295,
+	category_id: 48,
+	category_ids: [48],
+	scode: "ТумбаподTVSTYLE101sale",
+	name: "Тумба под TV STYLE 101",
+	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>TUM-238/N/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>466 x 1444 x 604</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}: \u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}.</p>",
+	shortdesk: "<p>466 x 1444 x 604</p>\r\n<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	delemiter: false,
+	invisible: false,
+	main: false,
+	action: false,
+	best: false,
+	position: 1,
+	seo_title: "",
+	seo_description: "Тумба под TV STYLE 101",
+	seo_keywords: "Тумба под TV STYLE 101",
+	seo_imagealt: "",
+	seo_text: "",
+	price: 32300.0,
+	old_price: 40299.0,
+	title: "TUM-238/N/ORE",
+	subcategory_id: nil,
+	article: "",
+	extension_id: "7",
+	created_at: "2015-04-22 11:47:06 +0300"
+})
+
+product.images.create({
+	url: "/uploads/1STYLE 5.png"
+})
+
+product.images.create({
+	url: "/uploads/14StyleOre1.png"
+})
+
+product = Product.create({
+	id: 296,
+	category_id: 48,
+	category_ids: [48],
+	scode: "ТумбаподTVс3мяящикамиSTYLE112sale",
+	name: "Тумба под TV с 3-мя ящиками STYLE 112 ",
+	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>TUM-230/N/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>314 x 2164 x 604</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}: \u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}.</p>",
+	shortdesk: "<p>314 x 2164 x 604</p>\r\n<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	delemiter: false,
+	invisible: false,
+	main: false,
+	action: false,
+	best: false,
+	position: 2,
+	seo_title: "",
+	seo_description: "Тумба под TV с 3-мя ящиками STYLE 112 ",
+	seo_keywords: "Тумба под TV с 3-мя ящиками STYLE 112 ",
+	seo_imagealt: "",
+	seo_text: "",
+	price: 40000.0,
+	old_price: 49999.0,
+	title: "TUM-230/N/ORE",
+	subcategory_id: nil,
+	article: "",
+	extension_id: "7",
+	created_at: "2015-04-22 11:56:04 +0300"
+})
+
+product.images.create({
+	url: "/uploads/1STYLE 112.png"
+})
+
+product.images.create({
+	url: "/uploads/15StyleOre1.png"
+})
+
+product = Product.create({
+	id: 297,
+	category_id: 48,
+	category_ids: [48],
+	scode: "БуфетвысокийSTYLE207sale",
+	name: "Буфет высокий STYLE 207 ",
+	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>BUF-231/N/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>2104 x 604 x 364</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}:&nbsp;\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}.</p>",
+	shortdesk: "<p>2104 x 604 x 364</p>\r\n<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	delemiter: false,
+	invisible: false,
+	main: false,
+	action: false,
+	best: false,
+	position: 3,
+	seo_title: "",
+	seo_description: "Буфет высокий STYLE 207 ",
+	seo_keywords: "Буфет высокий STYLE 207 ",
+	seo_imagealt: "",
+	seo_text: "",
+	price: 35200.0,
+	old_price: 43999.0,
+	title: "BUF-231/N/ORE",
+	subcategory_id: nil,
+	article: "",
+	extension_id: "7",
+	created_at: "2015-04-22 12:02:51 +0300"
+})
+
+product.images.create({
+	url: "/uploads/1STYLE_207.png"
+})
+
+product.images.create({
+	url: "/uploads/16StyleOre1.png"
+})
+
+product = Product.create({
+	id: 298,
+	category_id: 48,
+	category_ids: [48],
+	scode: "ШкафполканавеснойSTYLE302sale",
+	name: "Шкаф-полка навесной STYLE 302 ",
+	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>BUF-232L/N/ORE; BUF-232R/N/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>1500 x 481 x 364</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}: \u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}.</p>",
+	shortdesk: "<p>1500 x 481 x 364</p>\r\n<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	delemiter: false,
+	invisible: false,
+	main: false,
+	action: false,
+	best: false,
+	position: 4,
+	seo_title: "",
+	seo_description: "Шкаф-полка навесной STYLE 302 ",
+	seo_keywords: "Шкаф-полка навесной STYLE 302 ",
+	seo_imagealt: "",
+	seo_text: "",
+	price: 23600.0,
+	old_price: 29499.0,
+	title: "BUF-232L/N/ORE; BUF-232R/N/ORE",
+	subcategory_id: nil,
+	article: "",
+	extension_id: "7",
+	created_at: "2015-04-22 12:10:29 +0300"
+})
+
+product.images.create({
+	url: "/uploads/1STYLE 302.png"
+})
+
+product.images.create({
+	url: "/uploads/17StyleOre1.png"
+})
+
+product = Product.create({
+	id: 299,
+	category_id: 48,
+	category_ids: [48],
+	scode: "Комод52STYLEsale",
+	name: "Комод 5+2 STYLE",
+	description: "<p><strong>\u{410}\u{440}\u{442}\u{438}\u{43a}\u{443}\u{43b}:&nbsp;</strong>KOM-239/N/ORE</p>\r\n<p><strong>\u{413}\u{430}\u{431}\u{430}\u{440}\u{438}\u{442}\u{44b}:&nbsp;</strong>942 x 1774 x 364</p>\r\n<p><strong>\u{41e}\u{43f}\u{438}\u{441}\u{430}\u{43d}\u{438}\u{435} \u{442}\u{43e}\u{432}\u{430}\u{440}\u{430}:</strong><span style=\"color: #222222; font-family: Arial, Verdana, sans-serif; font-size: 12px;\">&nbsp;</span>\u{43e}\u{442}\u{434}\u{435}\u{43b}\u{43a}\u{430}: \u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}.</p>",
+	shortdesk: "<p>942 x 1774 x 364</p>\r\n<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	delemiter: false,
+	invisible: false,
+	main: false,
+	action: false,
+	best: false,
+	position: 5,
+	seo_title: "",
+	seo_description: "Комод 5+2 STYLE",
+	seo_keywords: "Комод 5+2 STYLE",
+	seo_imagealt: "",
+	seo_text: "",
+	price: 47600.0,
+	old_price: 59399.0,
+	title: "KOM-239/N/ORE; KOM-239/N/CH",
+	subcategory_id: nil,
+	article: "",
+	extension_id: "7",
+	created_at: "2015-04-22 12:15:59 +0300"
+})
+
+product.images.create({
+	url: "/uploads/1STYLE 3.png"
+})
+
+product.images.create({
+	url: "/uploads/18StyleOre1.png"
+})
+
 Extension.create({
 	id: 1,
 	name: "Распродажа15",
@@ -12587,6 +12788,18 @@ Extension.create({
 	id: 5,
 	name: "Распродажа10",
 	image: "/uploads/yarlykParra-shop10.png"
+})
+
+Extension.create({
+	id: 6,
+	name: "Скажи ДА",
+	image: "/uploads/1yarlykParra-shopDA.png"
+})
+
+Extension.create({
+	id: 7,
+	name: "Скажи ДА1",
+	image: "/uploads/yarlykParra-shopDA1.png"
 })
 
 Size.create({
@@ -12618,7 +12831,7 @@ Size.create({
 	product_id: 58,
 	name: "1800х2000",
 	scode: "1800х2000",
-	price: 3350.0
+	price: 2700.0
 })
 
 Size.create({
@@ -12642,7 +12855,7 @@ Size.create({
 	product_id: 17,
 	name: "1800х2000",
 	scode: "1800х2000",
-	price: 6250.0
+	price: 5000.0
 })
 
 Size.create({
@@ -12658,7 +12871,7 @@ Size.create({
 	product_id: 46,
 	name: "1800х2000",
 	scode: "1800х2000",
-	price: 3350.0
+	price: 2700.0
 })
 
 Size.create({
@@ -12682,7 +12895,7 @@ Size.create({
 	product_id: 77,
 	name: "1800х2000",
 	scode: "1800х2000",
-	price: 2500.0
+	price: 2000.0
 })
 
 Size.create({
@@ -12850,7 +13063,7 @@ Size.create({
 	product_id: 222,
 	name: "1800х2000",
 	scode: "1800х2000",
-	price: 1500.0
+	price: 1200.0
 })
 
 Size.create({
@@ -12874,7 +13087,7 @@ Size.create({
 	product_id: 68,
 	name: "1800х2000",
 	scode: "1800х2000",
-	price: 3800.0
+	price: 3100.0
 })
 
 Size.create({
@@ -15829,6 +16042,46 @@ Size.create({
 	price: 0.0
 })
 
+Size.create({
+	id: 413,
+	product_id: 295,
+	name: "466 x 1444 x 604",
+	scode: "466 x 1444 x 604",
+	price: 0.0
+})
+
+Size.create({
+	id: 414,
+	product_id: 296,
+	name: "314 x 2164 x 604",
+	scode: "314 x 2164 x 604",
+	price: 0.0
+})
+
+Size.create({
+	id: 415,
+	product_id: 297,
+	name: "2104 x 604 x 364",
+	scode: "2104 x 604 x 364",
+	price: 0.0
+})
+
+Size.create({
+	id: 416,
+	product_id: 298,
+	name: "1500 x 481 x 364",
+	scode: "1500 x 481 x 364",
+	price: 0.0
+})
+
+Size.create({
+	id: 417,
+	product_id: 299,
+	name: "942 x 1774 x 364",
+	scode: "942 x 1774 x 364",
+	price: 0.0
+})
+
 Color.create({
 	id: 756,
 	size_id: 7,
@@ -16206,7 +16459,7 @@ Color.create({
 	scode: "орех/стекло графит/кожзам графит (серый) ОРИОН 17",
 	image: "/uploads/orehOrionGrafitStekloGrafit.png",
 	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}/\u{43a}\u{43e}\u{436}\u{437}\u{430}\u{43c} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442} (\u{441}\u{435}\u{440}\u{44b}\u{439}) \u{41e}\u{420}\u{418}\u{41e}\u{41d} 17</p>",
-	price: 150.0
+	price: 100.0
 })
 
 Color.create({
@@ -16326,7 +16579,7 @@ Color.create({
 	scode: "дуб",
 	image: "/uploads/dub.png",
 	description: "<p>\u{434}\u{443}\u{431}</p>",
-	price: 6100.0
+	price: 4900.0
 })
 
 Color.create({
@@ -18706,7 +18959,7 @@ Color.create({
 	scode: "орех/кожзам графит ОРИОН",
 	image: "/uploads/3orehOrionGrafit.png",
 	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{43a}\u{43e}\u{436}\u{437}\u{430}\u{43c} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442} \u{41e}\u{420}\u{418}\u{41e}\u{41d}</p>",
-	price: 400.0
+	price: 300.0
 })
 
 Color.create({
@@ -18716,7 +18969,7 @@ Color.create({
 	scode: "орех/кожзам белый САНИТА",
 	image: "/uploads/1orehSanitaBelt.png",
 	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{43a}\u{43e}\u{436}\u{437}\u{430}\u{43c} \u{431}\u{435}\u{43b}\u{44b}\u{439} \u{421}\u{410}\u{41d}\u{418}\u{422}\u{410}</p>",
-	price: 400.0
+	price: 300.0
 })
 
 Color.create({
@@ -20666,7 +20919,7 @@ Color.create({
 	scode: "КроватьRITMIKA _орех/стекло графит/кожзам графит (серый) ОРИОН 17",
 	image: "/uploads/orehOrionGrafitStekloGrafit.png",
 	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442}/\u{43a}\u{43e}\u{436}\u{437}\u{430}\u{43c} \u{433}\u{440}\u{430}\u{444}\u{438}\u{442} (\u{441}\u{435}\u{440}\u{44b}\u{439}) \u{41e}\u{420}\u{418}\u{41e}\u{41d} 17</p>",
-	price: 200.0
+	price: 100.0
 })
 
 Color.create({
@@ -20686,7 +20939,7 @@ Color.create({
 	scode: "КроватьLORRAСH1_дуб",
 	image: "/uploads/dub.png",
 	description: "<p>\u{434}\u{443}\u{431}</p>",
-	price: 5700.0
+	price: 4500.0
 })
 
 Color.create({
@@ -21736,6 +21989,56 @@ Color.create({
 	scode: "ясень оливковый/ясень choco1",
 	image: "/uploads/1choco1aysenoliv.png",
 	description: "<p>\u{44f}\u{441}\u{435}\u{43d}\u{44c} \u{43e}\u{43b}\u{438}\u{432}\u{43a}\u{43e}\u{432}\u{44b}\u{439}/\u{44f}\u{441}\u{435}\u{43d}\u{44c} choco1</p>",
+	price: 0.0
+})
+
+Color.create({
+	id: 1349,
+	size_id: 413,
+	name: "орех/стекло серо-коричневое",
+	scode: "орех/стекло серо-коричневое",
+	image: "/uploads/12orehStekloSerKor.png",
+	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	price: 0.0
+})
+
+Color.create({
+	id: 1350,
+	size_id: 414,
+	name: "орех/стекло серо-коричневое",
+	scode: "орех/стекло серо-коричневое",
+	image: "/uploads/13orehStekloSerKor.png",
+	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	price: 0.0
+})
+
+Color.create({
+	id: 1351,
+	size_id: 415,
+	name: "орех/стекло серо-коричневое",
+	scode: "орех/стекло серо-коричневое",
+	image: "/uploads/14orehStekloSerKor.png",
+	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	price: 0.0
+})
+
+Color.create({
+	id: 1352,
+	size_id: 416,
+	name: "орех/стекло серо-коричневое",
+	scode: "орех/стекло серо-коричневое",
+	image: "/uploads/15orehStekloSerKor.png",
+	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
+	price: 0.0
+})
+
+Color.create({
+	id: 1353,
+	size_id: 417,
+	name: "орех/стекло серо-коричневое",
+	scode: "орех/стекло серо-коричневое",
+	image: "/uploads/16orehStekloSerKor.png",
+	description: "<p>\u{43e}\u{440}\u{435}\u{445}/\u{441}\u{442}\u{435}\u{43a}\u{43b}\u{43e} \u{441}\u{435}\u{440}\u{43e}-\u{43a}\u{43e}\u{440}\u{438}\u{447}\u{43d}\u{435}\u{432}\u{43e}\u{435}</p>",
 	price: 0.0
 })
 
@@ -49752,6 +50055,22 @@ Option.create({
 	price: 2859.0
 })
 
+Option.create({
+	id: 103,
+	size_id: 416,
+	name: "левый",
+	scode: "левый",
+	price: 0.0
+})
+
+Option.create({
+	id: 104,
+	size_id: 416,
+	name: "правый",
+	scode: "правый",
+	price: 0.0
+})
+
 Order.create({
 	id: 15,
 	first_name: "a",
@@ -52294,6 +52613,457 @@ Order.create({
 	number: nil
 })
 
+Order.create({
+	id: 80,
+	first_name: "Сергей",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "+79647020836",
+	email: "filimonov_sergej@mail.ru",
+	pay_type: "",
+	addr_street: "Сельское поселение Вялковское Раменского района деревня Капустино ул Ромашковая",
+	addr_home: "84",
+	addr_block: "",
+	addr_flat: "1",
+	created_at: "2015-03-23 09:14:33 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: nil,
+	prepayment_date: "",
+	prepayment_sum: nil,
+	doppayment_date: "",
+	doppayment_sum: nil,
+	finalpayment_date: "",
+	finalpayment_sum: nil,
+	payment_type: "",
+	credit_sum: nil,
+	credit_month: nil,
+	credit_procent: nil,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 81,
+	first_name: "lhugcwdzd",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "82787462939",
+	email: "nbelwt@ujodeo.com",
+	pay_type: "",
+	addr_street: "DhpfEiJHaFIAqLoO",
+	addr_home: "twlZzReuZrO",
+	addr_block: "qowuKPExip",
+	addr_flat: "MaaLepouoTynti",
+	created_at: "2015-03-25 00:30:32 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 82,
+	first_name: "hdrrohvr",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "87793001158",
+	email: "ndicqh@tssczk.com",
+	pay_type: "",
+	addr_street: "PDvVwPyXNiheuHKN",
+	addr_home: "PLbRVEWAhHl",
+	addr_block: "yuWlPOdKchgBBMoxgb",
+	addr_flat: "GofKGfCotoJmXkDp",
+	created_at: "2015-03-30 20:24:18 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 83,
+	first_name: "kxytsbfnd",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "30044314502",
+	email: "mmemlg@vpoilr.com",
+	pay_type: "",
+	addr_street: "JgakkvkyufxwkMcEr",
+	addr_home: "EtzgyckSHJwQjNkc",
+	addr_block: "XyNtkEuESW",
+	addr_flat: "DDBBkNLgkGNaB",
+	created_at: "2015-03-31 05:53:11 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 84,
+	first_name: "ymmxua",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "76678353275",
+	email: "jmhabn@uodyrf.com",
+	pay_type: "",
+	addr_street: "xzuBpeqZYdmlId",
+	addr_home: "IKWCzkDcvCrD",
+	addr_block: "zXWuYFETOZdFUY",
+	addr_flat: "plYWCmUgswTJEdZFMMa",
+	created_at: "2015-04-01 14:09:48 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 85,
+	first_name: "sally",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "88423581518",
+	email: "varlog255q@hotmail.com",
+	pay_type: "",
+	addr_street: "CNdFJzhqdKbDweoqueZ",
+	addr_home: "abBYilviLZIScq",
+	addr_block: "pyDYaFFSFnXVUVLmpNk",
+	addr_flat: "YSEWtxlfPCasm",
+	created_at: "2015-04-07 23:20:25 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 86,
+	first_name: "luidji",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "82387062369",
+	email: "darel233455@gmail.com",
+	pay_type: "",
+	addr_street: "rNPzrvFLexWVujaEBby",
+	addr_home: "xfGHjOwSrSouRaYGV",
+	addr_block: "dtgAqnIXajCoRm",
+	addr_flat: "sNgENNGeADUnxyfXA",
+	created_at: "2015-04-13 07:03:09 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 87,
+	first_name: "Елена",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "89857643699",
+	email: "Domem@yandex.ru",
+	pay_type: "",
+	addr_street: "",
+	addr_home: "",
+	addr_block: "",
+	addr_flat: "",
+	created_at: "2015-04-17 22:58:51 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 88,
+	first_name: "sally",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "80209842610",
+	email: "zork2j3he@gmail.com",
+	pay_type: "",
+	addr_street: "hdokcbXqAlvS",
+	addr_home: "qCDeEMCIstP",
+	addr_block: "gHeRkAmrblLSLCYzdo",
+	addr_flat: "aqHiHJvHhXglLXLjEO",
+	created_at: "2015-04-18 04:29:19 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 89,
+	first_name: "klark",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "53802597365",
+	email: "klark2d4@gmail.com",
+	pay_type: "",
+	addr_street: "kIBaYdIPlsoIsKUe",
+	addr_home: "OytLXzcZwvwv",
+	addr_block: "ULXwaHdbZohO",
+	addr_flat: "rKJJaiAYntB",
+	created_at: "2015-04-23 23:42:26 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
+Order.create({
+	id: 90,
+	first_name: "varlog",
+	middle_name: "",
+	last_name: "",
+	gender: "",
+	phone: "70397501905",
+	email: "barny182@hotmail.com",
+	pay_type: "",
+	addr_street: "cVsCjZZWJwrKihmFl",
+	addr_home: "YeJRjCmdmxpia",
+	addr_block: "VPhNLBnnuPpoawMX",
+	addr_flat: "rJuvOobzLZcntp",
+	created_at: "2015-05-01 19:50:20 +0300",
+	comment: "",
+	salon: "",
+	salon_tel: "",
+	manager: "",
+	manager_tel: "",
+	addr_metro: "",
+	addr_staircase: "",
+	addr_floor: "",
+	addr_code: "",
+	addr_elevator: "",
+	deliver_type: "",
+	deliver_cost: 0,
+	prepayment_date: "",
+	prepayment_sum: 0,
+	doppayment_date: "",
+	doppayment_sum: 0,
+	finalpayment_date: "",
+	finalpayment_sum: 0,
+	payment_type: "",
+	credit_sum: 0,
+	credit_month: nil,
+	credit_procent: 0,
+	deliver_date: "",
+	status_id: nil,
+	number: nil
+})
+
 OrderItem.create({
 	id: 15,
 	product_id: 28,
@@ -54130,6 +54900,70 @@ OrderItem.create({
 	order_id: 79,
 	size_scode: "1800х2000",
 	color_scode: "белая эмаль/кожзам белый Sachara 1",
+	option_scode: "",
+	discount: 0,
+})
+
+OrderItem.create({
+	id: 134,
+	product_id: 17,
+	quantity: 1,
+	price: 70398.0,
+	size: "1600х2000",
+	color: "",
+	option: "Ящик для постельных принадлежностей с подъёмным механизмом",
+	created_at: "2015-03-23 09:14:33 +0300",
+	order_id: 80,
+	size_scode: "1600х2000",
+	color_scode: "",
+	option_scode: "Ящик для постельных принадлежностей с подъёмным механизмом",
+	discount: 0,
+})
+
+OrderItem.create({
+	id: 135,
+	product_id: 185,
+	quantity: 1,
+	price: 35392.0,
+	size: "1600х2000",
+	color: "",
+	option: "",
+	created_at: "2015-03-23 09:14:33 +0300",
+	order_id: 80,
+	size_scode: "1600х2000",
+	color_scode: "",
+	option_scode: "",
+	discount: 0,
+})
+
+OrderItem.create({
+	id: 136,
+	product_id: 18,
+	quantity: 2,
+	price: 20599.0,
+	size: "328 x 612 x 436",
+	color: "",
+	option: "",
+	created_at: "2015-03-23 09:14:33 +0300",
+	order_id: 80,
+	size_scode: "328 x 612 x 436",
+	color_scode: "",
+	option_scode: "",
+	discount: 0,
+})
+
+OrderItem.create({
+	id: 137,
+	product_id: 205,
+	quantity: 1,
+	price: 8399.0,
+	size: "600 x 1704",
+	color: "",
+	option: "",
+	created_at: "2015-04-17 22:58:51 +0300",
+	order_id: 87,
+	size_scode: "600 x 1704",
+	color_scode: "",
 	option_scode: "",
 	discount: 0,
 })
