@@ -18,22 +18,22 @@ class Admin::DbController < Admin::AdminController
 				model = model_name.classify.constantize
 				for rec_index, rec in model_hash[:rec]
 					data[model_name][rec_index] = {}
-					if rec[:removeImage]
-						for field in rec[:removeImage]
-							rec[:fields][field] = ""
-							path = Rails.root.join('public').to_s + record[field]
-							File.delete path if File.exists? path
-						end
-					end
-					if rec[:image]
-						data[model_name][rec_index][:image] = {}
-						for field, image in rec[:image]
-							rec[:fields][field] = '/images/' + save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image)
-							data[model_name][rec_index][:image][field] = rec[:fields][field]
-						end
-					end
 					if rec[:fields][:id]
 						record = model.find(rec[:fields][:id])
+						if rec[:removeImage]
+							for field in rec[:removeImage]
+								rec[:fields][field] = ""
+								path = Rails.root.join('public').to_s + record[field]
+								File.delete path if File.exists? path
+							end
+						end
+						if rec[:image]
+							data[model_name][rec_index][:image] = {}
+							for field, image in rec[:image]
+								rec[:fields][field] = '/images/' + save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image)
+								data[model_name][rec_index][:image][field] = rec[:fields][field]
+							end
+						end
 						record.update(rec[:fields].except(:id))
 						user_log :update, {model: model_name}, record
 						if rec[:removeImages]
@@ -43,6 +43,13 @@ class Admin::DbController < Admin::AdminController
 						end
 						id = record.id
 					else
+						if rec[:image]
+							data[model_name][rec_index][:image] = {}
+							for field, image in rec[:image]
+								rec[:fields][field] = '/images/' + save_file("#{Rails.root.join('public', 'images')}/", image.original_filename, image)
+								data[model_name][rec_index][:image][field] = rec[:fields][field]
+							end
+						end
 						rec[:fields][parent] = parent_id unless parent_id.zero?
 						record = model.create(rec[:fields])
 						id = record.id

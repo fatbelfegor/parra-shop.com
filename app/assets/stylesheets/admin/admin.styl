@@ -256,7 +256,7 @@ h1
 input[type=text], input[type=email], input[type=password]
 	padding 6px 12px
 	font-size 14px
-	line-height 1.42857143
+	line-height 22px
 	color #555
 	background-color #fff
 	border 1px solid #bbb
@@ -767,21 +767,17 @@ label.group.tags.red > div > form > div *
 	p
 		background-color #C72727
 		border-color #C55F5F
-td.image
-	border-width 1px !important
-.images-form > div, .image-form > div, td.image
+.image
 	font-size 0
 	display inline-block
 	vertical-align middle
 	border 1px solid #aaa
-	margin 10px
 	padding 5px
 	position relative
 	cursor pointer
 	transition(.3s)
 	btn-gradient(#FAFAFA, #FFFFFF, #F2F2F2, #D5D5D5, #E8E8E8)
 	box-shadow(0 0 8px #aaa)
-	border-radius(5px)
 	.remove
 		position absolute
 		top 5px
@@ -806,16 +802,20 @@ td.image
 	img
 		max-width 200px
 		max-height 200px
+		min-width 50px
+		min-height 50px
 		border 1px solid #aaa
 		display block
-.images-form > div:hover, .image-form > div:hover, td.image:hover
-	box-shadow(0 0 16px #d64535)
+.image:hover
+	box-shadow(0 0 16px #357AD6)
 	.remove:not(:hover)
 		color #444
 		border-color #aaa
 		background rgba(255, 255, 255, 0.7)
-td.image
-	width 1px
+.images-form, .image-form
+	margin 10px
+	.image
+		border-radius(5px)
 .radio-tabs
 	> div
 		display none

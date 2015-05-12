@@ -171,17 +171,8 @@ app.routes['model/:model/records'] = page: ->
 	window.records = (html, params) ->
 		params ?= {}
 		ret ="<div id='records' data-model-wrap='#{params.model or param.model}'>#{html}</div>"
-	window.group = (html, params) ->
-		if params
-			if params.attrs
-				if params.attrs.class
-					params.attrs.class += ' group'
-				else params.attrs.class = 'group'
-			else params.attrs = class: 'group'
-		else params = attrs: group: 'group'
-		ret = "<div"
-		ret += " #{k}='#{v}'" for k, v of params.attrs
-		ret += " data-model='#{params.model or window.model}' data-id='#{window.rec.id}'><table>#{html}</table>"
+	window.group = (html, params = {}) ->
+		ret = "<div class='group' data-model='#{params.model or window.model}'#{if window.rec then " data-id='#{window.rec.id}'" else ''}><table>#{html}</table>"
 		if params.relations
 			subrecs = []
 			if params.relations.has_self_open
@@ -293,13 +284,44 @@ app.routes['model/:model/records'] = page: ->
 				params.attrs.class += ' btn green'
 			else params.attrs.class = 'btn green'
 			if params.attrs.onclick
-				params.attrs.onclick += '; removeRecord(this)'
+				params.attrs.onclick += '; saveRecord(this)'
 			if params.style
 				params.style = 'width: 1px; border: 1px solid #aaa' + params.style
 			else params.style = 'width: 1px; border: 1px solid #aaa'
 		else
-			params.attrs = class: 'btn green', onclick: 'removeRecord(this)', style: 'width: 1px'
+			params.attrs = class: 'btn green', onclick: 'saveRecord(this)', style: 'width: 1px'
 		td "<p>Сохранить</p>", params
+	window.saveRecord = (el) ->
+		form = $(el).parents('.group').eq(0)
+		model = form.data 'model'
+		form.find("[data-validate]").each -> validate @
+		return if $('.validation.active').length
+		fd = new FormData()
+		d = {}
+		d[model] = rec: [{fields: {}}]
+		fd_path = "model[#{model}]rec[0]"
+		id = form.data 'id'
+		if id
+			d[model].rec[0].fields.id = id
+			fd.append "#{fd_path}fields[id]", id
+		form.find('input, textarea').each ->
+			unless $(@).data 'ignore'
+				ret = fillData @, fd_path, model, fd
+				for k, v of ret.fields
+					d[model].rec[0].fields[k] = v
+				if ret.removeImage
+					d[model].rec[0].removeImage ?= []
+					d[model].rec[0].removeImage.push ret.removeImage
+				if ret.removeImages
+					d[model].rec[0].removeImages ?= []
+					d[model].rec[0].removeImages.push ret.removeImages
+		db.save d, fd, (res) ->
+			for k, v of res
+				if v[0].id
+					form.data 'id', id
+					notify 'Запись создана'
+				else notify "Запись сохранена"
+				break
 	window.drag = (params) ->
 		params ?= {}
 		if params.attrs

@@ -42,16 +42,18 @@ String.prototype.classify = ->
 	ret += "#{if onchanges.length then " onchange='#{onchanges.join ';'}'" else ''}>"
 	ret += "<div class='validation'><p></p></div>" if params.validation
 	ret + "</label>"
-@image_field = (header, name, params) ->
-	ret = "<div class='image-form'>"
+@image_wrap = (name, header) ->
+	ret = ""
+	name ?= 'image'
 	if window.rec and window.rec[name]
 		url = window.rec[name]
-		ret += "<div>
+		ret += "<div class='image'>
 			<div class='btn red remove' onclick='image.removeOneImage(this, \"#{name}\", \"#{url}\")'></div>
 			<a href='#{url}' data-lightbox='product'><img src='#{url}'></a>
 		</div>"
 		hide = true
-	td ret + "</div><label class='text-center#{if hide then ' hide' else ''}'><div class='btn blue ib'>#{header}</div><input class='hide image-file' onchange='window.image.upload(this)' name='#{name}' type='file'></label>", params
+	ret + "<label class='m15 text-center#{if hide then ' hide' else ''}'><div class='btn blue ib'>#{header || 'Добавить изображение'}</div><input class='hide image-file' onchange='window.image.upload(this)' name='#{name}' type='file'></label>"
+@image_field = (name, header) -> "<div class='image-form'>#{image_wrap name, header}</div>"
 
 # Пагинация
 
@@ -199,7 +201,59 @@ String.prototype.classify = ->
 						paginator.pages.html pages + "<div class='next' onclick='paginator.next()'><i class='icon-arrow-right2'></i></div>"
 				window.filter_loading = false
 			, -> window.filter_loading = false
-		event.preventDefault();
+		event.preventDefault()
+
+@fillData = (el, prefix, model, fd) ->
+	data = fields: {}
+	$el = $ el
+	if $el.hasClass 'image-file'
+		file = el.files[0]
+		fd.append "#{prefix}image[#{el.name}]", file if file
+	else if $el.hasClass 'images-file'
+		if el.files.length
+			label = $el.parent()
+			label_index = label.index() + 1
+			removeNew = label.parent().data 'removeNew'
+			for image, i in el.files
+				if !removeNew or "#{label_index}-#{i}" not in removeNew
+					fd.append "#{prefix}images[]", image
+	else if el.name is 'removeImage'
+		field = $el.data 'field'
+		data.removeImage = field
+		fd.append "#{prefix}removeImage[]", field
+	else if el.name is 'removeImages'
+		remove_id = $el.parent().data 'id'
+		data.removeImages = remove_id
+		fd.append "#{prefix}removeImage[]", remove_id
+	else if $el.hasClass 'habtm_checkboxes'
+		unless data.fields[el.name]
+			data.fields[el.name] = []
+			unless $el.parents('.checkboxes').eq(0).find('input:checked').length
+				fd.append "#{prefix}fields[#{el.name}]", []
+		if el.checked
+			data.fields[el.name].push parseInt el.value
+			fd.append "#{prefix}fields[#{el.name}][]", el.value
+	else if el.type is 'checkbox'
+		value = el.checked
+		data.fields[el.name] = value
+		fd.append "#{prefix}fields[#{el.name}]", value
+	else
+		if el.tagName is 'INPUT'
+			value = $el.val()
+			format = $el.data 'format'
+			if format
+				if format.decimal
+					if format.decimal is 'currency'
+						value = parseFloat(value.replace(' ', ''))
+				else if format.date and value isnt ''
+					value = Date.parseExact value, format.date
+		else if $el.hasClass 'tinyMCE-ready'
+			value = tinyMCE.get(el.id).getContent()
+		else
+			value = $el.val()
+		data.fields[el.name] = value
+		fd.append "#{prefix}fields[#{el.name}]", value
+	data
 
 # Валидатор
 

@@ -3,5 +3,7 @@ app.templates.index.status =
 		ret = ""
 		for rec in recs
 			window.rec = rec
-			ret += group tr show("name") + buttons()
-		header({name: 'Статусы заказов', header: [['Название', 'max'], ['Действия', '225px']]}) + records ret
+			ret += renderStatus()
+		header({name: 'Статусы заказов', save: false, header: [['Название', 'max'], ['Действия', '225px']]}) + records ret + add 'renderStatus'
+	functions:
+		renderStatus: -> group tr td(field('', "name", validation: presence: true)) + save() + destroy()

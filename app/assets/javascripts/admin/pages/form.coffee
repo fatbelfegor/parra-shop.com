@@ -8,17 +8,14 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 		id = parseInt param.id
 		if id
 			window.rec = db[param.model].records[id]
-			action = 'update'
-		else
-			window.rec = false
-			action = 'create'
+		else window.rec = false
 		window.model = param.model
 		app.yield.html template.page() + "<link rel='stylesheet' type='text/css' href='/lightbox/lightbox.min.css'><script src='/tinyMCE/tinymce.min.js'><script src='/lightbox/lightbox.min.js'>"
 		addFormCb()
 		app.menu.find(".current").removeClass 'current'
 		app.menu.find("[data-route='model/#{param.model}']").addClass 'current'
 	window.form = (html, rel) ->
-		"<form class='content form'#{unless rel then " id='main-form'" else ''} data-model='#{window.model}' data-action='#{if id then 'update' else 'new'}'>#{if window.rec then "<input type='hidden' name='id' value='#{window.rec.id}'>" else ''}#{html}</form>"
+		"<form class='content form'#{unless rel then " id='main-form'" else ''} data-model='#{window.model}'>#{if window.rec then "<input type='hidden' name='id' value='#{window.rec.id}'>" else ''}#{html}</form>"
 	window.relation = (name, visible, html, params) ->
 		params ?= {}
 		params.attrs ?= {}
@@ -105,7 +102,7 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 		if window.rec
 			images = db.images window.model.classify(), window.rec.id
 			for img in images
-				ret += "<div data-id='#{img.id}'>
+				ret += "<div class='image' data-id='#{img.id}'>
 					<div class='btn red remove' onclick='window.image.removeImage(this)'></div>
 					<a href='#{img.url}' data-lightbox='product'><img src='#{img.url}'></a>
 				</div>"
@@ -129,7 +126,6 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 		ret + "</div>"
 	window.save = ->
 		form = $ '#main-form'
-		action = form.data 'action'
 		model = form.data 'model'
 		app.templates.form[model].beforeSave() if app.templates.form[model].beforeSave
 		form.find("[data-validate]").each -> validate @
@@ -137,62 +133,11 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 		fd = new FormData()
 		d = {}
 		d[model] = rec: [{fields: {}}]
-		fillData = (el, prefix, model) ->
-			data = fields: {}
-			$el = $ el
-			if $el.hasClass 'image-file'
-				file = el.files[0]
-				fd.append "#{prefix}image[#{el.name}]", file if file
-			else if $el.hasClass 'images-file'
-				if el.files.length
-					label = $el.parent()
-					label_index = label.index() + 1
-					removeNew = label.parent().data 'removeNew'
-					for image, i in el.files
-						if !removeNew or "#{label_index}-#{i}" not in removeNew
-							fd.append "#{prefix}images[]", image
-			else if el.name is 'removeImage'
-				field = $el.data 'field'
-				data.removeImage = field
-				fd.append "#{prefix}removeImage[]", field
-			else if el.name is 'removeImages'
-				remove_id = $el.parent().data 'id'
-				data.removeImages = remove_id
-				fd.append "#{prefix}removeImage[]", remove_id
-			else if $el.hasClass 'habtm_checkboxes'
-				unless data.fields[el.name]
-					data.fields[el.name] = []
-					unless $el.parents('.checkboxes').eq(0).find('input:checked').length
-						fd.append "#{prefix}fields[#{el.name}]", []
-				if el.checked
-					data.fields[el.name].push parseInt el.value
-					fd.append "#{prefix}fields[#{el.name}][]", el.value
-			else if el.type is 'checkbox'
-				value = el.checked
-				data.fields[el.name] = value
-				fd.append "#{prefix}fields[#{el.name}]", value
-			else
-				if el.tagName is 'INPUT'
-					value = $el.val()
-					format = $el.data 'format'
-					if format
-						if format.decimal
-							if format.decimal is 'currency'
-								value = parseFloat(value.replace(' ', ''))
-						else if format.date and value isnt ''
-							value = Date.parseExact value, format.date
-				else if $el.hasClass 'tinyMCE-ready'
-					value = tinyMCE.get(el.id).getContent()
-				else
-					value = $el.val()
-				data.fields[el.name] = value
-				fd.append "#{prefix}fields[#{el.name}]", value
-			data
 		fd_path = "model[#{model}]rec[0]"
 		form.find('input, textarea').each ->
 			unless $(@).data 'ignore'
 				return if $(@).parents('.relation').length
-				ret = fillData @, fd_path, model
+				ret = fillData @, fd_path, model, fd
 				for k, v of ret.fields
 					d[model].rec[0].fields[k] = v
 				if ret.removeImage
@@ -221,7 +166,7 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 						rel_wrap.find('input, textarea').each ->
 							unless $(@).data 'ignore'
 								if $(@).parents('.relation').first().data('model') is rel_model
-									ret = fillData @, next_path, rel_model
+									ret = fillData @, next_path, rel_model, fd
 									for k, v of ret.fields
 										rel_data[rel_model].rec[index].fields[k] = v
 									if ret.removeImage
@@ -237,7 +182,12 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 			else false
 		rel_data = fillRelations form, fd_path
 		d[model].rec[0].model = rel_data if rel_data
-		db.save d, fd
+		db.save d, fd, (res) ->
+			for k, v of res
+				if v[0].id
+					app.go "/admin/model/#{k}/edit/#{v[0].id}", cb: -> notify 'Запись создана'
+				else notify "Запись сохранена"
+				break
 	window.addFormCb = ->
 		if tinymce?
 			tinymce.init selector: ".tinyMCE", plugins: 'link image code textcolor', language : 'ru', setup: (editor) ->

@@ -448,8 +448,7 @@
 				notify 'Запись удалена'
 				cb() if cb
 		, 'json'
-	save: (data, formData, params) ->
-		params ?= {}
+	save: (data, formData, cb) ->
 		$.ajax
 			url: "/admin/db/save"
 			data: formData
@@ -493,10 +492,7 @@
 										db[model_name].records[save_rec.id][k] = v
 						ret
 					go res, data
-					for k, v of res
-						if v[0].id
-							app.go "/admin/model/#{k}/edit/#{v[0].id}", cb: -> notify 'Запись создана'
-						else notify "Запись сохранена"
+					cb res if cb
 	create_one: (model, fields, cb) ->
 		$.post "/admin/db/create_one", model: model, fields: fields, cb, 'json'
 	update_one: (model, id, fields, cb) ->
