@@ -1,6 +1,6 @@
 app.templates.form.subcategory =
 	page: ->
-		ret = btn_save() + "<table>"
+		ret = "<table>"
 		ret += tr td tb("Категория", 'category', data: {category: {fields: ['name'], pick: true, has_self: true}}), attrs: colspan: 3
 		ret += tr td field "Название", "name"
 		ret += tr td text "Описание": "description"
@@ -10,8 +10,7 @@ app.templates.form.subcategory =
 		ret += relation_add "Добавить картинку с описанием", "subcategory_item_add"
 		subcategory_item = ""
 		ret += relation 'subcategory_item', relation_visible, subcategory_item
-		ret += btn_save()
-		title('подкатегорию') + form ret
+		title('подкатегория') + form ret
 	belongs_to: "category"
 	has_many: "subcategory_item"
 	functions:

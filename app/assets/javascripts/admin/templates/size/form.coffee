@@ -1,6 +1,6 @@
 app.templates.form.size =
 	page: ->
-		ret = btn_save() + "<table>"
+		ret = "<table>"
 		ret += tr td tb("Товар", 'product', data: {category: {fields: ['name'], has_self: true, habtm: product: {fields: ['name'], pick: true}}}), attrs: colspan: 3
 		ret += tr [
 			td field("Название", "name", {validation: presence: true}), attrs: {width: "33.3%"}
@@ -27,7 +27,6 @@ app.templates.form.size =
 		ret += relation 'color', color_visible, color
 		ret += '<br>' + relation_add "Добавить опцию", "option_add"
 		ret += relation 'option', option_visible, option
-		ret += btn_save()
 		title('размер') + form ret
 	belongs_to: ["product"]
 	has_many: [

@@ -1,6 +1,6 @@
 app.templates.form.color =
 	page: ->
-		ret = btn_save() + "<table>"
+		ret = "<table>"
 		ret += tr td tb("Размер", 'size', data: {category: {fields: ['name'], has_self: true, habtm: product: {fields: ['name'], has_many: size: {fields: ['name'], pick: true}}}}), attrs: colspan: 3
 		ret += tr image_field 'Добавить изображение', 'image', attrs: colspan: 3
 		ret += tr [
@@ -20,7 +20,6 @@ app.templates.form.color =
 		window.rec = color
 		ret += relation_add "Добавить текстуру", "texture_add"
 		ret += relation 'texture', texture_visible, texture
-		ret += btn_save()
 		title('цвет') + form ret
 	belongs_to: ["size"]
 	has_many: ["texture"]

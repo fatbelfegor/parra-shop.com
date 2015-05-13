@@ -31,8 +31,14 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 		"<div class='text-center'><div class='ib btn blue' onclick='#{onclick}($(this).parent().next().show())'>#{val}</div></div>"
 	window.relation_record = (html) ->
 		"<div#{if window.rec then " data-id='#{window.rec.id}'" else ''} class='relation-record'><div class='btn red remove-relation' onclick='$(this).parent().remove()'>Удалить</div>#{html}</div>"
-	window.btn_save = -> "<div class='btn green m15' onclick='save()'>#{if window.rec then 'Сохранить' else 'Создать'}</div>"
-	window.title = (name) -> "<h1 class='title'>#{if window.rec then 'Редактировать ' else 'Добавить '} <b>#{name}</b></h1>"
+	window.title = (name) -> "<div class='header'>
+			<div class='top'>
+				<div>
+					<div class='name capitalize'>#{name}</div>
+					<div><div onclick='save()' class='btn green'>#{if window.rec then 'Сохранить' else 'Добавить'}</div></div>
+				</div>
+			</div>
+		</div>"
 	window.tr = (html, params) ->
 		ret = "<tr"
 		ret += " #{k}='#{v}'" for k, v of params.attrs if params and params.attrs

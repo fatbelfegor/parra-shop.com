@@ -23,7 +23,13 @@ app.templates.index.packinglist =
 				<td><a class='btn blue' href='/admin/model/packinglist/edit/#{pack.id}' onclick='app.aclick(this)'>Открыть</a></td>
 				<td class='btn red' onclick='packinglist_destroy(this)'>Удалить</td>
 			</tr>"
-		"<h1>Товарные накладные</h1>
+		"<div class='header'>
+			<div class='top'>
+				<div>
+					<div class='name'>Товарная накладная</div>
+				</div>
+			</div>
+		</div>
 		<div class='content'>
 			<label class='text-center'><div class='btn blue ib m15'>Выбрать файл накладной (HTML)</div><div class='hide'></div><input class='hide' onchange='packinglist_upload(this)' type='file' multiple></label>
 			<div class='form' style='width: 350px; margin: 0 auto'>

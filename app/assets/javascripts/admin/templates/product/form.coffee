@@ -1,6 +1,6 @@
 app.templates.form.product =
 	page: ->
-		ret = btn_save() + "<table>"
+		ret = "<table>"
 		ret += tr td tb("Статус", 'extension', data: {extension: {fields: ['name'], pick: true}}), attrs: colspan: 3
 		ret += tr td tb("Категория", 'category', data: {category: {fields: ['name'], pick: true, has_self: true}}), attrs: colspan: 3
 		ret += tr td tb("Подкатегория", 'subcategory', data: {subcategory: {fields: ['name'], pick: true}}), attrs: colspan: 3
@@ -31,7 +31,7 @@ app.templates.form.product =
 		]
 		ret += tr td images(), attrs: colspan: 3
 		ret += tr td text("Описание": "description", "Короткое описание": "shortdesk", "SEO текст": "seo_text", "SEO description": "seo_description": "textarea"), attrs: colspan: 3
-		ret += "</table>" + btn_save()
+		ret += "</table>"
 		title('товар') + form ret
 	belongs_to: ["extension", "subcategory"]
 	has_many: "image"

@@ -4,7 +4,13 @@ app.templates.form.packinglist =
 		pack = window.rec
 		items = db.where 'packinglistitem', packinglist_id: param.id
 		price += r.price * r.amount for r in items
-		ret = "<h1>Товарная накладная</h1>
+		ret = "<div class='header'>
+			<div class='top'>
+				<div>
+					<div class='name'>Товарная накладная</div>
+				</div>
+			</div>
+		</div>
 		<div class='content'>
 			<br>
 			<form>

@@ -1,6 +1,6 @@
 app.templates.form.category =
 	page: ->
-		ret = btn_save() + "<table>"
+		ret = "<table>"
 		ret += tr td tb("Категория", 'category', data: {category: {fields: ['name'], pick: true, has_self: true}}), attrs: colspan: 6
 		ret += tr [
 			td field("Название", "name", {validation: presence: true}), attrs: {colspan: 3, width: "50%"}
@@ -19,8 +19,8 @@ app.templates.form.category =
 			td field("Мобильные url", "mobile_image_url"), attrs: colspan: 2
 			td checkbox("Показывать в мобильном клиенте", "isMobile"), attrs: colspan: 2
 		]
-		ret += tr image_field 'Добавить изображение заголовка', 'header', attrs: colspan: 6
+		ret += tr image_field 'header', 'Добавить изображение заголовка', attrs: colspan: 6
 		ret += tr td images(), attrs: colspan: 6
 		ret += tr td text("Описание": "description", "SEO текст": "seo_text", "SEO description": "seo_description": "textarea"), attrs: colspan: 6
-		title('категорию') + form ret
+		title('категория') + form ret
 	belongs_to: ["category"]

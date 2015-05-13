@@ -153,7 +153,7 @@ app.templates.form.order =
 			td "<h2 class='tal pad m15' style='margin-bottom: 0'>Дополнительная информация</h2>", attrs: colspan: 3
 			td "<b>сборка 6%=2200, подъем 300 руб</b>", attrs: colspan: 3
 		]
-		title('заказ') + form btn_save() + "<table>" + ret + "</table>" + btn_save()
+		title('заказ') + form "<table>" + ret + "</table>"
 	belongs_to: ["status"]
 	has_many: [
 		model: 'order_item', belongs_to: ["product"]

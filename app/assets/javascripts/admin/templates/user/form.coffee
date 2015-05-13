@@ -1,6 +1,6 @@
 app.templates.form.user =
 	page: ->
-		ret = btn_save() + "<table>"
+		ret = "<table>"
 		ret += tr [
 			td field("Префикс", "prefix", format: not_null: true), attrs: {width: "33.3%", colspan: 2}
 			td field("E-mail", "email", validation: {presence: true, uniq: true}), attrs: {width: "33.3%", colspan: 2}
@@ -13,8 +13,8 @@ app.templates.form.user =
 				td field('Пароль', 'password', {type: 'password', validation: {minLength: 8}}), attrs: colspan: 3
 				td field('Подтверждение пароля', 'password_confirmation', {type: 'password', validation: {custom: 'password_confirmation'}}), attrs: colspan: 3
 			]
-		ret += "</table>" + btn_save()
-		title('пользователя') + form ret
+		ret += "</table>"
+		title('пользователь') + form ret
 	beforeSave: ->
 		if window.rec
 			pass = $ "[name='password']"

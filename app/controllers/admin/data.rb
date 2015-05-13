@@ -153,6 +153,13 @@ Admin::Data = {
 					record: Page.find(p[:id])
 				}
 			}
+		},
+		user: lambda { |p|
+			{
+				user: {
+					record: User.find(p[:id])
+				}
+			}
 		}
 	},
 	index: {

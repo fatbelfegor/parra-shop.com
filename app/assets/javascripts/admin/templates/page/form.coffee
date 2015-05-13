@@ -9,4 +9,4 @@ app.templates.form.page =
 			td field("SEO keywords (через запятую)", "seo_keywords")
 		]
 		ret += tr td text("Описание": "description", "SEO description": "seo_description": "textarea"), attrs: colspan: 3
-		title('статью') + form btn_save() + "<table>" + ret + "</table>" + btn_save()
+		title('статья') + form "<table>" + ret + "</table>"

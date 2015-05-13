@@ -16,7 +16,6 @@
 	</a>
 </li>
 <li data-route='model/status'>
-	<div class='icon fade'><a href='/admin/model/status/new' onclick='app.aclick(this)'><i class='icon-pen2'></i></a></div>
 	<a href='/admin/model/status/records' onclick='app.aclick(this)'><i class='icon-new'></i><span>Статусы заказов</span></a>
 </li>
 <li data-route='model/packinglist'>
