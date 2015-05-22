@@ -11,7 +11,8 @@ ParraShopCom::Application.routes.draw do
   get 'users/:id/logs', to: 'users#logs'
   devise_for :users
   get "images/delete", to: 'images#delete'
-  get '/kupit/:scode', to: 'products#product'
+  #get '/kupit/:scode', to: 'products#product'
+  get '/kupit/:scode', to: 'products#show_scode'
   
   root to: 'main#index', as: 'index'
 
