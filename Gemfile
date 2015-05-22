@@ -18,6 +18,7 @@ gem 'acts_as_list'
 #gem 'pg'
 gem 'mysql2'
 
+gem 'russian'
 gem 'write_xlsx'
 
 # Use SCSS for stylesheets
