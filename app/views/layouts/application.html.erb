@@ -46,16 +46,18 @@
   <ul id="mainMenu">  	 
     <li><a href="">Спальни</a>
 	      <div>
+			<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
 	        <div style="background-image: url(/assets/Bella.jpg); left: 0"></div>
 	        <div style="background-image: url(/assets/Plisset.jpg)"></div>
 	        <div style="background-image: url(/assets/Orly.jpg)"></div>
-	        <div style="background-image: url(/assets/Ritmika.jpg)"></div>
+	        <div style="background-image: url(/assets/RitmikaSale.jpg)"></div>
 	        <div style="background-image: url(/assets/Lorra.jpg)"></div>
-	        <div style="background-image: url(/assets/Leggero.jpg)"></div>
+	        <div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
 	        <div style="background-image: url(/assets/Miro.jpg)"></div>
 			<div style="background-image: url(/assets/Mild.jpg)"></div>
 	      </div>     
 	      <ul>
+	<li><%= link_to('Lyona', { :controller => '/catalog', :action => :index, :category_scode => :Lyona} )%></li>
 	<li><%= link_to('Bella', { :controller => '/catalog', :action => :index, :category_scode => :Bella} )%></li>
 	<li><%= link_to('Plisset', { :controller => '/catalog', :action => :index, :category_scode => :Plisset} )%></li>
 	<li><%= link_to('Orly', { :controller => '/catalog', :action => :index, :category_scode => :Orly} )%></li>
@@ -63,11 +65,12 @@
 	<li><%= link_to('Lorra', { :controller => '/catalog', :action => :index, :category_scode => :Lorra} )%></li>
 	<li><%= link_to('Leggero', { :controller => '/catalog', :action => :index, :category_scode => :Leggero} )%></li>
 	<li><%= link_to('Miro', { :controller => '/catalog', :action => :index, :category_scode => :Miro} )%></li>
-	<li><%= link_to('Mild', { :controller => '/catalog', :action => :index, :category_scode => :Mild} )%></li>
+	<li><%= link_to('Mild', { :controller => '/catalog', :action => :index, :category_scode => :Mild} )%></li>	
 	      </ul>
 	    </li>
 	    <li><a href="">Гостинные</a>
 	  <div>
+		<div style="background: url(/assets/NorteNew.jpg)"></div>
 	  	<div style="background: url(/assets/P3.jpg); left: 0"></div>
 	  	<div style="background: url(/assets/BellaGost.jpg)"></div>
 	  	<div style="background: url(/assets/Verro.jpg)"></div>
@@ -77,6 +80,7 @@
 	  	<div style="background: url(/assets/Forma.jpg)"></div>
 	  </div>
 	 <ul>
+		<li><%= link_to('Norte', { :controller => '/catalog', :action => :index, :category_scode => :Norte} )%></li>
 		<li><%= link_to('P3', { :controller => '/catalog', :action => :index, :category_scode => :P3} )%></li>
 		<li><%= link_to('Bella', { :controller => '/catalog', :action => :index, :category_scode => :BellaGost} )%></li>
 		<li><%= link_to('Verro', { :controller => '/catalog', :action => :index, :category_scode => :Verro} )%></li>
@@ -169,17 +173,19 @@
 	<ul id="mainMenuCompact">
   		<li onclick="miniCatOpen(this)">Спальни<p></p>
 			<div>
+				<a href="/catalog/index?category_scode=Lyona"><img src="/assets/LyonaNew.jpg"></a>
 				<a href="/catalog/index?category_scode=Bella"><img src="/assets/Bella.jpg"></a>
 				<a href="/catalog/index?category_scode=Plisset"><img src="/assets/Plisset.jpg"></a>
 				<a href="/catalog/index?category_scode=Orly"><img src="/assets/Orly.jpg"></a>
-				<a href="/catalog/index?category_scode=Ritmika"><img src="/assets/Ritmika.jpg"></a>
+				<a href="/catalog/index?category_scode=Ritmika"><img src="/assets/RitmikaSale.jpg"></a>
 				<a href="/catalog/index?category_scode=Lorra"><img src="/assets/Lorra.jpg"></a>
-				<a href="/catalog/index?category_scode=Leggero"><img src="/assets/Leggero.jpg"></a>
+				<a href="/catalog/index?category_scode=Leggero"><img src="/assets/LeggeroSale.jpg"></a>
 				<a href="/catalog/index?category_scode=Miro"><img src="/assets/Miro.jpg"></a>
 				<a href="/catalog/index?category_scode=Mild"><img src="/assets/Mild.jpg"></a>
 			</div>
   		<li onclick="miniCatOpen(this)">Гостинные<p></p>
   			<div>
+				<a href="/catalog/index?category_scode=Norte"><img src="/assets/NorteNew.jpg"></a>
 				<a href="/catalog/index?category_scode=P3"><img src="/assets/P3.jpg"></a>
 				<a href="/catalog/index?category_scode=BellaGost"><img src="/assets/BellaGost.jpg"></a>
 				<a href="/catalog/index?category_scode=Verro"><img src="/assets/Verro.jpg"></a>
