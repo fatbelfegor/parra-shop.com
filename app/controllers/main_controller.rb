@@ -19,6 +19,15 @@ class MainController < ApplicationController
     @products = Product.all
   end
 
+  def spalni
+  end
+  def gostinaya
+  end
+  def divani
+  end
+  def matras
+  end
+
   def cart  	
   end
 
