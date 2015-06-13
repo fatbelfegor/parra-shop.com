@@ -423,8 +423,9 @@
 		ret.push rec for id, rec of db[model].records
 		ret
 	find: (model, find) ->
-		return [] if !find or !find.length 
+		return [] if !find
 		find = [find] unless find[0]
+		return [] if !find.length
 		ret = []
 		for f in find
 			ret.push @[model].records[f]

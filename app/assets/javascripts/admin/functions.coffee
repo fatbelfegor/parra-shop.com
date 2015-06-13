@@ -224,7 +224,7 @@ String.prototype.classify = ->
 	else if el.name is 'removeImages'
 		remove_id = $el.parent().data 'id'
 		data.removeImages = remove_id
-		fd.append "#{prefix}removeImage[]", remove_id
+		fd.append "#{prefix}removeImages[]", remove_id
 	else if $el.hasClass 'habtm_checkboxes'
 		unless data.fields[el.name]
 			data.fields[el.name] = []

@@ -1,4 +1,5 @@
 app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page = ->
+	$(window).off 'scroll'
 	name = param.model
 	template = app.templates.form[name]
 	param.id = parseInt param.id
@@ -192,7 +193,19 @@ app.routes['model/:model/new'].page = app.routes['model/:model/edit/:id'].page =
 			for k, v of res
 				if v[0].id
 					app.go "/admin/model/#{k}/edit/#{v[0].id}", cb: -> notify 'Запись создана'
-				else notify "Запись сохранена"
+				else
+					setIdsInRelations = (obj) ->
+						for model, records of obj
+							html_records = $(".relation-window[data-model='#{model}'] > .relation-record").get()
+							for i, record of records
+								if record.id
+									$(html_records[i]).data 'id', record.id
+								if record.model
+									setIdsInRelations record.model
+					for k, v of res
+						if v[0].model
+							setIdsInRelations v[0].model
+					notify "Запись сохранена"
 				break
 	window.addFormCb = ->
 		if tinymce?

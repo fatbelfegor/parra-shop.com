@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
   root to: 'page#index', as: 'index'
 
+  get '/spalni', to: 'page#spalni'
+  get '/gostinaya', to: 'page#gostinaya'
+  get '/divani', to: 'page#divani'
+  get '/matras', to: 'page#matras'
+  get '/otzyvy', to: 'page#otzyvy'
+
   get "catalog/index"
   get "catalog/(:url)", to: 'catalog#index'
   post "catalog/products"

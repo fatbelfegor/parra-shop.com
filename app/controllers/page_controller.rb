@@ -16,6 +16,18 @@ class PageController < ApplicationController
 	def cart
 	end
 
+
+	def spalni
+	end
+	def gostinaya
+	end
+	def divani
+	end
+	def matras
+	end
+	def otzyvy
+	end
+
 	def cartjson
 		@product = Product.find_by_name params[:name]
 		render json: @product
