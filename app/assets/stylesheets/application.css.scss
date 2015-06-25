@@ -2885,11 +2885,13 @@ body.small-size {
 		max-width: 100%;
 	}
 }
-.menuCategoryPage.matras {
+.menuCategoryPage.rightShadow {
 	.description {
 		left: 459px;
 		right: 0;
 	}
+}
+.menuCategoryPage.matras {
 	a:hover:nth-child(1) .description {
 		background-color: rgba(89, 19, 103, 0.54);
 	}
