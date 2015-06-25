@@ -124,7 +124,7 @@ nav {
 			text-align: center;
 		}
 
-		> li:before {
+		> li.dark {
 			content: '';
 			display: block;
 			position: absolute;
@@ -136,7 +136,7 @@ nav {
 			@include transition(background-color 1s);
 		}
 
-		> li:hover:before {
+		> li.menu:hover + li.dark {
 			bottom: 40px;
 			background-color: rgba(0, 0, 0, 0.5);
 		}
@@ -716,9 +716,17 @@ nav {
 					}
 				}
 			}
-			.photoes img {
-				width: 492px;
-				display: block;
+			.photoes {
+				a {
+					display: none;
+				}
+				.active {
+					display: block;
+				}
+				img {
+					width: 492px;
+					display: block;
+				}
 			}
 		}
 
@@ -2882,7 +2890,13 @@ body.small-size {
 		left: 459px;
 		right: 0;
 	}
-	a:hover .description {
-		background-color: rgba(171, 120, 189, 0.6);
+	a:hover:nth-child(1) .description {
+		background-color: rgba(89, 19, 103, 0.54);
+	}
+	a:hover:nth-child(2) .description {
+		background-color: rgba(148, 61, 165, 0.54);
+	}
+	a:hover:nth-child(3) .description {
+		background-color: rgba(208, 136, 222, 0.54);
 	}
 }

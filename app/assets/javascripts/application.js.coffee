@@ -496,7 +496,11 @@ expire = ->
 	el = $ el
 	wrap = el.parent()
 	wrap.find('.active').removeClass 'active'
-	wrap.parent().prev().find('img').attr 'src', el.addClass('active').css('background-image')[4..-2]
+	photoes = wrap.parent().prev()
+	photoes.find('.active').removeClass 'active'
+	parser = document.createElement 'a'
+	parser.href = el.addClass('active').css('background-image')[4..-2]
+	photoes.find("[href='#{parser.pathname}']").addClass 'active'
 @productMiniPrev = (el) ->
 	wrap = $(el).next()
 	slides = wrap.find 'div'

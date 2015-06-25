@@ -1,6 +1,6 @@
 <div class="menuCategoryPage">
 	<a href="/catalog/index?category_scode=Lyona"><img src="/assets/LyonaNew.jpg">
-		<div class='description'><%= '' %></div>
+		<div class='description'><p class='name'>Спальня Lyona</p><%= raw Category.find_by_scode('Lyona').description %></div>
 	</a>
 	<a href="/catalog/index?category_scode=Bella"><img src="/assets/Bella.jpg">
 		<div class='description'><p class='name'>Спальня Bella</p><%= raw Category.find_by_scode('Bella').description %></div>
