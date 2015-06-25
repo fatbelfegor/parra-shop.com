@@ -1675,7 +1675,7 @@ a.cart {
 				background-color: #FFFFFF;
 				table {
 					position: relative;
-					height: 329px;
+					height: 365px;
 					width: 100%;
 					border-spacing: 0;
 					border-top: 1px solid #DCDBDB;
@@ -1685,7 +1685,7 @@ a.cart {
 						width: 100%;
 						td {
 							height: 50%;
-							width: 33.33%;
+							width: 20%;
 							border-left: 1px solid #DCDBDB;
 							border-bottom: 1px solid #DCDBDB;
 							a {
@@ -1729,6 +1729,7 @@ a.cart {
 				height: 363px;
 				width: 1000px;
 			  	border: 1px solid #7E7975;
+			  	margin-bottom: 30px;
 				td {
 					width: 20%;
 				}
