@@ -1,17 +1,17 @@
 <div class="home">
-	<% unless @banners.blank? %>
+	<% unless @first_banners.blank? %>
 	<div class="banners">
 		<div id="slider">
 			<div class="prev"></div>
 			<div class="wrap">
-				<% @banners.each_with_index do |b, i| %>
+				<% @first_banners.each_with_index do |b, i| %>
 					<a href="<%= b.url %>" class="<%= 'active' if i == 0 %>" style="background-image: url('<%= b.image %>')"></a>
 				<% end %>
 			</div>
 			<div class="next"></div>
 			<div class="buttons">
 				<div class="active" onclick="sliderChoose(this)"></div>
-				<% (@banners.count - 1).times do %>
+				<% (@first_banners.count - 1).times do %>
 					<div onclick="sliderChoose(this)"></div>
 				<% end %>
 			</div>
@@ -23,35 +23,17 @@
 		<tr>
 			<td>
 				<div>
-					<table>
-						<tr>
-							<% if @cat1.size > 1 then @cat1[0..2].each do |p| %>
-							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
-									<h2><%= p.name %></h2>
-									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
-								</a>
-							</td>
-							<% end end %>
-						</tr>
-						<tr>
-							<% if @cat1.size > 3 then @cat1[3..4].each do |p| %>
-							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
-									<h2><%= p.name %></h2>
-									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
-								</a>
-							</td>
-							<% end end %>
-							<td>
-								<a href="<%= url_for({ :controller => '/catalog', :action => :index, :category_scode => :Bella} )%>" class="showAll">
-									Посмотреть всю<br> коллекцию >><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-								</a>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<span><%= image_tag("main1.png")%></span>				
+					<% unless @second_banners.blank? %>
+					<div class="banners second">
+						<p class="label">Новинки 2015 года</p>
+						<div class="wrap">
+							<% @second_banners.each do |b| %>
+								<a href="<%= b.url %>" style="background-image: url('<%= b.image %>')"></a>
+							<% end %>
+						</div>
+					</div>
+					<% end %>
+				</div>			
 			</td>
 			<td class="opacity"><%= link_to(image_tag("main2.png",:style => "margin-left:25px;"), { :controller => '/catalog', :action => :index, :category_scode => "Матрасы по акции"} )%></td>
 		</tr>
@@ -59,38 +41,19 @@
 
 	<table border="0" cellspacing="0" cellpadding="0" width="90%">
 		<tr>
-			<td class="opacity"><%= link_to(image_tag("main3.png", style: "margin-top:30px"), { :controller => '/catalog', :action => :index, :category_scode => :Столы } )%></td>
+			<td class="opacity"><%= link_to(image_tag("main3.png"), { :controller => '/catalog', :action => :index, :category_scode => :Столы } )%></td>
 			<td>
 				<div class="margin">
-					<table>
-						<tr>
-							<% if @cat2.size > 1 then @cat2[0..2].each do |p| %>
-							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
-									<h2><%= p.name %></h2>
-									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
-								</a>
-							</td>
-							<% end end %>
-						</tr>
-						<tr>
-							<% if @cat2.size > 3 then @cat2[3..4].each do |p| %>
-							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
-									<h2><%= p.name %></h2>
-									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
-								</a>
-							</td>
-							<% end end %>
-							<td>
-								<a href="<%= url_for :controller => '/catalog', :action => :index, :category_scode => :Style %>" class="showAll">
-									Посмотреть всю<br> коллекцию >><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-								</a>
-							</td>
-						</tr>
-					</table>
+					<% unless @third_banners.blank? %>
+					<div class="banners third">
+						<div class="wrap">
+							<% @third_banners.each do |b| %>
+								<a href="<%= b.url %>" style="background-image: url('<%= b.image %>')"></a>
+							<% end %>
+						</div>
+					</div>
+					<% end %>
 				</div>
-				<span><%= image_tag("main4.png", :class => "margin")%></span>
 			</td>
 		</tr>
 	</table>
@@ -98,10 +61,10 @@
 	<table border="0" cellspacing="0" cellpadding="0" width="90%">
 		<tr>
 			<td>
-				<div class="marginTop">
+				<div class="wide hover">
 					<table>
 						<tr>
-							<% if @cat3.size > 0 then @cat3[0..4].each do |p| %>
+							<% if @cat.size > 0 then @cat[0..4].each do |p| %>
 							<td>
 								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
 									<h2><%= p.name %></h2>
@@ -111,7 +74,7 @@
 							<% end end %>
 						</tr>
 						<tr>
-							<% if @cat3.size > 5 then @cat3[5..9].each do |p| %>
+							<% if @cat.size > 5 then @cat[5..9].each do |p| %>
 							<td>
 								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
 									<h2><%= p.name %></h2>
@@ -132,3 +95,8 @@
 <script type="text/javascript">
 	slider()
 </script>
+<style type="text/css">
+    body > .main {
+        background-color: #463F39
+    }
+</style>

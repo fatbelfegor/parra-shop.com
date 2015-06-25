@@ -493,12 +493,25 @@ expire = ->
 		left.attr 'class', 'left'
 		left.attr 'onclick', 'photoLeft(this)'
 @choosePhoto = (el) ->
-	mini = $(el).parent()
-	mini.find('.active').attr 'class',''
-	$(el).attr 'class','active'
-	photoes = mini.parent().find('.photoes')
-	photoes.find('.showPhoto').attr 'class', ''
-	$(photoes.children()[$(el).index()]).attr 'class', 'showPhoto'
+	el = $ el
+	wrap = el.parent()
+	wrap.find('.active').removeClass 'active'
+	wrap.parent().prev().find('img').attr 'src', el.addClass('active').css('background-image')[4..-2]
+@productMiniPrev = (el) ->
+	wrap = $(el).next()
+	slides = wrap.find 'div'
+	wrap.prepend slides.slice(-3).clone()
+	wrap.css left: '-489px'
+	wrap.animate left: 0, 1000, ->
+		slides.slice(-3).remove()
+@productMiniNext = (el) ->
+	wrap = $(el).prev()
+	slides = wrap.find 'div'
+	wrap.append slides.slice(0, 3).clone()
+	wrap.animate left: '-489px', 1000, ->
+		slides.slice(0, 3).remove()
+		wrap.css left: 0
+
 @colorToggle = (el, action) ->
 	unless el.className == 'btn btn-success'
 		div = $(el).parent()
@@ -870,7 +883,6 @@ sliderRight = (steps, products) ->
 		move = active.next()
 	active.addClass('active')
 @sliderChoose = (el) ->
-	console.log 'qwe'
 	unless $(el).hasClass('.active')
 		buttons = $(el).parent()
 		products = buttons.prev().prev()
@@ -888,10 +900,20 @@ sliderRight = (steps, products) ->
 				sliderLeft start - end, products
 			else
 				sliderRight count - start + end, products
+@bannerNext = (wrap) ->
+	slides = wrap.find '> *'
+	slide = slides.first()
+	wrap.append(slide.clone()).addClass 'slide'
+	setTimeout ->
+		wrap.removeClass 'slide'
+		slide.remove()
+	, 1000
 @slider = ->
 	next = $('#slider .next')
 	@sliderInterval = setInterval ->
 		sliderNext next, true
+		bannerNext $ '.banners.second .wrap'
+		bannerNext $ '.banners.third .wrap'
 	, 5000
 @miniCatOpen = (el) ->
 	cat = $(el)

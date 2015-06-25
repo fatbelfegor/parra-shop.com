@@ -6,23 +6,24 @@ size_first = @product.prsizes.first %>
 <div class="show page">
 	<h2><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end%></h2>
 	<div class="main">
-		<div>			
+		<div>
+			<% if @product.extension %>
+				<img class='extension-show' src="<%= @product.extension.image %>">
+			<% end %>
 			<% unless @product.images.empty? %>
 				<% images = @product.images.split(',') %>
-				<div class="mini">
-					<img onclick="choosePhoto(this)" class="active" src="<%= images[0] %>">
-					<%  images.drop(1).each do |i| %>
-			    		<img onclick="choosePhoto(this)" src="<%= i %>">
-			    	<% end %>
-				</div>
-				<% if @product.extension %>
-					<img class='extension-show' src="<%= @product.extension.image %>">
-				<% end %>
 				<div class="photoes">
 			    	<a class="showPhoto" href="<%= images[0] %>" data-lightbox="images" class="image"><img src="<%= images[0] %>"></a>
-					<% images[1..-1].each do |i| %>
-						<a href="<%= i %>" data-lightbox="images" class="image hidden"><img src="<%= i %>"></a>
-					<% end %>
+				</div>
+				<div class="mini">
+					<div class="prev" onclick="productMiniPrev(this)"></div>
+					<div class="wrap">
+						<div onclick="choosePhoto(this)" class="active" style="background-image: url('<%= images[0] %>')"></div>
+						<% images[1..-1].each do |i| %>
+				    		<div onclick="choosePhoto(this)" style="background-image: url('<%= i %>')"></div>
+				    	<% end %>
+					</div>
+					<div class="next" onclick="productMiniNext(this)"></div>
 				</div>
 			<% end %>
 		</div>
@@ -125,6 +126,9 @@ size_first = @product.prsizes.first %>
 					<% end %>
 				</div>
 				<div class="buyButton" onclick="addToCart('<%= @product.name %>', this)">Купить</div>
+				<p style="font-size: 14px; margin: 37px 0 20px"><b>Мы принимаем к оплате:</b></p>
+				<img src="/assets/grayCards.png">
+				<p style="font-size: 12px; font-weight: normal; margin-top: 18px">*Держатели банковских карт перечисленных систем могут расплатиться ими в наших фирменных салонах-магазинах.</p>
 				<%= hidden_field_tag :product_id_field, @product.id %>
 				<%= hidden_field_tag :product_scode, @product.scode %>
 			</div>

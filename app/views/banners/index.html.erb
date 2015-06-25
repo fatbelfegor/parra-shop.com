@@ -1,12 +1,12 @@
 <br><h2 class="text-center">Список баннеров</h2><br>
-
+<br><h3 class="text-center">Первый слайдер</h3><br>
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>Картинка</th>
 		<th>Ссылка</th>
 		<th>Действия</th>
 	</tr>
-	<% for banner in @banners %>
+	<% for banner in @banners.find_all{|b| !b.second_line and !b.third_line} %>
 	<tr>
 		<td>
 			<%= image_tag(banner.image, class: 'img-thumbnail img200') %>
@@ -21,8 +21,64 @@
 	</tr>
 	<% end %>
 	<tr>
-		<td colspan="2" class="text-center">
-			<%= link_to 'Создать новый баннер', new_banner_path, class: 'btn btn-success' %>
+		<td colspan="3" class="text-center">
+			<%= link_to 'Создать новый баннер в первом слайдере', new_banner_path(slider: :first), class: 'btn btn-success' %>
+		</td>
+	</tr>
+</table>
+<br>
+<br><h3 class="text-center">Второй слайдер</h3><br>
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>Картинка</th>
+		<th>Ссылка</th>
+		<th>Действия</th>
+	</tr>
+	<% for banner in @banners.find_all{|b| b.second_line} %>
+	<tr>
+		<td>
+			<%= image_tag(banner.image, class: 'img-thumbnail img200') %>
+		</td>
+		<td class="text-center">
+			<%= link_to banner.url, banner.url %>
+		</td>
+		<td class="text-center">
+			<%= link_to 'Редактировать', edit_banner_path(banner), class: 'btn btn-warning' %>
+			<%= link_to("Удалить", banner, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="3" class="text-center">
+			<%= link_to 'Создать новый баннер во втором слайдере', new_banner_path(slider: :second), class: 'btn btn-success' %>
+		</td>
+	</tr>
+</table>
+<br>
+<br><h3 class="text-center">Третий слайдер</h3><br>
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>Картинка</th>
+		<th>Ссылка</th>
+		<th>Действия</th>
+	</tr>
+	<% for banner in @banners.find_all{|b| b.third_line} %>
+	<tr>
+		<td>
+			<%= image_tag(banner.image, class: 'img-thumbnail img200') %>
+		</td>
+		<td class="text-center">
+			<%= link_to banner.url, banner.url %>
+		</td>
+		<td class="text-center">
+			<%= link_to 'Редактировать', edit_banner_path(banner), class: 'btn btn-warning' %>
+			<%= link_to("Удалить", banner, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="3" class="text-center">
+			<%= link_to 'Создать новый баннер в третьем слайдере', new_banner_path(slider: :third), class: 'btn btn-success' %>
 		</td>
 	</tr>
 </table>

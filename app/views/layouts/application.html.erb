@@ -8,6 +8,7 @@
   <meta name="description" content="<%= @seo_description || '' %>">
   <meta name="keywords" content="<%= @seo_keywords || '' %>">
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="/lightbox/lightbox.min.js"></script>
 </head>
 <body class='<%= controller.controller_name %>'>
 <% if params[:controller] + params[:action] == 'mainindex' %>

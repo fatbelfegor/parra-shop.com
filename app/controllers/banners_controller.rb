@@ -17,13 +17,25 @@ class BannersController < ApplicationController
   end
 
   def create
-    Banner.create banner_params
+    banner = banner_params
+    if params[:slider] == '2'
+      banner[:second_line] = true
+    elsif params[:slider] == '3'
+      banner[:third_line] = true
+    end
+    Banner.create banner
     redirect_to banners_path
   end
 
   def update
+    banner = banner_params
+    if params[:slider] == '2'
+      banner[:second_line] = true
+    elsif params[:slider] == '3'
+      banner[:third_line] = true
+    end
     respond_to do |format|
-      if @banner.update banner_params
+      if @banner.update banner
         format.html { redirect_to banners_path, notice: 'Banner was successfully updated.' }
         format.json { head :no_content }
       else

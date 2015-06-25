@@ -1,9 +1,11 @@
 <%= form_for(@banner) do |f| %>
 <table class="table table-bordered table-striped">
 	<tr>
-		<td>
-		    <h4 class="col-md-4 text-right"><%= f.label :url, "Ссылка", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-		    <div class="col-md-4">
+		<td colspan="1">
+		    <h4 class="text-right"><%= f.label :url, "Ссылка", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+		</td>
+		<td colspan="3">
+		    <div>
 		      <div class="wrath-content-box" style="padding:0 15px">
 		        <%= f.text_field :url, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
 		      </div>
@@ -12,7 +14,7 @@
 	</tr>
 	<tr>
 		<td style="padding: 15px 30px 15px 20px">
-			<div class="text-center col-md-6">
+			<div class="text-center">
 				<div id="addImages" class="banner_image">
 					<% if @banner.image %>
 					<h4>Изображение</h4>
@@ -30,6 +32,15 @@
 				</div>
 				<%= f.hidden_field :image, class: 'one' %>
 			</div>
+		</td>
+		<td>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'first' %> checked='checked'<% end %> value='1'> Первый слайлер</label>
+		</td>
+		<td>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'second' %> checked='checked'<% end %> value='2'> Второй слайлер</label>
+		</td>
+		<td>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'third' %> checked='checked'<% end %> value='3'> Третий слайлер</label>
 		</td>
 	</tr>
 </table>
