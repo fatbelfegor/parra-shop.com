@@ -1731,11 +1731,11 @@ a.cart {
 				}			
 			}
 			.margin {
-				margin-left: 25px;
+				margin-left: 21px;
 			}
 			.wide {
-				height: 363px;
-				width: 1000px;
+				height: 365px;
+				width: 998px;
 			  	border: 1px solid #7E7975;
 			  	margin-bottom: 30px;
 				td {
@@ -1744,6 +1744,10 @@ a.cart {
 				.showAll {
 					padding-top: 34%;
 				}
+			}
+			.wide + span img {
+				height: 367px;
+				width: 1000px;
 			}
 		}
 		td:hover {
@@ -2408,13 +2412,13 @@ th {
 	max-height: 200px;
 }
 .banners {
-	width: 100%;
 	border: 1px solid #7E7975;
 	margin-bottom: 43px;
 	position: relative;
 }
 #slider {
 	height: 388px;
+	width: 998px;
 	background-color: white;
 	.wrap {
 		overflow: hidden;
