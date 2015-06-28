@@ -1,8 +1,6 @@
 <% sizes_exist = !@product.prsizes.blank?
 sizes = @product.prsizes
 size_first = @product.prsizes.first %>
-<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
-<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
 <div class="show page">
 	<h2><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end%></h2>
 	<div class="main">
@@ -292,3 +290,6 @@ size_first = @product.prsizes.first %>
 	priceNum = $('#summaryPrice').html().replace(/ /g,'');
 	productPage()
 </script>
+
+<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
+<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
