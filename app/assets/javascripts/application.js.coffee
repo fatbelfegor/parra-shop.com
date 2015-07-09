@@ -497,6 +497,10 @@ expire = ->
 	wrap = el.parent()
 	wrap.find('.active').removeClass 'active'
 	photoes = wrap.parent().prev()
+	console.log photoes
+	console.log photoes.find('.active')
+	console.log el.attr('style')[23..-3]
+	console.log photoes.find("[href='#{el.attr('style')[23..-3]}']")
 	photoes.find('.active').removeClass 'active'
 	photoes.find("[href='#{el.attr('style')[23..-3]}']").addClass 'active'
 @productMiniPrev = (el) ->
