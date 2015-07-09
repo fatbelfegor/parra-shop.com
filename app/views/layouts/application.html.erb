@@ -48,24 +48,28 @@
 		<li class="menu">
 			<a href="/spalni">Спальни</a>
 			<div>
-				<div style="background-image: url(/assets/LyonaNew.jpg); left: 0"></div>
+				<div style="background-image: url(/assets/GammaNew.jpg); left: 0"></div>
+				<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
 				<div style="background-image: url(/assets/Bella.jpg)"></div>
 				<div style="background-image: url(/assets/Plisset.jpg)"></div>
 				<div style="background-image: url(/assets/Orly.jpg)"></div>
 				<div style="background-image: url(/assets/RitmikaSale.jpg)"></div>
 				<div style="background-image: url(/assets/Lorra.jpg)"></div>
 				<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
+				<div style="background-image: url(/assets/LeggeroSale2.jpg)"></div>
 				<div style="background-image: url(/assets/Miro.jpg)"></div>
 				<div style="background-image: url(/assets/Mild.jpg)"></div>
 			</div>     
 			<ul>
+				<li><%= link_to('Gamma', { :controller => '/catalog', :action => :index, :category_scode => :Gamma} )%></li>
 				<li><%= link_to('Lyona', { :controller => '/catalog', :action => :index, :category_scode => :Lyona} )%></li>
 				<li><%= link_to('Bella', { :controller => '/catalog', :action => :index, :category_scode => :Bella} )%></li>
 				<li><%= link_to('Plisset', { :controller => '/catalog', :action => :index, :category_scode => :Plisset} )%></li>
 				<li><%= link_to('Orly', { :controller => '/catalog', :action => :index, :category_scode => :Orly} )%></li>
 				<li><%= link_to('Ritmika', { :controller => '/catalog', :action => :index, :category_scode => :Ritmika} )%></li>
 				<li><%= link_to('Lorra', { :controller => '/catalog', :action => :index, :category_scode => :Lorra} )%></li>
-				<li><%= link_to('Leggero', { :controller => '/catalog', :action => :index, :category_scode => :Leggero} )%></li>
+				<li><%= link_to('Leggero Орех', { :controller => '/catalog', :action => :index, :category_scode => :Leggero} )%></li>
+				<li><%= link_to('Leggero choco', { :controller => '/catalog', :action => :index, :category_scode => :Leggerochoco1} )%></li>
 				<li><%= link_to('Miro', { :controller => '/catalog', :action => :index, :category_scode => :Miro} )%></li>
 				<li><%= link_to('Mild', { :controller => '/catalog', :action => :index, :category_scode => :Mild} )%></li>	
 			</ul>
@@ -79,6 +83,7 @@
 				<div style="background: url(/assets/BellaGost.jpg)"></div>
 				<div style="background: url(/assets/Verro.jpg)"></div>
 				<div style="background: url(/assets/Style.jpg)"></div>
+				<div style="background: url(/assets/Style2.jpg)"></div>
 				<div style="background: url(/assets/Joy.jpg)"></div>
 				<div style="background: url(/assets/Azzon.jpg)"></div>
 			</div>
@@ -87,7 +92,8 @@
 				<li><%= link_to('P3', { :controller => '/catalog', :action => :index, :category_scode => :P3} )%></li>
 				<li><%= link_to('Bella', { :controller => '/catalog', :action => :index, :category_scode => :BellaGost} )%></li>
 				<li><%= link_to('Verro', { :controller => '/catalog', :action => :index, :category_scode => :Verro} )%></li>
-				<li><%= link_to('Style', { :controller => '/catalog', :action => :index, :category_scode => :Style} )%></li>
+				<li><%= link_to('Style choco', { :controller => '/catalog', :action => :index, :category_scode => :Stylechoco} )%></li>
+				<li><%= link_to('Style орех', { :controller => '/catalog', :action => :index, :category_scode => :Stylenut} )%></li>
 				<li><%= link_to('Joy', { :controller => '/catalog', :action => :index, :category_scode => :Joy} )%></li>
 				<li><%= link_to('Azzon', { :controller => '/catalog', :action => :index, :category_scode => :Azzon} )%></li>
 			</ul>
@@ -184,6 +190,7 @@
 	<ul id="mainMenuCompact">
   		<li onclick="miniCatOpen(this)">Спальни<p></p>
 			<div>
+				<a href="/catalog/index?category_scode=Gamma"><img src="/assets/GammaNew.jpg"></a>
 				<a href="/catalog/index?category_scode=Lyona"><img src="/assets/LyonaNew.jpg"></a>
 				<a href="/catalog/index?category_scode=Bella"><img src="/assets/Bella.jpg"></a>
 				<a href="/catalog/index?category_scode=Plisset"><img src="/assets/Plisset.jpg"></a>
@@ -191,6 +198,7 @@
 				<a href="/catalog/index?category_scode=Ritmika"><img src="/assets/RitmikaSale.jpg"></a>
 				<a href="/catalog/index?category_scode=Lorra"><img src="/assets/Lorra.jpg"></a>
 				<a href="/catalog/index?category_scode=Leggero"><img src="/assets/LeggeroSale.jpg"></a>
+				<a href="/catalog/index?category_scode=Leggerochoco1"><img src="/assets/LeggeroSale2.jpg"></a>
 				<a href="/catalog/index?category_scode=Miro"><img src="/assets/Miro.jpg"></a>
 				<a href="/catalog/index?category_scode=Mild"><img src="/assets/Mild.jpg"></a>
 			</div>
@@ -200,7 +208,8 @@
 				<a href="/catalog/index?category_scode=P3"><img src="/assets/P3.jpg"></a>
 				<a href="/catalog/index?category_scode=BellaGost"><img src="/assets/BellaGost.jpg"></a>
 				<a href="/catalog/index?category_scode=Verro"><img src="/assets/Verro.jpg"></a>
-				<a href="/catalog/index?category_scode=Style"><img src="/assets/Style.jpg"></a>
+				<a href="/catalog/index?category_scode=Stylechoco"><img src="/assets/Style.jpg"></a>
+				<a href="/catalog/index?category_scode=Stylenut"><img src="/assets/Style2.jpg"></a>
 				<a href="/catalog/index?category_scode=Joy"><img src="/assets/Joy.jpg"></a>
 				<a href="/catalog/index?category_scode=Azzon"><img src="/assets/Azzon.jpg"></a>
   		</li>
