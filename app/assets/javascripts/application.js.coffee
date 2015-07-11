@@ -133,16 +133,21 @@ ready = ->
 				if old_price
 					old += old_price
 				else old += float
+			res_price = b + add
 			old_price_tag = $('#oldPrice')
-			res_old_price = parseFloat(old_price_tag.data('val')) + old
-			if res_old_price
+			old_product_price = parseFloat(old_price_tag.data('val')) || b
+			res_old_price = old_product_price + old
+			if res_old_price isnt res_price
 				old_price = res_old_price
 				old_price_tag.html old_price.toCurrency()
+				$('#pricesDifference').html (old_price - res_price).toCurrency()
 				$('p.old_price').show()
+				$('p.difference').show()
 			else
 				$('p.old_price').hide()
+				$('p.difference').hide()
 			$('#pricesDifference').html (old_price - b - add).toCurrency()
-			(b + add).toCurrency()
+			res_price.toCurrency()
 		$('#summaryPrice').html optionsPrice(priceNum)
 	cartMenuGen()
 	$(".sortable").sortable
