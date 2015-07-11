@@ -499,7 +499,6 @@ expire = ->
 	photoes = wrap.parent().prev()
 	url = el.attr('style').split("(")[1].split(")")[0]
 	photoes.find('.active').removeClass 'active'
-	console.log url
 	photoes.find("[href='#{url[1..-2]}'], [href='#{url}']").addClass 'active'
 @productMiniPrev = (el) ->
 	wrap = $(el).next()
