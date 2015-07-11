@@ -30,6 +30,14 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <h4 class="col-md-2 scode"><%= f.label :old_price, "Старая цена:", class: 'control-label wrath-content-box' %></h4>
+          <div class="col-md-1">
+            <div class="wrath-content-box">
+              <%= f.text_field :old_price, class: "form-control" %>
+            </div>
+          </div>
+        </div>
         <div class="text-center" style="margin: 30px 0">
           <%= f.submit 'Сохранить', class: "btn btn-success" %>
         </div>

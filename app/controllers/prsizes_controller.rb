@@ -32,6 +32,7 @@ private
     	:product_id,
   		:scode,
   		:name,
+      :old_price,
   		:price
     )
   end

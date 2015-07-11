@@ -499,7 +499,9 @@ expire = ->
 	photoes = wrap.parent().prev()
 	url = el.attr('style').split("(")[1].split(")")[0]
 	photoes.find('.active').removeClass 'active'
-	photoes.find("[href='#{url[1..-2]}'], [href='#{url}']").addClass 'active'
+	if url[0] is "'" or url[0] is '"'
+		photoes.find("[href='#{url[1..-2]}']").addClass 'active'
+	else photoes.find("[href='#{url}']").addClass 'active'
 @productMiniPrev = (el) ->
 	wrap = $(el).next()
 	slides = wrap.find 'div'

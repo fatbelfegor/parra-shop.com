@@ -116,9 +116,7 @@ size_first = @product.prsizes.first %>
 			</div>
 			<div class="price">
 				<div class="price-block">
-					<% if @product.old_price > 0 %>
-						<p class="old_price">Цена: <strike id='oldPrice' data-val='<%= @product.old_price %>'><%= to_money @product.old_price %></strike> <img src="/assets/rublGray.png"></p>
-					<% end %>
+					<p class="old_price">Цена: <strike id='oldPrice' data-val='<%= @product.old_price %>'><%= to_money @product.old_price %></strike> <img src="/assets/rublGray.png"></p>
 					<p class="main">
 						<b id="summaryPrice"><%= to_money @product.price %></b> <img src="/assets/rubl.png">
 					</p>
@@ -182,12 +180,14 @@ size_first = @product.prsizes.first %>
 				</tr>
 				<tr>
 					<th>Название</th>
+					<th>Старая цена</th>
 					<th>Цена</th>
 					<th>действия</th>
 				</tr>
 				<% for size in sizes %>
 					<tr>
 						<td><%= size.name %></td>
+						<td><%= number_to_currency size.old_price %></td>
 						<td><%= number_to_currency size.price %></td>
 						<td>
 							<%= link_to 'Удалить', size, data: {confirm: 'Вы уверены?'}, :method => :delete, class: 'btn btn-danger' %>
