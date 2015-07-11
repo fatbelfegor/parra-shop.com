@@ -125,11 +125,22 @@ ready = ->
 		window.optionsPrice = (b) ->
 			b = parseFloat b
 			add = 0
+			old = 0
 			$('.option :checked').each ->
-				add += parseFloat @.value
+				float = parseFloat @.value
+				add += float
+				old_price = parseFloat $(@).data 'oldPrice'
+				if old_price
+					old += old_price
+				else old += float
 			old_price_tag = $('#oldPrice')
-			old_price = parseFloat(old_price_tag.data('val')) + add
-			old_price_tag.html old_price.toCurrency()
+			res_old_price = parseFloat(old_price_tag.data('val')) + old
+			if res_old_price
+				old_price = res_old_price
+				old_price_tag.html old_price.toCurrency()
+				$('p.old_price').show()
+			else
+				$('p.old_price').hide()
 			$('#pricesDifference').html (old_price - b - add).toCurrency()
 			(b + add).toCurrency()
 		$('#summaryPrice').html optionsPrice(priceNum)

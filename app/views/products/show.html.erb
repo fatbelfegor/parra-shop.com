@@ -39,7 +39,7 @@ size_first = @product.prsizes.first %>
 						<% first = true %>
 						<% for prsize in @product.prsizes %>
 							<label onchange="priceChange(this)">
-								<input class="size-scode-<%= prsize.scode %>" value="<%= prsize.price %>" type="radio" name="prsizes"<% if first %><%= first = false; ' checked="checked"' %><% end %>/>
+								<input data-old-price='<%= prsize.old_price %>' class="size-scode-<%= prsize.scode %>" value="<%= prsize.price %>" type="radio" name="prsizes"<% if first %><%= first = false; ' checked="checked"' %><% end %>/>
 								<span><%= prsize.name %></span>
 								<span class="hidden"><%= prsize.scode %></span>
 							</label>
