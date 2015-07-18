@@ -50,10 +50,27 @@ ActiveRecord::Schema.define(version: 20150718225514) do
     t.integer "product_id",  null: false
   end
 
+  create_table "colors", force: true do |t|
+    t.integer "size_id"
+    t.string  "name"
+    t.string  "scode"
+    t.string  "image"
+    t.text    "description"
+    t.decimal "price",       precision: 18, scale: 2, default: 0.0
+  end
+
   create_table "extensions", force: true do |t|
     t.string "name"
     t.string "image"
   end
+
+  create_table "images", force: true do |t|
+    t.string  "url"
+    t.integer "imageable_id"
+    t.string  "imageable_type"
+  end
+
+  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
 
   create_table "manager_logs", force: true do |t|
     t.string   "action"
@@ -61,6 +78,13 @@ ActiveRecord::Schema.define(version: 20150718225514) do
     t.integer  "order_item_id"
     t.integer  "user_id"
     t.datetime "time"
+  end
+
+  create_table "options", force: true do |t|
+    t.integer "size_id"
+    t.string  "name"
+    t.string  "scode"
+    t.decimal "price",   precision: 18, scale: 2, default: 0.0
   end
 
   create_table "order_items", force: true do |t|
@@ -138,6 +162,15 @@ ActiveRecord::Schema.define(version: 20150718225514) do
     t.string "user"
   end
 
+  create_table "pages", force: true do |t|
+    t.string "name"
+    t.string "url"
+    t.string "seo_title"
+    t.string "seo_keywords"
+    t.text   "seo_description"
+    t.text   "description"
+  end
+
   create_table "prcolors", force: true do |t|
     t.integer  "product_id"
     t.string   "scode"
@@ -210,6 +243,13 @@ ActiveRecord::Schema.define(version: 20150718225514) do
     t.decimal  "old_price",  precision: 10, scale: 2, default: 0.0
   end
 
+  create_table "sizes", force: true do |t|
+    t.integer "product_id"
+    t.string  "name"
+    t.string  "scode"
+    t.decimal "price",      precision: 18, scale: 2, default: 0.0
+  end
+
   create_table "statuses", force: true do |t|
     t.string "name"
   end
@@ -230,6 +270,12 @@ ActiveRecord::Schema.define(version: 20150718225514) do
 
   add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id", using: :btree
 
+  create_table "subcategory_items", force: true do |t|
+    t.string  "image"
+    t.text    "description"
+    t.integer "subcategory_id"
+  end
+
   create_table "textures", force: true do |t|
     t.integer  "prcolor_id"
     t.string   "scode"
@@ -242,6 +288,13 @@ ActiveRecord::Schema.define(version: 20150718225514) do
   end
 
   add_index "textures", ["color_id"], name: "index_textures_on_color_id", using: :btree
+
+  create_table "user_logs", force: true do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.string   "action"
+    t.datetime "created_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
