@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
 	belongs_to :subcategory
 	belongs_to :extension
 	has_many :order_items
+	has_many :product_footer_images
 	has_and_belongs_to_many :categories, :autosave => true
 	#has_and_belongs_to_many :categories , :join_table => :categories_products , :autosave => true
 	acts_as_list :scope => :category

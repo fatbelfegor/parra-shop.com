@@ -12,6 +12,8 @@ class MainController < ApplicationController
     @first_banners = banners.find_all{|b| !b.second_line and !b.third_line}
     @second_banners = banners.find_all{|b| b.second_line}
     @third_banners = banners.find_all{|b| b.third_line}
+    @title = "ParraShop — мебель parra от Новомебель из Литвы в Москве"
+    @seo_description = "Магазин мебель Parra в Москве — ParraShop"
   end
   
   def main

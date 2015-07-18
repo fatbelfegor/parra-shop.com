@@ -9,6 +9,7 @@ gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-ra
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'ox'
 gem 'stylus'
+gem 'carrierwave'
 
 gem 'tinymce-rails'
 

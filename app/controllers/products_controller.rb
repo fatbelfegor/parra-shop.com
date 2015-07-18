@@ -65,6 +65,13 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
+        if params[:product_footer_images]
+          for image in params[:product_footer_images]
+            footer_image = @product.product_footer_images.new
+            footer_image.image = image
+            footer_image.save
+          end
+        end
         format.html { redirect_to '/kupit/'+@product.scode, notice: 'Product was successfully created.' }
         format.json { render action: 'show', status: :created, location: @product }
       else
@@ -78,6 +85,18 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     params[:product][:category_ids] ||= [params[:product][:category_id]]
+    if params[:product_footer_images]
+      for image in params[:product_footer_images]
+        footer_image = @product.product_footer_images.new
+        footer_image.image = image
+        footer_image.save
+      end
+    end
+    if params[:remove_product_footer_images]
+      for id in params[:remove_product_footer_images]
+        ProductFooterImage.find(id).destroy
+      end
+    end
     respond_to do |format|
       if @product.update(product_params) 
         format.html { redirect_to URI.encode("/kupit/#{@product.scode}"), notice: 'Product was successfully created.' }
@@ -148,7 +167,9 @@ private
       :seo_text,
       :old_price,
       :seo_title2,
-  		:category_ids => []
+  		:product_footer_images,
+      :remove_product_footer_images,
+      :category_ids => []
     )
   end
 end

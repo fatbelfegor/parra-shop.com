@@ -277,6 +277,13 @@ size_first = @product.prsizes.first %>
 			<%= render(:partial => "products/productFooter" , collection: @product.subcategory.products) %>
 		<% end %>
 	</div>
+	<% unless @product.product_footer_images.blank? %>
+		<% for footer in @product.product_footer_images %>
+			<br>
+			<br>
+			<a href="<%= footer.image.url %>" data-lightbox="footer-images"><img style="width: 100%" src="<%= footer.image.url %>"></a>
+		<% end %>
+	<% end %>
 	<% unless @product.seo_text.blank? %>
 		<div class="seo_text">
 			<%= raw @product.seo_text %>

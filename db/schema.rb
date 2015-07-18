@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711151047) do
+ActiveRecord::Schema.define(version: 20150718225514) do
 
   create_table "banners", force: true do |t|
     t.string   "image"
@@ -151,6 +151,11 @@ ActiveRecord::Schema.define(version: 20150711151047) do
   end
 
   add_index "prcolors", ["prsize_id"], name: "index_prcolors_on_prsize_id", using: :btree
+
+  create_table "product_footer_images", force: true do |t|
+    t.string  "image"
+    t.integer "product_id"
+  end
 
   create_table "products", force: true do |t|
     t.integer  "category_id"

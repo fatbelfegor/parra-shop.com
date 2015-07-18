@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def page404
-    raise ActionController::RoutingError.new('Not Found')    
   end
   
   protected

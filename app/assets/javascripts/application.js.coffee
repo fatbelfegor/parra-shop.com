@@ -1020,3 +1020,13 @@ writeChars = ->
 	else
 		el.html 'Развернуть'
 	el.parents('tr').next().toggleClass('show')
+@addProductFooterImage = (input) ->
+	if input.files
+		el = $ input
+		label = el.parent()
+		reader = new FileReader()
+		reader.onload = (e) ->
+			div = $ '<div/>', style: "display: inline-block; margin-bottom: 10px", html: "<img style='width: 100px; height: 100px; margin: 10px 10px 0; display: block' class='img-thumbnail' src='#{e.target.result}'><small class='btn btn-warning' onclick='$(this).parent().remove()'>Удалить</small>"
+			el.before(el.clone()).appendTo div
+			label.next().append div
+		reader.readAsDataURL input.files[0]
