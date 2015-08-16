@@ -60,6 +60,10 @@ class MainController < ApplicationController
     @title = 'Информация для покупателей о гарантийном обслуживание.'
   end
 
+  def stores
+    @title = 'Где купить — ParraShop" и заголовок "Адреса магазинов где Вы можете купить мебель от ParraShop в Москве'
+  end
+
   def store2
     @title = 'Мебель parra-shop в мебельном гипермаркете Family Room.'
     @seo_description = 'Мебель производства фабри Новомебель и вся продукция интерне магазина parra-shop в магазинах москвы. Тел. 8-800-707-67-57 звонок бесплатный по России.'
@@ -102,5 +106,8 @@ class MainController < ApplicationController
     @title = 'Отзывы покупателей о мебели parra, производства - Новомебель.'
     @seo_description = 'Читаем и пишем новые отзывы о мебельной продукции PARRA, производства Новомебель.'
     @seo_keywords = 'мебель parra отзывы.'
+  end
+  def about
+    @title = "О нас"
   end
 end

@@ -4,6 +4,7 @@ ParraShopCom::Application.routes.draw do
   get '/divani', to: 'main#divani'
   get '/matras', to: 'main#matras'
   get '/otzyvy', to: 'main#otzyvy', as: :otzyvy
+  get '/about', to: 'main#about', as: :about
   get "/Jimmi", to: 'main#Jimmi'
   get "order_item/plus"
   get "order_item/minus"
@@ -38,6 +39,14 @@ ParraShopCom::Application.routes.draw do
   get "insurance", to: 'main#insurance'
 
   get 'orders/:id/Заказ :user_id :order_id.xlsx', to: 'orders#xlsx'
+
+  get 'store2', to: redirect("mebelnyj-gipermarket-family-room", 301)
+  get 'store3', to: redirect("tk-armada", 301)
+  get 'store4', to: redirect("tc-cheremushki", 301)
+  get 'store5', to: redirect("tc%20roomer", 301)
+  get 'store6', to: redirect("tk-tvoj-dom-na-66-km-mkad", 301)
+  get 'store7', to: redirect("trc-rio-reutov", 301)
+  get 'store8', to: redirect("mc-vagant-podolsk", 301)
 
   post 'categories/copy', to: 'categories#copy'
   post 'catalog/products', to: 'catalog#products'
