@@ -33,5 +33,7 @@ module ParraShopCom
     I18n.config.enforce_available_locales = true
     config.i18n.available_locales = [:ru]
     config.i18n.default_locale = :ru
+
+    config.middleware.insert_before 'ActionDispatch::ParamsParser', 'HandleErrorsMiddleware'
   end
 end
