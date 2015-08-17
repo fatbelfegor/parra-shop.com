@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  #before_filter :ending_slash
+  before_filter :ending_slash
   rescue_from Exception, with: :page404
 
   def page404
@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
    end
 
    def ending_slash
-    if request.original_fullpath[-1] == '/' and request.original_fullpath != '/'
+    if request.original_fullpath.size > 1 and request.original_fullpath[-1] == '/'
+      p request.original_fullpath
       redirect_to request.original_fullpath[0..-2], status: 301
     else
       true
