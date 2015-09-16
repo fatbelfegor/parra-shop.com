@@ -78,7 +78,7 @@
 	    </li>
 		<li class="dark"></li>
 	    <li class="menu">
-	    	<a href="/gostinaya">Гостинные</a>
+	    	<a href="/gostinaya">Гостиные</a>
 			<div>
 				<div style="background: url(/assets/NorteNew.jpg); left: 0"></div>
 				<div style="background: url(/assets/P3.jpg)"></div>
@@ -126,12 +126,14 @@
 			<div>
 				<div style="background: url(/assets/SonberryOrganic.jpg); left: 0"></div>
 				<div style="background: url(/assets/SonberryAero.jpg)"></div>
-				<div style="background: url(/assets/SonberryActive.jpg)"></div>  
+				<div style="background: url(/assets/SonberryActive.jpg)"></div> 
+				<div style="background: url(/assets/SonberryItalia.jpg)"></div>  
 			</div>
 			<ul>
 				<li><%= link_to('Organic', { :controller => '/catalog', :action => :index, :category_scode => :SonberryOrganic} )%></li>
 				<li><%= link_to('Aero', { :controller => '/catalog', :action => :index, :category_scode => :SonberryAero} )%></li>
 				<li><%= link_to('Active', { :controller => '/catalog', :action => :index, :category_scode => :SonberryActive} )%></li>
+				<li><%= link_to('Italia', { :controller => '/catalog', :action => :index, :category_scode => :SonberryItalia} )%></li>
 			</ul>
 		</li>
 		<li class="dark"></li>
@@ -205,7 +207,7 @@
 				<a href="/catalog/index?category_scode=Miro"><img src="/assets/Miro.jpg"></a>
 				<a href="/catalog/index?category_scode=Mild"><img src="/assets/Mild.jpg"></a>
 			</div>
-  		<li onclick="miniCatOpen(this)">Гостинные<p></p>
+  		<li onclick="miniCatOpen(this)">Гостиные<p></p>
   			<div>
 				<a href="/catalog/index?category_scode=Norte"><img src="/assets/NorteNew.jpg"></a>
 				<a href="/catalog/index?category_scode=P3"><img src="/assets/P3.jpg"></a>
@@ -231,6 +233,7 @@
 				<a href="/catalog/index?category_scode=SonberryOrganic"><img src="/assets/SonberryOrganic.jpg"></a>
 				<a href="/catalog/index?category_scode=SonberryAero"><img src="/assets/SonberryAero.jpg"></a>
 				<a href="/catalog/index?category_scode=SonberryActive"><img src="/assets/SonberryActive.jpg"></a>
+				<a href="/catalog/index?category_scode=SonberryItalia"><img src="/assets/SonberryItalia.jpg"></a>
 			</div>
   		</li>
   		<li class="allProducts" onclick="$(this).toggleClass('open')">Все товары<p></p>
@@ -290,7 +293,6 @@
         <li><%= link_to 'Партнерам', partners_path %></li>
         <li><%= link_to 'Новости', news_path %></li>
         <li><%= link_to 'Статьи', articles_path %></li>
-        <li><%= link_to 'Гарантии', insurance_path %></li>
         <li><%= link_to 'Гарантии', insurance_path %></li>
         <li><%= link_to 'Отзывы', otzyvy_path %></li>
         <li><%= link_to 'О нас', about_path %></li>
