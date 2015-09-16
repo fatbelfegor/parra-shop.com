@@ -40,13 +40,13 @@ ParraShopCom::Application.routes.draw do
 
   get 'orders/:id/Заказ :user_id :order_id.xlsx', to: 'orders#xlsx'
 
-  get 'store2', to: redirect("mebelnyj-gipermarket-family-room", 301)
-  get 'store3', to: redirect("tk-armada", 301)
-  get 'store4', to: redirect("tc-cheremushki", 301)
-  get 'store5', to: redirect("tc%20roomer", 301)
-  get 'store6', to: redirect("tk-tvoj-dom-na-66-km-mkad", 301)
-  get 'store7', to: redirect("trc-rio-reutov", 301)
-  get 'store8', to: redirect("mc-vagant-podolsk", 301)
+  get 'store2', to: redirect("mebelnyj-gipermarket-family-room", status: 301)
+  get 'store3', to: redirect("tk-armada", status: 301)
+  get 'store4', to: redirect("tc-cheremushki", status: 301)
+  get 'store5', to: redirect("tc%20roomer", status: 301)
+  get 'store6', to: redirect("tk-tvoj-dom-na-66-km-mkad", status: 301)
+  get 'store7', to: redirect("trc-rio-reutov", status: 301)
+  get 'store8', to: redirect("mc-vagant-podolsk", status: 301)
 
   post 'categories/copy', to: 'categories#copy'
   post 'catalog/products', to: 'catalog#products'
