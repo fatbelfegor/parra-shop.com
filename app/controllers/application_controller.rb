@@ -4,10 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :ending_slash
-  rescue_from Exception, with: :page404
-
-  def page404
-  end
 
   protected
 

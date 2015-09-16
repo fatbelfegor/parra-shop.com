@@ -1,6 +1,11 @@
 # encoding: utf-8
 
 class MainController < ApplicationController
+  rescue_from Exception, with: :not_found
+
+  def not_found
+    render 'pages/not_found', status: 404
+  end
   def index
     @products = Product.all
     if user_signed_in? && current_user.admin?

@@ -1,5 +1,29 @@
-# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
-#
-# To ban all spiders from the entire site uncomment the next two lines:
-# User-agent: *
-# Disallow: /
+User-agent: *
+Disallow: /?
+Disallow: /*?id=kr
+Disallow: /*?id=at
+Disallow: /*?utm
+Disallow: /cart
+Disallow: /assets
+Disallow: /lightbox/
+Disallow: /fonts
+Disallow: /*index?q=
+Host: www.parra-shop.ru
+Sitemap: http://www.parra-shop.ru/sitemap.xml
+
+User-agent: Googlebot
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.gif
+Disallow: /?
+Disallow: /*?id=kr
+Disallow: /*?id=at
+Disallow: /*?utm
+Disallow: /cart
+Disallow: /assets
+Disallow: /lightbox/
+Disallow: /fonts
+Disallow: /*index?q=
+Sitemap: http://www.parra-shop.ru/sitemap.xml

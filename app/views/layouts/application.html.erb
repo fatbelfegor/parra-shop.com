@@ -62,18 +62,18 @@
 				<div style="background-image: url(/assets/Mild.jpg)"></div>
 			</div>     
 			<ul>
-				<li><%= link_to('Gamma', { :controller => '/catalog', :action => :index, :category_scode => :Gamma} )%></li>
-				<li><%= link_to('Lyona', { :controller => '/catalog', :action => :index, :category_scode => :Lyona} )%></li>
-				<li><%= link_to('Bella', { :controller => '/catalog', :action => :index, :category_scode => :Bella} )%></li>
-				<li><%= link_to('Plisset', { :controller => '/catalog', :action => :index, :category_scode => :Plisset} )%></li>
-				<li><%= link_to('Orly', { :controller => '/catalog', :action => :index, :category_scode => :Orly} )%></li>
-				<li><%= link_to('Ritmika', { :controller => '/catalog', :action => :index, :category_scode => :Ritmika} )%></li>
-				<li><%= link_to('Ritmika2', { :controller => '/catalog', :action => :index, :category_scode => :Ritmika2} )%></li>
-				<li><%= link_to('Lorra', { :controller => '/catalog', :action => :index, :category_scode => :Lorra} )%></li>
-				<li><%= link_to('Leggero Орех', { :controller => '/catalog', :action => :index, :category_scode => :Leggero} )%></li>
-				<li><%= link_to('Leggero choco', { :controller => '/catalog', :action => :index, :category_scode => :Leggerochoco1} )%></li>
-				<li><%= link_to('Miro', { :controller => '/catalog', :action => :index, :category_scode => :Miro} )%></li>
-				<li><%= link_to('Mild', { :controller => '/catalog', :action => :index, :category_scode => :Mild} )%></li>	
+				<li><%= link_to('Gamma', { controller: :catalog, action: :index, url: 'spalni-gamma'} )%></li>
+				<li><%= link_to('Lyona', { controller: :catalog, action: :index, url: 'spalni-liona'} )%></li>
+				<li><%= link_to('Bella', { controller: :catalog, action: :index, url: 'spalni-bella'} )%></li>
+				<li><%= link_to('Plisset', { controller: :catalog, action: :index, url: 'spalni-plisset'} )%></li>
+				<li><%= link_to('Orly', { controller: :catalog, action: :index, url: 'spalni-orly'} )%></li>
+				<li><%= link_to('Ritmika', { controller: :catalog, action: :index, url: 'spalni-ritmika'} )%></li>
+				<li><%= link_to('Ritmika2', { controller: :catalog, action: :index, url: 'spalni-ritmika2'} )%></li>
+				<li><%= link_to('Lorra', { controller: :catalog, action: :index, url: 'spalni-lorra'} )%></li>
+				<li><%= link_to('Leggero Орех', { controller: :catalog, action: :index, url: 'spalni-leggero-oreh'} )%></li>
+				<li><%= link_to('Leggero choco', { controller: :catalog, action: :index, url: 'spalni-leggero-choco1'} )%></li>
+				<li><%= link_to('Miro', { controller: :catalog, action: :index, url: 'spalni-miro'} )%></li>
+				<li><%= link_to('Mild', { controller: :catalog, action: :index, url: 'spalni-mild'} )%></li>	
 			</ul>
 	    </li>
 		<li class="dark"></li>
@@ -90,14 +90,14 @@
 				<div style="background: url(/assets/Azzon.jpg)"></div>
 			</div>
 			<ul>
-				<li><%= link_to('Norte', { :controller => '/catalog', :action => :index, :category_scode => :Norte} )%></li>
-				<li><%= link_to('P3', { :controller => '/catalog', :action => :index, :category_scode => :P3} )%></li>
-				<li><%= link_to('Bella', { :controller => '/catalog', :action => :index, :category_scode => :BellaGost} )%></li>
-				<li><%= link_to('Verro', { :controller => '/catalog', :action => :index, :category_scode => :Verro} )%></li>
-				<li><%= link_to('Style choco', { :controller => '/catalog', :action => :index, :category_scode => :Stylechoco} )%></li>
-				<li><%= link_to('Style орех', { :controller => '/catalog', :action => :index, :category_scode => :Stylenut} )%></li>
-				<li><%= link_to('Joy', { :controller => '/catalog', :action => :index, :category_scode => :Joy} )%></li>
-				<li><%= link_to('Azzon', { :controller => '/catalog', :action => :index, :category_scode => :Azzon} )%></li>
+				<li><%= link_to('Norte', { controller: :catalog, action: :index, url: 'gostinye-norte'} )%></li>
+				<li><%= link_to('P3', { controller: :catalog, action: :index, url: 'gostinnye-pz'} )%></li>
+				<li><%= link_to('Bella', { controller: :catalog, action: :index, url: 'gostinnye-bella'} )%></li>
+				<li><%= link_to('Verro', { controller: :catalog, action: :index, url: 'gostinnye-verro'} )%></li>
+				<li><%= link_to('Style choco', { controller: :catalog, action: :index, url: 'gostinnye-style-choco'} )%></li>
+				<li><%= link_to('Style орех', { controller: :catalog, action: :index, url: 'gostinnye-style-oreh'} )%></li>
+				<li><%= link_to('Joy', { controller: :catalog, action: :index, url: 'gostinnye-joy'} )%></li>
+				<li><%= link_to('Azzon', { controller: :catalog, action: :index, url: 'gostinye-azzon'} )%></li>
 			</ul>
 		</li>
 		<li class="dark"></li>
@@ -112,12 +112,12 @@
 				<div style="background: url(/assets/SoftAgioArteCircle.jpg)"></div>
 			</div>
 			<ul>
-				<li><%= link_to('Trevi', { :controller => '/catalog', :action => :index, :category_scode => :Trevi} )%></li>
-				<li><%= link_to('Opera', { :controller => '/catalog', :action => :index, :category_scode => :Opera} )%></li>
-				<li><%= link_to('Lucca', { :controller => '/catalog', :action => :index, :category_scode => :Lucca} )%></li>
-				<li><%= link_to('Ritmo', { :controller => '/catalog', :action => :index, :category_scode => :Ritmo} )%></li>
-				<li><%= link_to('Nuvola', { :controller => '/catalog', :action => :index, :category_scode => :Nuvola} )%></li>
-				<li><%= link_to('Кресла', { :controller => '/catalog', :action => :index, :category_scode => :Кресла} )%></li>
+				<li><%= link_to('Trevi', { controller: :catalog, action: :index, url: 'divany-trevi'} )%></li>
+				<li><%= link_to('Opera', { controller: :catalog, action: :index, url: 'divany-opera'} )%></li>
+				<li><%= link_to('Lucca', { controller: :catalog, action: :index, url: 'divany-lucca'} )%></li>
+				<li><%= link_to('Ritmo', { controller: :catalog, action: :index, url: 'divany-ritmo'} )%></li>
+				<li><%= link_to('Nuvola', { controller: :catalog, action: :index, url: 'divany-nuvola'} )%></li>
+				<li><%= link_to('Кресла', { controller: :catalog, action: :index, url: 'kresla'} )%></li>
 			</ul>
 		</li>
 		<li class="dark"></li>
@@ -130,10 +130,10 @@
 				<div style="background: url(/assets/SonberryItalia.jpg)"></div>  
 			</div>
 			<ul>
-				<li><%= link_to('Organic', { :controller => '/catalog', :action => :index, :category_scode => :SonberryOrganic} )%></li>
-				<li><%= link_to('Aero', { :controller => '/catalog', :action => :index, :category_scode => :SonberryAero} )%></li>
-				<li><%= link_to('Active', { :controller => '/catalog', :action => :index, :category_scode => :SonberryActive} )%></li>
-				<li><%= link_to('Italia', { :controller => '/catalog', :action => :index, :category_scode => :SonberryItalia} )%></li>
+				<li><%= link_to('Organic', { controller: :catalog, action: :index, url: 'matrasy-organic'} )%></li>
+				<li><%= link_to('Aero', { controller: :catalog, action: :index, url: 'matrasy-aero'} )%></li>
+				<li><%= link_to('Active', { controller: :catalog, action: :index, url: 'matrasy-active'} )%></li>
+				<li><%= link_to('Italia', { controller: :catalog, action: :index, url: 'matrasy-italia'} )%></li>
 			</ul>
 		</li>
 		<li class="dark"></li>
@@ -141,18 +141,18 @@
 			<a>Все товары</a>
 			<div>
 				<p>
-					<%= link_to('Кровати', { :controller => '/catalog', :action => :index, :category_scode => :Кровати} )%>
-					<%= link_to('Шкафы', { :controller => '/catalog', :action => :index, :category_scode => :Шкафы} )%>
-					<%= link_to('Комоды', { :controller => '/catalog', :action => :index, :category_scode => :Комоды} )%>
-					<%= link_to('Тумбочки', { :controller => '/catalog', :action => :index, :category_scode => :Тумбочки} )%>
-					<%= link_to('Тумбы TV', { :controller => '/catalog', :action => :index, :category_scode => :ТумбыподTV} )%>
+					<%= link_to('Кровати', { controller: :catalog, action: :index, url: 'krovati-dlja-spalni'} )%>
+					<%= link_to('Шкафы', { controller: :catalog, action: :index, url: 'shkafy'} )%>
+					<%= link_to('Комоды', { controller: :catalog, action: :index, url: 'komody'} )%>
+					<%= link_to('Тумбочки', { controller: :catalog, action: :index, url: 'tumby-dlja-spalni'} )%>
+					<%= link_to('Тумбы TV', { controller: :catalog, action: :index, url: 'tumby-pod-tv'} )%>
 				</p>
 				<p>
-					<%= link_to('Зеркала', { :controller => '/catalog', :action => :index, :category_scode => :Зеркала} )%>
-					<%= link_to('Полки', { :controller => '/catalog', :action => :index, :category_scode => :Полки} )%>
-					<%= link_to('Столы', { :controller => '/catalog', :action => :index, :category_scode => :Столы} )%>
-					<%= link_to('Основания', { :controller => '/catalog', :action => :index, :category_scode => :Основания} )%>
-					<%= link_to('Буфеты', { :controller => '/catalog', :action => :index, :category_scode => :Буфеты} )%>
+					<%= link_to('Зеркала', { controller: :catalog, action: :index, url: 'zerkala'} )%>
+					<%= link_to('Полки', { controller: :catalog, action: :index, url: 'polki'} )%>
+					<%= link_to('Столы', { controller: :catalog, action: :index, url: 'stoly'} )%>
+					<%= link_to('Основания', { controller: :catalog, action: :index, url: 'osnovanija'} )%>
+					<%= link_to('Буфеты', { controller: :catalog, action: :index, url: 'bufety'} )%>
 				</p>				
 			</div>
 		</li>

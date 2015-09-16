@@ -2,12 +2,17 @@
 # encoding: utf-8
 
 class CatalogController < ApplicationController
+  rescue_from Exception, with: :not_found
+
+  def not_found
+    render 'pages/not_found', status: 404
+  end
   def index
     if params[:category_scode].present?
       @category = Category.find_by_scode(params[:category_scode])
       return render 'application/page404' if @category.blank?
       unless @category.url.blank?
-        redirect_to "/catalog/#{@category.url}"
+        redirect_to "/catalog/#{@category.url}", status: 301
       end
       @title = @category.title
       @seo_description = @category.s_description
