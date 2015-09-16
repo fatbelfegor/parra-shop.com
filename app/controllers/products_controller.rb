@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   
   def show_scode
     @product = Product.find_by_scode(params[:scode])
+    fresh_when @product
     return render :action => 'page404' unless @product
     unless @product.s_title.blank?
       @title = @product.seo_title2

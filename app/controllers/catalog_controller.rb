@@ -10,6 +10,7 @@ class CatalogController < ApplicationController
   def index
     if params[:category_scode].present?
       @category = Category.find_by_scode(params[:category_scode])
+      fresh_when @category
       return render 'application/page404' if @category.blank?
       unless @category.url.blank?
         redirect_to "/catalog/#{@category.url}", status: 301
@@ -23,6 +24,7 @@ class CatalogController < ApplicationController
       @products = Product.where('invisible = false')
     elsif params[:url].present?
       @category = Category.find_by url: params[:url]
+      fresh_when @category
       params[:category_scode] = @category.scode
       @title = @category.title
       @seo_description = @category.s_description

@@ -20,6 +20,10 @@ class MainController < ApplicationController
     @title = "ParraShop — мебель parra от Новомебель из Литвы в Москве"
     @seo_description = "Магазин мебель Parra в Москве — ParraShop"
   end
+
+  def sitemap
+    @title = 'Карта сайта'    
+  end
   
   def main
     @products = Product.all

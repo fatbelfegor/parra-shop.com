@@ -21,8 +21,10 @@ ParraShopCom::Application.routes.draw do
   
   root to: 'main#index', as: 'index'
 
+  get '/sitemap', to: 'main#sitemap'
+
   get "stores", to: 'main#stores'
-  get "store1", to: 'main#store1'
+  get "store1", to: 'main#store1', as: 'store1'
   get "mebelnyj-gipermarket-family-room", to: 'main#store2', as: 'store2'
   get "tk-armada", to: 'main#store3', as: 'store3'
   get "tc-cheremushki", to: 'main#store4', as: 'store4'
