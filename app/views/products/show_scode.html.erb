@@ -2,7 +2,22 @@
 sizes = @product.prsizes
 size_first = @product.prsizes.first %>
 <div class="show page">
-	<h2><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end%></h2>
+	<div class="breadcrumbs" style="margin: 10px">
+		<a href="/">Главная</a>
+		<span>></span>
+		<% if @product.category %>
+			<% par = @product.category.parent
+			while par %>
+				<a href="/catalog/<%= par.url %>"><%= par.name %></a>
+				<span>></span>
+				<% par = par.parent
+			end %>
+			<a href="/catalog/<%= @product.category.url %>"><%= @product.category.name %></a>
+			<span>></span>
+		<% end %>
+		<p><%= @product.name %></p>
+	</div>
+	<h2><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end %></h2>
 	<div class="main">
 		<div>
 			<% if @product.extension %>

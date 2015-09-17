@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    redirect_to :controller => 'products', :action => 'show_scode', :product_scode => @product.scode, :status => :moved_permanently
+    redirect_to action: 'show_scode', scode: @product.scode, status: 301
   end
   
   def show_scode
@@ -32,10 +32,6 @@ class ProductsController < ApplicationController
     end
     if !@product.invisible || (user_signed_in? && current_user.admin?)
       @categories = Category.all.order :position
-      respond_to do |format|
-        format.html {render :action => 'show'}
-        format.xml  { render :xml => @product }
-      end
     else      
       render :action => 'page404'
     end
