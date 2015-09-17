@@ -3,20 +3,20 @@
 <div class="home">
 	<% unless @first_banners.blank? %>
 	<div class="banners">
-		<div id="slider">
-			<div class="prev"></div>
+		<div id="slider"<% if @first_banners.size == 1 %> style='height: 360px'<% end %>>
 			<div class="wrap">
 				<% @first_banners.each_with_index do |b, i| %>
 					<a href="<%= b.url %>" class="<%= 'active' if i == 0 %>" style="background-image: url('<%= b.image %>')"></a>
 				<% end %>
 			</div>
-			<div class="next"></div>
-			<div class="buttons">
-				<div class="active" onclick="sliderChoose(this)"></div>
-				<% (@first_banners.count - 1).times do %>
-					<div onclick="sliderChoose(this)"></div>
-				<% end %>
-			</div>
+			<% unless @first_banners.size == 1 %>
+				<div class="buttons">
+					<div class="active" onclick="sliderChoose(this)"></div>
+					<% (@first_banners.count - 1).times do %>
+						<div onclick="sliderChoose(this)"></div>
+					<% end %>
+				</div>
+			<% end %>
 		</div>
 	</div>
 	<% end %>
@@ -114,10 +114,11 @@
 	<p>Parra-Shop следит за качеством своей продукции. Parra мебель проста в эксплуатации, практична, надежна и стильна. А высокие технические характеристики мебели дают возможность устанавливать длительный гарантийный срок на продукцию – два года.</p>
 	<p>Мебель для вашего дома от Parra-Shop – это комфорт, стиль и высочайшее качество!</p>
 </div>
-
+<% unless @first_banners.size == 1 %>
 <script type="text/javascript">
 	slider()
 </script>
+<% end %>
 <style type="text/css">
     body > .main {
         background-color: #463F39
