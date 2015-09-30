@@ -1,0 +1,34 @@
+<br><h2 class="text-center">Комментарии</h2><br>
+
+<div class="text-center">
+<%= link_to 'Создать комментарий', new_comment_path, class: 'btn btn-primary' %>
+</div>
+<br>
+<table class="table table-striped table-bordered text-center table-lh-34">
+	<tr>
+		<th>Название</th>
+		<th>Содержание</th>
+		<th>Автор</th>
+		<th>Опубликованность</th>
+		<th>Действия</th>
+	</tr>
+	<% for comment in @comments %>
+		<tr>
+			<td><%= comment.title %></td>
+			<td><%= comment.body %></td>
+			<td><%= comment.author %></td>
+			<td><label><input onclick="publish(this, <%= comment.id %>)" type='checkbox'<%= if comment.published then ' checked' else '' end %>><p><%= if comment.published then 'Опубликовано' else 'Не опубликовано' end %></p></label></td>
+			<td>
+				<%= link_to("Редактировать", edit_comment_path(comment.id), class: 'btn btn-warning') %>
+				<%= link_to("Удалить", comment, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+<script type="text/javascript">
+	publish = function(el, id){
+		$.post('/comments/publish', {id: id, published: el.checked}, function(){
+			$(el).next().html(el.checked ? 'Опубликовано' : 'Не опубликовано')
+		})
+	}
+</script>

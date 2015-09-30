@@ -66,6 +66,8 @@ ParraShopCom::Application.routes.draw do
   post 'users/admin-create', to: 'users#adminCreate'
   post 'users/destroy', to: 'users#destroy'
   
+  post 'comments/publish', to: 'comments#publish'
+  resources :comments
   resources :categories do
     member do
       resources :subcategories

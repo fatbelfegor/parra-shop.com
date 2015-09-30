@@ -1,0 +1,38 @@
+<%= form_for(@comment) do |f| %>
+<div class='row'>
+    <h4 class="col-md-2 col-md-offset-3 text-right"><%= f.label :title, "Название", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :title, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+</div>
+<div class='row'>
+    <h4 class="col-md-2 col-md-offset-3 text-right"><%= f.label :author, "Автор", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :author, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+</div>
+<div class='row'>
+    <h4 class="col-md-2 col-md-offset-3 text-right">Опубликовано</h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
+        <%= check_box("comment", "published", {}, "true", "false")%>
+      </div>
+    </div>
+</div>
+<br>
+<div class="row form-group">
+    <h4 class="col-md-2 text-right"><nobr><%= f.label :body, "Описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    <div class="col-md-10">
+      <%= f.text_area :body, class: "tinymce", :rows => 12, :cols => 120 %>
+    </div>
+  </div>
+<br>
+<br>
+<div class='text-center'><%= f.submit 'Сохранить', class: "btn btn-success" %></div>
+<br>
+<br>
+<% end %>
