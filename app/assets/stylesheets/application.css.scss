@@ -40,6 +40,10 @@ li {
 	list-style-type: none;
 }
 
+.tar {
+	text-align: right;
+}
+
 .hidden {
 	display: none !important;
 }
@@ -2849,36 +2853,45 @@ body.small-size {
 	margin: 0;
 }
 .otzyv {
-	border: 1px solid #ccc;
-	margin: 30px 0;
+	margin-bottom: 46px;
 	color: #444;
 }
 .otzyv .header {
+	border: 1px solid #AFAFAF;
+	border-width: 1px 1px 0;
 	font-style: italic;
 	font-size: 17px;
-	padding: 10px 15px;
-	border-bottom: 1px solid #ccc;
+	padding: 16px;
+	background-color: #E8E8E8;
+	font-weight: bold;
+	@include border-radius(8px 8px 0 0);
 }
 .otzyv .body {
-	padding: 10px 15px;
+	border: 1px solid #AFAFAF;
+	border-width: 0 1px 1px;
+	padding: 0 16px 16px;
 	font-size: 15px;
-	border-bottom: 1px solid #ccc;
+	line-height: 21px;
+	background-color: #E8E8E8;
+	@include border-radius(0 0 8px 8px);
 }
 .otzyv .bottom {
-	display: table;
-	width: 100%;
-}
-.otzyv .bottom * {
-	display: table-cell;
-	width: 50%;
-	padding: 10px 15px;
-	font-style: italic;
+	color: #4DB865;
+	* {
+		font-style: italic;
+	}
 }
 .otzyv .name {
-	border-right: 1px solid #ccc;
+	background-image: url('/assets/otzyv.png');
+	background-repeat: no-repeat;
+	margin-left: 15px;
+	margin-top: -1px;
+	padding: 10px 0 0 15px;
+	float: left;
 }
 .otzyv .date {
-	text-align: right;
+	float: right;
+	padding: 9px 3px 0 0;
 }
 .menuCategoryPage {
 	a {
@@ -2926,5 +2939,25 @@ body.small-size {
 	}
 	a:hover:nth-child(3) .description {
 		background-color: rgba(208, 136, 222, 0.54);
+	}
+}
+
+.btn.green {
+	padding: 0;
+	border: 1px solid #4AAE5A;
+	background-color: #5AB868;
+	@include border-radius(5px);
+	@include transition(.3s);
+	p {
+		border-top: 1px solid #72C37E;
+		font-size: 14px;
+		color: white;
+		text-shadow: 0 -1px 1px #2A8D36;
+		line-height: 1;
+		padding: 8px 19px 9px;
+		@include border-radius(5px);
+	}
+	&:hover {
+		background-color: #54C565;
 	}
 }
