@@ -906,7 +906,7 @@ sliderRight = (steps, products) ->
 @sliderChoose = (el) ->
 	unless $(el).hasClass('.active')
 		buttons = $(el).parent()
-		products = buttons.prev().prev()
+		products = buttons.prev()
 		active = buttons.find('.active').removeClass('active')
 		count = buttons.find('div').length
 		start = active.index()
@@ -930,9 +930,9 @@ sliderRight = (steps, products) ->
 		slide.remove()
 	, 1000
 @slider = ->
-	next = $('#slider .next')
+	products = $('#slider .wrap')
 	@sliderInterval = setInterval ->
-		sliderNext next, true
+		sliderRight 1, products
 		bannerNext $ '.banners.second .wrap'
 		bannerNext $ '.banners.third .wrap'
 	, 5000
