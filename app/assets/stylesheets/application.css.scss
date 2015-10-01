@@ -1105,114 +1105,113 @@ nav {
 			}
 		}			
 	}
-}
-
-#subcategories #products, #products {
-	width: 100% !important;
-	height: auto !important;
-	> div {
-		width: 302px;
-		height: 452px;
-		position: relative;
-		display: inline-block;
-		height:  450px;
-		margin: 10px 15px 0;
-		@include transition(0.3s);
+	#subcategories #products, #products {
+		width: 100%;
+		height: auto;
 		> div {
-			margin-left: 0;
-			border: 1px solid transparent;
-			position: absolute;
-			background-color: white;
-			.appear {
-				text-align: center;
-				margin: 0;
-				div {
-					height: 0;
-					overflow: hidden;
-					text-align: left;
-					@include transition(0.3s);
-				}
-				.fancyButton {
-					float: none;
-					display: inline-block;
-					color: white !important;
-					text-shadow: -1px 1px 0 #3B9E44;
-					text-align: center;
-					border: 0 solid #4FB859 !important;
-					font-size: 14px;
-					line-height: 20px;
-					padding: 0 12px;
-					cursor: pointer;
-					background-image: url('/assets/buyButton.png');
-					margin: 5px auto !important;
-					@include border-radius(5px);
-					@include transition(0.3s);
-				}
-				.fancyButton:hover {
-					padding: 0 17px;
-					@include box-shadow(0 0 15px 0 #4FB859);
-				}
-			}
-			.left, .right {
-				top: 146px;
-				margin: 0;
+			width: 302px;
+			height: 452px;
+			position: relative;
+			display: inline-block;
+			height:  450px;
+			margin: 10px 15px 0;
+			@include transition(0.3s);
+			> div {
+				margin-left: 0;
+				border: 1px solid transparent;
 				position: absolute;
-				display: none;
-				cursor: pointer;
-			}
-			.left {
-				width: 28px;
-				height: 28px;
-				background-image: url(/assets/left.png);
-			}
-			.right {
-				right: 0;
-				width: 28px;
-				height: 28px;
-				background-image: url(/assets/right.png);
-			}
-			.left.inactive {
-				background-image: url(/assets/leftInactive.png);
-			}
-			.right.inactive {
-				background-image: url(/assets/rightInactive.png);
-			}
-			.photoes {
-				margin: 0;
-				a {
-					margin: 10px;
-					width: 280px;
-					height: 280px;
-					background-size: 100% 100%;
+				background-color: white;
+				.appear {
+					text-align: center;
+					margin: 0;
+					div {
+						height: 0;
+						overflow: hidden;
+						text-align: left;
+						@include transition(0.3s);
+					}
+					.fancyButton {
+						float: none;
+						display: inline-block;
+						color: white !important;
+						text-shadow: -1px 1px 0 #3B9E44;
+						text-align: center;
+						border: 0 solid #4FB859 !important;
+						font-size: 14px;
+						line-height: 20px;
+						padding: 0 12px;
+						cursor: pointer;
+						background-image: url('/assets/buyButton.png');
+						margin: 5px auto !important;
+						@include border-radius(5px);
+						@include transition(0.3s);
+					}
+					.fancyButton:hover {
+						padding: 0 17px;
+						@include box-shadow(0 0 15px 0 #4FB859);
+					}
+				}
+				.left, .right {
+					top: 146px;
+					margin: 0;
+					position: absolute;
 					display: none;
+					cursor: pointer;
 				}
-				.showPhoto {
-					display: block;
+				.left {
+					width: 28px;
+					height: 28px;
+					background-image: url(/assets/left.png);
 				}
-			}
-			.shortdesk {
-				overflow: hidden;
-				max-height: 50px;
+				.right {
+					right: 0;
+					width: 28px;
+					height: 28px;
+					background-image: url(/assets/right.png);
+				}
+				.left.inactive {
+					background-image: url(/assets/leftInactive.png);
+				}
+				.right.inactive {
+					background-image: url(/assets/rightInactive.png);
+				}
+				.photoes {
+					margin: 0;
+					a {
+						margin: 10px;
+						width: 280px;
+						height: 280px;
+						background-size: 100% 100%;
+						display: none;
+					}
+					.showPhoto {
+						display: block;
+					}
+				}
+				.shortdesk {
+					overflow: hidden;
+					max-height: 50px;
+				}
 			}
 		}
-	}
-	> div:hover {
-		> div {
-			border: 1px solid #ccc;
-			@include box-shadow(0 0 10px 0 #aaa);
-			z-index: 1;
-			.appear {
-				div {
-					height: 25px;
+		> div:hover {
+			> div {
+				border: 1px solid #ccc;
+				@include box-shadow(0 0 10px 0 #aaa);
+				z-index: 1;
+				.appear {
+					div {
+						height: 25px;
+					}
+					.fancyButton {
+						border-width: 1px !important;
+						height: 20px;
+						margin-bottom: 5px;
+					}
 				}
-				.fancyButton {
-					border-width: 1px !important;
-					height: 20px;
-					margin-bottom: 5px;
+				.left, .right {
+					display: block;
 				}
-			}
-			.left, .right {
-				display: block;
 			}
 		}
 	}
