@@ -11,6 +11,7 @@
  *= require bootstrap-theme.min
  *= require bootstrap.min
  *= require_self
+ *= require style
  */
 
 @import 'mixins';
@@ -1030,7 +1031,7 @@ nav {
 	}
 }
 
-body > .main {
+#blur > .main {
 	border-top: 1px solid #C6C6C6;
 	position: absolute;
 	width: 100%;

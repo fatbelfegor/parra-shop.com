@@ -1030,3 +1030,12 @@ writeChars = ->
 			el.before(el.clone()).appendTo div
 			label.next().append div
 		reader.readAsDataURL input.files[0]
+
+@dark =
+	open: (name) ->
+		$('#blur').addClass 'active'
+		$('#dark').fadeIn(300).find("> .#{name}").show()
+	close: ->
+		$('#blur').removeClass 'active'
+		$('#dark').fadeOut(300).find("> div").hide()
+@otzyv = -> dark.open 'otzyv'

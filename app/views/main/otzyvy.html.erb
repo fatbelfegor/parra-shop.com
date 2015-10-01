@@ -6,7 +6,7 @@
 <h1 style="text-align: center; margin-top: 30px; color: #4FB859">Отзывы покупателей о мебели Parra.</h1>
 <br>
 <div class="tar" style="margin: 30px 0 20px">
-	<div class="btn green"><p>Оставить отзыв</p></div>
+	<div class="btn green" onclick="otzyv()"><p>Оставить отзыв</p></div>
 </div>
 <br>
 <% for comment in Comment.where(published: true).order created_at: :desc %>
@@ -21,6 +21,6 @@
 <% end %>
 <br>
 <div class="tar" style="margin: 15px 0 20px">
-	<div class="btn green"><p>Оставить отзыв</p></div>
+	<div class="btn green" onclick="otzyv()"><p>Оставить отзыв</p></div>
 </div>
 <br>

@@ -1,0 +1,112 @@
+border-radius(n)
+	-webkit-border-radius n
+	-moz-border-radius n
+	border-radius n
+transition(n)
+	-webkit-transition n
+	-moz-transition n
+	-o-transition n
+	transition n
+box-shadow(n)
+	-webkit-box-shadow n
+	-moz-box-shadow n
+	box-shadow n
+text-shadow(n)
+	-webkit-text-shadow n
+	-moz-text-shadow n
+	text-shadow n
+transform(n)
+	-webkit-transform n
+	-moz-transform n
+	-ms-transform n
+	-o-transform n
+	transform n
+box-sizing(n)
+	-moz-box-sizing n
+	-webkit-box-sizing n
+	box-sizing n
+animation(n)
+	-webkit-animation n
+	-moz-animation n
+	-o-animation n
+	animation n
+user-select(n)
+	-webkit-user-select n
+	-moz-user-select n
+	-o-user-select n
+	user-select n
+
+#blur
+	-webkit-filter blur(0px)
+	filter blur(0px)
+	transition(1s)
+	&.active
+		-webkit-filter blur(3px)
+		filter blur(3px)
+
+#dark
+	position fixed
+	top 0
+	left 0
+	height 100%
+	width 100%
+	z-index 100
+	display none
+	color #333
+	.bg
+		display block
+		position absolute
+		top 0
+		left 0
+		height 100%
+		width 100%
+		background -webkit-radial-gradient(transparent, rgba(0, 0, 0, .6));
+		background radial-gradient(transparent, rgba(0, 0, 0, .6));
+	> div
+		display none
+		position absolute
+		top 50%
+		left 50%
+		background-color white
+		box-shadow(2px 4px 16px #333)
+		.header
+			line-height 32px
+			border 1px solid #aaa
+			border-width 1px 0
+			background-color #fffdad
+			font-weight bold
+			text-align center
+	.otzyv
+		margin-top -225px
+		margin-left -225px
+		width 450px
+		height 450px
+		.title
+			font-size 24px
+			color #4FB859
+			line-height 48px
+			font-weight bold
+			text-align center
+			margin 10px 0
+		p
+			line-height 36px
+		label
+			display block
+			margin-bottom 10px
+			height 36px
+			p
+				position absolute
+				left 30px
+			input
+				position absolute
+				height 34px
+				border 1px solid #4FB859
+				padding-left 16px
+				right 30px
+		> p
+			text-align center
+		textarea
+			width 346px
+			height 140px
+			margin 0 auto
+			display block

@@ -12,372 +12,384 @@
   <script type="text/javascript" src="/lightbox/lightbox.min.js"></script>
 </head>
 <body class='<%= controller.controller_name %>'>
-<% if params[:controller] + params[:action] == 'mainindex' %>
-	<div id="preloader">
-		<p>Идет загрузка...</p>
-	</div>
-<% end %>
-<a href='/'><img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной"></a>
-<% if user_signed_in? %>
-<div class="admin-nav">
-	<div>Действия</div>
-	<ul>
-		<% if current_user.admin? %>
-		<li><a href="/categories">Список категорий</a></li>
-		<li><a href="/users/">Пользователи</a></li>
-		<li><a href="/banners/">Баннеры</a></li>
-		<% end
-		if current_user.manager or current_user.admin? %>
-		<li><a href="/admin/model/order/records">Заказы</a></li>
-		<% end %>
-		<li><a href="/admin/packinglist">Импорт товарных накладных</a></li>
-		<li><a href="/extensions">Статусы товаров</a></li>
-		<li><a href="/comments">Отзывы</a></li>
-		<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
-	</ul>
-</div>
-<% end %>
-<div><form id="search" action="/catalog/index">
-	<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
-	<input type="submit" value="Поиск"/>
-</form></div>
-<div class="shopPhone">
-  <p>8-800-707-67-57</p>
-  <ins>Бесплатные звонки по России</ins>
-</div>
-<nav>
-	<ul id="mainMenu">  	 
-		<li class="menu">
-			<a href="/spalni">Спальни</a>
-			<div>
-				<div style="background-image: url(/assets/GammaNew.jpg); left: 0"></div>
-				<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
-				<div style="background-image: url(/assets/Bella.jpg)"></div>
-				<div style="background-image: url(/assets/Plisset.jpg)"></div>
-				<div style="background-image: url(/assets/Orly.jpg)"></div>
-				<div style="background-image: url(/assets/RitmikaSale.jpg)"></div>
-				<div style="background-image: url(/assets/RitmikaSale2.jpg)"></div>
-				<div style="background-image: url(/assets/Lorra.jpg)"></div>
-				<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
-				<div style="background-image: url(/assets/LeggeroSale2.jpg)"></div>
-				<div style="background-image: url(/assets/Miro.jpg)"></div>
-				<div style="background-image: url(/assets/Mild.jpg)"></div>
-			</div>     
-			<ul>
-				<li><a href='/catalog/spalni-gamma'>Gamma</a></li>
-				<li><a href='/catalog/spalni-liona'>Lyona</a></li>
-				<li><a href='/catalog/spalni-bella'>Bella</a></li>
-				<li><a href='/catalog/spalni-plisset'>Plisset</a></li>
-				<li><a href='/catalog/spalni-orly'>Orly</a></li>
-				<li><a href='/catalog/spalni-ritmika'>Ritmika</a></li>
-				<li><a href='/catalog/spalni-ritmika2'>Ritmika2</a></li>
-				<li><a href='/catalog/spalni-lorra'>Lorra</a></li>
-				<li><a href='/catalog/spalni-leggero-oreh'>Leggero Орех</a></li>
-				<li><a href='/catalog/spalni-leggero-choco1'>Leggero choco</a></li>
-				<li><a href='/catalog/spalni-miro'>Miro</a></li>
-				<li><a href='/catalog/spalni-mild'>Mild</a></li>
-			</ul>
-	    </li>
-		<li class="dark"></li>
-	    <li class="menu">
-	    	<a href="/gostinaya">Гостиные</a>
-			<div>
-				<div style="background: url(/assets/NorteNew.jpg); left: 0"></div>
-				<div style="background: url(/assets/P3.jpg)"></div>
-				<div style="background: url(/assets/BellaGost.jpg)"></div>
-				<div style="background: url(/assets/Verro.jpg)"></div>
-				<div style="background: url(/assets/Style.jpg)"></div>
-				<div style="background: url(/assets/Style2.jpg)"></div>
-				<div style="background: url(/assets/Joy.jpg)"></div>
-				<div style="background: url(/assets/Azzon.jpg)"></div>
-			</div>
-			<ul>
-				<li><a href='/catalog/gostinye-norte'>Norte</a></li>
-				<li><a href='/catalog/gostinnye-pz'>P3</a></li>
-				<li><a href='/catalog/gostinnye-bella'>Bella</a></li>
-				<li><a href='/catalog/gostinnye-verro'>Verro</a></li>
-				<li><a href='/catalog/gostinnye-style-choco'>Style choco</a></li>
-				<li><a href='/catalog/gostinnye-style-oreh'>Style орех</a></li>
-				<li><a href='/catalog/gostinnye-joy'>Joy</a></li>
-				<li><a href='/catalog/gostinye-azzon'>Azzon</a></li>
-			</ul>
-		</li>
-		<li class="dark"></li>
-		<li class="menu">
-			<a href="/divani">Диваны</a>
-			<div>
-				<div style="background: url(/assets/Trevi.jpg); left: 0"></div>
-				<div style="background: url(/assets/Opera.jpg)"></div>
-				<div style="background: url(/assets/Lucca.jpg)"></div>
-				<div style="background: url(/assets/Ritmo.jpg)"></div>
-				<div style="background: url(/assets/Nuvola.jpg)"></div>
-				<div style="background: url(/assets/SoftAgioArteCircle.jpg)"></div>
-			</div>
-			<ul>
-				<li><a href='/catalog/divany-trevi'>Trevi</a></li>
-				<li><a href='/catalog/divany-opera'>Opera</a></li>
-				<li><a href='/catalog/divany-lucca'>Lucca</a></li>
-				<li><a href='/catalog/divany-ritmo'>Ritmo</a></li>
-				<li><a href='/catalog/divany-nuvola'>Nuvola</a></li>
-				<li><a href='/catalog/kresla'>Кресла</a></li>
-			</ul>
-		</li>
-		<li class="dark"></li>
-		<li class="menu">
-			<a href="/matras">Матрасы</a>
-			<div>
-				<div style="background: url(/assets/SonberryOrganic.jpg); left: 0"></div>
-				<div style="background: url(/assets/SonberryAero.jpg)"></div>
-				<div style="background: url(/assets/SonberryActive.jpg)"></div> 
-				<div style="background: url(/assets/SonberryItalia.jpg)"></div>  
-			</div>
-			<ul>
-				<li><a href='/catalog/matrasy-organic'>Organic</a></li>
-				<li><a href='/catalog/matrasy-aero'>Aero</a></li>
-				<li><a href='/catalog/matrasy-active'>Active</a></li>
-				<li><a href='/catalog/matrasy-italia'>Italia</a></li>
-			</ul>
-		</li>
-		<li class="dark"></li>
-		<li class="menu allProducts">
-			<a>Все товары</a>
-			<div>
-				<p>
-					<a href='/catalog/krovati-dlja-spalni'>Кровати</a>
-					<a href='/catalog/shkafy'>Шкафы</a>
-					<a href='/catalog/komody'>Комоды</a>
-					<a href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
-					<a href='/catalog/tumby-pod-tv'>Тумбы TV</a>
-				</p>
-				<p>
-					<a href='/catalog/zerkala'>Зеркала</a>
-					<a href='/catalog/polki'>Полки</a>
-					<a href='/catalog/stoly'>Столы</a>
-					<a href='/catalog/osnovanija'>Основания</a>
-					<a href='/catalog/bufety'>Буфеты</a>
-				</p>				
-			</div>
-		</li>
-		<li class="dark"></li>
-		<li class="menu wherebuy">
-			<a href="/stores">Где купить</a>
-			<span>
-				<div>
-					<div>
-						<%= link_to raw('Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29'), store1_path %>
-						<%= link_to raw('Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29'), store2_path %>
-						<%= link_to raw('Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52'), store3_path %>
-						<%= link_to raw('Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56'), store4_path %>
-						<%= link_to raw('Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06'), store5_path %>
-						<%= link_to raw('Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение<br>Волоколамского ш. и<br> 66км МКАД), 2 этаж<br>(499) 340-09-08'), store6_path %>
-						<%= link_to raw('Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09'), store7_path %>
-						<%= link_to raw('Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18'), store8_path %>
-						<%= link_to raw('Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09'), store9_path %>
-					</div>
-				</div>      
-			</span>
-		</li>
-		<li class="menu dark"></li>
-		<li class="menu cart">
-			<a href="/cart">Корзина<b id="cartCount"></b></a>
-			<span id="menuCart">
-				<div></div>
-				<span>
-					<a onclick="order()" class="squareButton">Оформить заказ</a>
-					<h2>Итого: <b id="price"></b> руб.</h2>
-				</span>
-			</span>
-		</li>
-		<li class="dark"></li>
-	</ul>
-</nav>
-
-<div class="main">
-	<ul id="mainMenuCompact">
-  		<li onclick="miniCatOpen(this)">Спальни<p></p>
-			<div>
-				<a href="/catalog/spalni-gamma"><img src="/assets/GammaNew.jpg"></a>
-				<a href="/catalog/spalni-liona"><img src="/assets/LyonaNew.jpg"></a>
-				<a href="/catalog/spalni-bella"><img src="/assets/Bella.jpg"></a>
-				<a href="/catalog/spalni-plisset"><img src="/assets/Plisset.jpg"></a>
-				<a href="/catalog/spalni-orly"><img src="/assets/Orly.jpg"></a>
-				<a href="/catalog/spalni-ritmika"><img src="/assets/RitmikaSale.jpg"></a>
-				<a href="/catalog/spalni-ritmika2"><img src="/assets/RitmikaSale2.jpg"></a>
-				<a href="/catalog/spalni-lorra"><img src="/assets/Lorra.jpg"></a>
-				<a href="/catalog/spalni-leggero-oreh"><img src="/assets/LeggeroSale.jpg"></a>
-				<a href="/catalog/spalni-leggero-choco1"><img src="/assets/LeggeroSale2.jpg"></a>
-				<a href="/catalog/spalni-miro"><img src="/assets/Miro.jpg"></a>
-				<a href="/catalog/spalni-mild"><img src="/assets/Mild.jpg"></a>
-			</div>
-  		<li onclick="miniCatOpen(this)">Гостиные<p></p>
-  			<div>
-				<a href="/catalog/gostinye-norte"><img src="/assets/NorteNew.jpg"></a>
-				<a href="/catalog/gostinnye-pz"><img src="/assets/P3.jpg"></a>
-				<a href="/catalog/gostinnye-bella"><img src="/assets/BellaGost.jpg"></a>
-				<a href="/catalog/gostinnye-verro"><img src="/assets/Verro.jpg"></a>
-				<a href="/catalog/gostinnye-style-choco"><img src="/assets/Style.jpg"></a>
-				<a href="/catalog/gostinnye-style-oreh"><img src="/assets/Style2.jpg"></a>
-				<a href="/catalog/gostinnye-joy"><img src="/assets/Joy.jpg"></a>
-				<a href="/catalog/gostinye-azzon"><img src="/assets/Azzon.jpg"></a>
-  		</li>
-  		<li onclick="miniCatOpen(this)">Диваны<p></p>
-  			<div>
-				<a href="/catalog/divany-trevi"><img src="/assets/Trevi.jpg"></a>
-				<a href="/catalog/divany-opera"><img src="/assets/Opera.jpg"></a>
-				<a href="/catalog/divany-lucca"><img src="/assets/Lucca.jpg"></a>
-				<a href="/catalog/divany-ritmo"><img src="/assets/Ritmo.jpg"></a>
-				<a href="/catalog/divany-nuvola"><img src="/assets/Nuvola.jpg"></a>
-				<a href="/catalog/kresla"><img src="/assets/SoftAgioArteCircle.jpg"></a>
-			</div>
-  		</li>
-  		<li onclick="miniCatOpen(this)">Матрасы<p></p>
-  			<div>
-				<a href="/catalog/matrasy-organic"><img src="/assets/SonberryOrganic.jpg"></a>
-				<a href="/catalog/matrasy-aero"><img src="/assets/SonberryAero.jpg"></a>
-				<a href="/catalog/matrasy-active"><img src="/assets/SonberryActive.jpg"></a>
-				<a href="/catalog/matrasy-italia"><img src="/assets/SonberryItalia.jpg"></a>
-			</div>
-  		</li>
-  		<li class="allProducts" onclick="$(this).toggleClass('open')">Все товары<p></p>
-  			<div>
-	  			<p>
-	  				<a href="/catalog/krovati-dlja-spalni">Кровати</a>
-	  				<a href="/catalog/shkafy">Шкафы</a>
-	  				<a href="/catalog/komody">Комоды</a>
-	  				<a href="/catalog/tumby-dlja-spalni">Тумбочки</a>
-					<a href="/catalog/tumby-pod-tv">Тумбы под TV</a>
-	  			</p>
-	  			<p>
-	  				<a href="/catalog/zerkala">Зеркала</a>
-	  				<a href="/catalog/polki">Полки</a>
-	  				<a href="/catalog/stoly">Столы</a>
-	  				<a href="/catalog/osnovanija">Основания</a>
-					<a href="/catalog/bufety">Буфеты</a>
-	  			</p>
-  			</div>
-  		</li>
-  		<li class="whereCanBuy" onclick="$(this).toggleClass('open')">Где купить<p></p>
-  			<div>
-				<a href="<%= url_for store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
-				<a href="<%= url_for store2_path %>">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
-				<a href="<%= url_for store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
-				<a href="<%= url_for store4_path %>">Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56</a>
-				<a href="<%= url_for store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
-				<a href="<%= url_for store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение Волоколамского ш. и 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
-				<a href="<%= url_for store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
-				<a href="<%= url_for store8_path %>">Мебель PARRA<br>МЦ "Вагант" <br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>8(499)347-09-09</a>
-				<a href="<%= url_for store9_path %>">Мебель PARRA<br>МЦ "Империя" <br>Дмитровское шоссе<br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
-  			</div>
-  		</li>
-  		<li class="miniMenuCart">
-  			<a href="/cart">Корзина</a>
-  		</li>
-  	</ul>
-  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
-  	<% if notice == 'ordersave' %>
-  		<div id="orderSave" class="windows">
-			<p>Ваш заказ принят. Наш менеджер свяжется с вами с ближайшее время.</p>
-			<div class="btn-s" onclick="windowClose()">OK</div>
+<div id="blur">
+	<% if params[:controller] + params[:action] == 'mainindex' %>
+		<div id="preloader">
+			<p>Идет загрузка...</p>
 		</div>
-		<script type="text/javascript">
-			$('#windowLayout').show()
-		</script>
-  	<% else %>
-		<div id="notice"><%= flash[:notice] %></div>
 	<% end %>
-    <%= yield %>
-  </div>
+	<a href='/'><img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной"></a>
+	<% if user_signed_in? %>
+	<div class="admin-nav">
+		<div>Действия</div>
+		<ul>
+			<% if current_user.admin? %>
+			<li><a href="/categories">Список категорий</a></li>
+			<li><a href="/users/">Пользователи</a></li>
+			<li><a href="/banners/">Баннеры</a></li>
+			<% end
+			if current_user.manager or current_user.admin? %>
+			<li><a href="/admin/model/order/records">Заказы</a></li>
+			<% end %>
+			<li><a href="/admin/packinglist">Импорт товарных накладных</a></li>
+			<li><a href="/extensions">Статусы товаров</a></li>
+			<li><a href="/comments">Отзывы</a></li>
+			<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
+		</ul>
+	</div>
+	<% end %>
+	<div><form id="search" action="/catalog/index">
+		<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
+		<input type="submit" value="Поиск"/>
+	</form></div>
+	<div class="shopPhone">
+	  <p>8-800-707-67-57</p>
+	  <ins>Бесплатные звонки по России</ins>
+	</div>
+	<nav>
+		<ul id="mainMenu">  	 
+			<li class="menu">
+				<a href="/spalni">Спальни</a>
+				<div>
+					<div style="background-image: url(/assets/GammaNew.jpg); left: 0"></div>
+					<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
+					<div style="background-image: url(/assets/Bella.jpg)"></div>
+					<div style="background-image: url(/assets/Plisset.jpg)"></div>
+					<div style="background-image: url(/assets/Orly.jpg)"></div>
+					<div style="background-image: url(/assets/RitmikaSale.jpg)"></div>
+					<div style="background-image: url(/assets/RitmikaSale2.jpg)"></div>
+					<div style="background-image: url(/assets/Lorra.jpg)"></div>
+					<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
+					<div style="background-image: url(/assets/LeggeroSale2.jpg)"></div>
+					<div style="background-image: url(/assets/Miro.jpg)"></div>
+					<div style="background-image: url(/assets/Mild.jpg)"></div>
+				</div>     
+				<ul>
+					<li><a href='/catalog/spalni-gamma'>Gamma</a></li>
+					<li><a href='/catalog/spalni-liona'>Lyona</a></li>
+					<li><a href='/catalog/spalni-bella'>Bella</a></li>
+					<li><a href='/catalog/spalni-plisset'>Plisset</a></li>
+					<li><a href='/catalog/spalni-orly'>Orly</a></li>
+					<li><a href='/catalog/spalni-ritmika'>Ritmika</a></li>
+					<li><a href='/catalog/spalni-ritmika2'>Ritmika2</a></li>
+					<li><a href='/catalog/spalni-lorra'>Lorra</a></li>
+					<li><a href='/catalog/spalni-leggero-oreh'>Leggero Орех</a></li>
+					<li><a href='/catalog/spalni-leggero-choco1'>Leggero choco</a></li>
+					<li><a href='/catalog/spalni-miro'>Miro</a></li>
+					<li><a href='/catalog/spalni-mild'>Mild</a></li>
+				</ul>
+		    </li>
+			<li class="dark"></li>
+		    <li class="menu">
+		    	<a href="/gostinaya">Гостиные</a>
+				<div>
+					<div style="background: url(/assets/NorteNew.jpg); left: 0"></div>
+					<div style="background: url(/assets/P3.jpg)"></div>
+					<div style="background: url(/assets/BellaGost.jpg)"></div>
+					<div style="background: url(/assets/Verro.jpg)"></div>
+					<div style="background: url(/assets/Style.jpg)"></div>
+					<div style="background: url(/assets/Style2.jpg)"></div>
+					<div style="background: url(/assets/Joy.jpg)"></div>
+					<div style="background: url(/assets/Azzon.jpg)"></div>
+				</div>
+				<ul>
+					<li><a href='/catalog/gostinye-norte'>Norte</a></li>
+					<li><a href='/catalog/gostinnye-pz'>P3</a></li>
+					<li><a href='/catalog/gostinnye-bella'>Bella</a></li>
+					<li><a href='/catalog/gostinnye-verro'>Verro</a></li>
+					<li><a href='/catalog/gostinnye-style-choco'>Style choco</a></li>
+					<li><a href='/catalog/gostinnye-style-oreh'>Style орех</a></li>
+					<li><a href='/catalog/gostinnye-joy'>Joy</a></li>
+					<li><a href='/catalog/gostinye-azzon'>Azzon</a></li>
+				</ul>
+			</li>
+			<li class="dark"></li>
+			<li class="menu">
+				<a href="/divani">Диваны</a>
+				<div>
+					<div style="background: url(/assets/Trevi.jpg); left: 0"></div>
+					<div style="background: url(/assets/Opera.jpg)"></div>
+					<div style="background: url(/assets/Lucca.jpg)"></div>
+					<div style="background: url(/assets/Ritmo.jpg)"></div>
+					<div style="background: url(/assets/Nuvola.jpg)"></div>
+					<div style="background: url(/assets/SoftAgioArteCircle.jpg)"></div>
+				</div>
+				<ul>
+					<li><a href='/catalog/divany-trevi'>Trevi</a></li>
+					<li><a href='/catalog/divany-opera'>Opera</a></li>
+					<li><a href='/catalog/divany-lucca'>Lucca</a></li>
+					<li><a href='/catalog/divany-ritmo'>Ritmo</a></li>
+					<li><a href='/catalog/divany-nuvola'>Nuvola</a></li>
+					<li><a href='/catalog/kresla'>Кресла</a></li>
+				</ul>
+			</li>
+			<li class="dark"></li>
+			<li class="menu">
+				<a href="/matras">Матрасы</a>
+				<div>
+					<div style="background: url(/assets/SonberryOrganic.jpg); left: 0"></div>
+					<div style="background: url(/assets/SonberryAero.jpg)"></div>
+					<div style="background: url(/assets/SonberryActive.jpg)"></div> 
+					<div style="background: url(/assets/SonberryItalia.jpg)"></div>  
+				</div>
+				<ul>
+					<li><a href='/catalog/matrasy-organic'>Organic</a></li>
+					<li><a href='/catalog/matrasy-aero'>Aero</a></li>
+					<li><a href='/catalog/matrasy-active'>Active</a></li>
+					<li><a href='/catalog/matrasy-italia'>Italia</a></li>
+				</ul>
+			</li>
+			<li class="dark"></li>
+			<li class="menu allProducts">
+				<a>Все товары</a>
+				<div>
+					<p>
+						<a href='/catalog/krovati-dlja-spalni'>Кровати</a>
+						<a href='/catalog/shkafy'>Шкафы</a>
+						<a href='/catalog/komody'>Комоды</a>
+						<a href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
+						<a href='/catalog/tumby-pod-tv'>Тумбы TV</a>
+					</p>
+					<p>
+						<a href='/catalog/zerkala'>Зеркала</a>
+						<a href='/catalog/polki'>Полки</a>
+						<a href='/catalog/stoly'>Столы</a>
+						<a href='/catalog/osnovanija'>Основания</a>
+						<a href='/catalog/bufety'>Буфеты</a>
+					</p>				
+				</div>
+			</li>
+			<li class="dark"></li>
+			<li class="menu wherebuy">
+				<a href="/stores">Где купить</a>
+				<span>
+					<div>
+						<div>
+							<%= link_to raw('Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29'), store1_path %>
+							<%= link_to raw('Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29'), store2_path %>
+							<%= link_to raw('Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52'), store3_path %>
+							<%= link_to raw('Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56'), store4_path %>
+							<%= link_to raw('Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06'), store5_path %>
+							<%= link_to raw('Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение<br>Волоколамского ш. и<br> 66км МКАД), 2 этаж<br>(499) 340-09-08'), store6_path %>
+							<%= link_to raw('Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09'), store7_path %>
+							<%= link_to raw('Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18'), store8_path %>
+							<%= link_to raw('Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09'), store9_path %>
+						</div>
+					</div>      
+				</span>
+			</li>
+			<li class="menu dark"></li>
+			<li class="menu cart">
+				<a href="/cart">Корзина<b id="cartCount"></b></a>
+				<span id="menuCart">
+					<div></div>
+					<span>
+						<a onclick="order()" class="squareButton">Оформить заказ</a>
+						<h2>Итого: <b id="price"></b> руб.</h2>
+					</span>
+				</span>
+			</li>
+			<li class="dark"></li>
+		</ul>
+	</nav>
+
+	<div class="main">
+		<ul id="mainMenuCompact">
+	  		<li onclick="miniCatOpen(this)">Спальни<p></p>
+				<div>
+					<a href="/catalog/spalni-gamma"><img src="/assets/GammaNew.jpg"></a>
+					<a href="/catalog/spalni-liona"><img src="/assets/LyonaNew.jpg"></a>
+					<a href="/catalog/spalni-bella"><img src="/assets/Bella.jpg"></a>
+					<a href="/catalog/spalni-plisset"><img src="/assets/Plisset.jpg"></a>
+					<a href="/catalog/spalni-orly"><img src="/assets/Orly.jpg"></a>
+					<a href="/catalog/spalni-ritmika"><img src="/assets/RitmikaSale.jpg"></a>
+					<a href="/catalog/spalni-ritmika2"><img src="/assets/RitmikaSale2.jpg"></a>
+					<a href="/catalog/spalni-lorra"><img src="/assets/Lorra.jpg"></a>
+					<a href="/catalog/spalni-leggero-oreh"><img src="/assets/LeggeroSale.jpg"></a>
+					<a href="/catalog/spalni-leggero-choco1"><img src="/assets/LeggeroSale2.jpg"></a>
+					<a href="/catalog/spalni-miro"><img src="/assets/Miro.jpg"></a>
+					<a href="/catalog/spalni-mild"><img src="/assets/Mild.jpg"></a>
+				</div>
+	  		<li onclick="miniCatOpen(this)">Гостиные<p></p>
+	  			<div>
+					<a href="/catalog/gostinye-norte"><img src="/assets/NorteNew.jpg"></a>
+					<a href="/catalog/gostinnye-pz"><img src="/assets/P3.jpg"></a>
+					<a href="/catalog/gostinnye-bella"><img src="/assets/BellaGost.jpg"></a>
+					<a href="/catalog/gostinnye-verro"><img src="/assets/Verro.jpg"></a>
+					<a href="/catalog/gostinnye-style-choco"><img src="/assets/Style.jpg"></a>
+					<a href="/catalog/gostinnye-style-oreh"><img src="/assets/Style2.jpg"></a>
+					<a href="/catalog/gostinnye-joy"><img src="/assets/Joy.jpg"></a>
+					<a href="/catalog/gostinye-azzon"><img src="/assets/Azzon.jpg"></a>
+	  		</li>
+	  		<li onclick="miniCatOpen(this)">Диваны<p></p>
+	  			<div>
+					<a href="/catalog/divany-trevi"><img src="/assets/Trevi.jpg"></a>
+					<a href="/catalog/divany-opera"><img src="/assets/Opera.jpg"></a>
+					<a href="/catalog/divany-lucca"><img src="/assets/Lucca.jpg"></a>
+					<a href="/catalog/divany-ritmo"><img src="/assets/Ritmo.jpg"></a>
+					<a href="/catalog/divany-nuvola"><img src="/assets/Nuvola.jpg"></a>
+					<a href="/catalog/kresla"><img src="/assets/SoftAgioArteCircle.jpg"></a>
+				</div>
+	  		</li>
+	  		<li onclick="miniCatOpen(this)">Матрасы<p></p>
+	  			<div>
+					<a href="/catalog/matrasy-organic"><img src="/assets/SonberryOrganic.jpg"></a>
+					<a href="/catalog/matrasy-aero"><img src="/assets/SonberryAero.jpg"></a>
+					<a href="/catalog/matrasy-active"><img src="/assets/SonberryActive.jpg"></a>
+					<a href="/catalog/matrasy-italia"><img src="/assets/SonberryItalia.jpg"></a>
+				</div>
+	  		</li>
+	  		<li class="allProducts" onclick="$(this).toggleClass('open')">Все товары<p></p>
+	  			<div>
+		  			<p>
+		  				<a href="/catalog/krovati-dlja-spalni">Кровати</a>
+		  				<a href="/catalog/shkafy">Шкафы</a>
+		  				<a href="/catalog/komody">Комоды</a>
+		  				<a href="/catalog/tumby-dlja-spalni">Тумбочки</a>
+						<a href="/catalog/tumby-pod-tv">Тумбы под TV</a>
+		  			</p>
+		  			<p>
+		  				<a href="/catalog/zerkala">Зеркала</a>
+		  				<a href="/catalog/polki">Полки</a>
+		  				<a href="/catalog/stoly">Столы</a>
+		  				<a href="/catalog/osnovanija">Основания</a>
+						<a href="/catalog/bufety">Буфеты</a>
+		  			</p>
+	  			</div>
+	  		</li>
+	  		<li class="whereCanBuy" onclick="$(this).toggleClass('open')">Где купить<p></p>
+	  			<div>
+					<a href="<%= url_for store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
+					<a href="<%= url_for store2_path %>">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
+					<a href="<%= url_for store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
+					<a href="<%= url_for store4_path %>">Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56</a>
+					<a href="<%= url_for store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
+					<a href="<%= url_for store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение Волоколамского ш. и 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
+					<a href="<%= url_for store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
+					<a href="<%= url_for store8_path %>">Мебель PARRA<br>МЦ "Вагант" <br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>8(499)347-09-09</a>
+					<a href="<%= url_for store9_path %>">Мебель PARRA<br>МЦ "Империя" <br>Дмитровское шоссе<br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
+	  			</div>
+	  		</li>
+	  		<li class="miniMenuCart">
+	  			<a href="/cart">Корзина</a>
+	  		</li>
+	  	</ul>
+	  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
+	  	<% if notice == 'ordersave' %>
+	  		<div id="orderSave" class="windows">
+				<p>Ваш заказ принят. Наш менеджер свяжется с вами с ближайшее время.</p>
+				<div class="btn-s" onclick="windowClose()">OK</div>
+			</div>
+			<script type="text/javascript">
+				$('#windowLayout').show()
+			</script>
+	  	<% else %>
+			<div id="notice"><%= flash[:notice] %></div>
+		<% end %>
+	    <%= yield %>
+	  </div>
+	</div>
+
+	<nav class="footer">
+	    <ul>
+	        <li><%= link_to 'Доставка и сборка', service_path %></li>
+	        <li><%= link_to 'Партнерам', partners_path %></li>
+	        <li><%= link_to 'Новости', news_path %></li>
+	        <li><%= link_to 'Статьи', articles_path %></li>
+	        <li><%= link_to 'Гарантии', insurance_path %></li>
+	        <li><%= link_to 'Отзывы', otzyvy_path %></li>
+	        <li><%= link_to 'О нас', about_path %></li>
+	        <li><a href="/sitemap">Карта сайта</a></li>
+	    </ul>
+	</nav>
+
+	<div id="orderWindow">
+	  <div onclick="this.parentNode.style.display = 'none'"></div>
+	  <div>
+	    <div class="header">
+	      <h4>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</h4>
+	      <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
+	    </div>
+	    <%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
+	    <div class="row">
+	    	<h4 class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :first_name, class: "form-control" %>
+		      </div>
+		    </div>
+		</div>
+		<div class="row">
+		    <h4 class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :phone, class: "form-control" %>
+		      </div>
+		    </div>
+	    </div>
+		<div class="row">
+			<h4 class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+			<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :email, class: "form-control" %>
+		      </div>
+		    </div>
+	    </div>
+	    <div class="checkbox">
+		  <label>
+		    <input type="checkbox" onclick="orderShowAll()">
+		    <h4 class="text-left">Нужна доставка</h4>
+		  </label>
+		</div>
+	    <div id="otherInputs">
+		    <div class="row">
+		    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_street, "Улица:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :addr_street, class: "form-control" %>
+		      </div>
+		    </div>
+		    </div>
+		    <div class="row">
+		    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_home, "Дом:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :addr_home, class: "form-control" %>
+		      </div>
+		    </div>
+		    </div>
+		    <div class="row">
+		    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_block, "Корпус:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+		    	<div class="col-md-5">
+			      <div class="wrath-content-box" style="padding:0 15px">
+			        <%= f.text_field :addr_block, class: "form-control" %>
+			      </div>
+		    </div>
+		    </div>
+		    <div class="row">
+		    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_flat, "Квартира:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+		    	<div class="col-md-5">
+			      <div class="wrath-content-box" style="padding:0 15px">
+			        <%= f.text_field :addr_flat, class: "form-control" %>
+			      </div>
+		    </div>
+		    </div>
+	    </div>
+	    <input class="btn btn-success" type="submit" value="Отправить">
+	    <input type="hidden" name="cartfield" id="cartfield">
+	    <% end %>
+	  </div>
+	</div>
 </div>
-
-<nav class="footer">
-    <ul>
-        <li><%= link_to 'Доставка и сборка', service_path %></li>
-        <li><%= link_to 'Партнерам', partners_path %></li>
-        <li><%= link_to 'Новости', news_path %></li>
-        <li><%= link_to 'Статьи', articles_path %></li>
-        <li><%= link_to 'Гарантии', insurance_path %></li>
-        <li><%= link_to 'Отзывы', otzyvy_path %></li>
-        <li><%= link_to 'О нас', about_path %></li>
-        <li><a href="/sitemap">Карта сайта</a></li>
-    </ul>
-</nav>
-
-<div id="orderWindow">
-  <div onclick="this.parentNode.style.display = 'none'"></div>
-  <div>
-    <div class="header">
-      <h4>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</h4>
-      <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
-    </div>
-    <%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
-    <div class="row">
-    	<h4 class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
-    	<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :first_name, class: "form-control" %>
-	      </div>
-	    </div>
+<div id="dark">
+	<p class="bg" onclick="dark.close()"></p>
+	<div class="otzyv">
+		<div class="title">Оставьте свой отзыв</div>
+		<label><p>Ваше имя:</p><input type="text" name='author'></label>
+		<label><p>Заглавие отзыва:</p><input type="text" name='title'></label>
+		<p>Сообщение:</p>
+		<textarea name="body"></textarea>
 	</div>
-	<div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-    	<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :phone, class: "form-control" %>
-	      </div>
-	    </div>
-    </div>
-	<div class="row">
-		<h4 class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-		<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :email, class: "form-control" %>
-	      </div>
-	    </div>
-    </div>
-    <div class="checkbox">
-	  <label>
-	    <input type="checkbox" onclick="orderShowAll()">
-	    <h4 class="text-left">Нужна доставка</h4>
-	  </label>
-	</div>
-    <div id="otherInputs">
-	    <div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_street, "Улица:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-    	<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :addr_street, class: "form-control" %>
-	      </div>
-	    </div>
-	    </div>
-	    <div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_home, "Дом:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-    	<div class="col-md-5">
-	      <div class="wrath-content-box" style="padding:0 15px">
-	        <%= f.text_field :addr_home, class: "form-control" %>
-	      </div>
-	    </div>
-	    </div>
-	    <div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_block, "Корпус:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-	    	<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :addr_block, class: "form-control" %>
-		      </div>
-	    </div>
-	    </div>
-	    <div class="row">
-	    <h4 class="col-md-5 text-right"><nobr><%= f.label :addr_flat, "Квартира:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
-	    	<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :addr_flat, class: "form-control" %>
-		      </div>
-	    </div>
-	    </div>
-    </div>
-    <input class="btn btn-success" type="submit" value="Отправить">
-    <input type="hidden" name="cartfield" id="cartfield">
-    <% end %>
-  </div>
 </div>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
