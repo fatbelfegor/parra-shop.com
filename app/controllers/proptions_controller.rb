@@ -15,7 +15,8 @@ class ProptionsController < ApplicationController
   end
 
   def update
-    @proption = Proption.find(params[:id]).update proption_params
+    @proption = Proption.find(params[:id])
+    @proption.update proption_params
     redirect_to URI.encode '/kupit/'+@proption.prsize.product.scode
   end
 
