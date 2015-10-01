@@ -50,7 +50,8 @@ class PrcolorsController < ApplicationController
   end
 
   def update
-    prcolor = Prcolor.find(params[:id]).update prcolor_params
+    prcolor = Prcolor.find(params[:id])
+    prcolor.update prcolor_params
     prcolor.textures.destroy_all if prcolor.textures
     if params[:textures]
       for t in params[:textures]
