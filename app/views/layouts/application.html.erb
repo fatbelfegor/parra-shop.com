@@ -283,8 +283,8 @@
 			<script type="text/javascript">
 				$('#windowLayout').show()
 			</script>
-	  	<% else %>
-			<div id="notice"><%= flash[:notice] %></div>
+	  	<% elsif !flash[:notice].blank? %>
+			<div class="notice"><%= flash[:notice] %><div class="close" onclick="$(this).parent().remove()">x</div></div>
 		<% end %>
 	    <%= yield %>
 	  </div>
@@ -389,6 +389,9 @@
 		<label><p>Заглавие отзыва:</p><input type="text" name='title'></label>
 		<p>Сообщение:</p>
 		<textarea name="body"></textarea>
+		<div class="tac" style="margin: 15px 0 20px">
+			<div class="btn green" onclick="otzyvSend(this)"><p>Оставить отзыв</p></div>
+		</div>
 	</div>
 </div>
 <!-- Yandex.Metrika counter -->

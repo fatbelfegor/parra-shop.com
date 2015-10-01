@@ -1039,3 +1039,18 @@ writeChars = ->
 		$('#blur').removeClass 'active'
 		$('#dark').fadeOut(300).find("> div").hide()
 @otzyv = -> dark.open 'otzyv'
+@otzyvSend = (el) ->
+	ok = true
+	params = {}
+	for input in $(el).parents('.otzyv').find 'input, textarea'
+		input = $ input
+		val = input.val()
+		if val is ''
+			ok = false
+			input.addClass('error').attr 'placeholder', 'Заполните поле'
+		else input.removeClass('error').removeAttr 'placeholder'
+		params[input.attr 'name'] = val
+	if ok
+		$.post '/otzyv', params, ->
+			dark.close()
+			$('#blur > .main > div').prepend "<div class='notice'>Ваш отзыв появится после проверки модератором.<div class='close' onclick='$(this).parent().remove()'>x</div>"

@@ -16,7 +16,6 @@ ParraShopCom::Application.routes.draw do
   get 'users/:id/logs', to: 'users#logs'
   devise_for :users
   get "images/delete", to: 'images#delete'
-  #get '/kupit/:scode', to: 'products#product'
   get '/kupit/:scode', to: 'products#show_scode'
   
   root to: 'main#index', as: 'index'
@@ -67,6 +66,7 @@ ParraShopCom::Application.routes.draw do
   post 'users/destroy', to: 'users#destroy'
   
   post 'comments/publish', to: 'comments#publish'
+  post 'otzyv', to: 'comments#public_create'
   resources :comments
   resources :categories do
     member do

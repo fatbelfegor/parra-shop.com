@@ -25,6 +25,11 @@ class CommentsController < ApplicationController
     end
   end
 
+  def public_create
+    @comment = Comment.create author: params[:author], title: params[:title], body: params[:body]
+    render nothing: true
+  end
+
   def update
     if @comment.update comment_params
       redirect_to comments_url
