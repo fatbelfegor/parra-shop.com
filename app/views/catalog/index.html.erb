@@ -31,12 +31,77 @@
 		<% end %>
 	<% end %>
 	<% if (params[:category_scode].present? and @category.subcategories.blank?) or params[:q].present? %>
-		<div id="products"></div>
-		<script type="text/javascript">
-		productLoad = {}
-		<%= if params[:category_scode].present? || params[:url].present? then raw "productLoad.cat_id = '#{@category.id}'" end %>
-		<%= if params[:q].present? then raw "productLoad.q = '#{params[:q]}'" end %>
-		</script>
+		<div id="products">
+			<% for p in @products %>
+				<div>
+					<div>
+						<% if p.extension %>
+							<img src="<%= p.extension.image %>" class='extension-catalog'>
+						<% end %>
+						<% images = p.images.split ',' %>
+						<div class="left inactive"></div>
+						<% if images[1] %>
+							<div class="right" onclick="photoRight(this)"></div>
+						<% else %>
+							<div class="right inactive"></div>
+						<% end %>
+						<% if images.length > 0 %>
+							<div class="photoes"><a class="showPhoto" href="/kupit/<%= p.scode %>" style="background-image: url('<%= images[0] %>')"></a>
+							<% for i in images[1..-1] %>
+								<a href="/kupit/<%= p.scode %>" style="background-image: url('<%= i %>')"></a>
+							<% end %>
+							</div>
+						<% end %>
+						<div>
+							<h3>
+								<a href="/kupit/<%= p.scode %>"><%= p.name %></a>
+							</h3>
+						</div>
+						<div><%= p.s_title %></div>
+						<div><%= raw p.shortdesk %></div>
+						<div>
+							<b>Цена:</b>
+							<span class="price"><%= number_to_currency p.price %> руб.</span>
+						</div>
+						<div class="appear">
+							<% if !p.prsizes.blank? %>
+								<div>
+									<b>Размер:</b>
+									<span class="size"><%= p.prsizes[0].name %></span>
+									<span class="hidden size-scode">#{p.prsizes[0].scode}</span>
+								</div>
+							<% end %>
+							<% if !p.prcolors.blank? %>
+								<% prcolor = p.prcolors.first %>
+								<% if !prcolor.textures.blank? %>
+									<div>
+										<b>Цвет:</b>
+										<span class="color"><%= prcolor.textures[0].name %></span>
+										<span class="hidden color-scode"><%= prcolor.textures[0].scode %></span>
+									</div>
+								<% else %>
+									<div>
+										<b>Цвет:</b>
+										<span class="color"><%= p.prcolors[0].name %></span>
+										<span class="hidden color-scode"><%= p.prcolors[0].scode %></span>
+									</div>
+								<% end %>
+							<% end %>
+							<% if !p.proptions.blank? %>
+								<div>
+									<b>Опция:</b>
+									<span class="option"><%= p.proptions[0].name %></span>
+									<span class="hidden option-scode"><%= p.proptions[0].scode %></span>
+								</div>
+							<% end %>
+							<div class="id hidden"><%= p.id %></div>
+							<div class="scode hidden"><%= p.scode %></div>
+							<div class="fancyButton" onclick="addToCartFromCatalog('<%= p.name %>', this)">Купить</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
 	<% elsif @category %>
 		<div id="subcategories">
 			<%= render partial: "subcategories/subcategory" , collection: @category.subcategories %>

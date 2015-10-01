@@ -25,47 +25,6 @@ String.prototype.toNum = ->
 iframe = document.createElement 'iframe'
 menuImages = []
 
-scrollFunc = ->
-	unless window.productLoading
-		products = $('#products')
-		if products.length > 0
-			win = $(this)
-			if win.scrollTop() + win.height() > products.offset().top + products.height() - 300
-				window.productLoading = true
-				productLoad.limit = Math.floor(($('#products').width() + 50) / 350) * Math.ceil(($(window).height() + 10) / 460) * 2
-				productLoad.offset = products.find('> div').length
-				$.post '/catalog/products', productLoad, (d) ->
-					html = ''
-					for r in d
-						p = r.product
-						extension = r.extension
-						html += "<div><div>"
-						html += "<img class='extension-catalog' src='#{extension.image}'>" if extension
-						images = p.images.split ','
-						html += '<div class="left inactive"></div>'
-						if images[1]
-							html += '<div class="right" onclick="photoRight(this)"></div>' 
-						else
-							html += '<div class="right inactive"></div>'
-						if images.length > 0
-							html += "<div class=\"photoes\"><a class=\"showPhoto\" href=\"/kupit/#{p.scode}\" style=\"background-image: url('#{images[0]}')\"></a>"
-							for i in images[1..-1]
-								html += "<a href=\"/kupit/#{p.scode}\" style=\"background-image: url('#{i}')\"></a>"
-							html += '</div>'
-						html += "<div><h3><a href=\"/kupit/#{p.scode}\">#{p.name}</a></h3></div><div>#{p.s_title}</div><div class='shortdesk'>#{p.shortdesk}</div><div><b>Цена:</b> <span class=\"price\">#{parseFloat(p.price).toCurrency()} руб.</span></div><div class=\"appear\">"
-						html += "<div><b>Размер:</b> <span class=\"size\">#{r.prsizes[0].name}</span><span class=\"hidden size-scode\">#{r.prsizes[0].scode}</span></div>" if r.prsizes.length > 0
-						if r.prcolors.length > 0
-							if r.textures.length > 0
-									html += "<div><b>Цвет:</b> <span class=\"color\">#{r.textures[0].name}</span><span class=\"hidden color-scode\">#{r.textures[0].scode}</span></div>"
-								else
-									html += "<div><b>Цвет:</b> <span class=\"color\">#{r.prcolors[0].name}</span><span class=\"hidden color-scode\">#{r.prcolors[0].scode}</span></div>"
-						html += "<div><b>Опция:</b> <span class=\"option\">#{r.proptions[0].name}</span><span class=\"hidden option-scode\">#{r.proptions[0].scode}</span></div>" if r.proptions.length > 0
-						html += "<div class=\"id hidden\">#{p.id}</div><div class=\"scode hidden\">#{p.scode}</div><div class=\"fancyButton\" onclick=\"addToCartFromCatalog('#{p.name}', this)\">Купить</div></div></div></div>"
-					if $('#products').append(html).find('> div').length == 0
-						$('#products').html('<p class="notFound">По Вашему запросу ничего не найдено, попробуйте его изменить.</p>')
-					window.productLoading = false
-window.productLoading = false
-
 resizeFunc = ->
 	if $(document).width() > 1000
 		$('body').removeClass 'small-size'
@@ -174,8 +133,6 @@ ready = ->
 				images.push $(@).attr 'src'
 			el.parent().next().val images.join ','
 	resizeFunc()
-	scrollFunc()
-	$('.main').scroll scrollFunc
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'
