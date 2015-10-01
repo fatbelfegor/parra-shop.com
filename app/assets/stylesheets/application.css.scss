@@ -1108,8 +1108,8 @@ nav {
 }
 
 #subcategories #products, #products {
-	width: 100%;
-	height: auto;
+	width: 100% !important;
+	height: auto !important;
 	> div {
 		width: 302px;
 		height: 452px;
