@@ -41,7 +41,7 @@ class PrcolorsController < ApplicationController
       end
       scode = prcolor.prsize.product.scode
     end
-    # redirect_to URI.encode "/kupit/#{scode}"
+    redirect_to URI.encode "/kupit/#{prcolor.prsize.product.scode}"
   end
 
   def edit
