@@ -1,6 +1,6 @@
 ParraShopCom::Application.routes.draw do
-  get '/spalni', to: 'main#spalni'
-  get '/gostinaya', to: 'main#gostinaya'
+  get '/modulnaja-mebel-dlja-spalni', to: 'main#spalni'
+  get '/modulnaja-mebel-dlja-gostinoj', to: 'main#gostinaya'
   get '/divani', to: 'main#divani'
   get '/matras', to: 'main#matras'
   get '/otzyvy', to: 'main#otzyvy', as: :otzyvy

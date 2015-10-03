@@ -17,8 +17,9 @@ class MainController < ApplicationController
     @first_banners = banners.find_all{|b| !b.second_line and !b.third_line}
     @second_banners = banners.find_all{|b| b.second_line}
     @third_banners = banners.find_all{|b| b.third_line}
-    @title = "ParraShop — мебель parra от Новомебель из Литвы в Москве"
-    @seo_description = "Магазин мебель Parra в Москве — ParraShop"
+    @title = "Мебель из шпона Parra в интернет-магазине Parra-Shop"
+    @seo_description = "Интернет-магазин Parra-Shop предлагает мебель из шпона в Москве. Мебель Parra - это ультрасовременная мебель, облицованная натуральным шпоном."
+    @seo_keywords = "мебель, шпон, парра, интернет, магазин, parra"
   end
 
   def sitemap
@@ -30,8 +31,14 @@ class MainController < ApplicationController
   end
 
   def spalni
+    @title = "Спальные гарнитуры в Москве - купить модульную корпусную мебель для спальни на заказ"
+    @seo_description = "Спальные гарнитуры в Москве - купить модульную корпусную мебель для спальни на заказ"
+    @seo_keywords = "мебель, спальня, москва, гарнитур, интернет, магазин, заказ, производитель, корпусный, спальный, модульный, купить"
   end
   def gostinaya
+    @title = "Современная мебель для гостиной - купить набор корпусной модульной мебели для гостиной комнаты на заказ в Москве"
+    @seo_description = "Интернет-магазин Parra-Shop предлагает купить современную мебель для гостиной. В продаже есть наборы модульной корпусной мебели, стенки для гостиной комнаты. Вы можете приобрести мебель для гостиной на заказ в Москве"
+    @seo_keywords = "мебель, москва, комната, заказ, набор, стенка, корпусный, гостиный, модульный, современный, купить"
   end
   def divani
   end

@@ -10,7 +10,7 @@
 			<span>></span>
 			<% par = par.parent
 		end %>
-		<h2 class="categoryLogo">
+		<h1 class="categoryLogo">
 			<% if params[:category_scode].present? %>
 				<% unless @category.header.blank? %>
 				<img src='<%= @category.header %>'> / 
@@ -19,7 +19,7 @@
 			<% elsif params[:q].present? %>
 				Поиск по запросу "<%= params[:q] %>"
 			<% end %>
-		</h2>
+		</h1>
 	</div>
 	<% if params[:category_scode].present? %>
 		<% unless @category.images.blank? %>
