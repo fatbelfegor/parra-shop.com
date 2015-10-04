@@ -62,6 +62,7 @@ li {
 .breadcrumbs {
 	width: auto !important;
 	height: auto !important;
+	display: block !important;
 	font-size: 16px;
 	color: #444;
 	margin: 30px 80px 20px;
@@ -1077,40 +1078,9 @@ nav {
 		margin: 0 auto;
 		height: 100%;
 
-		#WebGL-output {
-			height: 100%;
-		}
-
-		> .index {
-			font-size: 0;
-
-			> div {
-				width: 300px;
-				height: 400px;
-				display: inline-block;
-				vertical-align: top;
-
-				img {
-					width: 280px;
-					height: 280px;
-					margin: 10px;
-				}
-
-				div {
-					color: #59595B;
-					margin-left: 50px;
-					font-size: 12px;
-					line-height: 25px;
-				}
-
-				:nth-child(3) {
-					
-				}
-
-				:nth-child(3), :last-child {
-				}
-			}
-			.category-images img {
+		.category-images {
+			display: block;
+			img {
 				display: inline-block;
 				width: auto;
 				height: auto;
@@ -1140,6 +1110,7 @@ nav {
 	#subcategories #products, #products {
 		width: 100%;
 		height: auto;
+		font-size: 0;
 		> div {
 			width: 302px;
 			height: 452px;
@@ -1153,6 +1124,17 @@ nav {
 				border: 1px solid transparent;
 				position: absolute;
 				background-color: white;
+				img {
+					width: 280px;
+					height: 280px;
+					margin: 10px;
+				}
+				div {
+					color: #59595B;
+					margin-left: 50px;
+					font-size: 12px;
+					line-height: 25px;
+				}
 				.appear {
 					text-align: center;
 					margin: 0;
@@ -2740,6 +2722,9 @@ body.small-size {
 		font-weight: bold;
 		font-size: 15px;
 		margin: 10px 0 18px;
+	}
+	#products + .title {
+		margin-top: 100px;
 	}
 	.description {
 		font-size: 14px;

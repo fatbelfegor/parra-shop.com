@@ -1,14 +1,16 @@
-<script src="http://lokeshdhakar.com/projects/lightbox2/js/lightbox-2.6.min.js"></script>
-<link href="http://lokeshdhakar.com/projects/lightbox2/css/lightbox.css" rel="stylesheet" />
+<script src="/assets/lightbox.min.js"></script>
+<link href="/assets/lightbox.min.css" rel="stylesheet" />
 <div class="index">
 	<div class="breadcrumbs">
 		<a href="/">Главная</a>
 		<span>></span>
-		<% par = @category.parent
+		<% if params[:category_scode].present?
+		par = @category.parent
 		while par %>
 			<a href="/catalog/<%= par.url %>"><%= par.name %></a>
 			<span>></span>
 			<% par = par.parent
+		end
 		end %>
 		<h1 class="categoryLogo">
 			<% if params[:category_scode].present? %>
