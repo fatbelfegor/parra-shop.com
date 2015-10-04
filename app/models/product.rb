@@ -1,4 +1,4 @@
-require 'elasticsearch/model'
+# require 'elasticsearch/model'
 
 class Product < ActiveRecord::Base
 	# include Elasticsearch::Model
