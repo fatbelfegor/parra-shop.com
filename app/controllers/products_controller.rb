@@ -23,13 +23,58 @@ class ProductsController < ApplicationController
     if @title == nil || @title.blank?
       @title = @product.name
     end
-    @seo_description = @product.s_description
-    @seo_keywords = @product.s_keyword
-    if @product.category
-      @title = @product.category.title + " - " + @title
+    price = @product.price
+    if @product.prsizes.empty?
+      size = false
     else
-      @title = @product.subcategory.name + " - " + @title
+      size = @product.prsizes.first
+      price += size.price
+      if size.prcolors.empty?
+        color = false
+      else
+        color = size.prcolors.first
+        price += color.price
+        if color.textures.empty?
+          texture = false
+        else
+          texture = color.textures.first
+          price += texture.price
+        end
+      end
+      if size.proptions.empty?
+        option = false
+      else
+        option = size.proptions.first
+        price += option.price
+      end
     end
+    price = ('%.2f' % price).gsub(/\B(?=(\d{3})+(?!\d))/, " ")
+    @title = "#{@product.name} по цене #{price} руб."
+    @seo_description = "В интернет магазине Parra Shop можно купить #{@product.name} по цене #{price} руб.. Заказать #{@product.name}"
+    @seo_keywords = "#{@product.name}, #{price} руб"
+    if size
+      @title += ": размер #{size.name}"
+      @seo_description += " размером #{size.name}"
+      @seo_keywords += ", #{size.name}"
+      if color
+        @title += " цвет #{color.name}"
+        @seo_description += " цветом #{color.name}"
+        @seo_keywords += ", #{color.name}"
+        if texture
+          @title += " текстура #{texture.name}"
+          @seo_description += " текстурой #{texture.name}"
+          @seo_keywords += ", #{texture.name}"
+        end
+      end
+      if option
+        @title += " опция #{option.name}"
+        @seo_description += " опцией #{option.name}"
+        @seo_keywords += ", #{option.name}"
+      end
+    end
+    @title += " в Москве"
+    @seo_description += " в Москве и области."
+    @seo_keywords += ", Москва, Parra Shop"
     if !@product.invisible || (user_signed_in? && current_user.admin?)
       @categories = Category.all.order :position
     else      

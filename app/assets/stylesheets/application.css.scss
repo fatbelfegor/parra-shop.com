@@ -316,7 +316,7 @@ nav {
 			overflow: hidden;
 			@include transition(0.3s);
 
-			h2 {
+			.sum {
 				color: #198900;
 				line-height: 36px;
 				margin: 0 14px 0 4px;
@@ -460,15 +460,27 @@ nav {
 	}
 }
 
-#orderWindow form {
-	padding: 15px 10px 0 !important;
-	.col-md-5 {
-		width: 45%;
-		float: left;
+#orderWindow {
+	form {
+		padding: 15px 10px 0 !important;
+		.col-md-5 {
+			width: 45%;
+			float: left;
+			text-align: right;
+			margin: 5px 0;
+			display: block;
+			font-weight: bold;
+			line-height: 36px;
+		}
 	}
 }
 
 #alert, #orderWindow {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 	display: none;
 	@include transition(0.3s);
 
@@ -590,7 +602,7 @@ nav {
 			margin: 0;
 			padding: 10px 14px 20px 220px;
 			border-top: 1px solid black;
-			width: 200px;
+			width: 205px;
 			color: #12880A;
 		}
 
@@ -643,6 +655,11 @@ nav {
 				top: -5px;
 				right: 0;
 			}
+			p {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				font-weight: bold;
+			}
 		}
 
 		form {
@@ -673,9 +690,8 @@ nav {
 				height: 0;
 				overflow: hidden;
 				margin-left: 0;
-				.row, h4 {
-					margin: 5px 0;
-				}				
+				margin-right: -22px;
+				padding-right: 22px;			
 			}
 		}
 	}
@@ -684,7 +700,7 @@ nav {
 .show {
 	margin-left: 30px;
 	
-	h2 {
+	.page-title {
 		font-size: 20px;
 		font-weight: normal;
 		line-height: 20px;
@@ -1207,6 +1223,12 @@ nav {
 				.shortdesk {
 					overflow: hidden;
 					max-height: 50px;
+				}
+				.name {
+					font-size: 14px;
+					font-weight: bold;
+					margin-left: 0;
+					line-height: 25px;
 				}
 			}
 		}
@@ -1747,9 +1769,10 @@ a.cart {
 								background-repeat: no-repeat;
 								background-size: auto 105px;
 								background-position: center;
-								h2 {
+								.name {
 									font-size: 15px;
 									padding: 12px 0;
+									font-weight: bold;
 								}
 								p {
 									position: absolute;
@@ -2687,9 +2710,10 @@ body.small-size {
 	margin-top: 10px;
 	display: none;
 	line-height: 26px;
-	h5 {
+	.choosed-options {
 		font-size: 15px;
 		margin-bottom: 2px;
+		font-weight: bold;
 	}
 	p {
 		font-size: 13px;

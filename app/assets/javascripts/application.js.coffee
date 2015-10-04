@@ -208,10 +208,10 @@ expire = ->
 						$(item).find('img').attr 'src', data.images.split(',')[0]
 	$('body').append('<div id="alert">\
 			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
-			<div style="top:'+($(window).height()/2-300)+'px; left:'+($(window).width()/2-235)+'px">\
+			<div>\
 				<div class="header">\
 					Спасибо. Товар добавлен в Вашу корзину.\
-					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
+					<div style="background:url(\'/assets/remove-icon.png\')" onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
 				</div>\
 			</div>\
 			'+items+'</div><p class="itogo">Итого: <b>'+price.toCurrency()+'</b> руб.</p>\
@@ -219,7 +219,12 @@ expire = ->
 			<a href="/cart" class="gotoCart">Перейти в корзину</a>\
 			</div>\
 		</div>')
-	$('#alert').fadeIn(300)	
+	a = $('#alert').show()
+	d = a.find('> div').last()
+	console.log d.width()
+	console.log d.height()
+	d.css('left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 + $(window).scrollTop() - d.height() / 2)
+	a.hide().fadeIn(300)
 	cartSave()
 @addToCart = (name, el) ->
 	price = parseInt($(el).prev().find('b').html().replace(' руб.', '').replace(/\ /g,'')).toCurrency()
@@ -364,7 +369,7 @@ expire = ->
 	if w
 		w[0].parentNode.removeChild w[0]
 		$('body')[0].appendChild(w[0])
-		d.css 'left':$(window).width()/2-d.width()/2+'px', 'top':$(window).height()/2-d.height()/2-150+'px'
+		d.css 'left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 + $(window).scrollTop() - d.height() / 2
 @orderShowAll = ->
 	h = $($('#otherInputs')[0])
 	if h.attr('class') == 'show'

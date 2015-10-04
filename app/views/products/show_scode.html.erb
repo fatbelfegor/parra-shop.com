@@ -17,7 +17,7 @@ size_first = @product.prsizes.first %>
 		<% end %>
 		<p><%= @product.name %></p>
 	</div>
-	<h2><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end %></h2>
+	<div class="page-title"><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end %></div>
 	<div class="main">
 		<div>
 			<% if @product.extension %>
@@ -124,7 +124,7 @@ size_first = @product.prsizes.first %>
 				</div>
 			<% end %>
 			<div id="choosedChars" class="open">
-				<h5>Выбранные опции:</h5>
+				<div class="choosed-options">Выбранные опции:</div>
 				<p class="size">Размер: <b></b></p>
 				<p class="color">Цвет: <b></b></p>
 				<p class="opt">Опция: <b></b></p>

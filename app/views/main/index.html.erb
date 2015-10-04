@@ -70,7 +70,7 @@
 							<% if @cat.size > 0 then @cat[0..4].each do |p| %>
 							<td>
 								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
-									<h2><%= p.name %></h2>
+									<div class='name'><%= p.name %></div>
 									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
 							</td>
@@ -80,7 +80,7 @@
 							<% if @cat.size > 5 then @cat[5..9].each do |p| %>
 							<td>
 								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
-									<h2><%= p.name %></h2>
+									<div class='name'><%= p.name %></div>
 									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
 								</a>
 							</td>
