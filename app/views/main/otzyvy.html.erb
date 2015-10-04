@@ -14,7 +14,7 @@
 		<div class='header'><%= comment.title %></div>
 		<div class='body'><%= comment.body %></div>
 		<div class='bottom'>
-			<div class='name'><%= comment.author %></div>
+			<div class='name'><%= comment.author %><% unless comment.city.blank? %>, <%= comment.city %><% end %></div>
 			<div class='date'><%= comment.created_at.strftime "%Y-%m-%d" %></div>
 		</div>
 	</div>

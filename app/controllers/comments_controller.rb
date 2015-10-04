@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :admin_required
+  before_filter :admin_required, except: [:public_create]
   before_action :set_comment, only: [:show, :publish, :edit, :update, :destroy]
   
   def index
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
   end
 
   def public_create
-    @comment = Comment.create author: params[:author], title: params[:title], body: params[:body]
+    @comment = Comment.create author: params[:author], title: params[:title], city: params[:city], body: params[:body]
     render nothing: true
   end
 
