@@ -20,7 +20,6 @@ class OrderMailer < ActionMailer::Base
 
   def comment(comment)
     @comment = comment
-    # mail(to: 'kas1082@yandex.ru', subject: 'Новый отзыв на сайте parra-shop.')
-    mail(to: 'romadzao@gmail.com', subject: 'Новый отзыв на сайте parra-shop.')
+    mail(to: 'kas1082@yandex.ru', subject: 'Новый отзыв на сайте parra-shop.')
   end
 end
