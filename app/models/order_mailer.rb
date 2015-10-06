@@ -12,9 +12,15 @@ class OrderMailer < ActionMailer::Base
   end
 
   def ordersaveclient(order)
-    @order =  order
+    @order = order
     if(!order.email.empty?)
       mail(to: order.email, subject: 'Ваш заказ принят.')
     end
+  end
+
+  def comment(comment)
+    @comment = comment
+    # mail(to: 'kas1082@yandex.ru', subject: 'Новый отзыв на сайте parra-shop.')
+    mail(to: 'romadzao@gmail.com', subject: 'Новый отзыв на сайте parra-shop.')
   end
 end

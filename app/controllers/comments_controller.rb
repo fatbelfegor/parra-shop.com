@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
 
   def public_create
     @comment = Comment.create author: params[:author], title: params[:title], city: params[:city], body: params[:body]
+    OrderMailer.comment(@comment).deliver
     render nothing: true
   end
 
