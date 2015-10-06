@@ -45,7 +45,9 @@ size_first = @product.prsizes.first %>
 		</div>
 		<div class="productContent">
 			<h1><%= @product.name %></h1>
-			<%= sanitize(@product.description) %>
+			<div style="font-size: 14px; margin-bottom: 10px">
+			<%= raw(@product.description) %>
+			</div>
 			
 			<% if !@product.prsizes.blank? %>
 				<div>
