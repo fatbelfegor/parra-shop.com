@@ -22,7 +22,7 @@ class CatalogController < ApplicationController
     elsif params[:q].present?
       @title = "Поиск: #{params[:q]}"
       # @products = Product.search({query: {multi_match: {query: params[:q], fields: [:name, :scode]}}}).records
-      @products = Product.where("name LIKE ? or scode LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+      @products = Product.where("name LIKE ? or scode LIKE ? or id in (#{Category.where("name LIKE ?", "%#{params[:q]}%").map(&:product_ids).flatten.join(',')})", "%#{params[:q]}%", "%#{params[:q]}%")
       @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin?
     elsif params[:url].present?
       @category = Category.find_by url: params[:url]
