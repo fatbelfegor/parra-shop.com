@@ -13,277 +13,277 @@
 
 ActiveRecord::Schema.define(version: 20151004135642) do
 
-  create_table "banners", force: true do |t|
-    t.string   "image"
-    t.string   "url"
+  create_table "banners", force: :cascade do |t|
+    t.string   "image",       limit: 255
+    t.string   "url",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "second_line", default: false
-    t.boolean  "third_line",  default: false
+    t.boolean  "second_line",             default: false
+    t.boolean  "third_line",              default: false
   end
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "position"
-    t.string   "header"
-    t.text     "images"
-    t.integer  "parent_id"
-    t.string   "s_title"
-    t.string   "s_description"
-    t.string   "s_keyword"
-    t.string   "s_name"
-    t.string   "scode"
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.text     "description",      limit: 65535
+    t.integer  "position",         limit: 4
+    t.string   "header",           limit: 255
+    t.text     "images",           limit: 65535
+    t.integer  "parent_id",        limit: 4
+    t.string   "s_title",          limit: 255
+    t.string   "s_description",    limit: 255
+    t.string   "s_keyword",        limit: 255
+    t.string   "s_name",           limit: 255
+    t.string   "scode",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "commission",       precision: 18, scale: 2, default: 0.0
-    t.decimal  "rate",             precision: 18, scale: 2, default: 0.0
-    t.text     "seo_text"
-    t.string   "url"
-    t.boolean  "menu"
-    t.boolean  "isMobile",                                  default: false
-    t.string   "mobile_image_url"
+    t.decimal  "commission",                     precision: 18, scale: 2, default: 0.0
+    t.decimal  "rate",                           precision: 18, scale: 2, default: 0.0
+    t.text     "seo_text",         limit: 65535
+    t.string   "url",              limit: 255
+    t.boolean  "isMobile",                                                default: false
+    t.string   "mobile_image_url", limit: 255
   end
 
-  create_table "categories_products", id: false, force: true do |t|
-    t.integer "category_id", null: false
-    t.integer "product_id",  null: false
+  create_table "categories_products", id: false, force: :cascade do |t|
+    t.integer "category_id", limit: 4
+    t.integer "product_id",  limit: 4
   end
 
-  create_table "comments", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.string   "author"
-    t.boolean  "published",  default: false
+  create_table "comments", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.text     "body",       limit: 65535
+    t.string   "author",     limit: 255
+    t.boolean  "published",                default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "city"
+    t.string   "city",       limit: 255
   end
 
-  create_table "extensions", force: true do |t|
-    t.string "name"
-    t.string "image"
+  create_table "extensions", force: :cascade do |t|
+    t.string "name",  limit: 255
+    t.string "image", limit: 255
   end
 
-  create_table "manager_logs", force: true do |t|
-    t.string   "action"
-    t.integer  "order_id"
-    t.integer  "order_item_id"
-    t.integer  "user_id"
+  create_table "manager_logs", force: :cascade do |t|
+    t.string   "action",        limit: 255
+    t.integer  "order_id",      limit: 4
+    t.integer  "order_item_id", limit: 4
+    t.integer  "user_id",       limit: 4
     t.datetime "time"
   end
 
-  create_table "order_items", force: true do |t|
-    t.integer  "product_id",                                          null: false
-    t.integer  "quantity",                                            null: false
-    t.decimal  "price",        precision: 18, scale: 2, default: 0.0, null: false
-    t.string   "size"
-    t.string   "color"
-    t.string   "option"
+  add_index "manager_logs", ["user_id"], name: "index_manager_logs_on_user_id", using: :btree
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "product_id",   limit: 4,                                          null: false
+    t.integer  "quantity",     limit: 4,                                          null: false
+    t.decimal  "price",                    precision: 18, scale: 2, default: 0.0, null: false
+    t.string   "size",         limit: 255
+    t.string   "color",        limit: 255
+    t.string   "option",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order_id"
-    t.string   "size_scode"
-    t.string   "color_scode"
-    t.string   "option_scode"
-    t.decimal  "discount",     precision: 10, scale: 0, default: 0
+    t.integer  "order_id",     limit: 4
+    t.string   "size_scode",   limit: 255
+    t.string   "color_scode",  limit: 255
+    t.string   "option_scode", limit: 255
+    t.decimal  "discount",                 precision: 10,           default: 0
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
-  create_table "orders", force: true do |t|
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "gender"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "pay_type"
-    t.string   "addr_street"
-    t.string   "addr_home"
-    t.string   "addr_block"
-    t.string   "addr_flat"
-    t.text     "comment"
+  create_table "orders", force: :cascade do |t|
+    t.string   "first_name",        limit: 255
+    t.string   "middle_name",       limit: 255
+    t.string   "last_name",         limit: 255
+    t.string   "gender",            limit: 255
+    t.string   "phone",             limit: 255
+    t.string   "email",             limit: 255
+    t.string   "pay_type",          limit: 255
+    t.string   "addr_street",       limit: 255
+    t.string   "addr_home",         limit: 255
+    t.string   "addr_block",        limit: 255
+    t.string   "addr_flat",         limit: 255
+    t.text     "comment",           limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "salon"
-    t.string   "salon_tel"
-    t.string   "manager"
-    t.string   "manager_tel"
-    t.string   "addr_metro"
-    t.string   "addr_staircase"
-    t.string   "addr_floor"
-    t.string   "addr_code"
-    t.string   "addr_elevator"
-    t.string   "deliver_type"
-    t.decimal  "deliver_cost",      precision: 10, scale: 0, default: 0
-    t.string   "prepayment_date"
-    t.decimal  "prepayment_sum",    precision: 10, scale: 0, default: 0
-    t.string   "doppayment_date"
-    t.decimal  "doppayment_sum",    precision: 10, scale: 0, default: 0
-    t.string   "finalpayment_date"
-    t.decimal  "finalpayment_sum",  precision: 10, scale: 0, default: 0
-    t.string   "payment_type"
-    t.decimal  "credit_sum",        precision: 10, scale: 0, default: 0
-    t.integer  "credit_month"
-    t.decimal  "credit_procent",    precision: 10, scale: 0, default: 0
-    t.string   "deliver_date"
-    t.integer  "status_id"
-    t.integer  "number"
+    t.string   "salon",             limit: 255
+    t.string   "salon_tel",         limit: 255
+    t.string   "manager",           limit: 255
+    t.string   "manager_tel",       limit: 255
+    t.string   "addr_metro",        limit: 255
+    t.string   "addr_staircase",    limit: 255
+    t.string   "addr_floor",        limit: 255
+    t.string   "addr_code",         limit: 255
+    t.string   "addr_elevator",     limit: 255
+    t.string   "deliver_type",      limit: 255
+    t.decimal  "deliver_cost",                    precision: 10, default: 0
+    t.string   "prepayment_date",   limit: 255
+    t.decimal  "prepayment_sum",                  precision: 10, default: 0
+    t.string   "doppayment_date",   limit: 255
+    t.decimal  "doppayment_sum",                  precision: 10, default: 0
+    t.string   "finalpayment_date", limit: 255
+    t.decimal  "finalpayment_sum",                precision: 10, default: 0
+    t.string   "payment_type",      limit: 255
+    t.decimal  "credit_sum",                      precision: 10, default: 0
+    t.integer  "credit_month",      limit: 4
+    t.decimal  "credit_procent",                  precision: 10, default: 0
+    t.string   "deliver_date",      limit: 255
+    t.integer  "status_id",         limit: 4
+    t.integer  "number",            limit: 4
   end
 
-  create_table "packinglistitems", force: true do |t|
-    t.integer "packinglist_id"
-    t.integer "product_id"
-    t.string  "product_name_article"
-    t.integer "amount"
-    t.decimal "price",                precision: 18, scale: 2
-    t.string  "name"
+  create_table "packinglistitems", force: :cascade do |t|
+    t.integer "packinglist_id",       limit: 4
+    t.integer "product_id",           limit: 4
+    t.string  "product_name_article", limit: 255
+    t.integer "amount",               limit: 4
+    t.decimal "price",                            precision: 18, scale: 2
+    t.string  "name",                 limit: 255
   end
 
-  create_table "packinglists", force: true do |t|
-    t.string "doc_number"
+  add_index "packinglistitems", ["packinglist_id"], name: "index_packinglistitems_on_packinglist_id", using: :btree
+  add_index "packinglistitems", ["product_id"], name: "index_packinglistitems_on_product_id", using: :btree
+
+  create_table "packinglists", force: :cascade do |t|
+    t.string "doc_number", limit: 255
     t.date   "date"
-    t.string "user"
+    t.string "user",       limit: 255
   end
 
-  create_table "prcolors", force: true do |t|
-    t.integer  "product_id"
-    t.string   "scode"
-    t.string   "name"
-    t.decimal  "price",       precision: 18, scale: 2, default: 0.0, null: false
+  create_table "prcolors", force: :cascade do |t|
+    t.integer  "product_id",  limit: 4
+    t.string   "scode",       limit: 255
+    t.string   "name",        limit: 255
+    t.decimal  "price",                   precision: 18, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "description"
-    t.string   "images"
-    t.integer  "prsize_id"
+    t.string   "description", limit: 255
+    t.string   "images",      limit: 255
+    t.integer  "prsize_id",   limit: 4
   end
 
   add_index "prcolors", ["prsize_id"], name: "index_prcolors_on_prsize_id", using: :btree
 
-  create_table "product_footer_images", force: true do |t|
-    t.string  "image"
-    t.integer "product_id"
+  create_table "product_footer_images", force: :cascade do |t|
+    t.string  "image",      limit: 255
+    t.integer "product_id", limit: 4
   end
 
-  create_table "products", force: true do |t|
-    t.integer  "category_id"
-    t.string   "scode"
-    t.string   "name"
-    t.text     "description"
-    t.text     "images"
-    t.text     "shortdesk"
+  create_table "products", force: :cascade do |t|
+    t.integer  "category_id",    limit: 4
+    t.string   "scode",          limit: 255
+    t.string   "name",           limit: 255
+    t.text     "description",    limit: 65535
+    t.text     "images",         limit: 65535
+    t.text     "shortdesk",      limit: 65535
     t.boolean  "delemiter"
     t.boolean  "invisible"
     t.boolean  "main"
     t.boolean  "action"
     t.boolean  "best"
-    t.integer  "position"
-    t.string   "s_title"
-    t.string   "s_description"
-    t.string   "s_keyword"
-    t.string   "s_imagealt"
+    t.integer  "position",       limit: 4
+    t.string   "s_title",        limit: 255
+    t.string   "s_description",  limit: 255
+    t.string   "s_keyword",      limit: 255
+    t.string   "s_imagealt",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price",          precision: 18, scale: 2, default: 0.0
-    t.text     "seo_text"
-    t.decimal  "old_price",      precision: 18, scale: 2, default: 0.0
-    t.string   "seo_title2"
-    t.integer  "subcategory_id"
-    t.string   "article"
-    t.integer  "extension_id"
+    t.decimal  "price",                        precision: 18, scale: 2, default: 0.0
+    t.text     "seo_text",       limit: 65535
+    t.decimal  "old_price",                    precision: 18, scale: 2, default: 0.0
+    t.string   "seo_title2",     limit: 255
+    t.integer  "subcategory_id", limit: 4
+    t.integer  "extension_id",   limit: 4
   end
 
   add_index "products", ["extension_id"], name: "index_products_on_extension_id", using: :btree
   add_index "products", ["subcategory_id"], name: "index_products_on_subcategory_id", using: :btree
 
-  create_table "proptions", force: true do |t|
-    t.integer  "product_id"
-    t.string   "scode"
-    t.string   "name"
-    t.decimal  "price",      precision: 18, scale: 2, default: 0.0, null: false
+  create_table "proptions", force: :cascade do |t|
+    t.integer  "product_id", limit: 4
+    t.string   "scode",      limit: 255
+    t.string   "name",       limit: 255
+    t.decimal  "price",                  precision: 18, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "prsize_id"
+    t.integer  "prsize_id",  limit: 4
   end
 
   add_index "proptions", ["prsize_id"], name: "index_proptions_on_prsize_id", using: :btree
 
-  create_table "prsizes", force: true do |t|
-    t.integer  "product_id"
-    t.string   "scode"
-    t.string   "name"
-    t.decimal  "price",      precision: 18, scale: 2, default: 0.0, null: false
+  create_table "prsizes", force: :cascade do |t|
+    t.integer  "product_id", limit: 4
+    t.string   "scode",      limit: 255
+    t.string   "name",       limit: 255
+    t.decimal  "price",                  precision: 18, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "old_price",  precision: 10, scale: 2, default: 0.0
+    t.decimal  "old_price",              precision: 10, scale: 2, default: 0.0
   end
 
-  create_table "statuses", force: true do |t|
-    t.string "name"
+  create_table "statuses", force: :cascade do |t|
+    t.string "name", limit: 255
   end
 
-  create_table "sub_cat_images", force: true do |t|
-    t.string  "url"
-    t.text    "description"
-    t.integer "subcategory_id"
+  create_table "sub_cat_images", force: :cascade do |t|
+    t.string  "url",            limit: 255
+    t.text    "description",    limit: 65535
+    t.integer "subcategory_id", limit: 4
   end
 
   add_index "sub_cat_images", ["subcategory_id"], name: "index_sub_cat_images_on_subcategory_id", using: :btree
 
-  create_table "subcategories", force: true do |t|
-    t.string  "name"
-    t.text    "description"
-    t.integer "category_id"
+  create_table "subcategories", force: :cascade do |t|
+    t.string  "name",        limit: 255
+    t.text    "description", limit: 65535
+    t.integer "category_id", limit: 4
   end
 
   add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id", using: :btree
 
-  create_table "textures", force: true do |t|
-    t.integer  "prcolor_id"
-    t.string   "scode"
-    t.string   "name"
-    t.string   "image"
-    t.decimal  "price",      precision: 18, scale: 2, default: 0.0, null: false
+  create_table "textures", force: :cascade do |t|
+    t.integer  "prcolor_id", limit: 4
+    t.string   "scode",      limit: 255
+    t.string   "name",       limit: 255
+    t.string   "image",      limit: 255
+    t.decimal  "price",                  precision: 18, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "color_id"
   end
 
-  add_index "textures", ["color_id"], name: "index_textures_on_color_id", using: :btree
-
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
     t.boolean  "manager"
-    t.string   "prefix"
-    t.string   "role"
+    t.string   "prefix",                 limit: 255
+    t.string   "role",                   limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "virtproducts", force: true do |t|
-    t.text    "text"
-    t.decimal "price",    precision: 18, scale: 2, default: 0.0, null: false
-    t.integer "order_id"
+  create_table "virtproducts", force: :cascade do |t|
+    t.text    "text",     limit: 65535
+    t.decimal "price",                  precision: 18, scale: 2, default: 0.0, null: false
+    t.integer "order_id", limit: 4
   end
 
 end
