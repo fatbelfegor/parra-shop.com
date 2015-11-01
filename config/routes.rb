@@ -9,7 +9,7 @@ ParraShopCom::Application.routes.draw do
   get "order_item/plus"
   get "order_item/minus"
   get "order_item/delete"
-  get "catalog/index", to: 'catalog#index'
+  get "catalog/index", to: 'catalog#search'
   get "catalog/(:url)", to: 'catalog#index'
   get "main/main"
   get 'users', to: 'users#index'

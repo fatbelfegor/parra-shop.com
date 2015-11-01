@@ -2,18 +2,18 @@
 <link href="/assets/lightbox.min.css" rel="stylesheet" />
 <div class="index">
 	<div class="breadcrumbs">
-		<a href="/">Главная</a>
+		<a href="http://www.parra-shop.ru/">Главная</a>
 		<span>></span>
-		<% if params[:category_scode].present?
+		<% if params[:url].present?
 		par = @category.parent
 		while par %>
-			<a href="/catalog/<%= par.url %>"><%= par.name %></a>
+			<a href="http://www.parra-shop.ru/catalog/<%= par.url %>"><%= par.name %></a>
 			<span>></span>
 			<% par = par.parent
 		end
 		end %>
 		<h1 class="categoryLogo">
-			<% if params[:category_scode].present? %>
+			<% if params[:url].present? %>
 				<% unless @category.header.blank? %>
 				<img src='<%= @category.header %>'> / 
 				<% end %>
@@ -23,7 +23,7 @@
 			<% end %>
 		</h1>
 	</div>
-	<% if params[:category_scode].present? %>
+	<% if params[:url].present? %>
 		<% unless @category.images.blank? %>
 			<div class="category-images">
 				<% for image in @category.images.split(',') %>
@@ -32,7 +32,7 @@
 			</div>
 		<% end %>
 	<% end %>
-	<% if (params[:category_scode].present? and @category.subcategories.blank?) or params[:q].present? %>
+	<% if (params[:url].present? and @category.subcategories.blank?) or params[:q].present? %>
 		<div id="products">
 			<% for p in @products %>
 				<div>
@@ -114,7 +114,7 @@
 		productLoad = {}
 		</script>
 	<% end %>
-	<% unless !params[:category_scode].present? or @category.seo_text.blank? %>
+	<% unless !params[:url].present? or @category.seo_text.blank? %>
 		<div class="seo_text">
 			<%= raw @category.seo_text %>
 		</div>

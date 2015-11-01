@@ -23,7 +23,7 @@ class MainController < ApplicationController
   end
 
   def sitemap
-    @title = 'Карта сайта - интернет-магазин Parra-Shop'
+    @title = 'Карта сайта'
     @seo_keywords = 'карта, сайт'
     @seo_description = 'Внимательно ознакомьтесь с картой нашего сайта и Вы несомненно найдете для себя мебель Вашей мечты. Качество, удобство и элегантный стиль.'    
   end

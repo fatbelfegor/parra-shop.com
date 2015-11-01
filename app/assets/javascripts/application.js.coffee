@@ -32,7 +32,6 @@ resizeFunc = ->
 		$('body').addClass 'small-size'
 
 ready = ->
-	$('#preloader').remove()
 	curBg = 0
 	$('#mainMenu li div div').each (i) ->
 		this.style.backgroundImage = menuImages[i]

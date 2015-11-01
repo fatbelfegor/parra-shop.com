@@ -3,16 +3,16 @@ sizes = @product.prsizes
 size_first = @product.prsizes.first %>
 <div class="show page">
 	<div class="breadcrumbs" style="margin: 10px">
-		<a href="/">Главная</a>
+		<a href="http://www.parra-shop.ru">Главная</a>
 		<span>></span>
 		<% if @product.category %>
 			<% par = @product.category.parent
 			while par %>
-				<a href="/catalog/<%= par.url %>"><%= par.name %></a>
+				<a href="http://www.parra-shop.ru/catalog/<%= par.url %>"><%= par.name %></a>
 				<span>></span>
 				<% par = par.parent
 			end %>
-			<a href="/catalog/<%= @product.category.url %>"><%= @product.category.name %></a>
+			<a href="http://www.parra-shop.ru/catalog/<%= @product.category.url %>"><%= @product.category.name %></a>
 			<span>></span>
 		<% end %>
 		<p><%= @product.name %></p>
@@ -287,10 +287,11 @@ size_first = @product.prsizes.first %>
 		</div>
 	<% end %>
 	<div class="others">
-		<p>Похожие товары</p>
 		<% if @product.category %>
+			<p>Другие товары коллекции "<%= @roduct.category.name %>"</p>
 			<%= render(:partial => "products/productFooter" , collection: @product.category.products) %>
 		<% else %>
+			<p>Другие товары коллекции "<%= @roduct.subcategory.name %>"</p>
 			<%= render(:partial => "products/productFooter" , collection: @product.subcategory.products) %>
 		<% end %>
 	</div>

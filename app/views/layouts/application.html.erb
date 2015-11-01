@@ -13,11 +13,6 @@
 </head>
 <body class='<%= controller.controller_name %>'>
 <div id="blur">
-	<% if params[:controller] + params[:action] == 'mainindex' %>
-		<div id="preloader">
-			<p>Идет загрузка...</p>
-		</div>
-	<% end %>
 	<a href='/'><img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной"></a>
 	<% if user_signed_in? %>
 	<div class="admin-nav">
