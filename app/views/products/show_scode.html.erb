@@ -288,10 +288,10 @@ size_first = @product.prsizes.first %>
 	<% end %>
 	<div class="others">
 		<% if @product.category %>
-			<p>Другие товары коллекции "<%= @roduct.category.name %>"</p>
+			<p>Другие товары коллекции "<%= @product.category.name %>"</p>
 			<%= render(:partial => "products/productFooter" , collection: @product.category.products) %>
 		<% else %>
-			<p>Другие товары коллекции "<%= @roduct.subcategory.name %>"</p>
+			<p>Другие товары коллекции "<%= @product.subcategory.name %>"</p>
 			<%= render(:partial => "products/productFooter" , collection: @product.subcategory.products) %>
 		<% end %>
 	</div>
