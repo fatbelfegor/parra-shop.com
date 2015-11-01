@@ -1,6 +1,6 @@
 <br><h2 class="text-center">Список Категорий</h2><br>
 
-<%= sanitize(PaintTree(true)) %>
+<%= raw PaintTree(true) %>
 <br />
 <div class="text-center">
 <%= link_to 'New Category', new_category_path, class: 'btn btn-primary' %>
