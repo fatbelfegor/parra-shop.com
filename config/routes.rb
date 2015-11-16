@@ -17,6 +17,7 @@ ParraShopCom::Application.routes.draw do
   devise_for :users
   get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
+  get 'vacancy', to: 'pages#vacancy', as: :vacancy
   
   root to: 'main#index', as: 'index'
 
