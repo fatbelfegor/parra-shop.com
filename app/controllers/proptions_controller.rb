@@ -1,4 +1,5 @@
 class ProptionsController < ApplicationController
+  before_filter :admin_required
 	def new
 		@proption = Prsize.find(params[:id]).proptions.new
 		@prsizes = Prsize.all

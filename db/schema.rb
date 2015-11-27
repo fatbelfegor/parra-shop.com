@@ -40,13 +40,14 @@ ActiveRecord::Schema.define(version: 20151004135642) do
     t.decimal  "rate",                           precision: 18, scale: 2, default: 0.0
     t.text     "seo_text",         limit: 65535
     t.string   "url",              limit: 255
+    t.boolean  "menu"
     t.boolean  "isMobile",                                                default: false
     t.string   "mobile_image_url", limit: 255
   end
 
   create_table "categories_products", id: false, force: :cascade do |t|
-    t.integer "category_id", limit: 4
-    t.integer "product_id",  limit: 4
+    t.integer "category_id", limit: 4, null: false
+    t.integer "product_id",  limit: 4, null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -71,8 +72,6 @@ ActiveRecord::Schema.define(version: 20151004135642) do
     t.integer  "user_id",       limit: 4
     t.datetime "time"
   end
-
-  add_index "manager_logs", ["user_id"], name: "index_manager_logs_on_user_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "product_id",   limit: 4,                                          null: false
@@ -143,9 +142,6 @@ ActiveRecord::Schema.define(version: 20151004135642) do
     t.string  "name",                 limit: 255
   end
 
-  add_index "packinglistitems", ["packinglist_id"], name: "index_packinglistitems_on_packinglist_id", using: :btree
-  add_index "packinglistitems", ["product_id"], name: "index_packinglistitems_on_product_id", using: :btree
-
   create_table "packinglists", force: :cascade do |t|
     t.string "doc_number", limit: 255
     t.date   "date"
@@ -195,6 +191,7 @@ ActiveRecord::Schema.define(version: 20151004135642) do
     t.decimal  "old_price",                    precision: 18, scale: 2, default: 0.0
     t.string   "seo_title2",     limit: 255
     t.integer  "subcategory_id", limit: 4
+    t.string   "article",        limit: 255
     t.integer  "extension_id",   limit: 4
   end
 
@@ -251,7 +248,10 @@ ActiveRecord::Schema.define(version: 20151004135642) do
     t.decimal  "price",                  precision: 18, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "color_id",   limit: 4
   end
+
+  add_index "textures", ["color_id"], name: "index_textures_on_color_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

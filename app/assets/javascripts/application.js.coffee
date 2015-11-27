@@ -1015,3 +1015,10 @@ writeChars = ->
 		$.post '/otzyv', params, ->
 			dark.close()
 			$('#blur > .main > div').prepend "<div class='notice'>Ваш отзыв появится после проверки модератором.<div class='close' onclick='$(this).parent().remove()'>x</div>"
+
+@copyProduct = (el, id) ->
+	$.post '/copy-sizes', from: id, to: $('#product_id_field').val(), ->
+		location.reload()
+@copySize = (el, id) ->
+	$.post '/copy-size', from: id, to: $('#product_id_field').val(), ->
+		location.reload()

@@ -149,7 +149,8 @@ size_first = @product.prsizes.first %>
 		</div>
 	</div>
 	<% if current_user && current_user.admin? %>
-		<% @products = Product.order :position %>
+		<% @products = Product.order :position
+		@prsizes = Prsize.all %>
 		<div id="admin-product">
 			<div>
 				<%= link_to 'Редактировать', edit_product_path(@product), class: 'btn btn-warning' %>
@@ -186,11 +187,29 @@ size_first = @product.prsizes.first %>
 				<tr><h2>Список размеров (<%= sizes.count %>) <%= link_to 'Создать', new_prsize_path(@product.id), class: 'btn btn-primary' %>
 				<span class="btn btn-success" id='dropdown'>
 					<p onclick='$(this).parent().toggleClass("active")'>Скопировать Размер</p>
-					<ul>
-						<% for size in @product.prsizes %>
-							<li><p><%= size.name %><span class='btn btn-success' onclick='copySize(this, <%= size.id %>)'>Выбрать</span></p></li>
-						<% end %>
-					</ul>
+					<% def dropdown cats
+						ret = '<ul>'
+						for cat in cats
+							ret += "<li><p onclick='$(this).next().toggleClass(\"active\")'>#{cat.name}</p>"
+							children = @categories.find_all{|c| c.parent_id == cat.id}
+							if children.blank?
+								ret += '<ul>'
+								for p in @products.find_all{|p| p.category_id == cat.id}
+									ret += "<li><p onclick='$(this).next().toggleClass(\"active\")'>#{p.name}</p><ul>"
+									for s in @prsizes.find_all{|p| p.product_id == p.id}
+										ret += "<li><p>#{s.name}<span class='btn btn-success' onclick='copySize(this, #{s.id})'>Выбрать</span></p></li>"
+									end
+									ret += "</ul></li>"
+								end
+								ret += '</ul>'
+							else
+								ret += dropdown children
+							end
+							ret += '</li>'
+						end
+						ret + '</ul>'
+					end %>
+					<%= raw dropdown @categories.find_all{|c| !c.parent_id} %>
 				</span>
 				</tr>
 				<tr>

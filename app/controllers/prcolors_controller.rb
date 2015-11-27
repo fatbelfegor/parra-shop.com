@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 class PrcolorsController < ApplicationController
+  before_filter :admin_required
 	def new
 		@prcolor = Prsize.find(params[:id]).prcolors.new
     @prsizes = Prsize.all
