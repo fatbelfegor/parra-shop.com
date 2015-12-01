@@ -132,6 +132,17 @@ ready = ->
 				images.push $(@).attr 'src'
 			el.parent().next().val images.join ','
 	resizeFunc()
+	contentHeight = $('#content-wrap').height()
+	footerFull = false
+	$('div.main').scroll ->
+		if $(@).scrollTop() + $(@).height() < contentHeight
+			if footerFull
+				$('.footer').removeClass 'full'
+				footerFull = false
+		else
+			unless footerFull
+				$('.footer').addClass 'full'
+				footerFull = true
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'

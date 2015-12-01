@@ -1073,7 +1073,7 @@ nav {
 	overflow: auto;
 	z-index: 0;
 
-	> div {
+	#content-wrap > div {
 		width: 1000px;
 		margin: 0 auto;
 		height: 100%;
@@ -1636,28 +1636,6 @@ a.cart {
 	}
 }
 
-.footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	text-align: center;
-	background-color: #E6E6E6;
-
-	ul {
-		li {
-			margin: 0 15px;
-			line-height: 40px;
-
-			a {
-				margin: 0;
-				text-transform: inherit;
-				height: 40px;
-				line-height: 40px;
-			}
-		}
-	}
-}
-
 #createTextures {
 	h2 {
 		cursor: pointer;
@@ -1707,7 +1685,7 @@ a.cart {
 }
 
 .home {
-	margin-top:30px;
+	padding-top:30px;
 	> table {
 		td {
 			vertical-align: top;

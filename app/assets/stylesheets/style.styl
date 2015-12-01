@@ -150,3 +150,45 @@ user-select(n)
 		line-height 22px
 	b
 		color #29981F
+		
+.footer
+	position absolute
+	bottom 0
+	width 100%
+	text-align center
+	background-image url('/assets/footer-bg.png')
+	ul
+		li
+			margin 0 15px
+			line-height 40px
+			a
+				margin 0
+				text-transform inherit
+				height 40px
+				line-height 40px
+	.appear
+		height 0
+		color #545559
+		text-align left
+		overflow hidden
+		transition(.3s)
+		> div
+			width 1000px
+			margin 0 auto
+			font-size 0
+			> div
+				display inline-block
+				vertical-align top
+				width 55%
+		img
+			display block
+			margin 10px 0 70px
+		.copy
+			font-size 13px
+		.addresses
+			font-size 13px
+			line-height 18px
+			p
+				margin 8px 0 0
+	&.full .appear
+		height 212px

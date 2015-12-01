@@ -192,115 +192,137 @@
 	</nav>
 
 	<div class="main">
-		<ul id="mainMenuCompact">
-	  		<li onclick="miniCatOpen(this)">Спальни<p></p>
-				<div>
-					<a href="/catalog/spalni-gamma"><img src="/assets/GammaNew.jpg"></a>
-					<a href="/catalog/spalni-liona"><img src="/assets/LyonaNew.jpg"></a>
-					<a href="/catalog/spalni-bella"><img src="/assets/Bella.jpg"></a>
-					<a href="/catalog/spalni-plisset"><img src="/assets/Plisset.jpg"></a>
-					<a href="/catalog/spalni-orly"><img src="/assets/Orly.jpg"></a>
-					<a href="/catalog/spalni-ritmika"><img src="/assets/RitmikaSale.jpg"></a>
-					<a href="/catalog/spalni-ritmika2"><img src="/assets/RitmikaSale2.jpg"></a>
-					<a href="/catalog/spalni-lorra"><img src="/assets/Lorra.jpg"></a>
-					<a href="/catalog/spalni-leggero-oreh"><img src="/assets/LeggeroSale.jpg"></a>
-					<a href="/catalog/spalni-leggero-choco1"><img src="/assets/LeggeroSale2.jpg"></a>
-					<a href="/catalog/spalni-miro"><img src="/assets/Miro.jpg"></a>
-					<a href="/catalog/spalni-mild"><img src="/assets/Mild.jpg"></a>
+		<div id="content-wrap">
+			<ul id="mainMenuCompact">
+		  		<li onclick="miniCatOpen(this)">Спальни<p></p>
+					<div>
+						<a href="/catalog/spalni-gamma"><img src="/assets/GammaNew.jpg"></a>
+						<a href="/catalog/spalni-liona"><img src="/assets/LyonaNew.jpg"></a>
+						<a href="/catalog/spalni-bella"><img src="/assets/Bella.jpg"></a>
+						<a href="/catalog/spalni-plisset"><img src="/assets/Plisset.jpg"></a>
+						<a href="/catalog/spalni-orly"><img src="/assets/Orly.jpg"></a>
+						<a href="/catalog/spalni-ritmika"><img src="/assets/RitmikaSale.jpg"></a>
+						<a href="/catalog/spalni-ritmika2"><img src="/assets/RitmikaSale2.jpg"></a>
+						<a href="/catalog/spalni-lorra"><img src="/assets/Lorra.jpg"></a>
+						<a href="/catalog/spalni-leggero-oreh"><img src="/assets/LeggeroSale.jpg"></a>
+						<a href="/catalog/spalni-leggero-choco1"><img src="/assets/LeggeroSale2.jpg"></a>
+						<a href="/catalog/spalni-miro"><img src="/assets/Miro.jpg"></a>
+						<a href="/catalog/spalni-mild"><img src="/assets/Mild.jpg"></a>
+					</div>
+		  		<li onclick="miniCatOpen(this)">Гостиные<p></p>
+		  			<div>
+						<a href="/catalog/gostinye-norte"><img src="/assets/NorteNew.jpg"></a>
+						<a href="/catalog/gostinnye-pz"><img src="/assets/P3.jpg"></a>
+						<a href="/catalog/gostinnye-bella"><img src="/assets/BellaGost.jpg"></a>
+						<a href="/catalog/gostinnye-verro"><img src="/assets/Verro.jpg"></a>
+						<a href="/catalog/gostinnye-style-choco"><img src="/assets/Style.jpg"></a>
+						<a href="/catalog/gostinnye-style-oreh"><img src="/assets/Style2.jpg"></a>
+						<a href="/catalog/gostinnye-joy"><img src="/assets/Joy.jpg"></a>
+						<a href="/catalog/gostinye-azzon"><img src="/assets/Azzon.jpg"></a>
+		  		</li>
+		  		<li onclick="miniCatOpen(this)">Диваны<p></p>
+		  			<div>
+						<a href="/catalog/divany-trevi"><img src="/assets/Trevi.jpg"></a>
+						<a href="/catalog/divany-opera"><img src="/assets/Opera.jpg"></a>
+						<a href="/catalog/divany-lucca"><img src="/assets/Lucca.jpg"></a>
+						<a href="/catalog/divany-ritmo"><img src="/assets/Ritmo.jpg"></a>
+						<a href="/catalog/divany-nuvola"><img src="/assets/Nuvola.jpg"></a>
+						<a href="/catalog/kresla"><img src="/assets/SoftAgioArteCircle.jpg"></a>
+					</div>
+		  		</li>
+		  		<li onclick="miniCatOpen(this)">Матрасы<p></p>
+		  			<div>
+						<a href="/catalog/matrasy-organic"><img src="/assets/SonberryOrganic.jpg"></a>
+						<a href="/catalog/matrasy-aero"><img src="/assets/SonberryAero.jpg"></a>
+						<a href="/catalog/matrasy-active"><img src="/assets/SonberryActive.jpg"></a>
+						<a href="/catalog/matrasy-italia"><img src="/assets/SonberryItalia.jpg"></a>
+					</div>
+		  		</li>
+		  		<li class="allProducts" onclick="$(this).toggleClass('open')">Все товары<p></p>
+		  			<div>
+		  				<a href="/catalog/krovati-dlja-spalni">Кровати</a>
+		  				<a href="/catalog/shkafy">Шкафы</a>
+		  				<a href="/catalog/komody">Комоды</a>
+		  				<a href="/catalog/tumby-dlja-spalni">Тумбочки</a>
+						<a href="/catalog/tumby-pod-tv">Тумбы под TV</a>
+		  				<a href="/catalog/zerkala">Зеркала</a>
+		  				<a href="/catalog/polki">Полки</a>
+		  				<a href="/catalog/stoly">Столы</a>
+		  				<a href="/catalog/osnovanija">Основания</a>
+						<a href="/catalog/bufety">Буфеты</a>
+						<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
+						<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
+						<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
+						<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
+						<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
+		  			</div>
+		  		</li>
+		  		<li class="whereCanBuy" onclick="$(this).toggleClass('open')">Где купить<p></p>
+		  			<div>
+						<a href="<%= url_for store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
+						<a href="<%= url_for store2_path %>">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
+						<a href="<%= url_for store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
+						<a href="<%= url_for store4_path %>">Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56</a>
+						<a href="<%= url_for store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
+						<a href="<%= url_for store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение Волоколамского ш. и 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
+						<a href="<%= url_for store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
+						<a href="<%= url_for store8_path %>">Мебель PARRA<br>МЦ "Вагант" <br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>8(499)347-09-09</a>
+						<a href="<%= url_for store9_path %>">Мебель PARRA<br>МЦ "Империя" <br>Дмитровское шоссе<br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
+		  			</div>
+		  		</li>
+		  		<li class="miniMenuCart">
+		  			<a href="/cart">Корзина</a>
+		  		</li>
+		  	</ul>
+		  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
+		  	<% if notice == 'ordersave' %>
+		  		<div id="orderSave" class="windows">
+					<p>Ваш заказ принят. Наш менеджер свяжется с вами с ближайшее время.</p>
+					<div class="btn-s" onclick="windowClose()">OK</div>
 				</div>
-	  		<li onclick="miniCatOpen(this)">Гостиные<p></p>
-	  			<div>
-					<a href="/catalog/gostinye-norte"><img src="/assets/NorteNew.jpg"></a>
-					<a href="/catalog/gostinnye-pz"><img src="/assets/P3.jpg"></a>
-					<a href="/catalog/gostinnye-bella"><img src="/assets/BellaGost.jpg"></a>
-					<a href="/catalog/gostinnye-verro"><img src="/assets/Verro.jpg"></a>
-					<a href="/catalog/gostinnye-style-choco"><img src="/assets/Style.jpg"></a>
-					<a href="/catalog/gostinnye-style-oreh"><img src="/assets/Style2.jpg"></a>
-					<a href="/catalog/gostinnye-joy"><img src="/assets/Joy.jpg"></a>
-					<a href="/catalog/gostinye-azzon"><img src="/assets/Azzon.jpg"></a>
-	  		</li>
-	  		<li onclick="miniCatOpen(this)">Диваны<p></p>
-	  			<div>
-					<a href="/catalog/divany-trevi"><img src="/assets/Trevi.jpg"></a>
-					<a href="/catalog/divany-opera"><img src="/assets/Opera.jpg"></a>
-					<a href="/catalog/divany-lucca"><img src="/assets/Lucca.jpg"></a>
-					<a href="/catalog/divany-ritmo"><img src="/assets/Ritmo.jpg"></a>
-					<a href="/catalog/divany-nuvola"><img src="/assets/Nuvola.jpg"></a>
-					<a href="/catalog/kresla"><img src="/assets/SoftAgioArteCircle.jpg"></a>
-				</div>
-	  		</li>
-	  		<li onclick="miniCatOpen(this)">Матрасы<p></p>
-	  			<div>
-					<a href="/catalog/matrasy-organic"><img src="/assets/SonberryOrganic.jpg"></a>
-					<a href="/catalog/matrasy-aero"><img src="/assets/SonberryAero.jpg"></a>
-					<a href="/catalog/matrasy-active"><img src="/assets/SonberryActive.jpg"></a>
-					<a href="/catalog/matrasy-italia"><img src="/assets/SonberryItalia.jpg"></a>
-				</div>
-	  		</li>
-	  		<li class="allProducts" onclick="$(this).toggleClass('open')">Все товары<p></p>
-	  			<div>
-	  				<a href="/catalog/krovati-dlja-spalni">Кровати</a>
-	  				<a href="/catalog/shkafy">Шкафы</a>
-	  				<a href="/catalog/komody">Комоды</a>
-	  				<a href="/catalog/tumby-dlja-spalni">Тумбочки</a>
-					<a href="/catalog/tumby-pod-tv">Тумбы под TV</a>
-	  				<a href="/catalog/zerkala">Зеркала</a>
-	  				<a href="/catalog/polki">Полки</a>
-	  				<a href="/catalog/stoly">Столы</a>
-	  				<a href="/catalog/osnovanija">Основания</a>
-					<a href="/catalog/bufety">Буфеты</a>
-					<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
-					<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
-					<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
-					<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
-					<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
-	  			</div>
-	  		</li>
-	  		<li class="whereCanBuy" onclick="$(this).toggleClass('open')">Где купить<p></p>
-	  			<div>
-					<a href="<%= url_for store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
-					<a href="<%= url_for store2_path %>">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
-					<a href="<%= url_for store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
-					<a href="<%= url_for store4_path %>">Мебель PARRA<br>ТЦ "Черемушки"<br>Профсоюзная ул.,<br>д. 56, 3 этаж<br>(499) 340-56-56</a>
-					<a href="<%= url_for store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
-					<a href="<%= url_for store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение Волоколамского ш. и 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
-					<a href="<%= url_for store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
-					<a href="<%= url_for store8_path %>">Мебель PARRA<br>МЦ "Вагант" <br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>8(499)347-09-09</a>
-					<a href="<%= url_for store9_path %>">Мебель PARRA<br>МЦ "Империя" <br>Дмитровское шоссе<br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
-	  			</div>
-	  		</li>
-	  		<li class="miniMenuCart">
-	  			<a href="/cart">Корзина</a>
-	  		</li>
-	  	</ul>
-	  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
-	  	<% if notice == 'ordersave' %>
-	  		<div id="orderSave" class="windows">
-				<p>Ваш заказ принят. Наш менеджер свяжется с вами с ближайшее время.</p>
-				<div class="btn-s" onclick="windowClose()">OK</div>
-			</div>
-			<script type="text/javascript">
-				$('#windowLayout').show()
-			</script>
-	  	<% elsif !flash[:notice].blank? %>
-			<div class="notice"><%= flash[:notice] %><div class="close" onclick="$(this).parent().remove()">x</div></div>
-		<% end %>
-	    <%= yield %>
-	  </div>
+				<script type="text/javascript">
+					$('#windowLayout').show()
+				</script>
+		  	<% elsif !flash[:notice].blank? %>
+				<div class="notice"><%= flash[:notice] %><div class="close" onclick="$(this).parent().remove()">x</div></div>
+			<% end %>
+		    <%= yield %>
+		  </div>
+		</div>
 	</div>
 
 	<nav class="footer">
 	    <ul>
-	        <li><%= link_to 'Доставка и сборка', service_path %></li>
-	        <li><%= link_to 'Партнерам', partners_path %></li>
-	        <li><%= link_to 'Новости', news_path %></li>
-	        <li><%= link_to 'Статьи', articles_path %></li>
-	        <li><%= link_to 'Гарантии', insurance_path %></li>
-	        <li><%= link_to 'Отзывы', otzyvy_path %></li>
-	        <li><%= link_to 'О нас', about_path %></li>
-	        <li><%= link_to 'Вакансии', vacancy_path %></li>
-	        <li><a href="/sitemap">Карта сайта</a></li>
+			<li><%= link_to 'Доставка и сборка', service_path %></li>
+			<li><%= link_to 'Партнерам', partners_path %></li>
+			<li><%= link_to 'Новости', news_path %></li>
+			<li><%= link_to 'Статьи', articles_path %></li>
+			<li><%= link_to 'Гарантии', insurance_path %></li>
+			<li><%= link_to 'Отзывы', otzyvy_path %></li>
+			<li><%= link_to 'О нас', about_path %></li>
+			<li><%= link_to 'Вакансии', vacancy_path %></li>
+			<li><a href="/sitemap">Карта сайта</a></li>
 	    </ul>
+	    <div class="appear">
+	    	<div>
+		    	<div style="width:45%">
+					<img src="/assets/footerlogo.png">
+					<div class="copy">Copyrihgt @ <%= Date.today.year %> - Интернет магазин мебели «Parra-Shop»</div>
+				</div>
+				<div class="addresses">
+					<p>Наши адреса:</p>
+					<p>МЦ «Мебель PARK» г.Москва, Киевское шоссе, Строение 1, 3 вход, 3 этаж +7-499-940-12-29<br>
+					МЦ «Family Room» г.Москва, Киевское шоссе, Строние 1, 5 вход, 2 этаж +7-499-940-12-29<br>
+					ТК «Армада» г.Москва, ул. Кировоградская, д. 11/1, 2 этаж +7-495-665-11-52<br>
+					МЦ «Roomer» г.Москва, ул. Ленинская Слобода, д. 26, 2 этаж +7-499-426-46-06<br>
+					ТЦ «Черемушки» г.Москва, Профсоюзная ул., д. 56, 3 этаж +7-499-340-56-56<br>
+					ТЦ «Твой Дом - Крокус» г.Москва, 65-66 км МКАД, 2 этаж +7-499-340-09-08<br>
+					МЦ «Империя» г.Москва, Дмитровское шоссе д. 159, 3 этаж +7-499-899-07-09<br>
+					МЦ «Ваган» г.Подольск, ул. Стационарная, д.11, 1 этаж +7-499-400-58-18<br>
+					ТРК «Красный Кит» г.Мытищи, Шараповский проезд, вл. 2, 1 этаж +7-499-347-09-09</p>
+				</div>
+			</div>
+		</div>
 	</nav>
 
 	<div id="orderWindow">
@@ -315,7 +337,7 @@
 	    	<span class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></span>
 	    	<div class="col-md-5">
 		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :first_name, class: "form-control" %>
+				<%= f.text_field :first_name, class: "form-control" %>
 		      </div>
 		    </div>
 		</div>
@@ -323,7 +345,7 @@
 		    <span class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
 	    	<div class="col-md-5">
 		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :phone, class: "form-control" %>
+				<%= f.text_field :phone, class: "form-control" %>
 		      </div>
 		    </div>
 	    </div>
@@ -331,7 +353,7 @@
 			<span class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
 			<div class="col-md-5">
 		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :email, class: "form-control" %>
+				<%= f.text_field :email, class: "form-control" %>
 		      </div>
 		    </div>
 	    </div>
@@ -434,5 +456,10 @@
 
 </script>
 <!-- /Google counter -->
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'XrrpXcFTqG';
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
 </body>
 </html>
