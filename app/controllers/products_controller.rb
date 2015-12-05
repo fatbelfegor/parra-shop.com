@@ -166,7 +166,7 @@ class ProductsController < ApplicationController
 
   def sort
     params[:product].each_with_index do |id, index|
-      Product.update_all({position: index+1}, {id: id})
+      Product.update(id, {position: index+1})
     end
     render :nothing => true
   end
