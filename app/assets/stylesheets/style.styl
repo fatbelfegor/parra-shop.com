@@ -189,6 +189,10 @@ user-select(n)
 			font-size 13px
 			line-height 18px
 			p
-				margin 8px 0 0
-	&.full .appear
-		height 212px
+				margin 8px 0 0		
+div.main
+	transition(.3s)
+	&.show-footer
+		padding-bottom 212px
+		& + nav .appear
+			height 212px

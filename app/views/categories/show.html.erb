@@ -39,7 +39,7 @@
 <div class="text-center" style="margin-bottom:15px">
 <%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id }, class: 'btn btn-success' )%>
 </div>
-<ul id="productsSortable" class="text-center">
+<div id="productsSortable" class="text-center">
 	<%= render(:partial => "products/product" , :collection => @products) %>
-</ul>
+</div>
 </div>

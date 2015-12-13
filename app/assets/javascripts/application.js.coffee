@@ -120,6 +120,7 @@ ready = ->
 				parent_id = 'nil'
 			$.post '/categories/sort', $(this).sortable('serialize')+'&parent_id='+parent_id
 	$('#productsSortable').sortable
+		items: "> div"
 		revert: true
 		update: ->
 			$.post '/products/sort', $(this).sortable 'serialize'
@@ -134,15 +135,26 @@ ready = ->
 	resizeFunc()
 	contentHeight = $('#content-wrap').height()
 	footerFull = false
+	scrollWork = true
 	$('div.main').scroll ->
-		if $(@).scrollTop() + $(@).height() < contentHeight
-			if footerFull
-				$('.footer').removeClass 'full'
-				footerFull = false
-		else
-			unless footerFull
-				$('.footer').addClass 'full'
-				footerFull = true
+		el = $ @
+		e = @
+		if scrollWork
+			if el.scrollTop() + el.height() < contentHeight
+				if footerFull
+					el.removeClass 'show-footer'
+					footerFull = false
+					scrollWork = false
+					setTimeout (-> scrollWork = true), 400
+			else
+				unless footerFull
+					el.addClass 'show-footer'
+					footerFull = true
+					scrollWork = false
+					setTimeout ->
+						el.stop().animate scrollTop: e.scrollHeight, '100', 'swing', ->
+							scrollWork = true
+					, 300
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'
