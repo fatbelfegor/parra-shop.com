@@ -136,25 +136,27 @@ ready = ->
 	contentHeight = $('#content-wrap').height()
 	footerFull = false
 	scrollWork = true
-	$('div.main').scroll ->
+	$('#blur > .main').scroll ->
 		el = $ @
 		e = @
 		if scrollWork
 			if el.scrollTop() + el.height() < contentHeight
 				if footerFull
-					el.removeClass 'show-footer'
 					footerFull = false
 					scrollWork = false
-					setTimeout (-> scrollWork = true), 400
+					el.animate bottom: 40, 300
+					$('.footer .appear').animate 'height': 0, 300, ->
+						el.animate 'scroll-top': el.scrollTop() - 53, 100, ->
+							contentHeight = $('#content-wrap').height()
+							scrollWork = true
 			else
 				unless footerFull
-					el.addClass 'show-footer'
 					footerFull = true
 					scrollWork = false
-					setTimeout ->
-						el.stop().animate scrollTop: e.scrollHeight, '100', 'swing', ->
-							scrollWork = true
-					, 300
+					el.animate bottom: 252, 'scroll-top': el.scrollTop() + 242, 300
+					$('.footer .appear').animate 'height': 212, 300, ->
+						contentHeight = $('#content-wrap').height()
+						scrollWork = true
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'
