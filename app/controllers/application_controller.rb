@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :ending_slash
+  before_filter :allow_iframe_requests
 
   protected
 
@@ -34,5 +35,9 @@ class ApplicationController < ActionController::Base
       false
     end
     true
+  end
+
+  def allow_iframe_requests
+    response.headers.delete('X-Frame-Options')
   end
 end
