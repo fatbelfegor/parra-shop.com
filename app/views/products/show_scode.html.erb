@@ -196,7 +196,7 @@ size_first = @product.prsizes.first %>
 								ret += '<ul>'
 								for p in @products.find_all{|p| p.category_id == cat.id}
 									ret += "<li><p onclick='$(this).next().toggleClass(\"active\")'>#{p.name}</p><ul>"
-									for s in @prsizes.find_all{|p| p.product_id == p.id}
+									for s in @prsizes.find_all{|s| s.product_id == p.id}
 										ret += "<li><p>#{s.name}<span class='btn btn-success' onclick='copySize(this, #{s.id})'>Выбрать</span></p></li>"
 									end
 									ret += "</ul></li>"
