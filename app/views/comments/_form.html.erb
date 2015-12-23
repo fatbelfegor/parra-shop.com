@@ -16,6 +16,30 @@
     </div>
 </div>
 <div class='row'>
+    <h4 class="col-md-2 col-md-offset-3 text-right"><%= f.label :city, "Город", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :city, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+</div>
+<div class='row'>
+    <h4 class="col-md-2 col-md-offset-3 text-right"><%= label_tag :date, "Дата", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= text_field_tag :date, @comment.date.strftime("%d.%m.%y"), {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+</div>
+<div class='row'>
+    <h4 class="col-md-2 col-md-offset-3 text-right"><%= label_tag :time, "Время", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= text_field_tag :time, @comment.date.strftime("%H:%M"), {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
+</div>
+<div class='row'>
     <h4 class="col-md-2 col-md-offset-3 text-right">Опубликовано</h4>
     <div class="col-md-2">
       <div class="wrath-content-box" style="padding:0 15px;line-height:39px">

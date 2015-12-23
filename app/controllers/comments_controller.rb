@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
+    @comment.date = Time.now
   end
 
   def edit
@@ -18,7 +19,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    if @category.save
+    @comment.date = Date.strptime(params[:date] + ' ' + params[:time], "%d.%m.%y %H:%M")
+    if @comment.save
       redirect_to comments_url , notice: 'Комментарий создан'
     else
       render action: 'new'
@@ -32,7 +34,10 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update comment_params
+    update = comment_params
+    update[:date] = Time.strptime(params[:date] + ' ' + params[:time], "%d.%m.%y %H:%M")
+    p update[:date]
+    if @comment.update update
       redirect_to comments_url
     else
       render action: 'edit'
@@ -54,6 +59,6 @@ private
     @comment = Comment.find params[:id]
   end
 	def comment_params
-		params.require(:comment).permit(:title, :body, :name, :published)
+		params.require(:comment).permit(:title, :body, :author, :city, :name, :published)
 	end
 end

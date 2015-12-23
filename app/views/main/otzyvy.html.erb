@@ -9,13 +9,13 @@
 	<div class="btn green" onclick="otzyv()"><p>Оставить отзыв</p></div>
 </div>
 <br>
-<% for comment in Comment.where(published: true).order created_at: :desc %>
+<% for comment in Comment.where(published: true).order date: :desc %>
 	<div class='otzyv'>
 		<div class='header'><%= comment.title %></div>
 		<div class='body'><%= comment.body %></div>
 		<div class='bottom'>
 			<div class='name'><%= comment.author %><% unless comment.city.blank? %>, <%= comment.city %><% end %></div>
-			<div class='date'><%= comment.created_at.strftime "%Y-%m-%d" %></div>
+			<div class='date'><%= comment.date.strftime "%d-%m-%Y" %></div>
 		</div>
 	</div>
 <% end %>
