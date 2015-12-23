@@ -16,7 +16,7 @@
 	</tr>
 	<% for comment in @comments %>
 		<tr>
-			<td><%= comment.date.strftime "%d.%m.%y %H:%M" %></td>
+			<td><% if comment.date %><%= comment.date.strftime "%d.%m.%y %H:%M" %><% end %></td>
 			<td><%= comment.title %></td>
 			<td><%= comment.body %></td>
 			<td><%= comment.author %></td>
