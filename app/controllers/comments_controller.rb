@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment.date ||= Time.now
   end
 
   def create
