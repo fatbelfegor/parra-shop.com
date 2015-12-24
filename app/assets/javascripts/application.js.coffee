@@ -154,7 +154,7 @@ ready = ->
 					footerFull = true
 					scrollWork = false
 					el.animate bottom: 252, 'scroll-top': el.scrollTop() + 242, 300
-					$('.footer .appear').animate 'height': 212, 300, ->
+					$('.footer .appear').animate 'height': 235, 300, ->
 						contentHeight = $('#content-wrap').height()
 						scrollWork = true
 @changeCount = (el) ->
