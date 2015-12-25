@@ -51,7 +51,7 @@ class PrsizesController < ApplicationController
         new_option.save
       end
     end
-    render json: {result: 'success'}
+    redirect_to :back
   end
   def copy_size
     product_id = params[:to].to_i
@@ -76,7 +76,7 @@ class PrsizesController < ApplicationController
       new_option.prsize_id = size_id
       new_option.save
     end
-    render json: {result: 'success'}
+    redirect_to :back
   end
 
 private

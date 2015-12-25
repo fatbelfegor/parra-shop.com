@@ -168,7 +168,7 @@ size_first = @product.prsizes.first %>
 								if !products.blank?
 									ret += '<ul>'
 									for p in products
-										ret += "<li><p>#{p.name}<span class='btn btn-success' onclick='copyProduct(this, #{p.id})'>Выбрать</span></p></li>"
+										ret += "<li><p>#{p.name}<a href='/copy-sizes?from=#{p.id}&to=#{@product.id}' class='btn btn-success'>Выбрать</a></p></li>"
 									end
 									ret += '</ul>'
 								end
@@ -197,7 +197,7 @@ size_first = @product.prsizes.first %>
 								for p in @products.find_all{|p| p.category_id == cat.id}
 									ret += "<li><p onclick='$(this).next().toggleClass(\"active\")'>#{p.name}</p><ul>"
 									for s in @prsizes.find_all{|s| s.product_id == p.id}
-										ret += "<li><p>#{s.name}<span class='btn btn-success' onclick='copySize(this, #{s.id})'>Выбрать</span></p></li>"
+										ret += "<li><p>#{s.name}<a href='/copy-size?from=#{p.id}&to=#{@product.id}' class='btn btn-success'>Выбрать</a></p></li>"
 									end
 									ret += "</ul></li>"
 								end

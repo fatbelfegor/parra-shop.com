@@ -69,8 +69,8 @@ ParraShopCom::Application.routes.draw do
   post 'comments/publish', to: 'comments#publish'
   post 'otzyv', to: 'comments#public_create'
 
-  post 'copy-sizes', to: 'prsizes#copy_sizes'
-  post 'copy-size', to: 'prsizes#copy_size'
+  get 'copy-sizes', to: 'prsizes#copy_sizes'
+  get 'copy-size', to: 'prsizes#copy_size'
   resources :comments
   resources :categories do
     member do
