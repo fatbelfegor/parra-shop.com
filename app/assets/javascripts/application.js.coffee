@@ -466,7 +466,7 @@ expire = ->
 @texturesWatch = (el) ->
 	label = $(el).parent().next()
 	if label.css('height') == '0px'
-		label.animate 'height':Math.ceil(label.find('label').length/Math.floor(label.parent().width()/96))*131+'px', 300, productKeepPage
+		label.animate 'height':Math.ceil(label.find('label').length/Math.floor(label.parent().width()/106))*131+'px', 300, productKeepPage
 		el.innerHTML = 'Закрыть'
 	else
 		label.animate 'height':'0px', productKeepPage
