@@ -27,5 +27,6 @@ class CatalogController < ApplicationController
       @products = @category.products
       @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin? 
     end
+    @products = @products.order(:position)
   end
 end
