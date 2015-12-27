@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     #@category = Category.find(params[:id])
-    @products = @category.products
+    @products = @category.products.order(:position)
   end
   
   # GET /categories/new

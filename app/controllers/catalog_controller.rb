@@ -14,6 +14,7 @@ class CatalogController < ApplicationController
       @products = Product.where("name LIKE ? or scode LIKE ? or id in (#{ids.join(',')})", "%#{params[:q]}%", "%#{params[:q]}%")
     end
     @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin?
+    @products = @products.order(:position)
     render 'index'
   end
   def index
