@@ -5,16 +5,26 @@ class CatalogController < ApplicationController
     render 'pages/not_found', status: 404
   end
   def search
-    @title = "Поиск: #{params[:q]}"
-    # @products = Product.search({query: {multi_match: {query: params[:q], fields: [:name, :scode]}}}).records
-    ids = Category.where("name LIKE ?", "%#{params[:q]}%").map(&:product_ids).flatten
+    q = params[:q]
+    @title = "Поиск: #{q}"
+    ids = Category.search(query: {match: {name: q}}, size: 1000).results.map(&:id)
+    search = {
+      query: {
+        bool: {}
+      },
+      size: 1000,
+      sort: {
+        position: :asc
+      }
+    }
+    search[:query][:bool][:must] = {term: {invisible: false}} unless user_signed_in? && current_user.admin?
     if ids.empty?
-      @products = Product.where("name LIKE ? or scode LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+      search[:query][:bool][:should] = {multi_match: {query: q, fields: [:name, :scode]}}
+      @products = Product.search(search).results.map(&:_source)
     else
-      @products = Product.where("name LIKE ? or scode LIKE ? or id in (#{ids.join(',')})", "%#{params[:q]}%", "%#{params[:q]}%")
+      search[:query][:bool][:should] = [{multi_match: {query: q, fields: [:name, :scode]}}, {terms: {category_id: ids}}]
+      @products = Product.search(search).results.map(&:_source)
     end
-    @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin?
-    @products = @products.order(:position)
     render 'index'
   end
   def index
