@@ -34,9 +34,8 @@ class CatalogController < ApplicationController
     @seo_description = @category.s_description
     @seo_keywords = @category.s_keyword
     if @category.subcategories.empty?
-      @products = @category.products
-      @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin? 
+      @products = @category.products.order(:position)
+      @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin?
     end
-    @products = @products.order(:position)
   end
 end
