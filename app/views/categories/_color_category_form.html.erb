@@ -1,0 +1,64 @@
+<%= form_for @color_category, url: "/categories/#{params[:category_id]}/color_categories#{@color_category.id and "/#{@color_category.id}" or ''}" do |f| %>
+<table class="table table-bordered table-striped">
+  <tr>
+    <td>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :category_id, "Категория:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-10">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <% collection = [Category.new(id: nil, name: 'Не выбрано')] + Category.all %>
+        <%= f.select :category_id, options_from_collection_for_select(collection, "id", "name", @category_id), {}, {class: "form-control"} %>
+      </div>
+    </div>
+  </div></td>
+  </tr>
+  <tr>
+    <td style="padding: 15px 100px 0 20px">  
+      <div class="row form-group">
+        <h4 class="col-md-3 text-right"><%= f.label :name, "Название", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+        <div class="col-md-3">
+          <div class="wrath-content-box" style="padding:0 15px">
+            <%= f.text_field :name, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+          </div>
+        </div>
+        <h4 class="col-md-3 text-right"><%= f.label :url, "Url", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+        <div class="col-md-3">
+          <div class="wrath-content-box" style="padding:0 15px">
+            <%= f.text_field :url, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 15px 100px 15px 20px" class="text-center">
+      <div class="text-center col-md-6" style="width: 100%">
+  <div id="addImages" class="color_category_image">
+  <% if @color_category.image %>
+    <h4>Изображение</h4>
+    <div>
+      <div>
+        <img class="img-thumbnail" src="<%= @color_category.image %>">
+        <small class="btn btn-warning" onclick="deleteImageHeader(this)">Удалить</small>
+      </div>
+    </div>
+  <% else %>
+    <input onclick="addImageClick(this)" type="button" value="Добавить изображение" class="btn btn-primary">
+    <div></div>
+  <% end %>
+  </div>
+  <%= f.hidden_field :image, class: 'one' %>
+</div>
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+<div class='text-center'><%= f.submit 'Сохранить', class: "btn btn-success" %></div>
+<br>
+<br>
+<br>
+<br>
+<% end %>

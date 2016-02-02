@@ -189,6 +189,7 @@ private
       :category_id,
     	:extension_id,
       :subcategory_id,
+      :color_category_id,
   		:scode,
   		:name,
   		:description,

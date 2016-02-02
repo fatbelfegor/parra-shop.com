@@ -1,0 +1,9 @@
+<tr>
+	<td><% unless color_category.image.blank? %><img style="max-width:200px;max-height:200px" src="<%= color_category.image %>"><% end %></td>
+	<td><%= color_category.name %></td>
+	<td><%= color_category.url %></td>
+	<td>
+		<a class="btn btn-warning" href="/categories/<%= color_category.category_id %>/color_categories/<%= color_category.id %>/edit">Редактировать</a>
+		<a class="btn btn-danger" data-confirm='Вы уверены?' data-method='delete' class="btn btn-warning" href="/categories/<%= color_category.category_id %>/color_categories/<%= color_category.id %>">Удалить</a>
+	</td>
+</tr>

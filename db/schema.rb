@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223113506) do
+ActiveRecord::Schema.define(version: 20160131184058) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image",       limit: 255
@@ -45,10 +45,27 @@ ActiveRecord::Schema.define(version: 20151223113506) do
     t.string   "mobile_image_url", limit: 255
   end
 
+  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
+
   create_table "categories_products", id: false, force: :cascade do |t|
     t.integer "category_id", limit: 4, null: false
     t.integer "product_id",  limit: 4, null: false
   end
+
+  add_index "categories_products", ["category_id"], name: "index_categories_products_on_category_id", using: :btree
+  add_index "categories_products", ["product_id"], name: "index_categories_products_on_product_id", using: :btree
+
+  create_table "color_categories", force: :cascade do |t|
+    t.integer  "category_id", limit: 4
+    t.string   "image",       limit: 255
+    t.string   "url",         limit: 255
+    t.string   "name",        limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "color_categories", ["category_id"], name: "index_color_categories_on_category_id", using: :btree
+  add_index "color_categories", ["url"], name: "index_color_categories_on_url", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -169,33 +186,35 @@ ActiveRecord::Schema.define(version: 20151223113506) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer  "category_id",    limit: 4
-    t.string   "scode",          limit: 255
-    t.string   "name",           limit: 255
-    t.text     "description",    limit: 65535
-    t.text     "images",         limit: 65535
-    t.text     "shortdesk",      limit: 65535
+    t.integer  "category_id",       limit: 4
+    t.string   "scode",             limit: 255
+    t.string   "name",              limit: 255
+    t.text     "description",       limit: 65535
+    t.text     "images",            limit: 65535
+    t.text     "shortdesk",         limit: 65535
     t.boolean  "delemiter"
     t.boolean  "invisible"
     t.boolean  "main"
     t.boolean  "action"
     t.boolean  "best"
-    t.integer  "position",       limit: 4
-    t.string   "s_title",        limit: 255
-    t.string   "s_description",  limit: 255
-    t.string   "s_keyword",      limit: 255
-    t.string   "s_imagealt",     limit: 255
+    t.integer  "position",          limit: 4
+    t.string   "s_title",           limit: 255
+    t.string   "s_description",     limit: 255
+    t.string   "s_keyword",         limit: 255
+    t.string   "s_imagealt",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price",                        precision: 18, scale: 2, default: 0.0
-    t.text     "seo_text",       limit: 65535
-    t.decimal  "old_price",                    precision: 18, scale: 2, default: 0.0
-    t.string   "seo_title2",     limit: 255
-    t.integer  "subcategory_id", limit: 4
-    t.string   "article",        limit: 255
-    t.integer  "extension_id",   limit: 4
+    t.decimal  "price",                           precision: 18, scale: 2, default: 0.0
+    t.text     "seo_text",          limit: 65535
+    t.decimal  "old_price",                       precision: 18, scale: 2, default: 0.0
+    t.string   "seo_title2",        limit: 255
+    t.integer  "subcategory_id",    limit: 4
+    t.string   "article",           limit: 255
+    t.integer  "extension_id",      limit: 4
+    t.integer  "color_category_id", limit: 4
   end
 
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["extension_id"], name: "index_products_on_extension_id", using: :btree
   add_index "products", ["subcategory_id"], name: "index_products_on_subcategory_id", using: :btree
 

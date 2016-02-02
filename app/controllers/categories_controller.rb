@@ -109,6 +109,26 @@ class CategoriesController < ApplicationController
     render :nothing => true
   end
 
+  def color_category_new
+    @color_category = ColorCategory.new
+    @category_id = params[:category_id]
+  end
+
+  def color_category_create
+    redirect_to ColorCategory.create(params.require(:color_category).permit!).category
+  end
+
+  def color_category_edit
+    @color_category = ColorCategory.find params[:id]
+    @category_id = params[:category_id]
+  end
+
+  def color_category_update
+    color_category = ColorCategory.find params[:id]
+    color_category.update params.require(:color_category).permit!
+    redirect_to color_category.category
+  end
+
 private
   def set_category
     @category = Category.find(params[:id])

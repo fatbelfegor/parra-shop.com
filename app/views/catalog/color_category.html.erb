@@ -1,0 +1,91 @@
+<script src="/assets/lightbox.min.js"></script>
+<link href="/assets/lightbox.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/assets/color-category.css">
+<div class="index">
+	<div class="breadcrumbs">
+		<a href="http://www.parra-shop.ru/">Главная</a>
+		<span>></span>
+		<h1 class="categoryLogo">
+			<%= @color_category.name %>
+		</h1>
+	</div>
+	<div id="color-category-blocks">
+		<% for c in @color_category.category.color_categories.order(:id) %>
+			<% link = @color_category.id != c.id %>
+			<% if link %><a href='/catalog/<%= c.url %>'<% else %><div<% end %> class='item' style='background-image: url("<%= c.image %>")'>
+				<div class="appear"><div><span>Посмотреть</span><br><span>каталог</span></div></div>
+			<% if link %></a><% else %></div><% end %>
+		<% end %>
+	</div>
+	<div id="products">
+		<% for p in @color_category.products %>
+			<div>
+				<div>
+					<% if p.extension %>
+						<img src="<%= p.extension.image %>" class='extension-catalog'>
+					<% end %>
+					<% images = p.images.split ',' %>
+					<div class="left inactive"></div>
+					<% if images[1] %>
+						<div class="right" onclick="photoRight(this)"></div>
+					<% else %>
+						<div class="right inactive"></div>
+					<% end %>
+					<% if images.length > 0 %>
+						<div class="photoes"><a class="showPhoto" href="/kupit/<%= p.scode %>" style="background-image: url('<%= images[0] %>')"></a>
+						<% for i in images[1..-1] %>
+							<a href="/kupit/<%= p.scode %>" style="background-image: url('<%= i %>')"></a>
+						<% end %>
+						</div>
+					<% end %>
+					<div>
+						<div class="name">
+							<a href="/kupit/<%= p.scode %>"><%= p.name %></a>
+						</div>
+					</div>
+					<div><%= p.s_title %></div>
+					<div><%= raw p.shortdesk %></div>
+					<div>
+						<b>Цена:</b>
+						<span class="price"><%= number_to_currency p.price %> руб.</span>
+					</div>
+					<div class="appear">
+						<% if !p.prsizes.blank? %>
+							<div>
+								<b>Размер:</b>
+								<span class="size"><%= p.prsizes[0].name %></span>
+								<span class="hidden size-scode">#{p.prsizes[0].scode}</span>
+							</div>
+						<% end %>
+						<% if !p.prcolors.blank? %>
+							<% prcolor = p.prcolors.first %>
+							<% if !prcolor.textures.blank? %>
+								<div>
+									<b>Цвет:</b>
+									<span class="color"><%= prcolor.textures[0].name %></span>
+									<span class="hidden color-scode"><%= prcolor.textures[0].scode %></span>
+								</div>
+							<% else %>
+								<div>
+									<b>Цвет:</b>
+									<span class="color"><%= p.prcolors[0].name %></span>
+									<span class="hidden color-scode"><%= p.prcolors[0].scode %></span>
+								</div>
+							<% end %>
+						<% end %>
+						<% if !p.proptions.blank? %>
+							<div>
+								<b>Опция:</b>
+								<span class="option"><%= p.proptions[0].name %></span>
+								<span class="hidden option-scode"><%= p.proptions[0].scode %></span>
+							</div>
+						<% end %>
+						<div class="id hidden"><%= p.id %></div>
+						<div class="scode hidden"><%= p.scode %></div>
+						<div class="fancyButton" onclick="addToCartFromCatalog('<%= p.name %>', this)">Купить</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

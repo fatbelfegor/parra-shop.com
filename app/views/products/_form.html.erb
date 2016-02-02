@@ -39,6 +39,15 @@
       </div>
     </div>
   </div>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :color_category_id, "Цветовая Подкатегория:", {class: 'control-label wrath-content-box', style: 'padding:0'} %></h4>
+    <div class="col-md-10">
+      <div class="wrath-content-box">
+        <% collection = [ColorCategory.new(id: nil, name: 'Не выбрано')] + ColorCategory.all %>
+        <%= f.select :color_category_id, options_from_collection_for_select(collection, "id", "name", if @product then @product.color_category_id else nil end), {}, {class: "form-control"} %>
+      </div>
+    </div>
+  </div>
   <div class="row form-group" style="padding-left: 100px">
     <% for category in Category.all %>
       <div class="col-md-2">

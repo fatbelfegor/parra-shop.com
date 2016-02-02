@@ -29,13 +29,20 @@ class CatalogController < ApplicationController
   end
   def index
     @category = Category.find_by url: params[:url]
-    params[:category_scode] = @category.scode
-    @title = @category.title
-    @seo_description = @category.s_description
-    @seo_keywords = @category.s_keyword
-    if @category.subcategories.empty?
-      @products = @category.products.order(:position)
-      @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin?
+    if @category
+      cc = @category.color_categories.first
+      return redirect_to "/catalog/#{cc.url}" if cc
+      params[:category_scode] = @category.scode
+      @title = @category.title
+      @seo_description = @category.s_description
+      @seo_keywords = @category.s_keyword
+      if @category.subcategories.empty?
+        @products = @category.products.order(:position)
+        @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin?
+      end
+    else
+      @color_category = ColorCategory.find_by_url params[:url]
+      render 'color_category'
     end
   end
 end

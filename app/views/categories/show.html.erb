@@ -35,6 +35,16 @@
 <div id="subcategories">
 	<%= render partial: "subcategories/subcategory" , collection: @category.subcategories %>
 </div>
+<h1 class="text-center" style="margin:15px 0">Цветовые Подкатегории (<%= @category.color_categories.count %>)</h1>
+<div class="text-center" style="margin-bottom:15px">
+<a class="btn btn-success" href="/categories/<%= @category.id %>/color_categories/new">Создать новую цветовую подкатегорию</a>
+</div>
+<div id="color_categories">
+	<table class="table table-bordered table-striped">
+		<tr><th style="width:25%">Изображение</th><th style="width:25%">Название</th><th style="width:25%">Url</th><th style="width:25%">Действия</th></tr>
+		<%= render partial: "color_category", collection: @category.color_categories %>
+	</table>
+</div>
 <h1 class="text-center" style="margin:15px 0">Список продуктов (<%= @category.products.count %>)</h1>
 <div class="text-center" style="margin-bottom:15px">
 <%= link_to('Создать новый продукт', { :controller => :products, :action => :new , :category_id => @category.id }, class: 'btn btn-success' )%>
