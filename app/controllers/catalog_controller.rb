@@ -17,7 +17,6 @@ class CatalogController < ApplicationController
         position: :asc
       }
     }
-    search[:query][:bool][:must] = {term: {invisible: false}} unless user_signed_in? && current_user.admin?
     if ids.empty?
       search[:query][:bool][:should] = {multi_match: {query: q, fields: [:name, :scode]}}
       @products = Product.search(search).results.map(&:_source)

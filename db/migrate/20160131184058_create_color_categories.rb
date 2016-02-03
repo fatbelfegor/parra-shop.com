@@ -12,6 +12,5 @@ class CreateColorCategories < ActiveRecord::Migration
 		# add_index :categories_products, :product_id
 		# add_index :categories, :parent_id
 		# add_index :products, :category_id
-		# add_index :products, :extension_id
 	end
 end
