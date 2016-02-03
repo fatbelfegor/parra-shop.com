@@ -10,7 +10,7 @@
 		</h1>
 	</div>
 	<div id="color-category-blocks">
-		<% for c in @color_category.category.color_categories.order(:id) %>
+		<% for c in @category.color_categories.order(:id) %>
 			<% link = @color_category.id != c.id %>
 			<% if link %><a href='/catalog/<%= c.url %>'<% else %><div<% end %> class='item' style='background-image: url("<%= c.image %>")'>
 				<div class="appear"><div><span>Посмотреть</span><br><span>каталог</span></div></div>
@@ -88,4 +88,9 @@
 			</div>
 		<% end %>
 	</div>
+	<% unless @category.seo_text.blank? %>
+		<div class="seo_text">
+			<%= raw @category.seo_text %>
+		</div>
+	<% end %>
 </div>
