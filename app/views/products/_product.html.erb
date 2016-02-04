@@ -18,7 +18,13 @@
 				<%= link_to product.name, "/kupit/" + product.scode, class: 'btn btn-default' %>
 				<% if current_user && current_user.admin? %>
 					<%= link_to 'edit', edit_product_path(product), class: 'btn btn-warning' %>
-					<%= link_to 'del', product, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %> <a style="float:left" class="btn btn-info">№<%=product.position%></a><%if product.invisible? %><a style="float:left" class="btn btn-danger">Невидимый</span><% end %>
+					<%= link_to 'del', product, :confirm => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+					<% if color %>
+					<form style="float:left">Позиция: <input class="form-control" style="width:50px;display:inline" type='text' value='<%= product.color_position %>' name='position'><input type="hidden" name='product_id' value='<%= product.id %>'><label class='btn btn-success'>Сохранить<input style="display:none" type="submit"></label></form>
+					<% else %>
+					<a style="float:left" class="btn btn-info">№<%=product.position%></a>
+					<% end %>
+					<%if product.invisible? %><a style="float:left" class="btn btn-danger">Невидимый</span><% end %>
 				<% end %>
 			</th>
 		</tr>

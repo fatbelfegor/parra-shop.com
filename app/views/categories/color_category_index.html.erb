@@ -1,0 +1,12 @@
+<br>
+<div>
+	<a class="btn btn-primary" href="/categories/<%= @color_category.category_id %>">Перейти в категорию</a>
+	<a class="btn btn-warning" href="/categories/<%= @color_category.category_id %>/color_categories/<%= @color_category.id %>/edit">Редактировать</a>
+</div>
+<br>
+<h2>Список товаров для цветовой категории "<%= @color_category.name %>"</h2>
+<br>
+
+<div id="productsSortable" class="text-center">
+	<%= render(:partial => "products/product" , :collection => @products, locals: {color: true}) %>
+</div>

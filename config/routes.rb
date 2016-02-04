@@ -81,6 +81,7 @@ ParraShopCom::Application.routes.draw do
   post 'categories/:category_id/color_categories', to: 'categories#color_category_create'
   get 'categories/:category_id/color_categories/:id/edit', to: 'categories#color_category_edit'
   patch 'categories/:category_id/color_categories/:id', to: 'categories#color_category_update'
+  get 'categories/:category_id/color_categories/:id', to: 'categories#color_category_index'
   resources :images, :extensions
   resources :orders do
     resources :order_item, except: [:index, :show, :edit] do

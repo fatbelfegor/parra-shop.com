@@ -129,6 +129,14 @@ class CategoriesController < ApplicationController
     redirect_to color_category.category
   end
 
+  def color_category_index
+    if params[:product_id]
+      Product.update params[:product_id], {color_position: params[:position]}
+    end
+    @color_category = ColorCategory.find params[:id]
+    @products = @color_category.products.order(:color_position)
+  end
+
 private
   def set_category
     @category = Category.find(params[:id])

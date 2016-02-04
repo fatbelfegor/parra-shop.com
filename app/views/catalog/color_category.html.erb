@@ -18,7 +18,7 @@
 		<% end %>
 	</div>
 	<div id="products">
-		<% for p in @color_category.products %>
+		<% for p in @color_category.products.order(:color_position) %>
 			<div>
 				<div>
 					<% if p.extension %>
