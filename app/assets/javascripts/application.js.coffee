@@ -364,10 +364,12 @@ expire = ->
 	iframe.parentNode.removeChild iframe
 @deleteImage = (el) ->
 	div = el.parentNode
-	input = $(div).parents('#addImages').next()
+	$div = $ div
+	input = $div.parents('#addImages').next()
 	$.get "/images/delete",
 	  url: $(el).prev().attr 'src'
-	index = $(div).parent().index div
+	index = $div.index()
+	console.log index
 	images = input.val().split ','
 	images.splice index, 1
 	input.val images.join ','
