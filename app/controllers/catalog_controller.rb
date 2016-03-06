@@ -14,6 +14,15 @@ class CatalogController < ApplicationController
 #       end
   end
   
+  def products
+    @products = Product.all
+    
+    # respond_to do |format|
+#         format.html { render :index }
+#         format.json { render :json =>  @categoriesmobile.to_json(:include => [:parent])}
+#       end
+  end
+  
   def search
     q = params[:q]
     @title = "Поиск: #{q}"
