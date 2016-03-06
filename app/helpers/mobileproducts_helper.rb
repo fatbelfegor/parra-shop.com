@@ -1,0 +1,2 @@
+module MobileproductsHelper
+end

@@ -1,0 +1,2 @@
+module MobilecategoriesHelper
+end

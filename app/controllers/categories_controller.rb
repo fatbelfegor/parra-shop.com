@@ -2,14 +2,13 @@
 # encoding: utf-8
 
 class CategoriesController < ApplicationController
-  before_filter :admin_required, :except => [:index]
+  before_filter :admin_required
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   
   # GET /categories
   # GET /categories.json
   def index
     @categories = Category.order('position')
-    @categoriesmobile = Category.where('isMobile = true')
     @products = Product.all
     
     # respond_to do |format|

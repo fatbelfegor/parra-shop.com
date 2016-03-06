@@ -1,4 +1,11 @@
 ParraShopCom::Application.routes.draw do
+  #get 'mobileproducts/index'
+
+  #get 'mobilecategories/index'
+  
+  resources :mobilecategories, except: [:new, :show, :edit, :create, :update, :destroy]
+  resources :mobileproducts, except: [:new, :show, :edit, :create, :update, :destroy]
+
   get '/modulnaja-mebel-dlja-spalni', to: 'main#spalni'
   get '/modulnaja-mebel-dlja-gostinoj', to: 'main#gostinaya'
   get '/divani', to: 'main#divani'
@@ -10,8 +17,8 @@ ParraShopCom::Application.routes.draw do
   get "order_item/minus"
   get "order_item/delete"
   get "catalog/index", to: 'catalog#search'
-  get "catalog/categories", to: 'catalog#categories'
-  get "catalog/products", to: 'catalog#products'
+  #get "mobilecategories/index", to: 'mobilecategories#index'
+  #get "mobileproducts/index", to: 'mobileproducts#index'
   get "catalog/(:url)", to: 'catalog#index'
   get "main/main"
   get 'users', to: 'users#index'

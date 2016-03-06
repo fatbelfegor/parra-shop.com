@@ -5,24 +5,6 @@ class CatalogController < ApplicationController
     render 'pages/not_found', status: 404
   end
   
-  def categories
-    @categoriesmobile = Category.where('isMobile = true')
-    
-    # respond_to do |format|
-#         format.html { render :index }
-#         format.json { render :json =>  @categoriesmobile.to_json(:include => [:parent])}
-#       end
-  end
-  
-  def products
-    @products = Product.joins(:categories).where "categories.isMobile = true"
-    
-    # respond_to do |format|
-#         format.html { render :index }
-#         format.json { render :json =>  @categoriesmobile.to_json(:include => [:parent])}
-#       end
-  end
-  
   def search
     q = params[:q]
     @title = "Поиск: #{q}"
