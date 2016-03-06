@@ -15,7 +15,7 @@ class CatalogController < ApplicationController
   end
   
   def products
-    @products = Product.all
+    @products = Product.joins(:categories).where "categories.isMobile = true"
     
     # respond_to do |format|
 #         format.html { render :index }
