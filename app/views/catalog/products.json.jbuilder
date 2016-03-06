@@ -1,3 +1,3 @@
-json.array!(@categoriesmobile) do |cat|
-  json.extract! cat, :id, :parent_id, :name, :updated_at, :mobile_image_url, :description, :position
+json.array!(@products) do |prod|
+  json.extract! prod, :id, :category_id, :name, :shortdesk, :description, :images, :price, :position, :updated_at
 end
