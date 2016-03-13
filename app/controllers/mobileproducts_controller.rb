@@ -1,7 +1,7 @@
 class MobileproductsController < ApplicationController
   
   def index
-    @products = Product.joins(:categories).where "categories.isMobile = true"
+    @products = Product.joins(:categories).where("categories.isMobile = true").distinct
     
     # respond_to do |format|
 #         format.html { render :index }
