@@ -4,12 +4,15 @@ Disallow: /*?id=kr
 Disallow: /*?id=at
 Disallow: /*?utm
 Disallow: /cart
+Disallow: /users
+Disallow: *index*
 Disallow: /assets
 Disallow: /lightbox/
 Disallow: /fonts
 Disallow: /*index?q=
 Host: www.parra-shop.ru
 Sitemap: http://www.parra-shop.ru/sitemap.xml
+
 
 User-agent: Googlebot
 Allow: /*.css
