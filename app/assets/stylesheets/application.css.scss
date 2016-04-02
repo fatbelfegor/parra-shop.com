@@ -437,6 +437,18 @@ nav {
 			background-color: #E01902;
 			@include border-radius(2px);
 		}
+		.red {
+			color: #D61C1C;
+			white-space: nowrap;
+			line-height: 20px;
+		}
+		.red:hover {
+			color: #D61C1C;
+			text-decoration: underline;
+		}
+		.red:before {
+			display: none;
+		}
 		:nth-child(3):before {
 			background-color: #737E76;
 		}
@@ -2623,6 +2635,20 @@ body.small-size {
 			background-color: #E6E6E6;
 			line-height: 0;
 			text-align: center;
+		}
+		.red {
+			color: #D61C1C;
+			white-space: nowrap;
+			line-height: 20px;
+			margin: 0 !important;
+			width: auto;
+		}
+		.red:hover {
+			color: #D61C1C;
+			text-decoration: underline;
+		}
+		.red:before {
+			display: none;
 		}
 	}
 	.whereCanBuy.open {

@@ -12,6 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="/lightbox/lightbox.min.js"></script>
+  <meta name="google-site-verification" content="NaCp35GyHYEQtVS2CqwBau-RgsczZ-lz0Cm8n8GMmF4" />
 </head>
 <body class='<%= controller.controller_name %>'>
 <div id="blur">
@@ -170,6 +171,7 @@
 							<%= link_to raw('Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09'), store7_path %>
 							<%= link_to raw('Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18'), store8_path %>
 							<%= link_to raw('Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09'), store9_path %>
+							<a class="red" href="/catalog/samples-sale">Распродажа выставочных<br>образцов</a>
 						</div>
 					</div>      
 				</span>
@@ -263,6 +265,7 @@
 						<a href="<%= url_for store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
 						<a href="<%= url_for store8_path %>">Мебель PARRA<br>МЦ "Вагант" <br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>8(499)347-09-09</a>
 						<a href="<%= url_for store9_path %>">Мебель PARRA<br>МЦ "Империя" <br>Дмитровское шоссе<br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
+						<a class="red" href="/catalog/samples-sale">Распродажа выставочных<br>образцов</a>
 		  			</div>
 		  		</li>
 		  		<li class="miniMenuCart">
@@ -312,7 +315,7 @@
 					МЦ «Ваган» г.Подольск, ул. Стационарная, д.11, 1 этаж +7-499-400-58-18<br>
 					ТРК «Красный Кит» г.Мытищи, Шараповский проезд, вл. 2, 1 этаж +7-499-347-09-09</p>
 				</div>
-				<div class="copy">Copyrihgt @ <%= Date.today.year %> - Интернет магазин мебели «Parra-Shop»</div>
+				<div class="copy">Copyright @ <%= Date.today.year %> - Интернет магазин мебели «Parra-Shop»</div>
 			</div>
 		</div>
 	</nav>
