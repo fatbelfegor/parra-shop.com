@@ -45,6 +45,7 @@
 			border-radius(0 5px 5px 0)
 	.phone
 		margin-top 12px
+		float right
 		p
 			color #5A585B
 			font-size 23px
@@ -315,36 +316,48 @@
 			background-color #eee
 		ul
 			display block
-			
-@media(max-width: 460px)
-	#header
-		.logo
-			height auto
-			img
-				height auto
-				width 180px
-		.search
-			input[type=text]
-				width 135px
-@media(max-width: 425px)
-	#header
-		.logo img
-			width 150px
+
+#jivo-iframe-container
+	bottom 40px !important
+@media(max-width: 978px)
+	#jivo-iframe-container
+		bottom 80px !important
 @media(max-width: 800px)
 	#header
 		.right
 			padding-top 5px
 			> div
 				display block
-		.phone
-			margin-top 5px
 		.search
 			margin-right 0
-			margin-top 0
+			margin-top 5px
 		.phone
+			float none
+			margin-top 0
 			ins
 				float none
 				display inline
+@media(max-width: 540px)
+	#header
+		.logo
+			text-align center
+			position static
+			float none
+			margin-left 0
+			img
+				display inline
+		.right
+			text-align center
+			padding-top 20px
+			padding-bottom 20px
+		.search
+			margin-top 15px
+	#blur > .main
+		position static
+	.footer
+		position static !important
+	#jivo-iframe-container
+		bottom 0 !important
 @media(max-width: 1140px)
 	#header .menu .item > a
 		margin 13px 10px 6px
