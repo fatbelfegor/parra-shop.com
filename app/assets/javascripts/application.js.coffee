@@ -25,20 +25,17 @@ String.prototype.toNum = ->
 iframe = document.createElement 'iframe'
 menuImages = []
 
-resizeFunc = ->
-	if $(document).width() > 1000
-		$('body').removeClass 'small-size'
-	else
-		$('body').addClass 'small-size'
-
 ready = ->
-	curBg = 0
-	$('#mainMenu li div div').each (i) ->
-		this.style.backgroundImage = menuImages[i]
-	$('#mainMenu li ul li').mouseover ->
-		$(this).parents('li').find('div div').eq(curBg).css('left','-2000px')
-		curBg = $(this).index()
-		$(this).parents('li').find('div div').eq(curBg).css('left','0')
+
+	header.onmouseover = (e) ->
+		el = e.target
+		if el.className is 'bg'
+			list = el.parentNode
+			background = list.previousElementSibling
+			if active = background.getElementsByClassName('active')[0]
+				active.className = ''
+			background.children[Array.prototype.indexOf.call list.children, el].className = 'active'
+
 	$('#addImages input').click ->
 		iframe.src = '/images/new'
 		this.parentNode.appendChild iframe
@@ -132,7 +129,6 @@ ready = ->
 			el.find('img').each ->
 				images.push $(@).attr 'src'
 			el.parent().next().val images.join ','
-	resizeFunc()
 	contentHeight = $('#content-wrap').height()
 	footerFull = false
 	scrollWork = true
@@ -157,6 +153,7 @@ ready = ->
 					$('.footer .appear').animate 'height': 235, 300, ->
 						contentHeight = $('#content-wrap').height()
 						scrollWork = true
+
 @changeCount = (el) ->
 	window.el = el
 	if el.parentNode.parentNode.parentNode.id == 'cart'
@@ -183,7 +180,6 @@ $(document).ready ->
 		menuImages.push this.style.backgroundImage
 	ready()
 $(document).on('page:load', ready)
-$(window).resize resizeFunc
 getCookie = (name) ->
 	matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"))
 	(if matches then decodeURIComponent(matches[1]) else `undefined`)
@@ -321,13 +317,13 @@ expire = ->
 				url: "/cart.json?name="+item.n
 				success: (data) ->
 					if data
-						$('#menuCart > div > a').get().forEach (item) ->
+						$('#menuCart .cart-list > a').get().forEach (item) ->
 							if $(item).find('#name').html() == data.name				
 								$(item).find('img').attr 'src', data.images.split(',')[0]
 	if items == ''
 		$('#menuCart').hide()
 	else $('#menuCart').show()
-	$('#menuCart > div').html items
+	$('#menuCart .cart-list').html items
 	$('#menuCart #price').html allPrice
 @cartSave = ->
 	cartCount()

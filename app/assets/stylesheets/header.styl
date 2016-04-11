@@ -1,0 +1,370 @@
+@import 'styl-mixins'
+
+#header
+	background-color white
+	.logo
+		margin-left 3%
+		display block
+		height 84px
+		float left
+		position absolute
+		img
+			display block
+			height 100%
+	.right
+		margin-right 4%
+		text-align right
+		font-size 0
+		> div
+			display inline-block
+			vertical-align top
+	.search
+		margin-right 30px
+		margin-top 18px
+		display inline-block !important
+		position relative
+		z-index 1
+		form
+			display inline-block
+		input[type=text]
+			width 200px
+			font-size 13px
+			border 1px solid #C6C6C6
+			border-width 1px 0 1px 1px
+			padding 5px 0 5px 10px
+			border-radius(5px 0 0 5px)
+			&:focus
+				border-color #4FB859
+				outline 0
+		input[type=submit]
+			font-size 13px
+			border 1px solid #4FB859
+			padding 5px 10px
+			background-image url("/assets/buyButton.png")
+			color white
+			border-radius(0 5px 5px 0)
+	.phone
+		margin-top 12px
+		p
+			color #5A585B
+			font-size 23px
+		ins
+			font-size 13px
+			color #4EBA6F
+			margin-top -4px
+			margin-left 2px
+			display block
+			text-decoration none
+			border-bottom 1px solid #5AC67B
+			float left
+	.menu
+		padding-right 4%
+		text-align right
+		color #58585A
+		background white
+		a
+			color inherit
+		.item
+			text-align center
+			display inline-block
+			font-size 13px
+			> a, > span
+				margin 13px 18px 6px
+				display block
+				text-transform uppercase
+				white-space nowrap
+				position relative
+				height 16px
+				font-weight bold
+				line-height 16px
+				transition(.3s)
+			&:hover
+				> a, > span
+					color #52B84A
+					text-decoration underline
+				.background, .list
+					height 450px
+				& + .dark
+					bottom 40px
+					background-color rgba(0,0,0,0.5)
+				.all
+					height 192px
+					padding 10px 0
+					border-top 1px solid #C6C6C6
+					border-bottom 1px solid #C6C6C6
+				.where-buy
+					padding-top 35px
+					border-bottom 1px solid #C6C6C6
+					a
+						height 170px
+						margin-bottom 55px
+				#menuCart
+					max-height 509px
+		.background, .list
+			height 0
+			overflow hidden
+			transition(.3s)
+		.background
+			position absolute
+			left 0
+			right 0
+			z-index 2
+			background-color white
+			> div
+				position absolute
+				top 0
+				left 0
+				width 100%
+				bottom 0
+				opacity 0
+				transition(.3s)
+				&.active
+					opacity 1
+		.list
+			width 100px
+			position absolute
+			background-color rgba(255,255,255,0.8)
+			z-index 3
+			a
+				display block
+				line-height 25px
+				height 25px
+				&:first-child
+					margin-top 25px
+		.dark
+			position absolute
+			left 0
+			right 0
+			top 87px
+			z-index 1
+			transition(.3s)
+		.all
+			background-color #E6E6E6
+			position absolute
+			left 0
+			right 0
+			z-index 2
+			height 0
+			overflow hidden
+			transition(.3s)
+			> div
+				width 1000px
+				margin 0 auto
+				> div
+					display table
+					table-layout fixed
+					width 100%
+					padding 15px 0
+			a
+				white-space nowrap
+				display table-cell
+				vertical-align top
+				font-size 15px
+				font-weight normal
+				border-left 4px solid #58575C
+				transition(.3s)
+				&:last-child
+					border-right 4px solid #58575C
+		.where-buy
+			background-color #E6E6E6
+			padding 0 0 0 30px
+			position absolute
+			left 0
+			right 0
+			z-index 2
+			font-size 0
+			transition(.3s)
+			a
+				display inline-block
+				vertical-align top
+				height 0
+				overflow hidden
+				width 165px
+				font-size 14px
+				font-weight normal
+				line-height 26px
+				padding 0 30px
+				position relative
+				color #535356
+				text-align left
+				transition(.3s)
+				&:hover
+					color black
+				&:before
+					position absolute
+					left 0
+					top 5px
+					display block
+					content ""
+					height 100%
+					width 5px
+					background-color #E01902
+					border-radius(2px)
+				&.red
+					color #D61C1C
+					white-space nowrap
+					line-height 20px
+					&:before
+						display none
+				&.gray:before
+					background-color #737E76
+				&.green:before
+					background-color #06450C
+				&.blue:before
+					background-color #07298A
+				&.orange:before
+					background-color #F88800
+		
+#menuCart
+	display block
+	width 350px
+	background-color white
+	border-right 1px solid #C6C6C6
+	border-left 1px solid #C6C6C6
+	z-index 1
+	right 20px
+	margin-top 1px
+	padding-left 10px
+	max-height 0
+	overflow hidden
+	position absolute
+	transition(0.3s)
+	.sum
+		color #198900
+		line-height 36px
+		margin 0 14px 0 4px
+		font-weight normal
+		font-size 16px
+		text-align right
+		float right
+		b
+			color #198800
+			font-size 17px
+	.actions
+		margin-left -10px
+		display block
+		height 36px
+		border-top 1px solid #C6C6C6
+		border-bottom 1px solid #C6C6C6
+		a
+			color #efefef
+	.cart-list
+		margin-top 10px
+		max-height 460px
+		overflow auto
+		> a
+			height 100px
+			margin-bottom 15px
+			display block
+			img
+				width 100px
+				height 100px
+				float left
+			> div
+				display table
+				height 100px
+				width 210px
+				margin-left 115px
+				text-align left
+				text-decoration underline
+				> div
+					display table-cell
+					vertical-align middle
+					font-size 13px
+					line-height 20px
+					div
+						float right
+						color #198800
+						margin-left 10px
+					ins
+						font-size 14px
+						color #030000
+						
+.admin-nav
+	position absolute
+	left 280px
+	top 10px
+	font-size 13px
+	text-transform uppercase
+	div
+		border 1px solid #aaa
+		font-weight bold
+		line-height 32px
+		padding 0 15px
+		width 130px
+		text-align center
+		transition(.3s)
+	ul
+		border 1px solid #aaa
+		border-width 0 1px
+		display none
+		position absolute
+		width 160px
+		z-index 1000
+		background-color white
+	li
+		padding 5px 0
+		line-height 16px
+		border-bottom 1px solid #aaa
+		text-align center
+		transition(.3s)
+		&:hover
+			background-color #eee
+	&:hover
+		div
+			background-color #eee
+		ul
+			display block
+			
+@media(max-width: 460px)
+	#header
+		.logo
+			height auto
+			img
+				height auto
+				width 180px
+		.search
+			input[type=text]
+				width 135px
+@media(max-width: 425px)
+	#header
+		.logo img
+			width 150px
+@media(max-width: 800px)
+	#header
+		.right
+			padding-top 5px
+			> div
+				display block
+		.phone
+			margin-top 5px
+		.search
+			margin-right 0
+			margin-top 0
+		.phone
+			ins
+				float none
+				display inline
+@media(max-width: 1140px)
+	#header .menu .item > a
+		margin 13px 10px 6px
+@media(max-width: 1050px)
+	#header .menu
+		padding-left 3%
+		.item > a
+			margin 13px 5px 6px
+@media(max-width: 1000px)
+	#header
+		.menu
+			display none
+	.admin-nav
+		background-color white
+		top -1px
+		left -1px
+		z-index 1
+		div
+			height 22px
+			line-height 22px
+	#mainMenuCompact
+		display block
+		background-color white

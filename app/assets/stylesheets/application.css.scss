@@ -12,6 +12,8 @@
  *= require bootstrap.min
  *= require_self
  *= require style
+ *= require header
+ *= require footer
  */
 
 @import 'mixins';
@@ -53,12 +55,6 @@ li {
 	display: none !important;
 }
 
-.logo {
-	height: 84px;
-	margin: 0 0 5px 19px;
-	position: absolute;
-}
-
 .breadcrumbs {
 	width: auto !important;
 	height: auto !important;
@@ -84,55 +80,6 @@ li {
 	}
 }
 
-#search {
-	position: absolute;
-	right: 300px;
-	top: 18px;
-	font-size: 0;
-	input[type=text] {
-		width: 200px;
-		font-size: 13px;
-		border: 1px solid #C6C6C6;
-		border-width: 1px 0 1px 1px;
-		padding: 5px 0 5px 10px;
-		@include border-radius(5px 0 0 5px);
-	}
-	input[type=text]:focus {
-		border-color: #4FB859;
-		outline: 0;
-	}
-	input[type=submit] {
-		font-size: 13px;
-		border: 1px solid #4FB859;
-		padding: 5px 10px;
-		background-image: url("/assets/buyButton.png");
-		color: white;
-		@include border-radius(0 5px 5px 0);
-	}
-}
-
-.shopPhone {
-	position: absolute;
-	right: 60px;
-	top: 12px;
-
-	p {
-		color: #5A585B;
-		font-size: 23px;
-	}
-
-	ins {
-		font-size: 13px;
-		color: #4EBA6F;
-		margin-top: -4px;
-		margin-left: 2px;
-		display: block;
-		text-decoration: none;
-		border-bottom: 1px solid #5AC67B;
-		float: left;
-	}
-}
-
 .fancyButton {
 	border: 1px solid #A6A6A6;
 	font-size: 12px;
@@ -142,332 +89,6 @@ li {
 	float: left;
 	@include border-radius(3px);
 	@include linear-gradient((white, #F6F6F6 50%, #eee 100%));
-}
-
-nav {
-	font-size: 13px;
-	color: #58585A;
-	float: right;
-	margin: 52px 40px 0 0;
-
-	> ul {
-
-		li {
-			list-style-type: none;
-			text-align: center;
-		}
-
-		> li.dark {
-			content: '';
-			display: block;
-			position: absolute;
-			top: 87px;
-			right: 0;
-			left: 0;
-			z-index: 1;
-			background-color: transparent;
-			@include transition(background-color 1s);
-		}
-
-		> li.menu:hover + li.dark {
-			bottom: 40px;
-			background-color: rgba(0, 0, 0, 0.5);
-		}
-
-		> li {					
-			display: inline-block;
-
-			> a {
-				margin: 13px 18px 6px;
-				display: block;
-				text-transform: uppercase;
-				white-space: nowrap;
-				position: relative;
-				height: 16px;
-				font-weight: bold;
-				line-height: 16px;
-				@include transition(0.3s);
-
-				b {
-					margin-left: 8px;
-				}
-			}
-
-			> a:hover {
-				color: #52B84A;
-				text-decoration: underline;
-			}
-
-			ul {
-				position: absolute;
-				height: 0;
-				background-color: rgba(255, 255, 255, 0.8);
-				padding: 0 0 0;
-				width: 100px;
-				overflow: hidden;
-				z-index: 3;
-				@include transition(0.3s);
-
-				:first-child {
-					margin-top: 20px;
-				}
-
-				li {
-					line-height: 25px;
-					@include transition(0.3s);
-				}
-
-				li:hover {
-					color: #52B84A;
-				}
-			}
-
-			> div {
-				height: 0;
-				position: absolute;
-				left: 0;
-				right: 0;				
-				overflow: hidden;
-				z-index: 2;
-				@include transition(0.3s);
-
-				div	{
-					position: absolute;
-					width: 100%;
-					height: $menu-height;
-					position: absolute;
-					top: 0;
-					left: -2000px;
-					background-repeat: no-repeat;
-					background-size: 100% 450px;
-					z-index: 2;
-				}	
-			}
-		}
-
-		> li:hover {
-			ul {
-				height: $menu-height;
-			}
-
-			> div {
-				height: $menu-height;
-				@include box-shadow(0 12px 12px -12px black);
-			}
-		}
-
-		.wherebuy:hover span {
-			height: 475px;
-			border-bottom: 1px solid #C6C6C6;
-		}
-
-		.submenu:hover {
-			div {
-				height: 40px;
-				border-top: 1px solid #C6C6C6;
-				border-bottom: 1px solid #C6C6C6;
-			}
-		}
-
-		.allProducts > div {
-			background-color: #E6E6E6;			
-			overflow: hidden;
-
-			a {
-				white-space: nowrap;
-				display: inline-block;
-				margin: 15px 30px;
-				vertical-align: top;
-				font-size: 15px;
-				font-weight: normal;
-				border-left: 4px solid #58575C;
-				padding-left: 10px;
-				min-width: 85px;
-				@include transition(0.3s);
-			}
-
-			a:hover {
-				color: #52B84A;
-			}
-
-			p {
-				width: 1000px;
-				margin: 0 auto;
-			}
-		}
-
-		.allProducts:hover > div {
-			height: 192px;
-			border-top: 1px solid #C6C6C6;
-			border-bottom: 1px solid #C6C6C6;
-		}
-
-		.cart > span {
-			display: block;
-			width: 350px;
-			background-color: white;
-			border-right: 1px solid #C6C6C6;
-			border-left: 1px solid #C6C6C6;
-			position: absolute;
-			z-index: 1;
-			right: 20px;
-			margin-top: 1px;
-			padding-left: 10px;
-			max-height: 0;
-			overflow: hidden;
-			@include transition(0.3s);
-
-			.sum {
-				color: #198900;
-				line-height: 36px;
-				margin: 0 14px 0 4px;
-				font-weight: normal;
-				font-size: 16px;
-				text-align: right;
-				float: right;
-
-				b {
-					color: #198800;
-					font-size: 17px;
-				}
-			}
-
-			> span {
-				margin-left: -10px;
-				display: block;
-				height: 36px;
-				border-top: 1px solid #C6C6C6;
-				border-bottom: 1px solid #C6C6C6;
-			}
-
-			> div {
-				margin-top: 10px;
-				max-height: 460px;
-				overflow: auto;
-				> a {
-					height: 100px;
-					margin-bottom: 15px;
-					display: block;
-
-					img {
-						width: 100px;
-						height: 100px;
-						float: left;
-					}
-
-					> div {
-						display: table;
-						height: 100px;
-						width: 210px;
-						margin-left: 115px;
-						text-align: left;
-						text-decoration: underline;
-
-						> div {
-							display: table-cell;
-							vertical-align: middle;					
-							font-size: 13px;
-							line-height: 20px;
-
-							div {
-								float: right;
-								color: #198800;
-							}
-
-							ins {
-								font-size: 14px;
-								color: #030000;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		.cart:hover > span {
-			max-height: 509px;
-		}
-	}
-}
-
-.wherebuy span {
-		display: block;
-		position: absolute;
-		left: 0;
-		width: 100%;
-		background-color: #E6E6E6;				
-		z-index: 3;
-		height: 0;
-		overflow: hidden;
-		@include transition(0.3s);
-}
-.wherebuy span > div, .wherebuyinner {
-	height: 100%;
-    div {
-    	height: 100%;
-		margin-top: 35px;
-		padding-left: 30px;
-		text-align: center;
-		a {
-			display: inline-block;
-			height: 170px;
-			vertical-align: top;
-			width: 165px;
-			margin: 0 0 55px 0;
-			font-size: 14px;
-			line-height: 26px;
-			padding: 0 30px;
-			font-weight: normal;
-			position: relative;
-			color: #535356;
-			text-align: left;
-			@include transition(0.3s);
-		}
-		a:hover {
-			color: black;
-		}
-		a:before {
-			position: absolute;
-			left: 0;
-			top: 5px;
-			display: block;
-			content: "";
-			height: 100%;
-			width: 5px;
-			background-color: #E01902;
-			@include border-radius(2px);
-		}
-		.red {
-			color: #D61C1C;
-			white-space: nowrap;
-			line-height: 20px;
-		}
-		.red:hover {
-			color: #D61C1C;
-			text-decoration: underline;
-		}
-		.red:before {
-			display: none;
-		}
-		:nth-child(3):before {
-			background-color: #737E76;
-		}
-		:nth-child(4):before {
-			background-color: #06450C;
-		}
-		:nth-child(5):before {
-			background-color: #07298A;
-		}
-		:nth-child(6):before {
-			background-color: #F88800;
-		}
-		:nth-child(7):before {
-			background-color: #737E76;
-		}
-		:nth-child(8):before {
-			background-color: #737E76;
-		}
-	}
 }
 
 #orderWindow {
@@ -1077,7 +698,7 @@ nav {
 	border-top: 1px solid #C6C6C6;
 	position: absolute;
 	width: 100%;
-	top: 86px;
+	top: 88px;
 	bottom: 40px;
 	overflow: auto;
 	z-index: 0;
@@ -2100,49 +1721,6 @@ th {
 	height: 100px;
 	width: 100px;
 }
-.admin-nav {
-	position: absolute;
-	left: 250px;
-	top: 10px;
-	font-size: 13px;
-	text-transform: uppercase;
-	div {
-		border: 1px solid #aaa;
-		font-weight: bold;
-		line-height: 32px;
-		padding: 0 15px;
-		width: 130px;
-		text-align: center;
-		@include transition(.3s);
-	}
-	ul {
-		border: 1px solid #aaa;
-		border-width: 0 1px;
-		display: none;
-		position: absolute;
-		width: 160px;
-		z-index: 1000;
-		background-color: white;
-	}
-	li {
-		padding: 5px 0;
-		line-height: 16px;
-		border-bottom: 1px solid #aaa;
-		text-align: center;
-		@include transition(.3s);
-	}
-	li:hover {
-		background-color: #eee;
-	}
-}
-.admin-nav:hover {
-	div {
-		background-color: #eee;
-	}
-	ul {
-		display: block;
-	}
-}
 .order-items {
 	.quantity {
 		width: 16px;
@@ -2476,37 +2054,6 @@ th {
 #mainMenuCompact {
 	display: none;
 }
-body.small-size {
-	#mainMenu {
-		display: none;
-	}
-	.admin-nav {
-		position: absolute;
-		top: -1px;
-		left: 50%;
-		margin-left: -81px;
-		z-index: 1;
-		div {
-			height: 22px;
-			line-height: 22px;
-			border-bottom: 0;
-		}
-		ul {
-			border-top: 1px solid #aaa;
-		}
-	}
-	#search {
-		top: 22px;
-		left: 50%;
-		right: auto;
-		margin-left: -139px;
-	}
-	#mainMenuCompact {
-		display: block;
-		background-color: white;
-	}
-}
-
 #mainMenuCompact {
 	color: #58585A;
 	text-align: center;
