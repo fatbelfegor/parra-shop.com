@@ -37,7 +37,8 @@
 			<div class="item">
 				<a href="/modulnaja-mebel-dlja-spalni">Спальни</a>
 				<div class="background">
-					<div class="active" style="background-image: url(/assets/GammaNew.jpg)"></div>
+					<div class="active" style="background-image: url(/assets/Nocce.jpg)"></div>
+					<div style="background-image: url(/assets/GammaNew.jpg)"></div>
 					<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
 					<div style="background-image: url(/assets/Bella.jpg)"></div>
 					<div style="background-image: url(/assets/Plisset.jpg)"></div>
@@ -48,6 +49,7 @@
 					<div style="background-image: url(/assets/Miro.jpg)"></div>
 				</div>
 				<div class="list">
+					<a class='bg' href='/catalog/Spalnya-Nocce'>Nocce</a>
 					<a class='bg' href='/catalog/spalni-gamma'>Gamma</a>
 					<a class='bg' href='/catalog/spalni-liona'>Lyona</a>
 					<a class='bg' href='/catalog/spalni-bella'>Bella</a>
@@ -63,7 +65,10 @@
 			<div class="item">
 				<a href="/modulnaja-mebel-dlja-spalni">Гостиные</a>
 				<div class="background">
-					<div class="active" style="background-image: url(/assets/NorteNew.jpg)"></div>
+					<div class="active" style="background-image: url(/assets/NocceGost.jpg)"></div>
+					<div style="background-image: url(/assets/OrlyGost.jpg)"></div>
+					<div style="background-image: url(/assets/Stella.jpg)"></div>
+					<div style="background-image: url(/assets/NorteNew.jpg)"></div>
 					<div style="background-image: url(/assets/P3.jpg)"></div>
 					<div style="background-image: url(/assets/BellaGost.jpg)"></div>
 					<div style="background-image: url(/assets/Verro.jpg)"></div>
@@ -72,6 +77,9 @@
 					<div style="background-image: url(/assets/Azzon.jpg)"></div>
 				</div>
 				<div class="list">
+					<a class='bg' href='/catalog/Nocce'>Nocce</a>
+					<a class='bg' href='/catalog/Orly-gostinaya'>Orly</a>
+					<a class='bg' href='/catalog/Stella'>Stella</a>
 					<a class='bg' href='/catalog/gostinye-norte'>Norte</a>
 					<a class='bg' href='/catalog/gostinnye-pz'>P3</a>
 					<a class='bg' href='/catalog/gostinnye-bella'>Bella</a>
@@ -79,6 +87,17 @@
 					<a class='bg' href='/catalog/gostinnye-style'>Style</a>
 					<a class='bg' href='/catalog/gostinnye-joy'>Joy</a>
 					<a class='bg' href='/catalog/gostinye-azzon'>Azzon</a>
+				</div>
+			</div>
+			<div class="item">
+				<a href="/catalog/prihozhie">Прихожие</a>
+				<div class="background">
+					<div class="active" style="background-image: url(/assets/BellaPrih.jpg)"></div>
+					<div style="background-image: url(/assets/StylePrih.jpg)"></div>
+				</div>
+				<div class="list">
+					<a class='bg' href='/catalog/Bella-prihozhaja'>Bella</a>
+					<a class='bg' href='/catalog/Style-prihozhaja'>Style</a>
 				</div>
 			</div>
 			<div class="dark"></div>
@@ -207,6 +226,7 @@
 			<ul id="mainMenuCompact">
 		  		<li onclick="miniCatOpen(this)">Спальни<p></p>
 					<div>
+						<a href="/catalog/Spalnya-Nocce"><img src="/assets/Nocce.jpg"></a>
 						<a href="/catalog/spalni-gamma"><img src="/assets/GammaNew.jpg"></a>
 						<a href="/catalog/spalni-liona"><img src="/assets/LyonaNew.jpg"></a>
 						<a href="/catalog/spalni-bella"><img src="/assets/Bella.jpg"></a>
@@ -217,8 +237,12 @@
 						<a href="/catalog/spalni-leggero-oreh"><img src="/assets/LeggeroSale.jpg"></a>
 						<a href="/catalog/spalni-miro"><img src="/assets/Miro.jpg"></a>
 					</div>
+		  		</li>
 		  		<li onclick="miniCatOpen(this)">Гостиные<p></p>
 		  			<div>
+						<a href="/catalog/Nocce"><img src="/assets/NocceGost.jpg"></a>
+						<a href="/catalog/Orly-gostinaya"><img src="/assets/OrlyGost.jpg"></a>
+						<a href="/catalog/Stella"><img src="/assets/Stella.jpg"></a>
 						<a href="/catalog/gostinye-norte"><img src="/assets/NorteNew.jpg"></a>
 						<a href="/catalog/gostinnye-pz"><img src="/assets/P3.jpg"></a>
 						<a href="/catalog/gostinnye-bella"><img src="/assets/BellaGost.jpg"></a>
@@ -226,7 +250,14 @@
 						<a href="/catalog/gostinnye-style"><img src="/assets/Style.jpg"></a>
 						<a href="/catalog/gostinnye-joy"><img src="/assets/Joy.jpg"></a>
 						<a href="/catalog/gostinye-azzon"><img src="/assets/Azzon.jpg"></a>
+					</div>
 		  		</li>
+		  		<li onclick="miniCatOpen(this)">Прихожие<p></p>
+		  			<div>
+						<a href="/catalog/Bella-prihozhaja"><img src="/assets/BellaPrih.jpg"></a>
+						<a href="/catalog/Style-prihozhaja"><img src="/assets/StylePrih.jpg"></a>
+					</div>
+				</li>
 		  		<li onclick="miniCatOpen(this)">Диваны<p></p>
 		  			<div>
 						<a href="/catalog/divany-trevi"><img src="/assets/Trevi.jpg"></a>
@@ -463,12 +494,5 @@
 
 </script>
 <!-- /Google counter -->
-<!-- BEGIN JIV OSITE CODE {literal} -->
-<script type='text/javascript'>
-if(screen.width > 800) {
-(function(){ var widget_id = 'XrrpXcFTqG';
-var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();
-}</script>
-<!-- {/literal} END JIVOSITE CODE -->
 </body>
 </html>
