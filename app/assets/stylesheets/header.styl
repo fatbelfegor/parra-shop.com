@@ -95,6 +95,7 @@
 					border-bottom 1px solid #C6C6C6
 				.where-buy
 					padding-top 35px
+					padding-bottom 35px
 					border-bottom 1px solid #C6C6C6
 					a
 						height 170px
@@ -166,55 +167,65 @@
 				transition(.3s)
 				&:last-child
 					border-right 4px solid #58575C
-		.where-buy
-			background-color #E6E6E6
-			padding 0 0 0 30px
+	.where-buy
+		position absolute
+		background-color #E6E6E6
+		padding-top 0
+		padding-bottom 0
+		border-bottom 0
+		a
+			height 0
+			margin-bottom 0
+.where-buy
+	padding 35px 0 35px 30px
+	left 0
+	right 0
+	z-index 2
+	font-size 0
+	border-bottom 1px solid #C6C6C6
+	transition(.3s)
+	a
+		display inline-block
+		vertical-align top
+		height 170px
+		margin-bottom 55px
+		overflow hidden
+		width 165px
+		font-size 14px
+		font-weight normal
+		line-height 26px
+		padding 0 30px
+		position relative
+		color #535356
+		text-align left
+		transition(.3s)
+		&:hover
+			color black
+		&:before
 			position absolute
 			left 0
-			right 0
-			z-index 2
-			font-size 0
-			transition(.3s)
-			a
-				display inline-block
-				vertical-align top
-				height 0
-				overflow hidden
-				width 165px
-				font-size 14px
-				font-weight normal
-				line-height 26px
-				padding 0 30px
-				position relative
-				color #535356
-				text-align left
-				transition(.3s)
-				&:hover
-					color black
-				&:before
-					position absolute
-					left 0
-					top 5px
-					display block
-					content ""
-					height 100%
-					width 5px
-					background-color #E01902
-					border-radius(2px)
-				&.red
-					color #D61C1C
-					white-space nowrap
-					line-height 20px
-					&:before
-						display none
-				&.gray:before
-					background-color #737E76
-				&.green:before
-					background-color #06450C
-				&.blue:before
-					background-color #07298A
-				&.orange:before
-					background-color #F88800
+			top 5px
+			display block
+			content ""
+			height 100%
+			width 5px
+			background-color #E01902
+			border-radius(2px)
+		&.red
+			color #D61C1C !important
+			white-space nowrap
+			line-height 20px
+			height auto
+			&:before
+				display none
+		&.gray:before
+			background-color #737E76
+		&.green:before
+			background-color #06450C
+		&.blue:before
+			background-color #07298A
+		&.orange:before
+			background-color #F88800
 		
 #menuCart
 	display block
