@@ -1,8 +1,6 @@
-require 'elasticsearch/model'
-
 class Category < ActiveRecord::Base
-	include Elasticsearch::Model
-	include Elasticsearch::Model::Callbacks
+	# include Elasticsearch::Model
+	# include Elasticsearch::Model::Callbacks
 
 	acts_as_list :scope => :parent_id
 	acts_as_tree :order => "position"
@@ -16,7 +14,7 @@ class Category < ActiveRecord::Base
 		self.s_title || 'ParraShop'
 	end
 
-	mappings dynamic: false do
-		indexes :name
-	end
+	# mappings dynamic: false do
+	# 	indexes :name
+	# end
 end

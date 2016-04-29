@@ -1,8 +1,6 @@
-require 'elasticsearch/model'
-
 class Product < ActiveRecord::Base
-	include Elasticsearch::Model
-	include Elasticsearch::Model::Callbacks
+	# include Elasticsearch::Model
+	# include Elasticsearch::Model::Callbacks
 
 	belongs_to :category
 	belongs_to :subcategory
@@ -22,12 +20,12 @@ class Product < ActiveRecord::Base
 	validates :scode, uniqueness: true
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
 
-	mappings dynamic: false do
-		indexes :category_id
-		indexes :name
-		indexes :scode
-		indexes :position
-		indexes :invisible
-	end
+	# mappings dynamic: false do
+	# 	indexes :category_id
+	# 	indexes :name
+	# 	indexes :scode
+	# 	indexes :position
+	# 	indexes :invisible
+	# end
 
 end

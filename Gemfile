@@ -5,8 +5,8 @@ gem 'rails', '4.2.4'
 
 # Use mysql as the database for Active Record
 gem 'devise'
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+# gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+# gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'ox'
 gem 'stylus'
 gem 'carrierwave'

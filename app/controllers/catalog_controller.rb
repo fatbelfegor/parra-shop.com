@@ -1,30 +1,20 @@
 class CatalogController < ApplicationController
-  rescue_from Exception, with: :not_found
+  # rescue_from Exception, with: :not_found
 
   def not_found
     @title = "404 Страница не найдена"
     render 'pages/not_found', status: 404
   end
-  
+
   def search
-    q = params[:q]
-    @title = "Поиск: #{q}"
-    ids = Category.search(query: {match: {name: q}}, size: 1000).results.map(&:id)
-    search = {
-      query: {
-        bool: {}
-      },
-      size: 1000,
-      sort: {
-        position: :asc
-      }
-    }
+    @q = params[:q]
+    @title = "Поиск: #{@q}"
+    q = "%#{@q}%"
+    ids = Category.where("name LIKE ? or scode LIKE ?", q, q).map(&:id)
     if ids.empty?
-      search[:query][:bool][:should] = {multi_match: {query: q, fields: [:name, :scode]}}
-      @products = Product.search(search).results.map(&:_source)
+      @products = Product.where("name LIKE ? or scode LIKE ?", q, q)
     else
-      search[:query][:bool][:should] = [{multi_match: {query: q, fields: [:name, :scode]}}, {terms: {category_id: ids}}]
-      @products = Product.search(search).results.map(&:_source)
+      @products = Product.where("name LIKE ? or scode LIKE ? or category_id in (?)", q, q, ids)
     end
     render 'index'
   end
