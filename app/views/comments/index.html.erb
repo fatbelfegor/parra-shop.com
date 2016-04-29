@@ -27,6 +27,9 @@
 				<%= link_to("Удалить", comment, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
 			</td>
 		</tr>
+		<% if comment.response.present? %>
+			<tr><td colspan="7" style="text-align: left"><b>Ответ:</b> <%= comment.response %></td></tr>
+		<% end %>
 	<% end %>
 </table>
 <script type="text/javascript">

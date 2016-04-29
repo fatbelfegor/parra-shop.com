@@ -60,6 +60,6 @@ private
     @comment = Comment.find params[:id]
   end
 	def comment_params
-		params.require(:comment).permit(:title, :body, :author, :city, :name, :published)
+		params.require(:comment).permit(:title, :body, :response, :author, :city, :name, :published)
 	end
 end

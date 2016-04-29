@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204000236) do
+ActiveRecord::Schema.define(version: 20160429161926) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image",       limit: 255
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160204000236) do
     t.datetime "updated_at"
     t.string   "city",       limit: 255
     t.datetime "date"
+    t.text     "response",   limit: 65535
   end
 
   create_table "extensions", force: :cascade do |t|

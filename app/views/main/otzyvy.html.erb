@@ -9,16 +9,25 @@
 	<div class="btn green" onclick="otzyv()"><p>Оставить отзыв</p></div>
 </div>
 <br>
+<div id="comments">
 <% for comment in Comment.where(published: true).order date: :desc %>
 	<div class='otzyv'>
 		<div class='header'><%= comment.title %></div>
 		<div class='body'><%= comment.body %></div>
 		<div class='bottom'>
-			<div class='name'><%= comment.author %><% unless comment.city.blank? %>, <%= comment.city %><% end %></div>
+			<div class='name'><div class="quote"></div><%= comment.author %><% unless comment.city.blank? %>, <%= comment.city %><% end %></div>
 			<% if comment.date %><div class='date'><%= comment.date.strftime "%d-%m-%Y" %></div><% end %>
 		</div>
 	</div>
+	<% if comment.response.present? %>
+		<div class="response">
+			<div class="quote"></div>
+			<div class="header">Ответ:</div>
+			<div class="body"><%= comment.response %></div>
+		</div>
+	<% end %>
 <% end %>
+</div>
 <br>
 <div class="tar" style="margin: 30px 0">
 	<div class="btn green" onclick="otzyv()"><p>Оставить отзыв</p></div>

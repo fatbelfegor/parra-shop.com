@@ -49,9 +49,15 @@
 </div>
 <br>
 <div class="row form-group">
-    <h4 class="col-md-2 text-right"><nobr><%= f.label :body, "Описание:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    <h4 class="col-md-2 text-right"><nobr><%= f.label :body, "Сообщение:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
     <div class="col-md-10">
       <%= f.text_area :body, class: "tinymce", :rows => 12, :cols => 120 %>
+    </div>
+  </div>
+<div class="row form-group">
+    <h4 class="col-md-2 text-right"><nobr><%= f.label :body, "Ответ:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    <div class="col-md-10">
+      <%= f.text_area :response, class: "tinymce", :rows => 12, :cols => 120 %>
     </div>
   </div>
 <br>
