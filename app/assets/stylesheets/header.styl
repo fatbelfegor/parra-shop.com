@@ -80,6 +80,9 @@
 				font-weight bold
 				line-height 16px
 				transition(.3s)
+			&:last-child
+				> a, > span
+					margin-right 0
 			&:hover
 				> a, > span
 					color #52B84A
@@ -329,8 +332,58 @@
 		ul
 			display block
 
-#jivo-iframe-container
-	bottom 40px !important
+@media(max-width: 1300px)
+	#header
+		.logo
+			margin-left 3%
+		.right
+			margin-right 3%
+		.menu
+			padding-right 3%
+			.item > a
+				margin 13px 15px 6px
+@media(max-width: 1200px)
+	#header
+		.logo
+			margin-left 2%
+		.right
+			margin-right 2%
+		.menu
+			padding-right 2%
+			.item > a
+				margin 13px 12px 6px
+@media(max-width: 1140px)
+	#header
+		.logo
+			margin-left 1%
+		.right
+			margin-right 1%
+		.menu
+			padding-right 1%
+			.item > a
+				margin 13px 8px 6px
+@media(max-width: 1050px)
+	#header .menu
+		padding-left 3%
+		.item
+			font-size 12px
+		.item > a
+			margin 13px 5px 6px
+@media(max-width: 1000px)
+	#header
+		.menu
+			display none
+	.admin-nav
+		background-color white
+		top -1px
+		left -1px
+		z-index 1
+		div
+			height 22px
+			line-height 22px
+	#mainMenuCompact
+		display block
+		background-color white
 @media(max-width: 978px)
 	#jivo-iframe-container
 		bottom 80px !important
@@ -368,28 +421,3 @@
 		position static
 	.footer
 		position static !important
-	#jivo-iframe-container
-		bottom 0 !important
-@media(max-width: 1140px)
-	#header .menu .item > a
-		margin 13px 10px 6px
-@media(max-width: 1050px)
-	#header .menu
-		padding-left 3%
-		.item > a
-			margin 13px 5px 6px
-@media(max-width: 1000px)
-	#header
-		.menu
-			display none
-	.admin-nav
-		background-color white
-		top -1px
-		left -1px
-		z-index 1
-		div
-			height 22px
-			line-height 22px
-	#mainMenuCompact
-		display block
-		background-color white
