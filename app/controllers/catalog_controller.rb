@@ -19,10 +19,15 @@ class CatalogController < ApplicationController
     render 'index'
   end
   def index
-    @category = Category.find_by url: params[:url]
-    if @category
-      cc = @category.color_categories.first
-      return redirect_to "/catalog/#{cc.url}" if cc
+    @color_category = ColorCategory.find_by_url params[:url]
+    if @color_category
+      @category = @color_category.category
+      @title = @category.title
+      @seo_description = @category.s_description
+      @seo_keywords = @category.s_keyword
+      render 'color_category'
+    else
+      @category = Category.find_by url: params[:url]
       params[:category_scode] = @category.scode
       @title = @category.title
       @seo_description = @category.s_description
@@ -31,13 +36,6 @@ class CatalogController < ApplicationController
         @products = @category.products.order(:position)
         @products = @products.where(invisible: false) unless user_signed_in? && current_user.admin?
       end
-    else
-      @color_category = ColorCategory.find_by_url params[:url]
-      @category = @color_category.category
-      @title = @category.title
-      @seo_description = @category.s_description
-      @seo_keywords = @category.s_keyword
-      render 'color_category'
     end
   end
 end
