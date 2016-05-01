@@ -3,33 +3,45 @@
   <span>></span>
   <h1>Спальные гарнитуры в Москве</h1>
 </div>
+
+<% cats = Category.select(:url, :description).where(scode: ['Gamma', 'Lyona', 'Bella', 'Plisset', 'Orly', 'Ritmika', 'Lorra', 'Leggero', 'Miro']) %>
+
 <div class="menuCategoryPage">
-	<a href="/catalog/spalni-gamma"><img src="/assets/GammaNew.jpg">
-		<div class='description'><p class='name'>Спальня Gamma</p><%= raw Category.find_by_scode('Gamma').description %></div>
+	<% c = cats.find { |c| c.name == 'Gamma' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/GammaNew.jpg">
+		<div class='description'><p class='name'>Спальня Gamma</p><%= raw c.description %></div>
 	</a>
-	<a href="/catalog/spalni-liona"><img src="/assets/LyonaNew.jpg">
-		<div class='description'><p class='name'>Спальня Lyona</p><%= raw Category.find_by_scode('Lyona').description %></div>
+	<% c = cats.find { |c| c.name == 'Lyona' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/LyonaNew.jpg">
+		<div class='description'><p class='name'>Спальня Lyona</p><%= raw c.description %></div>
 	</a>
-	<a href="/catalog/spalni-bella"><img src="/assets/Bella.jpg">
-		<div class='description'><p class='name'>Спальня Bella</p><%= raw Category.find_by_scode('Bella').description %></div>
+	<% c = cats.find { |c| c.name == 'Bella' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/Bella.jpg">
+		<div class='description'><p class='name'>Спальня Bella</p><%= raw c.description %></div>
 	</a>
-	<a href="/catalog/spalni-plisset"><img src="/assets/Plisset.jpg">
-		<div class='description'><p class='name'>Спальня Plisset</p><%= raw Category.find_by_scode('Plisset').description %></div>
+	<% c = cats.find { |c| c.name == 'Plisset' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/Plisset.jpg">
+		<div class='description'><p class='name'>Спальня Plisset</p><%= raw c.description %></div>
 	</a>
-	<a href="/catalog/spalni-orly"><img src="/assets/Orly.jpg">
-		<div class='description'><p class='name'>Спальня Orly</p><%= raw Category.find_by_scode('Orly').description %></div>
+	<% c = cats.find { |c| c.name == 'Orly' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/Orly.jpg">
+		<div class='description'><p class='name'>Спальня Orly</p><%= raw c.description %></div>
 	</a>
-	<a href="/catalog/spalni-ritmika"><img src="/assets/RitmikaSale.jpg">
-		<div class='description'><p class='name'>Спальня Ritmika</p><%= raw Category.find_by_scode('Ritmika').description %></div>
+	<% c = cats.find { |c| c.name == 'Ritmika' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/RitmikaSale.jpg">
+		<div class='description'><p class='name'>Спальня Ritmika</p><%= raw c.description %></div>
 	</a>
-	<a href="/catalog/spalni-lorra"><img src="/assets/Lorra.jpg">
-		<div class='description'><p class='name'>Спальня Lorra</p><%= raw Category.find_by_scode('Lorra').description %></div>
+	<% c = cats.find { |c| c.name == 'Lorra' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/Lorra.jpg">
+		<div class='description'><p class='name'>Спальня Lorra</p><%= raw c.description %></div>
 	</a>
-	<a href="/catalog/spalni-leggero-oreh"><img src="/assets/LeggeroSale.jpg">
-		<div class='description'><p class='name'>Спальня Leggero</p><%= raw Category.find_by_scode('Leggero').description %></div>
+	<% c = cats.find { |c| c.name == 'Leggero' } %>
+	<a href="/catalog/<%= c.url %>-oreh"><img src="/assets/LeggeroSale.jpg">
+		<div class='description'><p class='name'>Спальня Leggero</p><%= raw c.description %></div>
 	</a>
-	<a href="/catalog/spalni-miro"><img src="/assets/Miro.jpg">
-		<div class='description'><p class='name'>Спальня Miro</p><%= raw Category.find_by_scode('Miro').description %></div>
+	<% c = cats.find { |c| c.name == 'Miro' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/Miro.jpg">
+		<div class='description'><p class='name'>Спальня Miro</p><%= raw c.description %></div>
 	</a>
 </div>
 <div class="seo-text">

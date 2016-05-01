@@ -1,0 +1,49 @@
+<div class="breadcrumbs" style="margin: 10px">
+  <a href="/">Главная</a>
+  <span>></span>
+  <p>Карта сайта</p>
+</div>
+<style type="text/css">
+	.sitemap a {
+		color: #444;
+	}
+	.sitemap a:hover {
+		color: green;
+	}
+	.sitemap h3 {
+		margin: 18px 0 5px
+	}
+</style>
+<div class="sitemap" style="font-size: 16px; padding: 0 0 50px 50px; line-height: 26px">
+<br>
+<h1>Карта сайта</h1>
+<br>
+<p><a href="/">Главная</a></p>
+<p><%= link_to 'Доставка и сборка', service_path %></p>
+<p><%= link_to 'Партнерам', partners_path %></p>
+<p><%= link_to 'Новости', news_path %></p>
+<p><%= link_to 'Статьи', articles_path %></p>
+<p><%= link_to 'Гарантии', insurance_path %></p>
+<p><%= link_to 'Отзывы', otzyvy_path %></p>
+<p><%= link_to 'О нас', about_path %></p>
+<h3>Магазины</h3>
+<p><a href="<%= store1_path %>">МЦ "Мебель PARK"</a></p>
+<p><a href="<%= store2_path %>">МЦ "Family Room"</a></p>
+<p><a href="<%= store3_path %>">МЦ "Армада"</a></p>
+<p><a href="<%= store5_path %>">МЦ "ROOMER"</a></p>
+<p><a href="<%= store6_path %>">ТЦ «Твой Дом - Крокус»</a></p>
+<p><a href="<%= store7_path %>">ТРК «Красный Кит»</a></p>
+<p><a href="<%= store8_path %>">МЦ "Вагант"</a></p>
+<p><a href="<%= store9_path %>">МЦ "Империя"</a></p>
+<p><a href="/stores">Все</a></p>
+
+<% names = ['Спальни', 'Гостиные', 'Прихожие', 'Диваны', 'Матрасы', 'Все товары'] %>
+<% cats = Category.select(:id, :name).where(name: names) %>
+<% for name in names %>
+	<% c = cats.find{ |c| c.name == name } %>
+	<h3><%= name %></h3>
+	<% c.children.select(:url, :name).each do |a| %>
+		<p><a href="/catalog/<%= a.url %>"><%= a.name %></a></p>
+	<% end %>
+<% end %>
+</div>
