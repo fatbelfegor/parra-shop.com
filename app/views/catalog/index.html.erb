@@ -34,7 +34,7 @@
 	<% end %>
 	<% if (params[:url].present? and @category.subcategories.blank?) or params[:q].present? %>
 		<div id="products">
-			<%= render partial: 'page/product', collection: @products %>
+			<%= render partial: 'pages/product', collection: @products %>
 		</div>
 	<% elsif @category %>
 		<div id="subcategories">

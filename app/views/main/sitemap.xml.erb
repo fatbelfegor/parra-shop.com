@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><urlset xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<url>
+		<loc>http://www.parra-shop.ru/</loc>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/modulnaja-mebel-dlja-spalni</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/modulnaja-mebel-dlja-gostinoj</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/divani</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/matras</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/otzyvy</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/about</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/Jimmi</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/catalog/bedrooms</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/catalog/gosts</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/catalog/matrases</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/vacancy</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/stores</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/store1</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/mebelnyj-gipermarket-family-room</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/tk-armada</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/tc-cheremushki</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/tc roomer</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/tk-tvoj-dom-na-66-km-mkad</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/trk-krasniy-kit</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/mc-vagant-podolsk</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/store9</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/service</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/partners</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/news</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/articles</loc>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.parra-shop.ru/insurance</loc>
+		<priority>0.80</priority>
+	</url>
+	<% for item in Category.all %>
+		<url>
+			<loc>http://www.parra-shop.ru/catalog/<%= item.url %></loc>
+			<priority>0.80</priority>
+		</url>
+	<% end %>
+	<% for item in ColorCategory.all %>
+		<url>
+			<loc>http://www.parra-shop.ru/catalog/<%= item.url %></loc>
+			<priority>0.80</priority>
+		</url>
+	<% end %>
+	<% for item in Product.all %>
+		<url>
+			<loc>http://www.parra-shop.ru/kupit/<%= item.scode %></loc>
+			<priority>0.80</priority>
+		</url>
+	<% end %>
+</urlset>

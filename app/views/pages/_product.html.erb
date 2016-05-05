@@ -28,14 +28,14 @@
 		<div><%= raw product.shortdesk %></div>
 		<div>
 			<b>Цена:</b>
-			<span class="price"><%= price %> руб.</span>
+			<span class="price"><%= price %></span>
 		</div>
 		<div class="appear">
 			<% if !product.prsizes.blank? %>
 				<div>
 					<b>Размер:</b>
 					<span class="size"><%= product.prsizes[0].name %></span>
-					<span class="hidden size-scode">#{product.prsizes[0].scode}</span>
+					<span class="hidden size-scode"><%= product.prsizes[0].scode %></span>
 				</div>
 			<% end %>
 			<% if !product.prcolors.blank? %>

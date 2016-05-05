@@ -52,19 +52,22 @@ ready = ->
 			if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
 			if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 			if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-			items += '<div><span><div><div><p><ins><a href="/kupit/'+item.d+'">'+item.n+'</a></ins></p>'+size+color+option+'</div></div></span><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
-			$.ajax
-				url: "/cart.json?name="+item.n
-				success: (data) ->
-					item = $($('#cart > div')[i++])
-					window.item = item
-					photoes = data.images.split(',')
-					firstPhoto = photoes.shift()
-					otherPhotoes = ''
-					for img in photoes
-						otherPhotoes += '<a href='+img+' data-lightbox="'+i+'"></a>'
-					window.data = data
-					item.find('span').first().prepend '<a href="'+firstPhoto+'" data-lightbox="'+i+'"><img src="'+firstPhoto+'"></a>'+otherPhotoes
+			id = item.i
+			items += '<div data-id=' + id + '><span><div><div><p><ins><a href="/kupit/'+item.d+'">'+item.n+'</a></ins></p>'+size+color+option+'</div></div></span><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
+			((id) ->
+				$.ajax
+					url: "/cart.json?name="+item.n
+					success: (data) ->
+						item = $("#cart > [data-id='#{id}']")
+						window.item = item
+						photoes = data.images.split(',')
+						firstPhoto = photoes.shift()
+						otherPhotoes = ''
+						for img in photoes
+							otherPhotoes += '<a href='+img+' data-lightbox="'+i+'"></a>'
+						window.data = data
+						item.find('span').first().prepend '<a href="'+firstPhoto+'" data-lightbox="'+i+'"><img src="'+firstPhoto+'"></a>'+otherPhotoes
+			)(id)
 		$('#cart').html(items)		
 		window.cartDelete = (el) ->
 			name = $(el.parentNode.parentNode).find('ins').html()
@@ -285,6 +288,7 @@ expire = ->
 		$.ajax
 			url: "/cart.json?name="+item.n
 			success: (data) ->
+				console.log data
 				$('#alert .items > div').get().forEach (item) ->
 					if $(item).find('ins').html() == data.name				
 						$(item).find('img').attr 'src', data.images.split(',')[0]

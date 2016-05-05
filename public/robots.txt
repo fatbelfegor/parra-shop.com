@@ -4,22 +4,24 @@ Disallow: /*?id=kr
 Disallow: /*?id=at
 Disallow: /*?utm
 Disallow: /cart
-Disallow: /users
-Disallow: *index*
 Disallow: /assets
 Disallow: /lightbox/
 Disallow: /fonts
 Disallow: /*index?q=
+Allow: /lightbox/*.css
+Allow: /lightbox/*.js
+Allow: /assets/*.jpg
+Allow: /assets/*.png
+Allow: /assets/*.gif
 Host: www.parra-shop.ru
 Sitemap: http://www.parra-shop.ru/sitemap.xml
 
-
 User-agent: Googlebot
-Allow: /*.css
-Allow: /*.js
-Allow: /*.jpg
-Allow: /*.png
-Allow: /*.gif
+Allow: /lightbox/*.css
+Allow: /lightbox/*.js
+Allow: /assets/*.jpg
+Allow: /assets/*.png
+Allow: /assets/*.gif
 Disallow: /?
 Disallow: /*?id=kr
 Disallow: /*?id=at
