@@ -1,0 +1,69 @@
+<div>
+	<div>
+		<% if product.extension %>
+			<img src="<%= product.extension.image %>" class='extension-catalog'>
+		<% end %>
+		<% images = product.images.split ',' %>
+		<div class="left inactive"></div>
+		<% if images[1] %>
+			<div class="right" onclick="photoRight(this)"></div>
+		<% else %>
+			<div class="right inactive"></div>
+		<% end %>
+		<% price = number_to_currency product.price %>
+		<% if images.length > 0 %>
+			<% alt = "#{product.name}, цена #{price}" %>
+			<div class="photoes"><a class="showPhoto" href="/kupit/<%= product.scode %>"><img alt="<%= alt %>" src="<%= images[0] %>"></a>
+			<% for i in images[1..-1] %>
+				<a href="/kupit/<%= product.scode %>"><img alt="<%= alt %>" src="<%= i %>"></a>
+			<% end %>
+			</div>
+		<% end %>
+		<div>
+			<div class="name">
+				<a href="/kupit/<%= product.scode %>"><%= product.name %></a>
+			</div>
+		</div>
+		<div><%= product.s_title %></div>
+		<div><%= raw product.shortdesk %></div>
+		<div>
+			<b>Цена:</b>
+			<span class="price"><%= price %> руб.</span>
+		</div>
+		<div class="appear">
+			<% if !product.prsizes.blank? %>
+				<div>
+					<b>Размер:</b>
+					<span class="size"><%= product.prsizes[0].name %></span>
+					<span class="hidden size-scode">#{product.prsizes[0].scode}</span>
+				</div>
+			<% end %>
+			<% if !product.prcolors.blank? %>
+				<% prcolor = product.prcolors.first %>
+				<% if !prcolor.textures.blank? %>
+					<div>
+						<b>Цвет:</b>
+						<span class="color"><%= prcolor.textures[0].name %></span>
+						<span class="hidden color-scode"><%= prcolor.textures[0].scode %></span>
+					</div>
+				<% else %>
+					<div>
+						<b>Цвет:</b>
+						<span class="color"><%= product.prcolors[0].name %></span>
+						<span class="hidden color-scode"><%= product.prcolors[0].scode %></span>
+					</div>
+				<% end %>
+			<% end %>
+			<% if !product.proptions.blank? %>
+				<div>
+					<b>Опция:</b>
+					<span class="option"><%= product.proptions[0].name %></span>
+					<span class="hidden option-scode"><%= product.proptions[0].scode %></span>
+				</div>
+			<% end %>
+			<div class="id hidden"><%= product.id %></div>
+			<div class="scode hidden"><%= product.scode %></div>
+			<div class="fancyButton" onclick="addToCartFromCatalog('<%= product.name %>', this)">Купить</div>
+		</div>
+	</div>
+</div>

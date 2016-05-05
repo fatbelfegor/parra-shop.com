@@ -69,9 +69,11 @@
 						<tr>
 							<% if @cat.size > 0 then @cat[0..4].each do |p| %>
 							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
+								<a href="<%= url_for '/kupit/'+p.scode %>">
+									<% price = number_to_currency(p.price) %>
+									<img alt="<%= p.name %>, цена <%= price %>" src="<%= p.images.split(',')[0] %>">
 									<div class='name'><%= p.name %></div>
-									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
+									<p><b>Цена:</b> <%= price %></p>
 								</a>
 							</td>
 							<% end end %>
@@ -79,9 +81,11 @@
 						<tr>
 							<% if @cat.size > 5 then @cat[5..9].each do |p| %>
 							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>" style="background-image: url('<%= p.images.split(',')[0] %>')">
+								<a href="<%= url_for '/kupit/'+p.scode %>">
+									<% price = number_to_currency(p.price) %>
+									<img alt="<%= p.name %>, цена <%= price %>" src="<%= p.images.split(',')[0] %>">
 									<div class='name'><%= p.name %></div>
-									<p><b>Цена:</b> <%= number_to_currency(p.price) %></p>
+									<p><b>Цена:</b> <%= price %></p>
 								</a>
 							</td>
 							<% end end %>

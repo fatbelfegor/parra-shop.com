@@ -1,6 +1,7 @@
 <% sizes_exist = !@product.prsizes.blank?
 sizes = @product.prsizes
-size_first = @product.prsizes.first %>
+size_first = @product.prsizes.first
+price = to_money @product.price %>
 <div class="show page">
 	<div class="breadcrumbs" style="margin: 10px">
 		<a href="http://www.parra-shop.ru">Главная</a>
@@ -23,12 +24,13 @@ size_first = @product.prsizes.first %>
 			<% if @product.extension %>
 				<img class='extension-show' src="<%= @product.extension.image %>">
 			<% end %>
-			<% unless @product.images.empty? %>
+			<% unless @product.images.empty?
+				alt = "#{@product.name}, цена #{price}" %>
 				<% images = @product.images.split(',') %>
 				<div class="photoes">
-			    	<a class="active" href="<%= images[0] %>" data-lightbox="images"><img src="<%= images[0] %>"></a>
+			    	<a class="active" href="<%= images[0] %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= images[0] %>"></a>
 		    		<% images[1..-1].each do |i| %>
-		    			<a href="<%= i %>" data-lightbox="images"><img src="<%= i %>"></a>
+		    			<a href="<%= i %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= i %>"></a>
 		    		<% end %>
 				</div>
 				<div class="mini">
@@ -135,7 +137,7 @@ size_first = @product.prsizes.first %>
 				<div class="price-block">
 					<p class="old_price">Цена: <strike id='oldPrice' data-val='<%= @product.old_price %>'></strike> <img src="/assets/rublGray.png"></p>
 					<p class="main">
-						<b id="summaryPrice"><%= to_money @product.price %></b> <img src="/assets/rubl.png">
+						<b id="summaryPrice"><%= price %></b> <img src="/assets/rubl.png">
 					</p>
 					<p class="difference">Вы экономите: <span id='pricesDifference'></span> <img src="/assets/rublGray.png"></p>
 				</div>

@@ -1,10 +1,12 @@
-<% if @product.scode != productFooter.scode %>
+<% if @product.scode != productFooter.scode
+price = number_to_currency productFooter.price %>
 <div>
 	<div>
 		<% if productFooter.extension %>
 			<img src="<%= productFooter.extension.image %>" class='extension-footer'>
 		<% end %>
-		<% if productFooter.images %>
+		<% if productFooter.images
+			alt = "#{productFooter.name}, цена #{price}" %>
 			<% images = productFooter.images.split(',') %>
 		    <div class="left inactive"></div>
 	        <% if images[1] %>
@@ -13,15 +15,15 @@
 	        <div class="right inactive"></div>
 	        <% end %>       
 	        <div class="photoes">
-	            <a class="showPhoto" href="/kupit/<%= productFooter.scode %>" style="background-image: url('<%= images[0] %>')"></a>
-	        	<%  images.drop(1).each do |i| %>
-	        		<a href="/kupit/<%= productFooter.scode %>" style="background-image: url('<%= i %>')"></a>
+	            <a class="showPhoto" href="/kupit/<%= productFooter.scode %>"><img alt="<%= alt %>" src="<%= images[0] %>"></a>
+	        	<% images.drop(1).each do |i| %>
+	        		<a href="/kupit/<%= productFooter.scode %>"><img alt="<%= alt %>" src="<%= i %>"></a>
 	        	<% end %>
 	        </div>
 		<% end %>
 	</div>
 	<div><a href="/kupit/<%= productFooter.scode %>"><%= productFooter.name %></a></div>
-	<div><b>Цена:</b> <span class="price"><%= number_to_currency(productFooter.price) %></span></div>
+	<div><b>Цена:</b> <span class="price"><%= price %></span></div>
 	<div class="appear">
 		<% prsize = productFooter.prsizes[0] %>
         <% if prsize %>
