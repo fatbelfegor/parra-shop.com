@@ -220,8 +220,22 @@
 			white-space nowrap
 			line-height 20px
 			height auto
+			font-weight bold
+			font-size 12px
+			width 189px
+			transition(.3s)
 			&:before
 				display none
+			img
+				position absolute
+				left 0
+				margin-top 5px
+			.red
+				transition(.3s)
+			&:hover
+				color #1b8625 !important
+				.red
+					opacity 0
 		&.gray:before
 			background-color #737E76
 		&.green:before
@@ -331,8 +345,144 @@
 			background-color #eee
 		ul
 			display block
-
-@media(max-width: 1300px)
+		
+#mainMenuCompact
+	display none
+	color #58585A
+	text-align center
+	font-size 18px
+	text-transform uppercase
+	width 100%
+	li
+		cursor pointer
+		line-height 40px
+		position relative
+		border-bottom 1px solid #C6C6C6
+		> p
+			position absolute
+			top 10px
+			right 10px
+			width 22px
+			height 20px
+			background-image url('/assets/miniMenuArrow.png')
+			background-size cover
+	a
+		display block
+		height 0
+		line-height 0
+		overflow hidden
+	img
+		margin 1.5px 0
+		width 100%
+	.open
+		div
+			border-top 1px solid #C6C6C6
+		> p
+			background-image url('/assets/miniMenuArrowDown.png')
+	.allProducts
+		text-align center
+		a
+			white-space nowrap
+			display inline-block
+			margin 0 1%
+			vertical-align top
+			font-size 15px
+			border-left 4px solid #58575C
+			padding-left 1%
+			min-width 20%
+			height 0
+			overflow hidden
+			line-height 18px
+			text-transform none
+			transition(.3s)
+		a:hover
+			color #52B84A
+		div
+			background-color #E6E6E6
+			line-height 0
+	.allProducts.open
+		a
+			height 18px
+			margin-top 15px
+			margin-bottom 15px
+	.whereCanBuy
+		a
+			display inline-block
+			vertical-align top
+			width 165px
+			margin 0 auto
+			line-height 26px
+			font-size 14px
+			padding 0 30px
+			color #535356
+			text-align left
+			position relative
+			overflow visible
+			text-transform none
+			overflow hidden
+			height 0
+			transition(.3s)
+		a:hover
+			color black
+		a:before
+			position absolute
+			left 0
+			top 5px
+			display block
+			content ""
+			height 100%
+			width 5px
+			background-color #E01902
+			border-radius(2px)
+		:nth-child(3):before
+			background-color #737E76
+		:nth-child(4):before
+			background-color #F88800
+		:nth-child(5):before
+			background-color #06450
+		:nth-child(6):before
+			background-color #07298A
+		:nth-child(7):before
+			background-color #F88800
+		:nth-child(8):before
+			background-color #737E76
+		:nth-child(9):before
+			background-color #737E76
+		div
+			background-color #E6E6E6
+			line-height 0
+			text-align center
+		a.red
+			color #D61C1C
+			white-space nowrap
+			line-height 20px
+			width auto
+			font-size 12px
+			font-weight bold
+			transition(.3s)
+			&:before
+				display none
+			img
+				position absolute
+				left 0
+			.red
+				transition(.3s)
+			&:hover
+				color #1b8625
+				.red
+					opacity 0
+	.whereCanBuy.open
+		div
+			padding-bottom 1px
+			height auto
+		a
+			margin 25px auto 55px
+			height 170px
+	.miniMenuCart a
+		height 40px
+		line-height 40px
+		
+@media(max-width 1300px)
 	#header
 		.logo
 			margin-left 3%
@@ -342,7 +492,7 @@
 			padding-right 3%
 			.item > a
 				margin 13px 15px 6px
-@media(max-width: 1200px)
+@media(max-width 1200px)
 	#header
 		.logo
 			margin-left 2%
@@ -352,7 +502,7 @@
 			padding-right 2%
 			.item > a
 				margin 13px 12px 6px
-@media(max-width: 1140px)
+@media(max-width 1140px)
 	#header
 		.logo
 			margin-left 1%
@@ -362,14 +512,14 @@
 			padding-right 1%
 			.item > a
 				margin 13px 8px 6px
-@media(max-width: 1050px)
+@media(max-width 1050px)
 	#header .menu
 		padding-left 3%
 		.item
 			font-size 12px
 		.item > a
 			margin 13px 5px 6px
-@media(max-width: 1000px)
+@media(max-width 1000px)
 	#header
 		.menu
 			display none
@@ -384,10 +534,10 @@
 	#mainMenuCompact
 		display block
 		background-color white
-@media(max-width: 978px)
+@media(max-width 978px)
 	#jivo-iframe-container
 		bottom 80px !important
-@media(max-width: 800px)
+@media(max-width 800px)
 	#header
 		.right
 			padding-top 5px
@@ -402,7 +552,7 @@
 			ins
 				float none
 				display inline
-@media(max-width: 540px)
+@media(max-width 540px)
 	#header
 		.logo
 			text-align center
