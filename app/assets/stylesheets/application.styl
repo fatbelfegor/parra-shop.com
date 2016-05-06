@@ -1,0 +1,1420 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap-theme.min
+ *= require bootstrap.min
+ *= require_self
+ *= require style
+ *= require header
+ *= require footer
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Exo+2);
+
+*
+  font-family: Verdana;
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+
+html, body
+  height 100%
+  background-color white
+
+a
+  color inherit
+  text-decoration none
+  &.cart
+    float right
+    text-transform none
+    line-height auto
+    margin-top 10px
+
+li
+  list-style-type none
+
+.tar
+  text-align right
+
+.tac
+  text-align center
+
+.hidden
+  display none !important
+
+.breadcrumbs
+  width auto !important
+  height auto !important
+  display block !important
+  font-size 16px
+  color #444
+  margin 30px 80px 20px
+  .categoryLogo
+    img
+      width auto !important
+      height auto !important
+      margin 0 7px 0 0 !important
+  & > *
+    display inline-block
+    font-size 16px
+  span
+    margin 0 5px
+    color #666
+  a
+    &:hover
+      color green
+
+.fancyButton
+  border 1px solid #A6A6A6
+  font-size 12px
+  line-height 16px
+  padding 0 8px
+  cursor pointer
+  float left
+  -webkit-border-radius 3px
+  -moz-border-radius 3px
+  -o-border-radius 3px
+  border-radius 3px
+  background-image -webkit-linear-gradient(white, #F6F6F6 50%, #eee 100%)
+  background-image -moz-linear-gradient(white, #F6F6F6 50%, #eee 100%)
+  background-image -ms-linear-gradient(white, #F6F6F6 50%, #eee 100%)
+  background-image -o-linear-gradient(white, #F6F6F6 50%, #eee 100%)
+  background-image linear-gradient(white, #F6F6F6 50%, #eee 100%)
+
+#orderWindow
+  form
+    padding 15px 10px 0 !important
+    .col-md-5
+      width 45%
+      float left
+      text-align right
+      margin 5px 0
+      display block
+      font-weight bold
+      line-height 36px
+
+#alert, #orderWindow
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  display none
+  -webkit-transition 0.3s
+  -moz-transition 0.3s
+  -o-transition 0.3s
+  transition 0.3s
+
+#alert > :first-child, #orderWindow > :first-child
+  position absolute
+  width 100%
+  height 100%
+  background-color rgba(0, 0, 0, 0.3)
+
+#alert > :last-child, #orderWindow > :last-child
+  position fixed
+  width 434px
+  padding 16px 18px
+  background-color white
+  -webkit-box-shadow 0 0 60px 0 rgba(0, 0, 0, 0.7)
+  -moz-box-shadow 0 0 60px 0 rgba(0, 0, 0, 0.7)
+  -o-box-shadow 0 0 60px 0 rgba(0, 0, 0, 0.7)
+  box-shadow 0 0 60px 0 rgba(0, 0, 0, 0.7)
+  text-align center
+
+#alert > :last-child p, #orderWindow > :last-child p
+  margin-top 50px
+
+#alert > :last-child a, #orderWindow > :last-child a
+  text-decoration underline
+
+#alert > :last-child .items, #orderWindow > :last-child .items
+  border-top 1px solid #6C6B6B
+  padding 15px 0 0
+  color #5D5D5C
+  font-size 14px
+  max-height 350px
+  overflow auto
+
+#alert > :last-child .items p, #orderWindow > :last-child .items p
+  margin 0
+  text-align left
+
+#alert > :last-child .items > div, #orderWindow > :last-child .items > div
+  height 100px
+
+#alert > :last-child .items > div a, #orderWindow > :last-child .items > div a
+  float left
+  width 334px
+
+#alert > :last-child .items > div a img, #orderWindow > :last-child .items > div a img
+  height 100px
+  width 100px
+  float left
+  margin 0 15px
+
+#alert > :last-child .items > div a > div, #orderWindow > :last-child .items > div a > div
+  display table
+  height 100px
+
+#alert > :last-child .items > div a > div > div, #orderWindow > :last-child .items > div a > div > div
+  display table-cell
+  vertical-align middle
+
+#alert > :last-child .items > div a > div > div ins, #orderWindow > :last-child .items > div a > div > div ins
+  color black
+  font-size 15px
+
+#alert > :last-child .items > div a > div > div s, #orderWindow > :last-child .items > div a > div > div s
+  text-decoration none
+
+#alert > :last-child .items > div > div, #orderWindow > :last-child .items > div > div
+  display table-cell
+  vertical-align middle
+  height 100px
+
+#alert > :last-child .items > div > div > div, #orderWindow > :last-child .items > div > div > div
+  display table-cell
+  vertical-align middle
+
+#alert > :last-child .items > div > div > div > div, #orderWindow > :last-child .items > div > div > div > div
+  margin-top 5px
+
+#alert > :last-child .items > div > div > div > div .left, #alert > :last-child .items > div > div > div > div .right, #orderWindow > :last-child .items > div > div > div > div .left, #orderWindow > :last-child .items > div > div > div > div .right
+  font-size 0
+  width 0
+  height 0
+  border-style solid
+  border-width 7px 7px 7px 0
+  border-color transparent #52B84A transparent #52B84A
+  position relative
+  top -5px
+  cursor pointer
+  -webkit-transition 0.3s
+  -moz-transition 0.3s
+  -o-transition 0.3s
+  transition 0.3s
+  left -5px
+
+#alert > :last-child .items > div > div > div > div .right, #orderWindow > :last-child .items > div > div > div > div .right
+  left 5px
+  border-width 7px 0 7px 7px
+
+#alert > :last-child .items > div > div > div > div .left:hover, #alert > :last-child .items > div > div > div > div .right:hover, #orderWindow > :last-child .items > div > div > div > div .left:hover, #orderWindow > :last-child .items > div > div > div > div .right:hover
+  border-color transparent black transparent black
+
+#alert > :last-child .items > div > div > div > div .invis, #orderWindow > :last-child .items > div > div > div > div .invis
+  border-color transparent #aaa transparent #aaa !important
+
+#alert > :last-child .itogo, #orderWindow > :last-child .itogo
+  margin 0
+  padding 10px 14px 20px 220px
+  border-top 1px solid black
+  width 205px
+  color #12880A
+
+#alert > :last-child .continue, #orderWindow > :last-child .continue
+  cursor pointer
+  float left
+  line-height 34px
+  color #12880A
+  text-decoration none
+
+#alert > :last-child .continue:hover, #orderWindow > :last-child .continue:hover
+  text-decoration underline
+
+#alert > :last-child .gotoCart, #orderWindow > :last-child .gotoCart
+  float right
+  padding 0 15px
+  text-decoration none
+  height 31px
+  border 1px solid #4FB859
+  line-height 30px
+  color white
+  font-size 17px
+  text-shadow -1px 1px 0 #3B9E44
+  text-align center
+  cursor pointer
+  background-image url("/assets/buyButton.png")
+  -webkit-border-radius 5px
+  -moz-border-radius 5px
+  -o-border-radius 5px
+  border-radius 5px
+
+#alert > :last-child .gotoCart:hover, #orderWindow > :last-child .gotoCart:hover
+  text-decoration underline
+
+#alert > :last-child .header, #orderWindow > :last-child .header
+  font-size 15px
+  line-height 15px
+  padding-bottom 15px
+  width 424px
+  position relative
+
+#alert > :last-child .header div, #orderWindow > :last-child .header div
+  width 25px
+  height 25px
+  cursor pointer
+  position absolute
+  top -5px
+  right 0
+
+#alert > :last-child .header p, #orderWindow > :last-child .header p
+  margin-top 10px
+  margin-bottom 10px
+  font-weight bold
+
+#alert > :last-child form, #orderWindow > :last-child form
+  border-top 1px solid black
+  padding 15px 10px 20px
+
+#alert > :last-child form p, #alert > :last-child form label, #orderWindow > :last-child form p, #orderWindow > :last-child form label
+  margin 0
+  line-height 26px
+  text-align left
+
+#alert > :last-child form label, #orderWindow > :last-child form label
+  cursor pointer
+
+#alert > :last-child form input[type=text], #orderWindow > :last-child form input[type=text]
+  margin-left 15px
+
+#alert > :last-child form input[type=checkbox], #orderWindow > :last-child form input[type=checkbox]
+  margin-right 8px
+  position relative
+  top 2px
+
+#alert > :last-child form #otherInputs, #orderWindow > :last-child form #otherInputs
+  height 0
+  overflow hidden
+  margin-left 0
+  margin-right -22px
+  padding-right 22px
+
+h2
+  &.cart
+    line-height 50px
+    color #5D5D5C
+    margin 10px 0 0 0
+
+#cart
+  width 100%
+  border-top 1px solid #5D5D5C
+  border-bottom 1px solid #5D5D5C
+  color #5D5D5C
+  & > div
+    padding 15px
+    height 100px
+    display table
+    & > *
+      display table-cell
+    & > span
+      height 100%
+      width 450px
+      float left
+      img
+        width 100px
+        height 100px
+        border 1px solid #5D5D5C
+        float left
+        margin-right 15px
+      & > div
+        display table
+        height 100%
+        & > div
+          display table-cell
+          vertical-align middle
+          font-size 12px
+          line-height 20px
+          ins
+            font-size 13px
+          s
+            text-decoration none
+    & > div
+      float left
+      line-height 100px
+    & > :nth-child(2)
+      width 265px
+    & > :nth-child(3)
+      width 160px
+    .right
+      left 5px
+      border-width 7px 0 7px 7px
+    .invis
+      border-color transparent #aaa transparent #aaa !important
+    & > :last-child
+      cursor pointer
+      span
+        vertical-align middle
+        margin-right 5px
+        font-size 0
+        display inline-block
+        width 15px
+        height 15px
+        position relative
+        top -2px
+        background-color #52B84A
+        background-image url(http://www.urbanika.ru/images/basket_del.png)
+        background-position 50% 50%
+        background-repeat no-repeat
+
+#cart > div .left, #cart > div .right
+  font-size 0
+  width 0
+  height 0
+  border-style solid
+  border-width 7px 7px 7px 0
+  border-color transparent #52B84A transparent #52B84A
+  position relative
+  top -5px
+  cursor pointer
+  -webkit-transition 0.3s
+  -moz-transition 0.3s
+  -o-transition 0.3s
+  transition 0.3s
+  left -5px
+
+#cart > div .left:hover, #cart > div .right:hover
+  border-color transparent black transparent black
+
+.offer
+  h3
+    text-align center
+    margin 20px
+  form
+    display inline-block
+    width 100%
+    margin 0 auto
+    text-align center
+
+.offer form input, .offer form textarea
+  margin-bottom 10px
+
+#addImages
+  position relative
+  img
+    width 100px
+    height 100px
+    margin 10px
+    margin-bottom 0
+    display block
+  & > img
+    display inline-block
+  input
+    position relative
+    z-index 2
+  iframe
+    z-index 1
+    position absolute
+    top 25px
+    left 50%
+    width 300px
+    margin-left -150px
+    border 0
+    -webkit-box-shadow 0px 5px 20px 0 #aaa
+    -moz-box-shadow 0px 5px 20px 0 #aaa
+    -o-box-shadow 0px 5px 20px 0 #aaa
+    box-shadow 0px 5px 20px 0 #aaa
+    background-color #eee
+  & > div
+    & > div
+      display inline-block
+      margin-bottom 10px
+      small
+        cursor pointer
+        line-height 12px
+
+.page
+  padding 30px
+  p
+    .abzac
+      width 30px
+      float left
+      height 15px
+      display block
+  h3
+    font-size 16px
+    text-align left
+    height 74px
+    background-color #E6E6E6
+    border 1px solid #929292
+    line-height 76px
+    padding 0 0 0 25px
+    margin-bottom 20px
+    img
+      float right
+      margin 13px 30px 0 0
+  h4
+    font-size 16px
+    line-height 26px
+    text-align center
+    background-color #4FB859
+    margin 20px 0 10px
+  & > ul
+    margin 10px 0 10px
+    & > li
+      list-style-type disc
+      line-height 30px
+      margin-left 40px
+  .greenTable
+    tr
+      &:nth-child(odd)
+        td
+          background-color #4FB859
+    th
+      font-size 15px
+    td
+      border 1px solid black
+  .tableStores
+    border-bottom 1px solid #aaa
+    td
+      line-height 36px
+      &:first-child
+        text-align left
+  .table
+    margin-top 20px
+    text-align center
+    margin-bottom 40px
+    li
+      font-size 0
+      line-height inherit
+      margin-left 0
+      div
+        display inline-block
+        width 24%
+        font-size 15px
+        line-height 24px
+      & > :first-child
+        width 52%
+    & > :first-child
+      border-left 0
+      div
+        border 0
+        line-height 36px
+        font-size 16px
+        font-weight bold
+  .stores
+    li
+      div
+        width 44%
+        line-height 36px
+        font-size 16px
+      :first-child
+        text-align left
+        width 36%
+        img
+          width auto
+          height auto
+          position relative
+          top 2px
+      :last-child
+        width 20%
+    & > :first-child
+      :first-child
+        text-align center
+  .tborder
+    border-bottom 1px solid black
+    li
+      border-left 1px solid black
+      div
+        -webkit-box-sizing border-box
+        -moz-box-sizing border-box
+        box-sizing border-box
+        border-right 1px solid black
+        border-top 1px solid black
+  .accordion
+    margin-top 30px
+    border-bottom solid 1px #4c3b4c
+    h3
+      background url(/assets/arrow-square.gif) no-repeat right -51px
+      padding 0 5px
+      line-height 30px
+      font-size 17px
+      border 1px solid #4c3b4c
+      border-bottom 0
+      cursor pointer
+      color #4D3B4B
+      text-align center
+      height auto
+      margin 0
+      &:hover
+        background-color #e3e2e2
+      &.active
+        background-position right 5px
+    a
+      text-decoration underline
+      &:hover
+        color #FFFFFF
+    .panel
+      display none
+      text-align justify
+      margin 0
+      padding 10px 15px 20px
+      border-left solid 1px #4c3b4c
+      border-right solid 1px #4c3b4c
+      &:nth-child(2)
+        display block
+
+.page .greenTable, .page .tableStores
+  margin-top 20px
+  text-align center
+  margin-bottom 40px
+  border-spacing 0
+  border-collapse collapse
+  width 100%
+
+.page .greenTable th, .page .tableStores th
+  line-height 36px
+
+.page .greenTable td, .page .tableStores td
+  line-height 24px
+
+.delivery
+  p
+    font-size 15px
+  .table
+    & > :first-child
+      div
+        font-size 15px
+    & > :nth-child(3)
+      div
+        background-color #4FB859
+
+#createTextures
+  h2
+    cursor pointer
+    margin 20px 0
+
+.optionsTable
+  .btn
+    line-height 9px
+  .catalog
+    cursor pointer
+    -webkit-transition 0.3s
+    -moz-transition 0.3s
+    -o-transition 0.3s
+    transition 0.3s
+    &:hover
+      background-color #e3e2e2
+  .showHide
+    display none
+    .tableOuter
+      width 100%
+      border 0
+      padding 0
+  table
+    margin 0 !important
+
+.opacity
+  img
+    -ms-filter "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"
+    filter "alpha(opacity=100)"
+    -khtml-opacity 1
+    -moz-opacity 1
+    opacity 1
+    &:hover
+      cursor pointer
+      -ms-filter "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"
+      filter "alpha(opacity=75)"
+      -khtml-opacity 0.75
+      -moz-opacity 0.75
+      opacity 0.75
+      -webkit-transition 0.3s
+      -moz-transition 0.3s
+      -o-transition 0.3s
+      transition 0.3s
+
+.colorFields
+  & > a
+    cursor pointer
+  & > .active
+    font-weight bold
+  #copyColor
+    #categories
+      padding-left 30px
+      margin-right -38px
+    div
+      & > ul
+        & > li
+          a
+            line-height 26px
+            cursor pointer
+            color #333
+            float none
+            &:hover
+              text-decoration underline
+          & > span
+            display block
+            margin-bottom 5px
+            padding 0 13px
+            position relative
+            .btn-default
+              width 100%
+              overflow hidden
+          & > .active
+            font-weight bold
+          .btn
+            &.btn-success
+              position absolute
+              color white
+              display none
+              margin-left 25px
+              right -13px
+          ul
+            display none
+          li
+            margin-left 30px
+            .color
+              width 126px
+              height 52px
+              margin 16px 16px 0 0
+              background-size 100% 100%
+              padding 5px 8px 0 8px
+              display inline-block
+              p
+                display block
+                width 100%
+                font-size 15px
+                color white
+                font-weight bold
+                line-height 22px
+            .fancyButton
+              float none
+              display inline-block
+              vertical-align bottom
+            label
+              width 96px
+              height 115px
+              margin-top 16px
+              display inline-block
+              margin-right 10px
+              p
+                width 100%
+                white-space nowrap
+                text-align center
+                font-size 10px
+              a
+                display block
+                margin 10px 17px
+                width 62px
+                height 62px
+                padding 0
+              img
+                margin 0
+                top 0
+                left 0
+                width 100%
+                height 100%
+                -webkit-border-radius 31px
+                -moz-border-radius 31px
+                -o-border-radius 31px
+                border-radius 31px
+            .textures
+              height 0
+              overflow hidden
+
+.colorFields #copyColor div > ul > li > span:hover .btn.btn-success, .colorFields #copyColor div > ul > li > .active .btn.btn-success
+  display inline-block
+
+.copyProduct
+  a
+    line-height 26px
+    cursor pointer
+    color #333
+    float none
+    &:hover
+      text-decoration underline
+  & > span
+    display block
+    margin-bottom 5px
+    padding 0 13px
+    position relative
+    .btn-default
+      width 100%
+      overflow hidden
+  & > .active
+    font-weight bold
+  .btn
+    &.btn-success
+      position absolute
+      color white
+      display none
+      margin-left 25px
+      right -13px
+  ul
+    display none
+  li
+    margin-left 30px
+    .color
+      width 126px
+      height 52px
+      margin 16px 16px 0 0
+      background-size 100% 100%
+      padding 5px 8px 0 8px
+      display inline-block
+      p
+        display block
+        width 100%
+        font-size 15px
+        color white
+        font-weight bold
+        line-height 22px
+    .fancyButton
+      float none
+      display inline-block
+      vertical-align bottom
+    label
+      width 96px
+      height 115px
+      margin-top 16px
+      display inline-block
+      margin-right 10px
+      p
+        width 100%
+        white-space nowrap
+        text-align center
+        font-size 10px
+      a
+        display block
+        margin 10px 17px
+        width 62px
+        height 62px
+        padding 0
+      img
+        margin 0
+        top 0
+        left 0
+        width 100%
+        height 100%
+        -webkit-border-radius 31px
+        -moz-border-radius 31px
+        -o-border-radius 31px
+        border-radius 31px
+    .textures
+      height 0
+      overflow hidden
+
+.copyProduct > span:hover .btn.btn-success, .copyProduct > .active .btn.btn-success
+  display inline-block
+
+.categoryLogo
+  font-size 20px
+  font-weight normal
+  line-height 27px
+  img
+    position relative
+    top 3px
+    float left
+
+.squareButton
+  margin 3px 0 0 8px
+  cursor pointer
+  float left
+  text-transform lowercase
+  line-height 30px
+  padding 0 10px
+  color #efefef
+  background-color #52B84A
+  background -webkit-linear-gradient(top, #a2f89A 0%, #5abc55 50%, #52B84A 50%, #42a638 100%)
+  -webkit-transition 0.3s
+  -moz-transition 0.3s
+  -o-transition 0.3s
+  transition 0.3s
+
+div
+  &.mce-edit-area
+    margin-right 1px
+
+input[type=text].form-control, input[type=password].form-control, .wrath-content-box
+  padding 0 15px
+
+ul#categories
+  & > li
+    margin-bottom 5px
+    ul
+      margin 17px 68px 34px 34px
+      li
+        margin-bottom 5px
+    .products
+      display none
+      margin-right 70px
+
+th
+  text-align center
+
+.table-striped > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(even) > th
+  background-color white
+
+#productsSortable
+  th
+    b
+      float left
+      line-height 34px
+  img
+    height 100px
+    width 100px
+
+.order-items
+  .quantity
+    width 16px
+    height 16px
+    padding 0
+    line-height 1
+    margin 0 10px
+  img
+    width 100px
+    height 100px
+  td
+    vertical-align middle !important
+
+.jimmi
+  tr
+    &:nth-child(2)
+      td
+        float left
+
+#preloader
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background-color rgba(0, 0, 0, 0.5)
+  z-index 2000
+  font-size 32px
+  color white
+  p
+    position absolute
+    top 50%
+    margin-top -19px
+    width 100%
+    text-align center
+
+#orderSave
+  width 350px
+  height 100px
+  background-color white
+  z-index 1000
+  position fixed
+  top 50%
+  left 50%
+  padding 20px
+  -webkit-box-shadow 0 0 50px #333
+  -moz-box-shadow 0 0 50px #333
+  -o-box-shadow 0 0 50px #333
+  box-shadow 0 0 50px #333
+  font-size 17px
+  text-align center
+  line-height 24px
+  margin-top -50px
+  margin-left -175px
+  .btn-s
+    margin-top 20px
+    padding 5px 30px
+    font-size 13px
+    font-weight bold
+    color white
+    cursor pointer
+    display inline-block
+    border 1px solid #68AF2B
+    background -moz-linear-gradient(top, #68AF2B 0%, #44800E 100%)
+    background -webkit-gradient(linear, left top, left bottom, color-stop(0%, #68AF2B), color-stop(100%, #44800E))
+    background -webkit-linear-gradient(top, #68AF2B 0%, #44800E 100%)
+    background -o-linear-gradient(top, #68AF2B 0%, #44800E 100%)
+    background -ms-linear-gradient(top, #68AF2B 0%, #44800E 100%)
+    background linear-gradient(to bottom, #68AF2B 0%, #44800E 100%)
+    filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#68AF2B', endColorstr='#44800E',GradientType=0)"
+
+.fixed-buttons
+  position fixed
+  bottom 18px
+  right 0
+  left 0
+  z-index 2000
+  .btn-default
+    float left
+  .btn-success
+    height 32px
+    line-height 20px
+
+.absolute
+  position absolute
+
+.ib
+  display inline-block
+
+.treebox
+  position relative
+  color #555
+  .choosed
+    font-weight bold
+  & > .choose
+    background-color white
+    position relative
+    z-index 1001
+    line-height 40px
+    border 1px solid #ccc
+    -webkit-border-radius 4px
+    -moz-border-radius 4px
+    -o-border-radius 4px
+    border-radius 4px
+  .arrow
+    position absolute
+    right 15px
+    top 18px
+    z-index 1002
+    border-width 5px 4px 0
+    border-style solid
+    border-color #555 transparent
+  & > div
+    background-color white
+    height 500px
+    display none
+    position absolute
+    left 4px
+    right 4px
+    z-index 1000
+    overflow auto
+    border 1px solid #aaa
+    border-width 0 1px
+    -webkit-box-shadow 0 0 8px #aaa
+    -moz-box-shadow 0 0 8px #aaa
+    -o-box-shadow 0 0 8px #aaa
+    box-shadow 0 0 8px #aaa
+    -webkit-border-radius 0 0 4px 4px
+    -moz-border-radius 0 0 4px 4px
+    -o-border-radius 0 0 4px 4px
+    border-radius 0 0 4px 4px
+    .cat
+      position relative
+      line-height 36px
+  .wrap
+    padding 0 30px 10px
+  .enable
+    -webkit-transition 0.3s
+    -moz-transition 0.3s
+    -o-transition 0.3s
+    transition 0.3s
+    input
+      margin-right 10px
+    &:hover
+      color #5588ee
+  .windows
+    width 600px
+    margin-left -200px
+    height auto
+  &.front
+    & > .choose
+      z-index 1004
+    .arrow
+      z-index 1005
+    & > div
+      z-index 1003
+  &.active
+    & > p
+      border-color #66afe9
+      -webkit-box-shadow 0 0 8px rgba(102, 175, 233, 0.6)
+      -moz-box-shadow 0 0 8px rgba(102, 175, 233, 0.6)
+      -o-box-shadow 0 0 8px rgba(102, 175, 233, 0.6)
+      box-shadow 0 0 8px rgba(102, 175, 233, 0.6)
+    & > div
+      display block
+
+.treebox .choose, .treebox > div p
+  padding-left 15px
+  cursor pointer
+  text-align left
+
+.treebox > div .cat p, .treebox > div .cat label
+  position relative
+  z-index 1
+
+.treebox .wrap .cat p, .treebox .wrap label
+  position relative
+  z-index 0
+
+.buyButton
+  width 273px
+  height 31px
+  border 1px solid #4FB859
+  line-height 30px
+  color white
+  font-size 17px
+  text-shadow -1px 1px 0 #3B9E44
+  text-align center
+  cursor pointer
+  background-image url("/assets/buyButton.png")
+  -webkit-border-radius 5px
+  -moz-border-radius 5px
+  -o-border-radius 5px
+  border-radius 5px
+
+.price-block
+  border 1px solid #58585A
+  border-width 1px 0
+  margin-bottom 15px
+  padding 12px 0 12px 1px
+  .old_price
+    color #58585A
+    font-weight bold
+  .main
+    font-size 26px
+    line-height 36px
+    color black
+  .difference
+    color #58585A
+
+.bootstrap-margin
+  margin 50px 40px 0 -40px
+
+.order-input
+  width 150px
+  margin 0 auto
+
+.input-discount
+  width 25px !important
+  display inline-block
+
+.table-lh-34
+  td
+    line-height 34px !important
+    .form-control
+      width 100px
+      margin 0 auto
+
+.form-control-90
+  width 90%
+  margin 0 auto
+
+.setStatus
+  position relative
+  div
+    display none
+    width 198px
+    border 1px solid #aaa
+    border-bottom 0
+    background-color white
+    position absolute
+    left 50%
+    top 40px
+    margin-left -100px
+    ul
+      border-width 0 1px
+      li
+        height 34px
+        line-height 34px
+        font-size 16px
+        border-bottom 1px solid #aaa
+        color #333
+        cursor pointer
+        -webkit-transition 0.3s
+        -moz-transition 0.3s
+        -o-transition 0.3s
+        transition 0.3s
+        &:hover
+          background-color #5cb85c
+          color white
+  &.open
+    div
+      display block
+
+.img200
+  max-width 200px
+  max-height 200px
+
+.banners
+  border 1px solid #7E7975
+  margin-bottom 43px
+  position relative
+
+#slider
+  height 388px
+  width 998px
+  background-color white
+  .wrap
+    overflow hidden
+    position relative
+    height 360px
+    a
+      display inline-block
+      position absolute
+      left 100%
+      right -100%
+      height 100%
+      background-repeat no-repeat
+      background-position center
+      background-size contain
+      &:first-child
+        left 0
+        right 0
+  .buttons
+    position absolute
+    bottom 9px
+    width 100%
+    text-align center
+    font-size 0
+    div
+      display inline-block
+      width 8px
+      height 8px
+      -webkit-border-radius 4px
+      -moz-border-radius 4px
+      -o-border-radius 4px
+      border-radius 4px
+      background-color #aaa
+      -webkit-box-shadow inset 0 0 4px black
+      -moz-box-shadow inset 0 0 4px black
+      -o-box-shadow inset 0 0 4px black
+      box-shadow inset 0 0 4px black
+      margin 0 4px
+      cursor pointer
+      -webkit-transition 0.5s
+      -moz-transition 0.5s
+      -o-transition 0.5s
+      transition 0.5s
+
+#slider .buttons div:hover, #slider .buttons .active
+  background-color #81C0EB
+
+#choosedChars
+  border-top 1px solid black
+  padding 6px 0 0
+  margin-top 10px
+  display none
+  line-height 26px
+  .choosed-options
+    font-size 15px
+    margin-bottom 2px
+    font-weight bold
+  p
+    font-size 13px
+    font-weight bold
+  b
+    font-weight normal
+  &.open
+    display block
+
+#subcategories, #subcategories div
+  width auto
+  height auto
+  display block
+
+#subcategories
+  .title
+    color #959e39
+    font-weight bold
+    font-size 15px
+    margin 10px 0 18px
+  #products
+    width 100%
+    margin-bottom 40px
+    font-size 0
+    & + .title
+      margin-top 100px
+    & > div
+      & > div
+        & > div
+          color #59595B
+          margin-left 50px
+          font-size 12px
+          line-height 25px
+  .description
+    font-size 14px
+    color #333
+    margin-bottom 18px
+  .images
+    img
+      width auto
+      height auto
+      margin 0
+    td
+      div
+        margin 0
+
+#subcategories #products > div > div > .left, #subcategories #products > div > div > .right, #subcategories #products > div > div > .photoes, #subcategories #products > div > div > .appear
+  margin-left 0
+
+#admin-product
+  text-align center
+  & > div
+    margin-top 15px
+  table
+    width 100%
+    margin 20px 0 40px
+    border 1px solid #ddd
+    &.hide
+      display table !important
+  h2
+    font-size 20px
+    font-weight normal
+    line-height 20px
+    margin 10px
+    vertical-align middle
+    display inline-block
+  .showHide
+    display none
+  .catalog
+    cursor pointer
+  .show
+    display table-row !important
+  .hide
+    tr
+      display none
+      &:first-child
+        display table-row
+
+#admin-product table td, #admin-product table th
+  border 1px solid #ddd
+  padding 8px
+  line-height 1.42857143
+  vertical-align top
+  background-color white
+
+#admin-product table tr:nth-child(odd) > td, #admin-product table tr:nth-child(odd) > th
+  background-color #f9f9f9
+
+#admin-product table .btn-success, #admin-product table .btn-danger, #admin-product table .btn-warning
+  line-height 9px
+
+#admin-product .color, #admin-product .option, #admin-product .texture
+  display none
+
+#dropdown
+  position relative
+  text-align left
+  .show
+    margin 0
+  & > ul
+    color #333
+    background-color white
+    position absolute
+    top 32px
+    left -128px
+    width 500px
+    border 1px solid #aaa
+    border-width 0 1px
+    z-index 1
+    ul
+      border 1px solid #aaa
+      border-width 0 1px
+      margin 0 20px
+  li
+    line-height 34px
+    list-style none
+    p
+      height 0
+      overflow hidden
+      padding 0 0 0 12px
+      -webkit-transition 0.3s
+      -moz-transition 0.3s
+      -o-transition 0.3s
+      transition 0.3s
+      &:hover
+        color black
+  span
+    vertical-align top
+    float right
+    -webkit-border-radius 0
+    -moz-border-radius 0
+    -o-border-radius 0
+    border-radius 0
+
+#dropdown.active > ul, #dropdown.active .active
+  border-width 1px
+
+#dropdown.active > ul > li > p, #dropdown.active .active > li > p
+  height 34px
+
+.extension-show, .extension-catalog, .extension-footer
+  position absolute
+  margin 20px
+  right 0
+
+.extension-catalog
+  width 70px !important
+  height auto !important
+
+.extension-footer
+  width 50px
+  margin 0
+
+.menuCategoryPage
+  a
+    position relative
+    display block
+    &:hover
+      .description
+        color white
+        background-color rgba(0, 0, 0, 0.6)
+  .description
+    position absolute
+    top 0
+    bottom 0
+    right 459px
+    left 0
+    padding 24px 13px 0
+    color transparent
+    background-color transparent
+    line-height 20px
+    font-style 15px
+    -webkit-transition 0.3s
+    -moz-transition 0.3s
+    -o-transition 0.3s
+    transition 0.3s
+    .name
+      font-size 24px
+      margin 0 0 30px
+      line-height 1
+  img
+    max-width 100%
+  &.rightShadow
+    .description
+      left 459px
+      right 0
+  &.matras
+    a
+      &:hover
+        &:nth-child(1)
+          .description
+            background-color rgba(89, 19, 103, 0.54)
+        &:nth-child(2)
+          .description
+            background-color rgba(148, 61, 165, 0.54)
+        &:nth-child(3)
+          .description
+            background-color rgba(208, 136, 222, 0.54)
+
+.btn
+  &.green
+    padding 0
+    border 1px solid #4AAE5A
+    background-color #5AB868
+    -webkit-border-radius 5px
+    -moz-border-radius 5px
+    -o-border-radius 5px
+    border-radius 5px
+    -webkit-transition 0.3s
+    -moz-transition 0.3s
+    -o-transition 0.3s
+    transition 0.3s
+    p
+      border-top 1px solid #72C37E
+      font-size 14px
+      color white
+      text-shadow 0 -1px 1px #2A8D36
+      line-height 1
+      padding 8px 19px 9px
+      -webkit-border-radius 5px
+      -moz-border-radius 5px
+      -o-border-radius 5px
+      border-radius 5px
+    &:hover
+      background-color #54C565
+

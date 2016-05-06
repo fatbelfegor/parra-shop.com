@@ -8,6 +8,7 @@ gem 'devise'
 # gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 # gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'ox'
+gem 'tilt'
 gem 'stylus'
 gem 'carrierwave'
 
@@ -24,8 +25,8 @@ gem 'write_xlsx'
 
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.0'
-gem 'sass'
-gem 'sass-rails'
+# gem 'sass'
+# gem 'sass-rails'
 gem 'sprockets'
 
 # Use Uglifier as compressor for JavaScript assets
