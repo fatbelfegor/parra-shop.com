@@ -1,3 +1,5 @@
+@import 'styl-mixins'
+
 .footer
 	font-size 13px
 	color #58585A
@@ -26,14 +28,16 @@
 		color #545559
 		text-align left
 		overflow hidden
+		position relative
 		> div
 			width 1000px
 			margin 0 auto
 			font-size 0
-		img
-			display block
-			float left
-			margin-top 10px
+			position relative
+			> img
+				display block
+				float left
+				margin-top 10px
 		.copy
 			font-size 13px
 			text-align center
@@ -44,3 +48,16 @@
 			margin-left 293px
 			p
 				margin 8px 0 0
+		.sale
+			position absolute
+			top 127px
+			left 0
+			cursor pointer
+			display block
+			img
+				position absolute
+			.red
+				transition(.3s)
+			&:hover
+				.red
+					opacity 0

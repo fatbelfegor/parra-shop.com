@@ -61,6 +61,8 @@
 		text-align right
 		color #58585A
 		background white
+		position absolute
+		right 0
 		a
 			color inherit
 		.item
@@ -219,14 +221,19 @@
 			height auto
 			font-weight bold
 			font-size 12px
-			width 189px
+			width 249px
+			padding 0
 			transition(.3s)
+			span
+				display block
+				margin-left 30px
 			&:before
 				display none
 			img
 				position absolute
 				left 0
 				margin-top 5px
+				display block
 			.red
 				transition(.3s)
 			&:hover
