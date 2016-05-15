@@ -15,9 +15,11 @@ class MainController < ApplicationController
       @cat = Category.find_by_scode('Диваны').products.where('invisible = false').order('created_at asc').limit(10)
     end
     banners = Banner.all
-    @first_banners = banners.find_all{|b| !b.second_line and !b.third_line}
+    @first_banners = banners.find_all{|b| !b.second_line and !b.third_line and !b.fourth_line and !b.square_third}
     @second_banners = banners.find_all{|b| b.second_line}
     @third_banners = banners.find_all{|b| b.third_line}
+    @fourth_banners = banners.find_all{|b| b.fourth_line}
+    @square_third = banners.find{|b| b.square_third}
     @title = "Мебель из шпона Parra в интернет-магазине Parra-Shop"
     @seo_description = "Интернет-магазин Parra-Shop предлагает мебель из шпона в Москве. Мебель Parra - это ультрасовременная мебель, облицованная натуральным шпоном."
     @seo_keywords = "мебель, шпон, парра, интернет, магазин, parra"

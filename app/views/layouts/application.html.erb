@@ -209,6 +209,7 @@
 	<div class="admin-nav">
 		<div>Действия</div>
 		<ul>
+			<% p current_user %>
 			<% if current_user.admin? %>
 			<li><a href="/categories">Список категорий</a></li>
 			<li><a href="/users">Пользователи</a></li>

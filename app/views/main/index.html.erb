@@ -60,40 +60,24 @@
 			</td>
 		</tr>
 	</table>
-	
+
 	<table border="0" cellspacing="0" cellpadding="0" width="90%">
 		<tr>
 			<td>
-				<div class="wide hover">
-					<table>
-						<tr>
-							<% if @cat.size > 0 then @cat[0..4].each do |p| %>
-							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>">
-									<% price = number_to_currency(p.price) %>
-									<img alt="<%= p.name %>, цена <%= price %>" src="<%= p.images.split(',')[0] %>">
-									<div class='name'><%= p.name %></div>
-									<p><b>Цена:</b> <%= price %></p>
-								</a>
-							</td>
-							<% end end %>
-						</tr>
-						<tr>
-							<% if @cat.size > 5 then @cat[5..9].each do |p| %>
-							<td>
-								<a href="<%= url_for '/kupit/'+p.scode %>">
-									<% price = number_to_currency(p.price) %>
-									<img alt="<%= p.name %>, цена <%= price %>" src="<%= p.images.split(',')[0] %>">
-									<div class='name'><%= p.name %></div>
-									<p><b>Цена:</b> <%= price %></p>
-								</a>
-							</td>
-							<% end end %>
-						</tr>
-					</table>
-				</div>
-				<span><%= image_tag("main5.png", :class => "marginTop")%></span>
+				<div>
+					<% unless @fourth_banners.blank? %>
+					<div class="banners fourth">
+						<div class="wrap">
+							<% @fourth_banners.each do |b| %>
+								<a href="<%= b.url %>" style="background-image: url('<%= b.image %>')"></a>
+							<% end %>
+						</div>
+					</div>
+					<% end %>
+				</div>			
 			</td>
+			<% b = @square_third %>
+			<td class="opacity"><a href="<%= b.url %>"><img src="<%= b.image %>" style="width: 325px; height: 325px; margin-left: 21px"></a></td>
 		</tr>
 	</table>
 </div>

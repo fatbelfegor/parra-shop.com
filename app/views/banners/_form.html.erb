@@ -4,7 +4,7 @@
 		<td colspan="1">
 		    <h4 class="text-right"><%= f.label :url, "Ссылка", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
 		</td>
-		<td colspan="3">
+		<td colspan="4">
 		    <div>
 		      <div class="wrath-content-box" style="padding:0 15px">
 		        <%= f.text_field :url, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
@@ -41,6 +41,15 @@
 		</td>
 		<td>
 			<label><input type="radio" name='slider'<% if params[:slider] == 'third' %> checked='checked'<% end %> value='3'> Третий слайлер</label>
+		</td>
+		<td>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'fourth' %> checked='checked'<% end %> value='4'> Четвертый слайлер</label>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4"></td>
+		<td>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'square_third' %> checked='checked'<% end %> value='square_third'> Третий квадрат</label>
 		</td>
 	</tr>
 </table>
