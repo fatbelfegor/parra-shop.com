@@ -6,7 +6,7 @@
 		<th>Ссылка</th>
 		<th>Действия</th>
 	</tr>
-	<% for banner in @banners.find_all{|b| !b.second_line and !b.third_line} %>
+	<% for banner in @banners.find_all{|b| !b.second_line and !b.third_line and !b.fourth_line and !b.square_third} %>
 	<tr>
 		<td>
 			<%= image_tag(banner.image, class: 'img-thumbnail img200') %>
