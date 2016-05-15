@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class MainController < ApplicationController
-  # rescue_from Exception, with: :not_found
+  rescue_from Exception, with: :not_found
 
   def not_found
     @title = "404 Страница не найдена"
