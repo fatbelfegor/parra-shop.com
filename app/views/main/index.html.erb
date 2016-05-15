@@ -76,8 +76,9 @@
 					<% end %>
 				</div>			
 			</td>
-			<% b = @square_third %>
+			<% if b = @square_third %>
 			<td class="opacity"><a href="<%= b.url %>"><img src="<%= b.image %>" style="width: 325px; height: 325px; margin-left: 21px"></a></td>
+			<% end %>
 		</tr>
 	</table>
 </div>
