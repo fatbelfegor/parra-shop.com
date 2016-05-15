@@ -837,8 +837,8 @@ productKeepPage = ->
 		move = products.find('> :last-child')
 	if parseInt(move.css('left')) > 0
 		move.css left: '-100%', right: '100%'
-	active.animate {left: '100%', right: '-100%'}, 1000
-	move.addClass('active').animate {left: '0', right: '0'}, 1000	
+	active.animate {left: '100%', right: '-100%'}, 2000
+	move.addClass('active').animate {left: '0', right: '0'}, 2000	
 	buttons = $(el).parent().find('.buttons')
 	buttonPrev = buttons.find('.active').removeClass('active').prev()
 	if buttonPrev[0]
@@ -853,8 +853,8 @@ productKeepPage = ->
 		move = products.find('> :first-child')
 	if parseInt(move.css('left')) < 0
 		move.css left: '100%', right: '-100%'
-	active.animate {left: '-100%', right: '100%'}, 1000
-	move.addClass('active').animate {left: '0', right: '0'}, 1000
+	active.animate {left: '-100%', right: '100%'}, 2000
+	move.addClass('active').animate {left: '0', right: '0'}, 2000
 	buttons = $(el).parent().find('.buttons')
 	buttonNext = buttons.find('.active').removeClass('active').next()
 	if buttonNext[0]
@@ -864,7 +864,7 @@ productKeepPage = ->
 sliderLeft = (steps, products) ->
 	active = products.find('.active').removeClass('active')
 	move = active.prev()
-	time = 1000 / steps
+	time = 2000 / steps
 	for i in [1..steps]
 		unless move[0]
 			move = products.find('> :last-child')
@@ -879,7 +879,7 @@ sliderLeft = (steps, products) ->
 sliderRight = (steps, products) ->
 	active = products.find('.active').removeClass('active')
 	move = active.next()
-	time = 1000 / steps
+	time = 2000 / steps
 	for i in [1..steps]
 		unless move[0]
 			move = products.find('> :first-child')
@@ -916,14 +916,14 @@ sliderRight = (steps, products) ->
 	setTimeout ->
 		wrap.removeClass 'slide'
 		slide.remove()
-	, 1000
+	, 2000
 @slider = ->
 	products = $('#slider .wrap')
 	@sliderInterval = setInterval ->
 		sliderRight 1, products
 		bannerNext $ '.banners.second .wrap'
 		bannerNext $ '.banners.third .wrap'
-	, 5000
+	, 10000
 @miniCatOpen = (el) ->
 	cat = $(el)
 	if cat.hasClass 'open'
