@@ -270,7 +270,7 @@
 				-moz-opacity 1
 				-khtml-opacity 1
 				opacity 1
-	.banners.second, .banners.third, .banners.fourth
+	.banners.second, .banners.third, .banners.fourth, .banners.square
 		height 325px
 		width 650px
 		margin-bottom 30px
@@ -303,6 +303,14 @@
 				background-size cover
 		.wrap.slide
 			left -650px
+			transition(2s)
+	.banners.square
+		width 325px
+		.wrap
+			a
+				width 325px
+		.wrap.slide
+			left -325px
 			transition(2s)
 			
 .show

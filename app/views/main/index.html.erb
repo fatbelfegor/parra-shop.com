@@ -76,9 +76,19 @@
 					<% end %>
 				</div>			
 			</td>
-			<% if b = @square_third %>
-			<td class="opacity"><a href="<%= b.url %>"><img src="<%= b.image %>" style="width: 325px; height: 325px; margin-left: 21px"></a></td>
-			<% end %>
+			<td>
+				<div class="margin">
+					<% unless @square_third.blank? %>
+					<div class="banners square">
+						<div class="wrap">
+							<% @square_third.each do |b| %>
+								<a href="<%= b.url %>" style="background-image: url('<%= b.image %>')"></a>
+							<% end %>
+						</div>
+					</div>
+					<% end %>
+				</div>			
+			</td>
 		</tr>
 	</table>
 </div>

@@ -924,6 +924,7 @@ sliderRight = (steps, products) ->
 		bannerNext $ '.banners.second .wrap'
 		bannerNext $ '.banners.third .wrap'
 		bannerNext $ '.banners.fourth .wrap'
+		bannerNext $ '.banners.square .wrap'
 	, 10000
 @miniCatOpen = (el) ->
 	cat = $(el)

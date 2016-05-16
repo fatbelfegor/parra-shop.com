@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class MainController < ApplicationController
-  rescue_from Exception, with: :not_found
+  # rescue_from Exception, with: :not_found
 
   def not_found
     @title = "404 Страница не найдена"
@@ -19,7 +19,7 @@ class MainController < ApplicationController
     @second_banners = banners.find_all{|b| b.second_line}
     @third_banners = banners.find_all{|b| b.third_line}
     @fourth_banners = banners.find_all{|b| b.fourth_line}
-    @square_third = banners.find{|b| b.square_third}
+    @square_third = banners.find_all{|b| b.square_third}
     @title = "Мебель из шпона Parra в интернет-магазине Parra-Shop"
     @seo_description = "Интернет-магазин Parra-Shop предлагает мебель из шпона в Москве. Мебель Parra - это ультрасовременная мебель, облицованная натуральным шпоном."
     @seo_keywords = "мебель, шпон, парра, интернет, магазин, parra"

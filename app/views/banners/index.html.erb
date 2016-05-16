@@ -116,7 +116,7 @@
 		<th>Ссылка</th>
 		<th>Действия</th>
 	</tr>
-	<% if banner = @banners.find{|b| b.square_third} %>
+	<% for banner in @banners.find_all{|b| b.square_third} %>
 	<tr>
 		<td>
 			<%= image_tag(banner.image, class: 'img-thumbnail img200') %>
@@ -129,11 +129,10 @@
 			<%= link_to("Удалить", banner, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
 		</td>
 	</tr>
-	<% else %>
+	<% end %>
 	<tr>
 		<td colspan="3" class="text-center">
-			<%= link_to 'Создать баннер третьего квадрата', new_banner_path(slider: :square_third), class: 'btn btn-success' %>
+			<%= link_to 'Создать новый баннер в третьем квадрате', new_banner_path(slider: :square_third), class: 'btn btn-success' %>
 		</td>
 	</tr>
-	<% end %>
 </table>
