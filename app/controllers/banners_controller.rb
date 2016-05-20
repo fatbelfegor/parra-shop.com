@@ -67,7 +67,8 @@ private
   def banner_params
     params.require(:banner).permit(
       :image,
-      :url
+      :url,
+      :position
     )
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515203706) do
+ActiveRecord::Schema.define(version: 20160520162233) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image",        limit: 255
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160515203706) do
     t.boolean  "third_line",               default: false
     t.boolean  "square_third",             default: false
     t.boolean  "fourth_line",              default: false
+    t.integer  "position",     limit: 4,   default: 0
   end
 
   create_table "categories", force: :cascade do |t|
