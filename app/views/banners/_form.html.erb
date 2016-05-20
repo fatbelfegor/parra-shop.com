@@ -34,22 +34,22 @@
 			</div>
 		</td>
 		<td>
-			<label><input type="radio" name='slider'<% if params[:slider] == 'first' %> checked='checked'<% end %> value='1'> Первый слайлер</label>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'first' or !params[:slider] %> checked='checked'<% end %> value='1'> Первый слайлер</label>
 		</td>
 		<td>
-			<label><input type="radio" name='slider'<% if params[:slider] == 'second' %> checked='checked'<% end %> value='2'> Второй слайлер</label>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'second' or @banner.second_line %> checked='checked'<% end %> value='2'> Второй слайлер</label>
 		</td>
 		<td>
-			<label><input type="radio" name='slider'<% if params[:slider] == 'third' %> checked='checked'<% end %> value='3'> Третий слайлер</label>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'third' or @banner.third_line %> checked='checked'<% end %> value='3'> Третий слайлер</label>
 		</td>
 		<td>
-			<label><input type="radio" name='slider'<% if params[:slider] == 'fourth' %> checked='checked'<% end %> value='4'> Четвертый слайлер</label>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'fourth' or @banner.fourth_line %> checked='checked'<% end %> value='4'> Четвертый слайлер</label>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="4"></td>
 		<td>
-			<label><input type="radio" name='slider'<% if params[:slider] == 'square_third' %> checked='checked'<% end %> value='square_third'> Третий квадрат</label>
+			<label><input type="radio" name='slider'<% if params[:slider] == 'square_third' or @banner.square_third %> checked='checked'<% end %> value='square_third'> Третий квадрат</label>
 		</td>
 	</tr>
 </table>

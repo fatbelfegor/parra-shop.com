@@ -24,7 +24,7 @@ class BannersController < ApplicationController
       banner[:third_line] = true
     elsif params[:slider] == '4'
       banner[:fourth_line] = true
-    elsif params[:slider] = 'square_third'
+    elsif params[:slider] == 'square_third'
       banner[:square_third] = true
     end
     Banner.create banner
@@ -39,8 +39,10 @@ class BannersController < ApplicationController
       banner[:third_line] = true
     elsif params[:slider] == '4'
       banner[:fourth_line] = true
-    elsif params[:slider] = 'square_third'
+    elsif params[:slider] == 'square_third'
       banner[:square_third] = true
+    else
+      banner[:second_line] = banner[:third_line] = banner[:fourth_line] = banner[:square_third] = nil
     end
     respond_to do |format|
       if @banner.update banner
