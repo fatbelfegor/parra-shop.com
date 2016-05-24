@@ -4,9 +4,21 @@
   <h1>Мебель для гостиной</h1>
 </div>
 
-<% cats = Category.select(:name, :url, :description).where(scode: ['Norte', 'P3', 'BellaGost', 'Verro', 'Stylechoco', 'Joy', 'Azzon']) %>
+<% cats = Category.select(:name, :url, :description).where(scode: ['Nocce', 'Orly-gostinaya', 'Stella', 'Norte', 'P3', 'BellaGost', 'Verro', 'Stylechoco', 'Joy', 'Azzon']) %>
 
 <div class="menuCategoryPage">
+	<% c = cats.find { |c| c.name == 'Nocce' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/NocceGost.jpg">
+		<div class='description'><p class='name'>Гостиная Nocce</p><%= raw c.description %></div>
+	</a>
+	<% c = cats.find { |c| c.name == 'Orly' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/OrlyGost.jpg">
+		<div class='description'><p class='name'>Гостиная Orly</p><%= raw c.description %></div>
+	</a>
+	<% c = cats.find { |c| c.name == 'Stella' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/Stella.jpg">
+		<div class='description'><p class='name'>Гостиная Stella</p><%= raw c.description %></div>
+	</a>
 	<% c = cats.find { |c| c.name == 'Norte' } %>
 	<a href="/catalog/<%= c.url %>"><img src="/assets/NorteNew.jpg">
 		<div class='description'><p class='name'>Гостиная Norte</p><%= raw c.description %></div>
