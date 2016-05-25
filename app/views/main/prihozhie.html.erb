@@ -7,11 +7,11 @@
 <% cats = Category.select(:name, :url, :description).where(scode: ['Bella-prihozhaja', 'Style-prihozhaja']) %>
 
 <div class="menuCategoryPage">
-	<% c = cats.find { |c| c.name == 'Bella-prihozhaja' } %>
+	<% c = cats.find { |c| c.name == 'Bella' } %>
 	<a href="/catalog/<%= c.url %>"><img src="/assets/BellaPrih.jpg">
 		<div class='description'><p class='name'>Прихожая Bella</p><%= raw c.description %></div>
 	</a>
-	<% c = cats.find { |c| c.name == 'Style-prihozhaja' } %>
+	<% c = cats.find { |c| c.name == 'Style' } %>
 	<a href="/catalog/<%= c.url %>"><img src="/assets/StylePrih.jpg">
 		<div class='description'><p class='name'>Прихожая Style</p><%= raw c.description %></div>
 	</a>
