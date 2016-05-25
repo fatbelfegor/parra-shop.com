@@ -18,6 +18,14 @@
 <body class='<%= controller.controller_name %>'>
 <div id="blur">
 	<div id="header">
+		<div id="compactMenuToggle" onclick="compactMenu()">
+			<div class="back"></div>
+			<div class="lines">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
 		<a href="/" class="logo">
 			<img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной">
 		</a>
@@ -228,7 +236,6 @@
 	</div>
 	<% end %>
 	<div class="main">
-		<div id="compactMenuToggle" onclick="compactMenu()"><div></div><span>Меню</span></div>
 		<div id="content-wrap">
 			<ul id="mainMenuCompact">
 		  		<li onclick="miniCatOpen(this)">Спальни<p></p>

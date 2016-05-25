@@ -7,7 +7,7 @@
 		display block
 		height 84px
 		float left
-		position absolute
+		position relative
 		z-index 1
 		img
 			display block
@@ -353,40 +353,44 @@
 			display block
 
 #compactMenuToggle
-	position absolute
-	left 50%
-	border 1px solid #aaa
-	border-width 0 1px 1px
-	width 80px !important
-	margin 0 0 0 -41px !important
+	position relative
+	float left
+	height 88px
+	width 88px
+	border-right 1px solid #aaa
 	line-height 30px
-	height 30px !important
-	z-index 1
 	font-size 16px
 	cursor pointer
 	overflow hidden
 	background-color white
 	text-align center
-	box-shadow(0 3px 3px #aaa)
-	border-radius(0 0 10px 10px)
-	> div
+	.back
 		position absolute
 		top 0
 		left 0
 		right 0
 		bottom 0
 		background-image url("/assets/buyButton.png")
+		background-size auto 100%
 		opacity 0
 		transition(.3s)
-	> span
+	.lines
 		position relative
 		z-index 1
+		width 40px
+		height 30px
+		margin 27px 22px
+		div
+			height 4px
+			background-color #666
+			margin-bottom 9px
+			border-radius(2px)
 		transition(.3s)
 	&:hover, &.active
-		> span
-			color white
-		> div
+		.back
 			opacity 1
+		.lines div
+			background-color white
 
 #mainMenuCompact
 	display none
@@ -395,7 +399,6 @@
 	font-size 18px
 	text-transform uppercase
 	width 100%
-	padding-top 34px
 	background-color white
 	li
 		cursor pointer
