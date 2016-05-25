@@ -1044,3 +1044,12 @@ writeChars = ->
 		$.post '/otzyv', params, ->
 			dark.close()
 			$('#blur > .main > div').prepend "<div class='notice'>Ваш отзыв появится после проверки модератором.<div class='close' onclick='$(this).parent().remove()'>x</div>"
+
+@compactMenu = ->
+	el = compactMenuToggle
+	if el.className is 'active'
+		el.className = ''
+		$(mainMenuCompact).slideUp 300
+	else
+		el.className = 'active'
+		$(mainMenuCompact).slideDown 300

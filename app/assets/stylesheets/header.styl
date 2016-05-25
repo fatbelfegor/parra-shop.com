@@ -351,7 +351,43 @@
 			background-color #eee
 		ul
 			display block
-		
+
+#compactMenuToggle
+	position absolute
+	left 50%
+	border 1px solid #aaa
+	border-width 0 1px 1px
+	width 80px !important
+	margin 0 0 0 -41px !important
+	line-height 30px
+	height 30px !important
+	z-index 1
+	font-size 16px
+	cursor pointer
+	overflow hidden
+	background-color white
+	text-align center
+	box-shadow(0 3px 3px #aaa)
+	border-radius(0 0 10px 10px)
+	> div
+		position absolute
+		top 0
+		left 0
+		right 0
+		bottom 0
+		background-image url("/assets/buyButton.png")
+		opacity 0
+		transition(.3s)
+	> span
+		position relative
+		z-index 1
+		transition(.3s)
+	&:hover, &.active
+		> span
+			color white
+		> div
+			opacity 1
+
 #mainMenuCompact
 	display none
 	color #58585A
@@ -359,6 +395,8 @@
 	font-size 18px
 	text-transform uppercase
 	width 100%
+	padding-top 34px
+	background-color white
 	li
 		cursor pointer
 		line-height 40px
@@ -537,9 +575,9 @@
 		div
 			height 22px
 			line-height 22px
-	#mainMenuCompact
-		display block
-		background-color white
+@media(min-width 1000px)
+	#mainMenuCompact, #compactMenuToggle
+		display none !important
 @media(max-width 978px)
 	#jivo-iframe-container
 		bottom 80px !important
