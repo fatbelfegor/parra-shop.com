@@ -1,0 +1,18 @@
+<div class="breadcrumbs" style="margin: 10px">
+  <a href="/">Главная</a>
+  <span>></span>
+  <h1>Мебель для гостиной</h1>
+</div>
+
+<% cats = Category.select(:name, :url, :description).where(scode: ['Bella-prihozhaja', 'Style-prihozhaja']) %>
+
+<div class="menuCategoryPage">
+	<% c = cats.find { |c| c.name == 'Bella-prihozhaja' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/BellaPrih.jpg">
+		<div class='description'><p class='name'>Прихожая Bella</p><%= raw c.description %></div>
+	</a>
+	<% c = cats.find { |c| c.name == 'Style-prihozhaja' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/StylePrih.jpg">
+		<div class='description'><p class='name'>Прихожая Style</p><%= raw c.description %></div>
+	</a>
+</div>
