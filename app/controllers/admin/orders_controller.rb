@@ -1,4 +1,5 @@
 class Admin::OrdersController < Admin::AdminController
+    before_filter :admin_required
   def xlsx
     file = "#{Dir.pwd}/tmp/Заказ.xlsx"
     @workbook = WriteXLSX.new(file)
