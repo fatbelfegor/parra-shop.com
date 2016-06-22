@@ -12,11 +12,11 @@
 			<% par = par.parent
 		end
 		end %>
+		<% unless @category.header.blank? %>
+		<img src='<%= @category.header %>'><span>/</span>
+		<% end %>
 		<h1 class="categoryLogo">
 			<% if params[:url].present? %>
-				<% unless @category.header.blank? %>
-				<img src='<%= @category.header %>'> / 
-				<% end %>
 				<%= @category.name %>
 			<% elsif params[:q].present? %>
 				Поиск по запросу "<%= params[:q] %>"
