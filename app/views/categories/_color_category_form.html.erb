@@ -31,6 +31,42 @@
     </td>
   </tr>
   <tr>
+    <td style="padding: 15px 100px 0 20px">
+      <div class="row form-group">
+        <h4 class="col-md-2 text-right"><%= f.label :title, "Seo title", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+        <div class="col-md-10">
+          <div class="wrath-content-box" style="padding:0 15px">
+            <%= f.text_field :title, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 15px 100px 0 20px">
+      <div class="row form-group">
+        <h4 class="col-md-2 text-right"><%= f.label :keywords, "Seo keywords", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+        <div class="col-md-10">
+          <div class="wrath-content-box" style="padding:0 15px">
+            <%= f.text_field :keywords, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 15px 100px 0 20px">
+      <div class="row form-group">
+        <h4 class="col-md-12"><%= f.label :description, "Seo description", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+        <div class="col-md-12">
+          <div class="wrath-content-box" style="padding:0 15px">
+            <%= f.text_area :description, {class: 'form-control', style: 'padding-top:0;padding-bottom:0', rows: 5} %>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
     <td style="padding: 15px 100px 15px 20px" class="text-center">
       <div class="text-center col-md-6" style="width: 100%">
   <div id="addImages" class="color_category_image">

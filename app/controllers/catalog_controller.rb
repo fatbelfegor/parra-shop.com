@@ -22,9 +22,9 @@ class CatalogController < ApplicationController
     @color_category = ColorCategory.find_by_url params[:url]
     if @color_category
       @category = @color_category.category
-      @title = @category.title
-      @seo_description = @category.s_description
-      @seo_keywords = @category.s_keyword
+      @title = @color_category.title
+      @seo_description = @color_category.keywords
+      @seo_keywords = @color_category.description
       render 'color_category'
     else
       @category = Category.find_by url: params[:url]
