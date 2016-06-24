@@ -48,32 +48,41 @@ class ProductsController < ApplicationController
       end
     end
     price = ('%.2f' % price).gsub(/\B(?=(\d{3})+(?!\d))/, " ")
-    @title = "#{@product.name} по цене #{price} руб."
-    @seo_description = "В интернет магазине Parra Shop можно купить #{@product.name} по цене #{price} руб.. Заказать #{@product.name}"
-    @seo_keywords = "#{@product.name}, #{price} руб"
-    if size
-      @title += ": размер #{size.name}"
-      @seo_description += " размером #{size.name}"
-      @seo_keywords += ", #{size.name}"
-      if color
-        @title += " цвет #{color.name}"
-        @seo_description += " цветом #{color.name}"
-        @seo_keywords += ", #{color.name}"
-        if texture
-          @title += " текстура #{texture.name}"
-          @seo_description += " текстурой #{texture.name}"
-          @seo_keywords += ", #{texture.name}"
+    
+    if @product.seo_title2
+      @title = @product.seo_title2
+      @seo_description = @product.s_description
+      @seo_keywords = @product.s_keyword
+    else
+    
+      @title = "#{@product.name} по цене #{price} руб."
+      @seo_description = "В интернет магазине Parra Shop можно купить #{@product.name} по цене #{price} руб.. Заказать #{@product.name}"
+      @seo_keywords = "#{@product.name}, #{price} руб"
+      if size
+        @title += ": размер #{size.name}"
+        @seo_description += " размером #{size.name}"
+        @seo_keywords += ", #{size.name}"
+        if color
+          @title += " цвет #{color.name}"
+          @seo_description += " цветом #{color.name}"
+          @seo_keywords += ", #{color.name}"
+          if texture
+            @title += " текстура #{texture.name}"
+            @seo_description += " текстурой #{texture.name}"
+            @seo_keywords += ", #{texture.name}"
+          end
+        end
+        if option
+          @title += " опция #{option.name}"
+          @seo_description += " опцией #{option.name}"
+          @seo_keywords += ", #{option.name}"
         end
       end
-      if option
-        @title += " опция #{option.name}"
-        @seo_description += " опцией #{option.name}"
-        @seo_keywords += ", #{option.name}"
-      end
+      @title += " в Москве"
+      @seo_description += " в Москве и области."
+      @seo_keywords += ", Москва, Parra Shop"
     end
-    @title += " в Москве"
-    @seo_description += " в Москве и области."
-    @seo_keywords += ", Москва, Parra Shop"
+    
     if !@product.invisible || (user_signed_in? && current_user.admin?)
       @categories = Category.all.order :position
     else      
