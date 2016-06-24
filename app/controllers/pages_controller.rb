@@ -7,5 +7,8 @@ class PagesController < ApplicationController
   end
 
   def vacancy
+    @title = "Вакансии - работа в компании Parra-Shop: интернет-магазин мебели из шпона в Москве"
+    @seo_description = "Актуальные вакансии магазина Parra-Shop. Начните карьеру у нас - телефон для связи +7 (967) 021-37-73."
+    @seo_keywords = "Parra, Парра, мебель, шпон, Москва, магазин, вакансии, работа" 
   end
 end

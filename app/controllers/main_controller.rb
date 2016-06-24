@@ -67,7 +67,10 @@ class MainController < ApplicationController
     @seo_keywords = "Новости, интернет, магазина, европейской, мебели, Parra-Shop"
   end
 
-  def cart  	
+  def cart
+    @title = "Корзина - интернет-магазин мебели из шпона Parra-Shop"
+    @seo_description = "Выбранные Вами товары добавляются в корзину интернет-магазина европейской мебели из шпона Parra-Shop. Ваш заказ ожидает оформления."
+    @seo_keywords = "Parra, Парра, мебель, шпон, Москва, магазин, доставка, корзина"  	
   end
 
   def cartjson
