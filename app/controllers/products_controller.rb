@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
     end
     price = ('%.2f' % price).gsub(/\B(?=(\d{3})+(?!\d))/, " ")
     
-    if @product.seo_title2
+    if @product.seo_title2 && @product.seo_title2 != ""
       @title = @product.seo_title2
       @seo_description = @product.s_description
       @seo_keywords = @product.s_keyword
