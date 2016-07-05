@@ -89,6 +89,12 @@ class MainController < ApplicationController
     @seo_keywords = 'вид, сотрудничество, партнер, дилер, дистрибьютор, агент'
     @seo_description = 'Выгодные условия сотрудничества для дилеров, дистрибьюторов и агентов. Ощутите все преимущества работы с нами.'
   end
+  
+  def contacts
+    @title = "Контакты | интернет-магазин «Parra-Shop»"
+    @seo_keywords = 'Контакты' 
+    @seo_description = "Контакты | интернет-магазин «Parra-Shop»"
+  end
 
   def new
     @title = 'Новости от нашей компании - интернет-магазин Parra-Shop'
