@@ -31,6 +31,7 @@ ParraShopCom::Application.routes.draw do
   get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
   get 'vacancy', to: 'pages#vacancy', as: :vacancy
+  get 'credits', to: 'pages#credits'
   
   root to: 'main#index', as: 'index'
 

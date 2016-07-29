@@ -39,8 +39,14 @@ ready = ->
 	$('#addImages input').click ->
 		iframe.src = '/images/new'
 		this.parentNode.appendChild iframe
-	window.cart = eval getCookie 'cart'
-	unless cart
+	cart = eval getCookie 'cart'
+	if cart
+		c = []
+		for item in c
+			if item.c and item.i and item.p
+				c.push item
+		window.cart = c
+	else
 		window.cart = []
 	cartCount()
 	$('#cartfield').val(JSON.stringify(cart))
@@ -152,8 +158,8 @@ ready = ->
 				unless footerFull
 					footerFull = true
 					scrollWork = false
-					el.animate bottom: 275, 'scroll-top': el.scrollTop() + 242, 300
-					$('.footer .appear').animate 'height': 235, 300, ->
+					el.animate bottom: 339, 'scroll-top': el.scrollTop() + 339, 300
+					$('.footer .appear').animate 'height': 339, 300, ->
 						contentHeight = $('#content-wrap').height()
 						scrollWork = true
 
