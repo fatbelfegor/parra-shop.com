@@ -62,7 +62,7 @@ ready = ->
 			items += '<div data-id=' + id + '><span><div><div><p><ins><a href="/kupit/'+item.d+'">'+item.n+'</a></ins></p>'+size+color+option+'</div></div></span><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
 			((id) ->
 				$.ajax
-					url: "/cart.json?name="+item.n
+					url: "/cart.json?id="+item.i
 					success: (data) ->
 						item = $("#cart > [data-id='#{id}']")
 						window.item = item
@@ -230,7 +230,7 @@ expire = ->
 		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
 		items += '<div><a href="/kupit/'+item.d+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
 		$.ajax
-			url: "/cart.json?name="+item.n
+			url: "/cart.json?id="+item.i
 			success: (data) ->
 				$('#alert .items > div').get().forEach (item) ->
 					if $(item).find('ins').html() == data.name				
@@ -292,9 +292,8 @@ expire = ->
 		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
 		items += '<div><a href="/kupit/'+item.d+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
 		$.ajax
-			url: "/cart.json?name="+item.n
+			url: "/cart.json?id="+item.i
 			success: (data) ->
-				console.log data
 				$('#alert .items > div').get().forEach (item) ->
 					if $(item).find('ins').html() == data.name				
 						$(item).find('img').attr 'src', data.images.split(',')[0]
@@ -324,7 +323,7 @@ expire = ->
 			items += '<a href="/kupit/'+item.d+'"><img><div><div><div>'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+' руб.</div><ins><span id="name">'+item.n+'</span> &#215;'+item.c+'</ins>'+color+size+option+'</div></div></a>'
 			allPrice += parseFloat(item.p.replace(/\ /g, ''))*item.c
 			$.ajax
-				url: "/cart.json?name="+item.n
+				url: "/cart.json?id="+item.i
 				success: (data) ->
 					if data
 						$('#menuCart .cart-list > a').get().forEach (item) ->

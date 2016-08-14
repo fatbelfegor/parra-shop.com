@@ -74,7 +74,7 @@ class MainController < ApplicationController
   end
 
   def cartjson
-  	@product = Product.find_by_name params[:name]
+  	@product = Product.find params[:id]
   	render json: @product
   end
 
