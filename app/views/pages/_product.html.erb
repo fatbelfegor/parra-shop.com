@@ -4,19 +4,13 @@
 			<img src="<%= product.extension.image %>" class='extension-catalog'>
 		<% end %>
 		<% images = product.images.split ',' %>
-		<div class="left inactive"></div>
-		<% if images[1] %>
-			<div class="right" onclick="photoRight(this)"></div>
-		<% else %>
-			<div class="right inactive"></div>
-		<% end %>
 		<% price = number_to_currency product.price %>
 		<% if images.length > 0 %>
 			<% alt = "#{product.name}, цена #{price}" %>
-			<div class="photoes"><a class="showPhoto" href="/kupit/<%= product.scode %>"><img alt="<%= alt %>" src="<%= images[0] %>"></a>
-			<% for i in images[1..-1] %>
-				<a href="/kupit/<%= product.scode %>"><img alt="<%= alt %>" src="<%= i %>"></a>
-			<% end %>
+			<div class="photoes">
+				<% for i in images %>
+					<a href="/kupit/<%= product.scode %>"><img alt="<%= alt %>" src="<%= i %>"></a>
+				<% end %>
 			</div>
 		<% end %>
 		<div>

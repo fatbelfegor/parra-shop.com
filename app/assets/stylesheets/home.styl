@@ -1,0 +1,107 @@
+@import 'mixins'
+
+#home
+	padding 30px 50px
+	
+	a:focus
+		outline none
+
+	#info
+		color #CDC8C5
+		background-color #73685F
+		padding 25px 80px 40px
+		margin 40px 0
+		border 1px solid #A09184
+		border-top-color #C7B19F
+		border-bottom-color black
+		font-size 14px
+		h3
+			padding 15px 0
+		p
+			padding 10px 0
+		ul
+			padding-left 25px
+			padding-bottom 10px
+		li
+			list-style-type disc
+			padding 5px 0
+			
+	.banners
+		border 1px solid #7E7975
+		margin-bottom 43px
+		position relative
+
+	.row
+		width 100%
+		position relative
+		margin-bottom 30px
+		> div
+			border 1px solid #7e7975
+			position relative
+			transition(.3s)
+			&:hover
+				box-shadow(0 0 10px 0 #aaa)
+		.big
+			width 64%
+			&:last-child
+				margin-left 36%
+		.small
+			position absolute
+			top 0
+			bottom 0
+			width 34%
+			&:first-child
+				left 0
+			&:last-child
+				right 0
+		img
+			width 100%
+			max-height 100%
+		.opacity &:hover
+			opacity .5
+		.label
+			height 48px
+			line-height 48px
+			padding 0 20px
+			color #fff
+			font-weight bold
+			font-size 26px
+			position absolute
+			top 16px
+			z-index 1
+			text-align center
+			white-space nowrap
+			right 0
+
+	.main-slider
+		border 1px solid #7e7975
+		margin-bottom 43px
+		img
+			width 100%
+
+	.slick-dots
+		background white
+		text-align center
+		li
+			display inline-block
+			margin 0 4px
+			height 28px
+		button
+			display block
+			margin-top 9px
+			border 0
+			font-size 0
+			width 10px
+			height 10px
+			background-color #aaa
+			cursor pointer
+			border-radius(5px)
+			box-shadow(inset 0 0 4px black)
+			transition(.5s)
+			&:focus
+				outline none
+		.slick-active button
+			background #81c0eb
+			
+	// .opacity
+	// 	

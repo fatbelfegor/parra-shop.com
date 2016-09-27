@@ -1,9 +1,10 @@
+<link rel="stylesheet" type="text/css" href="/assets/product.css">
 <% sizes_exist = !@product.prsizes.blank?
 sizes = @product.prsizes
 size_first = @product.prsizes.first
 price = to_money @product.price %>
 <div class="show page">
-	<div class="breadcrumbs" style="margin: 10px">
+	<div class="breadcrumbs">
 		<a href="http://www.parra-shop.ru">Главная</a>
 		<span>></span>
 		<% if @product.category %>
@@ -19,7 +20,7 @@ price = to_money @product.price %>
 		<p><%= @product.name %></p>
 	</div>
 	<div class="page-title"><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end %></div>
-	<div class="main">
+	<div class="product-wrap">
 		<div>
 			<% if @product.extension %>
 				<img class='extension-show' src="<%= @product.extension.image %>">
@@ -310,10 +311,10 @@ price = to_money @product.price %>
 	<div class="others">
 		<% if @product.category %>
 			<p>Другие товары коллекции "<%= @product.category.name %>"</p>
-			<%= render(:partial => "products/productFooter" , collection: @product.category.products) %>
+			<div class="wrap"><%= render(:partial => "products/productFooter" , collection: @product.category.products) %></div>
 		<% else %>
 			<p>Другие товары коллекции "<%= @product.subcategory.name %>"</p>
-			<%= render(:partial => "products/productFooter" , collection: @product.subcategory.products) %>
+			<div class="wrap"><%= render(:partial => "products/productFooter" , collection: @product.subcategory.products) %></div>
 		<% end %>
 	</div>
 	<% unless @product.product_footer_images.blank? %>

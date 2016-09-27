@@ -40,14 +40,11 @@ ready = ->
 		iframe.src = '/images/new'
 		this.parentNode.appendChild iframe
 	cart = eval getCookie 'cart'
+	window.cart = []
 	if cart
-		c = []
-		for item in c
+		for item in cart
 			if item.c and item.i and item.p
-				c.push item
-		window.cart = c
-	else
-		window.cart = []
+				window.cart.push item
 	cartCount()
 	$('#cartfield').val(JSON.stringify(cart))
 	if $('#cart')[0]
@@ -138,30 +135,6 @@ ready = ->
 			el.find('img').each ->
 				images.push $(@).attr 'src'
 			el.parent().next().val images.join ','
-	contentHeight = $('#content-wrap').height()
-	footerFull = false
-	scrollWork = true
-	$('#blur > .main').scroll ->
-		el = $ @
-		e = @
-		if scrollWork
-			if el.scrollTop() + el.height() < contentHeight
-				if footerFull
-					footerFull = false
-					scrollWork = false
-					el.animate bottom: 40, 300
-					$('.footer .appear').animate 'height': 0, 300, ->
-						el.animate 'scroll-top': el.scrollTop() - 53, 100, ->
-							contentHeight = $('#content-wrap').height()
-							scrollWork = true
-			else
-				unless footerFull
-					footerFull = true
-					scrollWork = false
-					el.animate bottom: 339, 'scroll-top': el.scrollTop() + 339, 300
-					$('.footer .appear').animate 'height': 339, 300, ->
-						contentHeight = $('#content-wrap').height()
-						scrollWork = true
 
 @changeCount = (el) ->
 	window.el = el
@@ -250,8 +223,6 @@ expire = ->
 		</div>')
 	a = $('#alert').show()
 	d = a.find('> div').last()
-	console.log d.width()
-	console.log d.height()
 	d.css('left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 + $(window).scrollTop() - d.height() / 2)
 	a.hide().fadeIn(300)
 	cartSave()
@@ -345,7 +316,6 @@ expire = ->
 	addImages = iframe.parentNode
 	inputName = addImages.className
 	input = $('#'+inputName)
-	console.log input
 	if input.attr('class') != 'one'
 		images = input.val().split(',')
 		if images[0] == '' then images = [url] else images.push url
@@ -374,7 +344,6 @@ expire = ->
 	$.get "/images/delete",
 	  url: $(el).prev().attr 'src'
 	index = $div.index()
-	console.log index
 	images = input.val().split ','
 	images.splice index, 1
 	input.val images.join ','
@@ -413,7 +382,10 @@ expire = ->
 	count = 0
 	cart.forEach (i) ->
 		count += i.c
-	$('#cartCount').html(count) if count
+	if count
+		cartCounter.style.display = 'block'
+		cartCounter.innerHTML = count
+	else cartCounter.style.display = 'none'
 @option = (el) ->
 	next = $(el).next()
 	$('div.option').hide 300

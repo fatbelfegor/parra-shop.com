@@ -1,21 +1,24 @@
 <script src="/assets/lightbox.min.js"></script>
 <link href="/assets/lightbox.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/assets/color-category.css">
+<link rel="stylesheet" type="text/css" href="/assets/products.css">
 <div class="index">
-	<div class="breadcrumbs">
-		<a href="http://www.parra-shop.ru/">Главная</a>
-		<span>></span>
-		<h1 class="categoryLogo">
-			<%= @color_category.name %>
-		</h1>
-	</div>
 	<div id="color-category-blocks">
-		<% for c in @category.color_categories.order(:id) %>
-			<% link = @color_category.id != c.id %>
-			<% if link %><a href='/catalog/<%= c.url %>'<% else %><div<% end %> class='item' style='background-image: url("<%= c.image %>")'>
-				<div class="appear"><div><span>Посмотреть</span><br><span>каталог</span></div></div>
-			<% if link %></a><% else %></div><% end %>
-		<% end %>
+		<div class="wrap">
+			<div class="breadcrumbs">
+				<a href="http://www.parra-shop.ru/">Главная</a>
+				<span>></span>
+				<h1 class="categoryLogo">
+					<%= @color_category.name %>
+				</h1>
+			</div>
+			<% for c in @category.color_categories.order(:id) %>
+				<% link = @color_category.id != c.id %>
+				<% if link %><a href='/catalog/<%= c.url %>'<% else %><div<% end %> class='item' style='background-image: url("<%= c.image %>")'>
+					<div class="appear"><div><span>Посмотреть</span><br><span>каталог</span></div></div>
+				<% if link %></a><% else %></div><% end %>
+			<% end %>
+		</div>
 	</div>
 	<div id="products">
 		<%= render partial: 'pages/product', collection: @color_category.products.order(:color_position) %>
@@ -26,3 +29,8 @@
 		</div>
 	<% end %>
 </div>
+<link rel="stylesheet" type="text/css" href="/assets/slick.min.css">
+<script type="text/javascript" src="/assets/slick.min.js"></script>
+<script type="text/javascript">
+	$('.photoes').slick();
+</script>

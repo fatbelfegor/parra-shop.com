@@ -4,12 +4,15 @@
 		<%= raw subcategory.description %>
 	</div>
 <% end %>
-<% if subcategory.sub_cat_images %>
+<% unless subcategory.sub_cat_images.empty? %>
 	<table class="images">
 		<tr>
+			<% width = 100 / subcategory.sub_cat_images.count %>
 			<% for image in subcategory.sub_cat_images %>
-				<td>
-					<img src="<%= image.url %>">
+				<td style="width: <%= width %>%">
+					<div class="tac">
+						<img src="<%= image.url %>">
+					</div>
 					<div class="image-description"><%= raw image.description %></div>
 				</td>
 			<% end %>

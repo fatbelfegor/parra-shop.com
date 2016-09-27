@@ -1,0 +1,154 @@
+@import 'mixins'
+
+
+#subcategories #products, #products
+	width 100%
+	height auto
+	font-size 0
+	margin-bottom 100px
+	text-align center
+	> div
+		text-align left
+		width 302px
+		height 452px
+		position relative
+		display inline-block
+		height	450px
+		margin 10px 15px 0
+		transition(0.3s)
+		> div
+			margin-left 0
+			border 1px solid transparent
+			position absolute
+			background-color white
+			> div, .appear > div
+				color #59595B
+				margin-left 50px
+				font-size 12px
+				line-height 25px
+			.appear
+				text-align center
+				margin 0
+				div
+					height 0
+					overflow hidden
+					text-align left
+					transition(0.3s)
+				.fancyButton
+					float none
+					display inline-block
+					color white !important
+					text-shadow -1px 1px 0 #3B9E44
+					text-align center
+					border 0 solid #4FB859 !important
+					font-size 14px
+					line-height 20px
+					padding 0 12px
+					cursor pointer
+					background-image url('/assets/buyButton.png')
+					margin 5px auto !important
+					border-radius(5px)
+					transition(0.3s)
+				.fancyButton:hover
+					padding 0 17px
+					box-shadow(0 0 15px 0 #4FB859)
+			.shortdesk
+				overflow hidden
+				max-height 50px
+			.name
+				font-size 14px
+				font-weight bold
+				margin-left 0
+				line-height 25px
+	img, .photoes
+		width 280px
+		height 280px
+	.photoes
+		margin 10px
+	.slick-arrow
+		position absolute
+		top 140px
+		width 28px
+		height 28px
+		font-size 0
+		border 0
+		z-index 1
+		cursor pointer
+		opacity 0
+		transition(.3s)
+		&:focus
+			outline 0
+	.slick-prev
+		left 0
+		background url("/assets/left.png")
+	.slick-next
+		right 0
+		background url("/assets/right.png")
+	a:focus
+		outline 0
+	> div:hover
+		.slick-arrow
+			opacity 1
+		> div
+			border 1px solid #ccc
+			box-shadow(0 0 10px 0 #aaa)
+			z-index 1
+			.appear
+				div
+					height 25px
+				.fancyButton
+					border-width 1px !important
+					height 20px
+					margin-bottom 5px
+					
+.category-images
+	display block
+	img
+		display inline-block
+		width auto
+		height auto
+		
+.index
+	padding 0 50px
+	
+#subcategories, #subcategories div
+	width auto
+	height auto
+	display block
+
+#subcategories
+	.title
+		color #959e39
+		font-weight bold
+		font-size 15px
+		margin 10px 0
+		text-align center
+	#products
+		width 100%
+		margin-bottom 40px
+		font-size 0
+		& + .title
+			margin-top 100px
+		& > div
+			& > div
+				& > div
+					color #59595B
+					margin-left 50px
+					font-size 12px
+					line-height 25px
+	.description
+		font-size 14px
+		color #333
+		margin-bottom 18px
+	.images
+		img
+			width auto
+			height auto
+			margin 0
+		td
+			vertical-align top
+			div
+				margin 0
+
+#subcategories #products > div > div > .left, #subcategories #products > div > div > .right, #subcategories #products > div > div > .photoes, #subcategories #products > div > div > .appear
+	margin-left 0

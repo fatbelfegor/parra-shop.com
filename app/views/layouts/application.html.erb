@@ -18,198 +18,246 @@
 <body class='<%= controller.controller_name %>'>
 <div id="blur">
 	<div id="header">
-		<div id="compactMenuToggle" onclick="compactMenu()">
-			<div class="back"></div>
-			<div class="lines">
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-		</div>
-		<a href="/" class="logo">
-			<img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной">
-		</a>
-		<div class="right">
-			<div class="phone">
-			  <p>8-800-707-67-57</p>
-			  <ins>Бесплатные звонки по России</ins>
-			</div>
-			<div class="search">
-				<form action="/catalog/index">
-					<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
-					<input type="submit" value="Поиск"/>
-				</form>
-			</div>
-		</div>
-		<div class="menu">
-			<div class="item">
-				<a href="/modulnaja-mebel-dlja-spalni">Спальни</a>
-				<div class="background">
-					<div class="active" style="background-image: url(/assets/Nocce.jpg)"></div>
-					<div style="background-image: url(/assets/GammaNew.jpg)"></div>
-					<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
-					<div style="background-image: url(/assets/Bella.jpg)"></div>
-					<div style="background-image: url(/assets/Plisset.jpg)"></div>
-					<div style="background-image: url(/assets/Orly.jpg)"></div>
-					<div style="background-image: url(/assets/RitmikaSale.jpg)"></div>
-					<div style="background-image: url(/assets/Lorra.jpg)"></div>
-					<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
-					<div style="background-image: url(/assets/Miro.jpg)"></div>
-				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/spalni-nocce'>Nocce</a>
-					<a class='bg' href='/catalog/spalni-gamma'>Gamma</a>
-					<a class='bg' href='/catalog/spalni-liona'>Lyona</a>
-					<a class='bg' href='/catalog/spalni-bella-oreh'>Bella</a>
-					<a class='bg' href='/catalog/spalni-plisset'>Plisset</a>
-					<a class='bg' href='/catalog/spalni-orly-oreh'>Orly</a>
-					<a class='bg' href='/catalog/spalni-ritmika-oreh'>Ritmika</a>
-					<a class='bg' href='/catalog/spalni-lorra'>Lorra</a>
-					<a class='bg' href='/catalog/spalni-leggero-oreh'>Leggero</a>
-					<a class='bg' href='/catalog/spalni-miro'>Miro</a>
+		<div class="wrap">
+			<div id="compactMenuToggle" onclick="compactMenu()">
+				<div class="back"></div>
+				<div class="lines">
+					<div></div>
+					<div></div>
+					<div></div>
 				</div>
 			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/modulnaja-mebel-dlja-gostinoj">Гостиные</a>
-				<div class="background">
-					<div class="active" style="background-image: url(/assets/NocceGost.jpg)"></div>
-					<div style="background-image: url(/assets/NizzaGostNew.jpg)"></div>
-					<div style="background-image: url(/assets/OrlyGost.jpg)"></div>
-					<div style="background-image: url(/assets/Stella.jpg)"></div>
-					<div style="background-image: url(/assets/NorteNew.jpg)"></div>
-					<div style="background-image: url(/assets/BellaGost.jpg)"></div>
-					<div style="background-image: url(/assets/Verro.jpg)"></div>
-					<div style="background-image: url(/assets/Style.jpg)"></div>
-					<div style="background-image: url(/assets/Joy.jpg)"></div>
-					<div style="background-image: url(/assets/Azzon.jpg)"></div>
+			<a href="/" class="logo">
+				<img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной">
+			</a>
+			<div class="right">
+				<div class="phone">
+				  <p>8-800-707-67-57</p>
+				  <ins>Бесплатные звонки по России</ins>
 				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/gostinye-nocce'>Nocce</a>
-					<a class='bg' href='/catalog/gostinye-nizza'>Nizza</a>
-					<a class='bg' href='/catalog/gostinnye-orly'>Orly</a>
-					<a class='bg' href='/catalog/gostinnye-stella'>Stella</a>
-					<a class='bg' href='/catalog/gostinye-norte'>Norte</a>
-					<a class='bg' href='/catalog/gostinnye-bella'>Bella</a>
-					<a class='bg' href='/catalog/gostinnye-verro'>Verro</a>
-					<a class='bg' href='/catalog/gostinnye-style-choco-new'>Style</a>
-					<a class='bg' href='/catalog/gostinnye-joy'>Joy</a>
-					<a class='bg' href='/catalog/gostinye-azzon'>Azzon</a>
+				<div class="search">
+					<form action="/catalog/index">
+						<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
+						<input type="submit" value="Поиск"/>
+					</form>
 				</div>
 			</div>
-			<div class="item">
-				<a href="/prihozhie">Прихожие</a>
-				<div class="background">
-					<div class="active" style="background-image: url(/assets/BellaPrih.jpg)"></div>
-					<div style="background-image: url(/assets/StylePrih.jpg)"></div>
+			<div class="menu">
+				<div class="item">
+					<a href="/modulnaja-mebel-dlja-spalni">Спальни</a>
+					<div class="background">
+						<div class="active" style="background-image: url(/assets/Nocce.jpg)"></div>
+						<div style="background-image: url(/assets/GammaNew.jpg)"></div>
+						<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
+						<div style="background-image: url(/assets/Bella.jpg)"></div>
+						<div style="background-image: url(/assets/Plisset.jpg)"></div>
+						<div style="background-image: url(/assets/Orly.jpg)"></div>
+						<div style="background-image: url(/assets/RitmikaSale.jpg)"></div>
+						<div style="background-image: url(/assets/Lorra.jpg)"></div>
+						<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
+						<div style="background-image: url(/assets/Miro.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/spalni-nocce'>Nocce</a>
+						<a class='bg' href='/catalog/spalni-gamma'>Gamma</a>
+						<a class='bg' href='/catalog/spalni-liona'>Lyona</a>
+						<a class='bg' href='/catalog/spalni-bella-oreh'>Bella</a>
+						<a class='bg' href='/catalog/spalni-plisset'>Plisset</a>
+						<a class='bg' href='/catalog/spalni-orly-oreh'>Orly</a>
+						<a class='bg' href='/catalog/spalni-ritmika-oreh'>Ritmika</a>
+						<a class='bg' href='/catalog/spalni-lorra'>Lorra</a>
+						<a class='bg' href='/catalog/spalni-leggero-oreh'>Leggero</a>
+						<a class='bg' href='/catalog/spalni-miro'>Miro</a>
+					</div>
 				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/prihozhie-bella'>Bella</a>
-					<a class='bg' href='/catalog/prihozhie-style'>Style</a>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/modulnaja-mebel-dlja-gostinoj">Гостиные</a>
+					<div class="background">
+						<div class="active" style="background-image: url(/assets/NocceGost.jpg)"></div>
+						<div style="background-image: url(/assets/NizzaGostNew.jpg)"></div>
+						<div style="background-image: url(/assets/OrlyGost.jpg)"></div>
+						<div style="background-image: url(/assets/Stella.jpg)"></div>
+						<div style="background-image: url(/assets/NorteNew.jpg)"></div>
+						<div style="background-image: url(/assets/BellaGost.jpg)"></div>
+						<div style="background-image: url(/assets/Verro.jpg)"></div>
+						<div style="background-image: url(/assets/Style.jpg)"></div>
+						<div style="background-image: url(/assets/Joy.jpg)"></div>
+						<div style="background-image: url(/assets/Azzon.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/gostinye-nocce'>Nocce</a>
+						<a class='bg' href='/catalog/gostinye-nizza'>Nizza</a>
+						<a class='bg' href='/catalog/gostinnye-orly'>Orly</a>
+						<a class='bg' href='/catalog/gostinnye-stella'>Stella</a>
+						<a class='bg' href='/catalog/gostinye-norte'>Norte</a>
+						<a class='bg' href='/catalog/gostinnye-bella'>Bella</a>
+						<a class='bg' href='/catalog/gostinnye-verro'>Verro</a>
+						<a class='bg' href='/catalog/gostinnye-style-choco-new'>Style</a>
+						<a class='bg' href='/catalog/gostinnye-joy'>Joy</a>
+						<a class='bg' href='/catalog/gostinye-azzon'>Azzon</a>
+					</div>
 				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/divani">Диваны</a>
-				<div class="background">
-					<div class="active" style="background: url(/assets/Trevi.jpg)"></div>
-					<div style="background: url(/assets/Opera.jpg)"></div>
-					<div style="background: url(/assets/Lucca.jpg)"></div>
-					<div style="background: url(/assets/Ritmo.jpg)"></div>
-					<div style="background: url(/assets/Nuvola.jpg)"></div>
-					<div style="background: url(/assets/SoftAgioArteCircle.jpg)"></div>
-					<div style="background: url(/assets/Enjoy.jpg)"></div>
-					<div style="background: url(/assets/Nova.jpg)"></div>
+				<div class="item">
+					<a href="/prihozhie">Прихожие</a>
+					<div class="background">
+						<div class="active" style="background-image: url(/assets/BellaPrih.jpg)"></div>
+						<div style="background-image: url(/assets/StylePrih.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/prihozhie-bella'>Bella</a>
+						<a class='bg' href='/catalog/prihozhie-style'>Style</a>
+					</div>
 				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/divany-trevi'>Trevi</a>
-					<a class='bg' href='/catalog/divany-opera'>Opera</a>
-					<a class='bg' href='/catalog/divany-lucca'>Lucca</a>
-					<a class='bg' href='/catalog/divany-ritmo'>Ritmo</a>
-					<a class='bg' href='/catalog/divany-nuvola'>Nuvola</a>
-					<a class='bg' href='/catalog/kresla'>Кресла</a>
-					<a class='bg' href='/catalog/divany-enjoy'>Enjoy</a>
-					<a class='bg' href='/catalog/divany-nova'>Nova</a>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/divani">Обеденные группы</a>
+					<div class="background">
+						<div class="active" style="background: url(/assets/Trevi.jpg)"></div>
+						<div style="background-image: url(/assets/Opera.jpg)"></div>
+						<div style="background-image: url(/assets/Lucca.jpg)"></div>
+						<div style="background-image: url(/assets/Ritmo.jpg)"></div>
+						<div style="background-image: url(/assets/Nuvola.jpg)"></div>
+						<div style="background-image: url(/assets/SoftAgioArteCircle.jpg)"></div>
+						<div style="background-image: url(/assets/Enjoy.jpg)"></div>
+						<div style="background-image: url(/assets/Nova.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/divany-trevi'>Trevi</a>
+						<a class='bg' href='/catalog/divany-opera'>Opera</a>
+						<a class='bg' href='/catalog/divany-lucca'>Lucca</a>
+						<a class='bg' href='/catalog/divany-ritmo'>Ritmo</a>
+						<a class='bg' href='/catalog/divany-nuvola'>Nuvola</a>
+						<a class='bg' href='/catalog/kresla'>Кресла</a>
+						<a class='bg' href='/catalog/divany-enjoy'>Enjoy</a>
+						<a class='bg' href='/catalog/divany-nova'>Nova</a>
+					</div>
 				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/matras">Матрасы</a>
-				<div class="background">
-					<div class='active' style="background: url(/assets/SonberryOrganic.jpg)"></div>
-					<div style="background: url(/assets/SonberryAero.jpg)"></div>
-					<div style="background: url(/assets/Sonberry2XL.jpg)"></div>
-					<div style="background: url(/assets/SonberryActive.jpg)"></div> 
-					<div style="background: url(/assets/SonberryItalia.jpg)"></div>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/divani">Диваны</a>
+					<div class="background">
+						<div class="active" style="background: url(/assets/Trevi.jpg)"></div>
+						<div style="background-image: url(/assets/Opera.jpg)"></div>
+						<div style="background-image: url(/assets/Lucca.jpg)"></div>
+						<div style="background-image: url(/assets/Ritmo.jpg)"></div>
+						<div style="background-image: url(/assets/Nuvola.jpg)"></div>
+						<div style="background-image: url(/assets/SoftAgioArteCircle.jpg)"></div>
+						<div style="background-image: url(/assets/Enjoy.jpg)"></div>
+						<div style="background-image: url(/assets/Nova.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/divany-trevi'>Trevi</a>
+						<a class='bg' href='/catalog/divany-opera'>Opera</a>
+						<a class='bg' href='/catalog/divany-lucca'>Lucca</a>
+						<a class='bg' href='/catalog/divany-ritmo'>Ritmo</a>
+						<a class='bg' href='/catalog/divany-nuvola'>Nuvola</a>
+						<a class='bg' href='/catalog/kresla'>Кресла</a>
+						<a class='bg' href='/catalog/divany-enjoy'>Enjoy</a>
+						<a class='bg' href='/catalog/divany-nova'>Nova</a>
+					</div>
 				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/matrasy-organic'>Organic</a>
-					<a class='bg' href='/catalog/matrasy-aero'>Aero</a>
-					<a class='bg' href='/catalog/matrasy-2xl'>2XL</a>
-					<a class='bg' href='/catalog/matrasy-active'>Active</a>
-					<a class='bg' href='/catalog/matrasy-italia'>Italia</a>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/matras">Матрасы</a>
+					<div class="background">
+						<div class='active' style="background: url(/assets/SonberryOrganic.jpg)"></div>
+						<div style="background-image: url(/assets/SonberryAero.jpg)"></div>
+						<div style="background-image: url(/assets/Sonberry2XL.jpg)"></div>
+						<div style="background-image: url(/assets/SonberryActive.jpg)"></div> 
+						<div style="background-image: url(/assets/SonberryItalia.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/matrasy-organic'>Organic</a>
+						<a class='bg' href='/catalog/matrasy-aero'>Aero</a>
+						<a class='bg' href='/catalog/matrasy-2xl'>2XL</a>
+						<a class='bg' href='/catalog/matrasy-active'>Active</a>
+						<a class='bg' href='/catalog/matrasy-italia'>Italia</a>
+					</div>
 				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<span>Все товары</span>
-				<div class="all">
-					<div>
+				<div class="dark"></div>
+				<div class="item">
+					<span>Все товары</span>
+					<div class="all">
 						<div>
-							<a href='/catalog/krovati-dlja-spalni'>Кровати</a>
-							<a href='/catalog/shkafy'>Шкафы</a>
-							<a href='/catalog/komody'>Комоды</a>
-							<a href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
-							<a href='/catalog/tumby-pod-tv'>Тумбы TV</a>
-						</div>
-						<div>
-							<a href='/catalog/zerkala'>Зеркала</a>
-							<a href='/catalog/polki'>Полки</a>
-							<a href='/catalog/stoly'>Столы</a>
-							<a href='/catalog/osnovanija'>Основания</a>
-							<a href='/catalog/bufety'>Буфеты</a>
-						</div>
-						<div>
-							<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
-							<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
-							<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
-						</div>
-						<div>
-							<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
-							<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
-							<a href="/catalog/svetilniki">Светильники</a>
+							<div>
+								<a href='/catalog/krovati-dlja-spalni'>Кровати</a>
+								<a href='/catalog/shkafy'>Шкафы</a>
+								<a href='/catalog/komody'>Комоды</a>
+								<a href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
+								<a href='/catalog/tumby-pod-tv'>Тумбы TV</a>
+							</div>
+							<div>
+								<a href='/catalog/zerkala'>Зеркала</a>
+								<a href='/catalog/polki'>Полки</a>
+								<a href='/catalog/stoly'>Столы</a>
+								<a href='/catalog/osnovanija'>Основания</a>
+								<a href='/catalog/bufety'>Буфеты</a>
+							</div>
+							<div>
+								<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
+								<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
+								<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
+							</div>
+							<div>
+								<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
+								<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
+								<a href="/catalog/svetilniki">Светильники</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/stores">Где купить</a>
-				<div class="where-buy">
-					<div>
-						<a href="<%= store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
-						<a href="<%= store2_path %>">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
-						<a class="gray" href="<%= store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
-						<a class="green" href="<%= store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
-						<a class="blue" href="<%= store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение<br>Волоколамского ш. и<br> 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
-						<a class="orange" href="<%= store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
-						<a class="gray" href="<%= store8_path %>">Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18</a>
-						<a class="gray" href="<%= store9_path %>">Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
-						<a class="red" href="/catalog/samples-sale"><span>Распродажа выставочных<br>образцов</span>
-							<img class="red" src="/assets/sale-red.png">
-							<img class="green" src="/assets/sale-green.png">
-						</a>
-					</div>      
+				<div class="dark"></div>
+				<div class="item">
+					<span>Сервис</span>
+					<div class="list submenu">
+						<a href='/service'>Доставка и сборка</a>
+						<a href='/partners'>Партнерам</a>
+						<a href='/articles'>Статьи</a>
+						<a href='/news'>Новости</a>
+						<a href='/insurance'>Гарантии</a>
+						<a href='/otzyvy'>Отзывы</a>
+						<a href='/about'>О нас</a>
+						<a href='/contacts'>Контакты</a>
+					</div>
 				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/cart">Корзина <b id="cartCount"></b></a>
-				<div id="menuCart">
-					<div class="cart-list"></div>
-					<div class="actions">
-						<a onclick="order()" class="squareButton">Оформить заказ</a>
-						<div class="sum">Итого: <b id="price"></b> руб.</div>
+				<div class="dark"></div>
+				<div class="item">
+					<span>Акции</span>
+					<div class="list submenu">
+						<a href='/catalog/samples-sale'>Распродажа</a>
+						<a href='/catalog/sales'>Распродажа 2</a>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/stores">Где купить</a>
+					<div class="where-buy">
+						<div>
+							<a href="<%= store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
+							<a href="<%= store2_path %>">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
+							<a class="gray" href="<%= store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
+							<a class="green" href="<%= store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
+							<a class="blue" href="<%= store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение<br>Волоколамского ш. и<br> 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
+							<a class="orange" href="<%= store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
+							<a class="gray" href="<%= store8_path %>">Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18</a>
+							<a class="gray" href="<%= store9_path %>">Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
+							<a class="red" href="/catalog/samples-sale"><span>Распродажа выставочных<br>образцов</span>
+								<img class="red" src="/assets/sale-red.png">
+								<img class="green" src="/assets/sale-green.png">
+							</a>
+						</div>      
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item cart">
+					<a href="/cart"><img src="/assets/cart-small.png"><b id="cartCounter"></b></a>
+					<div id="menuCart">
+						<div class="cart-list"></div>
+						<div class="actions">
+							<a onclick="order()" class="squareButton">Оформить заказ</a>
+							<div class="sum">Итого: <b id="price"></b> руб.</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -348,60 +396,73 @@
 		    <%= yield %>
 		  </div>
 		</div>
-	</div>
 
-	<nav class="footer">
-	    <ul>
-			<li><%= link_to 'Доставка и сборка', service_path %></li>
-			<li><%= link_to 'Партнерам', partners_path %></li>
-			<li><%= link_to 'Новости', news_path %></li>
-			<li><%= link_to 'Статьи', articles_path %></li>
-			<li><%= link_to 'Гарантии', insurance_path %></li>
-			<li><%= link_to 'Отзывы', otzyvy_path %></li>
-			<li><%= link_to 'О нас', about_path %></li>
-			<li><%= link_to 'Контакты', contacts_path %></li>
-			<li><%= link_to 'Вакансии', vacancy_path %></li>
-			<li><a href="/sitemap">Карта сайта</a></li>
-	    </ul>
-	    <div class="appear">
-	    	<div>
-				<img src="/assets/footerlogo.png">
-				<div class="addresses">
-					<p>Наши адреса:</p>
-					<p>МЦ «Мебель PARK» г.Москва, Киевское шоссе, Строение 1, 3 вход, 3 этаж +7-499-940-12-29<br>
-					МЦ «Family Room» г.Москва, Киевское шоссе, Строние 1, 5 вход, 2 этаж +7-499-940-12-29<br>
-					МЦ «Армада» г.Москва, ул. Кировоградская, д. 11/1, 2 этаж +7-495-665-11-52<br>
-					МЦ «Roomer» г.Москва, ул. Ленинская Слобода, д. 26, 2 этаж +7-499-426-46-06<br>
-					ТЦ «Твой Дом - Крокус» г.Москва, 65-66 км МКАД, 2 этаж +7-499-340-09-08<br>
-					МЦ «Империя» г.Москва, Дмитровское шоссе д. 159, 3 этаж +7-499-899-07-09<br>
-					МЦ «Вагант» г.Подольск, ул. Стационарная, д.11, 1 этаж +7-499-400-58-18<br>
-					ТРК «Красный Кит» г.Мытищи, Шараповский проезд, вл. 2, 1 этаж +7-499-347-09-09</p>
+		<nav class="footer">
+			<ul>
+				<li><%= link_to 'Доставка и сборка', service_path %></li>
+				<li><%= link_to 'Партнерам', partners_path %></li>
+				<li><%= link_to 'Новости', news_path %></li>
+				<li><%= link_to 'Статьи', articles_path %></li>
+				<li><%= link_to 'Гарантии', insurance_path %></li>
+				<li><%= link_to 'Отзывы', otzyvy_path %></li>
+				<li><%= link_to 'О нас', about_path %></li>
+				<li><%= link_to 'Контакты', contacts_path %></li>
+				<li><%= link_to 'Вакансии', vacancy_path %></li>
+				<li><a href="/sitemap">Карта сайта</a></li>
+			</ul>
+			<div class="content">
+				<div class="left">
+					<div class="title">Интернет-магазин европейской мебели:</div>
+					<img src="/assets/footer/logo.png">
+					<p>Parra-shop.ru - крупнейший дилер европейской<br>мебели из натурального шпона</p>
+					<a href="/catalog/samples-sale">Распродажа</a>
 				</div>
-				<div class="bottom-row">
-					<div class="credit">
-						<p>Предоставление кредита</p>
-						<a href="/credits"><img src="/assets/CreditEuropBank.png"></a>
-						<a href="/credits"><img src="/assets/HomeCredit.png"></a>
-					</div>
-					<div class="join">
-						<p>Присоединяйтесь</p>
-						<a href="https://www.instagram.com/parra_shop/"><img src="/assets/instagram-new.png"></a>
-						<a href="https://vk.com/parrashop"><img src="/assets/vk.png"></a>
-						<a href="https://www.facebook.com/parrashops/"><img src="/assets/fb.png"></a>
-					</div>
-					<div class="app">
-						<p>Наше приложение доступно</p>
-						<a href="https://itunes.apple.com/ru/app/parra-shop/id1137471924?mt=8"><img src="/assets/AppStorebuttonParra-Shop.png"></a>
+				<div class="center">
+					<div class="title">Покупателям:</div>
+					<div class="borders">
+						<a href="#">Карта лояльности</a>
+						<a href="#">Оформление кредита</a>
+						<div class="credit">
+							<a href="/credits"><img src="/assets/footer/credit1.png"></a>
+							<a href="/credits"><img src="/assets/footer/credit2.png"></a>
+						</div>
+						<div class="title">Присоединяйтесь:</div>
+						<div class="social">
+							<a href="https://vk.com/parrashop"><img src="/assets/footer/vk.png"></a>
+							<a href="https://www.facebook.com/parrashops/"><img src="/assets/footer/fb.png"></a>
+							<a href="https://www.instagram.com/parra_shop/"><img src="/assets/footer/ig.png"></a>
+						</div>
+						<div class="title">Наше приложение:</div>
+						<a href="https://itunes.apple.com/ru/app/parra-shop/id1137471924?mt=8">
+							<img src="/assets/AppStorebuttonParra-Shop.png">
+						</a>
 					</div>
 				</div>
-				<div class="copy">Copyright @ 2011-2016 - Интернет магазин мебели «Parra-Shop»</div>
-				<a href="/catalog/samples-sale" class="sale">
-					<img class="red" src="/assets/sale-red.png">
-					<img class="green" src="/assets/sale-green.png">
-				</a>
+				<div class="right">
+					<div class="title">Адреса салонов:</div>
+					<div class="addresses">
+						МЦ «Мебель PARK»<br>
+						г.Москва, Киевское шоссе, Строение 1, 3 вход, 3 этаж +7-499-940-12-29<br>
+						МЦ «Family Room»<br>
+						г.Москва, Киевское шоссе, Строние 1, 5 вход, 2 этаж +7-499-940-12-29<br>
+						МЦ «Армада»<br>
+						г.Москва, ул. Кировоградская, д. 11/1, 2 этаж +7-495-665-11-52<br>
+						МЦ «Roomer»<br>
+						г.Москва, ул. Ленинская Слобода, д. 26, 2 этаж +7-499-426-46-06<br>
+						ТЦ «Твой Дом - Крокус»<br>
+						г.Москва, 65-66 км МКАД, 2 этаж +7-499-340-09-08<br>
+						МЦ «Империя»<br>
+						г.Москва, Дмитровское шоссе д. 159, 3 этаж +7-499-899-07-09<br>
+						МЦ «Вагант»<br>
+						г.Подольск, ул. Стационарная, д.11, 1 этаж +7-499-400-58-18<br>
+						ТРК «Красный Кит»<br>
+						г.Мытищи, Шараповский проезд, вл. 2, 1 этаж +7-499-347-09-09
+					</div>
+				</div>
 			</div>
-		</div>
-	</nav>
+			<div class="copy">Copyright @ 2011-2016 - Интернет магазин мебели «Parra-Shop»</div>
+		</nav>
+	</div>
 
 	<div id="orderWindow">
 	  <div onclick="this.parentNode.style.display = 'none'"></div>
