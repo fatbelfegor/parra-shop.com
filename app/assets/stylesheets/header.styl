@@ -391,8 +391,8 @@
 #compactMenuToggle
 	position relative
 	float left
-	height 88px
-	width 88px
+	height 99px
+	width 99px
 	border-right 1px solid #aaa
 	line-height 30px
 	font-size 16px
@@ -412,13 +412,13 @@
 	.lines
 		position relative
 		z-index 1
-		width 40px
+		width 50px
 		height 30px
-		margin 27px 22px
+		margin 30px 24px
 		div
-			height 4px
+			height 6px
 			background-color white
-			margin-bottom 9px
+			margin-bottom 11px
 			border-radius(2px)
 		transition(.3s)
 		
@@ -432,10 +432,10 @@
 	background-color white
 	position fixed
 	z-index 100
-	top 89px
+	top 100px
 	left 0
 	right 0
-	max-height 50%
+	max-height 60%
 	overflow auto
 	li
 		cursor pointer
@@ -580,10 +580,13 @@
 			> a, > span
 				font-size 12px
 				padding 0 8px
-@media(min-width 950px)
+@media(max-width 950px)
 	#header
+		.logo
+			left 53px
 		.menu
-			display block
+			display none
+@media(min-width 950px)
 	#mainMenuCompact, #compactMenuToggle
 		display none !important
 @media(max-width 978px)
@@ -597,7 +600,7 @@
 				display block
 		.search
 			margin-right 0
-			margin-top 5px
+			margin-top 18px
 		.phone
 			float none
 			margin-top 0
@@ -605,21 +608,5 @@
 				float none
 				display inline
 @media(max-width 540px)
-	#header
-		.logo
-			text-align center
-			position static
-			float none
-			margin-left 0
-			img
-				display inline
-		.right
-			text-align center
-			padding-top 20px
-			padding-bottom 20px
-		.search
-			margin-top 15px
-	#blur > .main
-		position static
-	.footer
-		position static !important
+	#header .logo img
+		height 80px
