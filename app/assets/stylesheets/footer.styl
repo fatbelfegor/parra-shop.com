@@ -10,31 +10,32 @@
 		font-family PT Sans
 	ul
 		font-weight bold
+		padding 13px 0
 		li
 			margin 0 15px
 			display inline-block
 			a
 				margin 0
-				height 60px
-				line-height 60px
+				height 34px
+				line-height 34px
 				display block
 				white-space nowrap
 				position relative
 				text-transform uppercase
-	.content
-		font-size 14px
-		line-height 18px
+	.table
 		width 100%
 		display table
-		padding-top 15px
 		> div
 			display table-cell
 			vertical-align top
-			width 33.3%
+	.content
+		font-size 14px
+		line-height 18px
+		padding-top 15px
 		.title
 			text-transform uppercase
 		.left
-			padding-left 50px
+			padding 0 20px 0 50px
 			text-align left
 			p
 				margin 10px 0 72px
@@ -58,6 +59,7 @@
 		.center
 			text-align center
 			.borders
+				padding 0 20px
 				border 1px solid #626262
 				border-width 0 1px
 				margin-top 11px
@@ -82,12 +84,52 @@
 					img
 						width 33px
 		.right
+			width 40%
 			padding-right 50px
 			text-align right
 			.addresses
 				line-height 17px
 				margin-top 15px
+				padding-left 20px
 	.copy
 		height 48px
 		line-height 70px
 		font-size 12px
+		
+	@media (max-width 850px)
+		.content
+			display block
+		.content
+			.left-and-center
+				width auto
+				display block
+				padding-right 50px
+			.center
+				.borders
+					padding-right 0
+					border-right 0
+			.right
+				width auto
+				text-align left
+				display block
+				padding-top 30px
+				padding-left 50px
+				.addresses
+					padding-left 0
+					
+	@media (max-width 500px)
+		.content
+			.left-and-center > .table > div
+				display block
+				width auto
+			.left, .center
+				padding 0 50px
+			.left
+				padding-bottom 30px
+				p
+					margin 10px 0 20px
+			.center
+				text-align left
+				.borders
+					padding 0
+					border-left 0
