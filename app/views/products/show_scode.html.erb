@@ -338,5 +338,14 @@ price = to_money @product.price %>
 <link rel="stylesheet" type="text/css" href="/assets/slick.min.css">
 <script type="text/javascript" src="/assets/slick.min.js"></script>
 <script type="text/javascript">
-	$('.mini').slick({slidesToShow:3,slidesToScroll:3});
+var w = document.body.offsetWidth;
+var slides;
+if (w > 505) {
+	slides = 3
+} else if (w > 360) {
+	slides = 2
+} else {
+	slides = 1
+}
+$('.mini').slick({slidesToShow:slides,slidesToScroll:slides});
 </script>
