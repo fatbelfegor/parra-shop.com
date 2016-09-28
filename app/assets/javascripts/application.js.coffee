@@ -474,15 +474,12 @@ expire = ->
 		left.attr 'class', 'left'
 		left.attr 'onclick', 'photoLeft(this)'
 @choosePhoto = (el) ->
-	el = $ el
-	wrap = el.parent()
-	wrap.find('.active').removeClass 'active'
-	photoes = wrap.parent().prev()
-	url = el.attr('style').split("(")[1].split(")")[0]
-	photoes.find('.active').removeClass 'active'
-	if url[0] is "'" or url[0] is '"'
-		photoes.find("[href='#{url[1..-2]}']").addClass 'active'
-	else photoes.find("[href='#{url}']").addClass 'active'
+	el.parentNode.parentNode.getElementsByClassName('active')[0].className = ''
+	el.className = 'active'
+	photoes = document.getElementsByClassName('photoes')[0]
+	url = el.getAttribute('src')
+	photoes.getElementsByClassName('active')[0].className = ''
+	photoes.querySelector("[href='" + url + "']").className = 'active'
 @productMiniPrev = (el) ->
 	wrap = $(el).next()
 	slides = wrap.find 'div'
