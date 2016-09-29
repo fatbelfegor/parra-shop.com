@@ -1,6 +1,7 @@
 class SubcategoriesController < ApplicationController
 	before_filter :admin_required
 	before_action :set_category, only: [:edit, :update, :destroy]
+	layout 'admin'
 
 	def new
 		@subcategory = Category.find(params[:id]).subcategories.new

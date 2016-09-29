@@ -4,6 +4,7 @@
 class BannersController < ApplicationController
   before_filter :admin_required
   before_action :set_banner, only: [:edit, :update, :destroy]
+  layout 'admin'
 
   def index
     @banners = Banner.all

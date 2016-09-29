@@ -171,10 +171,10 @@ ParraShopCom::Application.routes.draw do
 
   get 'admin/ordergen/:id/*anything', to: 'admin/orders#xlsx'
 
-  match 'admin/packinglist', to: 'admin/packinglist#index', via: [:get, :post]
-  post 'admin/packinglist/create', to: 'admin/packinglist#create'
-  post 'admin/packinglist/update', to: 'admin/packinglist#update'
-  match 'admin/packinglist/:id', to: 'admin/packinglist#show', via: [:get, :post]
+  # match 'admin/packinglist', to: 'admin/packinglist#index', via: [:get, :post]
+  # post 'admin/packinglist/create', to: 'admin/packinglist#create'
+  # post 'admin/packinglist/update', to: 'admin/packinglist#update'
+  # match 'admin/packinglist/:id', to: 'admin/packinglist#show', via: [:get, :post]
 
   get '*anything', to: 'main#not_found'
 end

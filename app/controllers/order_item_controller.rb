@@ -1,5 +1,6 @@
 class OrderItemController < ApplicationController
 	before_filter :manager_required
+  layout 'admin'
 
   def plus
   	item = OrderItem.find(params[:id])

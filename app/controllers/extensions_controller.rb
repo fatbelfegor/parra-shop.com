@@ -1,5 +1,7 @@
 class ExtensionsController < ApplicationController
+  before_filter :admin_required, except: [:public_create]
   before_action :set_extension, only: [:edit, :update, :destroy]
+  layout 'admin'
   def index
     @extensions = Extension.all
   end

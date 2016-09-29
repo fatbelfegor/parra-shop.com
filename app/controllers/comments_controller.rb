@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :admin_required, except: [:public_create]
   before_action :set_comment, only: [:show, :publish, :edit, :update, :destroy]
+  layout 'admin'
   
   def index
     @comments = Comment.order created_at: :desc

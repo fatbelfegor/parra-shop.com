@@ -5,6 +5,7 @@ require 'json'
 
 class OrdersController < ApplicationController
   before_filter :manager_required, except: :create
+  layout 'admin'
 
     def index
         if params[:status].present?

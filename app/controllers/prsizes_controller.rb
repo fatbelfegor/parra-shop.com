@@ -1,5 +1,7 @@
 class PrsizesController < ApplicationController
   before_filter :admin_required
+  layout 'admin'
+  
 	def new
 		@prsize = Prsize.new product_id: params[:id]
 		@products = Product.all

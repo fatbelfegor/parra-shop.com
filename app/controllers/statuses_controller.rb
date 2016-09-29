@@ -1,6 +1,8 @@
 class StatusesController < ApplicationController
 	before_filter :admin_required
 	before_action :set_status, only: [:edit, :update, :destroy]
+  	layout 'admin'
+  	
 	def index
 		@statuses = Status.all
 	end

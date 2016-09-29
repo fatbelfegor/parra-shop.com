@@ -98,6 +98,7 @@ class ProductsController < ApplicationController
     elsif params[:category_id]
       @product.category = Category.find(params[:category_id])
     end
+    render layout: "admin"
   end
   
   # GET /products/1/edit
@@ -105,6 +106,7 @@ class ProductsController < ApplicationController
     session[:proption] = nil
     session[:prsize] = nil
     session[:color] = nil
+    render layout: "admin"
   end
   
   # POST /products

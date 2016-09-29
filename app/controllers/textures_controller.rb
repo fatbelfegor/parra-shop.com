@@ -1,5 +1,7 @@
 class TexturesController < ApplicationController
 	before_filter :admin_required
+	layout 'admin'
+	
 	def edit
 	    @texture = Texture.find(params[:id])
 	end

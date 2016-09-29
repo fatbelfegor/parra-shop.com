@@ -3,6 +3,8 @@
 
 class PrcolorsController < ApplicationController
   before_filter :admin_required
+  layout 'admin'
+  
 	def new
 		@prcolor = Prsize.find(params[:id]).prcolors.new
     @prsizes = Prsize.all
