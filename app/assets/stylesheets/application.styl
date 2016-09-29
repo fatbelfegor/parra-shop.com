@@ -19,10 +19,10 @@
 @import url(http://fonts.googleapis.com/css?family=Exo+2);
 
 *
-  font-family: Verdana;
-  font-style: normal;
-  padding: 0;
-  margin: 0;
+  font-family Verdana
+  font-style normal
+  padding 0
+  margin 0
 
 html, body
   height 100%
@@ -34,7 +34,6 @@ a
   &.cart
     float right
     text-transform none
-    line-height auto
     margin-top 10px
 
 li
@@ -59,7 +58,7 @@ li
   display block !important
   font-size 16px
   color #444
-  margin 30px 80px 20px
+  margin 30px 0 20px
   text-align left
   img
     width auto !important
@@ -353,9 +352,6 @@ h2
       width 265px
     & > :nth-child(3)
       width 160px
-    .right
-      left 5px
-      border-width 7px 0 7px 7px
     .invis
       border-color transparent #aaa transparent #aaa !important
     & > :last-child
@@ -389,6 +385,9 @@ h2
   -o-transition 0.3s
   transition 0.3s
   left -5px
+#cart > div .right
+  left 5px
+  border-width 7px 0 7px 7px
 
 #cart > div .left:hover, #cart > div .right:hover
   border-color transparent black transparent black
@@ -1331,3 +1330,78 @@ th
 @media (max-width 650px)
   .page
     padding 30px 20px
+    
+.radio, .checkbox
+  display block
+  min-height 20px
+  margin-top 10px
+  margin-bottom 10px
+  padding-left 20px
+  
+.row
+  margin-left -15px
+  margin-right -15px
+  &:before, &:after
+    content " "
+    display table
+    clear both
+    
+.form-control
+  display block
+  width 100%
+  height 34px
+  padding 6px 12px
+  font-size 14px
+  line-height 1.42857143
+  color #555
+  background-color #fff
+  background-image none
+  border 1px solid #ccc
+  border-radius 4px
+  -webkit-box-shadow inset 0 1px 1px rgba(0,0,0,.075)
+  box-shadow inset 0 1px 1px rgba(0,0,0,.075)
+  -webkit-transition border-color ease-in-out .15s,box-shadow ease-in-out .15s
+  transition border-color ease-in-out .15s,box-shadow ease-in-out .15s
+  &:focus
+    border-color #66afe9
+    outline 0
+    -webkit-box-shadow inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
+    box-shadow inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
+
+input[type=checkbox]
+  float left
+  margin-left -20px
+  margin 4px 0 0
+  line-height normal
+  
+.btn
+  display inline-block
+  margin-bottom 0
+  font-weight 400
+  text-align center
+  vertical-align middle
+  cursor pointer
+  background-image none
+  border 1px solid transparent
+  white-space nowrap
+  padding 6px 12px
+  font-size 14px
+  line-height 1.42857143
+  border-radius 4px
+  -webkit-user-select none
+  -moz-user-select none
+  -ms-user-select none
+  user-select none
+  &:hover, &:focus
+    color #333
+    text-decoration none
+    outline 0
+
+.btn-success
+    color #fff
+    background-color #5cb85c
+    border-color #4cae4c
+    &:hover, &:focus
+      color #fff
+      background-color #47a447
+      border-color #398439

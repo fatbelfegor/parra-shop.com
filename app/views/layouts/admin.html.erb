@@ -1,53 +1,603 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin</title>
-  <%= stylesheet_link_tag    'admin/admin', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'admin/app' %>
+  <title><%= @title || 'ParraShop' %></title>
+  <link rel="stylesheet" type="text/css" href="/assets/application.css">
+  <link rel="stylesheet" type="text/css" href="/assets/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/assets/bootstrap-theme.min.css">
+  <script type="text/javascript" src="/assets/application.js"></script>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <meta name='yandex-verification' content='71b0b0e4d3dc8dea' />
+  <meta name="google-site-verification" content="d6eytedd3mMRmKQgOn2QrqUEAbGD2YFpJXEGYdwGod0" />
+  <meta name="description" content="<%= @seo_description || '' %>">
+  <meta name="keywords" content="<%= @seo_keywords || '' %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="/lightbox/lightbox.min.js"></script>
+  <meta name="google-site-verification" content="NaCp35GyHYEQtVS2CqwBau-RgsczZ-lz0Cm8n8GMmF4" />
+  <meta name="viewport" content="width = 500">
+  <style type="text/css">
+  	#adminWrap {
+  		padding: 0 50px;
+  	}
+  	.table .table {
+  		background: none;
+  	}
+  </style>
 </head>
-<body id="admin">
-<ul id="menu"></ul>
-<div id="dark">
-	<p class="bg" onclick="dark.close()"></p>
-	<div class="ask">
-		<div class="title">Подтвердите действие</div>
-		<div class="text">
-			<p></p>
-		</div>
-		<div class="buttons">
-			<div class="btn white" onclick="dark.close()">Отменить</div>
-			<div class="btn red">Удалить</div>
-		</div>
-	</div>
-	<div class="images">
-		<div class="nav-tabs">
-			<p>Библиотека</p>
-			<p class="active">Загрузить</p>
-			<p>Ссылка</p>
-		</div>
-		<div class="tabs">
-			<div class="active">
-				<div class="file">
-					<label>
-						<div class="btn blue"><i class='icon-folder'></i><span>Открыть</span></div>
-						<input onchange="image.fileUpload(this)" type="file" multiple>
-					</label>
-					<div class="btn green hidden" onclick="image.loadAll(this)"><i class='icon-upload'></i><span>Загрузить все</span></div>
-					<div class="btn blue hidden" onclick="image.checkAll(this)"><i class="icon-checkbox-unchecked"></i><span>Отметить все</span></div>
-					<div class="btn purple hidden" onclick="image.returnAll(this)"><i class="icon-checkmark4"></i><span>Выбрать отмеченные</span></div>
+<body class='<%= controller.controller_name %>'>
+<div id="blur">
+	<div id="header">
+		<div class="wrap">
+			<div id="compactMenuToggle" onclick="compactMenu()">
+				<div class="back"></div>
+				<div class="lines">
+					<div></div>
+					<div></div>
+					<div></div>
 				</div>
-				<div class="image-preview"></div>
+			</div>
+			<a href="/" class="logo">
+				<img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной">
+			</a>
+			<div class="right">
+				<div class="phone">
+				  <p>8-800-707-67-57</p>
+				  <ins>Бесплатные звонки по России</ins>
+				</div>
+				<div class="search">
+					<form action="/catalog/index">
+						<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
+						<input type="submit" value="Поиск"/>
+					</form>
+				</div>
+			</div>
+			<div class="menu">
+				<div class="item">
+					<a href="/modulnaja-mebel-dlja-spalni">Спальни</a>
+					<div class="background">
+						<div class="active" style="background-image: url(/assets/Nocce.jpg)"></div>
+						<div style="background-image: url(/assets/GammaNew.jpg)"></div>
+						<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
+						<div style="background-image: url(/assets/Bella.jpg)"></div>
+						<div style="background-image: url(/assets/Plisset.jpg)"></div>
+						<div style="background-image: url(/assets/Orly.jpg)"></div>
+						<div style="background-image: url(/assets/RitmikaSale.jpg)"></div>
+						<div style="background-image: url(/assets/Lorra.jpg)"></div>
+						<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
+						<div style="background-image: url(/assets/Miro.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/spalni-nocce'>Nocce</a>
+						<a class='bg' href='/catalog/spalni-gamma'>Gamma</a>
+						<a class='bg' href='/catalog/spalni-liona'>Lyona</a>
+						<a class='bg' href='/catalog/spalni-bella-oreh'>Bella</a>
+						<a class='bg' href='/catalog/spalni-plisset'>Plisset</a>
+						<a class='bg' href='/catalog/spalni-orly-oreh'>Orly</a>
+						<a class='bg' href='/catalog/spalni-ritmika-oreh'>Ritmika</a>
+						<a class='bg' href='/catalog/spalni-lorra'>Lorra</a>
+						<a class='bg' href='/catalog/spalni-leggero-oreh'>Leggero</a>
+						<a class='bg' href='/catalog/spalni-miro'>Miro</a>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/modulnaja-mebel-dlja-gostinoj">Гостиные</a>
+					<div class="background">
+						<div class="active" style="background-image: url(/assets/NocceGost.jpg)"></div>
+						<div style="background-image: url(/assets/NizzaGostNew.jpg)"></div>
+						<div style="background-image: url(/assets/OrlyGost.jpg)"></div>
+						<div style="background-image: url(/assets/Stella.jpg)"></div>
+						<div style="background-image: url(/assets/NorteNew.jpg)"></div>
+						<div style="background-image: url(/assets/BellaGost.jpg)"></div>
+						<div style="background-image: url(/assets/Verro.jpg)"></div>
+						<div style="background-image: url(/assets/Style.jpg)"></div>
+						<div style="background-image: url(/assets/Joy.jpg)"></div>
+						<div style="background-image: url(/assets/Azzon.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/gostinye-nocce'>Nocce</a>
+						<a class='bg' href='/catalog/gostinye-nizza'>Nizza</a>
+						<a class='bg' href='/catalog/gostinnye-orly'>Orly</a>
+						<a class='bg' href='/catalog/gostinnye-stella'>Stella</a>
+						<a class='bg' href='/catalog/gostinye-norte'>Norte</a>
+						<a class='bg' href='/catalog/gostinnye-bella'>Bella</a>
+						<a class='bg' href='/catalog/gostinnye-verro'>Verro</a>
+						<a class='bg' href='/catalog/gostinnye-style-choco-new'>Style</a>
+						<a class='bg' href='/catalog/gostinnye-joy'>Joy</a>
+						<a class='bg' href='/catalog/gostinye-azzon'>Azzon</a>
+					</div>
+				</div>
+				<div class="item">
+					<a href="/prihozhie">Прихожие</a>
+					<div class="background">
+						<div class="active" style="background-image: url(/assets/BellaPrih.jpg)"></div>
+						<div style="background-image: url(/assets/StylePrih.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/prihozhie-bella'>Bella</a>
+						<a class='bg' href='/catalog/prihozhie-style'>Style</a>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/divani">Обеденные группы</a>
+					<div class="background">
+						<div class="active" style="background: url(/assets/categories/tables.jpg)"></div>
+						<div style="background-image: url(/assets/categories/chairs.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/obedennye-stoly'>Столы</a>
+						<a class='bg' href='/catalog/obedennye-stoly'>Стулья</a>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/divani">Диваны</a>
+					<div class="background">
+						<div class="active" style="background: url(/assets/Trevi.jpg)"></div>
+						<div style="background-image: url(/assets/Opera.jpg)"></div>
+						<div style="background-image: url(/assets/Lucca.jpg)"></div>
+						<div style="background-image: url(/assets/Ritmo.jpg)"></div>
+						<div style="background-image: url(/assets/Nuvola.jpg)"></div>
+						<div style="background-image: url(/assets/SoftAgioArteCircle.jpg)"></div>
+						<div style="background-image: url(/assets/Enjoy.jpg)"></div>
+						<div style="background-image: url(/assets/Nova.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/divany-trevi'>Trevi</a>
+						<a class='bg' href='/catalog/divany-opera'>Opera</a>
+						<a class='bg' href='/catalog/divany-lucca'>Lucca</a>
+						<a class='bg' href='/catalog/divany-ritmo'>Ritmo</a>
+						<a class='bg' href='/catalog/divany-nuvola'>Nuvola</a>
+						<a class='bg' href='/catalog/kresla'>Кресла</a>
+						<a class='bg' href='/catalog/divany-enjoy'>Enjoy</a>
+						<a class='bg' href='/catalog/divany-nova'>Nova</a>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/matras">Матрасы</a>
+					<div class="background">
+						<div class='active' style="background: url(/assets/SonberryOrganic.jpg)"></div>
+						<div style="background-image: url(/assets/SonberryAero.jpg)"></div>
+						<div style="background-image: url(/assets/Sonberry2XL.jpg)"></div>
+						<div style="background-image: url(/assets/SonberryActive.jpg)"></div> 
+						<div style="background-image: url(/assets/SonberryItalia.jpg)"></div>
+					</div>
+					<div class="list">
+						<a class='bg' href='/catalog/matrasy-organic'>Organic</a>
+						<a class='bg' href='/catalog/matrasy-aero'>Aero</a>
+						<a class='bg' href='/catalog/matrasy-2xl'>2XL</a>
+						<a class='bg' href='/catalog/matrasy-active'>Active</a>
+						<a class='bg' href='/catalog/matrasy-italia'>Italia</a>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<span>Все товары</span>
+					<div class="all">
+						<div>
+							<div>
+								<a href='/catalog/krovati-dlja-spalni'>Кровати</a>
+								<a href='/catalog/shkafy'>Шкафы</a>
+								<a href='/catalog/komody'>Комоды</a>
+								<a href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
+								<a href='/catalog/tumby-pod-tv'>Тумбы TV</a>
+							</div>
+							<div>
+								<a href='/catalog/zerkala'>Зеркала</a>
+								<a href='/catalog/polki'>Полки</a>
+								<a href='/catalog/stoly'>Столы</a>
+								<a href='/catalog/osnovanija'>Основания</a>
+								<a href='/catalog/bufety'>Буфеты</a>
+							</div>
+							<div>
+								<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
+								<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
+								<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
+							</div>
+							<div>
+								<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
+								<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
+								<a href="/catalog/svetilniki">Светильники</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<span>Сервис</span>
+					<div class="list submenu">
+						<a href='/service'>Доставка и сборка</a>
+						<a href='/partners'>Партнерам</a>
+						<a href='/articles'>Статьи</a>
+						<a href='/news'>Новости</a>
+						<a href='/insurance'>Гарантии</a>
+						<a href='/otzyvy'>Отзывы</a>
+						<a href='/about'>О нас</a>
+						<a href='/contacts'>Контакты</a>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<span>Акции</span>
+					<div class="list submenu">
+						<a href='/catalog/samples-sale'>Распродажа</a>
+						<a href='/catalog/sales'>Распродажа 2</a>
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item">
+					<a href="/stores">Где купить</a>
+					<div class="where-buy">
+						<div>
+							<a href="<%= store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
+							<a href="<%= store2_path %>">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
+							<a class="gray" href="<%= store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
+							<a class="green" href="<%= store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
+							<a class="blue" href="<%= store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение<br>Волоколамского ш. и<br> 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
+							<a class="orange" href="<%= store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
+							<a class="gray" href="<%= store8_path %>">Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18</a>
+							<a class="gray" href="<%= store9_path %>">Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
+							<a class="red" href="/catalog/samples-sale"><span>Распродажа выставочных<br>образцов</span>
+								<img class="red" src="/assets/sale-red.png">
+								<img class="green" src="/assets/sale-green.png">
+							</a>
+						</div>      
+					</div>
+				</div>
+				<div class="dark"></div>
+				<div class="item cart">
+					<a href="/cart"><img src="/assets/cart-small.png"><b id="cartCounter"></b></a>
+					<div id="menuCart">
+						<div class="cart-list"></div>
+						<div class="actions">
+							<a onclick="order()" class="squareButton">Оформить заказ</a>
+							<div class="sum">Итого: <b id="price"></b> руб.</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div id="main">
-	<div id="notify"></div>
-	<div id="yield">
-		<%= yield %>
+	<% if user_signed_in? %>
+	<div class="admin-nav">
+		<div>Действия</div>
+		<ul>
+			<% p current_user %>
+			<% if current_user.admin? %>
+			<li><a href="/categories">Список категорий</a></li>
+			<li><a href="/users">Пользователи</a></li>
+			<li><a href="/banners">Баннеры</a></li>
+			<% end
+			if current_user.manager or current_user.admin? %>
+			<li><a href="/orders">Заказы</a></li>
+			<% end %>
+			<li><a href="/admin/packinglist">Импорт товарных накладных</a></li>
+			<li><a href="/extensions">Статусы товаров</a></li>
+			<li><a href="/comments">Отзывы</a></li>
+			<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
+		</ul>
 	</div>
-	<div data-params="<%= @data %>"></div>
+	<% end %>
+	<div class="main">
+		<div id="content-wrap">
+			<ul id="mainMenuCompact">
+		  		<li onclick="miniCatOpen(this)">Спальни<p></p>
+					<div>
+						<a href="/catalog/spalni-nocce"><img src="/assets/Nocce.jpg"></a>
+						<a href="/catalog/spalni-gamma"><img src="/assets/GammaNew.jpg"></a>
+						<a href="/catalog/spalni-liona"><img src="/assets/LyonaNew.jpg"></a>
+						<a href="/catalog/spalni-bella-oreh"><img src="/assets/Bella.jpg"></a>
+						<a href="/catalog/spalni-plisset"><img src="/assets/Plisset.jpg"></a>
+						<a href="/catalog/spalni-orly-oreh"><img src="/assets/Orly.jpg"></a>
+						<a href="/catalog/spalni-ritmika-oreh"><img src="/assets/RitmikaSale.jpg"></a>
+						<a href="/catalog/spalni-lorra"><img src="/assets/Lorra.jpg"></a>
+						<a href="/catalog/spalni-leggero-oreh"><img src="/assets/LeggeroSale.jpg"></a>
+						<a href="/catalog/spalni-miro"><img src="/assets/Miro.jpg"></a>
+					</div>
+		  		</li>
+		  		<li onclick="miniCatOpen(this)">Гостиные<p></p>
+		  			<div>
+						<a href="/catalog/gostinye-nocce"><img src="/assets/NocceGost.jpg"></a>
+						<a href="/catalog/gostinye-nizza"><img src="/assets/NizzaGostNew.jpg"></a>
+						<a href="/catalog/gostinnye-orly"><img src="/assets/OrlyGost.jpg"></a>
+						<a href="/catalog/gostinnye-stella"><img src="/assets/Stella.jpg"></a>
+						<a href="/catalog/gostinye-norte"><img src="/assets/NorteNew.jpg"></a>
+						<a href="/catalog/gostinnye-bella"><img src="/assets/BellaGost.jpg"></a>
+						<a href="/catalog/gostinnye-verro"><img src="/assets/Verro.jpg"></a>
+						<a href="/catalog/gostinnye-style-choco-new"><img src="/assets/Style.jpg"></a>
+						<a href="/catalog/gostinnye-joy"><img src="/assets/Joy.jpg"></a>
+						<a href="/catalog/gostinye-azzon"><img src="/assets/Azzon.jpg"></a>
+					</div>
+		  		</li>
+		  		<li onclick="miniCatOpen(this)">Прихожие<p></p>
+		  			<div>
+						<a href="/catalog/prihozhie-bella"><img src="/assets/BellaPrih.jpg"></a>
+						<a href="/catalog/prihozhie-style"><img src="/assets/StylePrih.jpg"></a>
+					</div>
+				</li>
+		  		<li onclick="miniCatOpen(this)">Диваны<p></p>
+		  			<div>
+						<a href="/catalog/divany-trevi"><img src="/assets/Trevi.jpg"></a>
+						<a href="/catalog/divany-opera"><img src="/assets/Opera.jpg"></a>
+						<a href="/catalog/divany-lucca"><img src="/assets/Lucca.jpg"></a>
+						<a href="/catalog/divany-ritmo"><img src="/assets/Ritmo.jpg"></a>
+						<a href="/catalog/divany-nuvola"><img src="/assets/Nuvola.jpg"></a>
+						<a href="/catalog/kresla"><img src="/assets/SoftAgioArteCircle.jpg"></a>
+						<a href="/catalog/divany-enjoy"><img src="/assets/Enjoy.jpg"></a>
+						<a href="/catalog/divany-nova"><img src="/assets/Nova.jpg"></a>
+					</div>
+		  		</li>
+		  		<li onclick="miniCatOpen(this)">Матрасы<p></p>
+		  			<div>
+						<a href="/catalog/matrasy-organic"><img src="/assets/SonberryOrganic.jpg"></a>
+						<a href="/catalog/matrasy-aero"><img src="/assets/SonberryAero.jpg"></a>
+						<a href="/catalog/matrasy-2xl"><img src="/assets/Sonberry2XL.jpg"></a>
+						<a href="/catalog/matrasy-active"><img src="/assets/SonberryActive.jpg"></a>
+						<a href="/catalog/matrasy-italia"><img src="/assets/SonberryItalia.jpg"></a>
+					</div>
+		  		</li>
+		  		<li class="allProducts" onclick="$(this).toggleClass('open')">Все товары<p></p>
+		  			<div>
+		  				<a href="/catalog/krovati-dlja-spalni">Кровати</a>
+		  				<a href="/catalog/shkafy">Шкафы</a>
+		  				<a href="/catalog/komody">Комоды</a>
+		  				<a href="/catalog/tumby-dlja-spalni">Тумбочки</a>
+						<a href="/catalog/tumby-pod-tv">Тумбы под TV</a>
+		  				<a href="/catalog/zerkala">Зеркала</a>
+		  				<a href="/catalog/polki">Полки</a>
+		  				<a href="/catalog/stoly">Столы</a>
+		  				<a href="/catalog/osnovanija">Основания</a>
+						<a href="/catalog/bufety">Буфеты</a>
+						<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
+						<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
+						<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
+						<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
+						<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
+						<a href="/catalog/svetilniki">Светильники</a>
+		  			</div>
+		  		</li>
+		  		<li class="whereCanBuy" onclick="$(this).toggleClass('open')">Где купить<p></p>
+		  			<div>
+						<a href="<%= url_for store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
+						<a href="<%= url_for store2_path %>">Мебель PARRA<br>МЦ "Family Room"<br>Киевское шоссе,<br>Строение 1, 5 вход,<br>2 этаж<br>(499) 940-12-29</a>
+						<a href="<%= url_for store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
+						<a href="<%= url_for store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
+						<a href="<%= url_for store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение Волоколамского ш. и 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
+						<a href="<%= url_for store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
+						<a href="<%= url_for store8_path %>">Мебель PARRA<br>МЦ "Вагант" <br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>8(499)347-09-09</a>
+						<a href="<%= url_for store9_path %>">Мебель PARRA<br>МЦ "Империя" <br>Дмитровское шоссе<br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
+						<a class="red" href="/catalog/samples-sale">Распродажа выставочных<br>образцов<br>
+							<img class="red" src="/assets/sale-red.png">
+							<img class="green" src="/assets/sale-green.png">
+						</a>
+		  			</div>
+		  		</li>
+		  		<li class="miniMenuCart">
+		  			<a href="/cart">Корзина</a>
+		  		</li>
+		  	</ul>
+		  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
+		  	<% if notice == 'ordersave' %>
+		  		<div id="orderSave" class="windows">
+					<p>Ваш заказ принят. Наш менеджер свяжется с вами с ближайшее время.</p>
+					<div class="btn-s" onclick="windowClose()">OK</div>
+				</div>
+				<script type="text/javascript">
+					$('#windowLayout').show()
+				</script>
+		  	<% elsif !flash[:notice].blank? %>
+				<div class="notice"><%= flash[:notice] %><div class="close" onclick="$(this).parent().remove()">x</div></div>
+			<% end %>
+			<div id="adminWrap">
+		    <%= yield %>
+		    </div>
+		  </div>
+		</div>
+
+		<nav class="footer">
+			<ul>
+				<li><%= link_to 'Доставка и сборка', service_path %></li>
+				<li><%= link_to 'Партнерам', partners_path %></li>
+				<li><%= link_to 'Новости', news_path %></li>
+				<li><%= link_to 'Статьи', articles_path %></li>
+				<li><%= link_to 'Гарантии', insurance_path %></li>
+				<li><%= link_to 'Отзывы', otzyvy_path %></li>
+				<li><%= link_to 'О нас', about_path %></li>
+				<li><%= link_to 'Контакты', contacts_path %></li>
+				<li><%= link_to 'Вакансии', vacancy_path %></li>
+				<li><a href="/sitemap">Карта сайта</a></li>
+			</ul>
+			<div class="content table">
+				<div class="left-and-center">
+					<div class="table">
+						<div class="left">
+							<div class="title">Интернет-магазин европейской мебели:</div>
+							<img src="/assets/footer/logo.png">
+							<p>Parra-shop.ru - крупнейший дилер европейской<br>мебели из натурального шпона</p>
+							<a href="/catalog/samples-sale">Распродажа</a>
+						</div>
+						<div class="center">
+							<div class="title">Покупателям:</div>
+							<div class="borders">
+								<a href="#">Карта лояльности</a>
+								<a href="#">Оформление кредита</a>
+								<div class="credit">
+									<a href="/credits"><img src="/assets/footer/credit1.png"></a>
+									<a href="/credits"><img src="/assets/footer/credit2.png"></a>
+								</div>
+								<div class="title">Присоединяйтесь:</div>
+								<div class="social">
+									<a href="https://vk.com/parrashop"><img src="/assets/footer/vk.png"></a>
+									<a href="https://www.facebook.com/parrashops/"><img src="/assets/footer/fb.png"></a>
+									<a href="https://www.instagram.com/parra_shop/"><img src="/assets/footer/ig.png"></a>
+								</div>
+								<div class="title">Наше приложение:</div>
+								<a href="https://itunes.apple.com/ru/app/parra-shop/id1137471924?mt=8">
+									<img src="/assets/AppStorebuttonParra-Shop.png">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right">
+					<div class="title">Адреса салонов:</div>
+					<div class="addresses">
+						МЦ «Мебель PARK»<br>
+						г.Москва, Киевское шоссе, Строение 1, 3 вход, 3 этаж +7-499-940-12-29<br>
+						МЦ «Family Room»<br>
+						г.Москва, Киевское шоссе, Строние 1, 5 вход, 2 этаж +7-499-940-12-29<br>
+						МЦ «Армада»<br>
+						г.Москва, ул. Кировоградская, д. 11/1, 2 этаж +7-495-665-11-52<br>
+						МЦ «Roomer»<br>
+						г.Москва, ул. Ленинская Слобода, д. 26, 2 этаж +7-499-426-46-06<br>
+						ТЦ «Твой Дом - Крокус»<br>
+						г.Москва, 65-66 км МКАД, 2 этаж +7-499-340-09-08<br>
+						МЦ «Империя»<br>
+						г.Москва, Дмитровское шоссе д. 159, 3 этаж +7-499-899-07-09<br>
+						МЦ «Вагант»<br>
+						г.Подольск, ул. Стационарная, д.11, 1 этаж +7-499-400-58-18<br>
+						ТРК «Красный Кит»<br>
+						г.Мытищи, Шараповский проезд, вл. 2, 1 этаж +7-499-347-09-09
+					</div>
+				</div>
+			</div>
+			<div class="copy">Copyright @ 2011-2016 - Интернет магазин мебели «Parra-Shop»</div>
+		</nav>
+	</div>
+
+	<div id="orderWindow">
+	  <div onclick="this.parentNode.style.display = 'none'"></div>
+	  <div>
+	    <div class="header">
+	      <p>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</p>
+	      <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
+	    </div>
+	    <%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
+	    <div class="row">
+	    	<span class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></span>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+				<%= f.text_field :first_name, class: "form-control" %>
+		      </div>
+		    </div>
+		</div>
+		<div class="row">
+		    <span class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+				<%= f.text_field :phone, class: "form-control" %>
+		      </div>
+		    </div>
+	    </div>
+		<div class="row">
+			<span class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
+			<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+				<%= f.text_field :email, class: "form-control" %>
+		      </div>
+		    </div>
+	    </div>
+	    <div class="checkbox">
+		  <label style="display:block">
+		    <input type="checkbox" onclick="orderShowAll()">
+		    <span class="text-left">Нужна доставка</span>
+		  </label>
+		</div>
+	    <div id="otherInputs">
+		    <div class="row">
+		    <span class="col-md-5 text-right"><nobr><%= f.label :addr_street, "Улица:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :addr_street, class: "form-control" %>
+		      </div>
+		    </div>
+		    </div>
+		    <div class="row">
+		    <span class="col-md-5 text-right"><nobr><%= f.label :addr_home, "Дом:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
+	    	<div class="col-md-5">
+		      <div class="wrath-content-box" style="padding:0 15px">
+		        <%= f.text_field :addr_home, class: "form-control" %>
+		      </div>
+		    </div>
+		    </div>
+		    <div class="row">
+		    <span class="col-md-5 text-right"><nobr><%= f.label :addr_block, "Корпус:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
+		    	<div class="col-md-5">
+			      <div class="wrath-content-box" style="padding:0 15px">
+			        <%= f.text_field :addr_block, class: "form-control" %>
+			      </div>
+		    </div>
+		    </div>
+		    <div class="row">
+		    <span class="col-md-5 text-right"><nobr><%= f.label :addr_flat, "Квартира:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
+		    	<div class="col-md-5">
+			      <div class="wrath-content-box" style="padding:0 15px">
+			        <%= f.text_field :addr_flat, class: "form-control" %>
+			      </div>
+		    </div>
+		    </div>
+	    </div>
+	    <input class="btn btn-success" type="submit" value="Отправить">
+	    <input type="hidden" name="cartfield" id="cartfield">
+	    <% end %>
+	  </div>
+	</div>
 </div>
+<div id="dark">
+	<p class="bg" onclick="dark.close()"></p>
+	<div class="otzyv">
+		<div class="title">Оставьте свой отзыв</div>
+		<label><p>Ваше имя:</p><input type="text" name='author'></label>
+		<label><p>Заглавие отзыва:</p><input type="text" name='title'></label>
+		<label><p>Ваш город:</p><input type="text" name='city'></label>
+		<p>Сообщение:</p>
+		<textarea name="body"></textarea>
+		<div class="tac" style="margin: 15px 0 20px">
+			<div class="btn green" onclick="otzyvSend(this)"><p>Оставить отзыв</p></div>
+		</div>
+	</div>
+</div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter25900607 = new Ya.Metrika({id:25900607,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/25900607" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- /Google counter -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54896395-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- /Google counter -->
 </body>
 </html>

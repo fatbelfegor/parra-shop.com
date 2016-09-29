@@ -2,8 +2,8 @@
 <html>
 <head>
   <title><%= @title || 'ParraShop' %></title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link rel="stylesheet" type="text/css" href="/assets/application.css">
+  <script type="text/javascript" src="/assets/application.js"></script>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <meta name='yandex-verification' content='71b0b0e4d3dc8dea' />
   <meta name="google-site-verification" content="d6eytedd3mMRmKQgOn2QrqUEAbGD2YFpJXEGYdwGod0" />
@@ -489,7 +489,7 @@
 		    </div>
 	    </div>
 	    <div class="checkbox">
-		  <label>
+		  <label style="display:block">
 		    <input type="checkbox" onclick="orderShowAll()">
 		    <span class="text-left">Нужна доставка</span>
 		  </label>
