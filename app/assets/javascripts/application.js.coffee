@@ -55,7 +55,7 @@ ready = ->
 			if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
 			if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
 			id = item.i
-			items += '<div data-id=' + id + '><span><div><div><p><ins><a href="/kupit/'+item.d+'">'+item.n+'</a></ins></p>'+size+color+option+'</div></div></span><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
+			items += '<div data-id="' + id + '" data-ls="' + item.ls + '" data-os="' + item.os + '" data-ss="' + item.ss+ '"><span><div><div><p><ins><a href="/kupit/'+item.d+'">'+item.n+'</a></ins></p>'+size+color+option+'</div></div></span><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p></div><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div><div onclick="cartDelete(this)"><span>+</span>Удалить</div></div>'
 			((id) ->
 				$.ajax
 					url: "/cart.json?id="+item.i
@@ -71,12 +71,6 @@ ready = ->
 						item.find('span').first().prepend '<a href="'+firstPhoto+'" data-lightbox="'+i+'"><img src="'+firstPhoto+'"></a>'+otherPhotoes
 			)(id)
 		$('#cart').html(items)		
-		window.cartDelete = (el) ->
-			name = $(el.parentNode.parentNode).find('ins').html()
-			cart.splice cart.indexOf (cart.filter (item) ->
-				item.n == name)[0], 1
-			el.parentNode.outerHTML = ''
-			cartSave()
 	$(".accordion h3").click ->
 		$(this).next(".panel").slideToggle("slow").siblings(".panel:visible").slideUp("slow");
 		$(this).toggleClass("active");
@@ -134,6 +128,17 @@ ready = ->
 			el.find('img').each ->
 				images.push $(@).attr 'src'
 			el.parent().next().val images.join ','
+
+@cartDelete = (el) ->
+	wrap = el.parentNode
+	id = wrap.dataset.id
+	ls = wrap.dataset.ls
+	os = wrap.dataset.os
+	ss = wrap.dataset.ss
+	cart.splice cart.indexOf (cart.find (item) ->
+		item.ss == ss and item.ls == ls and item.os == os and item.i == id)[0], 1
+	wrap.outerHTML = ''
+	cartSave()
 
 @changeCount = (el) ->
 	window.el = el

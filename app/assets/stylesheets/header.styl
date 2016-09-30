@@ -67,6 +67,9 @@
 		text-align right
 		a
 			color inherit
+			cursor pointer
+			&:hover
+				text-decoration underline
 		.item
 			display inline-block
 			text-align center
@@ -156,6 +159,7 @@
 				background white
 				white-space nowrap
 				margin-left -40px
+				border-top 1px solid #c6c6c6
 				border-radius(0 0 5px 5px)
 				a
 					padding 0 20px
@@ -169,7 +173,7 @@
 			z-index 1
 			transition(.3s)
 		.all
-			background-color #E6E6E6
+			background-color white
 			position absolute
 			left 0
 			right 0
@@ -197,10 +201,11 @@
 					border-right 4px solid #58575C
 	.where-buy
 		position absolute
-		background-color #E6E6E6
+		background-color white
 		padding-top 0
 		padding-bottom 0
 		border-bottom 0
+		border-top 1px solid #c6c6c6
 		a
 			height 0
 			margin-bottom 0
