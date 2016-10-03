@@ -6,23 +6,25 @@
 		<a href="http://www.parra-shop.ru/">Главная</a>
 		<span>></span>
 		<% if params[:url].present?
-		par = @category.parent
-		while par %>
-			<a href="http://www.parra-shop.ru/catalog/<%= par.url %>"><%= par.name %></a>
-			<span>></span>
-			<% par = par.parent
-		end
-		end %>
-		<% unless @category.header.blank? %>
-		<img src='<%= @category.header %>'><span>/</span>
-		<% end %>
-		<h1 class="categoryLogo">
-			<% if params[:url].present? %>
-				<%= @category.name %>
-			<% elsif params[:q].present? %>
-				Поиск по запросу "<%= params[:q] %>"
+			par = @category.parent
+			while par %>
+				<a href="http://www.parra-shop.ru/catalog/<%= par.url %>"><%= par.name %></a>
+				<span>></span>
+				<% par = par.parent
+			end %>
+			<% unless @category.header.blank? %>
+			<img src='<%= @category.header %>'><span>/</span>
 			<% end %>
-		</h1>
+			<h1 class="categoryLogo">
+				<% if params[:url].present? %>
+					<%= @category.name %>
+				<% elsif params[:q].present? %>
+					Поиск по запросу "<%= params[:q] %>"
+				<% end %>
+			</h1>
+		<% else %>
+			<span>Поиск по запросу "<%= params[:q] %>"</span>
+		<% end %>
 	</div>
 	<% if params[:url].present? %>
 		<% unless @category.images.blank? %>
