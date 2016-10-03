@@ -1,31 +1,31 @@
 <script src="/assets/lightbox.min.js"></script>
 <link href="/assets/lightbox.min.css" rel="stylesheet" />
 <link href="/assets/products.css" rel="stylesheet" />
-<div class="index">
-	<div class="breadcrumbs">
-		<a href="http://www.parra-shop.ru/">Главная</a>
-		<span>></span>
-		<% if params[:url].present?
-			par = @category.parent
-			while par %>
-				<a href="http://www.parra-shop.ru/catalog/<%= par.url %>"><%= par.name %></a>
-				<span>></span>
-				<% par = par.parent
-			end %>
-			<% unless @category.header.blank? %>
-			<img src='<%= @category.header %>'><span>/</span>
-			<% end %>
-			<h1 class="categoryLogo">
-				<% if params[:url].present? %>
-					<%= @category.name %>
-				<% elsif params[:q].present? %>
-					Поиск по запросу "<%= params[:q] %>"
-				<% end %>
-			</h1>
-		<% else %>
-			<span>Поиск по запросу "<%= params[:q] %>"</span>
+<div class="breadcrumbs">
+	<a href="http://www.parra-shop.ru/">Главная</a>
+	<span>></span>
+	<% if params[:url].present?
+		par = @category.parent
+		while par %>
+			<a href="http://www.parra-shop.ru/catalog/<%= par.url %>"><%= par.name %></a>
+			<span>></span>
+			<% par = par.parent
+		end %>
+		<% unless @category.header.blank? %>
+		<img src='<%= @category.header %>'><span>/</span>
 		<% end %>
-	</div>
+		<h1 class="categoryLogo">
+			<% if params[:url].present? %>
+				<%= @category.name %>
+			<% elsif params[:q].present? %>
+				Поиск по запросу "<%= params[:q] %>"
+			<% end %>
+		</h1>
+	<% else %>
+		<span>Поиск по запросу "<%= params[:q] %>"</span>
+	<% end %>
+</div>
+<div class="index">
 	<% if params[:url].present? %>
 		<% unless @category.images.blank? %>
 			<div class="category-images">
@@ -59,4 +59,12 @@
 <script type="text/javascript" src="/assets/slick.min.js"></script>
 <script type="text/javascript">
 	$('.photoes').slick();
+	<% if params[:url].present? %>
+		if (products) {
+			var div = products.children[0]
+			if (div) {
+				document.getElementsByClassName('breadcrumbs')[0].style.paddingLeft = div.offsetLeft + 'px'
+			} 
+		}
+	<% end %>
 </script>

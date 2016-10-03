@@ -2,16 +2,16 @@
 <link href="/assets/lightbox.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/assets/color-category.css">
 <link rel="stylesheet" type="text/css" href="/assets/products.css">
+<div class="breadcrumbs">
+	<a href="http://www.parra-shop.ru/">Главная</a>
+	<span>></span>
+	<h1 class="categoryLogo">
+		<%= @color_category.name %>
+	</h1>
+</div>
 <div class="index">
 	<div id="color-category-blocks">
 		<div class="wrap">
-			<div class="breadcrumbs">
-				<a href="http://www.parra-shop.ru/">Главная</a>
-				<span>></span>
-				<h1 class="categoryLogo">
-					<%= @color_category.name %>
-				</h1>
-			</div>
 			<% for c in @category.color_categories.order(:id) %>
 				<% link = @color_category.id != c.id %>
 				<% if link %><a href='/catalog/<%= c.url %>'<% else %><div<% end %> class='item' style='background-image: url("<%= c.image %>")'>
@@ -33,4 +33,12 @@
 <script type="text/javascript" src="/assets/slick.min.js"></script>
 <script type="text/javascript">
 	$('.photoes').slick();
+	<% if params[:url].present? %>
+		if (products) {
+			var div = products.children[0]
+			if (div) {
+				document.getElementsByClassName('breadcrumbs')[0].style.paddingLeft = div.offsetLeft + 'px'
+			} 
+		}
+	<% end %>
 </script>
