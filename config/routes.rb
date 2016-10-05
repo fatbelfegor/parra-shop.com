@@ -10,6 +10,7 @@ ParraShopCom::Application.routes.draw do
   get '/modulnaja-mebel-dlja-gostinoj', to: 'main#gostinaya'
   get '/prihozhie', to: 'main#prihozhie'
   get '/divani', to: 'main#divani'
+  get '/obedennye-gruppi', to: 'main#obedennye_gruppi'
   get '/matras', to: 'main#matras'
   get '/otzyvy', to: 'main#otzyvy', as: :otzyvy
   get '/about', to: 'main#about', as: :about
