@@ -11,6 +11,10 @@
 	<a href="/catalog/<%= c.url %>"><img src="/assets/NocceGost.jpg">
 		<div class='description'><p class='name'>Гостиная Nocce</p><%= raw c.description %></div>
 	</a>
+	<% c = cats.find { |c| c.name == 'Nizza' } %>
+	<a href="/catalog/<%= c.url %>"><img src="/assets/NizzaGostNew.jpg">
+		<div class='description'><p class='name'>Гостиная Nizza</p><%= raw c.description %></div>
+	</a>
 	<% c = cats.find { |c| c.name == 'Orly' } %>
 	<a href="/catalog/<%= c.url %>"><img src="/assets/OrlyGost.jpg">
 		<div class='description'><p class='name'>Гостиная Orly</p><%= raw c.description %></div>
