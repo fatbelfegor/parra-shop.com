@@ -4,7 +4,7 @@
   <h1>Мебель для гостиной</h1>
 </div>
 
-<% cats = Category.select(:name, :url, :description).where(scode: ['Nocce', 'Orly-gostinaya', 'Stella', 'Norte', 'P3', 'BellaGost', 'Verro', 'Stylechoco', 'Joy', 'Azzon']) %>
+<% cats = Category.select(:name, :url, :description).where(scode: ['Nocce', 'Nizza', 'Orly-gostinaya', 'Stella', 'Norte', 'P3', 'BellaGost', 'Verro', 'Stylechoco', 'Joy', 'Azzon']) %>
 
 <div class="menuCategoryPage">
 	<% c = cats.find { |c| c.name == 'Nocce' } %>

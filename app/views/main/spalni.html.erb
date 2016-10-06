@@ -4,7 +4,7 @@
   <h1>Спальные гарнитуры в Москве</h1>
 </div>
 
-<% cats = Category.select(:name, :url, :description).where(scode: ['Gamma', 'Lyona', 'Bella', 'Plisset', 'Orly', 'Ritmika', 'Lorra', 'Leggero', 'Miro']) %>
+<% cats = Category.select(:name, :url, :description).where(scode: ['Nocce', 'Gamma', 'Lyona', 'Bella', 'Plisset', 'Orly', 'Ritmika', 'Lorra', 'Leggero', 'Miro']) %>
 
 <div class="menuCategoryPage">
 	<% c = cats.find { |c| c.name == 'Nocce' } %>
