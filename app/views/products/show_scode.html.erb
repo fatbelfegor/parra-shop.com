@@ -25,19 +25,19 @@ price = to_money @product.price %>
 			<% if @product.extension %>
 				<img class='extension-show' src="<%= @product.extension.image %>">
 			<% end %>
-			<% images = @product.product_images.map{|i| i.image.url} %>
+			<% images = @product.product_images.map{|i| i.image} %>
 			<% if images.any?
 				alt = "#{@product.name}, цена #{price}" %>
 				<div class="photoes">
-			    	<a class="active" href="<%= images[0] %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= images[0] %>"></a>
+			    	<a class="active" href="<%= images[0].url %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= images[0].big.url %>"></a>
 		    		<% images[1..-1].each do |i| %>
-		    			<a href="<%= i %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= i %>"></a>
+		    			<a href="<%= i.url %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= i.big.url %>"></a>
 		    		<% end %>
 				</div>
 				<div class="mini">
 					<div class="item"><img data-i='0' onclick="choosePhoto(this)" class="active" src="<%= images[0] %>"></div>
 					<% images[1..-1].each_with_index do |img, i| %>
-						<div class="item"><img data-i='<%= i %>' onclick="choosePhoto(this)" src="<%= img %>"></div>
+						<div class="item"><img data-i='<%= i + 1 %>' onclick="choosePhoto(this)" src="<%= img.small.url %>"></div>
 					<% end %>
 				</div>
 			<% end %>

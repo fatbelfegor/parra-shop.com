@@ -79,8 +79,11 @@ class MainController < ApplicationController
   end
 
   def cartjson
-  	@product = Product.find params[:id]
-  	render json: @product
+    product = Product.select(:id, :name).find params[:id]
+  	render json: {
+      name: product.name,
+      image: product.product_images.first.image.verysmall.url
+    }
   end
 
   def service

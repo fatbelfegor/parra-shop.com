@@ -210,8 +210,8 @@ expire = ->
 			url: "/cart.json?id="+item.i
 			success: (data) ->
 				$('#alert .items > div').get().forEach (item) ->
-					if $(item).find('ins').html() == data.name				
-						$(item).find('img').attr 'src', data.images.split(',')[0]
+					if $(item).find('ins').html() == data.name
+						$(item).find('img').attr 'src', data.image
 	$('body').append('<div id="alert">\
 			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
 			<div>\
@@ -271,7 +271,7 @@ expire = ->
 			success: (data) ->
 				$('#alert .items > div').get().forEach (item) ->
 					if $(item).find('ins').html() == data.name				
-						$(item).find('img').attr 'src', data.images.split(',')[0]
+						$(item).find('img').attr 'src', data.image
 	$('body').append('<div id="alert">\
 			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
 			<div style="top:'+($(window).height()/2-300)+'px; left:'+($(window).width()/2-235)+'px">\
@@ -303,7 +303,7 @@ expire = ->
 					if data
 						$('#menuCart .cart-list > a').get().forEach (item) ->
 							if $(item).find('#name').html() == data.name				
-								$(item).find('img').attr 'src', data.images.split(',')[0]
+								$(item).find('img').attr 'src', data.image
 	if items == ''
 		$('#menuCart').hide()
 	else $('#menuCart').show()
@@ -481,9 +481,8 @@ expire = ->
 	el.parentNode.parentNode.getElementsByClassName('active')[0].className = ''
 	el.className = 'active'
 	photoes = document.getElementsByClassName('photoes')[0]
-	url = el.getAttribute('src')
 	photoes.getElementsByClassName('active')[0].className = ''
-	photoes.querySelector("[href='" + url + "']").className = 'active'
+	photoes.children[el.dataset.i].className = 'active'
 @productMiniPrev = (el) ->
 	wrap = $(el).next()
 	slides = wrap.find 'div'
