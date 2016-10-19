@@ -3,9 +3,9 @@
 		<% if product.extension %>
 			<img src="<%= product.extension.image %>" class='extension-catalog'>
 		<% end %>
-		<% images = product.images.split ',' %>
+		<% images = product.product_images.map{|i| i.image.url} %>
 		<% price = number_to_currency product.price %>
-		<% if images.length > 0 %>
+		<% if images.any? %>
 			<% alt = "#{product.name}, цена #{price}" %>
 			<div class="photoes">
 				<% for i in images %>

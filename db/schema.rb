@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622162852) do
+ActiveRecord::Schema.define(version: 20161018115537) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image",        limit: 255
@@ -191,6 +191,14 @@ ActiveRecord::Schema.define(version: 20160622162852) do
     t.string  "image",      limit: 255
     t.integer "product_id", limit: 4
   end
+
+  create_table "product_images", force: :cascade do |t|
+    t.integer "product_id", limit: 4
+    t.string  "image",      limit: 255
+    t.integer "position",   limit: 4,   default: 0
+  end
+
+  add_index "product_images", ["product_id"], name: "index_product_images_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.integer  "category_id",       limit: 4

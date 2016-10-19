@@ -157,18 +157,15 @@
   <tr><td style="padding: 15px 100px 15px 20px">
 
   <div class="text-center">
-    <div id="addImages" class="product_images">
-      <input type="button" value="Добавить изображение" class="btn btn-primary">
-      <div class="productImages">
-        <% if @product.images then @product.images.split(',').each do |i| %>
-          <div>
-            <img class="img-thumbnail" src="<%= i %>">
-            <small class="btn btn-warning" onclick="deleteImage(this)">Удалить</small>
-          </div>
-        <% end end %>
-      </div>
+    <div id="productImages">
+      <% @product.product_images.each do |p| %>
+        <div data-id='<%= p.id %>' style='display:inline-block;margin:10px'>
+          <img class='img-thumbnail' src='<%= p.image.url %>' style='display:block;max-width:150px;max-height:150px'>
+          <div class="btn btn-danger" onclick="removeProductImage(this)">Удалить</div>
+        </div>
+      <% end %>
     </div>
-    <%= f.hidden_field :images %>
+    <div class="btn btn-primary" onclick="addProductImage(this)">Добавить картинку</div>
   </div>
   
   </td></tr>
@@ -228,3 +225,5 @@
 </table>
 <% end %>
 <%= tinymce %>
+
+<script type="text/javascript">sortProductImages()</script>

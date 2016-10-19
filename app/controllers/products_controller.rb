@@ -124,6 +124,16 @@ class ProductsController < ApplicationController
             footer_image.save
           end
         end
+        product_images = params[:product_images]
+        if product_images
+          positions = params[:position_new_product_images]
+          product_images.each_with_index do |image, i|
+            product_image = @product.product_images.new
+            product_image.image = image
+            product_image.position = positions[i]
+            product_image.save
+          end
+        end
         format.html { redirect_to '/kupit/'+@product.scode, notice: 'Product was successfully created.' }
         format.json { render action: 'show', status: :created, location: @product }
       else
@@ -150,7 +160,27 @@ class ProductsController < ApplicationController
       end
     end
     respond_to do |format|
-      if @product.update(product_params) 
+      if @product.update(product_params)
+        product_images = params[:product_images]
+        if product_images
+          positions = params[:position_new_product_images]
+          product_images.each_with_index do |image, i|
+            product_image = @product.product_images.new
+            product_image.image = image
+            product_image.position = positions[i]
+            product_image.save
+          end
+        end
+        position_product_images = params[:position_product_images]
+        if position_product_images
+          for id, position in position_product_images
+            ProductImage.update id, position: position
+          end
+        end
+        product_images = params[:remove_product_images]
+        if product_images
+          ProductImage.where(id: product_images).delete_all
+        end
         format.html { redirect_to URI.encode("/kupit/#{@product.scode}"), notice: 'Product was successfully created.' }
         format.json { head :no_content }
       else

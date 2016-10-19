@@ -25,9 +25,9 @@ price = to_money @product.price %>
 			<% if @product.extension %>
 				<img class='extension-show' src="<%= @product.extension.image %>">
 			<% end %>
-			<% unless @product.images.empty?
+			<% images = @product.product_images.map{|i| i.image.url} %>
+			<% if images.any?
 				alt = "#{@product.name}, цена #{price}" %>
-				<% images = @product.images.split(',') %>
 				<div class="photoes">
 			    	<a class="active" href="<%= images[0] %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= images[0] %>"></a>
 		    		<% images[1..-1].each do |i| %>

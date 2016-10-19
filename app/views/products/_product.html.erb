@@ -29,7 +29,11 @@
 			</th>
 		</tr>
 		<tr>
-			<td><img src="<%= product.images.split(',')[0] unless product.images.nil? %>"></td>
+			<td>
+				<% if i = product.product_images.take %>
+					<img src="<%= i.image.url %>">
+				<% end %>
+			</td>
 			<td style="padding-left:10px;" align="left"><%= sanitize(product.shortdesk) %><br></td>
 		</tr>
 		<tr>

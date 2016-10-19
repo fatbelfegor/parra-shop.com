@@ -11,6 +11,7 @@ gem 'ox'
 gem 'tilt'
 gem 'stylus'
 gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'tinymce-rails'
 

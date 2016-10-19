@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
 	belongs_to :subcategory
 	belongs_to :extension
 	belongs_to :color_category
+	has_many :product_images
 	has_many :order_items
 	has_many :product_footer_images
 	has_and_belongs_to_many :categories, :autosave => true

@@ -45,7 +45,12 @@
 	<% @items.each do |item| %>
 	<tr>
 		<td><%= item.product.scode %></td>
-		<td><img src="<%= item.product.images.split(',')[0] %>"></td>
+		<td>
+			<% i = item.product.product_images.first %>
+			<% if i %>
+				<img src="<%= i.image.url %>">
+			<% end %>
+		</td>
 		<td><%= item.product.name %></td>
 		<td><%= item.size %><br><u><%= item.size_scode %></u></td>
 		<td><%= item.color %><br><u><%= item.color_scode %></u></td>

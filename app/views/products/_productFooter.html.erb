@@ -5,9 +5,9 @@ price = number_to_currency productFooter.price %>
 		<% if productFooter.extension %>
 			<img src="<%= productFooter.extension.image %>" class='extension-footer'>
 		<% end %>
-		<% if productFooter.images
+		<% images = productFooter.product_images.map{|i| i.image.url} %>
+		<% if images.any?
 			alt = "#{productFooter.name}, цена #{price}" %>
-			<% images = productFooter.images.split(',') %>
 		    <div class="left inactive"></div>
 	        <% if images[1] %>
 	        <div class="right" onclick="photoRight(this)"></div>

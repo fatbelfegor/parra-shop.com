@@ -1031,3 +1031,41 @@ writeChars = ->
 	else
 		el.className = 'active'
 		$(mainMenuCompact).slideDown 300
+
+
+# Здесь новая логика для картинок товаров
+
+@addProductImage = (el) ->
+	el.previousElementSibling.insertAdjacentHTML 'beforeend', "<div style='display:inline-block;margin:10px'><label class='btn btn-success'>Выбрать<input name='product_images[]' style='display:none' onchange='chooseProductImage(this)' type='file'></div></div>"
+
+@chooseProductImage = (el) ->
+	reader = new FileReader()
+	reader.onload = (e) ->
+		label = el.parentNode
+		label.style.display = 'none'
+		div = label.parentNode
+		i = 0
+		for el in div.parentNode.children
+			break if el is div 
+			i++ if el.tagName is 'DIV'
+		div.insertAdjacentHTML 'afterbegin', "<input type='hidden' name='position_new_product_images[]' value='#{i}'>"
+		div.insertAdjacentHTML 'beforeend', "<img class='img-thumbnail' src='#{e.target.result}' style='display:block;max-width:150px;max-height:150px'><div class='btn btn-warning' onclick='this.parentNode.removeChild(this.parentNode)'>Удалить</div>"
+	reader.readAsDataURL el.files[0]
+
+@removeProductImage = (el) ->
+	div = el.parentNode
+	productImages.insertAdjacentHTML 'beforeend', "<input type='hidden' name='remove_product_images[]' value='#{div.dataset.id}'>"
+	div.parentNode.removeChild div
+
+@sortProductImages = ->
+	$(productImages).sortable
+		revert: true
+		update: ->
+			i = 0
+			for div in Array.prototype.slice.call productImages.children
+				if div.tagName is 'DIV'
+					input = div.children[0]
+					if input.tagName is 'INPUT'
+						input.value = i++
+					else
+						div.insertAdjacentHTML 'afterbegin', "<input type='hidden' name='position_product_images[#{div.dataset.id}]' value='#{i++}'>"
