@@ -9,16 +9,16 @@ class ProductImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  # version :small do
-  #   process resize_to_fit: [50, 50]
-  # end
+  version :small do
+    process resize_to_fit: [145, 145]
+  end
 
-  # version :block do
-  #   process resize_to_fit: [180, 180]
-  # end
+  version :block do
+    process resize_to_fit: [280, 280]
+  end
 
-  # version :big do
-  #   process resize_to_fit: [300, 300]
-  # end
+  version :big do
+    process resize_to_fit: [500, 500]
+  end
 
 end
