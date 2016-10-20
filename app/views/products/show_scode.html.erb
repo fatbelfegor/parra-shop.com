@@ -35,7 +35,7 @@ price = to_money @product.price %>
 		    		<% end %>
 				</div>
 				<div class="mini">
-					<div class="item"><img data-i='0' onclick="choosePhoto(this)" class="active" src="<%= images[0] %>"></div>
+					<div class="item"><img data-i='0' onclick="choosePhoto(this)" class="active" src="<%= images[0].small.url %>"></div>
 					<% images[1..-1].each_with_index do |img, i| %>
 						<div class="item"><img data-i='<%= i + 1 %>' onclick="choosePhoto(this)" src="<%= img.small.url %>"></div>
 					<% end %>
