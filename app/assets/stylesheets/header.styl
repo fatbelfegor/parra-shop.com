@@ -57,10 +57,22 @@
 			text-decoration none
 			border-bottom 1px solid #8d8578
 			float right
+	.cart
+		position absolute
+		top 64px
+		right 0
+		a
+			padding 0 17px 0 10px
+		img
+			position relative
+			top 3px
+		&:hover
+			#menuCart
+				max-height 509px
 	.menu
 		color #58585A
 		background white
-		margin 9px 0 0
+		margin 9px 40px 0
 		font-size 0
 		text-align right
 		a
@@ -82,12 +94,6 @@
 				line-height 35px
 				font-size 14px
 				transition(.3s)
-			&.cart
-				a
-					padding 0 17px 0 10px
-				img
-					position relative
-					top 3px
 			&:hover
 				> a, > span
 					color #52B84A
@@ -109,8 +115,6 @@
 					a
 						height 170px
 						margin-bottom 55px
-				#menuCart
-					max-height 509px
 				.submenu
 					height auto
 					a
@@ -391,38 +395,17 @@
 			display block
 
 #compactMenuToggle
-	position relative
-	float left
-	height 99px
-	width 99px
-	border-right 1px solid #aaa
-	line-height 30px
-	font-size 16px
-	cursor pointer
-	overflow hidden
-	background-color white
-	text-align center
-	.back
-		position absolute
-		top 0
-		left 0
-		right 0
-		bottom 0
-		background-image url("/assets/buyButton.png")
-		background-size auto 100%
-		transition(.3s)
-	.lines
-		position relative
-		z-index 1
-		width 50px
-		height 30px
-		margin 30px 24px
-		div
-			height 6px
-			background-color white
-			margin-bottom 11px
-			border-radius(2px)
-		transition(.3s)
+	display none
+	width 28px
+	border 4px solid #363636
+	border-width 4px 0
+	padding 4px 0
+	position absolute
+	top 26px
+	right 26px
+	div
+		height 4px
+		background #363636
 		
 #mainMenuCompact
 	display none
@@ -568,47 +551,113 @@
 		height 40px
 		line-height 40px
 		
-@media(max-width 1200px)
+@media(max-width 1330px)
 	#header
 		.wrap
-			margin 0
+			margin 0 1%
 		.menu .item
 			> a, > span
 				font-size 13px
 				padding 0 10px
-@media(max-width 1025px)
+@media(max-width 1165px)
 	#header
 		.menu .item
 			> a, > span
 				font-size 12px
 				padding 0 8px
+@media(max-width 1065px)
+	#header
+		.menu .item
+			> a, > span
+				font-size 11px
+				padding 0 5px
 @media(max-width 950px)
 	#header
+		height 127px
 		.logo
-			left 53px
+			left 16px
+		.wrap
+			margin 0
 		.menu
 			display none
-@media(min-width 950px)
-	#mainMenuCompact, #compactMenuToggle
-		display none !important
+		.cart
+			right 26px
+			top 80px
+			> a
+				padding 0
+		.phone
+			position absolute
+			top 20px
+			right 109px
+			margin 0
+			padding-left 30px
+			background url('/assets/phone-header.png') no-repeat
+			background-position 0 2px
+			p
+				font-size 31px
+			ins
+				display none
+		.search
+			position absolute
+			margin 0
+			right 108px
+			top 78px
+	#blur > .main
+		top 127px
+	#compactMenuToggle
+		display block
 @media(max-width 978px)
 	#jivo-iframe-container
 		bottom 80px !important
-@media(max-width 800px)
+@media(max-width 640px)
 	#header
-		.right
-			padding-top 5px
-			> div
-				display block
-		.search
-			margin-right 0
-			margin-top 18px
+		.logo
+			left 10px
+		#compactMenuToggle, .cart
+			right 10px
+		.phone, .search
+			right 70px
+@media(max-width 575px)
+	#header
+		.phone, .search
+			right 60px
 		.phone
-			float none
-			margin-top 0
-			ins
-				float none
-				display inline
-@media(max-width 540px)
-	#header .logo img
-		height 80px
+			background-position 0
+			background-size 24px 24px
+			top 24px
+			p
+				font-size 24px
+		.search
+			input[type=text]
+				width 158px
+			input[type=submit]
+				font-size 12px
+				padding 8px 3px 7px
+@media(max-width 510px)
+	#header
+		.logo
+			left 5px
+			img
+				width 170px
+@media(max-width 465px)
+	#header
+		.logo img
+			width 150px
+		.phone, .search
+			right 50px
+@media(max-width 445px)
+	#header
+		.logo img
+			width 150px
+@media(max-width 435px)
+	#header
+		.logo img
+			width 130px
+		.phone
+			background-size 18px 18px
+			p
+				font-size 18px
+@media(max-width 370px)
+	#header
+		.logo img
+			width 100px
