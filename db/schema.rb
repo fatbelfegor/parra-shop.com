@@ -11,18 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018115537) do
+ActiveRecord::Schema.define(version: 20161122132645) do
 
   create_table "banners", force: :cascade do |t|
-    t.string   "image",        limit: 255
-    t.string   "url",          limit: 255
+    t.string   "image",      limit: 255
+    t.string   "url",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "second_line",              default: false
-    t.boolean  "third_line",               default: false
-    t.boolean  "square_third",             default: false
-    t.boolean  "fourth_line",              default: false
-    t.integer  "position",     limit: 4,   default: 0
+    t.integer  "position",   limit: 4,   default: 0
+    t.boolean  "first",                  default: true
+    t.boolean  "new",                    default: false
+    t.boolean  "hit",                    default: false
   end
 
   create_table "categories", force: :cascade do |t|

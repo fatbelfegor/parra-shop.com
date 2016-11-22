@@ -3,6 +3,8 @@ ParraShopCom::Application.routes.draw do
 
   #get 'mobilecategories/index'
   
+  root to: 'main#home'
+  
   resources :mobilecategories, except: [:new, :show, :edit, :create, :update, :destroy]
   resources :mobileproducts, except: [:new, :show, :edit, :create, :update, :destroy]
 
@@ -26,7 +28,6 @@ ParraShopCom::Application.routes.draw do
   #get "mobilecategories/index", to: 'mobilecategories#index'
   #get "mobileproducts/index", to: 'mobileproducts#index'
   get "catalog/(:url)", to: 'catalog#index'
-  get "main/main"
   get 'users', to: 'users#index'
   get 'users/:id/logs', to: 'users#logs'
   devise_for :users
@@ -34,8 +35,6 @@ ParraShopCom::Application.routes.draw do
   get '/kupit/:scode', to: 'products#show_scode'
   get 'vacancy', to: 'pages#vacancy', as: :vacancy
   get 'credits', to: 'pages#credits'
-  
-  root to: 'main#index', as: 'index'
 
   get '/sitemap', to: 'main#sitemap'
 

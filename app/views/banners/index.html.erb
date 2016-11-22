@@ -1,5 +1,5 @@
 <br><h2 class="text-center">Список баннеров</h2><br>
-<br><h3 class="text-center">Первый слайдер</h3><br>
+<br><h3 class="text-center">Главный слайдер</h3><br>
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>№</th>
@@ -7,7 +7,7 @@
 		<th>Ссылка</th>
 		<th>Действия</th>
 	</tr>
-	<% for banner in @banners.find_all{|b| !b.second_line and !b.third_line and !b.fourth_line and !b.square_third} %>
+	<% for banner in @banners.find_all{|b| b.first} %>
 	<tr>
 		<td class="text-center"><%= banner.position %></td>
 		<td>
@@ -24,12 +24,12 @@
 	<% end %>
 	<tr>
 		<td colspan="3" class="text-center">
-			<%= link_to 'Создать новый баннер в первом слайдере', new_banner_path(slider: :first), class: 'btn btn-success' %>
+			<%= link_to 'Создать новый баннер в новинках', new_banner_path(type: :first), class: 'btn btn-success' %>
 		</td>
 	</tr>
 </table>
 <br>
-<br><h3 class="text-center">Второй слайдер</h3><br>
+<br><h3 class="text-center">Новинки</h3><br>
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>№</th>
@@ -37,7 +37,7 @@
 		<th>Ссылка</th>
 		<th>Действия</th>
 	</tr>
-	<% for banner in @banners.find_all{|b| b.second_line} %>
+	<% for banner in @banners.find_all{|b| b.new} %>
 	<tr>
 		<td class="text-center"><%= banner.position %></td>
 		<td>
@@ -54,12 +54,12 @@
 	<% end %>
 	<tr>
 		<td colspan="3" class="text-center">
-			<%= link_to 'Создать новый баннер во втором слайдере', new_banner_path(slider: :second), class: 'btn btn-success' %>
+			<%= link_to 'Создать новый баннер в новинках', new_banner_path(type: :new), class: 'btn btn-success' %>
 		</td>
 	</tr>
 </table>
 <br>
-<br><h3 class="text-center">Третий слайдер</h3><br>
+<br><h3 class="text-center">Хиты продаж</h3><br>
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>№</th>
@@ -67,7 +67,7 @@
 		<th>Ссылка</th>
 		<th>Действия</th>
 	</tr>
-	<% for banner in @banners.find_all{|b| b.third_line} %>
+	<% for banner in @banners.find_all{|b| b.hit} %>
 	<tr>
 		<td class="text-center"><%= banner.position %></td>
 		<td>
@@ -84,65 +84,7 @@
 	<% end %>
 	<tr>
 		<td colspan="3" class="text-center">
-			<%= link_to 'Создать новый баннер в третьем слайдере', new_banner_path(slider: :third), class: 'btn btn-success' %>
-		</td>
-	</tr>
-</table>
-<br><h3 class="text-center">Четвертый слайдер</h3><br>
-<table class="table table-bordered table-striped">
-	<tr>
-		<th>№</th>
-		<th>Картинка</th>
-		<th>Ссылка</th>
-		<th>Действия</th>
-	</tr>
-	<% for banner in @banners.find_all{|b| b.fourth_line} %>
-	<tr>
-		<td class="text-center"><%= banner.position %></td>
-		<td>
-			<%= image_tag(banner.image, class: 'img-thumbnail img200') %>
-		</td>
-		<td class="text-center">
-			<%= link_to banner.url, banner.url %>
-		</td>
-		<td class="text-center">
-			<%= link_to 'Редактировать', edit_banner_path(banner), class: 'btn btn-warning' %>
-			<%= link_to("Удалить", banner, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
-		</td>
-	</tr>
-	<% end %>
-	<tr>
-		<td colspan="3" class="text-center">
-			<%= link_to 'Создать новый баннер в четвертом слайдере', new_banner_path(slider: :fourth), class: 'btn btn-success' %>
-		</td>
-	</tr>
-</table>
-<br><h3 class="text-center">Третий квадрат</h3><br>
-<table class="table table-bordered table-striped">
-	<tr>
-		<th>№</th>
-		<th>Картинка</th>
-		<th>Ссылка</th>
-		<th>Действия</th>
-	</tr>
-	<% for banner in @banners.find_all{|b| b.square_third} %>
-	<tr>
-		<td class="text-center"><%= banner.position %></td>
-		<td>
-			<%= image_tag(banner.image, class: 'img-thumbnail img200') %>
-		</td>
-		<td class="text-center">
-			<%= link_to banner.url, banner.url %>
-		</td>
-		<td class="text-center">
-			<%= link_to 'Редактировать', edit_banner_path(banner), class: 'btn btn-warning' %>
-			<%= link_to("Удалить", banner, 'data-confirm' => 'Вы уверены?', method: :delete, class: 'btn btn-danger') %>
-		</td>
-	</tr>
-	<% end %>
-	<tr>
-		<td colspan="3" class="text-center">
-			<%= link_to 'Создать новый баннер в третьем квадрате', new_banner_path(slider: :square_third), class: 'btn btn-success' %>
+			<%= link_to 'Создать новый баннер в хитах', new_banner_path(type: :hit), class: 'btn btn-success' %>
 		</td>
 	</tr>
 </table>

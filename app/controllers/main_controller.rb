@@ -1,25 +1,19 @@
 # encoding: utf-8
 
 class MainController < ApplicationController
-  rescue_from Exception, with: :not_found
+  # rescue_from Exception, with: :not_found
 
   def not_found
     @title = "404 Страница не найдена"
     render 'pages/not_found', status: 404
   end
-  def index
+  def home
     @products = Product.all
     if user_signed_in? && current_user.admin?
       @cat = Category.find_by_scode('Диваны').products.order('created_at asc').limit(10)
     else
       @cat = Category.find_by_scode('Диваны').products.where('invisible = false').order('created_at asc').limit(10)
     end
-    banners = Banner.all
-    @first_banners = banners.find_all{|b| !b.second_line and !b.third_line and !b.fourth_line and !b.square_third}
-    @second_banners = banners.find_all{|b| b.second_line}
-    @third_banners = banners.find_all{|b| b.third_line}
-    @fourth_banners = banners.find_all{|b| b.fourth_line}
-    @square_third = banners.find_all{|b| b.square_third}
     @title = "Мебель из шпона - купить корпусную мебель в Москве в интернет-магазине мебели PARRA-SHOP"
     @seo_description = "Интернет-магазин корпусной мебели PARRA-SHOP предлагает купить мебель из шпона по доступным ценам. Мебель Парра - европейский бренд корпусной мебели для дома."
     @seo_keywords = "мебель, шпон, москва, парра, интернет, магазин, корпусный, купить, parra"

@@ -19,14 +19,16 @@ class BannersController < ApplicationController
 
   def create
     banner = banner_params
-    if params[:slider] == '2'
-      banner[:second_line] = true
-    elsif params[:slider] == '3'
-      banner[:third_line] = true
-    elsif params[:slider] == '4'
-      banner[:fourth_line] = true
-    elsif params[:slider] == 'square_third'
-      banner[:square_third] = true
+    banner[:first] = false
+    banner[:hit] = false
+    banner[:new] = false
+    case params[:type]
+    when 'first'
+      banner[:first] = true
+    when 'new'
+      banner[:new] = true
+    when 'hit'
+      banner[:hit] = true
     end
     Banner.create banner
     redirect_to banners_path
@@ -34,16 +36,16 @@ class BannersController < ApplicationController
 
   def update
     banner = banner_params
-    if params[:slider] == '2'
-      banner[:second_line] = true
-    elsif params[:slider] == '3'
-      banner[:third_line] = true
-    elsif params[:slider] == '4'
-      banner[:fourth_line] = true
-    elsif params[:slider] == 'square_third'
-      banner[:square_third] = true
-    else
-      banner[:second_line] = banner[:third_line] = banner[:fourth_line] = banner[:square_third] = nil
+    banner[:first] = false
+    banner[:hit] = false
+    banner[:new] = false
+    case params[:type]
+    when 'first'
+      banner[:first] = true
+    when 'new'
+      banner[:new] = true
+    when 'hit'
+      banner[:hit] = true
     end
     respond_to do |format|
       if @banner.update banner

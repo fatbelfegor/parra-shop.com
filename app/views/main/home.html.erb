@@ -1,0 +1,97 @@
+<link rel="stylesheet" type="text/css" href="/assets/home.css">
+
+<div id="home">
+	<% banners = Banner.all %>
+	<% b = banners.find_all(&:first) %>
+	<% if b.any? %>
+		<div class="main-slider">
+			<% for banner in b %>
+				<a href="<%= banner.url %>"><img src="<%= banner.image %>"></a>
+			<% end %>
+		</div>
+	<% end %>
+
+	<div class="icons">
+		<div><img src="/assets/Transport.png"><p>Бесплатная доставка</p></div>
+		<div><img src="/assets/Tools.png"><p>Сборка</p></div>
+		<div><img src="/assets/Payment.png"><p>Способы оплаты</p></div>
+		<div><img src="/assets/Certificate.png"><p>Гарантии</p></div>
+		<div><img src="/assets/Shop.png"><p>Магазины</p></div>
+	</div>
+
+	<% b = banners.find_all(&:new) %>
+	<% if b.any? %>
+		<h2>Новинки</h2>
+		<div class="categories">
+			<% for banner in b %>
+				<a href="<%= banner.url %>"><img src="<%= banner.image %>"></a>
+			<% end %>
+		</div>
+	<% end %>
+
+	<% comments = Comment.where(published: true).order date: :desc %>
+	<% unless comments.blank? %>
+		<div class="white">
+			<h2>Отзывы наших покупателей</h2>
+			<div class="reviews">
+				<% for comment in comments %>
+					<div class="item">
+						<div class="text"><%= comment.body.truncate 220 %></div>
+						<% if comment.date %><div class='date'><%= comment.date.strftime "%d-%m-%Y" %></div><% end %>
+						<div class="author"><%= comment.author %><% unless comment.city.blank? %>, <%= comment.city %><% end %></div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+
+	<% b = banners.find_all(&:hit) %>
+	<% if b.any? %>
+		<h2>Хиты продаж</h2>
+		<div class="categories">
+			<% for banner in b %>
+				<a href="<%= banner.url %>"><img src="<%= banner.image %>"></a>
+			<% end %>
+		</div>
+	<% end %>
+
+	<div class="info">Контент сайта Parra-shop.ru носит исключительно информационный характер и не является публичной офертой. Внешний вид, комплектация и стоимость продукции, могут отличаться от представленных на сайте.</div>
+</div>
+<link rel="stylesheet" type="text/css" href="/assets/slick.min.css">
+<script type="text/javascript" src="/assets/slick.min.js"></script>
+<script type="text/javascript">
+	$('.main-slider').slick({arrows:false,dots:true,autoplay:true,speed:700});
+	$('.categories').slick({
+		autoplay: true,
+		speed: 700,
+		slidesToShow: 3,
+		centerMode: true,
+		responsive: [{
+			breakpoint: 800,
+			settings: {
+				slidesToShow: 2
+			}
+		}],
+		responsive: [{
+			breakpoint: 575,
+			settings: {
+				slidesToShow: 1
+			}
+		}]
+	});
+	$('.reviews').slick({
+		slidesToShow: 2,
+		centerMode: true,
+		responsive: [{
+			breakpoint: 1000,
+			settings: {
+				slidesToShow: 1
+			}
+		}]
+	});
+</script>
+<style type="text/css">
+    #blur > .main {
+        background-color: #463F39
+    }
+</style>
