@@ -34,13 +34,16 @@
 			border-radius(5px 0 0 5px)
 			&:focus
 				outline 0
-		input[type=submit]
+		label
+			display inline-block
 			font-size 13px
 			border 1px solid #a0a0a0
 			padding 7px 18px 7px
 			color white
 			background #847d6d
 			border-radius(0 5px 5px 0)
+			input
+				display none
 	.phone
 		margin-top 12px
 		float right
@@ -509,7 +512,7 @@
 		.search
 			input[type=text]
 				width 158px
-			input[type=submit]
+			label
 				font-size 12px
 				padding 8px 3px 7px
 @media(max-width 510px)
