@@ -176,11 +176,24 @@
 			
 	@media (max-width 950px)
 		.icons
-			text-align center
-			&:before
-				display none
+			img
+				width 120px
+				height 120px
+				margin 0px 12px
+			p
+				padding-top 12px
+				font-size .9rem
+			
+	@media (max-width 810px)
+		.icons
 			div
-				margin 0 20px 22px
+				text-align center
+			img
+				width 90px
+				height 90px
+			p
+				padding-top 5px
+				font-size .8rem
 			
 	@media (max-width 800px)
 		.categories
@@ -193,9 +206,28 @@
 			img
 				width 200px
 				height 200px
+		.icons
+			padding 24px 10px
+			text-align center
+			div
+				margin 5px 10px
+				width 90px
+				text-align center
+				vertical-align top
+			img
+				margin 0
 			
 	@media (max-width 575px)
 		.categories
 			img
 				width 250px
 				height 250px
+				
+	#info
+		color #fefef9
+		padding 0 4% 20px
+		font-size 14px
+		h1, h2, h3
+			font-size 24px
+		p
+			margin-bottom 20px
