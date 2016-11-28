@@ -31,14 +31,6 @@
 	<a href="/catalog/<%= c.url %>"><img src="/assets/Orly.jpg">
 		<div class='description'><p class='name'>Спальня Orly</p><%= raw c.description %></div>
 	</a>
-	<% c = cats.find { |c| c.name == 'Ritmika' } %>
-	<a href="/catalog/<%= c.url %>"><img src="/assets/RitmikaSale.jpg">
-		<div class='description'><p class='name'>Спальня Ritmika</p><%= raw c.description %></div>
-	</a>
-	<% c = cats.find { |c| c.name == 'Lorra' } %>
-	<a href="/catalog/<%= c.url %>"><img src="/assets/Lorra.jpg">
-		<div class='description'><p class='name'>Спальня Lorra</p><%= raw c.description %></div>
-	</a>
 	<% c = cats.find { |c| c.name == 'Leggero' } %>
 	<a href="/catalog/<%= c.url %>-oreh"><img src="/assets/LeggeroSale.jpg">
 		<div class='description'><p class='name'>Спальня Leggero</p><%= raw c.description %></div>
