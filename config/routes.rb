@@ -38,6 +38,7 @@ ParraShopCom::Application.routes.draw do
 
   get '/sitemap', to: 'main#sitemap'
 
+  get "oplata", to: 'main#oplata'
   get "stores", to: 'main#stores'
   get "store1", to: 'main#store1', as: 'store1'
   get "mebelnyj-gipermarket-family-room", to: 'main#store2', as: 'store2'

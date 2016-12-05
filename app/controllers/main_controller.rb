@@ -122,6 +122,10 @@ class MainController < ApplicationController
     @seo_keywords = 'Где, купить, ParraShop, заголовок, Адреса, магазинов, где, Вы, можете, купить, мебель, ParraShop, Москве'
   end
 
+  def oplata
+    @title = 'Оплата — ParraShop Адреса магазинов где Вы можете купить мебель от ParraShop в Москве'
+  end
+
   def store1
     @title = 'Салон магазина европейской мебели ParraShop по адресу МЦ "Мебель PARK" в Москве'
     @seo_description = 'Адрес салона магазина европейской мебели ParraShop в Москве МЦ "Мебель PARK"'

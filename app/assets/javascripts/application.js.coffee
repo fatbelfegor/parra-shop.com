@@ -1068,3 +1068,7 @@ writeChars = ->
 						input.value = i++
 					else
 						div.insertAdjacentHTML 'afterbegin', "<input type='hidden' name='position_product_images[#{div.dataset.id}]' value='#{i++}'>"
+
+@scrollImage = (el) ->
+	d = el.parentNode
+	$('html, body').animate(scrollTop: d.offsetTop + d.offsetHeight, '500', 'swing')

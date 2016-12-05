@@ -103,9 +103,33 @@
 					
 .category-image
 	display block
+	position relative
 	img
 		width 100%
 		height auto
+	#scrollArrow
+		position absolute
+		top 50%
+		width 50px
+		height 50px
+		right 20px
+		z-index 1
+		margin-left 930px
+		cursor pointer
+		border 5px solid rgba(255,255,255,0.7)
+		box-sizing border-box
+		text-align center
+		margin-top -25px
+		border-radius(25px)
+		box-shadow(0 0 25px #4a3443)
+		&:before
+			color rgba(255,255,255,0.7)
+			content "▼"
+			font-size 32px
+			font-weight bold
+			line-height 42px
+			transition(0.3s)
+			text-shadow(0 0 25px #4a3443)
 		
 .index
 	padding 0 3%

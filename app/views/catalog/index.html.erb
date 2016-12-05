@@ -29,6 +29,7 @@
 	<% if params[:url].present? %>
 		<% unless @category.images.blank? %>
 			<div class="category-image">
+				<div id="scrollArrow" onclick="scrollImage(this)"></div>
 				<img src="<%= @category.images %>">
 			</div>
 		<% end %>
