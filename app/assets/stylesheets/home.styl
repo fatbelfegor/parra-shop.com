@@ -40,17 +40,17 @@
 			
 	.icons
 		background white
-		text-align center
 		font-size 0
-		padding 24px 0
+		text-align justify
+		padding 24px 3%
+		&:after
+			content ''
+			display inline-block
+			width 100%
 		> a
+			text-align center
 			display inline-block
 			margin-bottom 22px
-			margin 0 50px
-			&:first-child
-				margin-left 0
-			&:last-child
-				margin-right 0
 		img
 			max-width 100px
 		p
@@ -169,18 +169,9 @@
 				width 200px
 				height 200px
 			
-	@media (max-width 1050px)
-		.icons > a
-			margin 0 40px
-			
 	@media (max-width 950px)
 		.icons
 			padding 24px 35px
-			text-align justify
-			&:after
-				content ''
-				display inline-block
-				width 100%
 			a
 				margin 0
 				width 18%
