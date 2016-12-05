@@ -40,18 +40,19 @@
 			
 	.icons
 		background white
-		text-align justify
+		text-align center
 		font-size 0
-		padding 24px 35px 0
-		&:after
-			content ''
-			display inline-block
-			width 100%
-		> div
+		padding 24px 0
+		> a
 			display inline-block
 			margin-bottom 22px
+			margin 0 50px
+			&:first-child
+				margin-left 0
+			&:last-child
+				margin-right 0
 		img
-			width 150px
+			max-width 100px
 		p
 			text-align center
 			font-size 1rem
@@ -161,22 +162,27 @@
 			margin 0 40px
 			
 	@media (max-width 1100px)
-		.categories
-			img
-				width 250px
-				height 250px
 		.reviews .item
 			margin 0 20px
-			
-	@media (max-width 1100px)
 		.categories
 			img
 				width 200px
 				height 200px
 			
+	@media (max-width 1050px)
+		.icons > a
+			margin 0 40px
+			
 	@media (max-width 950px)
 		.icons
-			div
+			padding 24px 35px
+			text-align justify
+			&:after
+				content ''
+				display inline-block
+				width 100%
+			a
+				margin 0
 				width 18%
 				vertical-align top
 			img

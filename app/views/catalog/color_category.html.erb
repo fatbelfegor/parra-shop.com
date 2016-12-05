@@ -10,6 +10,11 @@
 	</h1>
 </div>
 <div class="index">
+	<% unless @category.images.blank? %>
+		<div class="category-image">
+			<img src="<%= @category.images %>">
+		</div>
+	<% end %>
 	<div id="color-category-blocks">
 		<div class="wrap">
 			<% for c in @category.color_categories.order(:id) %>
@@ -33,12 +38,4 @@
 <script type="text/javascript" src="/assets/slick.min.js"></script>
 <script type="text/javascript">
 	$('.photoes').slick();
-	<% if params[:url].present? %>
-		if (products) {
-			var div = products.children[0]
-			if (div) {
-				document.getElementsByClassName('breadcrumbs')[0].style.paddingLeft = div.offsetLeft + 'px'
-			} 
-		}
-	<% end %>
 </script>

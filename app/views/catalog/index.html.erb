@@ -28,10 +28,8 @@
 <div class="index">
 	<% if params[:url].present? %>
 		<% unless @category.images.blank? %>
-			<div class="category-images">
-				<% for image in @category.images.split(',') %>
-					<img src="<%= image %>">
-				<% end %>
+			<div class="category-image">
+				<img src="<%= @category.images %>">
 			</div>
 		<% end %>
 	<% end %>

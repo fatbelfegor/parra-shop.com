@@ -12,11 +12,11 @@
 	<% end %>
 
 	<div class="icons">
-		<div><img src="/assets/Transport.png"><p>Бесплатная доставка</p></div>
-		<div><img src="/assets/Tools.png"><p>Сборка</p></div>
-		<div><img src="/assets/Payment.png"><p>Способы оплаты</p></div>
-		<div><img src="/assets/Certificate.png"><p>Гарантии</p></div>
-		<div><img src="/assets/Shop.png"><p>Магазины</p></div>
+		<a href="/service"><img src="/assets/Transport.png"><p>Бесплатная доставка</p></a>
+		<a href="/service"><img src="/assets/Tools.png"><p>Сборка</p></a>
+		<a href="/oplata"><img src="/assets/Payment.png"><p>Способы оплаты</p></a>
+		<a href="/insurance"><img src="/assets/Certificate.png"><p>Гарантии</p></a>
+		<a href="/stores"><img src="/assets/Shop.png"><p>Магазины</p></a>
 	</div>
 
 	<% b = banners.find_all(&:new) %>
@@ -98,7 +98,6 @@
 	});
 	$('.reviews').slick({
 		slidesToShow: 2,
-		centerMode: true,
 		responsive: [{
 			breakpoint: 1000,
 			settings: {

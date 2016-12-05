@@ -126,7 +126,7 @@
   <div class="text-center col-md-6">
     <div id="addImages" class="category_header">
       <% if @category.header %>
-      <h4>Изображение в поле header</h4>
+      <h4>Изображение картинка-название</h4>
       <div>
         <div>
           <img class="img-thumbnail" src="<%= @category.header %>">
@@ -134,7 +134,7 @@
         </div>
       </div>
       <% else %>
-        <input onclick="addImageClick(this)" type="button" value="Добавить изображение в поле header" class="btn btn-primary">
+        <input onclick="addImageClick(this)" type="button" value="Добавить картинку-название" class="btn btn-primary">
         <div></div>
       <% end %>
     </div>
@@ -143,17 +143,17 @@
 
   <div class="text-center col-md-6">
     <div id="addImages" class="category_images">
-      <input type="button" value="Добавить изображение в поле images" class="btn btn-primary">
+      <input type="button" value="Добавить изображение большое сверху" class="btn btn-primary">
       <div>
-        <% if @category.images then @category.images.split(',').each do |i| %>
+        <% if @category.images %>
           <div>
-            <img class="img-thumbnail" src="<%= i %>">
+            <img class="img-thumbnail" src="<%= @category.images %>">
             <small class="btn btn-warning" onclick="deleteImage(this)">Удалить</small>
           </div>
-        <% end end %>
+        <% end %>
       </div>
     </div>
-    <%= f.hidden_field :images %>
+    <%= f.hidden_field :images, class: 'one' %>
   </div>
 
   </td></tr>
