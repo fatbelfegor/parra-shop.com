@@ -1,0 +1,26 @@
+<br><h2 class="text-center">Список глобальных акций</h2><br>
+
+<table class="table table-bordered table-striped text-center table-lh-34">
+	<tr>
+		<th>Скидка</th>
+		<th>Картинка</th>
+		<th>Активная</th>
+		<th>Действия</th>
+	</tr>
+	<% for share in @shares %>
+	<tr>
+		<td><b><%= share.discount %></b></td>
+		<td><b><% if share.image? %><img src='<%= share.image.url %>'<% end %></b></td>
+		<td><b><%= (if share.active then 'Да' else 'Нет' end) %></b></td>
+		<td>
+			<%= link_to 'Редактировать', edit_share_path(share), class: 'btn btn-warning' %>
+			<%= link_to 'Удалить', share, 'data-confirm' => 'Вы уверены?', :method => :delete, class: 'btn btn-danger' %>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="4">
+			<%= link_to 'Новая акция', new_share_path, class: 'btn btn-success' %>
+		</td>
+	</tr>
+</table>

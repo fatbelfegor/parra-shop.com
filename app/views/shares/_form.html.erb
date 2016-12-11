@@ -1,0 +1,26 @@
+<%= form_for(@share, html: { multipart: true }) do |f| %>
+<label class="row form-group">
+	<h4 class="col-md-2 col-md-offset-3 text-center">Скидка (%): </h4>
+	<div class="col-md-3">
+		<%= f.number_field :discount, {class: 'form-control'} %>
+	</div>
+</label>
+<br>
+<div class="checkbox" style="text-align: center;">
+  <label style="display: inline-block;"><input type="checkbox" name="share[active]"<% if @share.active %> checked<% end %>>Активная</label>
+</div>
+<br>
+<div style="text-align: center">
+<% if @share.image? %>
+	<img src="<%= @share.image.url %>"><br><br>
+<% end %>
+<input type="file" name="image" style="display: inline-block;" />
+</div>
+<br>
+<div class="text-center">
+	<%= f.submit 'Сохранить', class: "btn btn-success" %>
+</div>
+<br>
+<br>
+<br>
+<% end %>
