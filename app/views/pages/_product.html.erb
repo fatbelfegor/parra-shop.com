@@ -1,9 +1,9 @@
 <div>
 	<div>
-		<% if $global_share %>
-			<img src="<%= $global_extension.url :medium %>" class='extension-catalog'>
-		<% elsif product.extension %>
+		<% if product.extension %>
 			<img src="<%= product.extension.image %>" class='extension-catalog'>
+		<% elsif $global_share %>
+			<img src="<%= $global_extension.url :medium %>" class='extension-catalog'>
 		<% end %>
 		<% images = product.product_images.map{|i| i.image.block.url} %>
 		<% price = number_to_currency product.price %>

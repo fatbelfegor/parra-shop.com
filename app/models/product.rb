@@ -31,14 +31,18 @@ class Product < ActiveRecord::Base
 
 	def old_price
 		if $global_share
-			self[:price]
+			if self[:old_price] == 0
+				self[:price]
+			else
+				self[:old_price]
+			end
 		else
 			self[:old_price]
 		end
 	end
 
 	def price
-		if $global_share
+		if $global_share and self[:old_price] == 0
 			self[:price] * ( 1 - $global_discount / 100.0 )
 		else
 			self[:price]
