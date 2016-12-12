@@ -35,6 +35,10 @@ ready = ->
 				active.className = ''
 			background.children[Array.prototype.indexOf.call list.children, el].className = 'active'
 
+	if products = document.getElementById 'products'
+		for div in products.children
+			div.style.height = div.firstElementChild.offsetHeight + 'px'
+
 	$('#addImages input').click ->
 		iframe.src = '/images/new'
 		this.parentNode.appendChild iframe

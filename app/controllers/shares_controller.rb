@@ -24,12 +24,12 @@ class SharesController < ApplicationController
 		redirect_to shares_path
 	end
 	def update
-		image = params[:image]
 		if params[:active]
 			@share.active = true
 		else
 			@share.active = false
 		end
+		image = params[:image]
 		@share.image = image if image
 		@share.update share_params
 		redirect_to shares_path
