@@ -17,6 +17,16 @@
   <meta name="viewport" content="width = 500">
 </head>
 <body class='<%= controller.controller_name %>'>
+<% 
+    share = Share.find_by_active(true)
+    if share
+      $global_share = true
+      $global_discount = share.discount
+      $global_extension = share.image
+    else
+      $global_share = false
+    end
+%>
 <div id="blur">
 	<div id="header">
 		<div class="wrap">

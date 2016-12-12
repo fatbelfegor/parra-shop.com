@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
 
    def ending_slash
     if request.original_fullpath.size > 1 and request.original_fullpath[-1] == '/'
-      p request.original_fullpath
       redirect_to request.original_fullpath[0..-2], status: 301
     else
       true

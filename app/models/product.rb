@@ -29,4 +29,12 @@ class Product < ActiveRecord::Base
 	# 	indexes :invisible
 	# end
 
+	def price
+		if $global_share
+			self[:price] * ( 1 - $global_discount / 100.0 )
+		else
+			self[:price]
+		end
+	end
+
 end
