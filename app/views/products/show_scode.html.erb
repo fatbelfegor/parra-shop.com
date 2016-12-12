@@ -22,7 +22,9 @@ price = to_money @product.price %>
 	<div class="page-title"><% if @product.category and !@product.category.header.blank? %><img src='<%= @product.category.header %>'> / <% end %><%= if @product.category then @product.category.name else @product.subcategory.name end %></div>
 	<div class="product-wrap">
 		<div>
-			<% if @product.extension %>
+			<% if $global_share %>
+				<img src="<%= $global_extension.url %>" class='extension-show'>
+			<% elsif @product.extension %>
 				<img class='extension-show' src="<%= @product.extension.image %>">
 			<% end %>
 			<% images = @product.product_images.map{|i| i.image} %>

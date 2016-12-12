@@ -2,7 +2,9 @@
 price = number_to_currency productFooter.price %>
 <div>
 	<div>
-		<% if productFooter.extension %>
+		<% if $global_share %>
+			<img src="<%= $global_extension.url :small %>" class='extension-footer'>
+		<% elsif productFooter.extension %>
 			<img src="<%= productFooter.extension.image %>" class='extension-footer'>
 		<% end %>
 		<% images = productFooter.product_images.map{|i| i.image.block.url} %>
