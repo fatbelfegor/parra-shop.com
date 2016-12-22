@@ -164,6 +164,10 @@ ready = ->
 			$(div).find('.left').attr('class', 'left invis').attr('onclick', '')
 	$(div).find('#price').first().html (parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()
 	$(div).find('#count').html(item.c)
+	total = 0
+	for item in cart
+		total += +item.c * +item.p.replace(/\s/g, '')
+	$(div.parentNode.parentNode).find('.itogo b').html(total.toCurrency())
 	cartSave()
 $(document).ready ->
 	$('#mainMenu li div div').each ->
@@ -231,7 +235,7 @@ expire = ->
 		</div>')
 	a = $('#alert').show()
 	d = a.find('> div').last()
-	d.css('left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 + $(window).scrollTop() - d.height() / 2)
+	d.css('left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 - d.height() / 2)
 	a.hide().fadeIn(300)
 	cartSave()
 @addToCart = (name, el) ->
