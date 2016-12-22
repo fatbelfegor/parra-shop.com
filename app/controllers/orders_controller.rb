@@ -50,10 +50,10 @@ class OrdersController < ApplicationController
                 else
                     OrderMailer.ordersave(@order).deliver
                     OrderMailer.ordersaveclient(@order).deliver
-                    format.html{redirect_to index_path, notice: 'ordersave'}
+                    format.html{redirect_to '/', notice: 'ordersave'}
                 end
             else
-                format.html{redirect_to index_path, notice: 'Заказ не был оформлен.'}
+                format.html{redirect_to '/', notice: 'Заказ не был оформлен.'}
             end
         end
 	end

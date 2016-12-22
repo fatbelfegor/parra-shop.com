@@ -66,13 +66,14 @@ ready = ->
 					success: (data) ->
 						item = $("#cart > [data-id='#{id}']")
 						window.item = item
-						photoes = data.images.split(',')
-						firstPhoto = photoes.shift()
-						otherPhotoes = ''
-						for img in photoes
-							otherPhotoes += '<a href='+img+' data-lightbox="'+i+'"></a>'
-						window.data = data
-						item.find('span').first().prepend '<a href="'+firstPhoto+'" data-lightbox="'+i+'"><img src="'+firstPhoto+'"></a>'+otherPhotoes
+						if data.images
+							photoes = data.images.split(',')
+							firstPhoto = photoes.shift()
+							otherPhotoes = ''
+							for img in photoes
+								otherPhotoes += '<a href='+img+' data-lightbox="'+i+'"></a>'
+							window.data = data
+							item.find('span').first().prepend '<a href="'+firstPhoto+'" data-lightbox="'+i+'"><img src="'+firstPhoto+'"></a>'+otherPhotoes
 			)(id)
 		$('#cart').html(items)		
 	$(".accordion h3").click ->
@@ -381,15 +382,18 @@ expire = ->
 	if w
 		w[0].parentNode.removeChild w[0]
 		$('body')[0].appendChild(w[0])
-		d.css 'left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 + $(window).scrollTop() - d.height() / 2
+		d.css 'left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 - d.height() / 2
 @orderShowAll = ->
 	h = $($('#otherInputs')[0])
+	wrap = h.parent().parent()
 	if h.attr('class') == 'show'
 		h.attr('class', '')
 		h.animate 'height':'0px', 300
+		wrap.animate 'top': parseInt(wrap[0].style.top) + 97 + 'px', 300
 	else
 		h.attr('class', 'show')
 		h.animate 'height':'194px', 300
+		wrap.animate 'top': parseInt(wrap[0].style.top) - 97 + 'px', 300
 @cartCount = ->
 	count = 0
 	cart.forEach (i) ->
