@@ -30,20 +30,21 @@
 	<% end %>
 
 	<% comments = Comment.where(published: true).order date: :desc %>
-	<% unless comments.blank? %>
-		<div class="white">
-			<h2>Отзывы наших покупателей</h2>
-			<div class="reviews">
-				<% for comment in comments %>
-					<div class="item">
-						<div class="text"><%= comment.body.truncate 220 %></div>
-						<% if comment.date %><div class='date'><%= comment.date.strftime "%d-%m-%Y" %></div><% end %>
-						<div class="author"><%= comment.author %><% unless comment.city.blank? %>, <%= comment.city %><% end %></div>
-					</div>
-				<% end %>
-			</div>
+	<div class="white">
+		<h2>Отзывы наших покупателей</h2>
+		<div class="reviews">
+			<% for comment in comments %>
+				<div class="item">
+					<div class="text"><%= comment.body.truncate 220 %></div>
+					<% if comment.date %><div class='date'><%= comment.date.strftime "%d-%m-%Y" %></div><% end %>
+					<div class="author"><%= comment.author %><% unless comment.city.blank? %>, <%= comment.city %><% end %></div>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
+		<div style="text-align: center; padding: 20px 0">
+			<div class="btn green" onclick="otzyv()"><p>Оставить отзыв</p></div>
+		</div>
+	</div>
 
 	<% b = banners.find_all(&:hit) %>
 	<% if b.any? %>

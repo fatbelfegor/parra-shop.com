@@ -12,6 +12,7 @@ gem 'tilt'
 gem 'stylus'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rb-readline'
 
 gem 'tinymce-rails'
 

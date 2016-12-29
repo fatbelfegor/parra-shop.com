@@ -65,15 +65,12 @@ ready = ->
 					url: "/cart.json?id="+item.i
 					success: (data) ->
 						item = $("#cart > [data-id='#{id}']")
-						window.item = item
-						if data.images
-							photoes = data.images.split(',')
+						if photoes = data.images
 							firstPhoto = photoes.shift()
 							otherPhotoes = ''
 							for img in photoes
-								otherPhotoes += '<a href='+img+' data-lightbox="'+i+'"></a>'
-							window.data = data
-							item.find('span').first().prepend '<a href="'+firstPhoto+'" data-lightbox="'+i+'"><img src="'+firstPhoto+'"></a>'+otherPhotoes
+								otherPhotoes += '<a href='+img[0]+' data-lightbox="'+i+'"></a>'
+							item.find('span').first().prepend '<a href="'+firstPhoto[0]+'" data-lightbox="'+i+'"><img src="'+firstPhoto[1]+'"></a>'+otherPhotoes
 			)(id)
 		$('#cart').html(items)		
 	$(".accordion h3").click ->
@@ -1033,6 +1030,7 @@ writeChars = ->
 		$.post '/otzyv', params, ->
 			dark.close()
 			$('#blur > .main > div').prepend "<div class='notice'>Ваш отзыв появится после проверки модератором.<div class='close' onclick='$(this).parent().remove()'>x</div>"
+			$('html, body').scrollTop(0)
 
 @compactMenu = ->
 	el = compactMenuToggle

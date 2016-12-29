@@ -11,4 +11,8 @@ class PagesController < ApplicationController
     @seo_description = "Актуальные вакансии магазина Parra-Shop. Начните карьеру у нас - телефон для связи +7 (967) 021-37-73."
     @seo_keywords = "Parra, Парра, мебель, шпон, Москва, магазин, вакансии, работа" 
   end
+
+  def loyalty_card
+    @title = "Карта лояльности"
+  end
 end

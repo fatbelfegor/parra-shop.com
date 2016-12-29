@@ -1,0 +1,13 @@
+<!-- Поиск -->
+<div class="search">
+	<form action="/catalog/index">
+		<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
+		<label>Поиск<input type="submit"/></label>
+	</form>
+</div>
+<!-- Контакты в Сервис list submenu -->
+<a href='/contacts'>Контакты</a>
+<!-- Контакты в mainMenuCompact -->
+<a href="/contacts">Контакты</a>
+<!-- Контакты в nav.footer -->
+<li><%= link_to 'Контакты', contacts_path %></li>

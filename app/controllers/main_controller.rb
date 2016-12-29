@@ -76,7 +76,7 @@ class MainController < ApplicationController
     product = Product.select(:id, :name).find params[:id]
   	render json: {
       name: product.name,
-      image: product.product_images.first.image.verysmall.url
+      images: product.product_images.map{|pi| [pi.image.url, pi.image.verysmall.url]}
     }
   end
 

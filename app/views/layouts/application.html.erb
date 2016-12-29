@@ -41,12 +41,6 @@
 				  <p>8-800-707-67-57</p>
 				  <ins>Бесплатные звонки по России</ins>
 				</div>
-				<div class="search">
-					<form action="/catalog/index">
-						<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
-						<label>Поиск<input type="submit"/></label>
-					</form>
-				</div>
 			</div>
 			<div class="menu">
 				<div class="item">
@@ -189,22 +183,21 @@
 				<div class="item">
 					<span>Сервис</span>
 					<div class="list submenu">
-						<a href='/service'>Доставка и сборка</a>
-						<a href='/partners'>Партнерам</a>
-						<a href='/articles'>Статьи</a>
-						<a href='/news'>Новости</a>
-						<a href='/insurance'>Гарантии</a>
+						<a href='/service'>Доставка и оплата</a>
 						<a href='/otzyvy'>Отзывы</a>
+						<a href='/insurance'>Гарантии</a>
+						<a href='/news'>Новости</a>
+						<a href='/articles'>Статьи</a>
 						<a href='/about'>О нас</a>
-						<a href='/contacts'>Контакты</a>
+						<a href='/partners'>Партнерам</a>
 					</div>
 				</div>
 				<div class="dark"></div>
 				<div class="item">
 					<span>Акции</span>
 					<div class="list submenu">
-						<a href='/catalog/samples-sale'>Распродажа</a>
-						<a href='/catalog/sales'>Распродажа 2</a>
+						<a href='/catalog/samples-sale'>Распродажа выставочных образцов</a>
+						<a href='/catalog/sales'>Распродажа мебели</a>
 					</div>
 				</div>
 				<div class="dark"></div>
@@ -277,7 +270,6 @@
 				<a href="/insurance">Гарантии</a>
 				<a href="/otzyvy">Отзывы</a>
 				<a href="/about">О нас</a>
-				<a href="/contacts">Контакты</a>
 				<a href="/stores">Где купить</a>
 			</div>
 		  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
@@ -305,7 +297,6 @@
 				<li><%= link_to 'Гарантии', insurance_path %></li>
 				<li><%= link_to 'Отзывы', otzyvy_path %></li>
 				<li><%= link_to 'О нас', about_path %></li>
-				<li><%= link_to 'Контакты', contacts_path %></li>
 				<li><%= link_to 'Вакансии', vacancy_path %></li>
 				<li><a href="/sitemap">Карта сайта</a></li>
 			</ul>
@@ -322,17 +313,17 @@
 						<div class="center">
 							<div class="title">Покупателям:</div>
 							<div class="borders">
-								<a href="#">Карта лояльности</a>
-								<a href="#">Оформление кредита</a>
+								<a href="/loyalty_card" style="text-decoration: underline">Карта лояльности</a>
+								<span>Оформление кредита</span>
 								<div class="credit">
 									<a href="/credits"><img src="/assets/footer/credit1.png"></a>
 									<a href="/credits"><img src="/assets/footer/credit2.png"></a>
 								</div>
 								<div class="title">Присоединяйтесь:</div>
 								<div class="social">
-									<a href="https://vk.com/parrashop"><img src="/assets/footer/vk.png"></a>
-									<a href="https://www.facebook.com/parrashops/"><img src="/assets/footer/fb.png"></a>
-									<a href="https://www.instagram.com/parra_shop/"><img src="/assets/footer/ig.png"></a>
+									<a target="_blank" href="https://vk.com/parrashop"><img src="/assets/footer/vk.png"></a>
+									<a target="_blank" href="https://www.facebook.com/parrashops/"><img src="/assets/footer/fb.png"></a>
+									<a target="_blank" href="https://www.instagram.com/parra_shop/"><img src="/assets/footer/ig.png"></a>
 								</div>
 								<div class="title">Наше приложение:</div>
 								<a href="https://itunes.apple.com/ru/app/parra-shop/id1137471924?mt=8">
