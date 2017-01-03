@@ -45,12 +45,12 @@
 				  <p>8-800-707-67-57</p>
 				  <ins>Бесплатные звонки по России</ins>
 				</div>
-				<div class="search">
+				<!-- <div class="search">
 					<form action="/catalog/index">
 						<input type="text" name="q" placeholder="Например, кровать Bella" value="<%= params[:q] %>"/>
 						<input type="submit" value="Поиск"/>
 					</form>
-				</div>
+				</div> -->
 			</div>
 			<div class="menu">
 				<div class="item">
@@ -216,7 +216,6 @@
 						<a href='/insurance'>Гарантии</a>
 						<a href='/otzyvy'>Отзывы</a>
 						<a href='/about'>О нас</a>
-						<a href='/contacts'>Контакты</a>
 					</div>
 				</div>
 				<div class="dark"></div>
@@ -407,7 +406,6 @@
 				<li><%= link_to 'Гарантии', insurance_path %></li>
 				<li><%= link_to 'Отзывы', otzyvy_path %></li>
 				<li><%= link_to 'О нас', about_path %></li>
-				<li><%= link_to 'Контакты', contacts_path %></li>
 				<li><%= link_to 'Вакансии', vacancy_path %></li>
 				<li><a href="/sitemap">Карта сайта</a></li>
 			</ul>

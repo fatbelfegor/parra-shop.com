@@ -217,7 +217,7 @@ expire = ->
 			success: (data) ->
 				$('#alert .items > div').get().forEach (item) ->
 					if $(item).find('ins').html() == data.name
-						$(item).find('img').attr 'src', data.image
+						$(item).find('img').attr 'src', data.images[0][1]
 	$('body').append('<div id="alert">\
 			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
 			<div>\
@@ -232,8 +232,11 @@ expire = ->
 			</div>\
 		</div>')
 	a = $('#alert').show()
-	d = a.find('> div').last()
-	d.css('left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 - d.height() / 2)
+	d = a.find('> div').last()[0]
+	height = $(window).height()
+	d.style.left = $(window).width() / 2 - d.offsetWidth / 2 + 'px'
+	d.style.top = height / 2 - d.offsetHeight / 2 + 'px'
+	d.style.maxHeight = height + 'px'
 	a.hide().fadeIn(300)
 	cartSave()
 @addToCart = (name, el) ->
@@ -374,12 +377,15 @@ expire = ->
 	writeChars()
 @order = ->
 	w = $('#orderWindow')
-	d = w.find('>:last-child')
+	d = w.find('>:last-child')[0]
 	w.fadeIn(300)
 	if w
 		w[0].parentNode.removeChild w[0]
 		$('body')[0].appendChild(w[0])
-		d.css 'left': $(window).width() / 2 - d.width() / 2, top: $(window).height() / 2 - d.height() / 2
+		height = $(window).height()
+		d.style.left = $(window).width() / 2 - d.offsetWidth / 2 + 'px'
+		d.style.top = height / 2 - d.offsetHeight / 2 + 'px'
+		d.style.maxHeight = height + 'px'
 @orderShowAll = ->
 	h = $($('#otherInputs')[0])
 	wrap = h.parent().parent()
@@ -390,7 +396,9 @@ expire = ->
 	else
 		h.attr('class', 'show')
 		h.animate 'height':'194px', 300
-		wrap.animate 'top': parseInt(wrap[0].style.top) - 97 + 'px', 300
+		top = parseInt(wrap[0].style.top) - 97
+		top = 0 if top < 0
+		wrap.animate 'top': top + 'px', 300
 @cartCount = ->
 	count = 0
 	cart.forEach (i) ->

@@ -131,7 +131,8 @@ li
 
 #alert > :last-child, #orderWindow > :last-child
   position fixed
-  width 434px
+  box-sizing border-box
+  width 470px
   padding 16px 18px
   background-color white
   -webkit-box-shadow 0 0 60px 0 rgba(0, 0, 0, 0.7)
@@ -139,6 +140,7 @@ li
   -o-box-shadow 0 0 60px 0 rgba(0, 0, 0, 0.7)
   box-shadow 0 0 60px 0 rgba(0, 0, 0, 0.7)
   text-align center
+  overflow auto
 
 #alert > :last-child p, #orderWindow > :last-child p
   margin-top 50px
@@ -266,7 +268,6 @@ li
   font-size 15px
   line-height 15px
   padding-bottom 15px
-  width 424px
   position relative
 
 #alert > :last-child .header div, #orderWindow > :last-child .header div
@@ -274,8 +275,8 @@ li
   height 25px
   cursor pointer
   position absolute
-  top -5px
-  right 0
+  top -10px
+  right 0px
 
 #alert > :last-child .header p, #orderWindow > :last-child .header p
   margin-top 10px
@@ -293,6 +294,14 @@ li
 
 #alert > :last-child form label, #orderWindow > :last-child form label
   cursor pointer
+  &.required
+    position relative
+    &:after
+      content '*'
+      position absolute
+      top 0
+      right 0
+      color #f44336
 
 #alert > :last-child form input[type=text], #orderWindow > :last-child form input[type=text]
   margin-left 15px
@@ -324,13 +333,19 @@ h2
     padding 15px 0
     height 100px
     display table
+    width 100%
+    text-align center
+    white-space nowrap
     & > *
       display table-cell
     & > span
       height 100%
-      width 450px
+      width 40%
       float left
       padding-left 15px
+      box-sizing border-box
+      text-align left
+      white-space normal
       img
         width 100px
         height 100px
@@ -340,6 +355,7 @@ h2
       & > div
         display table
         height 100%
+        min-width 200px
         & > div
           display table-cell
           vertical-align middle
@@ -353,13 +369,14 @@ h2
       float left
       line-height 100px
     & > :nth-child(2)
-      width 265px
+      width 20%
     & > :nth-child(3)
-      width 160px
+      width 20%
     .invis
       border-color transparent #aaa transparent #aaa !important
     & > :last-child
       cursor pointer
+      width 20%
       span
         vertical-align middle
         margin-right 5px

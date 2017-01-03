@@ -263,6 +263,22 @@
 				<a href="/obedennye-gruppi">Обеденные группы</a>
 				<a href="/divani">Мягкая мебель</a>
 				<a href="/matras">Матрасы</a>
+				<a href='/catalog/krovati-dlja-spalni'>Кровати</a>
+				<a href='/catalog/shkafy'>Шкафы</a>
+				<a href='/catalog/komody'>Комоды</a>
+				<a href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
+				<a href='/catalog/tumby-pod-tv'>Тумбы TV</a>
+				<a href='/catalog/zerkala'>Зеркала</a>
+				<a href='/catalog/polki'>Полки</a>
+				<a href='/catalog/stoly'>Столы</a>
+				<a href='/catalog/osnovanija'>Основания</a>
+				<a href='/catalog/bufety'>Буфеты</a>
+				<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
+				<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
+				<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
+				<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
+				<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
+				<a href="/catalog/svetilniki">Светильники</a>
 				<a href="/service">Доставка и сборка</a>
 				<a href="/partners">Партнерам</a>
 				<a href="/articles">Статьи</a>
@@ -368,7 +384,7 @@
 	    </div>
 	    <%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
 	    <div class="row">
-	    	<span class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></span>
+	    	<span class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box required', style: 'padding:0 15px'} %></span>
 	    	<div class="col-md-5">
 		      <div class="wrath-content-box" style="padding:0 15px">
 				<%= f.text_field :first_name, class: "form-control" %>
@@ -379,12 +395,12 @@
 		    <span class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
 	    	<div class="col-md-5">
 		      <div class="wrath-content-box" style="padding:0 15px">
-				<%= f.text_field :phone, class: "form-control" %>
+				<%= f.text_field :phone, class: "form-control", placeholder: "+7 (495) ХХХ ХХ ХХ" %>
 		      </div>
 		    </div>
 	    </div>
 		<div class="row">
-			<span class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
+			<span class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box required', style: 'padding:0 15px'} %></nobr></span>
 			<div class="col-md-5">
 		      <div class="wrath-content-box" style="padding:0 15px">
 				<%= f.text_field :email, class: "form-control" %>
