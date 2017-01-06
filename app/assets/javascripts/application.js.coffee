@@ -312,7 +312,7 @@ expire = ->
 					if data
 						$('#menuCart .cart-list > a').get().forEach (item) ->
 							if $(item).find('#name').html() == data.name				
-								$(item).find('img').attr 'src', data.image
+								$(item).find('img').attr 'src', data.images[0][1]
 	if items == ''
 		$('#menuCart').hide()
 	else $('#menuCart').show()
