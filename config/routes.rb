@@ -51,6 +51,7 @@ ParraShopCom::Application.routes.draw do
   get "trk-krasniy-kit", to: 'main#store7', as: 'store7'
   get "mc-vagant-podolsk", to: 'main#store8', as: 'store8'
   get "store9", to: 'main#store9'
+  get "store10", to: 'main#store10'
 
   get "service", to: 'main#service'
   get "partners", to: 'main#partners'
