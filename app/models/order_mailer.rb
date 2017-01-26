@@ -5,9 +5,9 @@ class OrderMailer < ActionMailer::Base
   default from: 'Parra Shop'
 
   def ordersave(order)
-    p order
     @order =  order
     mail(to: 'intrtz@gmail.com', subject: 'Поступил новый заказ.')
+    mail(to: 'kas1082@yandex.ru', subject: 'Поступил новый заказ.')
     #mail(to: 'ikishik@gmail.com', subject: 'Поступил новый заказ.')
   end
 
