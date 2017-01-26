@@ -36,7 +36,6 @@ ParraShopCom::Application.routes.draw do
   get '/kupit/:scode', to: 'products#show_scode'
   get 'vacancy', to: 'pages#vacancy', as: :vacancy
   get 'credits', to: 'pages#credits'
-  get 'newyearshare', to: 'pages#newyearshare'
 
   get '/sitemap', to: 'main#sitemap'
 
