@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
                 if user_signed_in? && (current_user.admin? || current_user.manager)
                     format.html{redirect_to "/orders/#{@order.id}/edit"}
                 else
-                    OrderMailer.ordersave(@order).each do |mail| mail.deliver end
+                    OrderMailer.ordersave(@order).deliver
                     OrderMailer.ordersaveclient(@order).deliver
                     format.html{redirect_to '/', notice: 'ordersave'}
                 end
