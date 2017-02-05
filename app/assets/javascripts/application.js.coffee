@@ -592,6 +592,16 @@ validate = (input) ->
 @orderValidate = (form) ->	
 	ok = validate($(form).find('input:text').first())
 	ok = validate($($(form).find('input:text')[1]))
+	if order_email.value is ''
+		order_email.parentNode.classList.add 'has-error'
+		order_email.setAttribute 'placeholder', 'Заполните поле'
+		ok = false
+	else if /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(order_email.value)
+		order_email.parentNode.classList.remove 'has-error'
+		order_email.setAttribute 'placeholder', ''
+	else
+		order_email.parentNode.classList.add 'has-error'
+		ok = false
 	if ok
 		document.cookie = 'cart='+encodeURIComponent(JSON.stringify(cart))+';path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT'
 	ok
