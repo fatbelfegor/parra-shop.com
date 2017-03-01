@@ -80,18 +80,23 @@ ParraShopCom::Application.configure do
   
   #config.active_record.observers = [:order_observer]
   
+  
+  
   config.action_mailer.default_url_options = { :host => 'www.parra-shop.com' }
   
   config.action_mailer.delivery_method = :smtp  
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   ActionMailer::Base.default :from => "Parra Shop <orders@parra-shop.ru>"
   ActionMailer::Base.smtp_settings = {
-  :address        => "smtp.gmail.com",
-  :port           => 587,
-  :domain         => "parra-shop.ru",
-  :user_name      => "orders@parra-shop.ru",
-  :password       => "LmRsMsTd",
-  :authentication => :plain,
-  :enable_starttls_auto => true
- }
+   :address        => "smtp.yandex.ru",
+   :port           => 465,
+   :domain         => "parra-shop.ru",
+   :user_name      => "orders@parra-shop.ru",
+   :password       => "LmRsMsTd",
+   :authentication => :plain,
+   :enable_starttls_auto => true,
+   ssl: true
+  }
+  
 end
