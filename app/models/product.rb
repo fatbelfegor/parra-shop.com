@@ -42,7 +42,7 @@ class Product < ActiveRecord::Base
 	end
 
 	def price
-		if $global_share and self[:old_price] == 0
+		if $global_share# and self[:old_price] == 0
 			self[:price] * ( 1 - $global_discount / 100.0 )
 		else
 			self[:price]

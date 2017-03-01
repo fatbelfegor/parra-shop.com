@@ -13,7 +13,7 @@ class MobileproductsController < ApplicationController
     		price: p.price,
     		position: p.position,
     		updated_at: p.updated_at,
-    		images: p.product_images.select(:image).map{|pi| pi.image.url}.join(',')
+    		images: p.product_images.select(:id, :image).map{|pi| pi.image.url}.join(',')
     	}
     end
     render json: result
