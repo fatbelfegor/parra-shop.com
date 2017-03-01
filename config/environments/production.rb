@@ -87,7 +87,7 @@ ParraShopCom::Application.configure do
   config.action_mailer.delivery_method = :smtp  
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  ActionMailer::Base.default :from => "orders@parra-shop.ru"
+  ActionMailer::Base.default :from => "Parra Shop orders@parra-shop.ru"
   ActionMailer::Base.smtp_settings = {
    :address        => "smtp.yandex.ru",
    :port           => 465,
