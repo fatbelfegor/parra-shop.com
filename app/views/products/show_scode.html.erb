@@ -47,9 +47,9 @@
 			</div>
 			<div id="choosedChars" class="open">
 				<div class="choosed-options">Выбранные опции:</div>
-				<p>Размер: <b></b></p>
-				<p>Цвет: <b></b></p>
-				<p>Опция: <b></b></p>
+				<p id="sizeP">Размер: <b id="sizeB"></b></p>
+				<p id="colorP">Цвет: <b id="colorB"></b></p>
+				<p id="optionP">Опция: <b id="optionB"></b></p>
 			</div>
 			<div class="price">
 				<div class="price-block">
@@ -228,21 +228,14 @@
 	<% sizes = @product.prsizes %>
 	<% sizes_exist = sizes.any? %>
 	<% if sizes_exist %>
-		<% first_size = sizes.first %>
-		<% color_exist = first_size.prcolors.any? %>
-		<% option_exist = first_size.proptions.any? %>
 		<div class="header">Выбрать модификацию:</div>
 		<div class="tabs">
 			<div onclick="tabs(this)" class="active">Размер</div>
-			<% if color_exist %>
-				<div onclick="tabs(this)">Цвет</div>
-			<% end %>
-			<% if option_exist %>
-				<div onclick="tabs(this)">Другие опции</div>
-			<% end %>
+			<div id="colorNav" onclick="tabs(this)">Цвет</div>
+			<div id="optionNav" onclick="tabs(this)">Другие опции</div>
 		</div>
 		<div class="tabs-pages">
-			<div class="prsizes active tab">
+			<div id="sizesTab" class="prsizes active tab">
 				<% checked = true
 				for size in @product.prsizes %>
 					<div onclick="sizeChoose(this)" data-old-price="<%= size.old_price %>" data-price="<%= size.price %>">
@@ -251,7 +244,7 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="prcolors tab">
+			<div id="colorsTab" class="prcolors tab">
 				<% first = true %>
 				<% for size in sizes %>
 					<div class="size<%= if first then first = false; ' cur' end %>">
@@ -262,7 +255,7 @@
 							for color in size.prcolors %>
 								<% textures = color.textures
 								if textures.blank? %>
-									<div data-price="<%= color.price %>" class="color" onclick="checkboxClick(this)">
+									<div data-price="<%= color.price %>" class="color" onclick="chooseColor(this)">
 										<a href='<%= color.images %>' data-lightbox='<%= color.name %>'><img src="<%= color.images %>"></a>
 										<p class="name">Цвет <%= color.name %></p>
 										<span data-id="<%= color.id %>" data-type="color" class="i checkbox<% if checked then checked = false %> checked<% end %>"></span>
@@ -276,7 +269,7 @@
 										</div>
 										<div class="textures">
 											<% for texture in textures %>
-												<div data-price="<%= texture.price %>" onclick="checkboxClick(this)">
+												<div data-price="<%= texture.price %>" onclick="chooseTexture(this)">
 													<p class="name"><%= texture.scode %> <%= texture.name %></p>
 													<a class="texture-image" href='<%= texture.image %>' data-lightbox='<%= color.name %>'><img src="<%= texture.image %>"></a>
 													<span data-id="<%= texture.id %>" data-type="texture" class="i checkbox<% if checked then checked = false %> checked<% end %>"></span>
@@ -290,16 +283,12 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="proptions tab">
+			<div id="optionsTab" class="proptions tab">
 				<% first = true %>
 				<% for size in sizes %>
 					<div class="size<%= if first then first = false; ' cur' end %>">
-						<div data-price="0" onclick="checkboxClick(this)">
-							<span data-id="0" data-type="option" class="i checkbox checked"></span>
-							<span class="name">Без опции</span>
-						</div>
 						<% for option in size.proptions %>
-							<div data-price="<%= option.price %>" onclick="checkboxClick(this)">
+							<div data-price="<%= option.price %>" onclick="chooseOption(this)">
 								<span data-id="<%= option.id %>" data-type="option" class="i checkbox"></span>
 								<span class="name"><%= option.name %></span>
 							</div>
@@ -334,7 +323,7 @@
 
 <script type="text/javascript" src="/assets/product.js"></script>
 <script type="text/javascript">
-	productPage(<%= raw @product.to_json(only: [:price, :old_price], include: {prsizes: {only: :id, include: [{prcolors: {only: :id, include: {textures: {only: :id}}}, proptions: {only: :id}}]}}) %>)	
+	productPage(<%= raw @product.to_json(only: [:price, :old_price], include: {prsizes: {only: [:id, :price, :old_price, :name], include: [{prcolors: {only: [:id, :price, :name], include: {textures: {only: [:id, :price, :name]}}}, proptions: {only: [:id, :price, :name]}}]}}) %>)	
 </script>
 
 <script src="/assets/lightbox.min.js"></script>
