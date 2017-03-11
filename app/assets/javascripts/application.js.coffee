@@ -104,7 +104,6 @@ ready = ->
 				$('p.difference').hide()
 			$('#pricesDifference').html (old_price - b - add).toCurrency()
 			res_price.toCurrency()
-		$('#summaryPrice').html optionsPrice(priceNum)
 	cartMenuGen()
 	$(".sortable").sortable
 		revert: true
@@ -365,16 +364,6 @@ expire = ->
 	$.get "/images/delete",
 	  url: $(el).prev().attr 'src'
 	$(el).parents('#addImages').html('<input onclick="addImageClick(this)" type="button" value="Добавить изображение в поле header" class="btn btn-primary"><div></div>').next().val('')
-@priceChange = (prsize) ->
-	if prsize
-		prsize = $ prsize
-		wrap = prsize.parents('.productContent').find('.prsize-wrap')
-		wrap.find('> .active').removeClass 'active'
-		wrap.find('> div').eq(prsize.index()).addClass('active').find('> div').each ->
-			$(@).find(':radio').eq(0).prop 'checked', 'checked'
-	$('#summaryPrice').html optionsPrice(priceNum)
-	productKeepPage()
-	writeChars()
 @order = ->
 	w = $('#orderWindow')
 	d = w.find('>:last-child')[0]
@@ -411,10 +400,10 @@ expire = ->
 	next = $(el).next()
 	$('div.option').hide 300
 	if next.css('display') != 'none'
-		next.hide 300, productKeepPage
+		next.hide 300
 	else
 		$('.option').each ->
-		next.show 300, productKeepPage
+		next.show 300
 @addTexture = (el) ->
 	div = $(el).next()
 	window.div = div
@@ -457,20 +446,6 @@ expire = ->
 @addImagesClick = (el) ->
 	iframe.src = '/images/new'
 	el.parentNode.appendChild iframe
-@showHideTextures = (el) ->
-	el = $(el).parent().next()
-	if el.css('display') == 'none'
-		el.show(300)
-	else
-		el.hide(300)
-@texturesWatch = (el) ->
-	label = $(el).parent().next()
-	if label.css('height') == '0px'
-		label.animate 'height':Math.ceil(label.find('label').length/Math.floor(label.parent().width()/106))*131+'px', 300, productKeepPage
-		el.innerHTML = 'Закрыть'
-	else
-		label.animate 'height':'0px', productKeepPage
-		el.innerHTML = 'Посмотреть'
 @imageChange = (el) ->
 	if el.innerHTML == 'Изменить'
 		el.innerHTML = 'Вернуть'
@@ -782,57 +757,6 @@ orderItemPrice = ->
 	tr = $(el).parents('tr')
 	tr.find('.status').html $(el).html()
 	$.post "/orders/#{tr.data('id')}/status", status_id: $(el).data('id')
-productKeepPage = ->
-	pc = $('.productContent')
-	o = []
-	pc.find('.option').each ->
-		if $(@).is(':visible')
-			o.push 1
-		else
-			o.push 0
-	t = []
-	pc.find('.textures').each ->
-		t.push $(@).height()
-	s = pc.find('[name=prsizes]:checked').attr('class')
-	if s
-		s = s.split('size-scode-')[1]
-	else
-		s = false
-	c = pc.find('[name=prcolors]:checked')
-	if c.length > 0
-		c = c.attr('class')
-		if /^color-scode-/.test(c)
-			c = c.split('color-scode-')[1]
-			tx = false
-		else
-			tx = c.split('texture-scode-')[1]
-			c = false
-	else
-		c = tx = false
-	op = pc.find('[name=proptions]:checked').attr('class')
-	if op
-		op = op.split('option-scode-')[1]
-	else
-		op = false
-	document.cookie = 'productPage='+JSON.stringify([o, t, s, c, tx, op])+";path=/kupit/#{$('#product_scode').val()};expires="+expire().toGMTString()
-@productPage = ->
-	productPage = eval getCookie 'productPage'
-	if productPage
-		pc = $('.productContent')
-		i = 0
-		pc.find('.option').each ->
-			if productPage[0][i] == 1
-				$(@).show()
-			i += 1
-		i = 0
-		pc.find('.textures').each ->
-			$(@).css 'height', "#{productPage[1][i]}px"
-			i += 1
-		pc.find(".size-scode-#{productPage[2]}").prop 'checked', true if productPage[2]
-		pc.find(".color-scode-#{productPage[3]}").prop 'checked', true if productPage[3]
-		pc.find(".texture-scode-#{productPage[4]}").prop 'checked', true if productPage[4]
-		pc.find(".option-scode-#{productPage[5]}").prop 'checked', true if productPage[5]
-	writeChars()
 @sliderPrev = (el) ->
 	products = $(el).next()
 	active = products.find('.active').removeClass('active')
@@ -940,35 +864,6 @@ sliderRight = (steps, products) ->
 		cat.addClass 'open'
 		height = (cat.find('img').first().height() + 3) + 'px'
 		cat.find('a').animate 'height': height, 500
-writeChars = ->
-	prsizes = $('[name=prsizes]:checked')
-	prcolors = $('[name=prcolors]:checked')
-	proptions = $('[name=proptions]:checked').next().html()
-	chars = $('#choosedChars')
-	show = false
-	if prsizes[0]
-		show = true
-		chars.find('.size').show().find('b').html prsizes.parent().find('span').first().html()
-	else
-		chars.find('.size').hide()
-	if prcolors[0]
-		show = true
-		color = prcolors.parent().data 'color'
-		if color
-			chars.find('.color').show().find('b').html color
-		else
-			chars.find('.color').show().find('b').html "#{prcolors.parents('.catalog').find('p')[1].innerHTML} — #{prcolors.parent().find('p')[1].innerHTML}"
-	else
-		chars.find('.color').hide()
-	if proptions != 'Без опций'
-		show = true
-		chars.find('.opt').show().find('b').html proptions
-	else
-		chars.find('.opt').hide()
-	if show
-		$('#choosedChars').show()
-	else
-		$('#choosedChars').hide()
 @addSubCatImage = (el) ->
 	$(el).next().append "<tr><td>
 			<span style='float: right' class='btn btn-danger' onclick='$(this).parents(\"tr\").eq(0).remove()'>Удалить изображение</span>

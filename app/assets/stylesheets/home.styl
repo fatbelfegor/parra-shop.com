@@ -7,7 +7,7 @@
 
 	.main-slider
 		border 1px solid #7e7975
-		margin 28px 30px 26px
+		margin 28px 50px 0
 		img
 			width 100%
 
@@ -42,7 +42,7 @@
 		background white
 		font-size 0
 		text-align justify
-		padding 24px 3%
+		padding 75px 3% 0
 		&:after
 			content ''
 			display inline-block
@@ -52,73 +52,75 @@
 			display inline-block
 			margin-bottom 22px
 		img
-			max-width 100px
+			max-width 114px
 		p
 			text-align center
-			font-size 1rem
-			padding-top 32px
+			font-size 1.1rem
+			padding-top 43px
 			
 	h2
 		text-align center
-		font-size 32px
-		color white
+		font-size 34px
+		color black
 		font-weight normal
-		padding 45px 0 48px
+		padding 26px 0 46px
 	.categories
-		padding-bottom 50px
+		padding-bottom 57px
 		a
 			text-align center
+			width 402px
 		img
+			border 1px solid #808080
 			display inline-block
 			width 400px
 			height 400px
-	.white
-		background white
+	.comments
+		background #e8e8e8
 		color black
 		h2
-			color black
+			padding 26px 0 35px
+		.slick-arrow
+			background #e8e8e8
 	.reviews
-		padding-bottom 35px
+		padding-bottom 20px
+		margin 0 32px
+		.slick-arrow
+			bottom auto
+			height 124px
 		.item
 			width 436px
-			padding 0 32px
+			padding 0 34px
 			margin 0 80px
 		.text
 			margin-bottom 20px
 			position relative
+			font-size 15px
 			&:before, &:after
 				display block
 				position absolute
-				font-size 2rem
+				font-size 40px
 				color #a1a1a1
 				line-height 1
 			&:before
 				content '«'
-				left -45px
-				top -9px
+				left -30px
+				top -14px
 			&:after
 				content '»'
 				bottom 0
-				right -20px
+				right -30px
 		.author, .date
 			color #5f5f5f
+			font-size 13px
 			font-style italic
 		.date
 			float right
-			
-	.info
-		background #d8d8d8
-		color #373737
-		line-height 25px
-		padding 13px 0
-		text-align center
-		font-size .8rem
 		
 	.slick-arrow
 		position absolute
 		top 0
 		bottom 0
-		background #463F39
+		background white
 		width 50px
 		padding 0
 		border 0
@@ -136,12 +138,12 @@
 		left 0
 		&:before
 			left 17px
-			background url('/assets/arrow-left-light.png')
+			background url('/assets/arrow-left-dark.png')
 	.slick-next
 		right 0
 		&:before
 			right 17px
-			background url('/assets/arrow-right-light.png')
+			background url('/assets/arrow-right-dark.png')
 			
 	.white
 		.slick-arrow
@@ -202,9 +204,11 @@
 				
 	#info
 		background #fff
-		padding 30px 4% 20px
+		padding 0 3.3%
 		font-size 14px
 		h1, h2, h3
-			font-size 24px
+			font-size 16px
 		p
-			margin-bottom 20px
+			margin-bottom 25px
+			&:last-child
+				margin-bottom 20px

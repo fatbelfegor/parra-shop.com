@@ -1,9 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/assets/product.css">
-<% sizes_exist = !@product.prsizes.blank?
-sizes = @product.prsizes
-size_first = @product.prsizes.first
-price = to_money @product.price %>
-<div class="show page">
+<div id="product-page" class="show page">
 	<div class="breadcrumbs">
 		<a href="http://www.parra-shop.ru">Главная</a>
 		<span>></span>
@@ -29,7 +25,7 @@ price = to_money @product.price %>
 			<% end %>
 			<% images = @product.product_images.map{|i| i.image} %>
 			<% if images.any?
-				alt = "#{@product.name}, цена #{price}" %>
+				alt = @product.name %>
 				<div class="photoes">
 			    	<a class="active" href="<%= images[0].url %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= images[0].big.url %>"></a>
 		    		<% images[1..-1].each do |i| %>
@@ -49,94 +45,17 @@ price = to_money @product.price %>
 			<div class="product-description">
 			<%= raw @product.description.gsub('&nbsp;', '') %>
 			</div>
-			
-			<% if !@product.prsizes.blank? %>
-				<div>
-					<a onclick="option(this)">Выбрать размер:<img src="/assets/optionArrow.png"></a>
-					<div class="option">
-						<% first = true %>
-						<% for prsize in @product.prsizes %>
-							<label onchange="priceChange(this)">
-								<input data-old-price='<%= prsize.old_price %>' class="size-scode-<%= prsize.scode %>" value="<%= prsize.price %>" type="radio" name="prsizes"<% if first %><%= first = false; ' checked="checked"' %><% end %>/>
-								<span><%= prsize.name %></span>
-								<span class="hidden"><%= prsize.scode %></span>
-							</label>
-						<% end %>
-					</div>
-				</div>
-				<% active = true %>
-				<% first_color = true %>
-				<% first_option = true %>
-				<div class="prsize-wrap">
-					<% for prsize in @product.prsizes %>
-						<div class="<% if active %><%= active = false; ' active' %><% end %>" onchange="priceChange()">
-							<% if !prsize.prcolors.blank? %>
-								<div>
-									<a onclick="option(this)">Выбрать цвет:<img src="/assets/optionArrow.png"></a>
-									<div class="option">
-										<% for prcolor in prsize.prcolors %>
-											<% if prcolor.textures.blank? %>
-												<label class="color" data-color="<%= prcolor.name %>">
-													<input class="color-scode-<%= prcolor.scode %>" value="<%= prcolor.price %>" type="radio" name="prcolors"<% if first_color %><%= first_color = false; " checked=checked" %><% end %>>
-													<a href="<%= prcolor.images %>" data-lightbox="<%= prcolor.name %>" title="<%= prcolor.name %>"><img src="<%= prcolor.images %>"></a>
-													<span><%= sanitize(prcolor.description) %></span>
-												</label>
-											<% else %>
-												<div class="catalog">
-													<div class="header">
-														<div class="heading" style="background-image: url('<%= prcolor.images %>') !important"><p>Каталог тканей</p><p><%= prcolor.name %></p></div>
-														<div class="fancyButton" onclick="texturesWatch(this)">Выбрать</div>
-													</div>
-													<div class="textures" style="height:0">
-														<% for t in prcolor.textures %>
-															<label>
-																<p class="hidden"><%= t.scode %></p>
-																<p><%= t.scode %> <%= t.name %></p>
-																<a href="<%= t.image %>" data-lightbox="<%= prcolor.name %>" title="<%= t.scode %> <%= t.name %>"><img src="<%= t.image %>"></a>
-																<input class="texture-scode-<%= t.scode %>" type="radio" name="prcolors" value="<%= t.price + prcolor.price %>"<% if first %><%= first = false; ' checked="checked"' %><% end %>>
-															</label>
-														<% end %>
-													</div>
-												</div>
-											<% end %>
-										<% end %>
-									</div>
-								</div>
-							<% end %>
-							<% if !prsize.proptions.blank? %>
-								<div>
-									<a onclick="option(this)">Выбрать опции:<img src="/assets/optionArrow.png"></a>
-									<div class="option">
-										<label>
-											<input value="0" type="radio" name="proptions"<% if first_option %><%= first_option = false; ' checked="checked"' %><% end %>>
-											<span>Без опций</span>
-											<span class="hidden">Без опций</span>
-										</label>
-										<% for proption in prsize.proptions %>
-											<label>
-												<input class="option-scode-<%= proption.scode %>" value="<%= proption.price %>" type="radio" name="proptions" />
-												<span><%= proption.name %></span>
-												<span class="hidden"><%= proption.scode %></span>
-											</label>						
-										<% end %>
-									</div>
-								</div>
-							<% end %>
-						</div>
-					<% end %>
-				</div>
-			<% end %>
 			<div id="choosedChars" class="open">
 				<div class="choosed-options">Выбранные опции:</div>
-				<p class="size">Размер: <b></b></p>
-				<p class="color">Цвет: <b></b></p>
-				<p class="opt">Опция: <b></b></p>
+				<p>Размер: <b></b></p>
+				<p>Цвет: <b></b></p>
+				<p>Опция: <b></b></p>
 			</div>
 			<div class="price">
 				<div class="price-block">
-					<p class="old_price">Цена: <strike id='oldPrice' data-val='<%= @product.old_price %>'></strike> <img src="/assets/rublGray.png"></p>
+					<p class="old_price">Цена: <strike id='oldPrice'></strike> <img src="/assets/rublGray.png"></p>
 					<p class="main">
-						<b id="summaryPrice"><%= price %></b> <img src="/assets/rubl.png">
+						<b id="summaryPrice"></b> <img src="/assets/rubl.png">
 					</p>
 					<p class="difference">Вы экономите: <span id='pricesDifference'></span> <img src="/assets/rublGray.png"></p>
 				</div>
@@ -306,6 +225,90 @@ price = to_money @product.price %>
 			</table>
 		</div>
 	<% end %>
+	<% sizes = @product.prsizes %>
+	<% sizes_exist = sizes.any? %>
+	<% if sizes_exist %>
+		<% first_size = sizes.first %>
+		<% color_exist = first_size.prcolors.any? %>
+		<% option_exist = first_size.proptions.any? %>
+		<div class="header">Выбрать модификацию:</div>
+		<div class="tabs">
+			<div onclick="tabs(this)" class="active">Размер</div>
+			<% if color_exist %>
+				<div onclick="tabs(this)">Цвет</div>
+			<% end %>
+			<% if option_exist %>
+				<div onclick="tabs(this)">Другие опции</div>
+			<% end %>
+		</div>
+		<div class="tabs-pages">
+			<div class="prsizes active tab">
+				<% checked = true
+				for size in @product.prsizes %>
+					<div onclick="sizeChoose(this)" data-old-price="<%= size.old_price %>" data-price="<%= size.price %>">
+						<span data-id="<%= size.id %>" data-type="size" class="i checkbox<% if checked then checked = false %> checked<% end %>"></span>
+						<span class="name"><%= size.name %></span>
+					</div>
+				<% end %>
+			</div>
+			<div class="prcolors tab">
+				<% first = true %>
+				<% for size in sizes %>
+					<div class="size<%= if first then first = false; ' cur' end %>">
+						<% if size.prcolors.blank? %>
+							<div class="hint">Для этого размера цвета отсутствуют.</div>
+						<% else %>
+							<% checked = true
+							for color in size.prcolors %>
+								<% textures = color.textures
+								if textures.blank? %>
+									<div data-price="<%= color.price %>" class="color" onclick="checkboxClick(this)">
+										<a href='<%= color.images %>' data-lightbox='<%= color.name %>'><img src="<%= color.images %>"></a>
+										<p class="name">Цвет <%= color.name %></p>
+										<span data-id="<%= color.id %>" data-type="color" class="i checkbox<% if checked then checked = false %> checked<% end %>"></span>
+									</div>
+								<% else %>
+									<div class="catalog">
+										<div data-price="<%= color.price %>" data-type="color" data-id="<%= color.id %>" onclick="$(this).toggleClass('open').find('i').toggleClass('color-down color-up')">
+											<a href='<%= color.images %>' data-lightbox='<%= color.name %>'><img src="<%= color.images %>"></a>
+											<p class="name">Каталог тканей <%= color.name %></p>
+											<span class="i color-down"></span>
+										</div>
+										<div class="textures">
+											<% for texture in textures %>
+												<div data-price="<%= texture.price %>" onclick="checkboxClick(this)">
+													<p class="name"><%= texture.scode %> <%= texture.name %></p>
+													<a class="texture-image" href='<%= texture.image %>' data-lightbox='<%= color.name %>'><img src="<%= texture.image %>"></a>
+													<span data-id="<%= texture.id %>" data-type="texture" class="i checkbox<% if checked then checked = false %> checked<% end %>"></span>
+												</div>
+											<% end %>
+										</div>
+									</div>
+								<% end %>
+							<% end %>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+			<div class="proptions tab">
+				<% first = true %>
+				<% for size in sizes %>
+					<div class="size<%= if first then first = false; ' cur' end %>">
+						<div data-price="0" onclick="checkboxClick(this)">
+							<span data-id="0" data-type="option" class="i checkbox checked"></span>
+							<span class="name">Без опции</span>
+						</div>
+						<% for option in size.proptions %>
+							<div data-price="<%= option.price %>" onclick="checkboxClick(this)">
+								<span data-id="<%= option.id %>" data-type="option" class="i checkbox"></span>
+								<span class="name"><%= option.name %></span>
+							</div>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
 	<div class="others">
 		<% if @product.category %>
 			<p>Другие товары коллекции "<%= @product.category.name %>"</p>
@@ -329,9 +332,9 @@ price = to_money @product.price %>
 	<% end %>
 </div>
 
+<script type="text/javascript" src="/assets/product.js"></script>
 <script type="text/javascript">
-	priceNum = $('#summaryPrice').html().replace(/ /g,'');
-	productPage()
+	productPage(<%= raw @product.to_json(only: [:price, :old_price], include: {prsizes: {only: :id, include: [{prcolors: {only: :id, include: {textures: {only: :id}}}, proptions: {only: :id}}]}}) %>)	
 </script>
 
 <script src="/assets/lightbox.min.js"></script>

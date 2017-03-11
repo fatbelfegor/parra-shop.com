@@ -65,103 +65,6 @@
 		b
 			margin-right 5px
 			color black
-	> div, > .prsize-wrap > div > div
-		a
-			cursor pointer
-			font-size 13px
-			color black
-			font-weight bold
-			display block
-			line-height 25px
-			height 25px
-			padding-right 32px
-			transition(0.3s)
-			img
-				position relative
-				top 4px
-				left 10px
-		a:hover
-			color #52B84A
-		> .option
-			display none
-			label
-				display block
-				margin-top 10px
-				min-height 26px
-				input, a, span
-					display inline-block
-					vertical-align middle
-					cursor pointer
-				a
-					margin-left 10px
-					height 100%
-					padding 0
-				img
-					top 0; left 0
-					height 100%
-				span
-					margin 0 0 0 22px
-					color #575759
-					vertical-align top
-					font-size 14px
-			.color
-				height 66px
-				> span
-					vertical-align middle
-			.catalog
-				margin 10px 0
-				.header
-					height 58px
-					.heading
-						height 52px
-						float left
-						margin-right 16px
-						background-size 100% 100%
-						padding 5px 8px 0 8px
-						width 140px
-						p
-							display block
-							width 100%
-							font-size 15px
-							color white
-							font-weight bold
-							line-height 22px
-					.fancyButton
-						margin-top 40px
-				.textures
-					font-size 10px
-					overflow hidden
-					label
-						width 96px
-						height 115px
-						margin-top 16px
-						display inline-block
-						margin-right 10px
-						p
-							width 100%
-							white-space nowrap
-							text-align center
-						a
-							display block
-							margin 10px 17px
-							width 62px
-							height 62px
-							padding 0
-						img
-							margin 0
-							top 0; left 0
-							width 100%
-							height 100%
-							border-radius(31px)
-						input
-							width 100%
-							margin-top 4px
-	> .prsize-wrap
-		margin 0
-		> div > div
-			display none
-	> .prsize-wrap > .active > div
-		display block
 	> :last-child
 		color black
 		font-weight bold
@@ -223,6 +126,7 @@
 					position absolute
 					display none
 					cursor pointer
+					z-index 5
 				.left
 					left 20px
 					width 28px
@@ -279,3 +183,132 @@
 				margin 0 auto
 				width auto
 				max-width 100%
+				
+#product-page
+	.header
+		border-top 1px solid #cecece
+		color black
+		padding 24px 0
+		font-size 26px
+		font-weight bold
+	.tabs
+		border 1px solid #C3C3C4
+		font-size 0
+		div
+			border-right 1px solid #C3C3C4
+			width 187px
+			background-color #E8E8E8
+			font-size 13px
+			color #292929
+			line-height 36px
+			font-weight bold
+			text-align center
+			display inline-block
+			cursor pointer
+		.active
+			background-color white
+	.tabs-pages
+		margin-bottom 10px
+		user-select(none)
+		> div
+			padding 4px 15px 3px
+			margin-top -1px
+			border 1px solid #C3C3C4
+			display none
+		> div.active
+			display block
+		.textures
+			width 100%
+			font-size 0
+			transition(.3s)
+			> div
+				height 0
+				overflow hidden
+				width 120px
+				display inline-block
+				transition(.3s)
+				p
+					font-size 11px
+					color black
+					margin 0 0 10px
+					text-align center
+					white-space nowrap
+				.texture-image
+					display block
+					width 100%
+					height 60px
+					> img
+						display block
+						width 60px
+						height 100%
+						margin 0 auto
+						border-radius(30px)
+		.checkbox
+			display block
+			width 14px
+			height 14px
+			background-image url('checkbox.png')
+			background-size 100% 100%
+			cursor pointer
+			margin 7px 0 0 13px
+			min-height auto
+			padding-left 0
+		.color .checkbox
+			display inline-block
+			margin-top 22px
+		.color i
+			display inline-block
+			margin-top 22px
+		.checked
+			background-image url('checkbox-checked.png')
+		.color, .catalog
+			margin 11px 0 12px
+		.color, .catalog > div
+			> *
+				display inline-block
+				vertical-align top
+			a img
+				height 57px
+				margin-right 16px
+			> p
+				line-height 57px
+				font-size 13px
+				font-weight bold
+				color #292929
+			.color-down, .color-up
+				background-image url('color-down.png')
+				width 14px
+				height 12px
+				background-repeat no-repeat
+				background-position 3px 3px
+				border 1px solid #7B7B7B
+				margin 23px 0 0 8px
+			.color-up
+				background-image url('color-up.png')
+				background-position 4px 3px
+		.catalog
+			> div
+				cursor pointer
+			.open + .textures
+				margin 11px 0 7px
+				> div
+					margin 5px 0
+					height 107px
+		.prsizes, .proptions
+			padding 30px 0 5px 30px
+			.checkbox
+				display inline-block
+				position relative
+				top 1px
+				margin 0 13px 0 0
+			> div
+				font-size 13px
+				color black
+				font-weight bold
+				margin-bottom 18px
+		.size
+			display none
+		.cur
+			display block
+			.hint
+				padding 20px
