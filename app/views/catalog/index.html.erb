@@ -58,12 +58,4 @@
 <script type="text/javascript" src="/assets/slick.min.js"></script>
 <script type="text/javascript">
 	$('.photoes').slick();
-	<% if params[:url].present? %>
-		if (products) {
-			var div = products.children[0]
-			if (div) {
-				document.getElementsByClassName('breadcrumbs')[0].style.paddingLeft = div.offsetLeft + 'px'
-			} 
-		}
-	<% end %>
 </script>
