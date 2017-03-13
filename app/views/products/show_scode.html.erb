@@ -348,7 +348,7 @@
 
 <script type="text/javascript" src="/assets/product.js"></script>
 <script type="text/javascript">
-	productPage(<%= raw @product.to_json(only: [:price, :old_price], include: {prsizes: {only: [:id, :price, :old_price, :name], include: [{prcolors: {only: [:id, :price, :name], include: {textures: {only: [:id, :price, :name]}}}, proptions: {only: [:id, :price, :name]}}]}}) %>)	
+	productPage(<%= raw @product.to_json(only: [:id, :name, :scode, :price, :old_price], include: {prsizes: {only: [:id, :price, :old_price, :name, :scode], include: [{prcolors: {only: [:id, :price, :name, :scode], include: {textures: {only: [:id, :price, :name, :scode]}}}, proptions: {only: [:id, :price, :name, :scode]}}]}}) %>)	
 </script>
 
 <script src="/assets/lightbox.min.js"></script>

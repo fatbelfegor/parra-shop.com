@@ -238,63 +238,6 @@ expire = ->
 	d.style.maxHeight = height + 'px'
 	a.hide().fadeIn(300)
 	cartSave()
-@addToCart = (name, el) ->
-	price = parseInt($(el).prev().find('b').html().replace(' руб.', '').replace(/\ /g,'')).toCurrency()
-	s = $('[name=prsizes]:checked').next().html()
-	ss = $('[name=prsizes]:checked').next().next().html()
-	prcolor = $('[name=prcolors]:checked')
-	if prcolor.next().length	
-		l = $('[name=prcolors]:checked').next().val()
-		ls = $('[name=prcolors]:checked').next().next().val()
-	else
-		l = prcolor.prev().prev().html()
-		ls = prcolor.prev().prev().prev().html()
-	o = $('[name=proptions]:checked').next().html()
-	os = $('[name=proptions]:checked').next().next().html()
-	i = $('#product_id_field').val()
-	d = $('#product_scode').val()
-	s = '' if !s
-	l = '' if !l
-	o = '' if !o
-	prev = (cart.filter (item) ->
-		item.ss == ss and item.ls == ls and item.os == os and item.i == i and item.d == d)[0]
-	if prev
-		prev.c++
-	else
-		cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i, d: d, ss: ss, ls: ls, os: os
-	count = 0
-	price = 0
-	i = 0
-	items = '<div class="items">'
-	cart.forEach (item) ->
-		count += item.c
-		price += parseFloat(item.p.replace(/\ /g, ''))*item.c
-		if item.c > 1 then minus = '<span class="left" onclick="changeCount(this)">++</span>' else minus = '<span class="left invis">++</span>'
-		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
-		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
-		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<div><a href="/kupit/'+item.d+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
-		$.ajax
-			url: "/cart.json?id="+item.i
-			success: (data) ->
-				$('#alert .items > div').get().forEach (item) ->
-					if $(item).find('ins').html() == data.name				
-						$(item).find('img').attr 'src', data.image
-	$('body').append('<div id="alert">\
-			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
-			<div style="top:'+($(window).height()/2-300)+'px; left:'+($(window).width()/2-235)+'px">\
-				<div class="header">\
-					Спасибо. Товар добавлен в Вашу корзину.\
-					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
-				</div>\
-			</div>\
-			'+items+'</div><p class="itogo">Итого: <b>'+price.toCurrency()+'</b> руб.</p>\
-			<a class="continue" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)">Продолжить покупки</a>\
-			<a href="/cart" class="gotoCart">Перейти в корзину</a>\
-			</div>\
-		</div>')
-	$('#alert').fadeIn(300)	
-	cartSave()
 @cartMenuGen = ->
 	items = ''
 	allPrice = 0
