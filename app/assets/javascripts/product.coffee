@@ -76,6 +76,16 @@ refresh = ->
 		pricePanel.className = 'without-old'
 
 @productPage = (p) ->
+	if p.prsizes.length
+		for s in p.prsizes
+			if s.prcolors.length
+				for c in s.prcolors
+					unless c.textures.length
+						delete c.textures
+			else delete s.prcolors
+			unless s.proptions.length
+				delete s.proptions
+	else delete p.prsizes
 	p.price = +p.price
 	p.old_price = +p.old_price if p.old_price
 	product = p
