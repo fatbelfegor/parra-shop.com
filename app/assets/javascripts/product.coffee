@@ -78,12 +78,12 @@ refresh = ->
 @productPage = (p) ->
 	if p.prsizes.length
 		for s in p.prsizes
-			if s.prcolors.length
+			if s.prcolors and s.prcolors.length
 				for c in s.prcolors
-					unless c.textures.length
+					if c.textures and not c.textures.length
 						delete c.textures
 			else delete s.prcolors
-			unless s.proptions.length
+			if s.proptions and not s.proptions.length
 				delete s.proptions
 	else delete p.prsizes
 	p.price = +p.price
