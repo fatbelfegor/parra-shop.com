@@ -11,7 +11,7 @@ product = size = color = texture = option = sizes = colors = textures = options 
 		pages.find('> div').eq(el.index()).addClass 'active'
 
 setOption = (i) ->
-	if options = size.options
+	if options = size.proptions
 		option = options[i]
 	else option = undefined
 

@@ -129,7 +129,7 @@
 			</div>
 			<br><br>
 			<table>
-				<tr><h2>Список размеров (<%= sizes.count %>) <%= link_to 'Создать', new_prsize_path(@product.id), class: 'btn btn-primary' %>
+				<tr><h2>Список размеров (<%= @product.prsizes.count %>) <%= link_to 'Создать', new_prsize_path(@product.id), class: 'btn btn-primary' %>
 				<span class="btn btn-success" id='dropdown'>
 					<p onclick='$(this).parent().toggleClass("active")'>Скопировать Размер</p>
 					<% def dropdown cats
@@ -163,7 +163,7 @@
 					<th>Цена</th>
 					<th>действия</th>
 				</tr>
-				<% for size in sizes %>
+				<% for size in @product.prsizes %>
 					<tr>
 						<td><%= size.name %></td>
 						<td><%= number_to_currency size.old_price %></td>
@@ -310,11 +310,12 @@
 			</div>
 			<div id="optionsTab" class="proptions tab">
 				<% first = true %>
+				<% checked = true %>
 				<% for size in sizes %>
 					<div class="size<%= if first then first = false; ' cur' end %>">
 						<% for option in size.proptions %>
 							<div data-price="<%= option.price %>" onclick="chooseOption(this)">
-								<span data-id="<%= option.id %>" data-type="option" class="i checkbox"></span>
+								<span data-id="<%= option.id %>" data-type="option" class="i checkbox<% if checked then checked = false %> checked<% end %>"></span>
 								<span class="name"><%= option.name %></span>
 							</div>
 						<% end %>
@@ -348,7 +349,7 @@
 
 <script type="text/javascript" src="/assets/product.js"></script>
 <script type="text/javascript">
-	productPage(<%= raw @product.to_json(only: [:id, :name, :scode, :price, :old_price], include: {prsizes: {only: [:id, :price, :old_price, :name, :scode], include: [{prcolors: {only: [:id, :price, :name, :scode], include: {textures: {only: [:id, :price, :name, :scode]}}}, proptions: {only: [:id, :price, :name, :scode]}}]}}) %>)	
+	productPage(<%= raw @product.to_json(only: [:id, :name, :scode, :price, :old_price], include: {prsizes: {only: [:id, :price, :old_price, :name, :scode], include: [{prcolors: {only: [:id, :price, :name, :scode], include: {textures: {only: [:id, :price, :name, :scode]}}}}, {proptions: {only: [:id, :price, :name, :scode]}}]}}) %>)	
 </script>
 
 <script src="/assets/lightbox.min.js"></script>
