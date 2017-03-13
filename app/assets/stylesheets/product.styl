@@ -2,7 +2,9 @@
 
 .product-wrap
 	display table
+	max-width 1235px
 	width 100%
+	border-bottom 1px solid #cecece
 	> div
 		display table-cell
 		vertical-align top
@@ -41,24 +43,36 @@
 			right 0
 			background-image url("/assets/productMiniNext.png")
 	.photoes
-		a
+		position relative
+		border 1px solid #cfcfcf
+		div
 			display none
 		.active
 			display block
 		img
 			width 492px
-			display block			
+			display block
+		a
+			display block
+			width 31px
+			height 32px
+			position absolute
+			right 8px
+			bottom 8px
+			background url('/assets/product/zoom.png')
 
 .productContent
 	width 100%
 	position relative
 	padding-left 32px
 	h1
-		font-size 16px
+		font-size 24px
 		color black
-		margin-bottom 35px
+		margin-bottom 21px
 		font-weight bold
 		color black
+		position relative
+		top -8px
 	> p
 		color #58585A
 		font-size 13px
@@ -70,18 +84,90 @@
 		font-weight bold
 		font-size 15px
 		margin-bottom 20px
-		
+	.presence
+		margin 6px 0 21px
+		border 1px solid #cecece
+		padding 0 19px 0 10px
+		line-height 28px
+		height 28px
+		font-size 14px
+		color #5a5a5a
+		display inline-block
+		border-radius 2px
+		.round
+			display inline-block
+			vertical-align middle
+			margin-right 11px
+			width 14px
+			height 14px
+			border-radius 50%
+	.buttons
+		.btn
+			display inline-block
+			text-align center
+			line-height 31px
+			height 31px
+			border 1px solid
+			border-radius 4px
+			font-size 15px
+			transition(.3s)
+			img
+				vertical-align middle
+				position relative
+				top -1px
+				display inline-block
+				margin-right 10px
+			&:hover
+				box-shadow(0 1px 7px rgba(0, 0, 0, .2))
+			& + .btn
+				margin-left 72px
+			&.green
+				text-shadow(1px 1px 2px rgba(0, 0, 0, .3))
+				color white
+				background #7ab652 linear-gradient(#85d248, #7ab652)
+				border-color #79b551
+				padding 0 52px 0 45px
+			&.white
+				color black
+				background #f0f0f0 linear-gradient(#fff, #f0f0f0)
+				border-color #9a9a9a
+				padding 0 52px 0 45px
+	.links
+		margin 54px 0 0
+		a
+			display inline-block
+			vertical-align top
+			color #363636
+			img
+				margin-right 16px
+			> *
+				display inline-block
+				vertical-align middle
+			& + a
+				margin-left 94px
+			span
+				text-decoration underline
+	.rounds
+		margin-top 36px
+		a
+			display inline-block
+			vertical-align top
+			text-align center
+			img
+				display inline-block
+				margin-bottom 5px
+				width 68px
+				height 67px
+			& + a
+				margin-left 60px
+			p
+				font-weight normal
 
 .others
-	border-top 1px solid black
-	border-bottom 1px solid black
-	> p
-		color #59595B
-		font-size 16px
-		line-height 46px
-		padding-left 5px
-		z-index 1
-		margin-bottom -20px
+	.header
+		border-bottom 1px solid #cecece
+		font-size 24px
+		padding 14px 0 28px
 	.wrap
 		overflow auto
 		padding 20px 0 80px
@@ -186,9 +272,8 @@
 				
 #product-page
 	.header
-		border-top 1px solid #cecece
 		color black
-		padding 24px 0
+		padding 20px 0 22px
 		font-size 26px
 		font-weight bold
 	.tabs
@@ -312,3 +397,62 @@
 			display block
 			.hint
 				padding 20px
+				
+#pricePanel
+	border 1px solid #cecece
+	background #f8f8f8
+	display table
+	width 100%
+	box-sizing border-box
+	margin-bottom 34px
+	&.without-old
+		.old img, .save, .round
+			display none !important
+		.price
+			color black !important
+			.purple
+				display none !important
+			.black
+				display inline-block !important
+	> div
+		display table-cell
+		vertical-align top
+	> .left
+		white-space nowrap
+		padding 22px 18px 15px 24px
+		min-width 321px
+		.columns
+			display table
+			width 100%
+			font-weight bold
+			> div
+				display table-cell
+				vertical-align top
+			.round
+				width 70px
+				height 70px
+				line-height 70px
+				border-radius 50%
+				background #c30599
+				font-size 26px
+				text-align center
+				color white
+				position relative
+				top 3px
+		.old
+			padding-bottom 2px
+		.save
+			padding-top 3px
+		.price
+			font-size 24px
+			color #c20699
+			.black
+				display none
+	> .right
+		padding 20px 12px 20px 18px
+		width 99%
+		font-size 14px
+		u
+			font-weight bold
+		p + p
+			margin-top 11px

@@ -67,8 +67,9 @@ refresh = ->
 	if old_price
 		oldPrice.innerHTML = old_price.toCurrency()
 		pricesDifference.innerHTML = (old_price - price).toCurrency()
+		saveProcent.innerHTML = "-#{Math.round 100 - 100 * price / old_price}%"
 	else
-		oldPrice.parentNode.style.display = pricesDifference.parentNode.style.display = 'none'
+		pricePanel.className = 'without-old'
 
 @productPage = (p) ->
 	p.price = +p.price

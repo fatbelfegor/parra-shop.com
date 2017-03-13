@@ -27,9 +27,15 @@
 			<% if images.any?
 				alt = @product.name %>
 				<div class="photoes">
-			    	<a class="active" href="<%= images[0].url %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= images[0].big.url %>"></a>
+			    	<div class="active">
+			    		<img alt="<%= alt %>" src="<%= images[0].big.url %>">
+    					<a href="<%= images[0].url %>" data-lightbox="images"></a>
+			    	</div>
 		    		<% images[1..-1].each do |i| %>
-		    			<a href="<%= i.url %>" data-lightbox="images"><img alt="<%= alt %>" src="<%= i.big.url %>"></a>
+		    			<div>
+		    				<img alt="<%= alt %>" src="<%= i.big.url %>">
+	    					<a href="<%= i.url %>" data-lightbox="images"></a>
+		    			</div>
 		    		<% end %>
 				</div>
 				<div class="mini">
@@ -45,26 +51,45 @@
 			<div class="product-description">
 			<%= raw @product.description.gsub('&nbsp;', '') %>
 			</div>
-			<div id="choosedChars" class="open">
-				<div class="choosed-options">Выбранные опции:</div>
-				<p id="sizeP">Размер: <b id="sizeB"></b></p>
-				<p id="colorP">Цвет: <b id="colorB"></b></p>
-				<p id="optionP">Опция: <b id="optionB"></b></p>
+			<div class="presence">
+				<div class="round" style="background: #7ec34e"></div>
+				<span>В наличии</span>
 			</div>
-			<div class="price">
-				<div class="price-block">
-					<p class="old_price">Цена: <strike id='oldPrice'></strike> <img src="/assets/rublGray.png"></p>
-					<p class="main">
-						<b id="summaryPrice"></b> <img src="/assets/rubl.png">
-					</p>
-					<p class="difference">Вы экономите: <span id='pricesDifference'></span> <img src="/assets/rublGray.png"></p>
+			<br>
+			<div id="pricePanel">
+				<div class="left">
+					<div class="columns">
+						<div class="left">
+							<div class="old">Цена: <strike id="oldPrice"></strike><img src="/assets/product/rubl-old.png"></div>
+							<div class="price"><b id="summaryPrice"></b> <img class="purple" src="/assets/product/rubl-purple.png"><img class="black" src="/assets/product/rubl-black.png"></div>
+							<div class="save">Вы экономите: <b id="pricesDifference">8 800.00</b> <img src="/assets/product/rubl-save.png"></div>
+						</div>
+						<div class="right" id="saveRound">
+							<div class="round" id="saveProcent"></div>
+						</div>
+					</div>
 				</div>
-				<div class="buyButton" onclick="addToCart('<%= @product.name %>', this)">Купить</div>
-				<p style="font-size: 14px; margin: 37px 0 20px"><b>Мы принимаем к оплате:</b></p>
-				<img src="/assets/grayCards.png">
-				<p style="font-size: 12px; font-weight: normal; margin-top: 18px">*Держатели банковских карт перечисленных систем могут расплатиться ими в наших фирменных салонах-магазинах.</p>
-				<%= hidden_field_tag :product_id_field, @product.id %>
-				<%= hidden_field_tag :product_scode, @product.scode %>
+				<div class="right">
+					<p><u>Выбранная модификация:</u></p>
+					<p id="sizeP">Размер: <span id="sizeB"></span></p>
+					<p id="colorP">Цвет: <span id="colorB"></p>
+					<p id="optionP">Опция: <span id="optionB"></p>
+				</div>
+			</div>
+			<div class="buttons">
+				<div class="btn green" onclick="buyProduct()"><img src="/assets/product/cart.png">Добавить в корзину</div>
+				<div class="btn white">Заказать дизайн проект</div>
+			</div>
+			<div class="links">
+				<a><img src="/assets/product/rass.png"><span>Купить в рассрочку</span></a>
+				<a><img src="/assets/product/credit.png"><span>Купить в кредит</span></a>
+				<a><img src="/assets/product/print.png"><span>Распечатать</span></a>
+			</div>
+			<div class="rounds">
+				<a href="/service"><img src="/assets/Transport.png"><p>Бесплатная<br>доставка</p></a>
+				<a href="/service"><img src="/assets/Tools.png"><p>Сборка</p></a>
+				<a href="/oplata"><img src="/assets/Payment.png"><p>Способы оплаты</p></a>
+				<a href="/insurance"><img src="/assets/Certificate.png"><p>Гарантии</p></a>
 			</div>
 		</div>
 	</div>
@@ -300,10 +325,10 @@
 	<% end %>
 	<div class="others">
 		<% if @product.category %>
-			<p>Другие товары коллекции "<%= @product.category.name %>"</p>
+			<div class="header">Другие товары коллекции "<%= @product.category.name %>"</div>
 			<div class="wrap"><div class="table"><%= render(:partial => "products/productFooter" , collection: @product.category.products) %></div></div>
 		<% else %>
-			<p>Другие товары коллекции "<%= @product.subcategory.name %>"</p>
+			<div class="header">Другие товары коллекции "<%= @product.subcategory.name %>"</div>
 			<div class="wrap"><div class="table"><%= render(:partial => "products/productFooter" , collection: @product.subcategory.products) %></div></div>
 		<% end %>
 	</div>
