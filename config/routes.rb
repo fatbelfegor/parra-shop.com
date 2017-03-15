@@ -20,6 +20,7 @@ ParraShopCom::Application.routes.draw do
   get 'loyalty_card', to: 'pages#loyalty_card'
   get 'pokupka-v-kredit', to: 'pages#pokupka_v_kredit'
   get 'sposoby-oplaty', to: 'pages#sposoby_oplaty'
+  get 'dostavka-i-oplata', to: 'pages#dostavka_i_oplata'
   get "/Jimmi", to: redirect("/", status: 301)
   get "/catalog/bedrooms", to: redirect("/modulnaja-mebel-dlja-spalni", status: 301)
   get "/catalog/gosts", to: redirect("/modulnaja-mebel-dlja-gostinoj", status: 301)
@@ -37,11 +38,9 @@ ParraShopCom::Application.routes.draw do
   get "images/delete", to: 'images#delete'
   get '/kupit/:scode', to: 'products#show_scode'
   get 'vacancy', to: 'pages#vacancy', as: :vacancy
-  get 'credits', to: 'pages#credits'
 
   get '/sitemap', to: 'main#sitemap'
 
-  get "oplata", to: 'main#oplata'
   get "stores", to: 'main#stores'
   get "store1", to: 'main#store1', as: 'store1'
   get "mebelnyj-gipermarket-family-room", to: 'main#store2', as: 'store2'
@@ -54,7 +53,6 @@ ParraShopCom::Application.routes.draw do
   get "store9", to: 'main#store9'
   get "store10", to: 'main#store10'
 
-  get "service", to: 'main#service'
   get "partners", to: 'main#partners'
   get "news", to: 'main#news'
   get "articles", to: 'main#articles'

@@ -23,4 +23,8 @@ class PagesController < ApplicationController
   def sposoby_oplaty
     @title = "Способы оплаты"
   end
+
+  def dostavka_i_oplata
+    @title = "Доставка и оплата"
+  end
 end

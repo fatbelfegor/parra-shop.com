@@ -80,12 +80,6 @@ class MainController < ApplicationController
     }
   end
 
-  def service
-    @title = 'Условия доставки и сборки мебели - интернет-магазин Parra-Shop'
-    @seo_keywords = 'условия, доставка, сборка, мебель, расценки, москва, мкад, 5, км'
-    @seo_description = 'Профессиональная доставка мебели по Москве и в пределах 5 км от МКАД. С расценками Вы сможете ознакомиться на сайте.'
-  end
-
   def partners
     @title = 'Виды сотрудничества для партнеров - интернет-магазин Parra-Shop'
     @seo_keywords = 'вид, сотрудничество, партнер, дилер, дистрибьютор, агент'
@@ -120,10 +114,6 @@ class MainController < ApplicationController
     @title = 'Где купить — ParraShop Адреса магазинов где Вы можете купить мебель от ParraShop в Москве'
     @seo_description = 'Адрес магазина европейской мебели ParraShop в Москве'
     @seo_keywords = 'Где, купить, ParraShop, заголовок, Адреса, магазинов, где, Вы, можете, купить, мебель, ParraShop, Москве'
-  end
-
-  def oplata
-    @title = 'Оплата — ParraShop Адреса магазинов где Вы можете купить мебель от ParraShop в Москве'
   end
 
   def store1
