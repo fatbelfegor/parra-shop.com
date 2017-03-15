@@ -15,4 +15,12 @@ class PagesController < ApplicationController
   def loyalty_card
     @title = "Карта лояльности"
   end
+
+  def pokupka_v_kredit
+    @title = "Покупка в кредит"
+  end
+
+  def sposoby_oplaty
+    @title = "Способы оплаты"
+  end
 end

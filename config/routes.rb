@@ -18,6 +18,8 @@ ParraShopCom::Application.routes.draw do
   get '/about', to: 'main#about', as: :about
   # get '/contacts', to: 'main#contacts', as: :contacts
   get 'loyalty_card', to: 'pages#loyalty_card'
+  get 'pokupka-v-kredit', to: 'pages#pokupka_v_kredit'
+  get 'sposoby-oplaty', to: 'pages#sposoby_oplaty'
   get "/Jimmi", to: redirect("/", status: 301)
   get "/catalog/bedrooms", to: redirect("/modulnaja-mebel-dlja-spalni", status: 301)
   get "/catalog/gosts", to: redirect("/modulnaja-mebel-dlja-gostinoj", status: 301)
