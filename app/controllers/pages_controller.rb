@@ -27,4 +27,10 @@ class PagesController < ApplicationController
   def dostavka_i_oplata
     @title = "Доставка и оплата"
   end
+
+  def garantii
+    @title = 'Гарантийное обслуживание - интернет-магазин Parra-Shop'
+    @seo_keywords = 'гарантийное, обслуживание, срок, изделия, 24, месяц'
+    @seo_description = 'Мы имеем собственную службу качества, которая ведет контроль за всеми производственными участками. Гарантийный срок на все изделия - 24 месяца.'
+  end
 end

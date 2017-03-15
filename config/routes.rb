@@ -21,6 +21,7 @@ ParraShopCom::Application.routes.draw do
   get 'pokupka-v-kredit', to: 'pages#pokupka_v_kredit'
   get 'sposoby-oplaty', to: 'pages#sposoby_oplaty'
   get 'dostavka-i-oplata', to: 'pages#dostavka_i_oplata'
+  get 'garantii', to: 'pages#garantii'
   get "/Jimmi", to: redirect("/", status: 301)
   get "/catalog/bedrooms", to: redirect("/modulnaja-mebel-dlja-spalni", status: 301)
   get "/catalog/gosts", to: redirect("/modulnaja-mebel-dlja-gostinoj", status: 301)
@@ -56,7 +57,6 @@ ParraShopCom::Application.routes.draw do
   get "partners", to: 'main#partners'
   get "news", to: 'main#news'
   get "articles", to: 'main#articles'
-  get "insurance", to: 'main#insurance'
 
   get 'orders/:id/Заказ :user_id :order_id.xlsx', to: 'orders#xlsx'
 
