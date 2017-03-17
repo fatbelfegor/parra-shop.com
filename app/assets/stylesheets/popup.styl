@@ -1,0 +1,37 @@
+#popupContainer
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
+	display none
+	align-items center
+	justify-content center
+	&.active
+		background rgba(0, 0, 0, .5)
+		
+#popupCart
+	width 966px
+	height 520px
+	background white
+	border-radius 4px
+	position relative
+	.close
+		width 22px
+		padding-left 1px
+		height 23px
+		background #969696
+		position absolute
+		top 12px
+		right 11px
+		color white
+		text-align center
+		line-height 23px
+		border-radius 50%
+		cursor pointer
+	.title
+		color #535459
+		font-size 26px
+		padding 24px 0 30px
+		text-align center
+		border-bottom 1px solid #cecece

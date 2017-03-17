@@ -189,3 +189,28 @@ indexOf = (el) ->
 		</div>')
 	$('#alert').fadeIn(300)	
 	cartSave()
+	# res = """
+	# 	<div id='popupContainer'>
+	# 		<div id='popupCart'>
+	# 			<div class='close'>✖</div>
+	# 			<div class='title'>Спасибо! Товар добавлен в корзину.</div>
+	# 			<div class='list'>"""
+	# for item in cart
+	# 	res += """
+	# 		<div class='item'>
+	# 			<img>
+	# 			<div class='text'>
+	# 				<a href='/kupit/#{item.ss}'>#{item.c}</a>
+					
+	# 			</div>
+	# 		</div>
+	# 	"""	
+	# res += """
+	# 			</div>
+	# 		</div>
+	# 	</div>
+	# """
+	# document.body.insertAdjacentHTML 'beforeend', res
+	# popupContainer.style.display = 'flex'
+	# getComputedStyle(popupContainer).top
+	# popupContainer.className = 'active'
