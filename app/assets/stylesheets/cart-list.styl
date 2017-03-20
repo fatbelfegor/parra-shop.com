@@ -8,6 +8,8 @@
 		display flex
 		justify-content space-between
 		align-items center
+		width 100%
+		overflow hidden
 		> img
 			margin 2px 0 2px 18px
 			width 145px
@@ -60,3 +62,49 @@
 		img
 			position relative
 			top 1px
+			
+	@media (max-width 1150px)
+		.counter
+			margin-right 20px
+			
+	@media (max-width 800px)
+		.item
+			> img
+				margin-right 0
+		.text
+			padding 0 15px
+		.price
+			margin-right 0
+			min-width 85px
+			font-size 14px
+		.minus, .plus
+			width 20px
+		.count
+			padding 0 8px
+		.counter img
+			margin-left 10px
+			
+	@media (max-width 700px)
+		.item
+			flex-wrap wrap
+		.counter, .price
+			width 50%
+			box-sizing border-box
+			padding 10px 0 20px
+			text-align center
+			margin 0
+		.counter
+			justify-content center
+		.price:before
+			content 'Цена: '
+			display inline
+			
+
+@media (max-width 700px)
+	#popupCart .buttons .btn
+		width 45%
+		box-sizing border-box
+		padding 0
+		text-align center
+		& + .btn
+			margin-left 10%
