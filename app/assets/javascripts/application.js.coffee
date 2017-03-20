@@ -1011,7 +1011,8 @@ changeCount = (c, add) ->
 		return if err
 	if index is 2
 		for field in current.getElementsByClassName 'field'
-			unless field.firstElementChild.lastElementChild.style.display is 'none'
+			span = field.firstElementChild.lastElementChild
+			if span.style.display isnt 'none' and span.parentNode.textContent isnt 'Корпус'
 				input = field.children[1]
 				if input.value
 					input.nextElementSibling.style.display = ''

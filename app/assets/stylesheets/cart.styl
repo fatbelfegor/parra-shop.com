@@ -141,6 +141,7 @@
 	.row
 		.field
 			display inline-block
+			vertical-align top
 			width 43%
 			&:first-child
 				margin-right 14%
@@ -234,14 +235,8 @@
 			.columns
 				> :first-child
 					display none
-				> :last-child
-					order 1
-					width 50%
-					text-align right
-			.total-info
-				margin-top 88px
-				&:before
-					top -94px
+				> div
+					width 100%
 		
 @media (max-width 800px)
 	#cartNav

@@ -1,21 +1,23 @@
 @import 'mixins'
 
 #color-category-blocks
-	text-align center
+	padding-top 15px
+	font-size 0
 	.wrap
-		font-size 0
-		text-align center
-		display inline-block
+		display flex
+		flex-wrap wrap
+		justify-content center
 		.item
-			display inline-block
-			vertical-align top
+			width 50%
+			margin 0 54px
+			box-sizing border-box
 			width 446px
 			height 165px
+			flex-shrink 1
+			min-width 300px
 			backgoround-position center
 			background-size cover
 			margin-bottom 30px
-			&:last-child
-				margin-left 108px
 		a
 			text-decoration none
 			.appear
