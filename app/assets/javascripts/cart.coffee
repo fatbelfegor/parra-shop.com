@@ -5,6 +5,11 @@ if store
 	store = JSON.parse store
 	for k, v of store
 		form.elements[k].value = v
+	radios = form.getElementsByClassName('radios')[0]
+	tab = radios.parentNode.parentNode.parentNode
+	tab.className = 'active'
+	cartChooseDelivery radios
+	tab.className = ''
 else
 	store = {}
 
