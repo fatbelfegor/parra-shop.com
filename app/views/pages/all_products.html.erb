@@ -8,7 +8,7 @@
 <% images = %W(Krovati Shkafi Komodi Tumbochki Tumbi-TV Zerkala Polki Stoli Osnovaniya Bufeti Krovati-kozhanie Krovati-s-myagkim-izgoloviem Krovati-s-yashikami Krovati-s-visokim-izgoloviem jurnalnie-stoliki svetilniki) %>
 
 <% cats = Category.select(:name, :url, :description).where(url: arr) %>
-<div class="menuCategoryPage">
+<div class="menuCategoryPage rightShadow">
 	<% for url in arr %>
 		<% i = cats.index { |c| c.url == url } %>
 		<% c = cats[i] %>
