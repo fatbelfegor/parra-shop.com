@@ -6,8 +6,6 @@
   <div>Корзина</div>
 </div>
 
-<h1 style="padding-left: 3%; font-size: 21px; font-weight: normal; color: black; margin: 10px 0 27px">Корзина</h1>
-
 <nav id="cartNav">
 	<div class="active">Список товаров</div>
 	<div>Контактная информация</div>
@@ -105,12 +103,12 @@
 			<div>
 				<div class="title" style="text-align: left; padding-left: 74px">Способ доставки</div>
 				<div class="radios" onchange="cartChooseDelivery(this)">
-					<label class="radio"><input checked='checked' value="Доставка по адресу" type="radio" name="delivery"><span><img src="/assets/checkbox.png"><img src="/assets/checkbox-checked.png"></span> Доставка по адресу</label>
-					<div class="info"><span>Подробнее</span></div>
-					<label class="radio"><input type="radio" value="Самовывоз со склада" name="delivery"><span><img src="/assets/checkbox.png"><img src="/assets/checkbox-checked.png"></span> Самовывоз со склада</label>
-					<div class="info"><span>Подробнее</span></div>
-					<label class="radio"><input type="radio" value="Доставка до Транспортной компании" name="delivery"><span><img src="/assets/checkbox.png"><img src="/assets/checkbox-checked.png"></span> Доставка до Транспортной компании</label>
-					<div class="info"><span>Подробнее</span></div>
+					<label class="radio"><input checked='checked' value="Доставка по адресу" type="radio" name="delivery"> Доставка по адресу</label>
+					<div class="info"><a href="/dostavka-i-oplata">Подробнее</a></div>
+					<label class="radio"><input type="radio" value="Самовывоз со склада" name="delivery"> Самовывоз со склада</label>
+					<div class="info"><a href="/dostavka-i-oplata">Подробнее</a></div>
+					<label class="radio"><input type="radio" value="Доставка до Транспортной компании" name="delivery"> Доставка до Транспортной компании</label>
+					<div class="info"><a href="/dostavka-i-oplata">Подробнее</a></div>
 				</div>
 			</div>
 			<div>
@@ -174,25 +172,29 @@
 		</blockquote>
 	</div>
 	<div>
-		<div class="columns">
+		<div class="columns" style="border-bottom: 0">
 			<div>
 				<div class="title" style="text-align: left; padding-left: 74px">Карта лояльности</div>
 				<div class="radios">
-					<label class="radio"><input checked='checked' value="Получить «Карту лояльности»" type="radio" name="loyality_card"><span><img src="/assets/checkbox.png"><img src="/assets/checkbox-checked.png"></span> Получить «Карту лояльности»</label>
-					<div class="info"><span>Подробнее</span></div>
-					<label class="radio"><input value="У меня уже есть «Карта лояльности»" type="radio" name="loyality_card"><span><img src="/assets/checkbox.png"><img src="/assets/checkbox-checked.png"></span> У меня уже есть «Карта лояльности»</label>
+					<label class="radio"><input checked='checked' value="Получить «Карту лояльности»" type="radio" name="loyality_card"> Получить «Карту лояльности»</label>
+					<div class="info"><a href="/loyalty_card">Подробнее</a></div>
+					<label class="radio"><input value="У меня уже есть «Карта лояльности»" type="radio" name="loyality_card"> У меня уже есть «Карта лояльности»</label>
 				</div>
 			</div>
 			<div>
 				<div class="title" style="text-align: left; padding-left: 74px">Способ оплаты</div>
 				<div class="radios">
-					<label class="radio"><input value="Оплата наличными при получении заказа" checked='checked' type="radio" name="payment_type"><span><img src="/assets/checkbox.png"><img src="/assets/checkbox-checked.png"></span> Оплата наличными при получении заказа</label>
-					<label class="radio"><input value="Оплата наличными/картой в салоне" type="radio" name="payment_type"><span><img src="/assets/checkbox.png"><img src="/assets/checkbox-checked.png"></span> Оплата наличными/картой в салоне</label>
-					<label class="radio"><input value="Оформить кредит/рассрочку" type="radio" name="payment_type"><span><img src="/assets/checkbox.png"><img src="/assets/checkbox-checked.png"></span> Оформить кредит/рассрочку</label>
-					<div style="margin-bottom: 26px" class="info"><span>Подробнее</span></div>
+					<label class="radio"><input value="Оплата наличными при получении заказа" checked='checked' type="radio" name="payment_type"> Оплата наличными при получении заказа</label>
+					<label class="radio"><input value="Оплата наличными/картой в салоне" type="radio" name="payment_type"> Оплата наличными/картой в салоне</label>
+					<label class="radio"><input value="Оформить кредит/рассрочку" type="radio" name="payment_type"> Оформить кредит/рассрочку</label>
+					<div style="margin-bottom: 26px" class="info"><a href="/pokupka-v-kredit">Подробнее</a></div>
 				</div>
 			</div>
 			<div></div>
+		</div>
+		<div style="border-bottom: 1px solid #cecece; margin: 0 3%; padding-left: 36px">
+			<div class="title">Комментарий</div>
+			<textarea name="comment" style="margin: 10px 0 20px; width: 100%; height: 100px"></textarea>
 		</div>
 		<div class='buttons' style="text-align: right">
 			<div onclick="cartPrevPage(this)" class='btn white'>Назад</div>
