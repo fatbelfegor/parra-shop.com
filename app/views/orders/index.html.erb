@@ -1,4 +1,4 @@
-<h1 class="text-center" style="margin:15px 0">Список продуктов (<%= @orders.count %>)</h1>
+<h1 class="text-center" style="margin:15px 0">Список заказов (<%= @orders.count %>)</h1>
 
 <div class="text-center">
 	<a href="/orders/" class="btn btn-<%= if params[:status].present? then 'default' else 'primary' end %>">Все</a>
@@ -28,7 +28,7 @@
 	<tr data-id="<%= order.id %>">
 		<td class="status"><%= if order.status then order.status.name else 'Новый' end %></td>
 		<td><%= order.created_at.strftime('%Y-%m-%d %H:%M') %></td>
-		<td><%= order.first_name.first(50) %></td>
+		<td><%= "#{order.last_name} #{order.first_name} #{order.middle_name}" %></td>
 		<td><%= order.phone.first(30) %></td>
 		<td><%= number_to_currency(price) %></td>
 		<td>

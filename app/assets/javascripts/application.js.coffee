@@ -178,8 +178,9 @@ expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
 
 @addToCart = (add) ->
-	prev = cart.find (item) ->
-		item.ss == add.ss and item.ls == add.ls and item.os == add.os and item.i == add.i and item.d == add.d
+	for item in cart
+		if item.ss == add.ss and item.ls == add.ls and item.os == add.os and item.i == add.i and item.d == add.d
+			prev = item
 	if prev
 		prev.c++
 	else
@@ -1029,7 +1030,7 @@ changeCount = (c, add) ->
 @cartPrevPage = (el) ->
 	current = el.closest '.active'
 	current.className = ''
-	index = Array.prototype.indexOf.call current.parentNode.children, current
+	index = -2 + Array.prototype.indexOf.call current.parentNode.children, current
 	cartNav.children[index].className = ''
 	page = current.previousElementSibling
 	page.className = 'active'

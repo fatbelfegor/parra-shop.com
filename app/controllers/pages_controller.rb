@@ -33,4 +33,8 @@ class PagesController < ApplicationController
     @seo_keywords = 'гарантийное, обслуживание, срок, изделия, 24, месяц'
     @seo_description = 'Мы имеем собственную службу качества, которая ведет контроль за всеми производственными участками. Гарантийный срок на все изделия - 24 месяца.'
   end
+
+  def all_products
+    @title = 'Все товары'
+  end
 end

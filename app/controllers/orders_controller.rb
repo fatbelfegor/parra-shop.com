@@ -70,6 +70,7 @@ class OrdersController < ApplicationController
                         OrderMailer.ordersaveclient(order).deliver
                         redirect_to '/', notice: 'ordersave'
                     end
+                    cookies.delete :cart
                     return
                 end
             end

@@ -144,6 +144,28 @@
 	</div>
 	<br>
 	<br>
+	<div class="row">
+		<h4 class="col-md-2 text-right"><%= f.label :deliver_type, "Доставка", {class: 'control-label wrath-content-box'} %></h4>
+		<div class="col-md-2">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :deliver_type, class: 'form-control col-md-2' %>
+	      </div>
+	    </div>
+		<h4 class="col-md-2 text-right"><%= f.label :loyality_card, "Карта лояльности", {class: 'control-label wrath-content-box'} %></h4>
+		<div class="col-md-2">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :loyality_card, class: 'form-control col-md-2' %>
+	      </div>
+	    </div>
+		<h4 class="col-md-2 text-right"><%= f.label :payment_type, "Оплата", {class: 'control-label wrath-content-box'} %></h4>
+		<div class="col-md-2">
+	      <div class="wrath-content-box" style="padding:0 15px">
+	        <%= f.text_field :payment_type, class: 'form-control col-md-2' %>
+	      </div>
+	    </div>
+	</div>
+	<br>
+	<br>
 	<table class="table table-bordered table-striped text-center order-items">
 		<tr>
 			<th>№ п/п</th>
