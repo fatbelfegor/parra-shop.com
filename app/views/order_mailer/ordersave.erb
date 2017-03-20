@@ -17,6 +17,11 @@ E-mail: <%=h @order.email %>
 Комментарий: <%=h @order.comment %><br/>
 <br/>
 <br/>
+Доставка: <%=h @order.deliver_type %><br/>
+Карта лояльности: <%=h @order.loyality_card %><br/>
+Оплата: <%=h @order.payment_type %>
+<br/>
+<br/>
 Номер заказа: <%= @order.id%> от <%= @order.created_at.to_s[0,10] %><br/><br/>
 
 

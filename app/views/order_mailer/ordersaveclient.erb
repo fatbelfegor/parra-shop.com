@@ -3,6 +3,11 @@
 Благодарим Вас за оформление заказа в интернет-магазине <%= link_to "www.parra-shop.ru", "http://www.parra-shop.ru" %><br/><br/>
 
 Номер заказа: <%= @order.id%> от <%= @order.created_at.to_s[0,10] %><br/><br/>
+Доставка: <%=h @order.deliver_type %><br/>
+Карта лояльности: <%=h @order.loyality_card %><br/>
+Оплата: <%=h @order.payment_type %>
+<br/>
+<br/>
 
 <table border=0 bgcolor="#000000" cellspacing=1 cellpadding=4>
 <tr>
@@ -13,13 +18,13 @@
 <td bgcolor="#FFFFFF">
 	<%= item.product.name %>
 	<% if(item.size) %>
-		</br><%=h item.size%>
+		</br><%=h item.size %>
 	<% end %>
 	<% if(item.color) %>
-		</br><%=h item.color%>	
+		</br><%=h item.color %>	
 	<% end %>
 	<% if(item.option) %>
-		</br><%=h item.option%>	
+		</br><%=h item.option %>	
 	<% end %>
 </td>
 <td bgcolor="#FFFFFF"><%= item.price %> руб.</td>

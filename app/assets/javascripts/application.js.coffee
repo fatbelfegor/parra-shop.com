@@ -15,6 +15,7 @@
 #= require bootstrap.min
 #= require jquery-ui-1.10.4.custom.min
 #= require tinymce-jquery
+#= require polyfills
 
 Number.prototype.toCurrency = ->
 	(""+this.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
