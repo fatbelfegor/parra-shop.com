@@ -27,35 +27,54 @@ class OrdersController < ApplicationController
     end
 
 	def create
-		@order = Order.new(order_params)
+        if params[:cartfield]
+            items = JSON.parse params[:cartfield]
+            if items.any?
+                order = Order.new
 
-        respond_to do |format|
-            if params[:cartfield] and @order.save
-            	items = JSON.parse params[:cartfield]
-            	items.each{ |i|
-            		@order.order_items.create({
-            			product_id: i['i'],
-            			quantity: i['c'],
-            			price: i['p'].sub(' ', ''),
-                        size: i['s'],
-                        color: i['l'],
-                        option: i['o'],
-                        size_scode: i['ss'],
-                        color_scode: i['ls'],
-                        option_scode: i['os']
-            		})
-            	}
-                if user_signed_in? && (current_user.admin? || current_user.manager)
-                    format.html{redirect_to "/orders/#{@order.id}/edit"}
-                else
-                    OrderMailer.ordersave(@order).deliver
-                    OrderMailer.ordersaveclient(@order).deliver
-                    format.html{redirect_to '/', notice: 'ordersave'}
+                order.first_name = params[:name]
+                order.last_name = params[:lastname]
+                order.phone = params[:phone]
+                order.email = params[:email]
+
+                order.deliver_type = params[:delivery]
+                order.city = params[:city] # Добавить
+                order.addr_street = params[:addr_street]
+                order.addr_home = params[:addr_home]
+                order.addr_block = params[:addr_block]
+                order.addr_staircase = params[:addr_staircase]
+                order.addr_floor = params[:addr_floor]
+                order.addr_flat = params[:addr_flat]
+
+                order.loyality_card = params[:loyality_card] # Добавить
+                order.payment_type = params[:payment_type]
+                
+                if order.save
+                    items.each do |i|
+                        order.order_items.create({
+                            product_id: i['i'],
+                            quantity: i['c'],
+                            price: i['p'].gsub(' ', ''),
+                            size: i['s'],
+                            color: i['l'],
+                            option: i['o'],
+                            size_scode: i['ss'],
+                            color_scode: i['ls'],
+                            option_scode: i['os']
+                        })
+                    end
+                    if user_signed_in? && (current_user.admin? || current_user.manager)
+                        redirect_to "/orders/#{order.id}/edit"
+                    else
+                        OrderMailer.ordersave(order).deliver
+                        OrderMailer.ordersaveclient(order).deliver
+                        redirect_to '/', notice: 'ordersave'
+                    end
+                    return
                 end
-            else
-                format.html{redirect_to '/', notice: 'Заказ не был оформлен.'}
             end
         end
+        format.html{redirect_to '/', notice: 'Заказ не был оформлен.'}
 	end
 
     def edit

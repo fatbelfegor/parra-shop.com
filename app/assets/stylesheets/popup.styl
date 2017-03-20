@@ -11,14 +11,11 @@
 		background rgba(0, 0, 0, .5)
 		
 #popupCart
-	width 966px
-	height 520px
 	background white
 	border-radius 4px
 	position relative
 	.close
-		width 22px
-		padding-left 1px
+		width 23px
 		height 23px
 		background #969696
 		position absolute
@@ -31,7 +28,41 @@
 		cursor pointer
 	.title
 		color #535459
-		font-size 26px
-		padding 24px 0 30px
+		font-size 24px
+		padding 22px 0 35px
 		text-align center
-		border-bottom 1px solid #cecece
+		line-height 1
+	.total
+		line-height 1
+		padding 31px 53px 25px 0
+		font-size 15px
+		font-weight bold
+		text-align right
+		white-space nowrap
+		img
+			position relative
+			top 2px
+	.buttons
+		display flex
+		justify-content space-between
+		padding 0 21px 30px
+		.btn
+			text-align center
+			line-height 31px
+			height 31px
+			border 1px solid
+			border-radius 4px
+			font-size 15px
+			padding 0 80px
+			transition .3s
+			&:hover
+				box-shadow 0 1px 7px rgba(0, 0, 0, .2)
+			&.green
+				text-shadow 1px 1px 2px rgba(0, 0, 0, .3)
+				color white
+				background #7ab652 linear-gradient(#85d248, #7ab652)
+				border-color #79b551
+			&.white
+				color black
+				background #f0f0f0 linear-gradient(#fff, #f0f0f0)
+				border-color #9a9a9a

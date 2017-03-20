@@ -176,69 +176,89 @@ getCookie = (name) ->
 	(if matches then decodeURIComponent(matches[1]) else `undefined`)
 expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
-@addToCartFromCatalog = (name, el) ->
-	alert 'Не доделано'
-	# appear = $(el).parent()
-	# price = parseInt(appear.prev().find('.price').html().replace(' руб.', '').replace(/\ /g,'')).toCurrency()
-	# s = appear.find('.size').html()
-	# ss = appear.find('.size-scode').html()
-	# l = appear.find('.color').html()
-	# ls = appear.find('.color-scode').html()
-	# o = appear.find('.option').html()
-	# os = appear.find('.option-scode').html()
-	# i = appear.find('.id').html()
-	# d = appear.find('.scode').html()
-	# s = '' if !s
-	# l = '' if !l
-	# o = '' if !o
-	# ss = '' if !ss
-	# ls = '' if !ls
-	# os = '' if !os
-	# prev = (cart.filter (item) ->
-	# 	item.ss == ss and item.ls == ls and item.os == os and item.i == i and item.d == d)[0]
-	# if prev
-	# 	prev.c++
-	# else
-	# 	cart.push n: name, c: 1, p: price, s: s, l: l, o: o, i: i, d: d, ss: ss, ls: ls, os: os
-	# count = 0
-	# price = 0
-	# i = 0
-	# items = '<div class="items">'
-	# cart.forEach (item) ->
-	# 	count += item.c
-	# 	price += parseFloat(item.p.replace(/\ /g, ''))*item.c
-	# 	if item.c > 1 then minus = '<span class="left" onclick="changeCount(this)">++</span>' else minus = '<span class="left invis">++</span>'
-	# 	if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
-	# 	if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
-	# 	if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-	# 	items += '<div><a href="/kupit/'+item.d+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
-	# 	$.ajax
-	# 		url: "/cart.json?id="+item.i
-	# 		success: (data) ->
-	# 			$('#alert .items > div').get().forEach (item) ->
-	# 				if $(item).find('ins').html() == data.name
-	# 					$(item).find('img').attr 'src', data.images[0][1]
-	# $('body').append('<div id="alert">\
-	# 		<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
-	# 		<div>\
-	# 			<div class="header">\
-	# 				Спасибо. Товар добавлен в Вашу корзину.\
-	# 				<div style="background:url(\'/assets/remove-icon.png\')" onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
-	# 			</div>\
-	# 		</div>\
-	# 		'+items+'</div><p class="itogo">Итого: <b>'+price.toCurrency()+'</b> руб.</p>\
-	# 		<a class="continue" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)">Продолжить покупки</a>\
-	# 		<a href="/cart" class="gotoCart">Перейти в корзину</a>\
-	# 		</div>\
-	# 	</div>')
-	# a = $('#alert').show()
-	# d = a.find('> div').last()[0]
-	# height = $(window).height()
-	# d.style.left = $(window).width() / 2 - d.offsetWidth / 2 + 'px'
-	# d.style.top = height / 2 - d.offsetHeight / 2 + 'px'
-	# d.style.maxHeight = height + 'px'
-	# a.hide().fadeIn(300)
-	# cartSave()
+
+@addToCart = (add) ->
+	prev = cart.find (item) ->
+		item.ss == add.ss and item.ls == add.ls and item.os == add.os and item.i == add.i and item.d == add.d
+	if prev
+		prev.c++
+	else
+		add.c = 1
+		cart.push add
+	total = 0
+	res = """
+		<div id='popupContainer' onclick='this.parentNode.removeChild(this)'>
+			<div id='popupCart' onclick='event.stopPropagation()'>
+				<div class='close' onclick='popupContainer.parentNode.removeChild(popupContainer)'>✖</div>
+				<div class='title'>Спасибо! Товар добавлен в корзину.</div>
+				<div id='cartList' class='list'>"""
+	for item, i in cart
+		do (index = i) ->
+			price = item.c * (p = parseFloat item.p.replace /\ /g, '')
+			total += price
+			res += """<div class='item' data-i='#{i}' data-price='#{p}'><img>
+					<div class='text'>
+						<a href='/kupit/#{item.d}'>#{item.n}</a>
+						<p>Артикул: #{item.a}</p>"""
+			res += "<p>Размер: #{item.s}</p>" if item.s
+			res += "<p>Цвет: #{item.l}</p>" if item.l
+			res += "<p>Опции: #{item.o}</p>" if item.o
+			res += """</div>
+				<div class='counter'>
+					<div class='minus' onclick='cartMinus(this)'>−</div>
+					<div class='count'>#{item.c}</div>
+					<div class='plus' onclick='cartPlus(this)'>+</div>
+					<img onclick='cartDelete(this)' src='/assets/icon/delete.png' class='delete'>
+				</div>
+				<div class='price'><span class='price-value'>#{price.toCurrency()}</span> <img src="/assets/icon/rubl.png"></div>
+			</div>"""
+			x = new XMLHttpRequest
+			x.open 'GET', "/cart.json?id=#{item.i}"
+			x.setRequestHeader "Content-Type", "application/json"
+			x.onload = ->
+				cartList.children[index].firstChild.src = JSON.parse(@response).images[0][1]
+			x.send()
+	res += """</div>
+			<div class='total'>
+				Итого: <span class='total-value'>#{total.toCurrency()}</span> <img src="/assets/icon/rubl.png">
+			</div>
+			<div class='buttons'>
+				<div onclick='popupContainer.parentNode.removeChild(popupContainer)' class='btn white'>Продолжить покупки</div>
+				<a href='/cart' class='btn green'>Оформить заказ</a>
+			</div>
+		</div>
+	</div>"""
+	document.body.insertAdjacentHTML 'beforeend', res
+	popupContainer.style.display = 'flex'
+	getComputedStyle(popupContainer).top
+	popupContainer.className = 'active'
+	cartSave()
+
+@addToCartFromCatalog = (el) ->
+	el = el.parentNode.parentNode
+	add =
+		i: +el.getElementsByClassName('id')[0].textContent
+		d: el.getElementsByClassName('scode')[0].textContent
+		a: el.getElementsByClassName('articul')[0].textContent
+		n: el.getElementsByClassName('product-name')[0].textContent
+		p: el.getElementsByClassName('price')[0].textContent.replace(' руб.', '')
+		s: ''
+		l: ''
+		o: ''
+		ss: ''
+		ls: ''
+		os: ''
+	if a = el.getElementsByClassName('size')[0]
+		add.s = a.textContent
+		add.ss = a.nextElementSibling.textContent
+	if a = el.getElementsByClassName('color')[0]
+		add.l = a.textContent
+		add.ls = a.nextElementSibling.textContent
+	if a = el.getElementsByClassName('option')[0]
+		add.o = a.textContent
+		add.os = a.nextElementSibling.textContent
+	addToCart add
+
 @cartMenuGen = ->
 	items = ''
 	allPrice = 0
@@ -939,3 +959,113 @@ sliderRight = (steps, products) ->
 @scrollImage = (el) ->
 	d = el.parentNode
 	$('html, body').animate(scrollTop: d.offsetTop + d.offsetHeight, '500', 'swing')
+
+# Cart page and cart popup
+
+countTotal = (el) ->
+	total = 0
+	for i in cart
+		total += i.c * parseFloat i.p.replace /\ /g, ''
+	el.parentNode.parentNode.getElementsByClassName('total-value')[0].innerHTML = total.toCurrency()
+	cartSave()
+
+changeCount = (c, add) ->
+	item = c.closest '.item'
+	i = cart[item.dataset.i]
+	return if add is -1 and i.c is 1
+	c.innerHTML = i.c += add
+	item.getElementsByClassName('price-value')[0].innerHTML = (i.c * item.dataset.price).toCurrency()
+	countTotal item
+
+@cartMinus = (el) ->
+	changeCount el.nextElementSibling, -1
+
+@cartPlus = (el) ->
+	changeCount el.previousElementSibling, 1
+
+@cartDelete = (el) ->
+	item = el.closest '.item'
+	cart.splice item.dataset.i, 1
+	countTotal item
+	item.parentNode.removeChild item
+
+# Cart page
+
+@cartNextPage = (el) ->
+	current = el.closest '.active'
+	index = -2 + Array.prototype.indexOf.call current.parentNode.children, current
+	if index is 1
+		for input in current.getElementsByTagName 'input'
+			if input.value
+				input.nextElementSibling.style.display = ''
+			else
+				input.nextElementSibling.style.display = 'block'
+				err = true
+		return if err
+	if index is 2
+		for field in current.getElementsByClassName 'field'
+			unless field.firstElementChild.lastElementChild.style.display is 'none'
+				input = field.children[1]
+				if input.value
+					input.nextElementSibling.style.display = ''
+				else
+					input.nextElementSibling.style.display = 'block'
+					err = true
+		return if err
+	current.className = ''
+	page = current.nextElementSibling
+	page.className = 'active'
+	cartNav.children[index + 1].className = 'active'
+	if index is 0
+		count = price = 0
+		for item in cart
+			count += item.c
+			price += item.c * parseFloat item.p.replace /\ /g, ''
+		page.getElementsByClassName('total-count')[0].innerHTML = count
+		page.getElementsByClassName('total-price')[0].innerHTML = price.toCurrency()
+	else
+		page.firstElementChild.lastElementChild.innerHTML = current.firstElementChild.lastElementChild.innerHTML
+
+@cartPrevPage = (el) ->
+	current = el.closest '.active'
+	current.className = ''
+	index = Array.prototype.indexOf.call current.parentNode.children, current
+	cartNav.children[index].className = ''
+	page = current.previousElementSibling
+	page.className = 'active'
+
+@cartChooseDelivery = (el) ->
+	for input, i in el.getElementsByTagName 'input'
+		if input.checked
+			index = i
+			break
+	page = el.closest '.active'
+	switch index
+		when 0
+			for span in page.querySelectorAll '.field .name span'
+				span.style.display = 'inline'
+			for b in page.getElementsByTagName 'blockquote'
+				b.style.display = 'none'
+		when 1
+			for span in page.querySelectorAll '.field .name span'
+				span.style.display = 'none'
+			b = page.getElementsByTagName 'blockquote'
+			b[0].style.display = 'block'
+			b[1].style.display = 'none'
+		when 2
+			for span, i in page.querySelectorAll '.field .name span'
+				span.style.display = i < 4 and 'inline' or 'none'
+			b = page.getElementsByTagName 'blockquote'
+			b[0].style.display = 'none'
+			b[1].style.display = 'block'
+	for err in page.getElementsByClassName 'error'
+		err.style.display = 'none'
+
+@cartSubmit = (el) ->
+	form = el.closest 'form'
+	cartfield = document.createElement 'input'
+	cartfield.type = 'hidden'
+	cartfield.name = 'cartfield'
+	cartfield.value = JSON.stringify cart
+	form.appendChild cartfield
+	form.submit()

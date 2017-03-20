@@ -132,85 +132,21 @@ indexOf = (el) ->
 	refresh()
 
 @buyProduct = ->
+	add = i: product.id, d: product.scode, a: product.s_title, n: product.name, p: product.total
 	if size
-		s = size.name
-		ss = size.scode
+		add.s = size.name
+		add.ss = size.scode
 		if color
 			if texture
-				l = texture.name
-				ls = texture.scode
+				add.l = texture.name
+				add.ls = texture.scode
 			else
-				l = color.name
-				ls = color.scode
-		else l = ls = ''
+				add.l = color.name
+				add.ls = color.scode
+		else add.l = add.ls = ''
 		if option
-			o = option.name
-			os = option.scode
-		else o = os = ''
-	else s = ss = l = ls = o = os = ''
-	i = product.id
-	d = product.scode
-	prev = (cart.filter (item) ->
-		item.ss == ss and item.ls == ls and item.os == os and item.i == i and item.d == d)[0]
-	if prev
-		prev.c++
-	else
-		cart.push {n: product.name, c: 1, p: product.total, s, l, o, i, d, ss, ls, os}
-	count = 0
-	price = 0
-	i = 0
-	items = '<div class="items">'
-	cart.forEach (item) ->
-		count += item.c
-		price += parseFloat(item.p.replace(/\ /g, ''))*item.c
-		if item.c > 1 then minus = '<span class="left" onclick="changeCount(this)">++</span>' else minus = '<span class="left invis">++</span>'
-		if item.l then color = '<p>Цвет: '+item.l+'</p>' else color = ''
-		if item.s then size = '<p>Размер: '+item.s+'</p>' else size = ''
-		if item.o then option = '<p>Опции: '+item.o+'</p>' else option = ''
-		items += '<div><a href="/kupit/'+item.d+'"><img><div><div><p><ins>'+item.n+'</ins></p>'+color+size+option+'</div></div></a><div><div><p><b id="price">'+(parseFloat(item.p.replace(/\ /g, ''))*item.c).toCurrency()+'</b> руб.</p><div onselectstart="return false">'+minus+'<span id="count">'+item.c+'</span><span class="right" onclick="changeCount(this)">+</span></div></div></div></div>'
-		$.ajax
-			url: "/cart.json?id="+item.i
-			success: (data) ->
-				$('#alert .items > div').get().forEach (item) ->
-					if $(item).find('ins').html() == data.name				
-						$(item).find('img').attr 'src', data.images[0][0]
-	$('body').append('<div id="alert">\
-			<div onclick="this.parentNode.parentNode.removeChild(this.parentNode)"></div>\
-			<div style="top:'+($(window).height()/2-300)+'px; left:'+($(window).width()/2-235)+'px">\
-				<div class="header">\
-					Спасибо. Товар добавлен в Вашу корзину.\
-					<div onclick="this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)">\
-				</div>\
-			</div>\
-			'+items+'</div><p class="itogo">Итого: <b>'+price.toCurrency()+'</b> руб.</p>\
-			<a class="continue" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)">Продолжить покупки</a>\
-			<a href="/cart" class="gotoCart">Перейти в корзину</a>\
-			</div>\
-		</div>')
-	$('#alert').fadeIn(300)	
-	cartSave()
-	# res = """
-	# 	<div id='popupContainer'>
-	# 		<div id='popupCart'>
-	# 			<div class='close'>✖</div>
-	# 			<div class='title'>Спасибо! Товар добавлен в корзину.</div>
-	# 			<div class='list'>"""
-	# for item in cart
-	# 	res += """
-	# 		<div class='item'>
-	# 			<img>
-	# 			<div class='text'>
-	# 				<a href='/kupit/#{item.ss}'>#{item.c}</a>
-					
-	# 			</div>
-	# 		</div>
-	# 	"""	
-	# res += """
-	# 			</div>
-	# 		</div>
-	# 	</div>
-	# """
-	# document.body.insertAdjacentHTML 'beforeend', res
-	# popupContainer.style.display = 'flex'
-	# getComputedStyle(popupContainer).top
-	# popupContainer.className = 'active'
+			add.o = option.name
+			add.os = option.scode
+		else add.o = add.os = ''
+	else add.s = add.ss = add.l = add.ls = add.o = add.os = ''
+	addToCart add

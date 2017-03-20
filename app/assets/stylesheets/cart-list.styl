@@ -1,0 +1,63 @@
+#cartList
+	margin 0 21px
+	max-height 303px
+	overflow auto
+	border 1px solid #cecece
+	border-width 1px 0
+	.item
+		display flex
+		justify-content space-between
+		align-items center
+		> img
+			margin 2px 0 2px 18px
+			width 145px
+			height 145px
+		& + .item
+			border-top 1px solid #cecece
+	.text
+		flex-grow 1
+		padding 0 48px
+		font-size 15px
+		line-height 18px
+		color #6b6a6f
+		a
+			color #555459
+			text-decoration underline
+			font-weight bold
+	.counter
+		display flex
+		margin-right 18px
+		flex-grow .4
+		align-items center
+		img
+			margin-left 17px
+			cursor pointer
+	.minus, .plus, .count
+		height 23px
+		line-height 23px
+		border 1px solid #d2d2d2
+	.minus, .plus
+		width 33px
+		background #f5f5f5
+		color #5d5d5b
+		text-align center
+		cursor pointer
+		user-select none
+	.minus
+		border-radius 0 0 2px 2px
+	.plus
+		border-radius 2px 2px 0 0
+	.count
+		border-width 1px 0
+		padding 0 10px
+		color black
+	.price
+		margin-right 28px
+		font-weight bold
+		color black
+		min-width 100px
+		text-align right
+		white-space nowrap
+		img
+			position relative
+			top 1px

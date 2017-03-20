@@ -6,60 +6,80 @@
 			<img src="<%= $global_extension.url :medium %>" class='extension-catalog'>
 		<% end %>
 		<% images = product.product_images.map{|i| i.image.block.url} %>
-		<% price = number_to_currency product.price %>
+		<% price = product.price %>
+		<% sizes = product.prsizes %>
+		<% if sizes.any? %>
+			<% size = sizes.first %>
+			<% price += size.price %>
+			<% if size %>
+				<% colors = size.prcolors %>
+				<% if colors.any? %>
+					<% color = colors.first %>
+					<% textures = color.textures %>
+					<% price += color.price %>
+					<% if textures.any? %>
+						<% texture = textures.first %>
+						<% price += texture.price %>
+					<% end %>
+				<% end %>
+				<% options = size.proptions %>
+				<% if options.any? %>
+					<% option = options.first %>
+					<% price += option.price %>
+				<% end %>
+			<% end %>
+		<% end %>
+		<% price = number_to_currency price %>
 		<% if images.any? %>
 			<% alt = "#{product.name}, цена #{price}" %>
 			<div class="photoes">
-				<% for i in images %>
-					<a href="/kupit/<%= product.scode %>"><img alt="<%= alt %>" src="<%= i %>"></a>
+				<% images.each_with_index do |i, index| %>
+					<a<% if index == 0 %> class='showPhoto'<% end %> href="/kupit/<%= product.scode %>"><img alt="<%= alt %>" src="<%= i %>"></a>
 				<% end %>
 			</div>
 		<% end %>
 		<div>
 			<div class="name">
-				<a href="/kupit/<%= product.scode %>"><%= product.name %></a>
+				<a class="product-name" href="/kupit/<%= product.scode %>"><%= product.name %></a>
 			</div>
 		</div>
-		<div><%= product.s_title %></div>
+		<div class="articul"><%= product.s_title %></div>
 		<div><%= raw product.shortdesk %></div>
 		<div>
 			<b>Цена:</b>
 			<span class="price"><%= price %></span>
 		</div>
 		<div class="appear">
-			<% if !product.prsizes.blank? %>
+			<% if size %>
 				<div>
 					<b>Размер:</b>
-					<span class="size"><%= product.prsizes[0].name %></span>
-					<span class="hidden size-scode"><%= product.prsizes[0].scode %></span>
+					<span class="size"><%= size.name %></span>
+					<span class="hidden"><%= size.scode %></span>
 				</div>
 			<% end %>
-			<% if !product.prcolors.blank? %>
-				<% prcolor = product.prcolors.first %>
-				<% if !prcolor.textures.blank? %>
-					<div>
-						<b>Цвет:</b>
-						<span class="color"><%= prcolor.textures[0].name %></span>
-						<span class="hidden color-scode"><%= prcolor.textures[0].scode %></span>
-					</div>
-				<% else %>
-					<div>
-						<b>Цвет:</b>
-						<span class="color"><%= product.prcolors[0].name %></span>
-						<span class="hidden color-scode"><%= product.prcolors[0].scode %></span>
-					</div>
-				<% end %>
+			<% if texture %>
+				<div>
+					<b>Цвет:</b>
+					<span class="color"><%= texture.name %></span>
+					<span class="hidden"><%= texture.scode %></span>
+				</div>
+			<% elsif color %>
+				<div>
+					<b>Цвет:</b>
+					<span class="color"><%= color.name %></span>
+					<span class="hidden"><%= color.scode %></span>
+				</div>
 			<% end %>
-			<% if !product.proptions.blank? %>
+			<% if option %>
 				<div>
 					<b>Опция:</b>
-					<span class="option"><%= product.proptions[0].name %></span>
-					<span class="hidden option-scode"><%= product.proptions[0].scode %></span>
+					<span class="option"><%= option.name %></span>
+					<span class="hidden"><%= option.scode %></span>
 				</div>
 			<% end %>
 			<div class="id hidden"><%= product.id %></div>
 			<div class="scode hidden"><%= product.scode %></div>
-			<div class="fancyButton" onclick="addToCartFromCatalog('<%= product.name %>', this)">Купить</div>
+			<div class="fancyButton" onclick="addToCartFromCatalog(this)">Купить</div>
 		</div>
 	</div>
 </div>

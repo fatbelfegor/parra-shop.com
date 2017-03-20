@@ -335,10 +335,22 @@
 	<div class="others">
 		<% if @product.category %>
 			<div class="header">Другие товары коллекции "<%= @product.category.name %>"</div>
-			<div class="wrap"><div class="table"><%= render(:partial => "products/productFooter" , collection: @product.category.products) %></div></div>
+			<div class="wrap">
+				<div class="table">
+					<% for product in @product.category.products.where.not(id: @product.id) %>
+						<%= render(partial: "pages/product", locals: {product: product}) %>
+					<% end %>
+				</div>
+			</div>
 		<% else %>
 			<div class="header">Другие товары коллекции "<%= @product.subcategory.name %>"</div>
-			<div class="wrap"><div class="table"><%= render(:partial => "products/productFooter" , collection: @product.subcategory.products) %></div></div>
+			<div class="wrap">
+				<div class="table">
+					<% for product in @product.subcategory.products.where.not(id: @product.id) %>
+						<%= render(partial: "pages/product", locals: {product: product}) %>
+					<% end %>
+				</div>
+			</div>
 		<% end %>
 	</div>
 	<% unless @product.product_footer_images.blank? %>
@@ -357,7 +369,7 @@
 
 <script type="text/javascript" src="/assets/product.js"></script>
 <script type="text/javascript">
-	productPage(<%= raw @product.to_json(only: [:id, :name, :scode, :price, :old_price], include: {prsizes: {only: [:id, :price, :old_price, :name, :scode], include: [{prcolors: {only: [:id, :price, :name, :scode], include: {textures: {only: [:id, :price, :name, :scode]}}}}, {proptions: {only: [:id, :price, :name, :scode]}}]}}) %>)	
+	productPage(<%= raw @product.to_json(only: [:id, :name, :scode, :s_title, :price, :old_price], include: {prsizes: {only: [:id, :price, :old_price, :name, :scode], include: [{prcolors: {only: [:id, :price, :name, :scode], include: {textures: {only: [:id, :price, :name, :scode]}}}}, {proptions: {only: [:id, :price, :name, :scode]}}]}}) %>)	
 </script>
 
 <script src="/assets/lightbox.min.js"></script>
