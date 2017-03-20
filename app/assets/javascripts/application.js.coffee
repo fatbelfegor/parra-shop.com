@@ -1032,6 +1032,7 @@ changeCount = (c, add) ->
 		page.getElementsByClassName('total-price')[0].innerHTML = price.toCurrency()
 	else
 		page.firstElementChild.lastElementChild.innerHTML = current.firstElementChild.lastElementChild.innerHTML
+	document.body.scrollTop = 0
 
 @cartPrevPage = (el) ->
 	current = el.closest '.active'
