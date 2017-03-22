@@ -66,8 +66,11 @@ class OrdersController < ApplicationController
                     if user_signed_in? && (current_user.admin? || current_user.manager)
                         redirect_to "/orders/#{order.id}/edit"
                     else
-                        OrderMailer.ordersave(order).deliver
-                        OrderMailer.ordersaveclient(order).deliver
+                        begin
+                            OrderMailer.ordersave(order).deliver
+                            OrderMailer.ordersaveclient(order).deliver
+                        rescue Exception => e
+                        end
                         redirect_to '/', notice: 'ordersave'
                     end
                     cookies.delete :cart

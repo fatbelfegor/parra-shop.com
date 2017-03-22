@@ -1003,7 +1003,8 @@ changeCount = (c, add) ->
 	index = -2 + Array.prototype.indexOf.call current.parentNode.children, current
 	if index is 1
 		for input in current.getElementsByTagName 'input'
-			if input.value
+			if input.value and
+					(input.type is 'email' and input.checkValidity() or input.type isnt 'email')
 				input.nextElementSibling.style.display = ''
 			else
 				input.nextElementSibling.style.display = 'block'
