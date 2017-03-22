@@ -252,6 +252,11 @@ private
       :seo_title2,
   		:product_footer_images,
       :remove_product_footer_images,
+      :width,
+      :height,
+      :length,
+      :color,
+      :texture,
       :category_ids => []
     )
   end
