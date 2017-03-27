@@ -9,11 +9,11 @@ class MainController < ApplicationController
   end
   def home
     @products = Product.all
-    if user_signed_in? && current_user.admin?
-      @cat = Category.find_by_scode('Диваны').products.order('created_at asc').limit(10)
-    else
+    # if user_signed_in? && current_user.admin?
+      # @cat = Category.find_by_scode('Диваны').products.order('created_at asc').limit(10)
+    # else
       @cat = Category.find_by_scode('Диваны').products.where('invisible = false').order('created_at asc').limit(10)
-    end
+    # end
     @title = "Мебель из шпона - купить корпусную мебель в Москве в интернет-магазине мебели PARRA-SHOP"
     @seo_description = "Интернет-магазин корпусной мебели PARRA-SHOP предлагает купить мебель из шпона по доступным ценам. Мебель Парра - европейский бренд корпусной мебели для дома."
     @seo_keywords = "мебель, шпон, москва, парра, интернет, магазин, корпусный, купить, parra"
