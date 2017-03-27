@@ -6,214 +6,225 @@
   <div>Корзина</div>
 </div>
 
-<nav id="cartNav">
-	<div class="active">Список товаров</div>
-	<div>Контактная информация</div>
-	<div>Условия доставки</div>
-	<div>Способы оплаты</div>
-</nav>
+<% cart = cookies['cart'] %>
+<% cart = JSON.parse(cart) if cart != nil %>
+<% if cart != nil and cart.any? %>
+	<nav id="cartNav">
+		<div class="active">Список товаров</div>
+		<div>Контактная информация</div>
+		<div>Условия доставки</div>
+		<div>Способы оплаты</div>
+	</nav>
 
-<%= form_for :order, {url: orders_path, html: {class: 'cart-pages', submit: 'return false'}} do |f| %>
-	<div class="active">
-		<% cart = JSON.parse cookies['cart'] %>
-		<% total = 0 %>
-		<div id='cartList' class='list'>
-			<% cart.each_with_index do |item, i| %>
-				<% p = item['p'].gsub(' ', '').to_f %>
-				<% price = item['c'] * p %>
-				<% total += price %>
-				<div class='item' data-i='<%= i %>' data-price='<%= p %>'>
-					<% image = ProductImage.find_by(product_id: item['i']) %>
-					<% if image %>
-						<img src="<%= image.image.small.url %>">
-						<div class='text'>
-							<a href="/kupit/<%= item['d'] %>"><%= item['n'] %></a>
-							<p>Артикул: <%= item['a'] %></p>
-							<% if item['s'].present? %>
-								<p>Размер: <%= item['s'] %></p>
-							<% end %>
-							<% if item['l'].present? %>
-								<p>Цвет: <%= item['l'] %></p>
-							<% end %>
-							<% if item['o'].present? %>
-								<p>Опции: <%= item['o'] %></p>
-							<% end %>
-						</div>
-						<div class='counter'>
-							<div class='minus' onclick='cartMinus(this)'>−</div>
-							<div class='count'><%= item['c'] %></div>
-							<div class='plus' onclick='cartPlus(this)'>+</div>
-							<img onclick='cartDelete(this)' src='/assets/icon/delete.png' class='delete'>
-						</div>
-						<div class='price'>
-							<span class='price-value'><%= number_to_currency p, format: "%n" %></span> <img src="/assets/icon/rubl.png">
-						</div>
-					<% end %>
-				</div>
-			<% end %>
-		</div>
-		<div class='total'>
-			<i>С учетом НДС (18%)</i>Итого: <span class='total-value'><%= number_to_currency total, format: "%n" %></span> <img src="/assets/icon/rubl.png">
-		</div>
-		<div class='buttons' style="justify-content: flex-end">
-			<div class='btn green' onclick="cartNextPage(this)">Продолжить</div>
-		</div>
-	</div>
-	<div>
-		<div class="columns">
-			<div></div>
-			<div>
-				<div class="title">Контактная информация</div>
-				<label class="field">
-					<div class="name">Имя *</div>
-					<input type="text" name="name">
-					<div class="error">Заполните поле</div>
-				</label>
-				<label class="field">
-					<div class="name">Фамилия *</div>
-					<input type="text" name="lastname">
-					<div class="error">Заполните поле</div>
-				</label>
-				<label class="field">
-					<div class="name">Контактный телефон *</div>
-					<input type="text" name="phone">
-					<div class="error">Заполните поле</div>
-				</label>
-				<label class="field">
-					<div class="name">Email *</div>
-					<input type="email" name="email">
-					<div class="error">Введите верный email</div>
-				</label>
-				<div class="hint">* Поля обязательные для заполнения</div>
+	<%= form_for :order, {url: orders_path, html: {class: 'cart-pages', submit: 'return false'}} do |f| %>
+		<div class="active">
+			<% total = 0 %>
+			<div id='cartList' class='list'>
+				<% cart.each_with_index do |item, i| %>
+					<% p = item['p'].gsub(' ', '').to_f %>
+					<% price = item['c'] * p %>
+					<% total += price %>
+					<div class='item' data-i='<%= i %>' data-price='<%= p %>'>
+						<% image = ProductImage.find_by(product_id: item['i']) %>
+						<% if image %>
+							<img src="<%= image.image.small.url %>">
+							<div class='text'>
+								<a href="/kupit/<%= item['d'] %>"><%= item['n'] %></a>
+								<p>Артикул: <%= item['a'] %></p>
+								<% if item['s'].present? %>
+									<p>Размер: <%= item['s'] %></p>
+								<% end %>
+								<% if item['l'].present? %>
+									<p>Цвет: <%= item['l'] %></p>
+								<% end %>
+								<% if item['o'].present? %>
+									<p>Опции: <%= item['o'] %></p>
+								<% end %>
+							</div>
+							<div class='counter'>
+								<div class='minus' onclick='cartMinus(this)'>−</div>
+								<div class='count'><%= item['c'] %></div>
+								<div class='plus' onclick='cartPlus(this)'>+</div>
+								<img onclick='cartDelete(this)' src='/assets/icon/delete.png' class='delete'>
+							</div>
+							<div class='price'>
+								<span class='price-value'><%= number_to_currency p, format: "%n" %></span> <img src="/assets/icon/rubl.png">
+							</div>
+						<% end %>
+					</div>
+				<% end %>
 			</div>
-			<div>
-				<div class="total-info">
-					<div>
+			<div class='total'>
+				<i>С учетом НДС (18%)</i>Итого: <span class='total-value'><%= number_to_currency total, format: "%n" %></span> <img src="/assets/icon/rubl.png">
+			</div>
+			<div class='buttons' style="justify-content: flex-end">
+				<div class='btn green' onclick="cartNextPage(this)">Продолжить</div>
+			</div>
+		</div>
+		<div>
+			<div class="columns">
+				<div></div>
+				<div>
+					<div class="title">Контактная информация</div>
+					<label class="field">
+						<div class="name">Имя *</div>
+						<input type="text" name="name">
+						<div class="error">Заполните поле</div>
+					</label>
+					<label class="field">
+						<div class="name">Фамилия *</div>
+						<input type="text" name="lastname">
+						<div class="error">Заполните поле</div>
+					</label>
+					<label class="field">
+						<div class="name">Контактный телефон *</div>
+						<input type="text" name="phone">
+						<div class="error">Заполните поле</div>
+					</label>
+					<label class="field">
+						<div class="name">Email *</div>
+						<input type="email" name="email">
+						<div class="error">Введите верный email</div>
+					</label>
+					<div class="hint">* Поля обязательные для заполнения</div>
+				</div>
+				<div>
+					<div class="total-info">
 						<div>
-							<div>Количество товаров:</div>
-							<div class="total-count"></div>
-						</div>
-						<div>
-							<div>Общая сумма заказа:</div>
-							<div><b class="total-price"></b> <img src="/assets/icon/rubl.png"></div>
+							<div>
+								<div>Количество товаров:</div>
+								<div class="total-count"></div>
+							</div>
+							<div>
+								<div>Общая сумма заказа:</div>
+								<div><b class="total-price"></b> <img src="/assets/icon/rubl.png"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class='buttons' style="text-align: right">
-			<div onclick="cartPrevPage(this)" class='btn white'>Назад</div>
-			<div onclick="cartNextPage(this)" class='btn green'>Продолжить</div>
-		</div>
-	</div>
-	<div>
-		<div class="columns">
-			<div>
-				<div class="title" style="text-align: center">Способ доставки</div>
-				<div class="radios" onchange="cartChooseDelivery(this)">
-					<label class="radio"><input checked='checked' value="Доставка по адресу" type="radio" name="delivery"> Доставка по адресу</label>
-					<div class="info"><a target="_blank" href="/dostavka-i-oplata">Подробнее</a></div>
-					<label class="radio"><input type="radio" value="Самовывоз со склада" name="delivery"> Самовывоз со склада</label>
-					<div class="info"><a target="_blank" href="/dostavka-i-oplata">Подробнее</a></div>
-					<label class="radio"><input type="radio" value="Доставка до Транспортной компании" name="delivery"> Доставка до Транспортной компании</label>
-					<div class="info"><a target="_blank" href="/dostavka-i-oplata">Подробнее</a></div>
-				</div>
+			<div class='buttons' style="text-align: right">
+				<div onclick="cartPrevPage(this)" class='btn white'>Назад</div>
+				<div onclick="cartNextPage(this)" class='btn green'>Продолжить</div>
 			</div>
-			<div>
-				<div class="title">Условия самовывоза</div>
-				<label class="field">
-					<div class="name">Город <span>*</span></div>
-					<input type="text" name="city">
-					<div class="error">Заполните поле</div>
-				</label>
-				<label class="field">
-					<div class="name">Улица <span>*</span></div>
-					<input type="text" name="addr_street">
-					<div class="error">Заполните поле</div>
-				</label>
-				<div class="row">
+		</div>
+		<div>
+			<div class="columns">
+				<div>
+					<div class="title" style="text-align: center">Способ доставки</div>
+					<div class="radios" onchange="cartChooseDelivery(this)">
+						<label class="radio"><input checked='checked' value="Доставка по адресу" type="radio" name="delivery"> Доставка по адресу</label>
+						<div class="info"><a target="_blank" href="/dostavka-i-oplata">Подробнее</a></div>
+						<label class="radio"><input type="radio" value="Самовывоз со склада" name="delivery"> Самовывоз со склада</label>
+						<div class="info"><a target="_blank" href="/dostavka-i-oplata">Подробнее</a></div>
+						<label class="radio"><input type="radio" value="Доставка до Транспортной компании" name="delivery"> Доставка до Транспортной компании</label>
+						<div class="info"><a target="_blank" href="/dostavka-i-oplata">Подробнее</a></div>
+					</div>
+				</div>
+				<div>
+					<div class="title">Условия самовывоза</div>
 					<label class="field">
-						<div class="name">Дом <span>*</span></div>
-						<input type="text" name="addr_home">
-						<div class="error">Заполните поле</div>
-					</label><label class="field">
-						<div class="name">Корпус<span></span></div>
-						<input type="text" name="addr_block">
+						<div class="name">Город <span>*</span></div>
+						<input type="text" name="city">
 						<div class="error">Заполните поле</div>
 					</label>
-				</div>
-				<div class="row">
 					<label class="field">
-						<div class="name">Подъезд <span>*</span></div>
-						<input type="text" name="addr_staircase">
-						<div class="error">Заполните поле</div>
-					</label><label class="field">
-						<div class="name">Этаж <span>*</span></div>
-						<input type="text" name="addr_floor">
+						<div class="name">Улица <span>*</span></div>
+						<input type="text" name="addr_street">
 						<div class="error">Заполните поле</div>
 					</label>
+					<div class="row">
+						<label class="field">
+							<div class="name">Дом <span>*</span></div>
+							<input type="text" name="addr_home">
+							<div class="error">Заполните поле</div>
+						</label><label class="field">
+							<div class="name">Корпус<span></span></div>
+							<input type="text" name="addr_block">
+							<div class="error">Заполните поле</div>
+						</label>
+					</div>
+					<div class="row">
+						<label class="field">
+							<div class="name">Подъезд <span>*</span></div>
+							<input type="text" name="addr_staircase">
+							<div class="error">Заполните поле</div>
+						</label><label class="field">
+							<div class="name">Этаж <span>*</span></div>
+							<input type="text" name="addr_floor">
+							<div class="error">Заполните поле</div>
+						</label>
+					</div>
+					<div class="row">
+						<label class="field">
+							<div class="name">Квартира <span>*</span></div>
+							<input type="text" name="addr_flat">
+							<div class="error">Заполните поле</div>
+						</label>
+					</div>
+					<div class="hint">* Поля обязательные для заполнения</div>
 				</div>
-				<div class="row">
-					<label class="field">
-						<div class="name">Квартира <span>*</span></div>
-						<input type="text" name="addr_flat">
-						<div class="error">Заполните поле</div>
-					</label>
-				</div>
-				<div class="hint">* Поля обязательные для заполнения</div>
+				<div></div>
 			</div>
-			<div></div>
-		</div>
-		<div class='buttons' style="text-align: right">
-			<div onclick="cartPrevPage(this)" class='btn white'>Назад</div>
-			<div onclick="cartNextPage(this)" class='btn green'>Продолжить</div>
-		</div>
-		<blockquote style="display: none">
-			Самовывоз со склада возможен только после предварительного согласования с менеджерами по телефону! Наши сотрудники свяжутся с Вами для уточнения деталей заказа.
-			<br><br>
-			Самовывоз осуществляется: Пн - Пт с 9:00 до 16:00
-		</blockquote>
-		<blockquote style="display: none">
-			Доставка осуществляется в любой регион РФ силами ТК по ее расценкам.
-			<br><br>
-			Наша компания осуществляет доставку по Москве до любой транспортной компании по желанию клиента
-		</blockquote>
-	</div>
-	<div>
-		<div class="columns" style="border-bottom: 0">
-			<div>
-				<div class="title" style="text-align: center">Карта лояльности</div>
-				<div class="radios">
-					<label class="radio"><input checked='checked' value="Получить «Карту лояльности»" type="radio" name="loyality_card"> Получить «Карту лояльности»</label>
-					<div class="info"><a target="_blank" href="/loyalty_card">Подробнее</a></div>
-					<label class="radio"><input value="У меня уже есть «Карта лояльности»" type="radio" name="loyality_card"> У меня уже есть «Карта лояльности»</label>
-				</div>
+			<div class='buttons' style="text-align: right">
+				<div onclick="cartPrevPage(this)" class='btn white'>Назад</div>
+				<div onclick="cartNextPage(this)" class='btn green'>Продолжить</div>
 			</div>
-			<div>
-				<div class="title" style="text-align: center">Способ оплаты</div>
-				<div class="radios">
-					<label class="radio"><input value="Оплата наличными при получении заказа" checked='checked' type="radio" name="payment_type"> Оплата наличными при получении заказа</label>
-					<label class="radio"><input value="Оплата наличными/картой в салоне" type="radio" name="payment_type"> Оплата наличными/картой в салоне</label>
-					<label class="radio"><input value="Оформить кредит/рассрочку" type="radio" name="payment_type"> Оформить кредит/рассрочку</label>
-					<div style="margin-bottom: 26px" class="info"><a target="_blank" href="/pokupka-v-kredit">Подробнее</a></div>
+			<blockquote style="display: none">
+				Самовывоз со склада возможен только после предварительного согласования с менеджерами по телефону! Наши сотрудники свяжутся с Вами для уточнения деталей заказа.
+				<br><br>
+				Самовывоз осуществляется: Пн - Пт с 9:00 до 16:00
+			</blockquote>
+			<blockquote style="display: none">
+				Доставка осуществляется в любой регион РФ силами ТК по ее расценкам.
+				<br><br>
+				Наша компания осуществляет доставку по Москве до любой транспортной компании по желанию клиента
+			</blockquote>
+		</div>
+		<div>
+			<div class="columns" style="border-bottom: 0">
+				<div>
+					<div class="title" style="text-align: center">Карта лояльности</div>
+					<div class="radios">
+						<label class="radio"><input checked='checked' value="Получить «Карту лояльности»" type="radio" name="loyality_card"> Получить «Карту лояльности»</label>
+						<div class="info"><a target="_blank" href="/loyalty_card">Подробнее</a></div>
+						<label class="radio"><input value="У меня уже есть «Карта лояльности»" type="radio" name="loyality_card"> У меня уже есть «Карта лояльности»</label>
+					</div>
 				</div>
+				<div>
+					<div class="title" style="text-align: center">Способ оплаты</div>
+					<div class="radios">
+						<label class="radio"><input value="Оплата наличными при получении заказа" checked='checked' type="radio" name="payment_type"> Оплата наличными при получении заказа</label>
+						<label class="radio"><input value="Оплата наличными/картой в салоне" type="radio" name="payment_type"> Оплата наличными/картой в салоне</label>
+						<label class="radio"><input value="Оформить кредит/рассрочку" type="radio" name="payment_type"> Оформить кредит/рассрочку</label>
+						<div style="margin-bottom: 26px" class="info"><a target="_blank" href="/pokupka-v-kredit">Подробнее</a></div>
+					</div>
+				</div>
+				<div></div>
 			</div>
-			<div></div>
+			<div class="comment">
+				<div class="title">Комментарий</div>
+				<textarea name="comment" style="margin: 10px 0 20px; width: 100%; height: 100px"></textarea>
+			</div>
+			<div class='buttons' style="text-align: right">
+				<div onclick="cartPrevPage(this)" class='btn white'>Назад</div>
+				<div class='btn green' onclick="cartSubmit(this)">Подтвердить заказ</div>
+			</div>
+			<blockquote>
+				После подтверждения заказа наши сотрудники свяжутся с Вами в ближайшее время для уточнения деталей заказа.
+				<br><br>
+				Если Вы выбрали пункт «Оформить кредит/рассрочку», с Вами свяжутся специалисты кредитного отдела.
+			</blockquote>
 		</div>
-		<div class="comment">
-			<div class="title">Комментарий</div>
-			<textarea name="comment" style="margin: 10px 0 20px; width: 100%; height: 100px"></textarea>
-		</div>
-		<div class='buttons' style="text-align: right">
-			<div onclick="cartPrevPage(this)" class='btn white'>Назад</div>
-			<div class='btn green' onclick="cartSubmit(this)">Подтвердить заказ</div>
-		</div>
-		<blockquote>
-			После подтверждения заказа наши сотрудники свяжутся с Вами в ближайшее время для уточнения деталей заказа.
-			<br><br>
-			Если Вы выбрали пункт «Оформить кредит/рассрочку», с Вами свяжутся специалисты кредитного отдела.
-		</blockquote>
-	</div>
+	<% end %>
+<% else %>
+	<br>
+	<br>
+	<h2 style="text-align: center">Корзина пуста</h2>
+	<br>
+	<br>
+	<br>
+	<br>
 <% end %>
 
 <script type="text/javascript" src="/assets/cart.js"></script>
