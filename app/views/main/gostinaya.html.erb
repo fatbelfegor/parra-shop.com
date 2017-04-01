@@ -23,10 +23,6 @@
 	<a href="/catalog/<%= c.url %>"><img src="/assets/Stella.jpg">
 		<div class='description'><p class='name'>Гостиная Stella</p><%= raw c.description %></div>
 	</a>
-	<% c = cats.find { |c| c.name == 'Norte' } %>
-	<a href="/catalog/<%= c.url %>"><img src="/assets/NorteNew.jpg">
-		<div class='description'><p class='name'>Гостиная Norte</p><%= raw c.description %></div>
-	</a>
 	<% c = cats.find { |c| c.name == 'Bella' } %>
 	<a href="/catalog/<%= c.url %>"><img src="/assets/BellaGost.jpg">
 		<div class='description'><p class='name'>Гостиная BellaGost</p><%= raw c.description %></div>
