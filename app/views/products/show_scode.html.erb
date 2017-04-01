@@ -337,7 +337,7 @@
 			<div class="header">Другие товары коллекции "<%= @product.category.name %>"</div>
 			<div class="wrap">
 				<div class="table">
-					<% for product in @product.category.products.where.not(id: @product.id) %>
+					<% for product in @product.category.products.order(:position).where.not(id: @product.id) %>
 						<%= render(partial: "pages/product", locals: {product: product}) %>
 					<% end %>
 				</div>
@@ -346,7 +346,7 @@
 			<div class="header">Другие товары коллекции "<%= @product.subcategory.name %>"</div>
 			<div class="wrap">
 				<div class="table">
-					<% for product in @product.subcategory.products.where.not(id: @product.id) %>
+					<% for product in @product.subcategory.products.order(:position).where.not(id: @product.id) %>
 						<%= render(partial: "pages/product", locals: {product: product}) %>
 					<% end %>
 				</div>
