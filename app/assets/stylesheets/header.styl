@@ -71,6 +71,7 @@
 		a
 			padding 0 0 0 10px
 		img
+			width 30px
 			position relative
 			top 3px
 		&:hover
@@ -406,15 +407,15 @@
 
 #compactMenuToggle
 	display none
-	width 28px
-	border 4px solid #363636
-	border-width 4px 0
-	padding 4px 0
+	width 52px
+	border 0 solid #363636
+	border-width 3px 0
+	padding 12px 0
 	position absolute
-	top 26px
-	right 26px
+	top 29px
+	right 52px
 	div
-		height 4px
+		height 3px
 		background #363636
 		
 #mainMenuCompact
@@ -474,17 +475,20 @@
 		.menu
 			display none
 		.cart
-			right 26px
-			top 80px
+			right 138px
+			top 23px
+			border-right 1px solid black
+			padding-right 33px
 			> a
 				padding 0
+			img
+				width 50px
 		.phone
 			position absolute
-			top 20px
-			right 109px
+			top 87px
+			right 19px
 			margin 0
 			padding-left 30px
-			background url('/assets/phone-header.png') no-repeat
 			background-position 0 2px
 			p
 				font-size 31px
@@ -502,55 +506,3 @@
 @media(max-width 978px)
 	#jivo-iframe-container
 		bottom 80px !important
-@media(max-width 640px)
-	#header
-		.logo
-			left 10px
-		#compactMenuToggle, .cart
-			right 10px
-		.phone, .search
-			right 70px
-@media(max-width 575px)
-	#header
-		.phone, .search
-			right 60px
-		.phone
-			background-position 0
-			background-size 24px 24px
-			top 24px
-			p
-				font-size 24px
-		.search
-			input[type=text]
-				width 158px
-			label
-				font-size 12px
-				padding 6px 3px 6px
-@media(max-width 510px)
-	#header
-		.logo
-			left 5px
-			img
-				width 170px
-@media(max-width 465px)
-	#header
-		.logo img
-			width 150px
-		.phone, .search
-			right 50px
-@media(max-width 445px)
-	#header
-		.logo img
-			width 150px
-@media(max-width 435px)
-	#header
-		.logo img
-			width 130px
-		.phone
-			background-size 18px 18px
-			p
-				font-size 18px
-@media(max-width 370px)
-	#header
-		.logo img
-			width 100px
