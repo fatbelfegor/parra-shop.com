@@ -8,6 +8,10 @@ ParraShopCom::Application.routes.draw do
   resources :mobilecategories, except: [:new, :show, :edit, :create, :update, :destroy]
   resources :mobileproducts, except: [:new, :show, :edit, :create, :update, :destroy]
 
+  get 'api/filter_list', to: 'api#filter_list'
+  get 'api/filter_range', to: 'api#filter_range'
+  get 'api/filter_get', to: 'api#filter_get'
+
   get '/modulnaja-mebel-dlja-spalni', to: 'main#spalni'
   get '/modulnaja-mebel-dlja-gostinoj', to: 'main#gostinaya'
   get '/prihozhie', to: 'main#prihozhie'

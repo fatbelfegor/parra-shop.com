@@ -35,6 +35,7 @@
 		<% end %>
 	<% end %>
 	<% if (params[:url].present? and @category.subcategories.blank?) or params[:q].present? %>
+		<%= render partial: 'filter', locals: {id: @category.id, color: false} %>
 		<div id="products">
 			<%= render partial: 'pages/product', collection: @products %>
 		</div>

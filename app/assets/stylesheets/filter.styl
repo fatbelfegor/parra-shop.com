@@ -1,0 +1,105 @@
+#catalogFilter
+	display table
+	width 100%
+	border-collapse collapse
+	background #f2f2f2
+	margin-top 31px
+	> div
+		display table-cell
+		width 193px
+		border 1px solid #d3d3d3
+		height 33px
+		line-height 33px
+		position relative
+		> b
+			display block
+			text-align center
+			cursor pointer
+			transition .3s
+		> div
+			position absolute
+			left -1px
+			right -1px
+			top 100%
+			background white
+			z-index 10
+			color #59595b
+			border 1px solid #d4d4d4
+			border-top 0
+		.checkboxes
+			padding 0 13px
+			transition .3s
+			label
+				display block
+				transition .3s
+				line-height 33px
+				height 0
+				overflow hidden
+				input
+					margin 10px 12px 0 0
+		.range
+			padding 0 13px
+			height 0
+			overflow hidden
+			transition .3s
+			.inputs
+				display table
+				width 100%
+				color #7a7a7c
+			label
+				display table-cell
+				vertical-align top
+				width 50%
+				padding 0 17px 0 0
+				& + label
+					padding 0 0 0 17px
+				span
+					display block
+					line-height 1
+				input
+					width 100%
+					box-sizing border-box
+					padding 0 0 0 5px
+					border 1px solid #d5d5d5
+					line-height 23px
+					border-radius 3px
+		.btn
+			background #726658
+			border 1px solid #615650
+			border-width 0 1px
+			line-height 33px
+			color white
+			text-align center
+			margin 0
+			display block
+			padding 0
+			border-radius 0
+			height 0
+			overflow hidden
+			transition .3s
+		&.active
+			> b
+				background white
+			.checkboxes
+				padding 12px 13px
+				label
+					padding 5px 0
+					height 33px
+			.range
+				padding 12px 13px
+				height 100px
+			.btn
+				height 33px
+				margin 5px 0 0
+				border-width 1px
+	> .clear
+		background #726658
+		color white
+		text-align center
+		font-weight bold
+		cursor pointer
+		img
+			display inline-block
+			margin-right 10px
+			position relative
+			top 3px

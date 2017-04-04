@@ -26,6 +26,7 @@
 			<% end %>
 		</div>
 	</div>
+	<%= render partial: 'filter', locals: {id: @color_category.id, color: true} %>
 	<div id="products">
 		<%= render partial: 'pages/product', collection: @color_category.products.order(:color_position) %>
 	</div>

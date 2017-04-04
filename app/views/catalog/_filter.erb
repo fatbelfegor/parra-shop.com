@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" href="/assets/filter.css">
+
+<div id="catalogFilter" data-id='<%= id %>' data-color='<%= color %>'>
+	<div data-action='dropdown' data-column='color' data-type='list'>
+		<b>Цвет</b>
+		<div data-action class="checkboxes"></div>
+	</div>
+	<div data-action='dropdown' data-column='texture' data-type='list'>
+		<b>Отделка</b>
+		<div data-action class="checkboxes"></div>
+	</div>
+	<div data-action='dropdown' data-column='length' data-type='range'>
+		<b>Длина (мм)</b>
+		<div data-action class="range"></div>
+	</div>
+	<div data-action='dropdown' data-column='width' data-type='range'>
+		<b>Ширина / Глубина (мм)</b>
+		<div data-action class="range"></div>
+	</div>
+	<div data-action='dropdown' data-column='height' data-type='range'>
+		<b>Высота (мм)</b>
+		<div data-action class="range"></div>
+	</div>
+	<div data-action='clear' class="clear">
+		<img src="/assets/filter/clear.png">
+		Сбросить фильтры
+	</div>
+</div>
+
+<script async="true" type="text/javascript" src="/assets/filter.js"></script>
