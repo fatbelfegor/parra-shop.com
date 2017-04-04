@@ -1,30 +1,54 @@
-<link rel="stylesheet" type="text/css" href="/assets/filter.css">
+<% if color %>
+	<% join = :color_category %>
+	<% where = :color_categories %>
+<% else %>
+	<% join = :categories %>
+	<% where = :categories %>
+<% end %>
+<% show_color = Product.joins(join).where(where => {id: id}).where.not(color: nil, color: '').exists? %>
+<% show_texture = Product.joins(join).where(where => {id: id}).where.not(texture: nil, texture: '').exists? %>
+<% show_length = Product.joins(join).where(where => {id: id}).where.not(length: nil, length: '').exists? %>
+<% show_width = Product.joins(join).where(where => {id: id}).where.not(width: nil, width: '').exists? %>
+<% show_height = Product.joins(join).where(where => {id: id}).where.not(height: nil, height: '').exists? %>
+<% if show_color or show_texture or show_length or show_width or show_height %>
+	<link rel="stylesheet" type="text/css" href="/assets/filter.css">
 
-<div id="catalogFilterClose"></div>
-<div id="catalogFilter" data-id='<%= id %>' data-color='<%= color %>'>
-	<div data-action='dropdown' data-column='color' data-type='list'>
-		<b>Цвет</b>
-		<div data-action class="checkboxes"></div>
+	<div id="catalogFilterClose"></div>
+	<div id="catalogFilter" data-id='<%= id %>' data-color='<%= color %>'>
+		<% if show_color %>
+			<div data-action='dropdown' data-column='color' data-type='list'>
+				<b>Цвет</b>
+				<div data-action class="checkboxes"></div>
+			</div>
+		<% end %>
+		<% if show_texture %>
+			<div data-action='dropdown' data-column='texture' data-type='list'>
+				<b>Отделка</b>
+				<div data-action class="checkboxes"></div>
+			</div>
+		<% end %>
+		<% if show_length %>
+			<div data-action='dropdown' data-column='length' data-type='range'>
+				<b>Длина (мм)</b>
+				<div data-action class="range"></div>
+			</div>
+		<% end %>
+		<% if show_width %>
+			<div data-action='dropdown' data-column='width' data-type='range'>
+				<b>Ширина / Глубина (мм)</b>
+				<div data-action class="range"></div>
+			</div>
+		<% end %>
+		<% if show_height %>
+			<div data-action='dropdown' data-column='height' data-type='range'>
+				<b>Высота (мм)</b>
+				<div data-action class="range"></div>
+			</div>
+		<% end %>
+		<div data-action='clear' class="clear">
+			<b><img src="/assets/filter/clear.png">Сбросить фильтры</b>
+		</div>
 	</div>
-	<div data-action='dropdown' data-column='texture' data-type='list'>
-		<b>Отделка</b>
-		<div data-action class="checkboxes"></div>
-	</div>
-	<div data-action='dropdown' data-column='length' data-type='range'>
-		<b>Длина (мм)</b>
-		<div data-action class="range"></div>
-	</div>
-	<div data-action='dropdown' data-column='width' data-type='range'>
-		<b>Ширина / Глубина (мм)</b>
-		<div data-action class="range"></div>
-	</div>
-	<div data-action='dropdown' data-column='height' data-type='range'>
-		<b>Высота (мм)</b>
-		<div data-action class="range"></div>
-	</div>
-	<div data-action='clear' class="clear">
-		<b><img src="/assets/filter/clear.png">Сбросить фильтры</b>
-	</div>
-</div>
 
-<script async="true" type="text/javascript" src="/assets/filter.js"></script>
+	<script async="true" type="text/javascript" src="/assets/filter.js"></script>
+<% end %>

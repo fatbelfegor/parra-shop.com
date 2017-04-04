@@ -3,14 +3,14 @@ class ApiController < ApplicationController
 	def filter_list
 		column = params[:column]
 		render nothing: true, status: 405 if column != 'color' and column != 'texture'
-		render json: get_products.where.not(column => nil)
+		render json: get_products.where.not(column => nil, column => '')
 			.order(column).pluck("DISTINCT #{column}").to_json
 	end
 
 	def filter_range
 		column = params[:column]
 		render nothing: true, status: 405 if column != 'length' and column != 'width' and column != 'height'
-		render json: get_products.where.not(column => nil)
+		render json: get_products.where.not(column => nil, column => '')
 			.order(column).select("min(#{column}) min, max(#{column}) max").take.to_json
 	end
 

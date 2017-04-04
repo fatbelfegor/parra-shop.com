@@ -11,6 +11,7 @@ state =
 	height: []
 
 refreshProducts = ->
+	closeDropdowns()
 	xhr = new XMLHttpRequest
 	url = "/api/filter_get?id=#{id}&color=#{color}"
 	for k, v of state
@@ -102,5 +103,4 @@ catalogFilter.onclick = (e) ->
 						when 'number'
 							input.value = input.defaultValue
 				state[k].length = 0 for k of state
-				closeDropdowns()
 				refreshProducts()
