@@ -10,7 +10,7 @@ class ApiController < ApplicationController
 	def filter_range
 		column = params[:column]
 		render nothing: true, status: 405 if column != 'length' and column != 'width' and column != 'height'
-		render json: get_products.where.not(column => nil, column => '')
+		render json: get_products.where.not(column => nil)
 			.order(column).select("min(#{column}) min, max(#{column}) max").take.to_json
 	end
 

@@ -7,9 +7,9 @@
 <% end %>
 <% show_color = Product.joins(join).where(where => {id: id}).where.not(color: nil, color: '').exists? %>
 <% show_texture = Product.joins(join).where(where => {id: id}).where.not(texture: nil, texture: '').exists? %>
-<% show_length = Product.joins(join).where(where => {id: id}).where.not(length: nil, length: '').exists? %>
-<% show_width = Product.joins(join).where(where => {id: id}).where.not(width: nil, width: '').exists? %>
-<% show_height = Product.joins(join).where(where => {id: id}).where.not(height: nil, height: '').exists? %>
+<% show_length = Product.joins(join).where(where => {id: id}).where.not(length: nil).exists? %>
+<% show_width = Product.joins(join).where(where => {id: id}).where.not(width: nil).exists? %>
+<% show_height = Product.joins(join).where(where => {id: id}).where.not(height: nil).exists? %>
 <% if show_color or show_texture or show_length or show_width or show_height %>
 	<link rel="stylesheet" type="text/css" href="/assets/filter.css">
 
