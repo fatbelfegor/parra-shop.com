@@ -1,13 +1,15 @@
 #catalogFilter
 	display table
 	width 100%
-	border-collapse collapse
 	margin-top 31px
 	white-space nowrap
+	border 1px solid #d3d3d3
+	border-width 1px 0 0 1px
 	> div
 		display table-cell
 		width 193px
 		border 1px solid #d3d3d3
+		border-width 0 1px 1px 0
 		height 33px
 		line-height 33px
 		position relative
@@ -16,25 +18,23 @@
 			display block
 			text-align center
 			cursor pointer
-			transition .3s
 			font-size 14px
 			position relative
-			z-index 1000
+			z-index 50
 			padding 0 15px
 		> div
 			position absolute
-			left 0
+			left -1px
 			top 100%
 			background white
-			z-index 1001
+			z-index 51
 			color #59595b
 			min-width 100%
 		.checkboxes
-			padding 0 13px
-			transition .3s
+			padding 0 0
 			label
+				padding 0 13px
 				display block
-				transition .3s
 				line-height 33px
 				height 0
 				overflow hidden
@@ -47,7 +47,6 @@
 			padding 0 13px
 			height 0
 			overflow hidden
-			transition .3s
 			.inputs
 				display table
 				width 100%
@@ -78,22 +77,25 @@
 			line-height 33px
 			color white
 			text-align center
-			margin 0
 			display block
 			padding 0
 			border-radius 0
 			height 0
 			overflow hidden
-			transition .3s
+			position absolute
+			left 13px
+			right 13px
+			bottom 0
 		&.active
 			border-bottom-color white
 			> b
 				background white
-				z-index 1002
+				z-index 52
 			> div
-				outline 1px solid #d4d4d4
+				border 1px solid #d4d4d4
+				border-top 0
 			.checkboxes
-				padding 12px 13px
+				padding 12px 0 47px
 				label
 					height 33px
 			.range
@@ -103,6 +105,7 @@
 				height 33px
 				margin 5px 0 0
 				border-width 1px
+				bottom 12px
 	> .clear
 		background #726658
 		color white
@@ -120,7 +123,7 @@
 	left 0
 	right 0
 	bottom 0
-	z-index 1000
+	z-index 50
 	display none
 	
 @media (max-width 875px)
