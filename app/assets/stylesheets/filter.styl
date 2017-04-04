@@ -2,8 +2,8 @@
 	display table
 	width 100%
 	border-collapse collapse
-	background #f2f2f2
 	margin-top 31px
+	white-space nowrap
 	> div
 		display table-cell
 		width 193px
@@ -11,6 +11,7 @@
 		height 33px
 		line-height 33px
 		position relative
+		background #f2f2f2
 		> b
 			display block
 			text-align center
@@ -19,16 +20,15 @@
 			font-size 14px
 			position relative
 			z-index 1000
+			padding 0 15px
 		> div
 			position absolute
-			left -1px
-			right -1px
+			left 0
 			top 100%
 			background white
-			z-index 1000
+			z-index 1001
 			color #59595b
-			border 1px solid #d4d4d4
-			border-top 0
+			min-width 100%
 		.checkboxes
 			padding 0 13px
 			transition .3s
@@ -41,6 +41,8 @@
 				font-size 14px
 				input
 					margin 10px 12px 0 0
+					float none
+					display inline-block
 		.range
 			padding 0 13px
 			height 0
@@ -84,8 +86,12 @@
 			overflow hidden
 			transition .3s
 		&.active
+			border-bottom-color white
 			> b
 				background white
+				z-index 1002
+			> div
+				outline 1px solid #d4d4d4
 			.checkboxes
 				padding 12px 13px
 				label
@@ -101,7 +107,6 @@
 		background #726658
 		color white
 		text-align center
-		font-weight bold
 		cursor pointer
 		img
 			display inline-block
@@ -117,3 +122,12 @@
 	bottom 0
 	z-index 1000
 	display none
+	
+@media (max-width 875px)
+	#catalogFilter
+		margin-top 26px
+		display flex
+		flex-wrap wrap
+		justify-content center
+		> div
+			margin 5px

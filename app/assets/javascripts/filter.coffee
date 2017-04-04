@@ -53,7 +53,7 @@ catalogFilter.onclick = (e) ->
 								s = ''
 								for item in JSON.parse @response
 									s += """<label>
-										<input type="checkbox" value="#{item}"> #{item}
+										<input type="checkbox" value="#{item}"> <span>#{item}</span>
 									</label>"""
 								s += applyBtn
 								el.getElementsByClassName('checkboxes')[0].innerHTML = s
@@ -102,4 +102,5 @@ catalogFilter.onclick = (e) ->
 						when 'number'
 							input.value = input.defaultValue
 				state[k].length = 0 for k of state
+				closeDropdowns()
 				refreshProducts()
