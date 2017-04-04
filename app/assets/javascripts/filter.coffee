@@ -1,9 +1,7 @@
 color = catalogFilter.dataset.color
 id = catalogFilter.dataset.id
 
-applyBtn = """<div data-action class="checkboxes">
-	<div class="btn" data-action="apply">Применить</div>
-</div>"""
+applyBtn = """<div class="btn" data-action="apply">Применить</div>"""
 
 state =
 	color: []
@@ -23,15 +21,28 @@ refreshProducts = ->
 		$('.photoes').slick()
 	xhr.send()
 
+closeDropdowns = ->
+	for a in catalogFilter.getElementsByClassName('active')
+		a.className = ''
+	delete catalogFilterClose.onclick
+	catalogFilterClose.style.display = 'none'
+
+open = (el) ->
+	el.className = 'active'
+	catalogFilterClose.onclick = closeDropdowns
+	catalogFilterClose.style.display = 'block'
+
 catalogFilter.onclick = (e) ->
 	if el = e.target.closest '[data-action]'
 		switch el.dataset.action
 			when 'dropdown'
 				if el.className is 'active'
 					el.className = ''
-				else if el.ready
-					el.className = 'active'
+					delete catalogFilterClose.onclick
+					catalogFilterClose.style.display = 'none'
 				else
+					closeDropdowns() if catalogFilterClose.onclick
+					return open el if el.ready
 					switch el.dataset.type
 						when 'list'
 							xhr = new XMLHttpRequest
@@ -46,7 +57,7 @@ catalogFilter.onclick = (e) ->
 									</label>"""
 								s += applyBtn
 								el.getElementsByClassName('checkboxes')[0].innerHTML = s
-								el.className = 'active'
+								open el
 							xhr.send()
 						when 'range'
 							xhr = new XMLHttpRequest
@@ -66,7 +77,7 @@ catalogFilter.onclick = (e) ->
 									</label>
 								</div>
 								""" + applyBtn
-								el.className = 'active'
+								open el
 							xhr.send()
 			when 'apply'
 				wrap = el.closest "[data-type]"
@@ -84,5 +95,11 @@ catalogFilter.onclick = (e) ->
 						selected[1] = inputs[1].value
 				refreshProducts()
 			when 'clear'
+				for input in catalogFilter.getElementsByTagName 'input'
+					switch input.type
+						when 'checkbox'
+							input.checked = false
+						when 'number'
+							input.value = input.defaultValue
 				state[k].length = 0 for k of state
 				refreshProducts()

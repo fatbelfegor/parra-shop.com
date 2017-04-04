@@ -16,13 +16,16 @@
 			text-align center
 			cursor pointer
 			transition .3s
+			font-size 14px
+			position relative
+			z-index 1000
 		> div
 			position absolute
 			left -1px
 			right -1px
 			top 100%
 			background white
-			z-index 10
+			z-index 1000
 			color #59595b
 			border 1px solid #d4d4d4
 			border-top 0
@@ -35,6 +38,7 @@
 				line-height 33px
 				height 0
 				overflow hidden
+				font-size 14px
 				input
 					margin 10px 12px 0 0
 		.range
@@ -51,6 +55,7 @@
 				vertical-align top
 				width 50%
 				padding 0 17px 0 0
+				font-size 14px
 				& + label
 					padding 0 0 0 17px
 				span
@@ -63,6 +68,7 @@
 					border 1px solid #d5d5d5
 					line-height 23px
 					border-radius 3px
+					margin 10px 0 18px
 		.btn
 			background #726658
 			border 1px solid #615650
@@ -83,11 +89,10 @@
 			.checkboxes
 				padding 12px 13px
 				label
-					padding 5px 0
 					height 33px
 			.range
-				padding 12px 13px
-				height 100px
+				padding 19px 13px 12px
+				height 107px
 			.btn
 				height 33px
 				margin 5px 0 0
@@ -103,3 +108,12 @@
 			margin-right 10px
 			position relative
 			top 3px
+			
+#catalogFilterClose
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
+	z-index 1000
+	display none
