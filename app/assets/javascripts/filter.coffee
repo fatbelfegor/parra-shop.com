@@ -16,7 +16,7 @@ refreshProducts = ->
 	url = "/api/filter_get?id=#{id}&color_category=#{colorCategory}"
 	for k, v of state
 		url += "&#{k}=#{JSON.stringify v}"
-	xhr.open "GET", url
+	xhr.open "GET", encodeURI url
 	xhr.onload = ->
 		products.innerHTML = @response
 		$('.photoes').slick()
@@ -47,7 +47,7 @@ catalogFilter.onclick = (e) ->
 					switch el.dataset.type
 						when 'list'
 							xhr = new XMLHttpRequest
-							xhr.open "GET", "/api/filter_list?id=" +
+							xhr.open "GET", encodeURI "/api/filter_list?id=" +
 								id + "&color_category=#{colorCategory}&column=#{el.dataset.column}"
 							xhr.onload = ->
 								el.ready = true
@@ -62,7 +62,7 @@ catalogFilter.onclick = (e) ->
 							xhr.send()
 						when 'range'
 							xhr = new XMLHttpRequest
-							xhr.open "GET", "/api/filter_range?id=" +
+							xhr.open "GET", encodeURI "/api/filter_range?id=" +
 								id + "&color_category=#{colorCategory}&column=#{el.dataset.column}"
 							xhr.onload = ->
 								o = JSON.parse @response
