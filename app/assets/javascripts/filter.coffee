@@ -1,4 +1,4 @@
-color = catalogFilter.dataset.color
+colorCategory = catalogFilter.dataset.colorCategory
 id = catalogFilter.dataset.id
 
 applyBtn = """<div class="btn" data-action="apply">Применить</div>"""
@@ -13,7 +13,7 @@ state =
 refreshProducts = ->
 	closeDropdowns()
 	xhr = new XMLHttpRequest
-	url = "/api/filter_get?id=#{id}&color=#{color}"
+	url = "/api/filter_get?id=#{id}&color_category=#{colorCategory}"
 	for k, v of state
 		url += "&#{k}=#{JSON.stringify v}"
 	xhr.open "GET", url
@@ -48,7 +48,7 @@ catalogFilter.onclick = (e) ->
 						when 'list'
 							xhr = new XMLHttpRequest
 							xhr.open "GET", "/api/filter_list?id=" +
-								id + "&color=#{color}&column=#{el.dataset.column}"
+								id + "&color_category=#{colorCategory}&column=#{el.dataset.column}"
 							xhr.onload = ->
 								el.ready = true
 								s = ''
@@ -63,7 +63,7 @@ catalogFilter.onclick = (e) ->
 						when 'range'
 							xhr = new XMLHttpRequest
 							xhr.open "GET", "/api/filter_range?id=" +
-								id + "&color=#{color}&column=#{el.dataset.column}"
+								id + "&color_category=#{colorCategory}&column=#{el.dataset.column}"
 							xhr.onload = ->
 								o = JSON.parse @response
 								el.getElementsByClassName('range')[0].innerHTML = """
