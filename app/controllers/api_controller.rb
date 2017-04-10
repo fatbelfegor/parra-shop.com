@@ -15,7 +15,7 @@ class ApiController < ApplicationController
 	end
 
 	def filter_get
-		if params[:color] == 'true'
+		if params[:color_category] == 'true'
 			order = :color_position
 		else
 			order = :position
@@ -36,7 +36,7 @@ class ApiController < ApplicationController
 private
 
 	def get_products
-		if params[:color] == 'true'
+		if params[:color_category] == 'true'
 			join = :color_category
 			where = :color_categories
 		else
