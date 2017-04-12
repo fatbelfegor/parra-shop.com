@@ -38,7 +38,7 @@
               end
               ret
             end %>
-            <%= raw drawTree @cats.find_all{|cat| cat unless cat.parent_id}, if parent then parent.id else 0 end %>
+            <%= raw drawTree @cats.find_all{|cat| cat if cat.parent_id.nil? or cat.parent_id == 0}, if parent then parent.id else 0 end %>
           </div>
           <%= f.hidden_field :parent_id %>
         </div>

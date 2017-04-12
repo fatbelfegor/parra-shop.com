@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412120318) do
+ActiveRecord::Schema.define(version: 20170412192527) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image",      limit: 255
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170412120318) do
     t.boolean  "isMobile",                                                default: false
     t.string   "mobile_image_url", limit: 255
     t.string   "menu_image",       limit: 255
+    t.boolean  "shadow_left",                                             default: true
   end
 
   add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree

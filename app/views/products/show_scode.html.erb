@@ -132,7 +132,7 @@
 						end
 						ret + '</ul>'
 					end %>
-					<%= raw dropdown @categories.find_all{|c| !c.parent_id} %>
+					<%= raw dropdown @categories.find_all{|c| c if c.parent_id.nil? or c.parent_id == 0} %>
 				</span>
 			</div>
 			<br><br>
@@ -162,7 +162,7 @@
 						end
 						ret + '</ul>'
 					end %>
-					<%= raw dropdown @categories.find_all{|c| !c.parent_id} %>
+					<%= raw dropdown @categories.find_all{|c| c if c.parent_id.nil? or c.parent_id == 0} %>
 				</span>
 				</tr>
 				<tr>
