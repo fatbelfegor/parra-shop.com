@@ -14,7 +14,6 @@ ParraShopCom::Application.routes.draw do
 
   get '/otzyvy', to: 'main#otzyvy', as: :otzyvy
   get '/about', to: 'main#about', as: :about
-  get '/all-products', to: 'pages#all_products'
   get 'loyalty_card', to: 'pages#loyalty_card'
   get 'pokupka-v-kredit', to: 'pages#pokupka_v_kredit'
   get 'sposoby-oplaty', to: 'pages#sposoby_oplaty'
