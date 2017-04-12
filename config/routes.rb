@@ -12,12 +12,6 @@ ParraShopCom::Application.routes.draw do
   get 'api/filter_range', to: 'api#filter_range'
   get 'api/filter_get', to: 'api#filter_get'
 
-  get '/modulnaja-mebel-dlja-spalni', to: 'main#spalni'
-  get '/modulnaja-mebel-dlja-gostinoj', to: 'main#gostinaya'
-  get '/prihozhie', to: 'main#prihozhie'
-  get '/divani', to: 'main#divani'
-  get '/obedennye-gruppi', to: 'main#obedennye_gruppi'
-  get '/matras', to: 'main#matras'
   get '/otzyvy', to: 'main#otzyvy', as: :otzyvy
   get '/about', to: 'main#about', as: :about
   get '/all-products', to: 'pages#all_products'
@@ -27,15 +21,10 @@ ParraShopCom::Application.routes.draw do
   get 'dostavka-i-oplata', to: 'pages#dostavka_i_oplata'
   get 'garantii', to: 'pages#garantii'
   get "/Jimmi", to: redirect("/", status: 301)
-  get "/catalog/bedrooms", to: redirect("/modulnaja-mebel-dlja-spalni", status: 301)
-  get "/catalog/gosts", to: redirect("/modulnaja-mebel-dlja-gostinoj", status: 301)
-  get "/catalog/matrases", to: redirect("/matras", status: 301)
   get "order_item/plus"
   get "order_item/minus"
   get "order_item/delete"
   get "catalog/index", to: 'catalog#search'
-  #get "mobilecategories/index", to: 'mobilecategories#index'
-  #get "mobileproducts/index", to: 'mobileproducts#index'
   get "catalog/(:url)", to: 'catalog#index'
   get 'users', to: 'users#index'
   get 'users/:id/logs', to: 'users#logs'
