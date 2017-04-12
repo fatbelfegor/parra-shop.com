@@ -60,6 +60,7 @@ class CategoriesController < ApplicationController
   def update
     update = category_params
     update[:header] = nil if update[:header] == ''
+    update[:menu_image] = nil if update[:menu_image] == ''
     respond_to do |format|
       if @category.update update
         format.html { redirect_to(categories_url) }
@@ -146,7 +147,8 @@ private
 			:name,
 			:description,
 			:position,
-			:header,
+      :header,
+			:menu_image,
 			:images,
 			:parent_id,
 			:s_title,

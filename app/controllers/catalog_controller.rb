@@ -32,21 +32,26 @@ class CatalogController < ApplicationController
       @title = @category.title
       @seo_description = @category.s_description
       @seo_keywords = @category.s_keyword
-      if @category.subcategories.empty?
-        def get_ids (id, res)
-          ids = Category.where(parent_id: id).pluck(:id)
-          res += ids
-          for id in ids
-            get_ids id, res
+      if @category.parent_id
+        if @category.subcategories.empty?
+          def get_ids (id, res)
+            ids = Category.where(parent_id: id).pluck(:id)
+            res += ids
+            for id in ids
+              get_ids id, res
+            end
+            res
           end
-          res
+          sql = "SELECT * FROM products p "\
+            "INNER JOIN categories_products cp ON p.id = cp.product_id "\
+            "WHERE cp.category_id IN (#{get_ids(@category.id, [@category.id]).join ','}) "
+          sql += "AND NOT invisible " unless user_signed_in? && current_user.admin?
+          sql += "ORDER BY position"
+          @products = Product.find_by_sql(sql)
         end
-        sql = "SELECT * FROM products p "\
-          "INNER JOIN categories_products cp ON p.id = cp.product_id "\
-          "WHERE cp.category_id IN (#{get_ids(@category.id, [@category.id]).join ','}) "
-        sql += "AND NOT invisible " unless user_signed_in? && current_user.admin?
-        sql += "ORDER BY position"
-        @products = Product.find_by_sql(sql)
+      else
+        @categories = Category.where(parent_id: @category.id).order(created_at: :desc)
+        render 'top_category'
       end
     end
   end

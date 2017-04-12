@@ -1,0 +1,13 @@
+<div class="breadcrumbs" style="padding: 0 5%">
+  <a href="/">Главная</a>
+  <span>></span>
+  <h1><%= @category.name %></h1>
+</div>
+
+<div class="menuCategoryPage">
+	<% for c in @categories %>
+		<a href="/catalog/<%= c.url %>"><img src="/assets/Sienna.jpg">
+			<div class='description'><p class='name'><%= c.name %></p><%= raw c.description %></div>
+		</a>
+	<% end %>
+</div>

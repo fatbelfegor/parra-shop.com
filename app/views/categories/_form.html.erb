@@ -156,6 +156,24 @@
     <%= f.hidden_field :images %>
   </div>
 
+  <div class="text-center col-md-6">
+    <div id="addImages" class="category_menu_image">
+      <% if @category.menu_image %>
+      <h4>Изображение в меню</h4>
+      <div>
+        <div>
+          <img class="img-thumbnail" src="<%= @category.menu_image %>">
+          <small class="btn btn-warning" onclick="deleteImageMenu(this)">Удалить</small>
+        </div>
+      </div>
+      <% else %>
+        <input onclick="addImageClick(this)" type="button" value="Добавить картинку в меню" class="btn btn-primary">
+        <div></div>
+      <% end %>
+    </div>
+    <%= f.hidden_field :menu_image, class: 'one' %>
+  </div>
+
   </td></tr>
   <tr><td style="padding:10px 30px 0 0">
   <div class="row form-group">

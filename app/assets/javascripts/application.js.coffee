@@ -311,6 +311,8 @@ expire = ->
 		input.val(url)
 		if inputName == 'category_header'
 			text = '<h4>Изображение в поле header</h4><div><div><img class="img-thumbnail" src="'+url+'"><small class="btn btn-warning" onclick="deleteImageHeader(this)">Удалить</small></div></div>'
+		else if inputName == 'category_menu_image'
+			text = '<h4>Изображение в меню</h4><div><div><img class="img-thumbnail" src="'+url+'"><small class="btn btn-warning" onclick="deleteImageMenu(this)">Удалить</small></div></div>'
 		else
 			window.el = addImages
 			if $(el).prev().attr('class') != "btn btn-warning"
@@ -335,6 +337,10 @@ expire = ->
 	$.get "/images/delete",
 	  url: $(el).prev().attr 'src'
 	$(el).parents('#addImages').html('<input onclick="addImageClick(this)" type="button" value="Добавить изображение в поле header" class="btn btn-primary"><div></div>').next().val('')
+@deleteImageMenu = (el) ->
+	$.get "/images/delete",
+	  url: $(el).prev().attr 'src'
+	$(el).parents('#addImages').html('<input onclick="addImageClick(this)" type="button" value="Добавить изображение в меню" class="btn btn-primary"><div></div>').next().val('')
 @order = ->
 	w = $('#orderWindow')
 	d = w.find('>:last-child')[0]
