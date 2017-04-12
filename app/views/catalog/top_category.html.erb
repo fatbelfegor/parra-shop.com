@@ -1,13 +1,30 @@
-<div class="breadcrumbs" style="padding: 0 5%">
-  <a href="/">Главная</a>
-  <span>></span>
-  <h1><%= @category.name %></h1>
-</div>
+<link href="/assets/products.css" rel="stylesheet">
 
-<div class="menuCategoryPage">
-	<% for c in @categories %>
-		<a href="/catalog/<%= c.url %>"><img src="/assets/Sienna.jpg">
-			<div class='description'><p class='name'><%= c.name %></p><%= raw c.description %></div>
-		</a>
+<div style="padding: 0 5%">
+	<div class="breadcrumbs" style="padding: 0">
+		<a href="/">Главная</a>
+		<span>></span>
+		<h1><%= @category.name %></h1>
+	</div>
+
+	<%= render partial: 'filter', locals: {id: @categories.map(&:id), color: false} %>
+
+	<div class="menuCategoryPage" style="margin: 20px 0 0">
+		<% for c in @categories %>
+			<a href="/catalog/<%= c.url %>"><img src="<%= c.menu_image %>">
+				<div class='description'><p class='name'><%= c.name %></p><%= raw c.description %></div>
+			</a>
+		<% end %>
+	</div>
+
+	<div id="products" style="display: none"></div>
+
+	<% if @category.seo_text.present? %>
+		<div class="seo-text" style="margin: 20px 0">
+			<%= raw @category.seo_text %>
+		</div>
 	<% end %>
 </div>
+
+<link rel="stylesheet" type="text/css" href="/assets/slick.min.css">
+<script type="text/javascript" src="/assets/slick.min.js"></script>

@@ -50,7 +50,7 @@ class CatalogController < ApplicationController
           @products = Product.find_by_sql(sql)
         end
       else
-        @categories = Category.where(parent_id: @category.id).order(created_at: :desc)
+        @categories = Category.where(parent_id: @category.id).order(:position)
         render 'top_category'
       end
     end

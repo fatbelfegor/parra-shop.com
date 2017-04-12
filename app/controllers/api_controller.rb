@@ -43,7 +43,12 @@ private
 			join = :categories
 			where = :categories
 		end
-		Product.joins(join).where(where => {id: params[:id]})
+		id = params[:id]
+		unless id
+			id = params[:ids]
+			id = id[1..-2].split(', ')
+		end
+		Product.joins(join).where(where => {id: id})
 	end
 
 end

@@ -1,5 +1,10 @@
 colorCategory = catalogFilter.dataset.colorCategory
 id = catalogFilter.dataset.id
+if id[0] is '['
+	id = "ids=#{id}"
+	ids = true
+else
+	id = "id=#{id}"
 
 applyBtn = """<div class="btn" data-action="apply">Применить</div>"""
 
@@ -12,12 +17,22 @@ state =
 
 refreshProducts = ->
 	closeDropdowns()
+	if ids
+		choosed = 0
+		for k of state
+			choosed++ if state[k].length isnt 0
+		if choosed is 0
+			$('.menuCategoryPage a').slideDown()
+			return products.style.display = 'none'
 	xhr = new XMLHttpRequest
-	url = "/api/filter_get?id=#{id}&color_category=#{colorCategory}"
+	url = "/api/filter_get?#{id}&color_category=#{colorCategory}"
 	for k, v of state
 		url += "&#{k}=#{JSON.stringify v}"
 	xhr.open "GET", encodeURI url
 	xhr.onload = ->
+		if choosed is 1
+			$('.menuCategoryPage a').slideUp()
+			products.style.display = 'block'
 		products.innerHTML = @response
 		$('.photoes').slick()
 	xhr.send()
@@ -47,7 +62,7 @@ catalogFilter.onclick = (e) ->
 					switch el.dataset.type
 						when 'list'
 							xhr = new XMLHttpRequest
-							xhr.open "GET", encodeURI "/api/filter_list?id=" +
+							xhr.open "GET", encodeURI "/api/filter_list?" +
 								id + "&color_category=#{colorCategory}&column=#{el.dataset.column}"
 							xhr.onload = ->
 								el.ready = true
@@ -62,7 +77,7 @@ catalogFilter.onclick = (e) ->
 							xhr.send()
 						when 'range'
 							xhr = new XMLHttpRequest
-							xhr.open "GET", encodeURI "/api/filter_range?id=" +
+							xhr.open "GET", encodeURI "/api/filter_range?" +
 								id + "&color_category=#{colorCategory}&column=#{el.dataset.column}"
 							xhr.onload = ->
 								o = JSON.parse @response
