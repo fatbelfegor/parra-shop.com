@@ -2,6 +2,13 @@
 
 <p><b>Автор</b>: <%= @comment.author %></p>
 <p><b>Заглавие</b>: <%= @comment.title %></p>
+<p><b>E-mail</b>: <%= @comment.email %></p>
+<% if @comment.phone.present? %>
+<p><b>Телефон</b>: <%= @comment.phone %></p>
+<% end %>
+<% if @comment.order_id.present? %>
+<p><b>Номер заказа</b>: <%= @comment.order_id %></p>
+<% end %>
 <p><b>Город</b>: <%= @comment.city %></p>
 <p><b>Сообщение:</b></p>
 <p><%= @comment.body %></p>
