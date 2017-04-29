@@ -401,11 +401,14 @@
 	<p class="bg" onclick="dark.close()"></p>
 	<div class="otzyv">
 		<div class="title">Оставьте свой отзыв</div>
-		<label><p>Ваше имя:</p><input type="text" name='author'></label>
-		<label><p>Заглавие отзыва:</p><input type="text" name='title'></label>
-		<label><p>Ваш город:</p><input type="text" name='city'></label>
+		<label><p>Ваше имя*:</p><input type="text" name='author' required></label>
+		<label><p>Email*:</p><input type="email" name='email' required></label>
+		<label><p>Телефон:</p><input type="tel" name='phone'></label>
+		<label><p>Номер заказа:</p><input type="text" name='order_id'></label>
+		<label><p>Заглавие отзыва*:</p><input type="text" name='title' required></label>
+		<label><p>Ваш город*:</p><input type="text" name='city' required></label>
 		<p>Сообщение:</p>
-		<textarea name="body"></textarea>
+		<textarea name="body" required></textarea>
 		<div class="tac" style="margin: 15px 0 20px">
 			<div class="btn green" onclick="otzyvSend(this)"><p>Оставить отзыв</p></div>
 		</div>

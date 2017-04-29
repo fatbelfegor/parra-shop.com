@@ -30,7 +30,16 @@ class CommentsController < ApplicationController
   end
 
   def public_create
-    @comment = Comment.create author: params[:author], title: params[:title], city: params[:city], body: params[:body], date: Time.now
+    @comment = Comment.create(
+      author: params[:author],
+      title: params[:title],
+      city: params[:city],
+      body: params[:body],
+      email: params[:email],
+      phone: params[:phone],
+      order_id: params[:order_id],
+      date: Time.now
+    )
     OrderMailer.comment(@comment).deliver
     render nothing: true
   end
@@ -61,6 +70,8 @@ private
     @comment = Comment.find params[:id]
   end
 	def comment_params
-		params.require(:comment).permit(:title, :body, :response, :author, :city, :name, :published)
+		params.require(:comment).permit(
+      :title, :body, :response, :author, :email, :phone, :order_id, :city, :name, :published
+    )
 	end
 end

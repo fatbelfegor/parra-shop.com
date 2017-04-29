@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412192527) do
+ActiveRecord::Schema.define(version: 20170429104704) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image",      limit: 255
@@ -84,6 +84,9 @@ ActiveRecord::Schema.define(version: 20170412192527) do
     t.string   "city",       limit: 255
     t.datetime "date"
     t.text     "response",   limit: 65535
+    t.string   "email",      limit: 255,                   null: false
+    t.string   "phone",      limit: 255
+    t.string   "order_id",   limit: 255
   end
 
   create_table "extensions", force: :cascade do |t|

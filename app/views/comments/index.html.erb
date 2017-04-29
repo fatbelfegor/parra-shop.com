@@ -10,6 +10,9 @@
 		<th>Название</th>
 		<th>Содержание</th>
 		<th>Автор</th>
+		<th>E-mail</th>
+		<th>Телефон</th>
+		<th>Номер заказа</th>
 		<th>Город</th>
 		<th>Опубликованность</th>
 		<th>Действия</th>
@@ -20,6 +23,9 @@
 			<td><%= comment.title %></td>
 			<td><%= comment.body %></td>
 			<td><%= comment.author %></td>
+			<td><%= comment.email %></td>
+			<td><%= comment.phone %></td>
+			<td><%= comment.order_id %></td>
 			<td><%= comment.city %></td>
 			<td><label><input onclick="publish(this, <%= comment.id %>)" type='checkbox'<%= if comment.published then ' checked' else '' end %>><p><%= if comment.published then 'Опубликовано' else 'Не опубликовано' end %></p></label></td>
 			<td>

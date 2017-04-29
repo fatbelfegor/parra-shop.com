@@ -911,7 +911,7 @@ sliderRight = (steps, products) ->
 	for input in $(el).parents('.otzyv').find 'input, textarea'
 		input = $ input
 		val = input.val()
-		if val is ''
+		if val is '' and input.required
 			ok = false
 			input.addClass('error').attr 'placeholder', 'Заполните поле'
 		else input.removeClass('error').removeAttr 'placeholder'
