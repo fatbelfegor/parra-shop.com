@@ -3,6 +3,10 @@
 #header
 	background-color white
 	height 99px
+	position fixed
+	left 0
+	right 0
+	z-index 999
 	> .wrap
 		margin 0 3%
 	.logo
@@ -12,8 +16,6 @@
 		z-index 1
 		img
 			display block
-			width 202px
-			height 93px
 	.right
 		text-align right
 		font-size 0
@@ -80,16 +82,15 @@
 	.menu
 		color #58585A
 		background white
-		margin 11px 40px 0
-		font-size 0
-		text-align right
+		margin 11px 50px 0 0
+		display flex
+		justify-content space-between
 		a
 			color inherit
 			cursor pointer
 			&:hover
 				text-decoration underline
 		.item
-			display inline-block
 			text-align center
 			font-size 13px
 			> a, > span
@@ -470,8 +471,6 @@
 		height 100px
 		.logo
 			left 7px
-			img
-				width 170px
 		.wrap
 			margin 0
 		.menu

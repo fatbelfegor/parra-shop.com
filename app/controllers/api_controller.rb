@@ -33,6 +33,27 @@ class ApiController < ApplicationController
 		render partial: 'pages/product', collection: get_products.where(where).order(order)
 	end
 
+	def partner_request
+		Mailer.partner_request({
+			name: params[:name], email: params[:email], phone: params[:phone], message: params[:message]
+		}).deliver
+		render nothing: true
+	end
+
+	def order_project
+		Mailer.order_project({
+			name: params[:name], email: params[:email], phone: params[:phone]
+		}).deliver
+		render nothing: true
+	end
+
+	def order_credit
+		Mailer.order_credit({
+			name: params[:name], email: params[:email], phone: params[:phone]
+		}).deliver
+		render nothing: true
+	end
+
 private
 
 	def get_products

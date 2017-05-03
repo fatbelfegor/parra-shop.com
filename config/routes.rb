@@ -11,6 +11,9 @@ ParraShopCom::Application.routes.draw do
   get 'api/filter_list', to: 'api#filter_list'
   get 'api/filter_range', to: 'api#filter_range'
   get 'api/filter_get', to: 'api#filter_get'
+  post 'api/partner_request', to: 'api#partner_request'
+  post 'api/order_project', to: 'api#order_project'
+  post 'api/order_credit', to: 'api#order_credit'
 
   get '/otzyvy', to: 'main#otzyvy', as: :otzyvy
   get '/about', to: 'main#about', as: :about

@@ -193,19 +193,19 @@
 					<div class="background">
 						<div class='active' style="background-image: url(/assets/menu/Service.jpg)"></div>
 					</div>
-					<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -33px">
+					<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -69px">
 						<a href='/dostavka-i-oplata'>Доставка и оплата</a>
 						<a href='/otzyvy'>Отзывы</a>
 						<a href='/garantii'>Гарантии</a>
 						<a href='/news'>Новости</a>
 						<a href='/articles'>Статьи</a>
 						<a href='/about'>О нас</a>
-						<a href='/partners'>Партнерам</a>
+						<a href='/partners'>Дизайнерам и архитекторам</a>
 					</div>
 				</div>
 				<div class="dark"></div>
 				<div class="item">
-					<span>Акции</span>
+					<span style="color:#85136c">Акции</span>
 					<div class="background">
 						<div class='active' style="background-image: url(/assets/menu/Discount.jpg)"></div>
 						<div style="background-image: url(/assets/menu/BigSale-outlet.jpg)"></div>
@@ -295,7 +295,7 @@
 				<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
 				<a href="/catalog/svetilniki">Светильники</a>
 				<a href="/dostavka-i-oplata">Доставка и сборка</a>
-				<a href="/partners">Партнерам</a>
+				<a href="/partners">Дизайнерам и архитекторам</a>
 				<a href="/articles">Статьи</a>
 				<a href="/news">Новости</a>
 				<a href="/garantii">Гарантии</a>
@@ -362,7 +362,7 @@
 								<div class="title">О нас</div>
 								<a href="<%= about_path %>">О компании</a>
 								<a href="<%= otzyvy_path %>">Отзывы</a>
-								<a href="<%= partners_path %>">Партнерам</a>
+								<a href="<%= partners_path %>">Дизайнерам и архитекторам</a>
 								<a href="/stores">Адреса салонов</a>
 								<div class="title">Присоединяйтесь</div>
 								<div class="social">
@@ -397,6 +397,7 @@
 		</nav>
 	</div>
 </div>
+<div id='popupContainer' onclick='closePopup(event)'></div>
 <div id="dark">
 	<p class="bg" onclick="dark.close()"></p>
 	<div class="otzyv">
@@ -412,6 +413,9 @@
 		<div class="tac" style="margin: 15px 0 20px">
 			<div class="btn green" onclick="otzyvSend(this)"><p>Оставить отзыв</p></div>
 		</div>
+	</div>
+	<div class="orderProject">
+		
 	</div>
 </div>
 <!-- Yandex.Metrika counter -->

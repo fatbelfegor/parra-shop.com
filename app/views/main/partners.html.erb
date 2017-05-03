@@ -1,27 +1,202 @@
+<style type="text/css">
+    #page .grid {
+        font-size: 0
+    }
+    #page {
+        padding-top: 0;
+    }
+    #page .block {
+        font-size: 1rem;
+        display: inline-block;
+        vertical-align: top;
+        width: 47%;
+        margin-bottom: 32px;
+    }
+    #page .block:nth-child(even) {
+        margin-left: 6%;
+    }
+    #page .block img {
+        width: 100%;
+    }
+    #page .block .img {
+        position: relative;
+        margin-bottom: 15px;
+    }
+    #page .block .img div {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #page .block .img span {
+        background: rgba(255, 255, 255, .7);
+        font-size: 1.5rem;
+        padding: 35px 45px;
+        text-align: center;
+        line-height: 1.3;
+    }
+    #page .block .text {
+        font-size: .9rem
+    }
+    #page form {
+        max-width: 381px;
+        margin: 0 auto
+    }
+    #page .input {
+        display: block;
+        color: #626262;
+        font-size: .9rem;
+        color: #626262
+    }
+    #page .input span {
+        line-height: 38px;
+    }
+    #page .input input, #page .input textarea {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 10px;
+        line-height: 31px;
+        border: 1px solid #a2a2a2;
+        border-radius: 3px;
+    }
+    #page .input textarea {
+        height: 179px
+    }
+    #page .two-inputs {
+        font-size: 0
+    }
+    #page .two-inputs .input {
+        display: inline-block;
+        width: 45%;
+    }
+    #page .two-inputs .input + .input {
+        margin-left: 10%
+    }
+    #page .hint {
+        font-size: .8rem;
+        padding: 10px 0 18px;
+    }
+    #page .submit {
+        display: block;
+        padding: 20px 0 25px;
+        text-align: center;
+    }
+    #page .submit input {
+        display: none
+    }
+    #page .btn.white {
+        color: #000;
+        background: #f0f0f0 linear-gradient(#fff, #f0f0f0);
+        border-color: #9a9a9a;
+        padding: 6px 75px;
+    }
+
+    @media (max-width: 1000px) {
+        #page .block {
+            display: block;
+            width: auto;
+        }
+        #page .block:nth-child(even) {
+            margin-left: 0;
+        }
+    }
+</style>
+
 <div class="breadcrumbs">
   <a href="/">Главная</a>
   <span>></span>
-  <h1>Партнерам</h1>
+  <h1>Дизайнерам и архитекторам</h1>
 </div>
-<div class="page">
-    <h3>Для партнёров<img style="margin:3px 60px" src="/assets/partners.png"></h3>
-    <p>Сотрудничество с нашей компанией по реализации мебели является доступной для каждого потенциального корпоративного клиента. Предлагаемые виды сотрудничества позволяют каждому партнеру выбрать самую удобную форму работы, являясь дилерами, дистрибьюторами или агентами по продаже нашей мебели. Наши преимущества:</p>
-    <ul>
-        <li>хорошее соотношение цены и качества</li>
-        <li>современный дизайн и функциональность мебели</li>
-        <li>ограниченная конкуренция в сегменте шпонированной мебели</li>
-        <li>широкий ассортимент включая продукцию компании “SBA”</li>
-        <li>гибкая система сотрудничества</li>
-        <li>поддержка партнеров при вхождении в бизнес</li>
-    </ul>
-    <h4>Для дилеров</h4>
-    <p>На основе дилерского сотрудничества мы обеспечиваем наших клиентов лучшими условиями вхождения в бизнес и активную поддержку его ведения. Мы предлагаем:</p>
-    <ul>
-        <li>бесплатный дизайн - проект интерьера торговой площади</li>
-        <li>подбор оптимального ассортимента</li>
-        <li>торговые скидки на основе гибкой скидочной системы</li>
-        <li>рекламная продукция</li>
-    </ul>
-    <h4>Для агентов</h4>
-    <p>Агенты относятся к категории партнеров, которые занимаются реализацией продукции, выступая посредниками между нашей компанией и оптовыми покупателями в определенных регионах страны. Нашим агентам мы предоставляем полноценные права для репрезентации нашей компании и производимой нами продукции. При данной форме сотрудничества предлагаются интересные условия и полная поддержка в освоении рынка.</p>
+<div id="page" class="page">
+    <h1 style="text-align: center; font-size: 1.7rem; margin: 0 0 42px">Дизайнерам и архитекторам</h1>
+    <div class="grid">
+        <div class="block">
+            <div class="img">
+                <img src="/assets/designeram/1.png">
+                <div><span>Высокое дизайнерское<br>вознаграждение</span></div>
+            </div>
+            <div class="text">Всем дизайнерам, архитекторам и декоратором мы предлагаем высокое дизайнерское вознаграждение! Мы действительно исполняем обещания, и выплачиваем дизайнерское вознаграждение в точно указанные сроки и в полном объеме, что подтверждается в договоре, заключаемым между дизайнерами и нашей компанией. Таким образом, вы можете быть уверены на все 100%, что ваша работа будет оплачена. Никаких задержек и отговорок вы больше не услышите. Мы тщательно заботимся о своей репутации и следим за точным исполнением обязательств со своей стороны.</div>
+        </div>
+        <div class="block">
+            <div class="img">
+                <img src="/assets/designeram/2.png">
+                <div><span>Создадим любую мебель<br>под ваш дизайн проект</span></div>
+            </div>
+            <div class="text">Мы воплотим в реальность все, что нужно для вашего проекта. Мы сотрудничаем только с проверенными и зарекомендовавшими себя итальянскими и отечественными мебельными ателье, отличающимися безупречным исполнением продукции. Заказывая мебель в ателье наших партнеров, вы получите её в идеальном качестве, выполненную из самых лучших и качетственных материалов, в точно оговоренные сроки.</div>
+        </div>
+        <div class="block">
+            <div class="img">
+                <img src="/assets/designeram/3.png">
+                <div><span>Замеры, логистика и сборка<br>под нашим контролем</span></div>
+            </div>
+            <div class="text">Вам не придется тратить свое время на организационные вопросы, мы возьмем на себя все обязательства по упаковке, оформлению, доставке, подъему и сборке товаров. Все процессы от заказа товара до его установки будут под контролем нашей компании. Мы можем осуществить достаку товаров в любой регион России, а таже страны дальнего и ближнего зарубежья, благодаря налаженному за многие годы сотрудничеству с логистическими партнерами - лидерами в своей отрасли. Также мы предоставляем нашим клиентам гарантийное и постгарантийное обслуживание мебели, услуги реставратора.</div>
+        </div>
+        <div class="block">
+            <div class="img">
+                <img src="/assets/designeram/3.png">
+                <div><span>Широкий ассортимент<br>мебели в наличии</span></div>
+            </div>
+            <div class="text">Предлагаем вам огромный выбор мебели, света и декора от топовых европейских производителей класса премиум и мидл-хай. У нас В НАЛИЧИИ огромное количество наименований мебели, света, аксессуаров в различных стилевых решениях.</div>
+        </div>
+        <div class="block">
+            <div class="img">
+                <img src="/assets/designeram/3.png">
+                <div><span>Место для встречи<br>с клиентами</span></div>
+            </div>
+            <div class="text">Если вашему клиенту необходимо увидеть и оценить мебель и аксессуары, покупаемые под проект, вы всегда можете назначить встречу с ним в нашем интерьерном салоне, которые находятся в различных районах Москвы. Мы с радостью примем вас и вашего клиента в комфортной обстановке, вас встретит наш доброжелательный и улыбчивый персонал, предложит кофе, чай, напитки и сладости. Также при необходимости мы выделим вам удобную рабочую зону с высокоскорстным wi-fi.</div>
+        </div>
+        <div class="block">
+            <div class="img">
+                <img src="/assets/designeram/3.png">
+                <div><span>Специальные «дизайнерские»<br>акции и мероприятия</span></div>
+            </div>
+            <div class="text">Презентации новых коллекций, выступления и мастер-классы топовых дизайнеров и основателей известных мебельных брендов, закрытые распродажи, интересные акции, выгодные предложения, - это далеко неполный список мероприятий, о которых вы будете узнавать самыми первыми. У вас всегда будет VIP-доступ к ивентам и акциям, проводимым нами и нашими партнерами. Также мы можем организовать и ваше выступление для раскрутки вашего бизнеса.</div>
+        </div>
+    </div>
+    <p style="font-size: .9rem; padding-left: 18px; border-left: 6px solid #c4c4c4">Если вы хотите начать сотрудничество с нами, позвоните по телефону 8 (800) 707-67-57 (звонок бесплатный по России), посетите наш интерьерный салон или заполните форму ниже. Мы свяжемся с вами в ближайшее время и расскажем подробнее о всех условиях и бонусах.</p>
+    <form onsubmit="return submitOrderProject(this), false">
+        <b style="display: block; text-align: center; padding: 51px 0 12px">Заявка на сотрудничество</b>
+        <label class="input">
+            <span>ФИО *</span>
+            <input type="text" name="name" required>
+        </label>
+        <div class="two-inputs">
+            <label class="input">
+                <span>Email *</span>
+                <input type="email" name="email" required>
+            </label>
+            <label class="input">
+                <span>Телефон *</span>
+                <input type="text" name="phone" required>
+            </label>
+        </div>
+        <label class="input">
+            <span>Сообщение *</span>
+            <textarea name="message" required></textarea>
+        </label>
+        <div class="hint">* Поля, обязательные для заполнения</div>
+        <label class="submit">
+            <div class="btn white">Отправить заявку</div>
+            <input type="submit">
+        </label>
+    </form>
 </div>
+
+<script type="text/javascript">
+function submitOrderProject(form) {
+    var d = form.elements;
+    $.post('/api/partner_request', {
+        name: d.name.value, email: d.email.value, phone: d.phone.value, message: d.message.value
+    });
+
+    openPopup("<div class='success'>Ваша заявка отправлена!<div class='close' onclick='closePopup(true)'>✖</div></div>")
+
+    setTimeout(function(){
+        closePopup(true)
+    }, 3000)
+}
+</script>

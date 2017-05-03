@@ -1,6 +1,3 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 class OrderMailer < ActionMailer::Base
   default from: 'Parra Shop <orders@parra-shop.ru>'
 

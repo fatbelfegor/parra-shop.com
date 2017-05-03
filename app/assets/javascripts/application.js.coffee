@@ -16,6 +16,7 @@
 #= require jquery-ui-1.10.4.custom.min
 #= require tinymce-jquery
 #= require polyfills
+#= require popups
 
 Number.prototype.toCurrency = ->
 	(""+this.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
@@ -178,10 +179,6 @@ getCookie = (name) ->
 expire = ->
 	new Date(new Date().setDate(new Date().getDate()+30))
 
-@closeCartPopup = ->
-	popupContainer.parentNode.removeChild(popupContainer)
-	document.body.style.overflow = 'auto'
-
 @addToCart = (add) ->
 	for item in cart
 		if item.ss == add.ss and item.ls == add.ls and item.os == add.os and item.i == add.i and item.d == add.d
@@ -193,11 +190,10 @@ expire = ->
 		cart.push add
 	total = 0
 	res = """
-		<div id='popupContainer' onclick='closeCartPopup()'>
-			<div id='popupCart' onclick='event.stopPropagation()'>
-				<div class='close' onclick='closeCartPopup()'>✖</div>
-				<div class='title'>Спасибо! Товар добавлен в корзину.</div>
-				<div id='cartList' class='list'>"""
+		<div id='popupCart' onclick='event.stopPropagation()'>
+			<div class='close' onclick='closePopup(true)'>✖</div>
+			<div class='title'>Спасибо! Товар добавлен в корзину.</div>
+			<div id='cartList' class='list'>"""
 	for item, i in cart
 		do (index = i) ->
 			price = item.c * (p = parseFloat item.p.replace /\ /g, '')
@@ -229,16 +225,10 @@ expire = ->
 				Итого: <span class='total-value'>#{total.toCurrency()}</span> <img src="/assets/icon/rubl.png">
 			</div>
 			<div class='buttons'>
-				<div onclick='closeCartPopup()' class='btn white'>Продолжить покупки</div>
+				<div onclick='closePopup(true)' class='btn white'>Продолжить покупки</div>
 				<a href='/cart' class='btn green'>Оформить заказ</a>
-			</div>
-		</div>
-	</div>"""
-	document.body.insertAdjacentHTML 'beforeend', res
-	document.body.style.overflow = 'hidden'
-	popupContainer.style.display = 'flex'
-	getComputedStyle(popupContainer).top
-	popupContainer.className = 'active'
+			</div></div>"""
+	openPopup res
 	cartSave()
 
 @addToCartFromCatalog = (el) ->
