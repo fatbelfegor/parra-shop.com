@@ -331,17 +331,6 @@ expire = ->
 	$.get "/images/delete",
 	  url: $(el).prev().attr 'src'
 	$(el).parents('#addImages').html('<input onclick="addImageClick(this)" type="button" value="Добавить изображение в меню" class="btn btn-primary"><div></div>').next().val('')
-@order = ->
-	w = $('#orderWindow')
-	d = w.find('>:last-child')[0]
-	w.fadeIn(300)
-	if w
-		w[0].parentNode.removeChild w[0]
-		$('body')[0].appendChild(w[0])
-		height = $(window).height()
-		d.style.left = $(window).width() / 2 - d.offsetWidth / 2 + 'px'
-		d.style.top = height / 2 - d.offsetHeight / 2 + 'px'
-		d.style.maxHeight = height + 'px'
 @orderShowAll = ->
 	h = $($('#otherInputs')[0])
 	wrap = h.parent().parent()

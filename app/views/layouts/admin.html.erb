@@ -26,460 +26,380 @@
   </style>
 </head>
 <body class='<%= controller.controller_name %>'>
-<div id="blur">
-	<div id="header">
-		<div class="wrap">
-			<div id="compactMenuToggle" onclick="compactMenu()">
-				<div></div>
+<div id="header">
+	<div class="wrap">
+		<% if user_signed_in? %>
+			<div class="admin-nav">
+				<div>Действия</div>
+				<ul>
+					<% p current_user %>
+					<% if current_user.admin? %>
+					<li><a href="/categories">Список категорий</a></li>
+					<li><a href="/users">Пользователи</a></li>
+					<li><a href="/banners">Баннеры</a></li>
+					<li><a href="/shares">Глобальные акции</a></li>
+					<% end
+					if current_user.manager or current_user.admin? %>
+					<li><a href="/orders">Заказы</a></li>
+					<% end %>
+					<!-- <li><a href="/admin/packinglist">Импорт товарных накладных</a></li> -->
+					<li><a href="/extensions">Статусы товаров</a></li>
+					<li><a href="/comments">Отзывы</a></li>
+					<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
+				</ul>
 			</div>
-			<a href="/" class="logo">
-				<img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной">
-			</a>
-			<div class="right">
-				<div class="phone">
-				  <p>8-800-707-67-57</p>
-				  <ins>Бесплатные звонки по России</ins>
-				</div>
-			</div>
-			<div class="menu">
-				<div class="item">
-					<a href="/catalog/modulnaja-mebel-dlja-spalni">Спальни</a>
-					<div class="background">
-						<div class="active" style="background-image: url(/assets/Sienna.jpg)"></div>
-						<div style="background-image: url(/assets/Nocce.jpg)"></div>
-						<div style="background-image: url(/assets/GammaNew.jpg)"></div>
-						<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
-						<div style="background-image: url(/assets/Bella.jpg)"></div>
-						<div style="background-image: url(/assets/Plisset.jpg)"></div>
-						<div style="background-image: url(/assets/Orly.jpg)"></div>
-						<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
-						<div style="background-image: url(/assets/Miro.jpg)"></div>
-					</div>
-					<div class="list">
-						<a class='bg' href='/catalog/spalni-sienna'>Sienna</a>
-						<a class='bg' href='/catalog/spalni-nocce-antracit'>Nocce</a>
-						<a class='bg' href='/catalog/spalni-gamma'>Gamma</a>
-						<a class='bg' href='/catalog/spalni-lyona-dub'>Lyona</a>
-						<a class='bg' href='/catalog/spalni-bella-oreh'>Bella</a>
-						<a class='bg' href='/catalog/spalni-plisset'>Plisset</a>
-						<a class='bg' href='/catalog/spalni-orly-oreh'>Orly</a>
-						<a class='bg' href='/catalog/spalni-leggero-oreh'>Leggero</a>
-						<a class='bg' href='/catalog/spalni-miro'>Miro</a>
-					</div>
-				</div>
-				<div class="dark"></div>
-				<div class="item">
-					<a href="/catalog/modulnaja-mebel-dlja-gostinoj">Гостиные</a>
-					<div class="background">
-						<div class="active" style="background-image: url(/assets/NocceGost.jpg)"></div>
-						<div style="background-image: url(/assets/NizzaGostNew.jpg)"></div>
-						<div style="background-image: url(/assets/OrlyGost.jpg)"></div>
-						<div style="background-image: url(/assets/Stella.jpg)"></div>
-						<div style="background-image: url(/assets/NorteNew.jpg)"></div>
-						<div style="background-image: url(/assets/BellaGost.jpg)"></div>
-						<div style="background-image: url(/assets/Verro.jpg)"></div>
-						<div style="background-image: url(/assets/Style.jpg)"></div>
-						<div style="background-image: url(/assets/Joy.jpg)"></div>
-						<div style="background-image: url(/assets/Azzon.jpg)"></div>
-					</div>
-					<div class="list">
-						<a class='bg' href='/catalog/gostinye-nocce'>Nocce</a>
-						<a class='bg' href='/catalog/gostinye-nizza'>Nizza</a>
-						<a class='bg' href='/catalog/gostinnye-orly'>Orly</a>
-						<a class='bg' href='/catalog/gostinnye-stella'>Stella</a>
-						<a class='bg' href='/catalog/gostinye-norte'>Norte</a>
-						<a class='bg' href='/catalog/gostinnye-bella'>Bella</a>
-						<a class='bg' href='/catalog/gostinnye-verro'>Verro</a>
-						<a class='bg' href='/catalog/gostinnye-style-choco-new'>Style</a>
-						<a class='bg' href='/catalog/gostinnye-joy'>Joy</a>
-						<a class='bg' href='/catalog/gostinye-azzon'>Azzon</a>
-					</div>
-				</div>
-				<div class="item">
-					<a href="/catalog/prihozhie">Прихожие</a>
-					<div class="background">
-						<div class="active" style="background-image: url(/assets/BellaPrih.jpg)"></div>
-						<div style="background-image: url(/assets/StylePrih.jpg)"></div>
-					</div>
-					<div class="list">
-						<a class='bg' href='/catalog/prihozhie-bella'>Bella</a>
-						<a class='bg' href='/catalog/prihozhie-style'>Style</a>
-					</div>
-				</div>
-				<div class="dark"></div>
-				<div class="item">
-					<a href="/catalog/obedennye-gruppi">Обеденные группы</a>
-					<div class="background">
-						<div class="active" style="background-image: url(/assets/categories/tables.jpg)"></div>
-						<div style="background-image: url(/assets/categories/chairs.jpg)"></div>
-					</div>
-					<div class="list">
-						<a class='bg' href='/catalog/obedennye-stoly'>Столы</a>
-						<a class='bg' href='/catalog/stulja'>Стулья</a>
-					</div>
-				</div>
-				<div class="dark"></div>
-				<div class="item">
-					<a href="/catalog/divani">Мягкая мебель</a>
-					<div class="background">
-						<div class="active" style="background-image: url(/assets/Puffs.jpg)"></div>
-						<div style="background-image: url(/assets/Enjoy.jpg)"></div>
-						<div style="background-image: url(/assets/Nova.jpg)"></div>
-					</div>
-					<div class="list">
-						<a class='bg' href='/catalog/divany-puffs'>Пуфики</a>
-						<a class='bg' href='/catalog/divany-enjoy'>Enjoy</a>
-						<a class='bg' href='/catalog/divany-nova'>Nova</a>
-					</div>
-				</div>
-				<div class="dark"></div>
-				<div class="item">
-					<a href="/catalog/matras">Матрасы</a>
-					<div class="background">
-						<div class='active' style="background-image: url(/assets/SonberryOrganic.jpg)"></div>
-						<div style="background-image: url(/assets/SonberryAero.jpg)"></div>
-						<div style="background-image: url(/assets/Sonberry2XL.jpg)"></div>
-						<div style="background-image: url(/assets/SonberryActive.jpg)"></div> 
-						<div style="background-image: url(/assets/SonberryItalia.jpg)"></div>
-					</div>
-					<div class="list">
-						<a class='bg' href='/catalog/matrasy-organic'>Organic</a>
-						<a class='bg' href='/catalog/matrasy-aero'>Aero</a>
-						<a class='bg' href='/catalog/matrasy-2xl'>2XL</a>
-						<a class='bg' href='/catalog/matrasy-active'>Active</a>
-						<a class='bg' href='/catalog/matrasy-italia'>Italia</a>
-					</div>
-				</div>
-				<div class="dark"></div>
-				<div class="item">
-					<a href="/catalog/all-products">Все товары</a>
-					<div class="background">
-						<div class='active' style="background-image: url(/assets/menu/Krovati.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Shkafi.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Komodi.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Tumbochki.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Tumbi-TV.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Zerkala.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Polki.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Stoli.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Osnovaniya.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Bufeti.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Krovati-kozhanie.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Krovati-s-myagkim-izgoloviem.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Krovati-s-yashikami.jpg)"></div>
-						<div style="background-image: url(/assets/menu/Krovati-s-visokim-izgoloviem.jpg)"></div>
-						<div style="background-image: url(/assets/menu/jurnalnie-stoliki.jpg)"></div>
-						<div style="background-image: url(/assets/menu/svetilniki.jpg)"></div>
-					</div>
-					<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -60px">
-						<a class='bg' href='/catalog/krovati-dlja-spalni'>Кровати</a>
-						<a class='bg' href='/catalog/shkafy'>Шкафы</a>
-						<a class='bg' href='/catalog/komody'>Комоды</a>
-						<a class='bg' href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
-						<a class='bg' href='/catalog/tumby-pod-tv'>Тумбы TV</a>
-						<a class='bg' href='/catalog/zerkala'>Зеркала</a>
-						<a class='bg' href='/catalog/polki'>Полки</a>
-						<a class='bg' href='/catalog/stoly'>Столы</a>
-						<a class='bg' href='/catalog/osnovanija'>Основания</a>
-						<a class='bg' href='/catalog/bufety'>Буфеты</a>
-						<a class='bg' href="/catalog/kozhanye-krovati">Кожаные кровати</a>
-						<a class='bg' href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
-						<a class='bg' href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
-						<a class='bg' href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
-						<a class='bg' href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
-						<a class='bg' href="/catalog/svetilniki">Светильники</a>
-					</div>
-				</div>
-				<div class="dark"></div>
-				<div class="item">
-					<span>Сервис</span>
-					<div class="background">
-						<div class='active' style="background-image: url(/assets/menu/Service.jpg)"></div>
-					</div>
-					<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -69px">
-						<a href='/dostavka-i-oplata'>Доставка и оплата</a>
-						<a href='/otzyvy'>Отзывы</a>
-						<a href='/garantii'>Гарантии</a>
-						<a href='/news'>Новости</a>
-						<a href='/articles'>Статьи</a>
-						<a href='/about'>О нас</a>
-						<a href='/partners'>Партнерам</a>
-					</div>
-				</div>
-				<div class="dark"></div>
-				<div class="item">
-					<span style="color:#85136c">Акции</span>
-					<div class="background">
-						<div class='active' style="background-image: url(/assets/menu/Discount.jpg)"></div>
-						<div style="background-image: url(/assets/menu/BigSale-outlet.jpg)"></div>
-					</div>
-					<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -21px">
-						<a class='bg' href='/catalog/samples-sale'>Дисконт</a>
-						<a class='bg' href='/catalog/Big-Sale-Outlet'>Big Sale Outlet</a>
-					</div>
-				</div>
-				<div class="dark"></div>
-				<div class="item">
-					<a href="/stores">Где купить</a>
-					<div class="where-buy">
-						<div>
-							<a href="<%= store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
-							<a class="gray" href="<%= store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
-							<a class="green" href="<%= store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
-							<a class="blue" href="<%= store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение<br>Волоколамского ш. и<br> 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
-							<a class="orange" href="<%= store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
-							<a class="gray" href="<%= store8_path %>">Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18</a>
-							<a class="gray" href="<%= store9_path %>">Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
-							<a class="blue" href="<%= store10_path %>">Мебель PARRA<br><nobr>ТЦ «Красный кит»</nobr><br>Московская область, Красногорск,<br>ул. Ленина, 2<br>(499) 341-40-50</a>
-							<a class="red" href="/catalog/samples-sale"><span>Распродажа выставочных<br>образцов</span>
-								<img class="red" src="/assets/sale-red.png">
-								<img class="green" src="/assets/sale-green.png">
-							</a>
-						</div>      
-					</div>
-				</div>
-				<div class="dark"></div>
-			</div>
-			<div class="cart">
-				<a href="/cart"><img src="/assets/cart-small.png"><b id="cartCounter"></b></a>
-				<div id="menuCart">
-					<div class="cart-list"></div>
-					<div class="actions">
-						<a href="/cart" class="squareButton">Оформить заказ</a>
-						<div class="sum">Итого: <b id="price"></b> руб.</div>
-					</div>
-				</div>
+		<% end %>
+		<div id="compactMenuToggle" onclick="compactMenu()">
+			<div></div>
+		</div>
+		<a href="/" class="logo">
+			<img class="logo" src="/assets/logo.png" alt="PARRA-Shop.ru  – модульная корпусная мебель из натурального шпона для спальни и гостиной">
+		</a>
+		<div class="right">
+			<div class="phone">
+			  <p>8-800-707-67-57</p>
+			  <ins>Бесплатные звонки по России</ins>
 			</div>
 		</div>
-	</div>
-	<% if user_signed_in? %>
-	<div class="admin-nav">
-		<div>Действия</div>
-		<ul>
-			<% p current_user %>
-			<% if current_user.admin? %>
-			<li><a href="/categories">Список категорий</a></li>
-			<li><a href="/users">Пользователи</a></li>
-			<li><a href="/banners">Баннеры</a></li>
-			<li><a href="/shares">Глобальные акции</a></li>
-			<% end
-			if current_user.manager or current_user.admin? %>
-			<li><a href="/orders">Заказы</a></li>
-			<% end %>
-			<!-- <li><a href="/admin/packinglist">Импорт товарных накладных</a></li> -->
-			<li><a href="/extensions">Статусы товаров</a></li>
-			<li><a href="/comments">Отзывы</a></li>
-			<li><%= link_to "Выход", destroy_user_session_path, :method => :delete %></li>
-		</ul>
-	</div>
-	<% end %>
-	<div class="main">
-		<div id="content-wrap">
-			<div id="mainMenuCompact">
+		<div class="menu">
+			<div class="item">
 				<a href="/catalog/modulnaja-mebel-dlja-spalni">Спальни</a>
+				<div class="background">
+					<div class="active" style="background-image: url(/assets/Sienna.jpg)"></div>
+					<div style="background-image: url(/assets/Nocce.jpg)"></div>
+					<div style="background-image: url(/assets/GammaNew.jpg)"></div>
+					<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
+					<div style="background-image: url(/assets/Bella.jpg)"></div>
+					<div style="background-image: url(/assets/Plisset.jpg)"></div>
+					<div style="background-image: url(/assets/Orly.jpg)"></div>
+					<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
+					<div style="background-image: url(/assets/Miro.jpg)"></div>
+				</div>
+				<div class="list">
+					<a class='bg' href='/catalog/spalni-sienna'>Sienna</a>
+					<a class='bg' href='/catalog/spalni-nocce-antracit'>Nocce</a>
+					<a class='bg' href='/catalog/spalni-gamma'>Gamma</a>
+					<a class='bg' href='/catalog/spalni-lyona-dub'>Lyona</a>
+					<a class='bg' href='/catalog/spalni-bella-oreh'>Bella</a>
+					<a class='bg' href='/catalog/spalni-plisset'>Plisset</a>
+					<a class='bg' href='/catalog/spalni-orly-oreh'>Orly</a>
+					<a class='bg' href='/catalog/spalni-leggero-oreh'>Leggero</a>
+					<a class='bg' href='/catalog/spalni-miro'>Miro</a>
+				</div>
+			</div>
+			<div class="dark"></div>
+			<div class="item">
 				<a href="/catalog/modulnaja-mebel-dlja-gostinoj">Гостиные</a>
+				<div class="background">
+					<div class="active" style="background-image: url(/assets/NocceGost.jpg)"></div>
+					<div style="background-image: url(/assets/NizzaGostNew.jpg)"></div>
+					<div style="background-image: url(/assets/OrlyGost.jpg)"></div>
+					<div style="background-image: url(/assets/Stella.jpg)"></div>
+					<div style="background-image: url(/assets/NorteNew.jpg)"></div>
+					<div style="background-image: url(/assets/BellaGost.jpg)"></div>
+					<div style="background-image: url(/assets/Verro.jpg)"></div>
+					<div style="background-image: url(/assets/Style.jpg)"></div>
+					<div style="background-image: url(/assets/Joy.jpg)"></div>
+					<div style="background-image: url(/assets/Azzon.jpg)"></div>
+				</div>
+				<div class="list">
+					<a class='bg' href='/catalog/gostinye-nocce'>Nocce</a>
+					<a class='bg' href='/catalog/gostinye-nizza'>Nizza</a>
+					<a class='bg' href='/catalog/gostinnye-orly'>Orly</a>
+					<a class='bg' href='/catalog/gostinnye-stella'>Stella</a>
+					<a class='bg' href='/catalog/gostinye-norte'>Norte</a>
+					<a class='bg' href='/catalog/gostinnye-bella'>Bella</a>
+					<a class='bg' href='/catalog/gostinnye-verro'>Verro</a>
+					<a class='bg' href='/catalog/gostinnye-style-choco-new'>Style</a>
+					<a class='bg' href='/catalog/gostinnye-joy'>Joy</a>
+					<a class='bg' href='/catalog/gostinye-azzon'>Azzon</a>
+				</div>
+			</div>
+			<div class="item">
 				<a href="/catalog/prihozhie">Прихожие</a>
+				<div class="background">
+					<div class="active" style="background-image: url(/assets/BellaPrih.jpg)"></div>
+					<div style="background-image: url(/assets/StylePrih.jpg)"></div>
+				</div>
+				<div class="list">
+					<a class='bg' href='/catalog/prihozhie-bella'>Bella</a>
+					<a class='bg' href='/catalog/prihozhie-style'>Style</a>
+				</div>
+			</div>
+			<div class="dark"></div>
+			<div class="item">
 				<a href="/catalog/obedennye-gruppi">Обеденные группы</a>
+				<div class="background">
+					<div class="active" style="background-image: url(/assets/categories/tables.jpg)"></div>
+					<div style="background-image: url(/assets/categories/chairs.jpg)"></div>
+				</div>
+				<div class="list">
+					<a class='bg' href='/catalog/obedennye-stoly'>Столы</a>
+					<a class='bg' href='/catalog/stulja'>Стулья</a>
+				</div>
+			</div>
+			<div class="dark"></div>
+			<div class="item">
 				<a href="/catalog/divani">Мягкая мебель</a>
+				<div class="background">
+					<div class="active" style="background-image: url(/assets/Puffs.jpg)"></div>
+					<div style="background-image: url(/assets/Enjoy.jpg)"></div>
+					<div style="background-image: url(/assets/Nova.jpg)"></div>
+				</div>
+				<div class="list">
+					<a class='bg' href='/catalog/divany-puffs'>Пуфики</a>
+					<a class='bg' href='/catalog/divany-enjoy'>Enjoy</a>
+					<a class='bg' href='/catalog/divany-nova'>Nova</a>
+				</div>
+			</div>
+			<div class="dark"></div>
+			<div class="item">
 				<a href="/catalog/matras">Матрасы</a>
-				<a href='/catalog/krovati-dlja-spalni'>Кровати</a>
-				<a href='/catalog/shkafy'>Шкафы</a>
-				<a href='/catalog/komody'>Комоды</a>
-				<a href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
-				<a href='/catalog/tumby-pod-tv'>Тумбы TV</a>
-				<a href='/catalog/zerkala'>Зеркала</a>
-				<a href='/catalog/polki'>Полки</a>
-				<a href='/catalog/stoly'>Столы</a>
-				<a href='/catalog/osnovanija'>Основания</a>
-				<a href='/catalog/bufety'>Буфеты</a>
-				<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
-				<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
-				<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
-				<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
-				<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
-				<a href="/catalog/svetilniki">Светильники</a>
-				<a href="/dostavka-i-oplata">Доставка и сборка</a>
-				<a href="/partners">Партнерам</a>
-				<a href="/articles">Статьи</a>
-				<a href="/news">Новости</a>
-				<a href="/garantii">Гарантии</a>
-				<a href="/otzyvy">Отзывы</a>
-				<a href="/about">О нас</a>
+				<div class="background">
+					<div class='active' style="background-image: url(/assets/SonberryOrganic.jpg)"></div>
+					<div style="background-image: url(/assets/SonberryAero.jpg)"></div>
+					<div style="background-image: url(/assets/Sonberry2XL.jpg)"></div>
+					<div style="background-image: url(/assets/SonberryActive.jpg)"></div> 
+					<div style="background-image: url(/assets/SonberryItalia.jpg)"></div>
+				</div>
+				<div class="list">
+					<a class='bg' href='/catalog/matrasy-organic'>Organic</a>
+					<a class='bg' href='/catalog/matrasy-aero'>Aero</a>
+					<a class='bg' href='/catalog/matrasy-2xl'>2XL</a>
+					<a class='bg' href='/catalog/matrasy-active'>Active</a>
+					<a class='bg' href='/catalog/matrasy-italia'>Italia</a>
+				</div>
+			</div>
+			<div class="dark"></div>
+			<div class="item">
+				<a href="/catalog/all-products">Все товары</a>
+				<div class="background">
+					<div class='active' style="background-image: url(/assets/menu/Krovati.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Shkafi.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Komodi.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Tumbochki.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Tumbi-TV.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Zerkala.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Polki.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Stoli.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Osnovaniya.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Bufeti.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Krovati-kozhanie.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Krovati-s-myagkim-izgoloviem.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Krovati-s-yashikami.jpg)"></div>
+					<div style="background-image: url(/assets/menu/Krovati-s-visokim-izgoloviem.jpg)"></div>
+					<div style="background-image: url(/assets/menu/jurnalnie-stoliki.jpg)"></div>
+					<div style="background-image: url(/assets/menu/svetilniki.jpg)"></div>
+				</div>
+				<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -60px">
+					<a class='bg' href='/catalog/krovati-dlja-spalni'>Кровати</a>
+					<a class='bg' href='/catalog/shkafy'>Шкафы</a>
+					<a class='bg' href='/catalog/komody'>Комоды</a>
+					<a class='bg' href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
+					<a class='bg' href='/catalog/tumby-pod-tv'>Тумбы TV</a>
+					<a class='bg' href='/catalog/zerkala'>Зеркала</a>
+					<a class='bg' href='/catalog/polki'>Полки</a>
+					<a class='bg' href='/catalog/stoly'>Столы</a>
+					<a class='bg' href='/catalog/osnovanija'>Основания</a>
+					<a class='bg' href='/catalog/bufety'>Буфеты</a>
+					<a class='bg' href="/catalog/kozhanye-krovati">Кожаные кровати</a>
+					<a class='bg' href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
+					<a class='bg' href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
+					<a class='bg' href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
+					<a class='bg' href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
+					<a class='bg' href="/catalog/svetilniki">Светильники</a>
+				</div>
+			</div>
+			<div class="dark"></div>
+			<div class="item">
+				<span>Сервис</span>
+				<div class="background">
+					<div class='active' style="background-image: url(/assets/menu/Service.jpg)"></div>
+				</div>
+				<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -69px">
+					<a href='/dostavka-i-oplata'>Доставка и оплата</a>
+					<a href='/otzyvy'>Отзывы</a>
+					<a href='/garantii'>Гарантии</a>
+					<a href='/news'>Новости</a>
+					<a href='/articles'>Статьи</a>
+					<a href='/about'>О нас</a>
+					<a href='/partners'>Партнерам</a>
+				</div>
+			</div>
+			<div class="dark"></div>
+			<div class="item">
+				<span style="color:#85136c">Акции</span>
+				<div class="background">
+					<div class='active' style="background-image: url(/assets/menu/Discount.jpg)"></div>
+					<div style="background-image: url(/assets/menu/BigSale-outlet.jpg)"></div>
+				</div>
+				<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -21px">
+					<a class='bg' href='/catalog/samples-sale'>Дисконт</a>
+					<a class='bg' href='/catalog/Big-Sale-Outlet'>Big Sale Outlet</a>
+				</div>
+			</div>
+			<div class="dark"></div>
+			<div class="item">
 				<a href="/stores">Где купить</a>
-			</div>
-		  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
-		  	<% if notice == 'ordersave' %>
-		  		<div id="orderSave" class="windows">
-					<p>Ваш заказ принят. Наш менеджер свяжется с вами в ближайшее время.</p>
-					<div class="btn-s" onclick="windowClose()">OK</div>
-				</div>
-				<script type="text/javascript">
-					$('#windowLayout').show()
-				</script>
-		  	<% elsif !flash[:notice].blank? %>
-				<div class="notice"><%= flash[:notice] %><div class="close" onclick="$(this).parent().remove()">x</div></div>
-			<% end %>
-			<div id="adminWrap">
-		    <%= yield %>
-		    </div>
-		  </div>
-		</div>
-
-		<nav id="footer" style="margin-top: 30px">
-			<div class="top">Контент сайта Parra-shop.ru носит исключительно информационный характер и не является публичной офертой. Внешний вид, комплектация и стоимость продукции, могут отличаться от представленных на сайте.</div>
-			<div class="content">
-				<div class="columns">
-					<div class="half">
-						<div class="columns">
-							<div class="column">
-								<div class="title">Полезная информация</div>
-								<a href="<%= news_path %>">Новости</a>
-								<a href="<%= articles_path %>">Статьи</a>
-								<a href="<%= vacancy_path %>">Вакансии</a>
-								<a href="/sitemap">Карта сайта</a>
-								<a href="/uploads/pdf/PARRA-buklet-2016.pdf" target="_blank">Скачать каталог PDF</a>
-								<a href="/" class="logo"><img src="/assets/footer/logo.png"></a>
-							</div>
-							<div class="column">
-								<div class="title">Покупателям</div>
-								<a href="?">Акции</a>
-								<a href="/loyalty_card">Карта лояльности</a>
-								<a href="/sposoby-oplaty">Способы оплаты</a>
-								<a href="/pokupka-v-kredit">Рассрочка и кредит</a>
-								<a href="/garantii">Гарантии на товар</a>
-								<a href="/dostavka-i-oplata">Доставка и сборка</a>
-							</div>
-						</div>
-					</div>
-					<div class="half">
-						<div class="columns">
-							<div class="column">
-								<div class="title">Адреса салонов</div>
-								<a href="<%= store1_path %>">МЦ «Мебель PARK», +7-499-940-12-29</a>
-								<a href="<%= store3_path %>">МЦ «Армада», +7-495-665-11-52</a>
-								<a href="<%= store5_path %>">МЦ «Roomer», +7-499-426-46-06</a>
-								<a href="<%= store6_path %>">ТЦ «Твой дом - Крокус», +7-499-340-09-08</a>
-								<a href="<%= store9_path %>">МЦ «Империя», +7-499-899-07-09</a>
-								<a href="<%= store7_path %>">ТРК «Красный Кит», +7-499-347-09-09</a>
-								<a href="<%= store8_path %>">МЦ «Вагант», +7-499-400-58-18</a>
-								<a href="<%= store10_path %>">ТРК «Красный Кит», +7-499-341-40-50</a>
-							</div>
-							<div class="column">
-								<div class="title">О нас</div>
-								<a href="<%= about_path %>">О компании</a>
-								<a href="<%= otzyvy_path %>">Отзывы</a>
-								<a href="<%= partners_path %>">Партнерам</a>
-								<a href="/stores">Адреса салонов</a>
-								<div class="title">Присоединяйтесь</div>
-								<div class="social">
-									<a target="_blank" href="https://vk.com/parrashop"><img src="/assets/footer/vk.png"></a>
-									<a target="_blank" href="https://www.facebook.com/parrashops/"><img src="/assets/footer/fb.png"></a>
-									<a target="_blank" href="https://www.instagram.com/parra_shop/"><img src="/assets/footer/ig.png"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="bottom">
-					<div class="left">
-						Parra-Shop.ru - интернет магазин европейской<br>мебели из натурального шпона.<span>Copyright @ 2011-2017г.</span>
-					</div>
-					<div class="center">
-						Наше приложение<br>
-						<div class="apps">
-							<a target="_blank" href="https://itunes.apple.com/ru/app/parra-shop/id1137471924?mt=8"><img src="/assets/footer/appstore.png"></a>
-							<a target="_blank"  href="?"><img src="/assets/footer/google-play.png"></a>
-						</div>
-					</div>
-					<div class="right">
-						Банки партнеры<br>
-						<a class="credits" href="/pokupka-v-kredit">
-							<img src="/assets/footer/credit1.png">
-							<img src="/assets/footer/credit2.png">
+				<div class="where-buy">
+					<div>
+						<a href="<%= store1_path %>">Мебель PARRA<br>МЦ "Мебель PARK"<br>Киевское шоссе,<br>Строение 1, 3 вход,<br>3 этаж<br>(499) 940-12-29</a>
+						<a class="gray" href="<%= store3_path %>">Мебель PARRA<br>МЦ "Армада"<br>Кировоградская ул.,<br>д. 11/1, 2 этаж<br>(495) 665-11-52</a>
+						<a class="green" href="<%= store5_path %>">Мебель PARRA<br>МЦ "ROOMER"<br>ул. Ленинская,<br>Слобода, д. 26,<br>2 этаж<br>(499) 426-46-06</a>
+						<a class="blue" href="<%= store6_path %>">Мебель PARRA<br><nobr>ТЦ «Твой Дом - Крокус»</nobr><br>(пересечение<br>Волоколамского ш. и<br> 66км МКАД), 2 этаж<br>(499) 340-09-08</a>
+						<a class="orange" href="<%= store7_path %>">Мебель PARRA<br>ТРК «Красный Кит»<br>г. Мытищи,<br>Шараповский проезд, вл. 2, 1 этаж.<br>(499) 347-09-09</a>
+						<a class="gray" href="<%= store8_path %>">Мебель PARRA<br>МЦ "Вагант"<br>г. Подольск, ул. Станционная,<br> д. 11, 1 этаж<br>(499) 400-58-18</a>
+						<a class="gray" href="<%= store9_path %>">Мебель PARRA<br>МЦ "Империя"<br>Дмитровское шоссе <br>д. 159 , 3 этаж.<br>(499) 899-07-09</a>
+						<a class="blue" href="<%= store10_path %>">Мебель PARRA<br><nobr>ТЦ «Красный кит»</nobr><br>Московская область, Красногорск,<br>ул. Ленина, 2<br>(499) 341-40-50</a>
+						<a class="red" href="/catalog/samples-sale"><span>Распродажа выставочных<br>образцов</span>
+							<img class="red" src="/assets/sale-red.png">
+							<img class="green" src="/assets/sale-green.png">
 						</a>
-					</div>
+					</div>      
 				</div>
 			</div>
-		</nav>
+			<div class="dark"></div>
+		</div>
+		<div class="cart">
+			<a href="/cart"><img src="/assets/cart-small.png"><b id="cartCounter"></b></a>
+			<div id="menuCart">
+				<div class="cart-list"></div>
+				<div class="actions">
+					<a href="/cart" class="squareButton">Оформить заказ</a>
+					<div class="sum">Итого: <b id="price"></b> руб.</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<div id="orderWindow">
-	  <div onclick="this.parentNode.style.display = 'none'"></div>
-	  <div>
-	    <div class="header">
-	      <p>Отправьте Ваши контактные данные<br>и менеджер свяжется с Вами.</p>
-	      <div style="background:url('/assets/remove-icon.png')" onclick="this.parentNode.parentNode.parentNode.style.display = 'none'"></div>
-	    </div>
-	    <%= form_for :order, {url: orders_path, html: {onsubmit: 'return orderValidate(this)'}} do |f| %>
-	    <div class="row">
-	    	<span class="col-md-5 text-right"><%= f.label :first_name, "Ваше имя:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></span>
-	    	<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-				<%= f.text_field :first_name, class: "form-control" %>
-		      </div>
-		    </div>
+</div>
+<div id="main">
+	<div id="content-wrap">
+		<div id="mainMenuCompact">
+			<a href="/catalog/modulnaja-mebel-dlja-spalni">Спальни</a>
+			<a href="/catalog/modulnaja-mebel-dlja-gostinoj">Гостиные</a>
+			<a href="/catalog/prihozhie">Прихожие</a>
+			<a href="/catalog/obedennye-gruppi">Обеденные группы</a>
+			<a href="/catalog/divani">Мягкая мебель</a>
+			<a href="/catalog/matras">Матрасы</a>
+			<a href='/catalog/krovati-dlja-spalni'>Кровати</a>
+			<a href='/catalog/shkafy'>Шкафы</a>
+			<a href='/catalog/komody'>Комоды</a>
+			<a href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
+			<a href='/catalog/tumby-pod-tv'>Тумбы TV</a>
+			<a href='/catalog/zerkala'>Зеркала</a>
+			<a href='/catalog/polki'>Полки</a>
+			<a href='/catalog/stoly'>Столы</a>
+			<a href='/catalog/osnovanija'>Основания</a>
+			<a href='/catalog/bufety'>Буфеты</a>
+			<a href="/catalog/kozhanye-krovati">Кожаные кровати</a>
+			<a href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
+			<a href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
+			<a href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
+			<a href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
+			<a href="/catalog/svetilniki">Светильники</a>
+			<a href="/dostavka-i-oplata">Доставка и сборка</a>
+			<a href="/partners">Партнерам</a>
+			<a href="/articles">Статьи</a>
+			<a href="/news">Новости</a>
+			<a href="/garantii">Гарантии</a>
+			<a href="/otzyvy">Отзывы</a>
+			<a href="/about">О нас</a>
+			<a href="/stores">Где купить</a>
 		</div>
-		<div class="row">
-		    <span class="col-md-5 text-right"><nobr><%= f.label :phone, "Контактный телефон:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
-	    	<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-				<%= f.text_field :phone, class: "form-control" %>
-		      </div>
-		    </div>
+	  <div <%= raw('style="overflow: hidden"') if params[:controller] == 'configurator' %>>
+	  	<% if notice == 'ordersave' %>
+	  		<div id="orderSave" class="windows">
+				<p>Ваш заказ принят. Наш менеджер свяжется с вами в ближайшее время.</p>
+				<div class="btn-s" onclick="windowClose()">OK</div>
+			</div>
+			<script type="text/javascript">
+				$('#windowLayout').show()
+			</script>
+	  	<% elsif !flash[:notice].blank? %>
+			<div class="notice"><%= flash[:notice] %><div class="close" onclick="$(this).parent().remove()">x</div></div>
+		<% end %>
+		<div id="adminWrap">
+	    <%= yield %>
 	    </div>
-		<div class="row">
-			<span class="col-md-5 text-right"><nobr><%= f.label :email, "Ваш e-mail:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
-			<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-				<%= f.text_field :email, class: "form-control" %>
-		      </div>
-		    </div>
-	    </div>
-	    <div class="checkbox">
-		  <label style="display:block">
-		    <input type="checkbox" onclick="orderShowAll()">
-		    <span class="text-left">Нужна доставка</span>
-		  </label>
-		</div>
-	    <div id="otherInputs">
-		    <div class="row">
-		    <span class="col-md-5 text-right"><nobr><%= f.label :addr_street, "Улица:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
-	    	<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :addr_street, class: "form-control" %>
-		      </div>
-		    </div>
-		    </div>
-		    <div class="row">
-		    <span class="col-md-5 text-right"><nobr><%= f.label :addr_home, "Дом:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
-	    	<div class="col-md-5">
-		      <div class="wrath-content-box" style="padding:0 15px">
-		        <%= f.text_field :addr_home, class: "form-control" %>
-		      </div>
-		    </div>
-		    </div>
-		    <div class="row">
-		    <span class="col-md-5 text-right"><nobr><%= f.label :addr_block, "Корпус:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
-		    	<div class="col-md-5">
-			      <div class="wrath-content-box" style="padding:0 15px">
-			        <%= f.text_field :addr_block, class: "form-control" %>
-			      </div>
-		    </div>
-		    </div>
-		    <div class="row">
-		    <span class="col-md-5 text-right"><nobr><%= f.label :addr_flat, "Квартира:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></span>
-		    	<div class="col-md-5">
-			      <div class="wrath-content-box" style="padding:0 15px">
-			        <%= f.text_field :addr_flat, class: "form-control" %>
-			      </div>
-		    </div>
-		    </div>
-	    </div>
-	    <input class="btn btn-success" type="submit" value="Отправить">
-	    <input type="hidden" name="cartfield" id="cartfield">
-	    <% end %>
 	  </div>
 	</div>
+
+	<nav id="footer" style="margin-top: 30px">
+		<div class="top">Контент сайта Parra-shop.ru носит исключительно информационный характер и не является публичной офертой. Внешний вид, комплектация и стоимость продукции, могут отличаться от представленных на сайте.</div>
+		<div class="content">
+			<div class="columns">
+				<div class="half">
+					<div class="columns">
+						<div class="column">
+							<div class="title">Полезная информация</div>
+							<a href="<%= news_path %>">Новости</a>
+							<a href="<%= articles_path %>">Статьи</a>
+							<a href="<%= vacancy_path %>">Вакансии</a>
+							<a href="/sitemap">Карта сайта</a>
+							<a href="/uploads/pdf/PARRA-buklet-2016.pdf" target="_blank">Скачать каталог PDF</a>
+							<a href="/" class="logo"><img src="/assets/footer/logo.png"></a>
+						</div>
+						<div class="column">
+							<div class="title">Покупателям</div>
+							<a href="?">Акции</a>
+							<a href="/loyalty_card">Карта лояльности</a>
+							<a href="/sposoby-oplaty">Способы оплаты</a>
+							<a href="/pokupka-v-kredit">Рассрочка и кредит</a>
+							<a href="/garantii">Гарантии на товар</a>
+							<a href="/dostavka-i-oplata">Доставка и сборка</a>
+						</div>
+					</div>
+				</div>
+				<div class="half">
+					<div class="columns">
+						<div class="column">
+							<div class="title">Адреса салонов</div>
+							<a href="<%= store1_path %>">МЦ «Мебель PARK», +7-499-940-12-29</a>
+							<a href="<%= store3_path %>">МЦ «Армада», +7-495-665-11-52</a>
+							<a href="<%= store5_path %>">МЦ «Roomer», +7-499-426-46-06</a>
+							<a href="<%= store6_path %>">ТЦ «Твой дом - Крокус», +7-499-340-09-08</a>
+							<a href="<%= store9_path %>">МЦ «Империя», +7-499-899-07-09</a>
+							<a href="<%= store7_path %>">ТРК «Красный Кит», +7-499-347-09-09</a>
+							<a href="<%= store8_path %>">МЦ «Вагант», +7-499-400-58-18</a>
+							<a href="<%= store10_path %>">ТРК «Красный Кит», +7-499-341-40-50</a>
+						</div>
+						<div class="column">
+							<div class="title">О нас</div>
+							<a href="<%= about_path %>">О компании</a>
+							<a href="<%= otzyvy_path %>">Отзывы</a>
+							<a href="<%= partners_path %>">Партнерам</a>
+							<a href="/stores">Адреса салонов</a>
+							<div class="title">Присоединяйтесь</div>
+							<div class="social">
+								<a target="_blank" href="https://vk.com/parrashop"><img src="/assets/footer/vk.png"></a>
+								<a target="_blank" href="https://www.facebook.com/parrashops/"><img src="/assets/footer/fb.png"></a>
+								<a target="_blank" href="https://www.instagram.com/parra_shop/"><img src="/assets/footer/ig.png"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="left">
+					Parra-Shop.ru - интернет магазин европейской<br>мебели из натурального шпона.<span>Copyright @ 2011-2017г.</span>
+				</div>
+				<div class="center">
+					Наше приложение<br>
+					<div class="apps">
+						<a target="_blank" href="https://itunes.apple.com/ru/app/parra-shop/id1137471924?mt=8"><img src="/assets/footer/appstore.png"></a>
+						<a target="_blank"  href="?"><img src="/assets/footer/google-play.png"></a>
+					</div>
+				</div>
+				<div class="right">
+					Банки партнеры<br>
+					<a class="credits" href="/pokupka-v-kredit">
+						<img src="/assets/footer/credit1.png">
+						<img src="/assets/footer/credit2.png">
+					</a>
+				</div>
+			</div>
+		</div>
+	</nav>
 </div>
 <div id="dark">
 	<p class="bg" onclick="dark.close()"></p>

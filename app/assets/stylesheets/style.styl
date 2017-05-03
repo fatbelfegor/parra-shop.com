@@ -1,13 +1,5 @@
 @import 'mixins'
 
-#blur
-	-webkit-filter blur(0px)
-	filter blur(0px)
-	transition(1s)
-	&.active
-		-webkit-filter blur(3px)
-		filter blur(3px)
-
 #dark
 	position fixed
 	top 0
@@ -198,26 +190,24 @@
 		border-top 1px solid black
 				
 
-#blur
-	height 100%
-	> .main
-		border-top 1px solid #C6C6C6
-		padding-top 99px
-		#content-wrap > div
-			margin 0 auto
-			height 100%
-		.images
-			font-size 0
-			li
-				display inline-block
-				img
-					width 150px
-					height 100px
-					margin 20px
-				p
-					font-size 14px
-					cursor pointer
-					
+#main
+	border-top 1px solid #C6C6C6
+	padding-top 99px
+	#content-wrap > div
+		margin 0 auto
+		height 100%
+	.images
+		font-size 0
+		li
+			display inline-block
+			img
+				width 150px
+				height 100px
+				margin 20px
+			p
+				font-size 14px
+				cursor pointer
+				
 @media (max-height 596px)
 	#dark .otzyv
 		height 100%

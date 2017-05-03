@@ -168,12 +168,13 @@
 				display block
 				margin 15px 0 0
 	.rounds
-		margin-top 36px
+		margin-top 16px
 		.half
 			display inline-block
 			vertical-align top
-			& + .half
-				margin-left 60px
+			padding 10px 0
+			&:first-child
+				margin-right 60px
 		a
 			display inline-block
 			vertical-align top
@@ -194,6 +195,10 @@
 					margin 20px 0 0
 			a
 				width 130px
+				&:nth-child(3)
+					margin-left 0
+					margin-top 20px
+					display block
 
 .others
 	.header
