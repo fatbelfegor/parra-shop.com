@@ -13,7 +13,7 @@ gem 'stylus'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rb-readline'
-
+gem 'puma'
 gem 'tinymce-rails'
 
 gem 'acts_as_tree'
