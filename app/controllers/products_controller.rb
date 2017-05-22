@@ -175,8 +175,8 @@ class ProductsController < ApplicationController
             product_image.image = image
             product_image.position = positions[i]
             logger.debug '???????????'
-            logger.debug product_image.inspect
-            logger.debug product_image.save
+            logger.debug image.inspect
+            logger.debug product_image.save.to_s
           end
         end
         position_product_images = params[:position_product_images]
