@@ -16,6 +16,8 @@ gem 'rb-readline'
 gem 'puma'
 gem 'tinymce-rails'
 
+gem 'rails-i18n'
+
 gem 'acts_as_tree'
 gem 'acts_as_list'
 
