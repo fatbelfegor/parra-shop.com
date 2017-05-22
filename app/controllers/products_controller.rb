@@ -160,23 +160,15 @@ class ProductsController < ApplicationController
       end
     end
     respond_to do |format|
-      logger.debug 1
       if @product.update(product_params)
-        logger.debug 2
         product_images = params[:product_images]
-        logger.debug 3
         if product_images
-          logger.debug 4
           positions = params[:position_new_product_images]
-          logger.debug 5
           product_images.each_with_index do |image, i|
-            logger.debug 6
             product_image = @product.product_images.new
             product_image.image = image
             product_image.position = positions[i]
-            logger.debug '???????????'
-            logger.debug image.inspect
-            logger.debug product_image.save.to_s
+            logger.debug product_image.save!
           end
         end
         position_product_images = params[:position_product_images]
