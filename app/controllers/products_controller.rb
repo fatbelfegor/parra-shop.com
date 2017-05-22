@@ -159,7 +159,7 @@ class ProductsController < ApplicationController
         ProductFooterImage.find(id).destroy
       end
     end
-    p params[:product_images]
+    logger.debug params[:product_images].inspect
     # respond_to do |format|
     #   p 1
     #   if @product.update(product_params)
