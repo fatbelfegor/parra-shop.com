@@ -159,44 +159,43 @@ class ProductsController < ApplicationController
         ProductFooterImage.find(id).destroy
       end
     end
-    logger.debug params[:product_images].inspect
-    # respond_to do |format|
-    #   p 1
-    #   if @product.update(product_params)
-    #     p 2
-    #     product_images = params[:product_images]
-    #     p 3
-    #     if product_images
-    #       p 4
-    #       positions = params[:position_new_product_images]
-    #       p 5
-    #       product_images.each_with_index do |image, i|
-    #         p 6
-    #         product_image = @product.product_images.new
-    #         product_image.image = image
-    #         product_image.position = positions[i]
-    #         p '???????????'
-    #         p product_image
-    #         p product_image.save
-    #       end
-    #     end
-    #     position_product_images = params[:position_product_images]
-    #     if position_product_images
-    #       for id, position in position_product_images
-    #         ProductImage.update id, position: position
-    #       end
-    #     end
-    #     product_images = params[:remove_product_images]
-    #     if product_images
-    #       ProductImage.where(id: product_images).delete_all
-    #     end
-    #     format.html { redirect_to URI.encode("/kupit/#{@product.scode}"), notice: 'Product was successfully created.' }
-    #     format.json { head :no_content }
-    #   else
-    #     format.html { render action: 'edit' }
-    #     format.json { render json: @product.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      logger.debug 1
+      if @product.update(product_params)
+        logger.debug 2
+        product_images = params[:product_images]
+        logger.debug 3
+        if product_images
+          logger.debug 4
+          positions = params[:position_new_product_images]
+          logger.debug 5
+          product_images.each_with_index do |image, i|
+            logger.debug 6
+            product_image = @product.product_images.new
+            product_image.image = image
+            product_image.position = positions[i]
+            logger.debug '???????????'
+            logger.debug product_image.inspect
+            logger.debug product_image.save
+          end
+        end
+        position_product_images = params[:position_product_images]
+        if position_product_images
+          for id, position in position_product_images
+            ProductImage.update id, position: position
+          end
+        end
+        product_images = params[:remove_product_images]
+        if product_images
+          ProductImage.where(id: product_images).delete_all
+        end
+        format.html { redirect_to URI.encode("/kupit/#{@product.scode}"), notice: 'Product was successfully created.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
   end
   
   # DELETE /products/1
