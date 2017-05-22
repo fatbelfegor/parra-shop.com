@@ -160,8 +160,6 @@ class ProductsController < ApplicationController
       end
     end
     respond_to do |format|
-      p '!!!!!!'
-      p @product.update(product_params)
       if @product.update(product_params)
         product_images = params[:product_images]
         if product_images
@@ -170,7 +168,9 @@ class ProductsController < ApplicationController
             product_image = @product.product_images.new
             product_image.image = image
             product_image.position = positions[i]
-            product_image.save
+            p '???????????'
+            p product_image
+            p product_image.save
           end
         end
         position_product_images = params[:position_product_images]
