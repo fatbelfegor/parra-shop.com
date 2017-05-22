@@ -160,6 +160,8 @@ class ProductsController < ApplicationController
       end
     end
     respond_to do |format|
+      p '!!!!!!'
+      p @product.update(product_params)
       if @product.update(product_params)
         product_images = params[:product_images]
         if product_images
