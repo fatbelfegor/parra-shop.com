@@ -160,11 +160,17 @@ class ProductsController < ApplicationController
       end
     end
     respond_to do |format|
+      p 1
       if @product.update(product_params)
+        p 2
         product_images = params[:product_images]
+        p 3
         if product_images
+          p 4
           positions = params[:position_new_product_images]
+          p 5
           product_images.each_with_index do |image, i|
+            p 6
             product_image = @product.product_images.new
             product_image.image = image
             product_image.position = positions[i]
