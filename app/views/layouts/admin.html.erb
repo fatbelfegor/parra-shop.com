@@ -38,6 +38,7 @@
 					<li><a href="/users">Пользователи</a></li>
 					<li><a href="/banners">Баннеры</a></li>
 					<li><a href="/shares">Глобальные акции</a></li>
+					<li><a href="/stocks">Статусы наличия</a></li>
 					<% end
 					if current_user.manager or current_user.admin? %>
 					<li><a href="/orders">Заказы</a></li>
@@ -62,153 +63,27 @@
 			</div>
 		</div>
 		<div class="menu">
-			<div class="item">
-				<a href="/catalog/modulnaja-mebel-dlja-spalni">Спальни</a>
-				<div class="background">
-					<div class="active" style="background-image: url(/assets/Sienna.jpg)"></div>
-					<div style="background-image: url(/assets/Nocce.jpg)"></div>
-					<div style="background-image: url(/assets/GammaNew.jpg)"></div>
-					<div style="background-image: url(/assets/LyonaNew.jpg)"></div>
-					<div style="background-image: url(/assets/Bella.jpg)"></div>
-					<div style="background-image: url(/assets/Plisset.jpg)"></div>
-					<div style="background-image: url(/assets/Orly.jpg)"></div>
-					<div style="background-image: url(/assets/LeggeroSale.jpg)"></div>
+			<% tops = Category.select(:name, :id, :url, :name)
+				.where(parent_id: nil, name: [
+					'Спальни', 'Гостиные', 'Прихожие', 'Обеденные группы', 'Диваны', 'Матрасы', 'Все товары'
+				]).order(:position) %>
+			<% for top in tops %>
+				<% cats = top.children.order(:position) %>
+				<div class="item">
+					<a href="/catalog/<%= top.url %>"><%= top.name %></a>
+					<div class="background">
+						<% cats.each_with_index do |c, i| %>
+							<div<% if i == 0 %> class="active"<% end %> style="background-image: url(<%= c.menu_image %>)"></div>
+						<% end %>
+					</div>
+					<div class="list">
+						<% for c in cats %>
+							<a class='bg' href='/catalog/<%= c.url %>'><%= c.name %></a>
+						<% end %>
+					</div>
 				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/spalni-sienna'>Sienna</a>
-					<a class='bg' href='/catalog/spalni-nocce-antracit'>Nocce</a>
-					<a class='bg' href='/catalog/spalni-gamma'>Gamma</a>
-					<a class='bg' href='/catalog/spalni-lyona-dub'>Lyona</a>
-					<a class='bg' href='/catalog/spalni-bella-oreh'>Bella</a>
-					<a class='bg' href='/catalog/spalni-plisset'>Plisset</a>
-					<a class='bg' href='/catalog/spalni-orly-oreh'>Orly</a>
-					<a class='bg' href='/catalog/spalni-leggero-oreh'>Leggero</a>
-				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/catalog/modulnaja-mebel-dlja-gostinoj">Гостиные</a>
-				<div class="background">
-					<div class="active" style="background-image: url(/assets/NocceGost.jpg)"></div>
-					<div style="background-image: url(/assets/NizzaGostNew.jpg)"></div>
-					<div style="background-image: url(/assets/OrlyGost.jpg)"></div>
-					<div style="background-image: url(/assets/Stella.jpg)"></div>
-					<div style="background-image: url(/assets/NorteNew.jpg)"></div>
-					<div style="background-image: url(/assets/BellaGost.jpg)"></div>
-					<div style="background-image: url(/assets/Verro.jpg)"></div>
-					<div style="background-image: url(/assets/Style.jpg)"></div>
-					<div style="background-image: url(/assets/Joy.jpg)"></div>
-					<div style="background-image: url(/assets/Azzon.jpg)"></div>
-				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/gostinye-nocce'>Nocce</a>
-					<a class='bg' href='/catalog/gostinye-nizza'>Nizza</a>
-					<a class='bg' href='/catalog/gostinnye-orly'>Orly</a>
-					<a class='bg' href='/catalog/gostinnye-stella'>Stella</a>
-					<a class='bg' href='/catalog/gostinye-norte'>Norte</a>
-					<a class='bg' href='/catalog/gostinnye-bella'>Bella</a>
-					<a class='bg' href='/catalog/gostinnye-verro'>Verro</a>
-					<a class='bg' href='/catalog/gostinnye-style-choco-new'>Style</a>
-					<a class='bg' href='/catalog/gostinnye-joy'>Joy</a>
-					<a class='bg' href='/catalog/gostinye-azzon'>Azzon</a>
-				</div>
-			</div>
-			<div class="item">
-				<a href="/catalog/prihozhie">Прихожие</a>
-				<div class="background">
-					<div class="active" style="background-image: url(/assets/BellaPrih.jpg)"></div>
-					<div style="background-image: url(/assets/StylePrih.jpg)"></div>
-				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/prihozhie-bella'>Bella</a>
-					<a class='bg' href='/catalog/prihozhie-style'>Style</a>
-				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/catalog/obedennye-gruppi">Обеденные группы</a>
-				<div class="background">
-					<div class="active" style="background-image: url(/assets/categories/tables.jpg)"></div>
-					<div style="background-image: url(/assets/categories/chairs.jpg)"></div>
-				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/obedennye-stoly'>Столы</a>
-					<a class='bg' href='/catalog/stulja'>Стулья</a>
-				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/catalog/divani">Мягкая мебель</a>
-				<div class="background">
-					<div class="active" style="background-image: url(/assets/Puffs.jpg)"></div>
-					<div style="background-image: url(/assets/Enjoy.jpg)"></div>
-					<div style="background-image: url(/assets/Nova.jpg)"></div>
-				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/divany-puffs'>Пуфики</a>
-					<a class='bg' href='/catalog/divany-enjoy'>Enjoy</a>
-					<a class='bg' href='/catalog/divany-nova'>Nova</a>
-				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/catalog/matras">Матрасы</a>
-				<div class="background">
-					<div class='active' style="background-image: url(/assets/SonberryOrganic.jpg)"></div>
-					<div style="background-image: url(/assets/SonberryAero.jpg)"></div>
-					<div style="background-image: url(/assets/Sonberry2XL.jpg)"></div>
-					<div style="background-image: url(/assets/SonberryActive.jpg)"></div> 
-					<div style="background-image: url(/assets/SonberryItalia.jpg)"></div>
-				</div>
-				<div class="list">
-					<a class='bg' href='/catalog/matrasy-organic'>Organic</a>
-					<a class='bg' href='/catalog/matrasy-aero'>Aero</a>
-					<a class='bg' href='/catalog/matrasy-2xl'>2XL</a>
-					<a class='bg' href='/catalog/matrasy-active'>Active</a>
-					<a class='bg' href='/catalog/matrasy-italia'>Italia</a>
-				</div>
-			</div>
-			<div class="dark"></div>
-			<div class="item">
-				<a href="/catalog/all-products">Все товары</a>
-				<div class="background">
-					<div class='active' style="background-image: url(/assets/menu/Krovati.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Shkafi.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Komodi.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Tumbochki.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Tumbi-TV.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Zerkala.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Polki.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Stoli.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Osnovaniya.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Bufeti.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Krovati-kozhanie.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Krovati-s-myagkim-izgoloviem.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Krovati-s-yashikami.jpg)"></div>
-					<div style="background-image: url(/assets/menu/Krovati-s-visokim-izgoloviem.jpg)"></div>
-					<div style="background-image: url(/assets/menu/jurnalnie-stoliki.jpg)"></div>
-					<div style="background-image: url(/assets/menu/svetilniki.jpg)"></div>
-				</div>
-				<div class="list" style="white-space: nowrap; width: auto; padding: 0 15px; margin-left: -60px">
-					<a class='bg' href='/catalog/krovati-dlja-spalni'>Кровати</a>
-					<a class='bg' href='/catalog/shkafy'>Шкафы</a>
-					<a class='bg' href='/catalog/komody'>Комоды</a>
-					<a class='bg' href='/catalog/tumby-dlja-spalni'>Тумбочки</a>
-					<a class='bg' href='/catalog/tumby-pod-tv'>Тумбы TV</a>
-					<a class='bg' href='/catalog/zerkala'>Зеркала</a>
-					<a class='bg' href='/catalog/polki'>Полки</a>
-					<a class='bg' href='/catalog/stoly'>Столы</a>
-					<a class='bg' href='/catalog/osnovanija'>Основания</a>
-					<a class='bg' href='/catalog/bufety'>Буфеты</a>
-					<a class='bg' href="/catalog/kozhanye-krovati">Кожаные кровати</a>
-					<a class='bg' href="/catalog/krovati-s-mjagkim-izgolovem">Кровати с мягким изголовьем</a>
-					<a class='bg' href="/catalog/krovati-s-jashhikami">Кровати с ящиками</a>
-					<a class='bg' href="/catalog/krovati-s-vysokim-izgolovem">Кровати с высоким изголовьем</a>
-					<a class='bg' href="/catalog/zhurnalnye-stoliki">Журнальные столики</a>
-					<a class='bg' href="/catalog/svetilniki">Светильники</a>
-				</div>
-			</div>
-			<div class="dark"></div>
+				<div class="dark"></div>
+			<% end %>
 			<div class="item">
 				<span>Сервис</span>
 				<div class="background">
