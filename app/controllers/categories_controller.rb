@@ -149,6 +149,7 @@ private
 			:position,
       :header,
       :menu_image,
+      :menu_name,
 			:shadow_left,
 			:images,
 			:parent_id,

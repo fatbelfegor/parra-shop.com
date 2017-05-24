@@ -16,51 +16,54 @@
 		height	450px
 		margin 10px 15px 0
 		transition(0.3s)
-		> div
-			margin-left 0
-			border 1px solid transparent
-			position absolute
-			background-color white
-			> div, .appear > div
-				color #59595B
-				margin-left 50px
-				font-size 12px
-				line-height 25px
-			.appear
-				text-align center
-				margin 0
-				div
-					height 0
-					overflow hidden
-					text-align left
-					transition(0.3s)
-				.fancyButton
-					float none
-					display inline-block
-					color white !important
-					text-shadow -1px 1px 0 #3B9E44
-					text-align center
-					border 0 solid #4FB859 !important
-					font-size 14px
-					line-height 20px
-					padding 0 12px
-					cursor pointer
-					background-image url('/assets/buyButton.png')
-					margin 5px auto !important
-					border-radius(5px)
-					transition(0.3s)
-				.fancyButton:hover
-					padding 0 17px
-					box-shadow(0 0 15px 0 #4FB859)
-			.shortdesk
+	a
+		display block
+		margin-left 0
+		border 1px solid transparent
+		position absolute
+		background-color white
+		&:focus
+			outline 0
+		> div, .appear > div
+			color #59595B
+			margin-left 50px
+			font-size 12px
+			line-height 25px
+		.appear
+			text-align center
+			margin 0
+			div
+				height 0
 				overflow hidden
-				max-height 50px
-			.name
+				text-align left
+				transition(0.3s)
+			.fancyButton
+				float none
+				display inline-block
+				color white !important
+				text-shadow -1px 1px 0 #3B9E44
+				text-align center
+				border 0 solid #4FB859 !important
 				font-size 14px
-				font-weight bold
-				margin-left 0
-				line-height 25px
-				min-height 50px
+				line-height 20px
+				padding 0 12px
+				cursor pointer
+				background-image url('/assets/buyButton.png')
+				margin 5px auto !important
+				border-radius(5px)
+				transition(0.3s)
+			.fancyButton:hover
+				padding 0 17px
+				box-shadow(0 0 15px 0 #4FB859)
+		.shortdesk
+			overflow hidden
+			max-height 50px
+		.name
+			font-size 14px
+			font-weight bold
+			margin-left 0
+			line-height 25px
+			min-height 50px
 	img, .photoes
 		width 280px
 		height 280px
@@ -85,12 +88,10 @@
 	.slick-next
 		right 0
 		background url("/assets/right.png")
-	a:focus
-		outline 0
 	> div:hover
 		.slick-arrow
 			opacity 1
-		> div
+		a
 			border 1px solid #ccc
 			box-shadow(0 0 10px 0 #aaa)
 			z-index 6

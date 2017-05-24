@@ -1,5 +1,5 @@
 <div>
-	<div>
+	<a onclick="if(event.target.nodeName=='BUTTON'){event.preventDefault()}" href="/kupit/<%= product.scode %>">
 		<% if product.extension %>
 			<img src="<%= product.extension.image %>" class='extension-catalog'>
 		<% elsif $global_share %>
@@ -34,45 +34,45 @@
 			<% alt = "#{product.name}, цена #{price}" %>
 			<div class="photoes">
 				<% images.each_with_index do |i, index| %>
-					<a<% if index == 0 %> class='showPhoto'<% end %> href="/kupit/<%= product.scode %>"><img alt="<%= alt %>" src="<%= i %>"></a>
+					<div<% if index == 0 %> class='showPhoto'<% end %>><img alt="<%= alt %>" src="<%= i %>"></div>
 				<% end %>
 			</div>
 		<% end %>
 		<div>
 			<div class="name">
-				<a class="product-name" href="/kupit/<%= product.scode %>"><%= product.name %></a>
+				<div class="product-name"><%= product.name %></div>
 			</div>
 		</div>
 		<div class="articul"><%= product.s_title %></div>
 		<div><%= raw product.shortdesk %></div>
-		<div>
-			<b>Цена:</b>
+		<div class="price-row">
+			<b>Цена: </b>
 			<span class="price"><%= price %></span>
 		</div>
 		<div class="appear">
 			<% if size %>
 				<div>
-					<b>Размер:</b>
+					<b>Размер: </b>
 					<span class="size"><%= size.name %></span>
 					<span class="hidden"><%= size.scode %></span>
 				</div>
 			<% end %>
 			<% if texture %>
 				<div>
-					<b>Цвет:</b>
+					<b>Цвет: </b>
 					<span class="color"><%= texture.name %></span>
 					<span class="hidden"><%= texture.scode %></span>
 				</div>
 			<% elsif color %>
 				<div>
-					<b>Цвет:</b>
+					<b>Цвет: </b>
 					<span class="color"><%= color.name %></span>
 					<span class="hidden"><%= color.scode %></span>
 				</div>
 			<% end %>
 			<% if option %>
 				<div>
-					<b>Опция:</b>
+					<b>Опция: </b>
 					<span class="option"><%= option.name %></span>
 					<span class="hidden"><%= option.scode %></span>
 				</div>
@@ -81,5 +81,5 @@
 			<div class="scode hidden"><%= product.scode %></div>
 			<div class="fancyButton" onclick="addToCartFromCatalog(this)">Купить</div>
 		</div>
-	</div>
+	</a>
 </div>
