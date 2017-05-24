@@ -105,6 +105,7 @@ ParraShopCom::Application.routes.draw do
   resources :statuses, except: [:show]
   resources :shares, except: [:show]
   resources :banners, except: [:show]
+  resources :stocks, except: [:show]
   resources :products, except: :index do
     member do
       get :show_scode
