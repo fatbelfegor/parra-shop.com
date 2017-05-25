@@ -48,6 +48,15 @@
       </div>
     </div>
   </div>
+  <div class="row form-group">
+    <h4 class="col-md-2 text-right"><%= f.label :extension_id, "Статус наличия:", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></h4>
+    <div class="col-md-10">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <% collection = [Stock.new(id: nil, name: 'Не выбрано')] + Stock.all %>
+        <%= f.select :stock_id, options_from_collection_for_select(collection, "id", "name", if @product then @product.stock_id else nil end), {}, {class: "form-control"} %>
+      </div>
+    </div>
+  </div>
   <div class="row form-group" style="padding-left: 100px">
     <% for category in Category.all %>
       <div class="col-md-2">
@@ -178,11 +187,17 @@
       <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
         <%=check_box("product", "invisible", {}, "true", "false")%>
       </div>
-    </div>    
+    </div>
     <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Сделать Разделителем</div></h4>
     <div class="col-md-1">
       <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
         <%=check_box("product", "delemiter", {}, "true", "false")%>
+      </div>
+    </div>
+    <h4 class="col-md-3 text-right"><div class="wrath-content-box" style="padding:0 15px">Не назначать статус наличия автоматически</div></h4>
+    <div class="col-md-1">
+      <div class="wrath-content-box" style="padding:0 15px;line-height:39px">
+        <%=check_box("product", "custom_stock", {}, "true", "false")%>
       </div>
     </div>
   </div>

@@ -62,12 +62,12 @@
 			</div>
 		</div>
 		<div class="menu">
-			<% tops = Category.select(:name, :id, :url, :menu_name)
+			<% tops = Category.select(:id, :url, :menu_name, :margin)
 				.where(parent_id: nil, name: [
 					'Спальни', 'Гостиные', 'Прихожие', 'Обеденные группы', 'Диваны', 'Матрасы', 'Все товары'
 				]).order(:position) %>
 			<% for top in tops %>
-				<% cats = top.children.order(:position) %>
+				<% cats = top.children.select(:menu_name, :url, :menu_image).order(:position) %>
 				<div class="item">
 					<a href="/catalog/<%= top.url %>"><%= top.menu_name %></a>
 					<div class="background">
@@ -75,7 +75,7 @@
 							<div<% if i == 0 %> class="active"<% end %> style="background-image: url(<%= c.menu_image %>)"></div>
 						<% end %>
 					</div>
-					<div class="list">
+					<div class="list"<% if top.margin != nil %> style="margin-left: <%= top.margin %>px"<% end %>>
 						<% for c in cats %>
 							<a class='bg' href='/catalog/<%= c.url %>'><%= c.menu_name %></a>
 						<% end %>

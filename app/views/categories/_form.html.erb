@@ -107,6 +107,12 @@
         <%= f.text_field :position, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
       </div>
     </div>
+    <h4 class="col-md-2 text-right"><nobr><%= f.label :margin, "Смещение в меню", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>
+    <div class="col-md-2">
+      <div class="wrath-content-box" style="padding:0 15px">
+        <%= f.text_field :margin, {class: 'form-control', style: 'padding-top:0;padding-bottom:0'} %>
+      </div>
+    </div>
   </div>
   <div class="row form-group">
     <h4 class="col-md-2 text-right"><nobr><%= f.label :url, "Краткий url", {class: 'control-label wrath-content-box', style: 'padding:0 15px'} %></nobr></h4>

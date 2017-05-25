@@ -257,6 +257,8 @@ private
       :length,
       :color,
       :texture,
+      :stock_id,
+      :custom_stock,
       :category_ids => []
     )
   end

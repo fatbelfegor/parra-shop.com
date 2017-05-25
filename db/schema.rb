@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524191855) do
+ActiveRecord::Schema.define(version: 20170525144042) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image",      limit: 255
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170524191855) do
     t.string   "menu_image",       limit: 255
     t.boolean  "shadow_left",                                             default: true
     t.string   "menu_name",        limit: 255
+    t.integer  "margin",           limit: 4
   end
 
   add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
@@ -241,6 +242,7 @@ ActiveRecord::Schema.define(version: 20170524191855) do
     t.integer  "width",             limit: 4
     t.integer  "height",            limit: 4
     t.integer  "stock_id",          limit: 4
+    t.boolean  "custom_stock",                                             default: false
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree

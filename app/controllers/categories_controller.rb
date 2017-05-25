@@ -163,7 +163,8 @@ private
       :seo_text,
       :url,
       :isMobile,
-      :mobile_image_url
+      :mobile_image_url,
+      :margin
 		)
 	end
 end
