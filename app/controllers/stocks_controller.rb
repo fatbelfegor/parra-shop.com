@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class StocksController < ApplicationController
   before_filter :admin_required
   before_action :set_stock, only: [:edit, :update, :destroy]
