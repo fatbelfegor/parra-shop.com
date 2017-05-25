@@ -32,7 +32,6 @@
 			<div class="admin-nav">
 				<div>Действия</div>
 				<ul>
-					<% p current_user %>
 					<% if current_user.admin? %>
 					<li><a href="/categories">Список категорий</a></li>
 					<li><a href="/users">Пользователи</a></li>
@@ -78,7 +77,7 @@
 					</div>
 					<div class="list">
 						<% for c in cats %>
-							<a class='bg' href='/catalog/<%= c.url %>'><%= c.name %></a>
+							<a class='bg' href='/catalog/<%= c.url %>'><%= c.menu_name %></a>
 						<% end %>
 					</div>
 				</div>

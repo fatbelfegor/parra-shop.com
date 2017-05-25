@@ -51,10 +51,12 @@
 			<div class="product-description">
 			<%= raw @product.description.gsub('&nbsp;', '') %>
 			</div>
-			<div class="presence">
-				<div class="round" style="background: #7ec34e"></div>
-				<span>В наличии</span>
-			</div>
+			<% if stock = @product.stock %>
+				<div class="presence">
+					<div class="round" style="background: <%= stock.color %>"></div>
+					<span><%= stock.name %></span>
+				</div>
+			<% end %>
 			<br>
 			<div id="pricePanel">
 				<div class="left">
