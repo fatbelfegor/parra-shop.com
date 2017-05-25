@@ -85,7 +85,7 @@ class CategoriesController < ApplicationController
   
   def sort
     parent_id = params[:parent_id]
-    parent_id = nil if parent_id == 'nil'
+    parent_id = nil if parent_id == 'nil' or parent_id == 0
     params[:category].each_with_index do |id, index|
       Category.find(id).update position: index+1, parent_id: parent_id
     end
