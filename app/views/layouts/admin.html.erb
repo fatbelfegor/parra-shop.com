@@ -62,14 +62,14 @@
 			</div>
 		</div>
 		<div class="menu">
-			<% tops = Category.select(:name, :id, :url, :name)
+			<% tops = Category.select(:name, :id, :url, :menu_name)
 				.where(parent_id: nil, name: [
 					'Спальни', 'Гостиные', 'Прихожие', 'Обеденные группы', 'Диваны', 'Матрасы', 'Все товары'
 				]).order(:position) %>
 			<% for top in tops %>
 				<% cats = top.children.order(:position) %>
 				<div class="item">
-					<a href="/catalog/<%= top.url %>"><%= top.name %></a>
+					<a href="/catalog/<%= top.url %>"><%= top.menu_name %></a>
 					<div class="background">
 						<% cats.each_with_index do |c, i| %>
 							<div<% if i == 0 %> class="active"<% end %> style="background-image: url(<%= c.menu_image %>)"></div>
