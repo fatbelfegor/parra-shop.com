@@ -24,6 +24,8 @@ gem 'acts_as_list'
 #gem 'pg'
 gem 'mysql2', '~> 0.3.18'
 
+gem 'whenever', :require => false
+
 gem 'russian'
 gem 'write_xlsx'
 
