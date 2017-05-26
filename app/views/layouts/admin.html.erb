@@ -67,7 +67,7 @@
 					'Спальни', 'Гостиные', 'Прихожие', 'Обеденные группы', 'Диваны', 'Матрасы', 'Все товары'
 				]).order(:position) %>
 			<% for top in tops %>
-				<% cats = top.children.select(:menu_name, :url, :menu_image).order(:position) %>
+				<% cats = top.children.select(:id, :menu_name, :url, :menu_image).order(:position) %>
 				<div class="item">
 					<a href="/catalog/<%= top.url %>"><%= top.menu_name %></a>
 					<div class="background">
@@ -77,7 +77,12 @@
 					</div>
 					<div class="list"<% if top.margin != nil %> style="margin-left: <%= top.margin %>px"<% end %>>
 						<% for c in cats %>
-							<a class='bg' href='/catalog/<%= c.url %>'><%= c.menu_name %></a>
+							<% if color = c.color_categories.first %>
+								<% url = color.url %>
+							<% else %>
+								<% url = c.url %>
+							<% end %>
+							<a class='bg' href='/catalog/<%= url %>'><%= c.menu_name %></a>
 						<% end %>
 					</div>
 				</div>
