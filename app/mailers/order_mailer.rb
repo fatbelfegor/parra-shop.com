@@ -10,8 +10,7 @@ class OrderMailer < ActionMailer::Base
     OrderExcel.new order.id, nil do |f|
       attachments["#{order.id}.xlsx"] = f
     end
-    # mail(to: ['intrtz@gmail.com', 'kas1082@yandex.ru'], subject: 'Поступил новый заказ.')
-    mail(to: 'romadzao@gmail.com', subject: 'Поступил новый заказ.')
+    mail(to: ['intrtz@gmail.com', 'kas1082@yandex.ru'], subject: 'Поступил новый заказ.')
   end
 
   def ordersaveclient(order)
