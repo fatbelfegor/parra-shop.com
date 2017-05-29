@@ -3,10 +3,6 @@ class OrderMailer < ActionMailer::Base
 
   def ordersave(order)
     @order = order
-    #mail(to: 'intrtz@gmail.com', subject: 'Поступил новый заказ.')
-    #mail(to: 'kas1082@yandex.ru', subject: 'Поступил новый заказ.')
-    #mail(to: 'ikishik@gmail.com', subject: 'Поступил новый заказ.')
-    #mail(to: ['ikishik@gmail.com', 'ekishik@gmail.com'], subject: 'Поступил новый заказ.')
     OrderExcel.new order.id, nil do |f|
       attachments["#{order.id}.xlsx"] = f
     end
@@ -22,6 +18,6 @@ class OrderMailer < ActionMailer::Base
 
   def comment(comment)
     @comment = comment
-    mail(to: 'kas1082@yandex.ru', subject: 'Новый отзыв на сайте parra-shop.')
+    mail(to: ['intrtz@gmail.com', 'kas1082@yandex.ru'], subject: 'Новый отзыв на сайте parra-shop.')
   end
 end
