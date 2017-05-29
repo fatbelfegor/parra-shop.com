@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every :monday, :at => '03:00' do # Use any day of the week or :weekend, :weekday
-  runner "RAILS_ENV=production rake random:stocks"
+  runner "rake random:stocks"
 end
